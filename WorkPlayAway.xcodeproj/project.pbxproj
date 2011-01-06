@@ -37,7 +37,6 @@
 		8C0D94D212D64A1B009F3280 /* INSTALL_PLUGINS.sh in Resources */ = {isa = PBXBuildFile; fileRef = 8C0D948912D64486009F3280 /* INSTALL_PLUGINS.sh */; };
 		8C0D95A512D65326009F3280 /* WPACommon.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
 		8C0D95B112D6535A009F3280 /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
-		8C0D95DC12D65F58009F3280 /* RTMModule-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C77295312D46AC600F71FE7 /* RTMModule-Info.plist */; };
 		8C77298B12D46AC600F71FE7 /* AddMod.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77291812D46AC600F71FE7 /* AddMod.xib */; };
 		8C77298D12D46AC600F71FE7 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77291B12D46AC600F71FE7 /* PreferencesWindow.xib */; };
 		8C77298E12D46AC600F71FE7 /* AddModWinController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77291C12D46AC600F71FE7 /* AddModWinController.m */; };
@@ -1039,7 +1038,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CD198F912D514C800C69AC9 /* rtm.ico in Resources */,
-				8C0D95DC12D65F58009F3280 /* RTMModule-Info.plist in Resources */,
 				8CD198F812D514AC00C69AC9 /* RTMModule.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1516,6 +1514,7 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_GC = supported;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1541,6 +1540,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_GC = supported;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -1774,6 +1774,7 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_GC = supported;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1799,6 +1800,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_GC = supported;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
