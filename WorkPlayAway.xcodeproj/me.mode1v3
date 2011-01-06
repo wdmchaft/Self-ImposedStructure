@@ -202,49 +202,9 @@
 			<key>Content</key>
 			<dict>
 				<key>PBXProjectModuleGUID</key>
-				<string>8CD199F712D614EA00C69AC9</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>WPADelegate.m</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>8CD199F812D614EA00C69AC9</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>WPADelegate.m</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>8C0D95CB12D65417009F3280</string>
-						<key>history</key>
-						<array>
-							<string>8C0D94DD12D64D53009F3280</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {907, 734}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>117 103 907 775 0 0 1440 878 </string>
-			</dict>
-		</dict>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
 				<string>8CD199BF12D5922500C69AC9</string>
 				<key>PBXProjectModuleLabel</key>
-				<string>WPAMainController.m</string>
+				<string>WPAMainController.h</string>
 				<key>PBXSplitModuleInNavigatorKey</key>
 				<dict>
 					<key>Split0</key>
@@ -252,15 +212,15 @@
 						<key>PBXProjectModuleGUID</key>
 						<string>8CD199C012D5922500C69AC9</string>
 						<key>PBXProjectModuleLabel</key>
-						<string>WPAMainController.m</string>
+						<string>WPAMainController.h</string>
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>8C0D95CC12D65417009F3280</string>
+						<string>8C0D95FB12D663A6009F3280</string>
 						<key>history</key>
 						<array>
-							<string>8CD199DD12D5954000C69AC9</string>
-							<string>8C0D94DF12D64D53009F3280</string>
+							<string>8C0D95E912D6626E009F3280</string>
+							<string>8C0D95EA12D6626E009F3280</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -277,6 +237,46 @@
 				<false/>
 				<key>RubberWindowFrame</key>
 				<string>38 77 907 775 0 0 1440 878 </string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Content</key>
+			<dict>
+				<key>PBXProjectModuleGUID</key>
+				<string>8CD199F712D614EA00C69AC9</string>
+				<key>PBXProjectModuleLabel</key>
+				<string>WPADelegate.m</string>
+				<key>PBXSplitModuleInNavigatorKey</key>
+				<dict>
+					<key>Split0</key>
+					<dict>
+						<key>PBXProjectModuleGUID</key>
+						<string>8CD199F812D614EA00C69AC9</string>
+						<key>PBXProjectModuleLabel</key>
+						<string>WPADelegate.m</string>
+						<key>_historyCapacity</key>
+						<integer>0</integer>
+						<key>bookmark</key>
+						<string>8C0D95FC12D663A6009F3280</string>
+						<key>history</key>
+						<array>
+							<string>8C0D95EC12D6626E009F3280</string>
+						</array>
+					</dict>
+					<key>SplitCount</key>
+					<string>1</string>
+				</dict>
+				<key>StatusBarVisibility</key>
+				<true/>
+			</dict>
+			<key>Geometry</key>
+			<dict>
+				<key>Frame</key>
+				<string>{{0, 20}, {907, 734}}</string>
+				<key>PBXModuleWindowStatusBarHidden2</key>
+				<false/>
+				<key>RubberWindowFrame</key>
+				<string>117 103 907 775 0 0 1440 878 </string>
 			</dict>
 		</dict>
 	</array>
@@ -354,6 +354,7 @@
 										<string>080E96DDFE201D6D7F000001</string>
 										<string>8CD1978912D4C89D00C69AC9</string>
 										<string>8CD1973E12D4C55D00C69AC9</string>
+										<string>8CD1967212D46CF400C69AC9</string>
 										<string>8CD1966D12D46C8800C69AC9</string>
 										<string>8CD1967712D46DDB00C69AC9</string>
 										<string>8CD1967112D46CCA00C69AC9</string>
@@ -368,29 +369,30 @@
 										<string>1058C7A2FEA54F0111CA2CBB</string>
 										<string>19C28FACFE9D520D11CA2CBB</string>
 										<string>1C37FBAC04509CD000000102</string>
-										<string>8C0D94EB12D64D7A009F3280</string>
-										<string>8C0D955812D65034009F3280</string>
-										<string>8C0D955912D65034009F3280</string>
-										<string>8C0D955A12D65034009F3280</string>
 										<string>8C0D94EC12D64D7A009F3280</string>
+										<string>8C0D95E412D6626E009F3280</string>
 										<string>8C0D955B12D65034009F3280</string>
 										<string>8C0D955C12D65034009F3280</string>
 										<string>8C0D94ED12D64D7A009F3280</string>
 										<string>8C0D95BB12D65389009F3280</string>
 										<string>8C0D955D12D65034009F3280</string>
 										<string>8C0D955E12D65034009F3280</string>
+										<string>8C0D94EE12D64D7A009F3280</string>
+										<string>8C0D95D412D65CA0009F3280</string>
+										<string>8C0D94EF12D64D7A009F3280</string>
+										<string>8C0D95E512D6626E009F3280</string>
 										<string>1C37FAAC04509CD000000102</string>
 										<string>1C37FABC05509CD000000102</string>
 									</array>
 									<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 									<array>
 										<array>
-											<integer>145</integer>
-											<integer>126</integer>
+											<integer>156</integer>
+											<integer>154</integer>
 										</array>
 									</array>
 									<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-									<string>{{0, 1912}, {349, 363}}</string>
+									<string>{{0, 2570}, {349, 363}}</string>
 								</dict>
 								<key>PBXTopSmartGroupGIDs</key>
 								<array/>
@@ -453,9 +455,8 @@
 									<array>
 										<string>29B97314FDCFA39411CA2CEA</string>
 										<string>080E96DDFE201D6D7F000001</string>
-										<string>8CD1978912D4C89D00C69AC9</string>
 										<string>8CD1973E12D4C55D00C69AC9</string>
-										<string>8CD1967712D46DDB00C69AC9</string>
+										<string>8CD1967212D46CF400C69AC9</string>
 										<string>8C77292412D46AC600F71FE7</string>
 										<string>8C77297C12D46AC600F71FE7</string>
 										<string>29B97315FDCFA39411CA2CEA</string>
@@ -474,14 +475,14 @@
 									<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 									<array>
 										<array>
-											<integer>107</integer>
-											<integer>105</integer>
 											<integer>89</integer>
-											<integer>88</integer>
+											<integer>87</integer>
+											<integer>71</integer>
+											<integer>70</integer>
 										</array>
 									</array>
 									<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-									<string>{{0, 1635}, {349, 246}}</string>
+									<string>{{0, 232}, {349, 246}}</string>
 								</dict>
 								<key>PBXTopSmartGroupGIDs</key>
 								<array/>
@@ -520,7 +521,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>INSTALL_PLUGINS.sh</string>
+								<string>WPAMainController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -528,11 +529,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>INSTALL_PLUGINS.sh</string>
+										<string>WPAMainController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>8C0D95CA12D65417009F3280</string>
+										<string>8C0D95FA12D663A6009F3280</string>
 										<key>history</key>
 										<array>
 											<string>8CD196D712D4C37800C69AC9</string>
@@ -587,7 +588,6 @@
 											<string>8CD1993812D52ABC00C69AC9</string>
 											<string>8CD1993912D52ABC00C69AC9</string>
 											<string>8CD1996312D52F1300C69AC9</string>
-											<string>8CD1996412D52F1300C69AC9</string>
 											<string>8CD1996512D52F1300C69AC9</string>
 											<string>8CD1998512D5821600C69AC9</string>
 											<string>8CD199BC12D5922500C69AC9</string>
@@ -605,7 +605,8 @@
 											<string>8C0D94CA12D649B8009F3280</string>
 											<string>8C0D94CB12D649B8009F3280</string>
 											<string>8C0D94D512D64A3C009F3280</string>
-											<string>8C0D94DC12D64D53009F3280</string>
+											<string>8C0D95E612D6626E009F3280</string>
+											<string>8C0D95E712D6626E009F3280</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -807,14 +808,14 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>8C0D95C112D65389009F3280</string>
+		<string>8C0D95F812D662B4009F3280</string>
 		<string>8C0D953A12D64DDD009F3280</string>
 		<string>8C0D953B12D64DDD009F3280</string>
 		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
-		<string>8CD199BF12D5922500C69AC9</string>
 		<string>8CD199F712D614EA00C69AC9</string>
 		<string>8CD1967312D46D7A00C69AC9</string>
+		<string>8CD199BF12D5922500C69AC9</string>
 		<string>/Users/me/Experiment/WorkPlayAway/WorkPlayAway.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -839,7 +840,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>WPAMainController.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>

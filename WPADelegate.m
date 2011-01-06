@@ -64,6 +64,7 @@
 	if (ctx.startOnLoad){
 		[self start];
 	}
+	[window setTitle:__APPNAME__];
 }
 
 
