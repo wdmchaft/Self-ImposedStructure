@@ -159,40 +159,89 @@ startOnLaunchButton, launchOnBootButton, growlStepper, editButton, ignoreSaverBu
 }
 
 
-- (void) addToLogin
+- (BOOL) addToLogin
 {
 	NSBundle *me = [NSBundle mainBundle];
-	NSString *template = @"tell application \"System Events\" make new login item at end with properties {path:%@, hidden:false}end tell";
-	NSString *script = [NSString stringWithFormat:template,[me executablePath]];
+	//NSString *template = @"tell application \"System Events\"\n make new login item at end with properties {path:\"%@\", hidden:false}\nend tell";
+	NSString *script = @"tell application \"System Events\"\n make new login item at end with properties {path:\"";
+	script = [script stringByAppendingString:[me executablePath]];
+	script = [script stringByAppendingString:@"\", hidden:false}\nend tell"];
+	//NSString *script = [NSString stringWithFormat:template,[me executablePath]];
+	NSLog(@"script = %@", script);
 	NSAppleScript *playScript;
 	playScript = [[NSAppleScript alloc] initWithSource:script];
-	[playScript executeAndReturnError:nil];
+	NSMutableDictionary *errDict = [NSMutableDictionary new];
+	[playScript executeAndReturnError:&errDict];
+	if ([errDict count] != 0){
+		NSAlert *alert = [NSAlert alertWithMessageText:nil 
+										 defaultButton:nil
+									   alternateButton:nil 
+										   otherButton:nil 
+							 informativeTextWithFormat:@"An error occurred adding the login item. \
+						  You can attempt to add the app from the Users Preferences panel.\
+						  See console log for more details." ];
+		[alert runModal];
+		NSLog(@"Errors running login item remove script ");
+		for (NSString *key in errDict){
+			NSLog(@"%@ = %@",key, [errDict objectForKey:key]);
+		}
+		return NO;
+	} 
+	return YES;
 }
 
 
--(void) removeFromLogin
+-(BOOL) removeFromLogin
 {
 	NSBundle *me = [NSBundle mainBundle];
-	NSString *template = @"tell application \"System Events\" get the path of every login item if login item %@ exists then delete login item targetAppPath end if end tell";
-	NSString *script = [NSString stringWithFormat:template,[me executablePath]];
+	//NSString *template1 = @"tell application \"System Events\"\n get the path of every login item\n if login item \"%@\" exists then delete login item targetAppPath\n end if\n end tell";
+	NSString *script = @"tell application \"System Events\"\nif login item \"";	
+	script = [script stringByAppendingString:__APPNAME__];
+	script = [script stringByAppendingString:@"\" exists then\ndelete login item \""];
+	script = [script stringByAppendingString:__APPNAME__];
+	script = [script stringByAppendingString: @"\"\n end if\n end tell"];
+	NSLog(@"script:\n%@", script);
+//	NSString *script = [NSString stringWithFormat:template,[me executablePath]];
 	NSAppleScript *playScript;
 	playScript = [[NSAppleScript alloc] initWithSource:script];
-	[playScript executeAndReturnError:nil];
+	NSMutableDictionary *errDict = [NSMutableDictionary new];
+	[playScript executeAndReturnError:&errDict];
+	if ([errDict count] > 0){
+		NSAlert *alert = [NSAlert alertWithMessageText:nil 
+										 defaultButton:nil
+									   alternateButton:nil 
+										   otherButton:nil 
+							 informativeTextWithFormat:@"An error occurred removing the login item. \
+						  You can attempt to remove the app from the Users Preferences panel.\
+						  See console log for more details." ];
+		[alert runModal];	
+		NSLog(@"Errors running login item remove script ");
+		for (NSString *key in errDict){
+			NSLog(@"%@ = %@",key, [errDict objectForKey:key]);
+		}
+		return NO;
+	}
+	return YES;
 }
 
 - (IBAction) clickLaunchOnBoot: (id) sender
-{
+{	BOOL isOK;
+	Context *ctx = [Context sharedContext];
 	if (launchOnBootButton.state == NSOffState){
-		[self addToLogin];
-	} else {
-		[self removeFromLogin];
-	}
-	if (((NSButton*)sender).intValue == 1){
-		[Context sharedContext].loadOnLogin = YES;
-	} else {
+		isOK = [self removeFromLogin];
 		[Context sharedContext].loadOnLogin = NO;
+	} else {
+		isOK = [self addToLogin];
 	}
-	[[Context sharedContext] saveDefaults];
+	if (isOK)
+	{
+		ctx.loadOnLogin = (launchOnBootButton.state == NSOffState);
+		[ctx saveDefaults];
+
+	} else {
+		// back out the change to the checkbox on failure
+		[launchOnBootButton setState: ctx.loadOnLogin == YES ? NSOnState : NSOffState];
+	}
 }
 
 

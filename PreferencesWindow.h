@@ -46,7 +46,7 @@
 - (IBAction) clickGrowlStepper: (id) sender;
 - (IBAction) clickIgnoreSaverButton: (id) sender;
 -(IBAction) toggleModule: (id)sender;
--(void) addToLogin;
--(void) removeFromLogin;
+-(BOOL) addToLogin;
+-(BOOL) removeFromLogin;
 
 @end
