@@ -7,6 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C0D93F912D63DBD009F3280 /* IconData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77293C12D46AC600F71FE7 /* IconData.m */; };
+		8C0D93FA12D63DBD009F3280 /* TaskData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77297B12D46AC600F71FE7 /* TaskData.m */; };
+		8C0D93FB12D63DBD009F3280 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		8C0D93FC12D63DBD009F3280 /* AddModWinController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77291C12D46AC600F71FE7 /* AddModWinController.m */; };
+		8C0D93FD12D63DBD009F3280 /* PreferencesWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77291D12D46AC600F71FE7 /* PreferencesWindow.m */; };
+		8C0D93FE12D63DBD009F3280 /* WPAMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */; };
+		8C0D93FF12D63DBD009F3280 /* StatsWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77292012D46AC600F71FE7 /* StatsWindow.m */; };
+		8C0D940012D63DBD009F3280 /* WPADelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77292212D46AC600F71FE7 /* WPADelegate.m */; };
+		8C0D940112D63DBD009F3280 /* Context.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77292B12D46AC600F71FE7 /* Context.m */; };
+		8C0D940212D63DBD009F3280 /* Nudge_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 8C77293912D46AC600F71FE7 /* Nudge_DataModel.xcdatamodel */; };
+		8C0D940312D63DBD009F3280 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77293D12D46AC600F71FE7 /* Note.m */; };
+		8C0D940412D63DBD009F3280 /* ModulesTableData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77294012D46AC600F71FE7 /* ModulesTableData.m */; };
+		8C0D940512D63DBD009F3280 /* IconsFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77294C12D46AC600F71FE7 /* IconsFile.m */; };
+		8C0D940612D63DBD009F3280 /* TimerDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77295912D46AC600F71FE7 /* TimerDialogController.m */; };
+		8C0D941512D63E0D009F3280 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C77297C12D46AC600F71FE7 /* Growl.framework */; };
+		8C0D943912D64007009F3280 /* WPACommon.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
+		8C0D943B12D64018009F3280 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0D943A12D64018009F3280 /* Cocoa.framework */; };
+		8C0D944412D6408D009F3280 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
+		8C0D944512D6408D009F3280 /* AddMod.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77291812D46AC600F71FE7 /* AddMod.xib */; };
+		8C0D944612D6408D009F3280 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77291B12D46AC600F71FE7 /* PreferencesWindow.xib */; };
+		8C0D944712D6408D009F3280 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77292712D46AC600F71FE7 /* MainMenu.xib */; };
+		8C0D944812D6408D009F3280 /* StatsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77292F12D46AC600F71FE7 /* StatsWindow.xib */; };
+		8C0D944912D6408D009F3280 /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 8C77294212D46AC600F71FE7 /* Growl Registration Ticket.growlRegDict */; };
+		8C0D944A12D6408D009F3280 /* TimerDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77295B12D46AC600F71FE7 /* TimerDialog.xib */; };
+		8C0D944B12D6408D009F3280 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C77296912D46AC600F71FE7 /* Info.plist */; };
+		8C0D944F12D640D1009F3280 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C77297C12D46AC600F71FE7 /* Growl.framework */; };
+		8C0D948A12D64486009F3280 /* INSTALL_PLUGINS.sh in Resources */ = {isa = PBXBuildFile; fileRef = 8C0D948912D64486009F3280 /* INSTALL_PLUGINS.sh */; };
+		8C0D94D212D64A1B009F3280 /* INSTALL_PLUGINS.sh in Resources */ = {isa = PBXBuildFile; fileRef = 8C0D948912D64486009F3280 /* INSTALL_PLUGINS.sh */; };
+		8C0D95A512D65326009F3280 /* WPACommon.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
+		8C0D95B112D6535A009F3280 /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
 		8C77298B12D46AC600F71FE7 /* AddMod.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77291812D46AC600F71FE7 /* AddMod.xib */; };
 		8C77298D12D46AC600F71FE7 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77291B12D46AC600F71FE7 /* PreferencesWindow.xib */; };
 		8C77298E12D46AC600F71FE7 /* AddModWinController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77291C12D46AC600F71FE7 /* AddModWinController.m */; };
@@ -62,19 +92,13 @@
 		8CD198A612D5098A00C69AC9 /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
 		8CD198C612D511F500C69AC9 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C77297C12D46AC600F71FE7 /* Growl.framework */; };
 		8CD198E712D5134A00C69AC9 /* gmail.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C77295212D46AC600F71FE7 /* gmail.ico */; };
-		8CD198E812D5134A00C69AC9 /* GmailModule-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C77295112D46AC600F71FE7 /* GmailModule-Info.plist */; };
 		8CD198E912D5135400C69AC9 /* GmailModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77291712D46AC600F71FE7 /* GmailModule.xib */; };
 		8CD198EA12D513C500C69AC9 /* AdiumModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77295F12D46AC600F71FE7 /* AdiumModule.xib */; };
-		8CD198EB12D513D200C69AC9 /* AdiumModule-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C77295712D46AC600F71FE7 /* AdiumModule-Info.plist */; };
-		8CD198ED12D5140B00C69AC9 /* SkypeModule-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C77294A12D46AC600F71FE7 /* SkypeModule-Info.plist */; };
 		8CD198EE12D5141300C69AC9 /* SkypeBlue.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C77294E12D46AC600F71FE7 /* SkypeBlue.ico */; };
 		8CD198EF12D5141900C69AC9 /* SkypeModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77294B12D46AC600F71FE7 /* SkypeModule.xib */; };
-		8CD198F012D5143300C69AC9 /* iChatModule-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C77290912D46AC600F71FE7 /* iChatModule-Info.plist */; };
 		8CD198F112D5143D00C69AC9 /* iChatModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77290712D46AC600F71FE7 /* iChatModule.xib */; };
-		8CD198F312D5145300C69AC9 /* GCalModule-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C77294F12D46AC600F71FE7 /* GCalModule-Info.plist */; };
 		8CD198F412D5145D00C69AC9 /* GCalModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77294112D46AC600F71FE7 /* GCalModule.xib */; };
 		8CD198F512D5146400C69AC9 /* gcal.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C77295012D46AC600F71FE7 /* gcal.ico */; };
-		8CD198F712D5149500C69AC9 /* RTMModule-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C77295312D46AC600F71FE7 /* RTMModule-Info.plist */; };
 		8CD198F812D514AC00C69AC9 /* RTMModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77293512D46AC600F71FE7 /* RTMModule.xib */; };
 		8CD198F912D514C800C69AC9 /* rtm.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C77295412D46AC600F71FE7 /* rtm.ico */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
@@ -83,100 +107,160 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		8C0D940712D63DDF009F3280 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CD1974312D4C59600C69AC9;
+			remoteInfo = WPACommon;
+		};
+		8C0D940912D63DDF009F3280 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CD197CE12D4FDC800C69AC9;
+			remoteInfo = RTMModule;
+		};
+		8C0D940B12D63DDF009F3280 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CD1980E12D5041700C69AC9;
+			remoteInfo = GmailModule;
+		};
+		8C0D940D12D63DDF009F3280 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CD1983E12D505BB00C69AC9;
+			remoteInfo = AdiumModule;
+		};
+		8C0D940F12D63DDF009F3280 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CD1985012D5061300C69AC9;
+			remoteInfo = SkypeModule;
+		};
+		8C0D941112D63DDF009F3280 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CD1985F12D506B700C69AC9;
+			remoteInfo = iChatModule;
+		};
+		8C0D941312D63DDF009F3280 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CD1989C12D5092F00C69AC9;
+			remoteInfo = GCalModule;
+		};
 		8CD1975312D4C61D00C69AC9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8CD1974312D4C59600C69AC9 /* WPACommon */;
+			remoteGlobalIDString = 8CD1974312D4C59600C69AC9;
 			remoteInfo = WPACommon;
 		};
 		8CD197D212D4FDD100C69AC9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8CD1974312D4C59600C69AC9 /* WPACommon */;
+			remoteGlobalIDString = 8CD1974312D4C59600C69AC9;
 			remoteInfo = WPACommon;
 		};
 		8CD197F512D4FEFF00C69AC9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8CD197CE12D4FDC800C69AC9 /* RTMModule */;
+			remoteGlobalIDString = 8CD197CE12D4FDC800C69AC9;
 			remoteInfo = RTMModule;
 		};
 		8CD1981212D5042100C69AC9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8CD1974312D4C59600C69AC9 /* WPACommon */;
+			remoteGlobalIDString = 8CD1974312D4C59600C69AC9;
 			remoteInfo = WPACommon;
 		};
 		8CD1983612D5056D00C69AC9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8CD1980E12D5041700C69AC9 /* GmailModule */;
+			remoteGlobalIDString = 8CD1980E12D5041700C69AC9;
 			remoteInfo = GmailModule;
 		};
 		8CD1984212D505C400C69AC9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8CD1974312D4C59600C69AC9 /* WPACommon */;
+			remoteGlobalIDString = 8CD1974312D4C59600C69AC9;
 			remoteInfo = WPACommon;
 		};
 		8CD1985512D5061B00C69AC9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8CD1974312D4C59600C69AC9 /* WPACommon */;
+			remoteGlobalIDString = 8CD1974312D4C59600C69AC9;
 			remoteInfo = WPACommon;
 		};
 		8CD1986412D506DC00C69AC9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8CD1974312D4C59600C69AC9 /* WPACommon */;
+			remoteGlobalIDString = 8CD1974312D4C59600C69AC9;
 			remoteInfo = WPACommon;
 		};
 		8CD1986812D506FA00C69AC9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8CD1983E12D505BB00C69AC9 /* AdiumModule */;
+			remoteGlobalIDString = 8CD1983E12D505BB00C69AC9;
 			remoteInfo = AdiumModule;
 		};
 		8CD1986A12D506FA00C69AC9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8CD1985012D5061300C69AC9 /* SkypeModule */;
+			remoteGlobalIDString = 8CD1985012D5061300C69AC9;
 			remoteInfo = SkypeModule;
 		};
 		8CD1986C12D506FA00C69AC9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8CD1985F12D506B700C69AC9 /* iChatModule */;
+			remoteGlobalIDString = 8CD1985F12D506B700C69AC9;
 			remoteInfo = iChatModule;
 		};
 		8CD198A412D5098400C69AC9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8CD1974312D4C59600C69AC9 /* WPACommon */;
+			remoteGlobalIDString = 8CD1974312D4C59600C69AC9;
 			remoteInfo = WPACommon;
 		};
 		8CD198A912D509C100C69AC9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8CD1989C12D5092F00C69AC9 /* GCalModule */;
+			remoteGlobalIDString = 8CD1989C12D5092F00C69AC9;
 			remoteInfo = GCalModule;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		8C0D945512D640F0009F3280 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8C0D943912D64007009F3280 /* WPACommon.framework in CopyFiles */,
+				8C0D944F12D640D1009F3280 /* Growl.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8CD197A412D4FC4900C69AC9 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -192,6 +276,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				8C0D95A512D65326009F3280 /* WPACommon.framework in CopyFiles */,
 				8CD198C612D511F500C69AC9 /* Growl.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -207,6 +292,10 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		8C0D93F012D63D3D009F3280 /* WPADev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WPADev.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C0D93F212D63D3D009F3280 /* WPADev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WPADev-Info.plist"; sourceTree = "<group>"; };
+		8C0D943A12D64018009F3280 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		8C0D948912D64486009F3280 /* INSTALL_PLUGINS.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = INSTALL_PLUGINS.sh; sourceTree = "<group>"; };
 		8C77290712D46AC600F71FE7 /* iChatModule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = iChatModule.xib; sourceTree = "<group>"; };
 		8C77290812D46AC600F71FE7 /* iChatModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iChatModule.m; sourceTree = "<group>"; };
 		8C77290912D46AC600F71FE7 /* iChatModule-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iChatModule-Info.plist"; sourceTree = "<group>"; };
@@ -335,6 +424,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8C0D93EE12D63D3D009F3280 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C0D95B112D6535A009F3280 /* WPACommon.framework in Frameworks */,
+				8C0D941512D63E0D009F3280 /* Growl.framework in Frameworks */,
+				8C0D943B12D64018009F3280 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8CD1974212D4C59600C69AC9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -396,9 +495,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CD1975512D4C62500C69AC9 /* WPACommon.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				8C7729C212D46AC600F71FE7 /* Growl.framework in Frameworks */,
-				8CD1975512D4C62500C69AC9 /* WPACommon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,6 +553,7 @@
 				8CD1985112D5061300C69AC9 /* SkypeModule.bundle */,
 				8CD1986012D506B700C69AC9 /* iChatModule.bundle */,
 				8CD1989D12D5092F00C69AC9 /* GCalModule.bundle */,
+				8C0D93F012D63D3D009F3280 /* WPADev.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -468,6 +568,8 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				8CD1988112D5079F00C69AC9 /* ScriptingBridge.framework */,
+				8C0D93F212D63D3D009F3280 /* WPADev-Info.plist */,
+				8C0D943A12D64018009F3280 /* Cocoa.framework */,
 			);
 			name = WorkPlayAway;
 			sourceTree = "<group>";
@@ -677,6 +779,7 @@
 				8C77292012D46AC600F71FE7 /* StatsWindow.m */,
 				8C77292112D46AC600F71FE7 /* StatsWindow.h */,
 				8C77292212D46AC600F71FE7 /* WPADelegate.m */,
+				8C0D948912D64486009F3280 /* INSTALL_PLUGINS.sh */,
 			);
 			name = WPAMain;
 			sourceTree = "<group>";
@@ -694,6 +797,32 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		8C0D93EF12D63D3D009F3280 /* WPADev */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C0D93F512D63D3D009F3280 /* Build configuration list for PBXNativeTarget "WPADev" */;
+			buildPhases = (
+				8C0D93EC12D63D3D009F3280 /* Resources */,
+				8C0D93ED12D63D3D009F3280 /* Sources */,
+				8C0D93EE12D63D3D009F3280 /* Frameworks */,
+				8C0D941712D63EB8009F3280 /* ShellScript */,
+				8C0D945512D640F0009F3280 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8C0D940812D63DDF009F3280 /* PBXTargetDependency */,
+				8C0D940A12D63DDF009F3280 /* PBXTargetDependency */,
+				8C0D940C12D63DDF009F3280 /* PBXTargetDependency */,
+				8C0D940E12D63DDF009F3280 /* PBXTargetDependency */,
+				8C0D941012D63DDF009F3280 /* PBXTargetDependency */,
+				8C0D941212D63DDF009F3280 /* PBXTargetDependency */,
+				8C0D941412D63DDF009F3280 /* PBXTargetDependency */,
+			);
+			name = WPADev;
+			productName = WPADev;
+			productReference = 8C0D93F012D63D3D009F3280 /* WPADev.app */;
+			productType = "com.apple.product-type.application";
+		};
 		8CD1974312D4C59600C69AC9 /* WPACommon */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8CD1974812D4C59600C69AC9 /* Build configuration list for PBXNativeTarget "WPACommon" */;
@@ -867,6 +996,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				8C0D93EF12D63D3D009F3280 /* WPADev */,
 				8D1107260486CEB800E47090 /* WorkPlayAway */,
 				8CD1974312D4C59600C69AC9 /* WPACommon */,
 				8CD197CE12D4FDC800C69AC9 /* RTMModule */,
@@ -880,6 +1010,22 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		8C0D93EC12D63D3D009F3280 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C0D944412D6408D009F3280 /* InfoPlist.strings in Resources */,
+				8C0D944512D6408D009F3280 /* AddMod.xib in Resources */,
+				8C0D944612D6408D009F3280 /* PreferencesWindow.xib in Resources */,
+				8C0D944712D6408D009F3280 /* MainMenu.xib in Resources */,
+				8C0D944812D6408D009F3280 /* StatsWindow.xib in Resources */,
+				8C0D94D212D64A1B009F3280 /* INSTALL_PLUGINS.sh in Resources */,
+				8C0D944912D6408D009F3280 /* Growl Registration Ticket.growlRegDict in Resources */,
+				8C0D944A12D6408D009F3280 /* TimerDialog.xib in Resources */,
+				8C0D944B12D6408D009F3280 /* Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8CD1974012D4C59600C69AC9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -893,7 +1039,6 @@
 			files = (
 				8CD198F912D514C800C69AC9 /* rtm.ico in Resources */,
 				8CD198F812D514AC00C69AC9 /* RTMModule.xib in Resources */,
-				8CD198F712D5149500C69AC9 /* RTMModule-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -903,7 +1048,6 @@
 			files = (
 				8CD198E912D5135400C69AC9 /* GmailModule.xib in Resources */,
 				8CD198E712D5134A00C69AC9 /* gmail.ico in Resources */,
-				8CD198E812D5134A00C69AC9 /* GmailModule-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -912,7 +1056,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CD198EA12D513C500C69AC9 /* AdiumModule.xib in Resources */,
-				8CD198EB12D513D200C69AC9 /* AdiumModule-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -922,7 +1065,6 @@
 			files = (
 				8CD198EF12D5141900C69AC9 /* SkypeModule.xib in Resources */,
 				8CD198EE12D5141300C69AC9 /* SkypeBlue.ico in Resources */,
-				8CD198ED12D5140B00C69AC9 /* SkypeModule-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -930,7 +1072,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CD198F012D5143300C69AC9 /* iChatModule-Info.plist in Resources */,
 				8CD198F112D5143D00C69AC9 /* iChatModule.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -941,7 +1082,6 @@
 			files = (
 				8CD198F512D5146400C69AC9 /* gcal.ico in Resources */,
 				8CD198F412D5145D00C69AC9 /* GCalModule.xib in Resources */,
-				8CD198F312D5145300C69AC9 /* GCalModule-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -957,12 +1097,26 @@
 				8C7729A212D46AC600F71FE7 /* Growl Registration Ticket.growlRegDict in Resources */,
 				8C7729B612D46AC600F71FE7 /* TimerDialog.xib in Resources */,
 				8C7729BD12D46AC600F71FE7 /* Info.plist in Resources */,
+				8C0D948A12D64486009F3280 /* INSTALL_PLUGINS.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		8C0D941712D63EB8009F3280 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ -d ${HOME}/Library/Application\\ Support/${PRODUCT_NAME} ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME} exists'\nelse \n\tmkdir ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}\nfi\n\nif [ -d ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins exists'\nelse\n\tmkdir ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins\nfi\n\ncp -r ${TARGET_BUILD_DIR}/*.bundle ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins";
+		};
 		8CD197B912D4FD6200C69AC9 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -974,11 +1128,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp -r ${TARGET_BUILD_DIR}/*.bundle ${HOME}/Library/Application\\ Support/WorkPlayAway/Plugins";
+			shellScript = "if [ -d ${HOME}/Library/Application\\ Support/${PRODUCT_NAME} ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME} exists'\nelse \n\tmkdir ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}\nfi\n\nif [ -d ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins exists'\nelse\n\tmkdir ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins\nfi\n\ncp -r ${TARGET_BUILD_DIR}/*.bundle ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins";
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8C0D93ED12D63D3D009F3280 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C0D93F912D63DBD009F3280 /* IconData.m in Sources */,
+				8C0D93FA12D63DBD009F3280 /* TaskData.m in Sources */,
+				8C0D93FB12D63DBD009F3280 /* main.m in Sources */,
+				8C0D93FC12D63DBD009F3280 /* AddModWinController.m in Sources */,
+				8C0D93FD12D63DBD009F3280 /* PreferencesWindow.m in Sources */,
+				8C0D93FE12D63DBD009F3280 /* WPAMainController.m in Sources */,
+				8C0D93FF12D63DBD009F3280 /* StatsWindow.m in Sources */,
+				8C0D940012D63DBD009F3280 /* WPADelegate.m in Sources */,
+				8C0D940112D63DBD009F3280 /* Context.m in Sources */,
+				8C0D940212D63DBD009F3280 /* Nudge_DataModel.xcdatamodel in Sources */,
+				8C0D940312D63DBD009F3280 /* Note.m in Sources */,
+				8C0D940412D63DBD009F3280 /* ModulesTableData.m in Sources */,
+				8C0D940512D63DBD009F3280 /* IconsFile.m in Sources */,
+				8C0D940612D63DBD009F3280 /* TimerDialogController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8CD1974112D4C59600C69AC9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1075,6 +1250,41 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		8C0D940812D63DDF009F3280 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CD1974312D4C59600C69AC9 /* WPACommon */;
+			targetProxy = 8C0D940712D63DDF009F3280 /* PBXContainerItemProxy */;
+		};
+		8C0D940A12D63DDF009F3280 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CD197CE12D4FDC800C69AC9 /* RTMModule */;
+			targetProxy = 8C0D940912D63DDF009F3280 /* PBXContainerItemProxy */;
+		};
+		8C0D940C12D63DDF009F3280 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CD1980E12D5041700C69AC9 /* GmailModule */;
+			targetProxy = 8C0D940B12D63DDF009F3280 /* PBXContainerItemProxy */;
+		};
+		8C0D940E12D63DDF009F3280 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CD1983E12D505BB00C69AC9 /* AdiumModule */;
+			targetProxy = 8C0D940D12D63DDF009F3280 /* PBXContainerItemProxy */;
+		};
+		8C0D941012D63DDF009F3280 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CD1985012D5061300C69AC9 /* SkypeModule */;
+			targetProxy = 8C0D940F12D63DDF009F3280 /* PBXContainerItemProxy */;
+		};
+		8C0D941212D63DDF009F3280 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CD1985F12D506B700C69AC9 /* iChatModule */;
+			targetProxy = 8C0D941112D63DDF009F3280 /* PBXContainerItemProxy */;
+		};
+		8C0D941412D63DDF009F3280 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CD1989C12D5092F00C69AC9 /* GCalModule */;
+			targetProxy = 8C0D941312D63DDF009F3280 /* PBXContainerItemProxy */;
+		};
 		8CD1975412D4C61D00C69AC9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8CD1974312D4C59600C69AC9 /* WPACommon */;
@@ -1178,6 +1388,64 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		8C0D93F312D63D3D009F3280 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "WPADev-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = WPADev;
+			};
+			name = Debug;
+		};
+		8C0D93F412D63D3D009F3280 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "WPADev-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = WPADev;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		8CD1974612D4C59600C69AC9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1612,6 +1880,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8C0D93F512D63D3D009F3280 /* Build configuration list for PBXNativeTarget "WPADev" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C0D93F312D63D3D009F3280 /* Debug */,
+				8C0D93F412D63D3D009F3280 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8CD1974812D4C59600C69AC9 /* Build configuration list for PBXNativeTarget "WPACommon" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
