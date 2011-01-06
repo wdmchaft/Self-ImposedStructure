@@ -13,7 +13,8 @@
 @implementation PreferencesWindow
 @synthesize modulesTable, amwControl, 
 growlIntervalText,addButton, removeButton, newModuleView, tableData, 
-startOnLaunchButton, launchOnBootButton, growlStepper, editButton;
+startOnLaunchButton, launchOnBootButton, growlStepper, editButton, ignoreSaverButton;
+;
 
 - (void)awakeFromNib
 {
@@ -57,6 +58,7 @@ startOnLaunchButton, launchOnBootButton, growlStepper, editButton;
 	workView = modulesTable;
 	[launchOnBootButton setIntValue:(ctx.loadOnLogin == YES)];
 	[startOnLaunchButton setIntValue:(ctx.startOnLoad == YES)];
+	[ignoreSaverButton setIntValue:(ctx.ignoreScreenSaver == YES)];
 
 	
 	[growlIntervalText setStringValue:[[NSString alloc] initWithFormat:@"%d",ctx.growlInterval]];
@@ -202,6 +204,14 @@ startOnLaunchButton, launchOnBootButton, growlStepper, editButton;
 	[[Context sharedContext] saveDefaults];
 }
 
-
+- (IBAction) clickIgnoreSaverButton: (id) sender
+{
+	if (ignoreSaverButton.intValue == 1){
+		[Context sharedContext].ignoreScreenSaver = YES;
+	} else {
+		[Context sharedContext].ignoreScreenSaver = NO;
+	}
+	[[Context sharedContext] saveDefaults];
+}
 
 @end

@@ -157,14 +157,26 @@
 		NSDictionary *item = nil;
 		item = [tasksDict objectForKey: key];		
 		NSDate *date = [item objectForKey:@"due_time"];
+		NSComparisonResult cr = NSOrderedSame; // this will *stay* if there is no date
+		if (date){
+			cr = [date compare:[NSDate date]];
+		}
 		Note *alert = [[Note alloc]init];
 		alert.moduleName = super.description;
 		NSString *dateStr = date ? [self timeStrFor:date] : @"";
-		alert.title = date == nil ? listNameStr : [listNameStr stringByAppendingFormat:@"[Task Due: %@]",dateStr];
+		NSString *alertTitle = [listNameStr copy];
+		if (cr == NSOrderedDescending) {
+			alertTitle = [alertTitle stringByAppendingFormat:@"[Task Due: %@]",dateStr];
+		} else if (cr == NSOrderedAscending) {
+			alertTitle = [alertTitle stringByAppendingFormat:@"[Task OverDue: %@]",dateStr];
+		}
+		alert.title = alertTitle;
+		
 		alert.message=[item objectForKey:@"name"];
 		alert.params = item;
 		[[super handler] handleAlert:alert];
-		if (date){
+		
+		if (cr == NSOrderedDescending) {
 			NSTimeInterval dueInterval = [date timeIntervalSinceNow];
 			if (alarmSet == nil){
 				alarmSet = [NSMutableDictionary new];
@@ -176,16 +188,19 @@
 			NSString *key = [NSString stringWithFormat:@"%@%@",
 							 [date description],
 							 [item objectForKey:@"name"]];
-			[alarmSet setObject:[NSTimer scheduledTimerWithTimeInterval:dueInterval
+			// if we do not already have an alarm set -- set it
+			if ([alarmSet objectForKey:key] == nil){
+				NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:dueInterval
 																  target:self 
 																selector:@selector(handleWarningAlarm:)
 																userInfo:alarm
-																 repeats:NO] 
-						  forKey:key];	
+																 repeats:NO]; 
+				
+				[alarmSet setObject:timer forKey:key];	
+			}
 		}
-	}	
+	}		
 	[self scheduleNextRefresh];	
-	
 }
 
 - (void) handleWarningAlarm: (NSTimer*) theTimer

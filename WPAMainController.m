@@ -44,6 +44,12 @@
 		[taskComboBox addItemWithObjectValue:taskName]; 
 	}
 	[(WPADelegate*)[[NSApplication sharedApplication] delegate] registerTasksHandler:self];
+	// start listening for commands
+	NSDistributedNotificationCenter *dCenter = [NSDistributedNotificationCenter defaultCenter];
+	// for the screensaver
+	[dCenter addObserver:self selector:@selector(handleScreenSaverStart:) name:@"com.apple.screensaver.didlaunch" object:nil];
+	[dCenter addObserver:self selector:@selector(handleScreenSaverStop:) name:@"com.apple.screensaver.didstop" object:nil];
+	[taskComboBox setDelegate:self];
 }
 
 - (void) tasksChanged
@@ -54,6 +60,31 @@
 		[taskComboBox addItemWithObjectValue:taskName]; 
 	}
 }
+- (void)comboBoxSelectionDidChange:(NSNotification *)notification
+{
+	Context *ctx = [Context sharedContext];
+	NSComboBox *cb = taskComboBox;
+	
+	ctx.currentTask = [cb stringValue];
+	if ([ctx.currentTask isEqualToString:@"No Current Task"]){
+		ctx.currentTask = nil;
+	}
+	
+	// we changed jobs so write a new tracking record
+	if (ctx.startingState == STATE_THINKING || ctx.startingState == STATE_THINKTIME){
+		[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:ctx.startingState];
+	}
+}
+- (void) comboBoxSelectionWillChange:(NSNotification *)notification
+{
+}
+- (void) comboBoxWillDismiss:(NSNotification *)notification
+{
+}
+- (void) comboBoxWillPopUp:(NSNotification *)notification
+{
+}
+
 
 -(IBAction) clickStart: (NSButton*) sender {
 	if ([Context sharedContext].running){
@@ -157,5 +188,24 @@
 - (void) clickRefresh:(id)sender
 {
 	[(WPADelegate*)[[NSApplication sharedApplication] delegate]refreshTasks];
+}
+
+-(void)handleScreenSaverStart:(NSNotification*) notification
+{	
+	
+	if (![Context sharedContext].ignoreScreenSaver){
+		NSLog(@"screen saver on");
+		[self changeState:STATE_AWAY]; 
+		[controls setSelectedSegment: STATE_AWAY];
+	}
+}
+
+-(void)handleScreenSaverStop:(NSNotification*) notification
+{	
+	if (![Context sharedContext].ignoreScreenSaver){
+		NSLog(@"screen saver off");
+		[self changeState:STATE_PUTZING]; 
+		[controls setSelectedSegment: STATE_PUTZING];
+	}
 }
 @end

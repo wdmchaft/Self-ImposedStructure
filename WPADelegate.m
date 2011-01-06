@@ -28,7 +28,7 @@
 	// start listening for pause commands
 	NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
 	[center addObserver:self selector:@selector(handleNotification:) name:@"org.ottoject.nudge.Concentrate" object:nil];
-	
+
 	// fire up all the alerting modules
 
 	[self setState: ctx.startingState];
@@ -63,16 +63,6 @@
 	[GrowlApplicationBridge setGrowlDelegate:self];
 	if (ctx.startOnLoad){
 		[self start];
-	}
-	if (ctx.minimizedView){
-		NSSize size = window.frame.size;
-		NSPoint origin = window.frame.origin;
-		size.height -= 332;
-		origin.y +=332;	
-		NSRect newRect;
-		newRect.size = size;
-		newRect.origin = origin;
-		[window setFrame:newRect display:NO];
 	}
 }
 
@@ -283,7 +273,6 @@
 
 }
 
-
 -(void)handleNotification:(NSNotification*) notification
 {	
 	NSDictionary *dict = [notification userInfo];
@@ -292,6 +281,8 @@
 	[Context sharedContext].thinkTime = [minStr intValue];
 	[self setState:[state intValue]]; 
 }
+
+
 
 -(void) refreshTasks
 {

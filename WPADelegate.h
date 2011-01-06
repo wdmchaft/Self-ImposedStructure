@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "Note.h"
 #import "AlertHandler.h"
+
 #import "Growl.h"
 #import "Context.h"
 #import "PreferencesWindow.h"
@@ -52,8 +53,10 @@
 - (double) countEntity: (NSString*) eName inContext: (NSManagedObjectContext*) moc;
 - (NSString*) dumpMObj: (NSManagedObject*) obj;
 - (BOOL) hasTask: (NSManagedObject*) mobj;
+-(void) handleNotification:(NSNotification *)notification;
 
 -(IBAction) clickPreferences: (id) sender;
 -(IBAction) clickTasksInfo: (id) sender;
+
 
 @end

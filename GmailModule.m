@@ -266,7 +266,8 @@
 			alert.sticky = res == RESULT_IMPORTANT;
 			alert.urgent = res == RESULT_IMPORTANT;
 			NSString *href = [item objectForKey:@"href"];
-			alert.params = [[NSDictionary alloc] initWithObjectsAndKeys:href, @"href",nil ];
+			alert.params = [[NSDictionary alloc] initWithObjectsAndKeys:href, @"href",
+							[self description],@"module",nil ];
 			[[super handler] handleAlert:alert];
 		}
 	}
@@ -276,6 +277,13 @@
 		[super saveDefaultValue: minTagValue forKey: MINTAGVALUE];
 		[[NSUserDefaults standardUserDefaults] synchronize];
 	}
+}
+
+- (void) handleClick:(NSDictionary *)ctx
+{
+	NSString *href = [ctx objectForKey:@"href"];
+	NSURL *url = [NSURL URLWithString:href];
+	[[NSWorkspace sharedWorkspace] openURL:url];
 }
 
 - (void) scheduleNextRefresh

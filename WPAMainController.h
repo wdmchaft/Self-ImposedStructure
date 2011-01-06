@@ -12,7 +12,7 @@
 #import "State.h"
 #import "StatsWindow.h"
 
-@interface WPAMainController :NSObject {
+@interface WPAMainController :NSObject <NSComboBoxDelegate> {
 
 	NSButton *startButton;
 	NSSegmentedControl *controls;
@@ -37,4 +37,7 @@
 -(IBAction) clickWork: (id) sender;
 -(IBAction) clickTimed: (id) sender;
 - (void) changeState: (int) state;
+
+-(void)handleScreenSaverStart:(NSNotification*) notification;
+-(void)handleScreenSaverStop:(NSNotification*) notification;
 @end

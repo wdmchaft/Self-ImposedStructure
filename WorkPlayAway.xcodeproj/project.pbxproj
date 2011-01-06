@@ -462,6 +462,7 @@
 			isa = PBXGroup;
 			children = (
 				080E96DDFE201D6D7F000001 /* Classes */,
+				8C77292D12D46AC600F71FE7 /* PreferencesWindow.h */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -665,14 +666,13 @@
 				8C77292B12D46AC600F71FE7 /* Context.m */,
 				8C77292C12D46AC600F71FE7 /* WPADelegate.h */,
 				8C77297212D46AC600F71FE7 /* EventHandler.h */,
-				8C77292D12D46AC600F71FE7 /* PreferencesWindow.h */,
 				8C77292E12D46AC600F71FE7 /* Nudge-Info.plist */,
 				8C77292F12D46AC600F71FE7 /* StatsWindow.xib */,
 				8C77293212D46AC600F71FE7 /* AddModWinController.h */,
 				8C77291812D46AC600F71FE7 /* AddMod.xib */,
+				8C77291D12D46AC600F71FE7 /* PreferencesWindow.m */,
 				8C77291B12D46AC600F71FE7 /* PreferencesWindow.xib */,
 				8C77291C12D46AC600F71FE7 /* AddModWinController.m */,
-				8C77291D12D46AC600F71FE7 /* PreferencesWindow.m */,
 				8C77291E12D46AC600F71FE7 /* WPAMainController.m */,
 				8C77292012D46AC600F71FE7 /* StatsWindow.m */,
 				8C77292112D46AC600F71FE7 /* StatsWindow.h */,
@@ -1293,7 +1293,7 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_ENABLE_OBJC_GC = required;
+				GCC_ENABLE_OBJC_GC = supported;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1319,7 +1319,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_GC = required;
+				GCC_ENABLE_OBJC_GC = supported;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";

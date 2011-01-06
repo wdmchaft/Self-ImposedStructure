@@ -23,6 +23,7 @@
 	NSView *newModuleView;
 	AddModWinController *amwControl;
 	NSStepper *growlStepper;
+	NSButton *ignoreSaverButton;
 }
 @property (retain, nonatomic) IBOutlet NSTableView *modulesTable;
 @property (retain, nonatomic) IBOutlet NSButton *addButton;
@@ -35,6 +36,7 @@
 @property (retain, nonatomic) IBOutlet AddModWinController *amwControl;
 @property (retain, nonatomic)  ModulesTableData *tableData;
 @property (retain, nonatomic) IBOutlet NSStepper *growlStepper;
+@property (retain, nonatomic) IBOutlet NSButton *ignoreSaverButton;
 
 - (IBAction) clickAdd: (id) sender;
 - (IBAction) clickRemove: (id) sender;
@@ -42,6 +44,7 @@
 - (IBAction) clickStartOnLaunch: (id) sender;
 - (IBAction) clickLaunchOnBoot: (id) sender;
 - (IBAction) clickGrowlStepper: (id) sender;
+- (IBAction) clickIgnoreSaverButton: (id) sender;
 -(IBAction) toggleModule: (id)sender;
 -(void) addToLogin;
 -(void) removeFromLogin;

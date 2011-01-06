@@ -26,11 +26,11 @@
 	BOOL loadOnLogin;
 	int startingState;
 	int thinkTime;
-	BOOL minimizedView;
 	NSString *alertName;
 	NSString *currentTask;
 	NSString *currentSource;
 	NSManagedObject *currentActivity;
+	BOOL ignoreScreenSaver;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *instancesMap;
@@ -45,7 +45,7 @@
 @property (nonatomic, retain) NSTimer *thinkTimer;
 @property (nonatomic) BOOL startOnLoad;
 @property (nonatomic) BOOL loadOnLogin;
-@property (nonatomic) BOOL minimizedView;
+@property (nonatomic) BOOL ignoreScreenSaver;
 @property (nonatomic) int startingState;
 @property (nonatomic) int thinkTime;
 @property (nonatomic, retain) NSString *alertName;

@@ -25,11 +25,11 @@
 @synthesize thinkTime;
 @synthesize loadOnLogin;
 @synthesize away;
-@synthesize minimizedView;
 @synthesize alertName;
 @synthesize currentActivity;
 @synthesize currentTask;
 @synthesize currentSource;
+@synthesize ignoreScreenSaver;
 
 static Context* sharedContext = nil;
 
@@ -116,6 +116,10 @@ static Context* sharedContext = nil;
 	if (temp != nil){
 		startingState = [((NSNumber*) temp) intValue];
 	}
+	temp = [ud objectForKey:@"IgnoreScreenSaver"];
+	if (temp != nil){
+		startingState = [((NSNumber*) temp) intValue];
+	}
 	temp = [ud objectForKey:@"GrowlInterval"];
 	growlInterval = (temp == nil) ? 10 : [((NSNumber*) temp) intValue];
 	
@@ -171,9 +175,9 @@ static Context* sharedContext = nil;
 	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
 	[ud setObject: [NSNumber numberWithInt:startOnLoad] forKey: @"StartOnLoad"];
 	[ud setObject: [NSNumber numberWithInt:loadOnLogin] forKey: @"LoadOnLogin"];
+	[ud setObject: [NSNumber numberWithInt:ignoreScreenSaver] forKey: @"IgnoreScreenSaver"];
 	[ud setObject: [NSNumber numberWithInt:startingState] forKey: @"StartingState"];
 	[ud setObject: [NSNumber numberWithInt:thinkTime] forKey: @"ThinkTime"];
-	[ud setObject: [NSNumber numberWithInt:minimizedView] forKey: @"MinimizedView"];
 	[ud setObject: [NSNumber numberWithInt:growlInterval] forKey: @"GrowlInterval"];
 	[ud setObject: [NSNumber numberWithInt:thinkTime] forKey: @"ThinkTime"];
 	[ud setObject: alertName forKey: @"AlertName"];
