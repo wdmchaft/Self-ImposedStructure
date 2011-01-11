@@ -51,7 +51,16 @@
     NSString *err = [NSString stringWithFormat:@"Connection failed! Error - %@ %@",
           [error localizedDescription],
           [[error userInfo] objectForKey:NSLocalizedRecoverySuggestionErrorKey]];
-	[context sendError:err module:[context description]];
+	if ([[error localizedDescription] rangeOfString: @"offline"].length > 0){
+		// just log this error -- we are having connection problems
+		NSLog(@"%@", err);
+	} else {
+		[context sendError: err module: [self description]];
+	}
+	if (context.validationHandler){
+		[context.validationHandler performSelector:@selector(validationComplete:) 
+									  withObject:[error localizedDescription]];
+	}
 	context.lastError = [error localizedDescription];
 	[self doCallback];
 

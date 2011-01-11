@@ -154,7 +154,14 @@
     NSString* err = [NSString stringWithFormat:@"Connection failed! Error - %@ %@",
           [error localizedDescription],
           [[error userInfo] objectForKey:NSLocalizedRecoverySuggestionErrorKey]];
-	[super sendError: err module: [self description]];
+	
+	if ([[error localizedDescription] rangeOfString: @"offline"].length > 0){
+		// just log this error -- we are having connection problems
+		NSLog(@"%@", err);
+	} else {
+		[super sendError: err module: [self description]];
+	}
+
 	if (super.validationHandler){
 		SEL validSel = @selector(validationComplete:);
 		[super.validationHandler performSelector:validSel

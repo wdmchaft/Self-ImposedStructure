@@ -43,7 +43,6 @@
 -(void) growlAlert: (Note*) alert;
 - (void) growlNotificationWasClicked:(id)ctx;
 -(NSArray*) getAllTasks;
--(void) registerTasksHandler:(id) handler;
 -(NSString*) entityNameForState: (int) state;
 - (NSManagedObject*) findTask: (NSString*) name inContext: (NSManagedObjectContext*) moc;
 - (NSManagedObject*) findSource: (NSString*) name inContext: (NSManagedObjectContext*) moc;
