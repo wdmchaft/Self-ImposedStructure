@@ -193,7 +193,6 @@ startOnLaunchButton, launchOnBootButton, growlStepper, editButton, ignoreSaverBu
 
 -(BOOL) removeFromLogin
 {
-	NSBundle *me = [NSBundle mainBundle];
 	//NSString *template1 = @"tell application \"System Events\"\n get the path of every login item\n if login item \"%@\" exists then delete login item targetAppPath\n end if\n end tell";
 	NSString *script = @"tell application \"System Events\"\nif login item \"";	
 	script = [script stringByAppendingString:__APPNAME__];

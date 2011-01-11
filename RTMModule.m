@@ -50,46 +50,31 @@
 @synthesize timelineStr;
 @synthesize alarmSet;
 
--(void) getList
-{
-	RequestREST *rr = [[RequestREST alloc]init];
-
-	NSString *idStr = [self.idMapping objectForKey:listNameStr];
-	NSMutableDictionary *params =  [NSMutableDictionary dictionaryWithObjectsAndKeys:
-									tokenStr, @"auth_token",
-									@"rtm.tasks.getList", @"method",
-									idStr,@"list_id",
-									@"xml", @"format",
-									@"status:incomplete:", @"filter",
-									APIKEY, @"api_key", nil];
-	
-	ListHandler *listHandlr = (ListHandler*)[[ListHandler alloc]initWithContext:self andDelegate:self]; 
-	[rr sendRequestWithURL:[rr createURLWithFamily:@"rest" 
-									   usingSecret:SECRET 
-										 andParams:params]
-				andHandler: listHandlr];
-	[rr release];
-}
+//-(void) getList
+//{
+//	RequestREST *rr = [[RequestREST alloc]init];
+//
+//	NSString *idStr = [self.idMapping objectForKey:listNameStr];
+//	NSMutableDictionary *params =  [NSMutableDictionary dictionaryWithObjectsAndKeys:
+//									tokenStr, @"auth_token",
+//									@"rtm.tasks.getList", @"method",
+//									idStr,@"list_id",
+//									@"xml", @"format",
+//									@"status:incomplete:", @"filter",
+//									APIKEY, @"api_key", nil];
+//	
+//	ListHandler *listHandlr = (ListHandler*)[[ListHandler alloc]initWithContext:self andDelegate:self]; 
+//	[rr sendRequestWithURL:[rr createURLWithFamily:@"rest" 
+//									   usingSecret:SECRET 
+//										 andParams:params]
+//				andHandler: listHandlr];
+//	[rr release];
+//}
 
 -(void) updateList
 {
-	RequestREST *rr = [[RequestREST alloc]init];
-	
-	NSString *idStr = [self.idMapping objectForKey:listNameStr];
-	NSMutableDictionary *params =  [NSMutableDictionary dictionaryWithObjectsAndKeys:
-									tokenStr, @"auth_token",
-									@"rtm.tasks.getList", @"method",
-									idStr,@"list_id",
-									@"xml", @"format",
-									@"status:incomplete:", @"filter",
-									APIKEY, @"api_key", nil];
-	
-	RefreshListHandler *listHandlr = (ListHandler*)[[RefreshListHandler alloc]initWithContext:self andDelegate:self]; 
-	[rr sendRequestWithURL:[rr createURLWithFamily:@"rest" 
-									   usingSecret:SECRET 
-										 andParams:params]
-				andHandler: listHandlr];
-	[rr release];
+		RefreshListHandler *refHandler = [[[RefreshListHandler alloc]initWithContext:self andDelegate:self] autorelease];
+		[self runListReqWithHandler:refHandler];
 }
 
 -(NSString*) getNotificationName
@@ -107,7 +92,9 @@
  */
 - (void) taskRefreshDone
 {
-	[[super tasksHandler] tasksChanged];
+	NSNotification *notice = [NSNotification notificationWithName:@"org.ottoject.tasks" object:nil];
+	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+	[nc postNotification:notice];
 }
 
 - (void) listDone 
@@ -122,7 +109,7 @@
 		alert.params = tc;
 		[[super handler] handleAlert:alert];
 	}
-	[[super tasksHandler] tasksChanged];
+	[self taskRefreshDone];
 }
 
 
@@ -182,7 +169,7 @@
 
 - (void) refreshDone
 {
-	[[super tasksHandler] tasksChanged];
+	[self taskRefreshDone];
 	for(int i = 0; i < [tasksList count]; i++){
 		NSString *key = [tasksList objectAtIndex:i];
 		NSDictionary *item = nil;
@@ -551,13 +538,7 @@
 
 -(NSArray*) trackingItems;
 {
-	if (tasksList){
-		return tasksList;
-	}
-	else{
-		[self updateList];
-	}
-	return nil;
+	return tasksList;
 }
 
 -(void) refreshTasks

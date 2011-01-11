@@ -7,10 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "ListHandler.h"
+#import "RefreshHandler.h"
 
 
-@interface RefreshListHandler : ListHandler {
+@interface RefreshListHandler : RefreshHandler {
 
 }
 

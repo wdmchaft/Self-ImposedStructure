@@ -11,7 +11,11 @@
 #import "RTMModule.h"
 
 @interface ListHandler : ResponseRESTHandler <NSXMLParserDelegate> {
+	NSMutableDictionary *tempDictionary;
+	NSMutableArray *tempList;
 }
+@property (nonatomic,retain) NSMutableDictionary *tempDictionary;
+@property (nonatomic,retain) NSMutableArray *tempList;
 - (ListHandler*) initWithContext: (RTMModule*) ctx andDelegate: (<RTMCallback>) delegate;
 - (void) addItem;
  @end

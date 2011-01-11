@@ -69,6 +69,7 @@ tableView, modNames, originalName, tasksHandler;
 	} 
 	else {
 		[modsMap removeObjectForKey:originalName];
+		[[Context sharedContext] removeDefaultsForKey:originalName];
 		[modsMap setObject: mod forKey: mod.description];
 	}
 	[mod clearValidation];

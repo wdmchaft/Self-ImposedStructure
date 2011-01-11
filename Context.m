@@ -9,6 +9,7 @@
 #import "Context.h"
 #import "BaseModule.h"
 #import "IconsFile.h"
+#import "TaskInfo.h"
 
 @implementation Context
 @synthesize alertQ;
@@ -98,6 +99,37 @@ static Context* sharedContext = nil;
 	}
 }
 
+- (TaskInfo*) readTask:(NSUserDefaults*) ud
+{
+	NSObject *task = [ud objectForKey:@"currentTask"];
+	NSObject *source = [ud objectForKey:@"currentSource"];
+	if (task){
+		TaskInfo *info = [[TaskInfo alloc] init];
+		info.name = (NSString*)task;
+		if (source){
+			info.source = (<Module>)[instancesMap objectForKey:(NSString*) source];
+		}
+		return info;
+	}
+	return nil;
+}
+
+- (void) saveTask
+{
+	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+	[ud removeObjectForKey:@"currentTask"];
+	[ud removeObjectForKey:@"currentSource"];
+
+	if (currentTask){
+		[ud setObject:currentTask.name forKey:@"currentTask"];
+		if (currentTask.source){
+			<Module> src = currentTask.source;
+			NSString *srcName = src.description;
+			[ud setObject:srcName forKey:@"currentSource"];
+		} 
+	}
+}
+
 - (void) initFromDefaults
 {
 	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
@@ -126,6 +158,7 @@ static Context* sharedContext = nil;
 	
 	temp = [ud objectForKey:@"AlertName"];
 	alertName = (temp == nil) ? @"Beep" : (NSString*)temp;
+
 	
 	// ModulesList : <modName1>, <pluginNameY>, <modName2>, <pluginNameX>, <modName3>, <pluginNameZ>, etc...
 	
@@ -165,8 +198,10 @@ static Context* sharedContext = nil;
 		mod.description = modName;
 		[instancesMap setObject: mod forKey:modName];
 		[mod loadDefaults];
-
 	}
+	// this depends on having the instances map set
+	currentTask = [self readTask:ud];
+
 }
 -(void) saveDefaults
 {
@@ -180,11 +215,20 @@ static Context* sharedContext = nil;
 	[ud setObject: [NSNumber numberWithInt:thinkTime] forKey: @"ThinkTime"];
 	[ud setObject: alertName forKey: @"AlertName"];
 	[self saveModules];
+	[self saveTask];
 	
 	[ud synchronize];
 	
 }
-
+- (void) removeDefaultsForKey: (NSString*) keyPrefix
+{
+	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+	for (NSString *key in [[ud dictionaryRepresentation] allKeys]){
+		if ([key hasPrefix:keyPrefix]) {
+			[ud removeObjectForKey:keyPrefix];
+		}
+	}
+}
 
 -(void) saveModules
 {

@@ -8,25 +8,28 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "StatsTable.h"
+#import "SummaryTable.h"
+#import "WorkTable.h"
 
 @interface StatsWindow : NSWindowController {
 	NSButton *resetButton;
-	NSTextField *workText;
-	NSTextField *playText;
-	NSTextField *awayText;
-	NSTableView *detailTable;
+
+	NSTableView *summaryTable;
+	NSTableView *workTable;
 	NSArray* statsArray;
-	StatsTable *statsData;
+	NSArray* workArray;
+	SummaryTable *statsData;
+	WorkTable *workData;
+	NSTabView *tabs;
 }
 @property (nonatomic,retain) IBOutlet NSButton *resetButton;
-@property (nonatomic,retain) IBOutlet NSTextField *workText;
-@property (nonatomic,retain) IBOutlet NSTextField *playText;
-@property (nonatomic,retain) IBOutlet NSTextField *awayText;
-@property (nonatomic,retain) IBOutlet NSTableView *detailTable;
+@property (nonatomic,retain) IBOutlet NSTableView *summaryTable;
+@property (nonatomic,retain) IBOutlet NSTableView *workTable;
 
 @property (nonatomic,retain) NSArray *statsArray;
+@property (nonatomic,retain) NSArray *workArray;
 @property (nonatomic,retain) StatsTable *statsData;
+@property (nonatomic,retain) WorkTable *workData;
 -(IBAction) clickClear: (id) sender;
 -(void) setContents;
 @end

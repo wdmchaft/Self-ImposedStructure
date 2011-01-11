@@ -24,7 +24,6 @@
 	NSString *displayName;
 	NSObject *validationHandler;
 	<AlertHandler> handler;
-	<TasksHandler> tasksHandler;
 	NSWindowController *detailController;
 	NSArray *trackingItems;
 }
@@ -38,7 +37,6 @@
 @property (nonatomic, retain) NSString *notificationName;
 @property (nonatomic, retain) NSString *notificationTitle;
 @property (nonatomic, retain) <AlertHandler> handler;
-@property (nonatomic, retain) <TasksHandler> tasksHandler;
 @property (nonatomic, retain) NSObject *validationHandler;
 @property (nonatomic, retain) NSString *lastError;
 @property (nonatomic, retain) NSWindowController *detailController;

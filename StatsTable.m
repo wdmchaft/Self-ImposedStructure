@@ -13,54 +13,8 @@
 #import "Schema.h"
 
 @implementation StatsTable
-@synthesize statData;
-- (id) initWithData: (NSMutableArray*) data
-{
-	if (self)
-	{
-		//WPADelegate *wpa = (WPADelegate*)[NSApplication sharedApplication].delegate;
-		//statData = [Schema statsReportForDate:[NSDate date] inContext:wpa.managedObjectContext];
-		statData = data;
-	}
-	return self;
-}
 
-- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
-{
-	return [statData count];
-}
-
-
-- (id)tableView:(NSTableView *)tableView 
-objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
-{
-	id theValue;
-    NSParameterAssert(row >= 0 && row < [statData count]);
-    StatsRecord *record  = [statData objectAtIndex:row];
-	NSObject *test = [statData objectAtIndex:row];
-	//NSLog(@"object is %@", [[test class] description]);
-	NSString *colName = (NSString*) [tableColumn identifier];
-	//NSLog(@"row = %d colName = %@", row, colName);
-	if ([colName isEqualToString:ACTIVITY_COL]){
-		theValue = record.activity;
-		//	theValue = @"test";
-	}
-	if ([colName isEqualToString:TODAY_COL]){
-		theValue = [StatsTable formatTimePeriod:record.today];
-	}
-	if ([colName isEqualToString:CUR_WEEK_COL]){
-		theValue = [StatsTable formatTimePeriod:record.week];
-	}
-	if ([colName isEqualToString:CUR_MONTH_COL]){
-		theValue = [StatsTable formatTimePeriod:record.month];
-	}
-	if ([colName isEqualToString:CUR_HOUR_COL]){
-		theValue = [StatsTable formatTimePeriod:record.hour];
-	}
-    return theValue;	
-}
-
-+(NSString*) formatTimePeriod: (NSTimeInterval) interval
+-(NSString*) formatTimePeriod: (NSTimeInterval) interval
 {
 	NSUInteger secs = interval;
 	NSUInteger mins = secs / SECSPERMIN;

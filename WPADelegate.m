@@ -339,15 +339,6 @@
 	return [gather count] == 0? nil : gather;
 }
 
--(void) registerTasksHandler:(id) handler
-{
-	NSDictionary *modules = [[Context sharedContext] instancesMap];
-	NSString *modName = nil;
-	for (modName in modules){
-		<Module> mod = [modules objectForKey:modName];
-		mod.tasksHandler = handler;
-	}
-}
 - (IBAction) clickPreferences: (id) sender
 {
     if (prefsWindow == nil) {

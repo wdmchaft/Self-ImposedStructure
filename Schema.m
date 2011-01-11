@@ -56,47 +56,68 @@
 	return retArray;
 }
 
-+(void) fetchIntoRecord: (StatsRecord*) record 
-			  fromArray: (NSArray*) array
-			  usingWeek: (NSDate*) weekDate 
-			   usingDay: (NSDate*) dayDate
-			  usingHour: (NSDate*) hourDate
++ (NSArray*) fetchWorkReportForMonth: (NSDate*) date
+			inContext: (NSManagedObjectContext*)moc
 {
-	double allCum = 0.0;
-	double weekCum = 0.0;
-	double dayCum = 0.0;
-	double hourCum = 0.0;
-	for (NSManagedObject *obj in array)
+	NSTimeInterval ONEHOUR =SECSPERMIN * MINPERHR;
+	NSTimeInterval ONEDAY = ONEHOUR *HRPERDAY;
+	NSTimeInterval THIRTYDAYS = ONEDAY * 30;
+	NSTimeInterval SEVENDAYS = ONEDAY * 7;
+	NSDate *oneWeek = [date dateByAddingTimeInterval:(-SEVENDAYS)];
+	NSDate *oneDay = [date dateByAddingTimeInterval:(-ONEDAY)];
+	NSDate *oneHour = [date dateByAddingTimeInterval:(-ONEHOUR)];
+	NSDate *oneMonth = [date dateByAddingTimeInterval:(-THIRTYDAYS)];
+	
+	NSArray *allRows = [Schema rowsForDate:@"Work" inContext:moc endDate:oneMonth];
+	NSMutableDictionary *rowDict = [NSMutableDictionary new];
+
+	for (NSManagedObject *obj in allRows)
 	{
-		NSNumber *interval = [obj valueForKey: @"interval"];
-		allCum += [interval doubleValue];
-		NSDate *endDate = [obj valueForKey:@"endTime"]; 
-		if (endDate == nil){
-			NSDate *start = [obj valueForKey:@"startTime"];
-			endDate = [start dateByAddingTimeInterval:[interval doubleValue]];
+		NSManagedObject *task = [obj valueForKey: @"task"];
+		NSManagedObject *source = [task valueForKey:@"source"];
+		StatsRecord *record = [[StatsRecord alloc]initWithName:@"Work"];
+		record.task =[task valueForKey:@"name"];
+		record.source = source == nil ? @"ad hoc" : [source valueForKey:@"name"];
+		NSString *rowKey = record.key;
+		StatsRecord *test =  (StatsRecord*) [rowDict objectForKey:rowKey];
+		if (test == nil){
+			[rowDict setObject:record forKey:rowKey];
 		}
+		else {
+			record = test;
+		}
+		
+		NSNumber *interval = [obj valueForKey: @"interval"];
+		 
+//		if (endDate == nil){
+//			NSDate *start = [obj valueForKey:@"startTime"];
+//			endDate = [start dateByAddingTimeInterval:[interval doubleValue]];
+//		}
+		NSDate *endDate = [obj valueForKey:@"endTime"];	
 		if (endDate){
-			if ([endDate compare:weekDate] == NSOrderedDescending){
-				NSTimeInterval maxInt = [endDate timeIntervalSinceDate:weekDate];
-				double cumIncr = maxInt < [interval doubleValue] ? maxInt : [interval doubleValue];
-				weekCum += cumIncr;
+			NSTimeInterval maxInt = [endDate timeIntervalSinceDate:oneMonth];
+			double cumIncr = maxInt < [interval doubleValue] ? maxInt : [interval doubleValue];
+			record.month += [interval doubleValue];
+			
+			if ([endDate compare:oneWeek] == NSOrderedDescending){
+				maxInt = [endDate timeIntervalSinceDate:oneWeek];
+				cumIncr = maxInt < [interval doubleValue] ? maxInt : [interval doubleValue];
+				record.week += cumIncr;
 			}
-			if ([endDate compare:dayDate] == NSOrderedDescending){
-				NSTimeInterval maxInt = [endDate timeIntervalSinceDate:dayDate];
+			if ([endDate compare:oneDay] == NSOrderedDescending){
+				NSTimeInterval maxInt = [endDate timeIntervalSinceDate:oneDay];
 				double cumIncr = maxInt < [interval doubleValue] ? maxInt : [interval doubleValue];
-				dayCum += cumIncr;
+				record.today += cumIncr;
 			}
-			if ([endDate compare:hourDate] == NSOrderedDescending){
-				NSTimeInterval maxInt = [endDate timeIntervalSinceDate:hourDate];
+			if ([endDate compare:oneHour] == NSOrderedDescending){
+				NSTimeInterval maxInt = [endDate timeIntervalSinceDate:oneHour];
 				double cumIncr = maxInt < [interval doubleValue] ? maxInt : [interval doubleValue];
-				hourCum += cumIncr;
+				record.hour += cumIncr;
 			}
 		}
 	}	
-	record.today = dayCum;
-	record.week = weekCum;
-	record.hour = hourCum;
-	record.month = allCum;
+	NSArray *ret = [rowDict allValues];
+	return ret;
 }
 
 
@@ -180,50 +201,48 @@
 	}
 }
 
-+ (void) newRecord: (int) state
++(void) fetchIntoRecord: (StatsRecord*) record 
+			  fromArray: (NSArray*) array
+			  usingWeek: (NSDate*) weekDate 
+			   usingDay: (NSDate*) dayDate
+			  usingHour: (NSDate*) hourDate
 {
-	Context *ctx = [Context sharedContext];
-	WPADelegate *del = (WPADelegate*)[NSApplication sharedApplication].delegate;
-	if (ctx.currentActivity != nil){
-		NSDate *start = [ctx.currentActivity valueForKey:@"startTime"];
-		NSTimeInterval interval = -[start timeIntervalSinceNow];
-		[ctx.currentActivity setValue:[NSNumber numberWithInt:interval] forKey:@"interval"];
-		NSLog(@"Done with %@% interval: %f", [self dumpMObj:ctx.currentActivity], interval);
-	} else {
-		NSLog(@"No Current Activity");
-	}
-	// new work record
-	NSManagedObjectContext *moc = [del managedObjectContext];
-	NSManagedObject *task = nil;
-	NSString *newTask = ctx.currentTask == nil ? @"[No Task]" : ctx.currentTask;		
-	
-	if (state == STATE_THINKING || state == STATE_THINKTIME){
-		task = [Schema findTask: newTask inContext: moc];
-		if (task == nil){
-			task = [NSEntityDescription
-					insertNewObjectForEntityForName:@"Task"
-					inManagedObjectContext:moc];
-			[task setValue:[NSDate date] forKey: @"createTime"];
-			[task setValue:newTask forKey: @"name"];
-			
+	double allCum = 0.0;
+	double weekCum = 0.0;
+	double dayCum = 0.0;
+	double hourCum = 0.0;
+	for (NSManagedObject *obj in array)
+	{
+		NSNumber *interval = [obj valueForKey: @"interval"];
+		allCum += [interval doubleValue];
+		NSDate *endDate = [obj valueForKey:@"endTime"]; 
+		if (endDate == nil){
+			NSDate *start = [obj valueForKey:@"startTime"];
+			endDate = [start dateByAddingTimeInterval:[interval doubleValue]];
 		}
-	}
-	NSString *entityName = [Schema entityNameForState:state];
-	if (entityName != nil) {
-		NSManagedObject *newActivity = [NSEntityDescription
-										insertNewObjectForEntityForName:entityName
-										inManagedObjectContext:moc];
-		if ([self hasTask:newActivity] && task != nil){
-			[newActivity setValue:task forKey:@"task"];
+		if (endDate){
+			if ([endDate compare:weekDate] == NSOrderedDescending){
+				NSTimeInterval maxInt = [endDate timeIntervalSinceDate:weekDate];
+				double cumIncr = maxInt < [interval doubleValue] ? maxInt : [interval doubleValue];
+				weekCum += cumIncr;
+			}
+			if ([endDate compare:dayDate] == NSOrderedDescending){
+				NSTimeInterval maxInt = [endDate timeIntervalSinceDate:dayDate];
+				double cumIncr = maxInt < [interval doubleValue] ? maxInt : [interval doubleValue];
+				dayCum += cumIncr;
+			}
+			if ([endDate compare:hourDate] == NSOrderedDescending){
+				NSTimeInterval maxInt = [endDate timeIntervalSinceDate:hourDate];
+				double cumIncr = maxInt < [interval doubleValue] ? maxInt : [interval doubleValue];
+				hourCum += cumIncr;
+			}
 		}
-		[newActivity setValue: [NSDate date] forKey:@"startTime"];	
-		[newActivity setValue: @"" forKey:@"notes"];
-		ctx.currentActivity = newActivity;
-		NSLog(@"Starting %@", [self dumpMObj:ctx.currentActivity]);
-	}
-	else {
-		ctx.currentActivity = nil;
-	}
+	}	
+	record.today = dayCum;
+	record.week = weekCum;
+	record.hour = hourCum;
+	record.month = allCum;
 }
+
 
 @end

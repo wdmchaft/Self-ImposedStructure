@@ -12,7 +12,6 @@
 @interface Schema : NSObject {
 
 }
-+ (void) newRecord: (int) state;
 + (NSString*) dumpMObj: (NSManagedObject*) obj;
 + (BOOL) hasTask: (NSManagedObject*) mobj;
 + (NSString*) entityNameForState:(int) state;
@@ -25,5 +24,6 @@
 			   usingHour: (NSDate*) hourDate;
 
 + (NSArray*) statsReportForDate :(NSDate*) date inContext: (NSManagedObjectContext*)moc;
-
++ (NSArray*) fetchWorkReportForMonth: (NSDate*) date
+						   inContext: (NSManagedObjectContext*)moc;
 @end

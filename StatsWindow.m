@@ -12,13 +12,15 @@
 
 @implementation StatsWindow
 @synthesize resetButton;
-@synthesize detailTable;
-@synthesize playText;
-@synthesize workText;
-@synthesize awayText;
+@synthesize summaryTable;
+@synthesize workTable;
+//@synthesize playText;
+//@synthesize workText;
+//@synthesize awayText;
 @synthesize statsData;
+@synthesize workData;
 @synthesize statsArray;
-
+@synthesize workArray;
 - (void) clickClear: (id) sender
 {
 	NSAlert *alert = [NSAlert alertWithMessageText:@"Warning" 
@@ -60,23 +62,16 @@
 - (void) setContents
 {
 	WPADelegate *nad = (WPADelegate*) [NSApplication sharedApplication].delegate;
-	[Schema newRecord:[Context sharedContext].startingState];
-	double val = [Schema countEntity:@"Work" inContext:nad.managedObjectContext];
-	[workText setStringValue:[[NSString alloc] initWithFormat:@"%f",val]];
-	[workText setNeedsDisplay];
-	NSLog(@"work %f", val);
-	val = [Schema countEntity:@"Away" inContext:nad.managedObjectContext];
-	[awayText setStringValue:[[NSString alloc] initWithFormat:@"%f",val]];	
-	[awayText setNeedsDisplay];
-	NSLog(@"away %f", val);
-	val = [Schema countEntity:@"Free" inContext:nad.managedObjectContext];
-	[playText setStringValue:[[NSString alloc] initWithFormat:@"%f",val]];	
-	[playText setNeedsDisplay];
-	NSLog(@"play %f", val);
+	[nad newRecord:[Context sharedContext].startingState];
+
 	statsArray = [Schema statsReportForDate:[NSDate date] inContext:nad.managedObjectContext];
-	statsData = [[StatsTable alloc]initWithData: statsArray];
-	detailTable.dataSource = statsData;
-	[detailTable noteNumberOfRowsChanged];
+	statsData = [[SummaryTable alloc]initWithRows: statsArray];
+	summaryTable.dataSource = statsData;
+	[summaryTable noteNumberOfRowsChanged];
+	workArray = [Schema fetchWorkReportForMonth:[NSDate date] inContext:nad.managedObjectContext];
+	workData = [[WorkTable alloc]initWithRows: workArray];
+	workTable.dataSource = workData;
+	[workTable noteNumberOfRowsChanged];
 }
 
 @end

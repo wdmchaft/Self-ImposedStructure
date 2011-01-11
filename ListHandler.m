@@ -12,13 +12,17 @@
 
 
 @implementation ListHandler
+@synthesize tempList;
+@synthesize tempDictionary;;
 
 - (ListHandler*) initWithContext: (RTMModule*) ctx andDelegate: (<RTMCallback>) delegate
 {
 	if (self = (ListHandler*)[super initWithContext:ctx andDelegate:delegate])
 	{
-		context.tasksList = [NSMutableArray new];
-		context.tasksDict = [NSMutableDictionary new];
+		tempList = [NSMutableArray new];
+		tempDictionary = [NSMutableDictionary new];
+		//context.tasksList = [NSMutableArray new];
+		//context.tasksDict = [NSMutableDictionary new];
 	}
 	return self;
 }
@@ -42,7 +46,7 @@ didStartElement:(NSString *)elementName
     if ( [elementName isEqualToString:@"taskseries"]) {
 		NSString *name = [attributeDict objectForKey:@"name"];
 		NSString *id = [attributeDict objectForKey:@"id"];
-		[context.tasksList addObject:name];
+		[tempList addObject:name];
 		if (self.currentDict){
 			[self addItem];
 		}
@@ -74,14 +78,18 @@ didStartElement:(NSString *)elementName
 		NSString *id = [attributeDict objectForKey:@"id"];
 		listId = id; 
     }
-	
+	if ( [elementName isEqualToString:@"err"]){
+		NSString* code = [attributeDict objectForKey:@"code"];
+		NSString* msg = [attributeDict objectForKey:@"msg"];
+		[context sendError:msg module:[context description]];
+	}
 	
 }
 - (void)parser:(NSXMLParser *)parser 
 didEndElement:(NSString *)elementName 
   namespaceURI:(NSString *)namespaceURI 
  qualifiedName:(NSString *)qName 
-	attributes:(NSDictionary *)attributeDict 
+//	attributes:(NSDictionary *)attributeDict 
 {
 //	NSLog(@"didEndElement for %@", elementName);
 	//
@@ -90,17 +98,19 @@ didEndElement:(NSString *)elementName
 	//
     if ( [elementName isEqualToString:@"taskseries"]) {
 		NSString *name = [self.currentDict objectForKey:@"name"];
-		[context.tasksDict setObject:self.currentDict forKey:name];
+		[tempDictionary setObject:self.currentDict forKey:name];
     }
 }
 - (void) doParse: (NSData*) respData
 {
-//	NSLog(@"%@", [[NSString alloc] initWithData: respData encoding:NSUTF8StringEncoding]);
+	NSLog(@"%@", [[NSString alloc] initWithData: respData encoding:NSUTF8StringEncoding]);
 	XMLParse *parser = [[XMLParse alloc]initWithData: respData andDelegate: self];
 	[parser parseData];
-	if (self.currentDict != nil){
+	if (self.currentDict != nil && [self.currentDict count] > 0){
 		[self addItem];
 	}
+	context.tasksDict = tempDictionary;
+	context.tasksList = tempList;
 }
 
 - (void) doCallback

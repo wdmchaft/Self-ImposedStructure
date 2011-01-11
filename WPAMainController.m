@@ -40,22 +40,28 @@
 	NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
 	[center addObserver: self selector:@selector(statusHandler:)
 				   name:@"org.ottoject.alarm" object:nil];
-
+	[center addObserver: self selector:@selector(tasksChanged:)
+				   name:@"org.ottoject.tasks" object:nil];
+	
 	[taskComboBox removeAllItems];
 	NSArray *allTasks = [(WPADelegate*)[[NSApplication sharedApplication] delegate] getAllTasks];
 	for(TaskInfo *info in allTasks){
 		[taskComboBox addItemWithObjectValue:info]; 
 	}
-	[(WPADelegate*)[[NSApplication sharedApplication] delegate] registerTasksHandler:self];
+	if (ctx.currentTask){
+		[taskComboBox setStringValue:[ctx.currentTask description]];
+	}
+	//[(WPADelegate*)[[NSApplication sharedApplication] delegate] registerTasksHandler:self];
 	// start listening for commands
 	NSDistributedNotificationCenter *dCenter = [NSDistributedNotificationCenter defaultCenter];
 	// for the screensaver
 	[dCenter addObserver:self selector:@selector(handleScreenSaverStart:) name:@"com.apple.screensaver.didlaunch" object:nil];
 	[dCenter addObserver:self selector:@selector(handleScreenSaverStop:) name:@"com.apple.screensaver.didstop" object:nil];
 	[taskComboBox setDelegate:self];
+	[self enableUI: ctx.running];
 }
 
-- (void) tasksChanged
+- (void) tasksChanged: (NSNotification*) notification
 {
 	[taskComboBox removeAllItems];
 	Context *ctx = [Context sharedContext];
@@ -69,7 +75,14 @@
 	Context *ctx = [Context sharedContext];
 	NSComboBox *cb = taskComboBox;
 	
-	ctx.currentTask = [cb objectValueOfSelectedItem];
+	NSObject *selObj = [cb objectValueOfSelectedItem];
+	if (selObj.class == NSString.class){
+		ctx.currentTask = [TaskInfo new];
+		ctx.currentTask.name = (NSString*) selObj;
+	}
+	ctx.currentTask = (TaskInfo*) selObj;
+	[ctx saveTask];
+	
 //	if ([ctx.currentTask isEqualToString:@"No Current Task"]){
 //		ctx.currentTask = nil;
 //	}
@@ -89,17 +102,25 @@
 {
 }
 
+- (void) enableUI: (BOOL) onOff
+{
+	[controls setEnabled:onOff];
+	[taskComboBox setEnabled:onOff];
+	[refreshButton setEnabled:onOff];
+}
 
 -(IBAction) clickStart: (NSButton*) sender {
-	if ([Context sharedContext].running){
+	BOOL running = ([Context sharedContext].running);
+	if (running){
 		[(WPADelegate*)[[NSApplication sharedApplication] delegate] stop];
 		startButton.title = @"Start";
 		[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:STATE_OFF];
-} else {
+	} else {
 	[(WPADelegate*)[[NSApplication sharedApplication] delegate] start];
 		startButton.title = @"Stop";
 		[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:[Context sharedContext].startingState];
 	}
+	[self enableUI:!running];
 }
 
 - (IBAction) clickTimed: (id) sender

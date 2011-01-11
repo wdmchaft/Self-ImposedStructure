@@ -16,7 +16,6 @@
 
 	NSButton *startButton;
 	NSSegmentedControl *controls;
-	NSButton *toggleButton;
 	NSComboBox *taskComboBox;
 	NSButton *refreshButton;
 	StatsWindow *statsWindow;
@@ -37,7 +36,10 @@
 -(IBAction) clickWork: (id) sender;
 -(IBAction) clickTimed: (id) sender;
 - (void) changeState: (int) state;
+- (void) tasksChanged: (NSNotification*) notification;
 
 -(void)handleScreenSaverStart:(NSNotification*) notification;
 -(void)handleScreenSaverStop:(NSNotification*) notification;
+- (void) enableUI: (BOOL) onOff;
+	
 @end

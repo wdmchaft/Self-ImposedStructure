@@ -111,6 +111,10 @@
 		8CF8BB7212D9FBA6009C7E3D /* RefreshListHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8BB5B12D9F961009C7E3D /* RefreshListHandler.m */; };
 		8CF8BCB712DA112B009C7E3D /* TaskInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8BCB612DA112B009C7E3D /* TaskInfo.m */; };
 		8CF8BCB812DA112B009C7E3D /* TaskInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8BCB612DA112B009C7E3D /* TaskInfo.m */; };
+		8CF8C13D12DC2B59009C7E3D /* WorkTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8C13C12DC2B59009C7E3D /* WorkTable.m */; };
+		8CF8C13E12DC2B59009C7E3D /* WorkTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8C13C12DC2B59009C7E3D /* WorkTable.m */; };
+		8CF8C14312DC2CB7009C7E3D /* SummaryTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8C14212DC2CB7009C7E3D /* SummaryTable.m */; };
+		8CF8C14412DC2CB7009C7E3D /* SummaryTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8C14212DC2CB7009C7E3D /* SummaryTable.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -440,6 +444,10 @@
 		8CF8BB5B12D9F961009C7E3D /* RefreshListHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshListHandler.m; sourceTree = "<group>"; };
 		8CF8BCB512DA112B009C7E3D /* TaskInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskInfo.h; sourceTree = "<group>"; };
 		8CF8BCB612DA112B009C7E3D /* TaskInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskInfo.m; sourceTree = "<group>"; };
+		8CF8C13B12DC2B59009C7E3D /* WorkTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkTable.h; sourceTree = "<group>"; };
+		8CF8C13C12DC2B59009C7E3D /* WorkTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkTable.m; sourceTree = "<group>"; };
+		8CF8C14112DC2CB7009C7E3D /* SummaryTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummaryTable.h; sourceTree = "<group>"; };
+		8CF8C14212DC2CB7009C7E3D /* SummaryTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummaryTable.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* WorkPlayAway-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "WorkPlayAway-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* WorkPlayAway.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkPlayAway.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -528,6 +536,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8CF8C14012DC2B71009C7E3D /* Reporting */,
 				8CD1978912D4C89D00C69AC9 /* WPAMain */,
 				8CD1973E12D4C55D00C69AC9 /* Data Models */,
 				8CD1967212D46CF400C69AC9 /* RTMModule */,
@@ -770,15 +779,7 @@
 				8CF8BCB612DA112B009C7E3D /* TaskInfo.m */,
 				8CF8BB5A12D9F961009C7E3D /* RefreshListHandler.h */,
 				8CF8BB5B12D9F961009C7E3D /* RefreshListHandler.m */,
-				8CF8B5FA12D821B5009C7E3D /* Schema.h */,
-				8CF8B5FB12D821B5009C7E3D /* StatsTable.m */,
-				8CF8B5FC12D821B5009C7E3D /* StatsTable.h */,
-				8CF8B5FD12D821B5009C7E3D /* Schema.m */,
-				8CF8B5FE12D821B5009C7E3D /* StatsRecord.h */,
-				8CF8B5FF12D821B5009C7E3D /* StatsRecord.m */,
 				8CF8B60012D821B5009C7E3D /* TimeDefines.h */,
-				8CF8B60112D821B5009C7E3D /* StatsReport.m */,
-				8CF8B60212D821B5009C7E3D /* StatsReport.h */,
 				8CD1978F12D4D0F400C69AC9 /* Growl.h */,
 				8C77296B12D46AC600F71FE7 /* Columns.h */,
 				8C77297612D46AC600F71FE7 /* Message.h */,
@@ -801,19 +802,38 @@
 				8C77292C12D46AC600F71FE7 /* WPADelegate.h */,
 				8C77297212D46AC600F71FE7 /* EventHandler.h */,
 				8C77292E12D46AC600F71FE7 /* Nudge-Info.plist */,
-				8C77292F12D46AC600F71FE7 /* StatsWindow.xib */,
 				8C77293212D46AC600F71FE7 /* AddModWinController.h */,
 				8C77291812D46AC600F71FE7 /* AddMod.xib */,
 				8C77291D12D46AC600F71FE7 /* PreferencesWindow.m */,
 				8C77291B12D46AC600F71FE7 /* PreferencesWindow.xib */,
 				8C77291C12D46AC600F71FE7 /* AddModWinController.m */,
 				8C77291E12D46AC600F71FE7 /* WPAMainController.m */,
-				8C77292012D46AC600F71FE7 /* StatsWindow.m */,
-				8C77292112D46AC600F71FE7 /* StatsWindow.h */,
 				8C77292212D46AC600F71FE7 /* WPADelegate.m */,
 				8C0D948912D64486009F3280 /* INSTALL_PLUGINS.sh */,
 			);
 			name = WPAMain;
+			sourceTree = "<group>";
+		};
+		8CF8C14012DC2B71009C7E3D /* Reporting */ = {
+			isa = PBXGroup;
+			children = (
+				8CF8C14112DC2CB7009C7E3D /* SummaryTable.h */,
+				8CF8C14212DC2CB7009C7E3D /* SummaryTable.m */,
+				8CF8B5FA12D821B5009C7E3D /* Schema.h */,
+				8CF8B5FB12D821B5009C7E3D /* StatsTable.m */,
+				8CF8B5FC12D821B5009C7E3D /* StatsTable.h */,
+				8CF8B5FD12D821B5009C7E3D /* Schema.m */,
+				8C77292012D46AC600F71FE7 /* StatsWindow.m */,
+				8C77292112D46AC600F71FE7 /* StatsWindow.h */,
+				8CF8B5FE12D821B5009C7E3D /* StatsRecord.h */,
+				8CF8B60112D821B5009C7E3D /* StatsReport.m */,
+				8CF8B60212D821B5009C7E3D /* StatsReport.h */,
+				8C77292F12D46AC600F71FE7 /* StatsWindow.xib */,
+				8CF8B5FF12D821B5009C7E3D /* StatsRecord.m */,
+				8CF8C13B12DC2B59009C7E3D /* WorkTable.h */,
+				8CF8C13C12DC2B59009C7E3D /* WorkTable.m */,
+			);
+			name = Reporting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1189,6 +1209,8 @@
 				8CF8B60912D821B5009C7E3D /* StatsRecord.m in Sources */,
 				8CF8B60A12D821B5009C7E3D /* StatsReport.m in Sources */,
 				8CF8BCB712DA112B009C7E3D /* TaskInfo.m in Sources */,
+				8CF8C13E12DC2B59009C7E3D /* WorkTable.m in Sources */,
+				8CF8C14412DC2CB7009C7E3D /* SummaryTable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1286,6 +1308,8 @@
 				8CF8B60512D821B5009C7E3D /* StatsRecord.m in Sources */,
 				8CF8B60612D821B5009C7E3D /* StatsReport.m in Sources */,
 				8CF8BCB812DA112B009C7E3D /* TaskInfo.m in Sources */,
+				8CF8C13D12DC2B59009C7E3D /* WorkTable.m in Sources */,
+				8CF8C14312DC2CB7009C7E3D /* SummaryTable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

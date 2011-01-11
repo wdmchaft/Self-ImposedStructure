@@ -17,6 +17,7 @@
 	NSTimeInterval today;
 	NSTimeInterval week;
 	NSTimeInterval month;
+	NSString *key;
 }
 @property (nonatomic, retain) NSString *activity;
 @property (nonatomic, retain) NSString *task;
@@ -25,5 +26,6 @@
 @property (nonatomic) NSTimeInterval today;
 @property (nonatomic) NSTimeInterval week;
 @property (nonatomic) NSTimeInterval month;
+@property (nonatomic, readonly) NSString *key;
 - (id) initWithName: (NSString*) name;
 @end
