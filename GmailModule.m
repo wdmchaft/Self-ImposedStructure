@@ -146,7 +146,7 @@
 
 -(void) putter
 {
-	[self refreshData: nil];
+	//[self refreshData: nil];
 }
 -(void) stop
 {
@@ -237,7 +237,7 @@
 			return;
 		} else {
 			[super.validationHandler performSelector:@selector(validationComplete:) 
-										  withObject:[NSString stringWithFormat:@"%d Authentication Failures in a Row",failCount]];		
+										  withObject:[NSString stringWithFormat:@"Gmail account fails to authenticate.  (Perhaps retry password.)"]];		
 		}
 	} 
 	else if (super.validationHandler){
@@ -245,7 +245,7 @@
 									  withObject:nil];
 	}
 	failCount = 0;
-	NSLog(@"%@", [[NSString alloc] initWithData: respBuffer encoding:NSUTF8StringEncoding]);
+//	NSLog(@"%@", [[NSString alloc] initWithData: respBuffer encoding:NSUTF8StringEncoding]);
 	msgDict = [NSMutableDictionary new];
 	XMLParse *parser = [[XMLParse alloc]initWithData: respBuffer andDelegate: self];
 	[parser parseData];
@@ -263,8 +263,8 @@
 			alert.moduleName = super.description;
 			alert.title =key;
 			alert.message=[item objectForKey:@"summary"];
-			alert.sticky = res == RESULT_IMPORTANT;
-			alert.urgent = res == RESULT_IMPORTANT;
+			alert.sticky = (res == RESULT_IMPORTANT);
+			alert.urgent = (res == RESULT_IMPORTANT);
 			NSString *href = [item objectForKey:@"href"];
 			alert.params = [[NSDictionary alloc] initWithObjectsAndKeys:href, @"href",
 							[self description],@"module",nil ];
@@ -338,10 +338,24 @@ didStartElement:(NSString *)elementName
 - (void) startValidation: (NSObject*) callback
 {
 	[super startValidation:callback];
-	userStr = userField.stringValue;
-	passwordStr = passwordField.stringValue;
 	refresh = frequencyField.intValue;
-	[self refreshData: nil];
+	// 
+	// if the password / user already are set and haven't changed 
+	// then don't bother connecting to validate
+	//
+	if (passwordStr != nil 
+		&& userStr != nil 
+		&& [passwordStr isEqualToString:passwordField.stringValue]
+		&& [userStr isEqualToString:userField.stringValue]) {
+		[super.validationHandler performSelector:@selector(validationComplete:) 
+									  withObject:nil];
+	}
+	else{
+		userStr = userField.stringValue;
+		
+		passwordStr = passwordField.stringValue;
+		[self refreshData: nil];
+	}
 }
 
 -(void) saveDefaults{ 
@@ -464,8 +478,8 @@ didStartElement:(NSString *)elementName
 	   FilterRule *rule = [rules objectAtIndex:rowIdx];
 	   rule.ruleType = idx;
 	   
-	   NSLog(@"cell idx  = %d", idx);
-	   NSLog(@"cell title = %@", [pop titleOfSelectedItem]);
+	//   NSLog(@"cell idx  = %d", idx);
+	//   NSLog(@"cell title = %@", [pop titleOfSelectedItem]);
    }
 - (IBAction) fieldChanged: (id) sender
 {

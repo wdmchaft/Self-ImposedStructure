@@ -116,7 +116,7 @@
 }
 -(void) putter
 {
-	[self refreshData:nil];
+	//[self refreshData:nil];
 }
 
 -(void) stop

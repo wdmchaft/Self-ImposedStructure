@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8C0D93F912D63DBD009F3280 /* IconData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77293C12D46AC600F71FE7 /* IconData.m */; };
-		8C0D93FA12D63DBD009F3280 /* TaskData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77297B12D46AC600F71FE7 /* TaskData.m */; };
 		8C0D93FB12D63DBD009F3280 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		8C0D93FC12D63DBD009F3280 /* AddModWinController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77291C12D46AC600F71FE7 /* AddModWinController.m */; };
 		8C0D93FD12D63DBD009F3280 /* PreferencesWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77291D12D46AC600F71FE7 /* PreferencesWindow.m */; };
@@ -16,7 +15,7 @@
 		8C0D93FF12D63DBD009F3280 /* StatsWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77292012D46AC600F71FE7 /* StatsWindow.m */; };
 		8C0D940012D63DBD009F3280 /* WPADelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77292212D46AC600F71FE7 /* WPADelegate.m */; };
 		8C0D940112D63DBD009F3280 /* Context.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77292B12D46AC600F71FE7 /* Context.m */; };
-		8C0D940212D63DBD009F3280 /* Nudge_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 8C77293912D46AC600F71FE7 /* Nudge_DataModel.xcdatamodel */; };
+		8C0D940212D63DBD009F3280 /* WPA_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 8C77293912D46AC600F71FE7 /* WPA_DataModel.xcdatamodel */; };
 		8C0D940312D63DBD009F3280 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77293D12D46AC600F71FE7 /* Note.m */; };
 		8C0D940412D63DBD009F3280 /* ModulesTableData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77294012D46AC600F71FE7 /* ModulesTableData.m */; };
 		8C0D940512D63DBD009F3280 /* IconsFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77294C12D46AC600F71FE7 /* IconsFile.m */; };
@@ -48,15 +47,13 @@
 		8C77299512D46AC600F71FE7 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77292712D46AC600F71FE7 /* MainMenu.xib */; };
 		8C77299612D46AC600F71FE7 /* Context.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77292B12D46AC600F71FE7 /* Context.m */; };
 		8C77299812D46AC600F71FE7 /* StatsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77292F12D46AC600F71FE7 /* StatsWindow.xib */; };
-		8C77299D12D46AC600F71FE7 /* Nudge_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 8C77293912D46AC600F71FE7 /* Nudge_DataModel.xcdatamodel */; };
-		8C77299F12D46AC600F71FE7 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77293D12D46AC600F71FE7 /* Note.m */; };
+		8C77299D12D46AC600F71FE7 /* WPA_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 8C77293912D46AC600F71FE7 /* WPA_DataModel.xcdatamodel */; };
 		8C7729A012D46AC600F71FE7 /* ModulesTableData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77294012D46AC600F71FE7 /* ModulesTableData.m */; };
 		8C7729A212D46AC600F71FE7 /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 8C77294212D46AC600F71FE7 /* Growl Registration Ticket.growlRegDict */; };
 		8C7729AB12D46AC600F71FE7 /* IconsFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77294C12D46AC600F71FE7 /* IconsFile.m */; };
 		8C7729B512D46AC600F71FE7 /* TimerDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77295912D46AC600F71FE7 /* TimerDialogController.m */; };
 		8C7729B612D46AC600F71FE7 /* TimerDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77295B12D46AC600F71FE7 /* TimerDialog.xib */; };
 		8C7729BD12D46AC600F71FE7 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C77296912D46AC600F71FE7 /* Info.plist */; };
-		8C7729C112D46AC600F71FE7 /* TaskData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77297B12D46AC600F71FE7 /* TaskData.m */; };
 		8C7729C212D46AC600F71FE7 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C77297C12D46AC600F71FE7 /* Growl.framework */; };
 		8CD1974A12D4C5D900C69AC9 /* BaseModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77293712D46AC600F71FE7 /* BaseModule.m */; };
 		8CD1974D12D4C5D900C69AC9 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77293D12D46AC600F71FE7 /* Note.m */; };
@@ -102,6 +99,18 @@
 		8CD198F512D5146400C69AC9 /* gcal.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C77295012D46AC600F71FE7 /* gcal.ico */; };
 		8CD198F812D514AC00C69AC9 /* RTMModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77293512D46AC600F71FE7 /* RTMModule.xib */; };
 		8CD198F912D514C800C69AC9 /* rtm.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C77295412D46AC600F71FE7 /* rtm.ico */; };
+		8CF8B60312D821B5009C7E3D /* StatsTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8B5FB12D821B5009C7E3D /* StatsTable.m */; };
+		8CF8B60412D821B5009C7E3D /* Schema.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8B5FD12D821B5009C7E3D /* Schema.m */; };
+		8CF8B60512D821B5009C7E3D /* StatsRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8B5FF12D821B5009C7E3D /* StatsRecord.m */; };
+		8CF8B60612D821B5009C7E3D /* StatsReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8B60112D821B5009C7E3D /* StatsReport.m */; };
+		8CF8B60712D821B5009C7E3D /* StatsTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8B5FB12D821B5009C7E3D /* StatsTable.m */; };
+		8CF8B60812D821B5009C7E3D /* Schema.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8B5FD12D821B5009C7E3D /* Schema.m */; };
+		8CF8B60912D821B5009C7E3D /* StatsRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8B5FF12D821B5009C7E3D /* StatsRecord.m */; };
+		8CF8B60A12D821B5009C7E3D /* StatsReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8B60112D821B5009C7E3D /* StatsReport.m */; };
+		8CF8BB5C12D9F961009C7E3D /* RefreshListHandler.m in Resources */ = {isa = PBXBuildFile; fileRef = 8CF8BB5B12D9F961009C7E3D /* RefreshListHandler.m */; };
+		8CF8BB7212D9FBA6009C7E3D /* RefreshListHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8BB5B12D9F961009C7E3D /* RefreshListHandler.m */; };
+		8CF8BCB712DA112B009C7E3D /* TaskInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8BCB612DA112B009C7E3D /* TaskInfo.m */; };
+		8CF8BCB812DA112B009C7E3D /* TaskInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8BCB612DA112B009C7E3D /* TaskInfo.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -341,7 +350,7 @@
 		8C77293612D46AC600F71FE7 /* Module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Module.h; sourceTree = "<group>"; };
 		8C77293712D46AC600F71FE7 /* BaseModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModule.m; sourceTree = "<group>"; };
 		8C77293812D46AC600F71FE7 /* BaseModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModule.h; sourceTree = "<group>"; };
-		8C77293912D46AC600F71FE7 /* Nudge_DataModel.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Nudge_DataModel.xcdatamodel; sourceTree = "<group>"; };
+		8C77293912D46AC600F71FE7 /* WPA_DataModel.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = WPA_DataModel.xcdatamodel; sourceTree = "<group>"; };
 		8C77293A12D46AC600F71FE7 /* State.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = State.h; sourceTree = "<group>"; };
 		8C77293B12D46AC600F71FE7 /* IconData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconData.h; sourceTree = "<group>"; };
 		8C77293C12D46AC600F71FE7 /* IconData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconData.m; sourceTree = "<group>"; };
@@ -404,8 +413,6 @@
 		8C77297612D46AC600F71FE7 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		8C77297812D46AC600F71FE7 /* TaskDialog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskDialog.xib; sourceTree = "<group>"; };
 		8C77297912D46AC600F71FE7 /* CompleteHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompleteHandler.h; sourceTree = "<group>"; };
-		8C77297A12D46AC600F71FE7 /* TaskData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskData.h; sourceTree = "<group>"; };
-		8C77297B12D46AC600F71FE7 /* TaskData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskData.m; sourceTree = "<group>"; };
 		8C77297C12D46AC600F71FE7 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Growl.framework; sourceTree = "<group>"; };
 		8C77297D12D46AC600F71FE7 /* XMLParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParse.h; sourceTree = "<group>"; };
 		8C77297E12D46AC600F71FE7 /* RequestREST.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestREST.h; sourceTree = "<group>"; };
@@ -420,6 +427,19 @@
 		8CD1986012D506B700C69AC9 /* iChatModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iChatModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD1988112D5079F00C69AC9 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 		8CD1989D12D5092F00C69AC9 /* GCalModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GCalModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CF8B5FA12D821B5009C7E3D /* Schema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Schema.h; sourceTree = "<group>"; };
+		8CF8B5FB12D821B5009C7E3D /* StatsTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsTable.m; sourceTree = "<group>"; };
+		8CF8B5FC12D821B5009C7E3D /* StatsTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsTable.h; sourceTree = "<group>"; };
+		8CF8B5FD12D821B5009C7E3D /* Schema.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Schema.m; sourceTree = "<group>"; };
+		8CF8B5FE12D821B5009C7E3D /* StatsRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsRecord.h; sourceTree = "<group>"; };
+		8CF8B5FF12D821B5009C7E3D /* StatsRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsRecord.m; sourceTree = "<group>"; };
+		8CF8B60012D821B5009C7E3D /* TimeDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeDefines.h; sourceTree = "<group>"; };
+		8CF8B60112D821B5009C7E3D /* StatsReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsReport.m; sourceTree = "<group>"; };
+		8CF8B60212D821B5009C7E3D /* StatsReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsReport.h; sourceTree = "<group>"; };
+		8CF8BB5A12D9F961009C7E3D /* RefreshListHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshListHandler.h; sourceTree = "<group>"; };
+		8CF8BB5B12D9F961009C7E3D /* RefreshListHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshListHandler.m; sourceTree = "<group>"; };
+		8CF8BCB512DA112B009C7E3D /* TaskInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskInfo.h; sourceTree = "<group>"; };
+		8CF8BCB612DA112B009C7E3D /* TaskInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskInfo.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* WorkPlayAway-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "WorkPlayAway-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* WorkPlayAway.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkPlayAway.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -738,7 +758,7 @@
 		8CD1973E12D4C55D00C69AC9 /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
-				8C77293912D46AC600F71FE7 /* Nudge_DataModel.xcdatamodel */,
+				8C77293912D46AC600F71FE7 /* WPA_DataModel.xcdatamodel */,
 			);
 			name = "Data Models";
 			sourceTree = "<group>";
@@ -746,12 +766,23 @@
 		8CD1978912D4C89D00C69AC9 /* WPAMain */ = {
 			isa = PBXGroup;
 			children = (
+				8CF8BCB512DA112B009C7E3D /* TaskInfo.h */,
+				8CF8BCB612DA112B009C7E3D /* TaskInfo.m */,
+				8CF8BB5A12D9F961009C7E3D /* RefreshListHandler.h */,
+				8CF8BB5B12D9F961009C7E3D /* RefreshListHandler.m */,
+				8CF8B5FA12D821B5009C7E3D /* Schema.h */,
+				8CF8B5FB12D821B5009C7E3D /* StatsTable.m */,
+				8CF8B5FC12D821B5009C7E3D /* StatsTable.h */,
+				8CF8B5FD12D821B5009C7E3D /* Schema.m */,
+				8CF8B5FE12D821B5009C7E3D /* StatsRecord.h */,
+				8CF8B5FF12D821B5009C7E3D /* StatsRecord.m */,
+				8CF8B60012D821B5009C7E3D /* TimeDefines.h */,
+				8CF8B60112D821B5009C7E3D /* StatsReport.m */,
+				8CF8B60212D821B5009C7E3D /* StatsReport.h */,
 				8CD1978F12D4D0F400C69AC9 /* Growl.h */,
 				8C77296B12D46AC600F71FE7 /* Columns.h */,
 				8C77297612D46AC600F71FE7 /* Message.h */,
 				8C77297812D46AC600F71FE7 /* TaskDialog.xib */,
-				8C77297A12D46AC600F71FE7 /* TaskData.h */,
-				8C77297B12D46AC600F71FE7 /* TaskData.m */,
 				8C77293A12D46AC600F71FE7 /* State.h */,
 				8C77293312D46AC600F71FE7 /* AlertHandler.h */,
 				8C77293B12D46AC600F71FE7 /* IconData.h */,
@@ -1041,6 +1072,7 @@
 				8C0D969112D67AFC009F3280 /* TaskDialog.xib in Resources */,
 				8CD198F912D514C800C69AC9 /* rtm.ico in Resources */,
 				8CD198F812D514AC00C69AC9 /* RTMModule.xib in Resources */,
+				8CF8BB5C12D9F961009C7E3D /* RefreshListHandler.m in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1140,7 +1172,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C0D93F912D63DBD009F3280 /* IconData.m in Sources */,
-				8C0D93FA12D63DBD009F3280 /* TaskData.m in Sources */,
 				8C0D93FB12D63DBD009F3280 /* main.m in Sources */,
 				8C0D93FC12D63DBD009F3280 /* AddModWinController.m in Sources */,
 				8C0D93FD12D63DBD009F3280 /* PreferencesWindow.m in Sources */,
@@ -1148,11 +1179,16 @@
 				8C0D93FF12D63DBD009F3280 /* StatsWindow.m in Sources */,
 				8C0D940012D63DBD009F3280 /* WPADelegate.m in Sources */,
 				8C0D940112D63DBD009F3280 /* Context.m in Sources */,
-				8C0D940212D63DBD009F3280 /* Nudge_DataModel.xcdatamodel in Sources */,
+				8C0D940212D63DBD009F3280 /* WPA_DataModel.xcdatamodel in Sources */,
 				8C0D940312D63DBD009F3280 /* Note.m in Sources */,
 				8C0D940412D63DBD009F3280 /* ModulesTableData.m in Sources */,
 				8C0D940512D63DBD009F3280 /* IconsFile.m in Sources */,
 				8C0D940612D63DBD009F3280 /* TimerDialogController.m in Sources */,
+				8CF8B60712D821B5009C7E3D /* StatsTable.m in Sources */,
+				8CF8B60812D821B5009C7E3D /* Schema.m in Sources */,
+				8CF8B60912D821B5009C7E3D /* StatsRecord.m in Sources */,
+				8CF8B60A12D821B5009C7E3D /* StatsReport.m in Sources */,
+				8CF8BCB712DA112B009C7E3D /* TaskInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1171,6 +1207,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CF8BB7212D9FBA6009C7E3D /* RefreshListHandler.m in Sources */,
 				8CD197E212D4FED200C69AC9 /* RefreshHandler.m in Sources */,
 				8CD197E812D4FED200C69AC9 /* CompleteHandler.m in Sources */,
 				8CD197E912D4FED200C69AC9 /* ListsHandler.m in Sources */,
@@ -1233,7 +1270,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CD1979712D4EACD00C69AC9 /* IconData.m in Sources */,
-				8C7729C112D46AC600F71FE7 /* TaskData.m in Sources */,
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				8C77298E12D46AC600F71FE7 /* AddModWinController.m in Sources */,
 				8C77298F12D46AC600F71FE7 /* PreferencesWindow.m in Sources */,
@@ -1241,11 +1277,15 @@
 				8C77299112D46AC600F71FE7 /* StatsWindow.m in Sources */,
 				8C77299212D46AC600F71FE7 /* WPADelegate.m in Sources */,
 				8C77299612D46AC600F71FE7 /* Context.m in Sources */,
-				8C77299D12D46AC600F71FE7 /* Nudge_DataModel.xcdatamodel in Sources */,
-				8C77299F12D46AC600F71FE7 /* Note.m in Sources */,
+				8C77299D12D46AC600F71FE7 /* WPA_DataModel.xcdatamodel in Sources */,
 				8C7729A012D46AC600F71FE7 /* ModulesTableData.m in Sources */,
 				8C7729AB12D46AC600F71FE7 /* IconsFile.m in Sources */,
 				8C7729B512D46AC600F71FE7 /* TimerDialogController.m in Sources */,
+				8CF8B60312D821B5009C7E3D /* StatsTable.m in Sources */,
+				8CF8B60412D821B5009C7E3D /* Schema.m in Sources */,
+				8CF8B60512D821B5009C7E3D /* StatsRecord.m in Sources */,
+				8CF8B60612D821B5009C7E3D /* StatsReport.m in Sources */,
+				8CF8BCB812DA112B009C7E3D /* TaskInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

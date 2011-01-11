@@ -23,21 +23,20 @@
     NSManagedObjectContext *managedObjectContext;
 	PreferencesWindow *prefsWindow;
 	StatsWindow *statsWindow;
-
 }
 
 @property (assign) IBOutlet NSWindow *window;
-@property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-@property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
-@property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, retain, readonly) PreferencesWindow *prefsWindow;
+@property (nonatomic, retain) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic, retain) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain) PreferencesWindow *prefsWindow;
 @property (retain, nonatomic) IBOutlet StatsWindow *statsWindow;
 
 -(void) goAway;
 -(void) start;
 -(void) stop;
 -(void) think: (int) minutes;
--(void) run;
+-(void) putter;
 -(void) setState: (int) state;
 
 
@@ -47,6 +46,7 @@
 -(void) registerTasksHandler:(id) handler;
 -(NSString*) entityNameForState: (int) state;
 - (NSManagedObject*) findTask: (NSString*) name inContext: (NSManagedObjectContext*) moc;
+- (NSManagedObject*) findSource: (NSString*) name inContext: (NSManagedObjectContext*) moc;
 -(void) newRecord:(int)state;
 - (void) refreshTasks;
 - (IBAction) removeStore: (id) sender;
@@ -57,6 +57,6 @@
 
 -(IBAction) clickPreferences: (id) sender;
 -(IBAction) clickTasksInfo: (id) sender;
-
+-(IBAction)handleNewMainWindowMenu:(NSMenuItem *)sender;
 
 @end

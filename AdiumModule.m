@@ -55,7 +55,7 @@
 			[addiumApp setGlobalStatus:stat];
 		}
 	}
-	NSLog(@"status is %@", addiumApp.globalStatus.title);
+//	NSLog(@"status is %@", addiumApp.globalStatus.title);
 }
 
 -(void) startValidation: (NSObject*) callback  

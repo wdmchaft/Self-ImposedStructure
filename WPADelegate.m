@@ -12,11 +12,16 @@
 #import "Note.h"
 #import "Growl.h"
 #import "IconsFile.h"
+#import "TaskInfo.h"
 
 @implementation WPADelegate
 @synthesize window;
 @synthesize prefsWindow;
 @synthesize statsWindow;
+@synthesize persistentStoreCoordinator;
+@synthesize managedObjectModel;
+@synthesize managedObjectContext;
+
 -(void) start 
 {
 	// check for trouble
@@ -32,9 +37,22 @@
 	// fire up all the alerting modules
 
 	[self setState: ctx.startingState];
-
+	
 	[self performSelector:@selector(growlLoop)];
 	ctx.running = YES;
+	
+	NSDictionary *modules = [[Context sharedContext] instancesMap];
+	<Module> module = nil;
+	NSString *modName = nil;
+	for (modName in modules){
+		module = [modules objectForKey:modName];
+		if (module.enabled){
+			module.handler = self;
+			[module start];
+		}
+	}
+	
+	
 }
 
 -(void) setState: (int) state
@@ -44,7 +62,7 @@
 			[self goAway];
 			break;
 		case STATE_PUTZING:
-			[self run];
+			[self putter];
 			break;
 		case STATE_THINKING:
 			[Context sharedContext].thinkTime = 0;
@@ -115,7 +133,6 @@
 			[module think];
 		}
 	}
-	ctx.thinking = YES;
 	if (minutes > 0){
 		ctx.thinkTimer = [NSTimer scheduledTimerWithTimeInterval:minutes * 60 
 														  target:self 
@@ -131,15 +148,14 @@
 	NSNotification *notice = [NSNotification notificationWithName:@"org.ottoject.alarm" object:nil];
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	[nc postNotification:notice];
-	[self run];
+	[self putter];
 }
 
--(void) run
+-(void) putter
 {
 	
 	Context *ctx = [Context sharedContext];
 	[ctx.thinkTimer invalidate];
-	ctx.thinking = NO;
 	
 	// first dump everything saved into the queue...
 	while ([ctx.savedQ count] > 0) {
@@ -181,8 +197,6 @@
 			[module goAway];
 		}
 	}
-	ctx.thinking = NO;
-	ctx.away = YES;
 }
 
 - (void) back
@@ -204,7 +218,7 @@
 
 -(void) growlAlert: (Note*) alert
 {
-//	NSLog(@"growlAlert");
+	NSLog(@"showing alert %@", alert.message);
 	<Module> sender = [[[Context sharedContext] instancesMap] objectForKey:alert.moduleName];
 	
 
@@ -229,8 +243,9 @@
 -(void) saveAlert: (Note*) alert
 {
 	Context *ctx = [Context sharedContext];
-	if (ctx.savedQ == nil){
-		ctx.savedQ = [[NSMutableArray alloc]initWithCapacity:10];
+	if ([ctx.savedQ containsObject: alert]){
+		NSLog(@"skipping duplicate alert %@", alert.message);
+		return; 
 	}
 	[ctx.savedQ addObject:alert];
 }
@@ -238,8 +253,9 @@
 -(void) queueAlert: (Note*) alert
 {
 	Context *ctx = [Context sharedContext];
-	if (ctx.alertQ == nil){
-		ctx.alertQ = [[NSMutableArray alloc]initWithCapacity:10];
+	if ([ctx.alertQ containsObject: alert]){
+		NSLog(@"skipping duplicate alert %@", alert.message);
+		return; 
 	}
 	[[Context sharedContext].alertQ addObject:alert];
 }
@@ -260,8 +276,9 @@
 
 -(void) handleAlert:(Note*) alert 
 {
+	NSLog(@"received %@",alert.message);
 	Context *ctx = [Context sharedContext];
-	if ([ctx thinking] == NO) {
+	if (ctx.startingState != STATE_THINKING && ctx.startingState != STATE_THINKTIME) {
 		[self queueAlert:alert];
 	}
 	else {
@@ -269,7 +286,8 @@
 			[self queueAlert:alert];
 		} else {
 			[self saveAlert: alert];
-		}
+			NSLog(@"saved %@",alert.message);
+	}
 	}
 
 }
@@ -310,7 +328,10 @@
 			NSArray *items = module.trackingItems;
 			if (items){
 				for(NSString *item in items){
-					[gather addObject:item];
+					TaskInfo *info = [[TaskInfo alloc] initWithName:item 
+					source : module 
+					project:[module projectForTask:item]];
+					[gather addObject:info];
 				}
 			}
 		}
@@ -362,7 +383,7 @@
 	
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
     NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : NSTemporaryDirectory();
-    return [basePath stringByAppendingPathComponent:@"Nudge"];
+    return [basePath stringByAppendingPathComponent:__APPNAME__];
 }
 
 
@@ -396,6 +417,28 @@
 		cum += [num doubleValue];
 	}
 	return cum;
+}
+
+- (NSManagedObject*) findSource: (NSString*) name inContext: (NSManagedObjectContext*) moc
+{
+	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+	NSEntityDescription *entity =
+    [NSEntityDescription entityForName:@"Source"
+				inManagedObjectContext:moc];
+	[request setEntity:entity];
+	
+	NSPredicate *predicate =
+    [NSPredicate predicateWithFormat:@"self == %@", name];
+	[request setPredicate:predicate];
+	
+	NSError *error = nil;
+	NSArray *array = [moc executeFetchRequest:request error:&error];
+	if (array != nil && [array count] == 1) {
+		return (NSManagedObject*)[array objectAtIndex:0];
+	}
+	else {
+		return nil;
+	}
 }
 
 - (NSManagedObject*) findTask: (NSString*) name inContext: (NSManagedObjectContext*) moc
@@ -441,12 +484,26 @@
 
 - (void) removeStore: (id) sender
 {
-    NSFileManager *fileManager = [NSFileManager defaultManager];
+	NSAlert *alert = [NSAlert alertWithMessageText:@"Warning" 
+									 defaultButton:@"No" alternateButton:@"Yes" 
+									   otherButton:nil 
+						 informativeTextWithFormat:@"To delete this data %@ must quit. Click yes to quit and delete the data",__APPNAME__];
+	[alert runModal];   
+	NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *applicationSupportDirectory = [self applicationSupportDirectory];
     NSError *error = nil;
     
     NSURL *url = [NSURL fileURLWithPath: [applicationSupportDirectory stringByAppendingPathComponent: @"storedata"]];
 	[fileManager removeItemAtURL:url error:&error];
+//	NSArray *stores = [persistentStoreCoordinator persistentStores];
+////	for (NSPersistentStore *store in stores){
+//		NSError *error = [NSError new];
+//		[persistentStoreCoordinator removePersistentStore:store error: &error];
+//	}
+	[self.managedObjectContext reset];
+	self.managedObjectContext = nil;
+	self.persistentStoreCoordinator = nil;
+	self.managedObjectModel = nil;
 }
 
 - (NSString*) dumpMObj: (NSManagedObject*) obj
@@ -474,8 +531,10 @@
 	Context *ctx = [Context sharedContext];
 	if (ctx.currentActivity != nil){
 		NSDate *start = [ctx.currentActivity valueForKey:@"startTime"];
-		NSTimeInterval interval = -[start timeIntervalSinceNow];
+		NSDate *now = [NSDate date];
+		NSTimeInterval interval = [now timeIntervalSinceDate:start];
 		[ctx.currentActivity setValue:[NSNumber numberWithInt:interval] forKey:@"interval"];
+		[ctx.currentActivity setValue: now forKey:@"endTime"];
 		NSLog(@"Done with %@% interval: %f", [self dumpMObj:ctx.currentActivity], interval);
 	} else {
 		NSLog(@"No Current Activity");
@@ -483,9 +542,20 @@
 	// new work record
 	NSManagedObjectContext *moc = [self managedObjectContext];
 	NSManagedObject *task = nil;
-	NSString *newTask = ctx.currentTask == nil ? @"[No Task]" : ctx.currentTask;		
+	NSManagedObject *source = nil;
+	NSString *newTask = ctx.currentTask == nil ? @"[No Task]" : ctx.currentTask.name;		
+	NSString *newSource = ctx.currentTask == nil ? @"[Adhoc]" : ctx.currentTask.source;		
 
 	if (state == STATE_THINKING || state == STATE_THINKTIME){
+		source = [self findSource: newSource inContext: moc];
+		if (source == nil){
+			source = [NSEntityDescription
+					insertNewObjectForEntityForName:@"Source"
+					inManagedObjectContext:moc];
+			[source setValue:[NSDate date] forKey: @"createTime"];
+			[source setValue:[newSource description] forKey:@"name"];
+		}
+		
 		task = [self findTask: newTask inContext: moc];
 		if (task == nil){
 			task = [NSEntityDescription
@@ -493,6 +563,9 @@
 					inManagedObjectContext:moc];
 			[task setValue:[NSDate date] forKey: @"createTime"];
 			[task setValue:newTask forKey: @"name"];
+			if (source != nil) {
+				[task setValue:source forKey:@"source"];
+			}
 			
 		}
 	}
@@ -664,6 +737,11 @@
     }
 	
     return NSTerminateNow;
+}
+
+-(IBAction)handleNewMainWindowMenu:(NSMenuItem *)sender
+{
+	[window makeKeyAndOrderFront:self];
 }
 
 @end

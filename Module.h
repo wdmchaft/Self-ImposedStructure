@@ -31,6 +31,7 @@
 -(void) clearDefaults;
 - (NSWindowController*) getDetailWindow: (NSDictionary*) params;
 - (void) refreshTasks;
+- (NSString*) projectForTask: (NSString*) task;
 
 @property (nonatomic, retain) NSString* description;
 @property (nonatomic) BOOL started;

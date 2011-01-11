@@ -20,6 +20,7 @@
 #import "ListsHandler.h"
 #import "TokenHandler.h"
 #import "RefreshHandler.h"
+#import "RefreshListHandler.h"
 #import "TaskDialogController.h"
 
 @implementation RTMModule 
@@ -70,6 +71,27 @@
 	[rr release];
 }
 
+-(void) updateList
+{
+	RequestREST *rr = [[RequestREST alloc]init];
+	
+	NSString *idStr = [self.idMapping objectForKey:listNameStr];
+	NSMutableDictionary *params =  [NSMutableDictionary dictionaryWithObjectsAndKeys:
+									tokenStr, @"auth_token",
+									@"rtm.tasks.getList", @"method",
+									idStr,@"list_id",
+									@"xml", @"format",
+									@"status:incomplete:", @"filter",
+									APIKEY, @"api_key", nil];
+	
+	RefreshListHandler *listHandlr = (ListHandler*)[[RefreshListHandler alloc]initWithContext:self andDelegate:self]; 
+	[rr sendRequestWithURL:[rr createURLWithFamily:@"rest" 
+									   usingSecret:SECRET 
+										 andParams:params]
+				andHandler: listHandlr];
+	[rr release];
+}
+
 -(NSString*) getNotificationName
 {
 	return super.notificationName;	
@@ -78,6 +100,14 @@
 -(NSString*) getNotificationTitle
 {
 	return super.notificationTitle;	
+}
+
+/**
+ Responding to refresh tracking items
+ */
+- (void) taskRefreshDone
+{
+	[[super tasksHandler] tasksChanged];
 }
 
 - (void) listDone 
@@ -122,6 +152,7 @@
 	RefreshHandler *refHandler = [[[RefreshHandler alloc]initWithContext:self andDelegate:self] autorelease];
 	[self runListReqWithHandler:refHandler];
 }
+
 -(NSString*) timeStrFor:(NSDate*) date
 {
 	NSString *ret = nil;
@@ -229,7 +260,7 @@
 
 -(void) putter
 {
-	[self startRefresh:nil];
+	//[self startRefresh:nil];
 }
 
 -(void) stop
@@ -301,7 +332,7 @@
 		NSAlert *alert = [NSAlert alertWithMessageText:@"Not Authorized" 
 										 defaultButton:nil alternateButton:nil 
 										   otherButton:nil 
-							 informativeTextWithFormat:@"To authorize this app for RTM enter your rememberthemilk user and password then click the authorize button.\nA browser session will open for you to grant permission to this app.  Once you have completed this return to this dialog and click \"Authorized\""];
+							 informativeTextWithFormat:@"To authorize this plugin for RTM enter your rememberthemilk user and password then click the authorize button.\nA browser session will open for you to grant permission to this app.  Once you have completed this return to this dialog and click \"Authorized\""];
 		[alert runModal];	
 	}
 	else {
@@ -524,13 +555,19 @@
 		return tasksList;
 	}
 	else{
-		[self getList];
+		[self updateList];
 	}
 	return nil;
 }
+
 -(void) refreshTasks
 {
-	[self getList];
+	[self updateList];
+}
+
+-(NSString*) projectForTask: (NSString *) task
+{
+	return [super description];
 }
 
 @end

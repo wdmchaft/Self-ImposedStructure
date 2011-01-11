@@ -126,4 +126,8 @@
 {
 }
 
+- (NSString*) projectForTask: (NSString*) task
+{
+	return nil;
+}
 @end

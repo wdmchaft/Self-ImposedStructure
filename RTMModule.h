@@ -67,6 +67,7 @@
 - (IBAction) clickAuthButton: (id) sender;
 - (IBAction) clickList: (id) sender;
 - (void) getLists;
+- (void) updateList;
 - (void) scheduleNextRefresh;
 - (void) startRefresh: (NSTimer*) theTimer;
 - (void) handleWarningAlarm: (NSTimer*) theTimer;

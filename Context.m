@@ -11,10 +11,8 @@
 #import "IconsFile.h"
 
 @implementation Context
-@synthesize savedQ;
 @synthesize alertQ;
 @synthesize growlInterval;
-@synthesize thinking;
 @synthesize running;
 @synthesize thinkTimer;
 @synthesize bundlesMap;
@@ -24,12 +22,12 @@
 @synthesize startingState;
 @synthesize thinkTime;
 @synthesize loadOnLogin;
-@synthesize away;
 @synthesize alertName;
 @synthesize currentActivity;
 @synthesize currentTask;
-@synthesize currentSource;
+//@synthesize currentSource;
 @synthesize ignoreScreenSaver;
+@synthesize tasksList;
 
 static Context* sharedContext = nil;
 
@@ -245,6 +243,22 @@ static Context* sharedContext = nil;
 	}
 	NSData *ret = [iconsMap objectForKey:name];
 	return ret;
+}
+
+- (NSMutableArray*) savedQ
+{
+	if (!savedQ){
+		savedQ = [NSMutableArray new];
+	}
+	return savedQ;
+}
+
+- (NSMutableArray*) alertQ
+{
+	if (!alertQ){
+		alertQ = [NSMutableArray new];
+	}
+	return alertQ;
 }
 @end
 

@@ -13,6 +13,7 @@
 #include "Columns.h"
 #import "Module.h"
 #import "TimerDialogController.h"
+#import "TaskInfo.h"
 //#import "UKLoginItemRegistry.h"
 
 @implementation WPAMainController
@@ -20,14 +21,16 @@
 
 - (void)awakeFromNib
 {
+	WPADelegate *del = (WPADelegate*)[NSApplication sharedApplication].delegate;
+	[del.window setReleasedWhenClosed:FALSE];
 	Context *ctx = [Context sharedContext];
-	
+
 
 	[controls setSelectedSegment:ctx.startingState];
 	if (ctx.startOnLoad){
 		
 		startButton.title = @"Stop";
-		[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:ctx.startingState];
+		[del newRecord:ctx.startingState];
 
 	} else {
 		
@@ -40,8 +43,8 @@
 
 	[taskComboBox removeAllItems];
 	NSArray *allTasks = [(WPADelegate*)[[NSApplication sharedApplication] delegate] getAllTasks];
-	for(NSString *taskName in allTasks){
-		[taskComboBox addItemWithObjectValue:taskName]; 
+	for(TaskInfo *info in allTasks){
+		[taskComboBox addItemWithObjectValue:info]; 
 	}
 	[(WPADelegate*)[[NSApplication sharedApplication] delegate] registerTasksHandler:self];
 	// start listening for commands
@@ -55,9 +58,10 @@
 - (void) tasksChanged
 {
 	[taskComboBox removeAllItems];
-	NSArray *allTasks = [(WPADelegate*)[[NSApplication sharedApplication] delegate] getAllTasks];
-	for(NSString *taskName in allTasks){
-		[taskComboBox addItemWithObjectValue:taskName]; 
+	Context *ctx = [Context sharedContext];
+	ctx.tasksList = [(WPADelegate*)[[NSApplication sharedApplication] delegate] getAllTasks];
+	for(TaskInfo *info in ctx.tasksList){
+		[taskComboBox addItemWithObjectValue:info]; 
 	}
 }
 - (void)comboBoxSelectionDidChange:(NSNotification *)notification
@@ -65,10 +69,10 @@
 	Context *ctx = [Context sharedContext];
 	NSComboBox *cb = taskComboBox;
 	
-	ctx.currentTask = [cb stringValue];
-	if ([ctx.currentTask isEqualToString:@"No Current Task"]){
-		ctx.currentTask = nil;
-	}
+	ctx.currentTask = [cb objectValueOfSelectedItem];
+//	if ([ctx.currentTask isEqualToString:@"No Current Task"]){
+//		ctx.currentTask = nil;
+//	}
 	
 	// we changed jobs so write a new tracking record
 	if (ctx.startingState == STATE_THINKING || ctx.startingState == STATE_THINKTIME){
@@ -168,10 +172,10 @@
 	Context *ctx = [Context sharedContext];
 	NSComboBox *cb = (NSComboBox*) sender;
 	
-	ctx.currentTask = [cb stringValue];
-	if ([ctx.currentTask isEqualToString:@"No Current Task"]){
-		ctx.currentTask = nil;
-	}
+	ctx.currentTask = [cb objectValueOfSelectedItem];
+//	if ([ctx.currentTask isEqualToString:@"No Current Task"]){
+//		ctx.currentTask = nil;
+//	}
 	
 	// we changed jobs so write a new tracking record
 	if (ctx.startingState == STATE_THINKING || ctx.startingState == STATE_THINKTIME){
@@ -208,4 +212,6 @@
 		[controls setSelectedSegment: STATE_PUTZING];
 	}
 }
+
+
 @end

@@ -85,7 +85,7 @@
 			break;
 		case COMPARE_CONTAINS:
 			range = [compAttr rangeOfString:predicate];
-			return range.location >= 0;
+			return range.length == [predicate length];
 			break;
 
 		default:
