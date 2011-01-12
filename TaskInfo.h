@@ -13,11 +13,13 @@
 	<Module> source;
 	NSString *name;
 	NSString *project;
+	NSString *description;
 }
 
 @property (nonatomic, retain) <Module> source;
 @property (nonatomic,retain) NSString *name;
 @property (nonatomic,retain) NSString *project;
+@property (nonatomic,retain) NSString *description;
 
 -(id) initWithName: (NSString*) item source: (<Module>) mod  project: (NSString*) proj;
 @end

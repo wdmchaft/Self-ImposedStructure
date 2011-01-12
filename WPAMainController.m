@@ -81,6 +81,9 @@
 		ctx.currentTask.name = (NSString*) selObj;
 	}
 	ctx.currentTask = (TaskInfo*) selObj;
+	if (ctx.currentTask == nil){
+		NSLog(@"%@",cb.stringValue);
+	}
 	[ctx saveTask];
 	
 //	if ([ctx.currentTask isEqualToString:@"No Current Task"]){
@@ -194,9 +197,17 @@
 	NSComboBox *cb = (NSComboBox*) sender;
 	
 	ctx.currentTask = [cb objectValueOfSelectedItem];
-//	if ([ctx.currentTask isEqualToString:@"No Current Task"]){
-//		ctx.currentTask = nil;
-//	}
+	
+	// if we get don't get the default or empty then it is "adhoc" task  (with no source)
+	
+	if (ctx.currentTask == nil){
+		if (![cb.stringValue isEqualToString:@"No Current Task"] && [cb.stringValue length] > 0) {
+			TaskInfo *newTI = [TaskInfo	new];
+			newTI.name = cb.stringValue;
+			ctx.currentTask = newTI;
+		}
+	}
+	[ctx saveTask];
 	
 	// we changed jobs so write a new tracking record
 	if (ctx.startingState == STATE_THINKING || ctx.startingState == STATE_THINKTIME){

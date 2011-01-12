@@ -42,7 +42,14 @@
 
 -(NSString*) description
 {
-	return [NSString stringWithFormat:@"[%@] %@", [source description], name];
+	if (description)
+		return description;
+	return name;
+}
+
+- (void) setDescription: (NSString *) newDesc
+{
+	description = [newDesc copy];
 }
 
 -(id) copyWithZone: (NSZone *) zone

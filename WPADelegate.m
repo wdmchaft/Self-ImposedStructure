@@ -318,7 +318,7 @@
 
 -(NSArray*) getAllTasks
 {
-	NSMutableArray *gather = [NSMutableArray new];
+	NSMutableDictionary *gather = [NSMutableDictionary new];
 	NSDictionary *modules = [[Context sharedContext] instancesMap];
 	<Module> module = nil;
 	NSString *modName = nil;
@@ -331,12 +331,17 @@
 					TaskInfo *info = [[TaskInfo alloc] initWithName:item 
 					source : module 
 					project:[module projectForTask:item]];
-					[gather addObject:info];
+					TaskInfo *fo = [gather objectForKey:info.name];
+					if (fo){
+						fo.description = [NSString stringWithFormat:@"%@ [%@]",fo.name,[fo.source description] ];
+						info.description = [NSString stringWithFormat:@"%@ [%@]",info.name,[info.source description] ];
+					}
+					[gather setObject:info forKey:info.description];
 				}
 			}
 		}
 	}
-	return [gather count] == 0? nil : gather;
+	return [gather allValues];
 }
 
 - (IBAction) clickPreferences: (id) sender
