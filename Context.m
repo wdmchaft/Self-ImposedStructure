@@ -137,6 +137,7 @@ static Context* sharedContext = nil;
 	NSObject *temp = [ud objectForKey:@"StartOnLoad"];
 	if (temp != nil){
 		startOnLoad = [((NSNumber*) temp) intValue];
+		running = startOnLoad; // set running according to this -- we will be starting up ASAP
 	}
 	temp = [ud objectForKey:@"LoadOnLogin"];
 	if (temp != nil){

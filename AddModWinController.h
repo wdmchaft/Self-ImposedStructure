@@ -11,7 +11,6 @@
 #import "Module.h"
 
 @interface AddModWinController : NSWindowController {
-	NSObject *tasksHandler;
 	NSString *originalName;
 	NSButton *okButton;
 	NSButton *cancelButton;
@@ -37,7 +36,6 @@
 @property (nonatomic,retain) 	NSTableView *tableView;
 @property (nonatomic,retain) NSMutableArray *modNames;
 @property (nonatomic, retain) NSString * originalName;
-@property (nonatomic, retain) NSObject* tasksHandler;
 
 - (IBAction) clickOk: (id) sender;
 - (IBAction) clickCancel: (id) sender;

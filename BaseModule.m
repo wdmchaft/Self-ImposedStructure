@@ -17,7 +17,6 @@
 @synthesize notificationName;
 @synthesize sticky;
 @synthesize handler;
-@synthesize tasksHandler;
 @synthesize lastError;
 @synthesize validationHandler;
 @synthesize detailController;

@@ -64,7 +64,7 @@
 	[self initStatusMenu];
 	[statusItem setHighlightMode:YES];
 	[statusMenu  setAutoenablesItems:NO];
-	if (ctx.running){
+	if (ctx.startOnLoad){
 		statusTimer = [NSTimer scheduledTimerWithTimeInterval:15 target: self selector:@selector(updateStatus:) userInfo:nil repeats:NO];
 		NSLog(@"statusTimer = %@", statusTimer);
 }
@@ -81,14 +81,16 @@
 -(void) initStatusMenu
 {
 	Context *ctx = [Context sharedContext];
-	NSMenuItem *item = [statusMenu itemWithTag:1];
+	[[statusMenu itemWithTag:1] setState:NSOffState];
+	[[statusMenu itemWithTag:2] setState:NSOffState];
+	[[statusMenu itemWithTag:3] setState:NSOffState];
+	[[statusMenu itemWithTag:4] setState:NSOffState];
 	if (!ctx.running) {
 		[statusItem setTitle:@"?"];
 		[[statusMenu itemWithTag:1] setEnabled:NO];
 		[[statusMenu itemWithTag:2] setEnabled:NO];
 		[[statusMenu itemWithTag:3] setEnabled:NO];
 		[[statusMenu itemWithTag:4] setEnabled:NO];
-		NSLog(@"%@", [item title]);
 	} else {
 		[[statusMenu itemWithTag:1] setEnabled:YES];
 		[[statusMenu itemWithTag:2] setEnabled:YES];
@@ -96,20 +98,23 @@
 		[[statusMenu itemWithTag:4] setEnabled:YES];
 		if (ctx.startingState == STATE_PUTZING) {
 			[statusItem setTitle:@"P"];
-
+			[[statusMenu itemWithTag:2] setState:NSOnState];
 		}
 		if (ctx.startingState == STATE_AWAY) {
 			[statusItem setTitle:@"A"];
-			
+			[[statusMenu itemWithTag:3] setState:NSOnState];
+		
 		}
 		if (ctx.startingState == STATE_THINKING) {
 			[statusItem setTitle:@"W"];
+			[[statusMenu itemWithTag:1] setState:NSOnState];
 		}
 		if (ctx.thinkTimer){
 			NSTimeInterval interval = [[ctx.thinkTimer fireDate] timeIntervalSinceNow];
 			NSUInteger mins = interval / 60;
 			[statusItem setTitle: [NSString stringWithFormat:@"%d",mins] ];
-		}
+			[[statusMenu itemWithTag:4] setState:NSOnState];
+	}
 	}
 }
 

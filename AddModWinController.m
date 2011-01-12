@@ -13,7 +13,7 @@
 
 @implementation AddModWinController
 @synthesize okButton, cancelButton, typeButton, configBox, nothingView, currCtrl, indicator, nameText,tableData,
-tableView, modNames, originalName, tasksHandler;
+tableView, modNames, originalName;
 
 
 - (void) clickOk: (id) sender
@@ -62,7 +62,6 @@ tableView, modNames, originalName, tasksHandler;
 		mod.enabled = YES;  // enable it if new
 	}
 	[mod saveDefaults];
-	mod.tasksHandler = (<TasksHandler>)tasksHandler;
 	NSMutableDictionary *modsMap = [Context sharedContext].instancesMap;
 	if (originalName == nil || [originalName isEqualToString: mod.description]){
 		[modsMap setObject: mod forKey: mod.description];
