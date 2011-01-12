@@ -14,10 +14,9 @@
 #import "Module.h"
 #import "TimerDialogController.h"
 #import "TaskInfo.h"
-//#import "UKLoginItemRegistry.h"
 
 @implementation WPAMainController
-@synthesize  startButton, controls, taskComboBox, refreshButton;
+@synthesize  startButton, controls, taskComboBox, refreshButton, statusItem, statusMenu, statusTimer;
 
 - (void)awakeFromNib
 {
@@ -59,6 +58,59 @@
 	[dCenter addObserver:self selector:@selector(handleScreenSaverStop:) name:@"com.apple.screensaver.didstop" object:nil];
 	[taskComboBox setDelegate:self];
 	[self enableUI: ctx.running];
+	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
+	statusItem.menu = statusMenu;
+	//[statusItem setTitle:@"X"];
+	[self initStatusMenu];
+	[statusItem setHighlightMode:YES];
+	[statusMenu  setAutoenablesItems:NO];
+	if (ctx.running){
+		statusTimer = [NSTimer scheduledTimerWithTimeInterval:15 target: self selector:@selector(updateStatus:) userInfo:nil repeats:NO];
+		NSLog(@"statusTimer = %@", statusTimer);
+}
+}
+
+-(void) updateStatus: (NSTimer*) timer
+{
+	NSLog(@"updateStatus");
+	[self initStatusMenu];
+	statusTimer = [NSTimer scheduledTimerWithTimeInterval:15 target: self selector:@selector(updateStatus:) userInfo:nil repeats:NO];
+	NSLog(@"statusTimer = %@", statusTimer);
+}
+
+-(void) initStatusMenu
+{
+	Context *ctx = [Context sharedContext];
+	NSMenuItem *item = [statusMenu itemWithTag:1];
+	if (!ctx.running) {
+		[statusItem setTitle:@"?"];
+		[[statusMenu itemWithTag:1] setEnabled:NO];
+		[[statusMenu itemWithTag:2] setEnabled:NO];
+		[[statusMenu itemWithTag:3] setEnabled:NO];
+		[[statusMenu itemWithTag:4] setEnabled:NO];
+		NSLog(@"%@", [item title]);
+	} else {
+		[[statusMenu itemWithTag:1] setEnabled:YES];
+		[[statusMenu itemWithTag:2] setEnabled:YES];
+		[[statusMenu itemWithTag:3] setEnabled:YES];
+		[[statusMenu itemWithTag:4] setEnabled:YES];
+		if (ctx.startingState == STATE_PUTZING) {
+			[statusItem setTitle:@"P"];
+
+		}
+		if (ctx.startingState == STATE_AWAY) {
+			[statusItem setTitle:@"A"];
+			
+		}
+		if (ctx.startingState == STATE_THINKING) {
+			[statusItem setTitle:@"W"];
+		}
+		if (ctx.thinkTimer){
+			NSTimeInterval interval = [[ctx.thinkTimer fireDate] timeIntervalSinceNow];
+			NSUInteger mins = interval / 60;
+			[statusItem setTitle: [NSString stringWithFormat:@"%d",mins] ];
+		}
+	}
 }
 
 - (void) tasksChanged: (NSNotification*) notification
@@ -70,6 +122,7 @@
 		[taskComboBox addItemWithObjectValue:info]; 
 	}
 }
+
 - (void)comboBoxSelectionDidChange:(NSNotification *)notification
 {
 	Context *ctx = [Context sharedContext];
@@ -118,19 +171,22 @@
 		[(WPADelegate*)[[NSApplication sharedApplication] delegate] stop];
 		startButton.title = @"Start";
 		[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:STATE_OFF];
+		[statusTimer invalidate];
 	} else {
-	[(WPADelegate*)[[NSApplication sharedApplication] delegate] start];
+		[(WPADelegate*)[[NSApplication sharedApplication] delegate] start];
 		startButton.title = @"Stop";
 		[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:[Context sharedContext].startingState];
+		statusTimer = [NSTimer scheduledTimerWithTimeInterval:15 target: self selector:@selector(updateStatus:) userInfo:nil repeats:NO];
+		NSLog(@"statusTimer = %@", statusTimer);
 	}
 	[self enableUI:!running];
+	[self initStatusMenu];
 }
 
 - (IBAction) clickTimed: (id) sender
 {
 	[self changeState: STATE_THINKTIME];
 	[controls setSelectedSegment: STATE_THINKTIME];	
-
 }
 
 - (IBAction) clickWork: (id) sender
@@ -190,6 +246,7 @@
 	ctx.startingState = state == STATE_THINKTIME ? STATE_THINKING : state;
 	[ctx saveDefaults];
 	[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:state];
+	[self initStatusMenu];
 }
 
 -(IBAction) changeCombo: (id) sender {

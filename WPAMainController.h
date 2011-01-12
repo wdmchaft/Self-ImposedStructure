@@ -19,6 +19,9 @@
 	NSComboBox *taskComboBox;
 	NSButton *refreshButton;
 	StatsWindow *statsWindow;
+	NSStatusItem *statusItem;
+	NSMenu *statusMenu;
+	NSTimer *statusTimer;
 }
 
 @property (retain, nonatomic) IBOutlet NSButton *startButton;
@@ -26,6 +29,9 @@
 @property (retain, nonatomic) IBOutlet NSButton *refreshButton;
 @property (retain, nonatomic) IBOutlet NSSegmentedControl *controls;
 @property (retain, nonatomic) IBOutlet NSComboBox *taskComboBox;
+@property (retain, nonatomic) IBOutlet NSStatusItem *statusItem;
+@property (retain, nonatomic) IBOutlet NSMenu *statusMenu;
+@property (retain, nonatomic) IBOutlet NSTimer *statusTimer;
 
 - (IBAction) clickStart: (id) sender;
 - (IBAction) clickControls: (id) sender;
@@ -41,5 +47,7 @@
 -(void)handleScreenSaverStart:(NSNotification*) notification;
 -(void)handleScreenSaverStop:(NSNotification*) notification;
 - (void) enableUI: (BOOL) onOff;
-	
+- (void) initStatusMenu;
+- (void) updateStatus: (NSTimer*) timer;
+
 @end

@@ -278,7 +278,7 @@
 {
 	NSLog(@"received %@",alert.message);
 	Context *ctx = [Context sharedContext];
-	if (ctx.startingState != STATE_THINKING && ctx.startingState != STATE_THINKTIME) {
+	if (ctx.startingState == STATE_PUTZING) {
 		[self queueAlert:alert];
 	}
 	else {
@@ -738,6 +738,7 @@
 -(IBAction)handleNewMainWindowMenu:(NSMenuItem *)sender
 {
 	[window makeKeyAndOrderFront:self];
+	[window orderFrontRegardless];
 }
 
 @end
