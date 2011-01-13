@@ -13,8 +13,8 @@
 @implementation PreferencesWindow
 @synthesize modulesTable, amwControl, 
 growlIntervalText,addButton, removeButton, newModuleView, tableData, 
-startOnLaunchButton, launchOnBootButton, growlStepper, editButton, ignoreSaverButton;
-;
+startOnLaunchButton, launchOnBootButton, growlStepper, editButton, ignoreSaverButton,
+dailyGoalText, weeklyGoalText;
 
 - (void)awakeFromNib
 {
@@ -63,6 +63,20 @@ startOnLaunchButton, launchOnBootButton, growlStepper, editButton, ignoreSaverBu
 	
 	[growlIntervalText setStringValue:[[NSString alloc] initWithFormat:@"%d",ctx.growlInterval]];
 	[growlStepper setIntValue:ctx.growlInterval];
+}
+
+- (void) showWindow:(id)sender
+{
+	Context *ctx = [Context sharedContext];
+	[launchOnBootButton setIntValue:(ctx.loadOnLogin == YES)];
+	[startOnLaunchButton setIntValue:(ctx.startOnLoad == YES)];
+	[ignoreSaverButton setIntValue:(ctx.ignoreScreenSaver == YES)];
+	
+	
+	[growlIntervalText setStringValue:[[NSString alloc] initWithFormat:@"%d",ctx.growlInterval]];
+	[growlStepper setIntValue:ctx.growlInterval];
+	[weeklyGoalText setIntValue:(ctx.weeklyGoal/60)];
+	[dailyGoalText setIntValue:(ctx.dailyGoal/60)];
 }
 
 - (IBAction) clickAdd: (NSButton*) sender
@@ -262,4 +276,15 @@ startOnLaunchButton, launchOnBootButton, growlStepper, editButton, ignoreSaverBu
 	[[Context sharedContext] saveDefaults];
 }
 
+-(IBAction) dailyGoalChanged: (id) sender
+{
+	[Context sharedContext].dailyGoal = (dailyGoalText.intValue * 60);
+	[[Context sharedContext] saveDefaults];
+}
+
+-(IBAction) weeklyGoalChanged: (id) sender
+{
+	[Context sharedContext].weeklyGoal  = (weeklyGoalText.intValue * 60);
+	[[Context sharedContext] saveDefaults];
+}
 @end

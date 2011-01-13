@@ -66,16 +66,13 @@
 	[statusMenu  setAutoenablesItems:NO];
 	if (ctx.startOnLoad){
 		statusTimer = [NSTimer scheduledTimerWithTimeInterval:15 target: self selector:@selector(updateStatus:) userInfo:nil repeats:NO];
-		NSLog(@"statusTimer = %@", statusTimer);
-}
+	}
 }
 
 -(void) updateStatus: (NSTimer*) timer
 {
-	NSLog(@"updateStatus");
 	[self initStatusMenu];
 	statusTimer = [NSTimer scheduledTimerWithTimeInterval:15 target: self selector:@selector(updateStatus:) userInfo:nil repeats:NO];
-	NSLog(@"statusTimer = %@", statusTimer);
 }
 
 -(void) initStatusMenu
@@ -105,16 +102,16 @@
 			[[statusMenu itemWithTag:3] setState:NSOnState];
 		
 		}
-		if (ctx.startingState == STATE_THINKING) {
+		if (ctx.thinkTimer){
+			NSTimeInterval interval = [[ctx.thinkTimer fireDate] timeIntervalSinceNow];
+			NSUInteger mins = ceil(interval / 60);
+			[statusItem setTitle: [NSString stringWithFormat:@"%d",mins] ];
+			[[statusMenu itemWithTag:4] setState:NSOnState];
+		} else if (ctx.startingState == STATE_THINKING) {
 			[statusItem setTitle:@"W"];
 			[[statusMenu itemWithTag:1] setState:NSOnState];
 		}
-		if (ctx.thinkTimer){
-			NSTimeInterval interval = [[ctx.thinkTimer fireDate] timeIntervalSinceNow];
-			NSUInteger mins = interval / 60;
-			[statusItem setTitle: [NSString stringWithFormat:@"%d",mins] ];
-			[[statusMenu itemWithTag:4] setState:NSOnState];
-	}
+
 	}
 }
 
@@ -182,7 +179,6 @@
 		startButton.title = @"Stop";
 		[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:[Context sharedContext].startingState];
 		statusTimer = [NSTimer scheduledTimerWithTimeInterval:15 target: self selector:@selector(updateStatus:) userInfo:nil repeats:NO];
-		NSLog(@"statusTimer = %@", statusTimer);
 	}
 	[self enableUI:!running];
 	[self initStatusMenu];
@@ -219,7 +215,7 @@
 	if (state == STATE_THINKTIME){
 		TimerDialogController *tdc = [[TimerDialogController alloc] initWithWindowNibName:@"TimerDialog"];
 		NSWindow *tdcWindow = [tdc window];
-		
+		[tdcWindow bringFrontRegardless];
 		[NSApp runModalForWindow: tdcWindow];
 
 	}
@@ -236,14 +232,18 @@
 
 - (void) changeState: (int) state
 {
+	Context *ctx = [Context sharedContext];
 	if (state == STATE_THINKTIME){
 		TimerDialogController *tdc = [[TimerDialogController alloc] initWithWindowNibName:@"TimerDialog"];
 		NSWindow *tdcWindow = [tdc window];
 		
 		[NSApp runModalForWindow: tdcWindow];
+
 		
+	} else {
+		[ctx.thinkTimer invalidate];
+		ctx.thinkTimer = nil;
 	}
-	Context *ctx = [Context sharedContext];
 	if (ctx.running){
 		[(WPADelegate*)[[NSApplication sharedApplication] delegate] setState:state];
 	}
@@ -292,7 +292,6 @@
 {	
 	
 	if (![Context sharedContext].ignoreScreenSaver){
-		NSLog(@"screen saver on");
 		[self changeState:STATE_AWAY]; 
 		[controls setSelectedSegment: STATE_AWAY];
 	}
@@ -301,7 +300,6 @@
 -(void)handleScreenSaverStop:(NSNotification*) notification
 {	
 	if (![Context sharedContext].ignoreScreenSaver){
-		NSLog(@"screen saver off");
 		[self changeState:STATE_PUTZING]; 
 		[controls setSelectedSegment: STATE_PUTZING];
 	}

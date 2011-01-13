@@ -24,6 +24,8 @@
 	AddModWinController *amwControl;
 	NSStepper *growlStepper;
 	NSButton *ignoreSaverButton;
+	NSTextField *weeklyGoalText;
+	NSTextField *dailyGoalText;
 }
 @property (retain, nonatomic) IBOutlet NSTableView *modulesTable;
 @property (retain, nonatomic) IBOutlet NSButton *addButton;
@@ -37,6 +39,8 @@
 @property (retain, nonatomic)  ModulesTableData *tableData;
 @property (retain, nonatomic) IBOutlet NSStepper *growlStepper;
 @property (retain, nonatomic) IBOutlet NSButton *ignoreSaverButton;
+@property (retain, nonatomic) IBOutlet NSTextField *dailyGoalText;
+@property (retain, nonatomic) IBOutlet NSTextField *weeklyGoalText;
 
 - (IBAction) clickAdd: (id) sender;
 - (IBAction) clickRemove: (id) sender;
@@ -48,5 +52,6 @@
 -(IBAction) toggleModule: (id)sender;
 -(BOOL) addToLogin;
 -(BOOL) removeFromLogin;
-
+-(IBAction) dailyGoalChanged: (id) sender;
+-(IBAction) weeklyGoalChanged: (id) sender;
 @end

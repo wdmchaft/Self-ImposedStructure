@@ -29,6 +29,9 @@
 //@synthesize currentSource;
 @synthesize ignoreScreenSaver;
 @synthesize tasksList;
+@synthesize weeklyGoal;
+@synthesize dailyGoal;
+
 
 static Context* sharedContext = nil;
 
@@ -154,6 +157,12 @@ static Context* sharedContext = nil;
 	temp = [ud objectForKey:@"GrowlInterval"];
 	growlInterval = (temp == nil) ? 10 : [((NSNumber*) temp) intValue];
 	
+	temp = [ud objectForKey:@"DailyGoal"];
+	dailyGoal = (temp == nil) ? 0 : [((NSNumber*) temp) intValue];
+	
+	temp = [ud objectForKey:@"WeeklyGoal"];
+	weeklyGoal = (temp == nil) ? 0 : [((NSNumber*) temp) intValue];
+	
 	temp = [ud objectForKey:@"ThinkTime"];
 	thinkTime =(temp == nil) ? 30 : [((NSNumber*) temp) intValue];
 	
@@ -214,6 +223,8 @@ static Context* sharedContext = nil;
 	[ud setObject: [NSNumber numberWithInt:thinkTime] forKey: @"ThinkTime"];
 	[ud setObject: [NSNumber numberWithInt:growlInterval] forKey: @"GrowlInterval"];
 	[ud setObject: [NSNumber numberWithInt:thinkTime] forKey: @"ThinkTime"];
+	[ud setObject: [NSNumber numberWithInt:thinkTime] forKey: @"WeeklyGoal"];
+	[ud setObject: [NSNumber numberWithInt:thinkTime] forKey: @"DailyGoal"];
 	[ud setObject: alertName forKey: @"AlertName"];
 	[self saveModules];
 	[self saveTask];

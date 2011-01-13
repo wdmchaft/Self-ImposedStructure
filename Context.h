@@ -31,6 +31,8 @@
 	BOOL ignoreScreenSaver;
 	BOOL running;
 	NSArray *tasksList;
+	NSTimeInterval dailyGoal;
+	NSTimeInterval weeklyGoal;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *instancesMap;
@@ -38,6 +40,8 @@
 @property (nonatomic, retain) NSMutableDictionary *iconsMap;
 @property (nonatomic, retain, readonly) NSMutableArray *savedQ;
 @property (nonatomic, retain) NSMutableArray *alertQ;
+@property (nonatomic) NSTimeInterval weeklyGoal;
+@property (nonatomic) NSTimeInterval dailyGoal;
 @property (nonatomic) int growlInterval;
 @property (nonatomic, retain) NSTimer *thinkTimer;
 @property (nonatomic) BOOL startOnLoad;

@@ -22,6 +22,13 @@
 	[self loadSoundNames];
 }
 
+-(void) showWindow:(id)sender
+{
+	Context *ctx = [Context sharedContext];
+	[minutesField setStringValue:[NSString stringWithFormat:@"%d",ctx.thinkTime]];
+	[self loadSoundNames];
+}
+
 -(void) loadSoundNames
 {
 	NSFileManager *dfm = [NSFileManager defaultManager];
@@ -51,6 +58,7 @@
 	Context *ctx = [Context sharedContext];
 	ctx.thinkTime = [minutesField intValue];
 	ctx.alertName = [alarmNames titleOfSelectedItem];
+	[ctx saveDefaults];
 	[NSApp endSheet: [super window]];
 	[super.window close];
 }

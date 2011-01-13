@@ -156,6 +156,7 @@
 	
 	Context *ctx = [Context sharedContext];
 	[ctx.thinkTimer invalidate];
+	ctx.thinkTimer = nil;
 	
 	// first dump everything saved into the queue...
 	while ([ctx.savedQ count] > 0) {
@@ -417,6 +418,9 @@
 
 - (NSManagedObject*) findSource: (NSString*) name inContext: (NSManagedObjectContext*) moc
 {
+	if (name == nil)
+		return nil;
+	
 	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
 	NSEntityDescription *entity =
     [NSEntityDescription entityForName:@"Source"
@@ -540,7 +544,7 @@
 	NSManagedObject *task = nil;
 	NSManagedObject *source = nil;
 	NSString *newTask = ctx.currentTask == nil ? @"[No Task]" : ctx.currentTask.name;		
-	NSString *newSource = ctx.currentTask == nil ? @"[Adhoc]" : ctx.currentTask.source;		
+	NSString *newSource = ctx.currentTask == nil || ctx.currentTask.source == nil ? @"[Adhoc]" : [ctx.currentTask.source description];		
 
 	if (state == STATE_THINKING || state == STATE_THINKTIME){
 		source = [self findSource: newSource inContext: moc];
