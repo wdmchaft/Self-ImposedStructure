@@ -36,6 +36,10 @@
 		8C0D95A512D65326009F3280 /* WPACommon.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
 		8C0D95B112D6535A009F3280 /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
 		8C0D969112D67AFC009F3280 /* TaskDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77297812D46AC600F71FE7 /* TaskDialog.xib */; };
+		8C66A74612DFCB58000644ED /* HostsFileSwitcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C66A72A12DFC598000644ED /* HostsFileSwitcher.m */; };
+		8C66A77F12DFCE4E000644ED /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
+		8C66A7BC12DFEE8A000644ED /* BlockerModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C66A7BB12DFEE8A000644ED /* BlockerModule.xib */; };
+		8C66A85F12E0BAE6000644ED /* BlockerModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C66A76212DFCD23000644ED /* BlockerModule.m */; };
 		8C77298B12D46AC600F71FE7 /* AddMod.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77291812D46AC600F71FE7 /* AddMod.xib */; };
 		8C77298D12D46AC600F71FE7 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77291B12D46AC600F71FE7 /* PreferencesWindow.xib */; };
 		8C77298E12D46AC600F71FE7 /* AddModWinController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77291C12D46AC600F71FE7 /* AddModWinController.m */; };
@@ -168,6 +172,48 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8CD1989C12D5092F00C69AC9;
 			remoteInfo = GCalModule;
+		};
+		8C66A77D12DFCE46000644ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C66A74012DFCB11000644ED;
+			remoteInfo = Switcher;
+		};
+		8C66A78012DFCE54000644ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CD1974312D4C59600C69AC9;
+			remoteInfo = WPACommon;
+		};
+		8C66A8C612E0C9E4000644ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C66A74012DFCB11000644ED;
+			remoteInfo = Switcher;
+		};
+		8C66A8C812E0C9E4000644ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C66A77512DFCE20000644ED;
+			remoteInfo = BlockerModule;
+		};
+		8C66A8CB12E0CA08000644ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C66A74012DFCB11000644ED;
+			remoteInfo = Switcher;
+		};
+		8C66A8CD12E0CA08000644ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C66A77512DFCE20000644ED;
+			remoteInfo = BlockerModule;
 		};
 		8CD1975312D4C61D00C69AC9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -309,6 +355,14 @@
 		8C0D93F212D63D3D009F3280 /* WPADev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WPADev-Info.plist"; sourceTree = "<group>"; };
 		8C0D943A12D64018009F3280 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		8C0D948912D64486009F3280 /* INSTALL_PLUGINS.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = INSTALL_PLUGINS.sh; sourceTree = "<group>"; };
+		8C66A72912DFC598000644ED /* HostsFileSwitcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HostsFileSwitcher.h; sourceTree = "<group>"; };
+		8C66A72A12DFC598000644ED /* HostsFileSwitcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HostsFileSwitcher.m; sourceTree = "<group>"; };
+		8C66A74112DFCB11000644ED /* Switcher */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Switcher; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C66A76112DFCD23000644ED /* BlockerModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockerModule.h; sourceTree = "<group>"; };
+		8C66A76212DFCD23000644ED /* BlockerModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockerModule.m; sourceTree = "<group>"; };
+		8C66A77612DFCE20000644ED /* BlockerModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlockerModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C66A77712DFCE20000644ED /* BlockerModule-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BlockerModule-Info.plist"; sourceTree = "<group>"; };
+		8C66A7BB12DFEE8A000644ED /* BlockerModule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlockerModule.xib; sourceTree = "<group>"; };
 		8C77290712D46AC600F71FE7 /* iChatModule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = iChatModule.xib; sourceTree = "<group>"; };
 		8C77290812D46AC600F71FE7 /* iChatModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iChatModule.m; sourceTree = "<group>"; };
 		8C77290912D46AC600F71FE7 /* iChatModule-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iChatModule-Info.plist"; sourceTree = "<group>"; };
@@ -462,6 +516,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8C66A73F12DFCB11000644ED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C66A77412DFCE20000644ED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C66A77F12DFCE4E000644ED /* WPACommon.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8CD1974212D4C59600C69AC9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -535,6 +604,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8C66A73512DFC6E3000644ED /* Blocker */,
+				8C66A73412DFC6CB000644ED /* BlockerModule */,
 				8CF8C14012DC2B71009C7E3D /* Reporting */,
 				8CD1978912D4C89D00C69AC9 /* WPAMain */,
 				8CD1973E12D4C55D00C69AC9 /* Data Models */,
@@ -583,6 +654,8 @@
 				8CD1986012D506B700C69AC9 /* iChatModule.bundle */,
 				8CD1989D12D5092F00C69AC9 /* GCalModule.bundle */,
 				8C0D93F012D63D3D009F3280 /* WPADev.app */,
+				8C66A74112DFCB11000644ED /* Switcher */,
+				8C66A77612DFCE20000644ED /* BlockerModule.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -599,6 +672,7 @@
 				8CD1988112D5079F00C69AC9 /* ScriptingBridge.framework */,
 				8C0D93F212D63D3D009F3280 /* WPADev-Info.plist */,
 				8C0D943A12D64018009F3280 /* Cocoa.framework */,
+				8C66A77712DFCE20000644ED /* BlockerModule-Info.plist */,
 			);
 			name = WorkPlayAway;
 			sourceTree = "<group>";
@@ -630,6 +704,25 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8C66A73412DFC6CB000644ED /* BlockerModule */ = {
+			isa = PBXGroup;
+			children = (
+				8C66A76112DFCD23000644ED /* BlockerModule.h */,
+				8C66A76212DFCD23000644ED /* BlockerModule.m */,
+				8C66A7BB12DFEE8A000644ED /* BlockerModule.xib */,
+			);
+			name = BlockerModule;
+			sourceTree = "<group>";
+		};
+		8C66A73512DFC6E3000644ED /* Blocker */ = {
+			isa = PBXGroup;
+			children = (
+				8C66A72912DFC598000644ED /* HostsFileSwitcher.h */,
+				8C66A72A12DFC598000644ED /* HostsFileSwitcher.m */,
+			);
+			name = Blocker;
 			sourceTree = "<group>";
 		};
 		8C77292412D46AC600F71FE7 /* English.lproj */ = {
@@ -868,11 +961,49 @@
 				8C0D941012D63DDF009F3280 /* PBXTargetDependency */,
 				8C0D941212D63DDF009F3280 /* PBXTargetDependency */,
 				8C0D941412D63DDF009F3280 /* PBXTargetDependency */,
+				8C66A8C712E0C9E4000644ED /* PBXTargetDependency */,
+				8C66A8C912E0C9E4000644ED /* PBXTargetDependency */,
 			);
 			name = WPADev;
 			productName = WPADev;
 			productReference = 8C0D93F012D63D3D009F3280 /* WPADev.app */;
 			productType = "com.apple.product-type.application";
+		};
+		8C66A74012DFCB11000644ED /* Switcher */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C66A74512DFCB31000644ED /* Build configuration list for PBXNativeTarget "Switcher" */;
+			buildPhases = (
+				8C66A73E12DFCB11000644ED /* Sources */,
+				8C66A73F12DFCB11000644ED /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Switcher;
+			productName = Switcher;
+			productReference = 8C66A74112DFCB11000644ED /* Switcher */;
+			productType = "com.apple.product-type.tool";
+		};
+		8C66A77512DFCE20000644ED /* BlockerModule */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C66A77A12DFCE21000644ED /* Build configuration list for PBXNativeTarget "BlockerModule" */;
+			buildPhases = (
+				8C66A77212DFCE20000644ED /* Resources */,
+				8C66A77312DFCE20000644ED /* Sources */,
+				8C66A77412DFCE20000644ED /* Frameworks */,
+				8C66A88512E0C286000644ED /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8C66A77E12DFCE46000644ED /* PBXTargetDependency */,
+				8C66A78112DFCE54000644ED /* PBXTargetDependency */,
+			);
+			name = BlockerModule;
+			productName = BlockerModule;
+			productReference = 8C66A77612DFCE20000644ED /* BlockerModule.bundle */;
+			productType = "com.apple.product-type.bundle";
 		};
 		8CD1974312D4C59600C69AC9 /* WPACommon */ = {
 			isa = PBXNativeTarget;
@@ -1021,6 +1152,8 @@
 				8CD1986B12D506FA00C69AC9 /* PBXTargetDependency */,
 				8CD1986D12D506FA00C69AC9 /* PBXTargetDependency */,
 				8CD198AA12D509C100C69AC9 /* PBXTargetDependency */,
+				8C66A8CC12E0CA08000644ED /* PBXTargetDependency */,
+				8C66A8CE12E0CA08000644ED /* PBXTargetDependency */,
 			);
 			name = WorkPlayAway;
 			productInstallPath = "$(HOME)/Applications";
@@ -1056,6 +1189,8 @@
 				8CD1985012D5061300C69AC9 /* SkypeModule */,
 				8CD1985F12D506B700C69AC9 /* iChatModule */,
 				8CD1989C12D5092F00C69AC9 /* GCalModule */,
+				8C66A74012DFCB11000644ED /* Switcher */,
+				8C66A77512DFCE20000644ED /* BlockerModule */,
 			);
 		};
 /* End PBXProject section */
@@ -1074,6 +1209,14 @@
 				8C0D944912D6408D009F3280 /* Growl Registration Ticket.growlRegDict in Resources */,
 				8C0D944A12D6408D009F3280 /* TimerDialog.xib in Resources */,
 				8C0D944B12D6408D009F3280 /* Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C66A77212DFCE20000644ED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C66A7BC12DFEE8A000644ED /* BlockerModule.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1170,6 +1313,19 @@
 			shellPath = /bin/sh;
 			shellScript = "if [ -d ${HOME}/Library/Application\\ Support/${PRODUCT_NAME} ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME} exists'\nelse \n\tmkdir ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}\nfi\n\nif [ -d ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins exists'\nelse\n\tmkdir ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins\nfi\n\ncp -r ${TARGET_BUILD_DIR}/*.bundle ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins";
 		};
+		8C66A88512E0C286000644ED /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cp -r ${TARGET_BUILD_DIR}/Switcher ${TARGET_BUILD_DIR}/BlockerModule.bundle/Contents/MacOS/";
+		};
 		8CD197B912D4FD6200C69AC9 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1209,6 +1365,22 @@
 				8CF8BCB712DA112B009C7E3D /* TaskInfo.m in Sources */,
 				8CF8C13E12DC2B59009C7E3D /* WorkTable.m in Sources */,
 				8CF8C14412DC2CB7009C7E3D /* SummaryTable.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C66A73E12DFCB11000644ED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C66A74612DFCB58000644ED /* HostsFileSwitcher.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C66A77312DFCE20000644ED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C66A85F12E0BAE6000644ED /* BlockerModule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1348,6 +1520,36 @@
 			isa = PBXTargetDependency;
 			target = 8CD1989C12D5092F00C69AC9 /* GCalModule */;
 			targetProxy = 8C0D941312D63DDF009F3280 /* PBXContainerItemProxy */;
+		};
+		8C66A77E12DFCE46000644ED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C66A74012DFCB11000644ED /* Switcher */;
+			targetProxy = 8C66A77D12DFCE46000644ED /* PBXContainerItemProxy */;
+		};
+		8C66A78112DFCE54000644ED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CD1974312D4C59600C69AC9 /* WPACommon */;
+			targetProxy = 8C66A78012DFCE54000644ED /* PBXContainerItemProxy */;
+		};
+		8C66A8C712E0C9E4000644ED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C66A74012DFCB11000644ED /* Switcher */;
+			targetProxy = 8C66A8C612E0C9E4000644ED /* PBXContainerItemProxy */;
+		};
+		8C66A8C912E0C9E4000644ED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C66A77512DFCE20000644ED /* BlockerModule */;
+			targetProxy = 8C66A8C812E0C9E4000644ED /* PBXContainerItemProxy */;
+		};
+		8C66A8CC12E0CA08000644ED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C66A74012DFCB11000644ED /* Switcher */;
+			targetProxy = 8C66A8CB12E0CA08000644ED /* PBXContainerItemProxy */;
+		};
+		8C66A8CE12E0CA08000644ED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C66A77512DFCE20000644ED /* BlockerModule */;
+			targetProxy = 8C66A8CD12E0CA08000644ED /* PBXContainerItemProxy */;
 		};
 		8CD1975412D4C61D00C69AC9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1509,6 +1711,104 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = WPADev;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		8C66A74312DFCB13000644ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Switcher;
+			};
+			name = Debug;
+		};
+		8C66A74412DFCB13000644ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Switcher;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		8C66A77812DFCE21000644ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "BlockerModule-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = BlockerModule;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		8C66A77912DFCE21000644ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "BlockerModule-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = BlockerModule;
+				WRAPPER_EXTENSION = bundle;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -1958,6 +2258,24 @@
 			buildConfigurations = (
 				8C0D93F312D63D3D009F3280 /* Debug */,
 				8C0D93F412D63D3D009F3280 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C66A74512DFCB31000644ED /* Build configuration list for PBXNativeTarget "Switcher" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C66A74312DFCB13000644ED /* Debug */,
+				8C66A74412DFCB13000644ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C66A77A12DFCE21000644ED /* Build configuration list for PBXNativeTarget "BlockerModule" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C66A77812DFCE21000644ED /* Debug */,
+				8C66A77912DFCE21000644ED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
