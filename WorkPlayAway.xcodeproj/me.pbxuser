@@ -19,9 +19,9 @@
 			8CF8BA1612D932F3009C7E3D /* Schema.m:116 */,
 			8CF8BAA012D9487A009C7E3D /* StatsWindow.m:35 */,
 			8CF8BADA12D94960009C7E3D /* StatsWindow.m:33 */,
-			8CF8BAEC12D949B0009C7E3D /* WPADelegate.m:506 */,
-			8CF8BAEE12D949B1009C7E3D /* WPADelegate.m:506 */,
-			8CF8BAF212D949B3009C7E3D /* WPADelegate.m:505 */,
+			8CF8BAEC12D949B0009C7E3D /* WPADelegate.m:509 */,
+			8CF8BAEE12D949B1009C7E3D /* WPADelegate.m:509 */,
+			8CF8BAF212D949B3009C7E3D /* WPADelegate.m:508 */,
 			8CF8BC7212DA0857009C7E3D /* StatsWindow.m:31 */,
 			8CF8BD2B12DAB587009C7E3D /* FilterRule.m:39 */,
 			8CF8BE0F12DAE0A7009C7E3D /* GmailModule.m:354 */,
@@ -33,7 +33,7 @@
 			8CB7A4FA12DD2C2C009E8131 /* WPAMainController.m:142 */,
 			8C66A68D12DF5AC1000644ED /* PreferencesWindow.m:281 */,
 			8C66A68F12DF5AC3000644ED /* PreferencesWindow.m:287 */,
-			8C66A6C912DFA943000644ED /* WPADelegate.m:550 */,
+			8C66A6C912DFA943000644ED /* WPADelegate.m:553 */,
 			8C9CE5D012E0D4D300017A02 /* Context.m:196 */,
 			8C9CE62312E1152100017A02 /* BlockerModule.m:46 */,
 			8C9CE63812E115AC00017A02 /* BlockerModule.m:71 */,
@@ -520,9 +520,9 @@
 	};
 	8C0D948912D64486009F3280 /* INSTALL_PLUGINS.sh */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {628, 397}}";
-			sepNavSelRange = "{545, 0}";
-			sepNavVisRange = "{0, 698}";
+			sepNavIntBoundsRect = "{{0, 0}, {866, 478}}";
+			sepNavSelRange = "{920, 0}";
+			sepNavVisRange = "{0, 944}";
 		};
 	};
 	8C0D948C12D6455A009F3280 /* PBXTextBookmark */ = {
@@ -736,7 +736,7 @@
 		vrLen = 1337;
 		vrLoc = 2374;
 	};
-	8C66A6C912DFA943000644ED /* WPADelegate.m:550 */ = {
+	8C66A6C912DFA943000644ED /* WPADelegate.m:553 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -748,7 +748,7 @@
 		functionName = "-newRecord:";
 		hitCount = 1;
 		ignoreCount = 0;
-		lineNumber = 550;
+		lineNumber = 553;
 		location = WPADev;
 		modificationTime = 316745100.898481;
 		originalNumberOfMultipleMatches = 1;
@@ -774,7 +774,7 @@
 		fRef = 8C77292212D46AC600F71FE7 /* WPADelegate.m */;
 		name = "WPADelegate.m: 550";
 		rLen = 0;
-		rLoc = 14923;
+		rLoc = 15016;
 		rType = 0;
 		vrLen = 1431;
 		vrLoc = 14283;
@@ -869,9 +869,9 @@
 	};
 	8C66A76212DFCD23000644ED /* BlockerModule.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {950, 2847}}";
-			sepNavSelRange = "{3015, 0}";
-			sepNavVisRange = "{1845, 1553}";
+			sepNavIntBoundsRect = "{{0, 0}, {950, 2912}}";
+			sepNavSelRange = "{3150, 0}";
+			sepNavVisRange = "{968, 1368}";
 			sepNavWindowFrame = "{{276, 47}, {907, 831}}";
 		};
 	};
@@ -1289,17 +1289,17 @@
 	};
 	8C77293712D46AC600F71FE7 /* BaseModule.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {824, 1872}}";
-			sepNavSelRange = "{1065, 82}";
-			sepNavVisRange = "{769, 956}";
+			sepNavIntBoundsRect = "{{0, 0}, {839, 1729}}";
+			sepNavSelRange = "{2773, 0}";
+			sepNavVisRange = "{0, 554}";
 			sepNavWindowFrame = "{{61, 0}, {907, 831}}";
 		};
 	};
 	8C77293812D46AC600F71FE7 /* BaseModule.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {824, 780}}";
+			sepNavIntBoundsRect = "{{0, 0}, {839, 806}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{296, 1329}";
+			sepNavVisRange = "{30, 640}";
 			sepNavWindowFrame = "{{61, 0}, {907, 831}}";
 		};
 	};
@@ -3872,7 +3872,7 @@
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
-	8CF8BAEC12D949B0009C7E3D /* WPADelegate.m:506 */ = {
+	8CF8BAEC12D949B0009C7E3D /* WPADelegate.m:509 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -3884,13 +3884,13 @@
 		functionName = "-removeStore:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 506;
+		lineNumber = 509;
 		location = WPADev;
 		modificationTime = 316745030.154933;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
-	8CF8BAEE12D949B1009C7E3D /* WPADelegate.m:506 */ = {
+	8CF8BAEE12D949B1009C7E3D /* WPADelegate.m:509 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -3902,13 +3902,13 @@
 		functionName = "-removeStore:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 506;
+		lineNumber = 509;
 		location = WPADev;
 		modificationTime = 316745030.232132;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
-	8CF8BAF212D949B3009C7E3D /* WPADelegate.m:505 */ = {
+	8CF8BAF212D949B3009C7E3D /* WPADelegate.m:508 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -3920,7 +3920,7 @@
 		functionName = "-removeStore:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 505;
+		lineNumber = 508;
 		location = WPADev;
 		modificationTime = 316745030.276129;
 		originalNumberOfMultipleMatches = 1;

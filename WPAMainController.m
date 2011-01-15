@@ -215,7 +215,7 @@
 	if (state == STATE_THINKTIME){
 		TimerDialogController *tdc = [[TimerDialogController alloc] initWithWindowNibName:@"TimerDialog"];
 		NSWindow *tdcWindow = [tdc window];
-		[tdcWindow bringFrontRegardless];
+		[tdcWindow orderFrontRegardless];
 		[NSApp runModalForWindow: tdcWindow];
 
 	}

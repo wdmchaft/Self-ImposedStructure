@@ -12,9 +12,9 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="787"/>
-			<integer value="57"/>
 			<integer value="371"/>
+			<integer value="787"/>
+			<integer value="376"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -756,6 +756,7 @@
 					</object>
 					<object class="NSMenuItem" id="833047083">
 						<reference key="NSMenu" ref="605998714"/>
+						<bool key="NSIsDisabled">YES</bool>
 						<bool key="NSIsSeparator">YES</bool>
 						<string key="NSTitle"/>
 						<string key="NSKeyEquiv"/>

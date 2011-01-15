@@ -353,6 +353,8 @@
 	
 	[prefsWindow showWindow: self];
 	[prefsWindow.window makeKeyAndOrderFront:self];
+	[[prefsWindow window] orderFrontRegardless];
+
 }
 
 -(IBAction) clickTasksInfo: (id) sender
@@ -362,6 +364,7 @@
 	
 	[statsWindow showWindow:self];
 	[statsWindow.window makeKeyAndOrderFront:self];
+	[[statsWindow window] orderFrontRegardless];
 }
 
 

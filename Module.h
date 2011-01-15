@@ -44,5 +44,4 @@
 @property (nonatomic, retain) <AlertHandler> handler;
 @property (nonatomic, retain) NSString* lastError;
 @property (nonatomic,readonly) NSArray* trackingItems;
-@property (nonatomic,retain) <TasksHandler> tasksHandler;
 @end
