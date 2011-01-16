@@ -4,23 +4,19 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
-	<key>CFBundleDisplayName</key>
-	<string>URL Blocker</string>
 	<key>CFBundleExecutable</key>
-	<string>${EXECUTABLE_NAME}</string>
-	<key>CFBundleIconFile</key>
-	<string>BlockerModule.ico</string>
+	<string>Skype</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.workplayaway.blockermodule</string>
+	<string>com.skype.skypeframework</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>Skype Framework</string>
 	<key>CFBundlePackageType</key>
-	<string>BNDL</string>
-	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>FMWK</string>
 	<key>CFBundleSignature</key>
-	<string>????</string>
+	<string>SKYP</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2.8.0.620</string>
 </dict>
 </plist>

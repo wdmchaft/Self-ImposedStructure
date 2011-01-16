@@ -36,6 +36,8 @@
 		8C0D95A512D65326009F3280 /* WPACommon.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
 		8C0D95B112D6535A009F3280 /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
 		8C0D969112D67AFC009F3280 /* TaskDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77297812D46AC600F71FE7 /* TaskDialog.xib */; };
+		8C3AB4AC12E2CEBF00A19AA4 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C3AB4AB12E2CEBF00A19AA4 /* README.txt */; };
+		8C3AB4AD12E2CEBF00A19AA4 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C3AB4AB12E2CEBF00A19AA4 /* README.txt */; };
 		8C66A74612DFCB58000644ED /* HostsFileSwitcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C66A72A12DFC598000644ED /* HostsFileSwitcher.m */; };
 		8C66A77F12DFCE4E000644ED /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
 		8C66A7BC12DFEE8A000644ED /* BlockerModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C66A7BB12DFEE8A000644ED /* BlockerModule.xib */; };
@@ -58,6 +60,9 @@
 		8C7729B612D46AC600F71FE7 /* TimerDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77295B12D46AC600F71FE7 /* TimerDialog.xib */; };
 		8C7729BD12D46AC600F71FE7 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C77296912D46AC600F71FE7 /* Info.plist */; };
 		8C7729C212D46AC600F71FE7 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C77297C12D46AC600F71FE7 /* Growl.framework */; };
+		8C9CE85D12E2683800017A02 /* BlockerModule.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CE85C12E2683800017A02 /* BlockerModule.icns */; };
+		8C9CE86212E2698300017A02 /* BlockerModule.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CE86112E2698300017A02 /* BlockerModule.ico */; };
+		8C9CE88812E2700900017A02 /* Skype.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C9CE77812E2465B00017A02 /* Skype.framework */; };
 		8CD1974A12D4C5D900C69AC9 /* BaseModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77293712D46AC600F71FE7 /* BaseModule.m */; };
 		8CD1974D12D4C5D900C69AC9 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77293D12D46AC600F71FE7 /* Note.m */; };
 		8CD1975012D4C5D900C69AC9 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77296D12D46AC600F71FE7 /* Utility.m */; };
@@ -102,6 +107,12 @@
 		8CD198F512D5146400C69AC9 /* gcal.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C77295012D46AC600F71FE7 /* gcal.ico */; };
 		8CD198F812D514AC00C69AC9 /* RTMModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77293512D46AC600F71FE7 /* RTMModule.xib */; };
 		8CD198F912D514C800C69AC9 /* rtm.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C77295412D46AC600F71FE7 /* rtm.ico */; };
+		8CDCC10112E2B64400CEAAD3 /* Skype.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9CE77812E2465B00017A02 /* Skype.framework */; };
+		8CDCC10712E2B7BA00CEAAD3 /* SkypeManagerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDCC10612E2B7BA00CEAAD3 /* SkypeManagerDelegate.m */; };
+		8CDCC10B12E2B86E00CEAAD3 /* SkypeManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CDCC10A12E2B86E00CEAAD3 /* SkypeManager.xib */; };
+		8CDCC11012E2BAE200CEAAD3 /* Skype.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C9CE77812E2465B00017A02 /* Skype.framework */; };
+		8CDCC11B12E2BD2000CEAAD3 /* SkypeState.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9CE76312E2449900017A02 /* SkypeState.m */; };
+		8CDCC12C12E2BD6D00CEAAD3 /* skmain.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDCC12B12E2BD6D00CEAAD3 /* skmain.m */; };
 		8CF8B60312D821B5009C7E3D /* StatsTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8B5FB12D821B5009C7E3D /* StatsTable.m */; };
 		8CF8B60412D821B5009C7E3D /* Schema.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8B5FD12D821B5009C7E3D /* Schema.m */; };
 		8CF8B60512D821B5009C7E3D /* StatsRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8B5FF12D821B5009C7E3D /* StatsRecord.m */; };
@@ -320,6 +331,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8C9CE89412E2702600017A02 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8C9CE88812E2700900017A02 /* Skype.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8CD197A412D4FC4900C69AC9 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -340,6 +361,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8CDCC11112E2BB0000CEAAD3 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8CDCC11012E2BAE200CEAAD3 /* Skype.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -355,6 +386,7 @@
 		8C0D93F212D63D3D009F3280 /* WPADev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WPADev-Info.plist"; sourceTree = "<group>"; };
 		8C0D943A12D64018009F3280 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		8C0D948912D64486009F3280 /* INSTALL_PLUGINS.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = INSTALL_PLUGINS.sh; sourceTree = "<group>"; };
+		8C3AB4AB12E2CEBF00A19AA4 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		8C66A72912DFC598000644ED /* HostsFileSwitcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HostsFileSwitcher.h; sourceTree = "<group>"; };
 		8C66A72A12DFC598000644ED /* HostsFileSwitcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HostsFileSwitcher.m; sourceTree = "<group>"; };
 		8C66A74112DFCB11000644ED /* Switcher */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Switcher; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -474,6 +506,14 @@
 		8C77297D12D46AC600F71FE7 /* XMLParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParse.h; sourceTree = "<group>"; };
 		8C77297E12D46AC600F71FE7 /* RequestREST.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestREST.h; sourceTree = "<group>"; };
 		8C77297F12D46AC600F71FE7 /* SkypeBlue.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = SkypeBlue.icns; sourceTree = "<group>"; };
+		8C9CE76312E2449900017A02 /* SkypeState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkypeState.m; sourceTree = "<group>"; };
+		8C9CE77412E2463700017A02 /* SkypeAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SkypeAPI.h; path = Skype.framework/Versions/A/Headers/SkypeAPI.h; sourceTree = "<group>"; };
+		8C9CE77512E2463700017A02 /* SkypeAPI-Carbon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SkypeAPI-Carbon.h"; path = "Skype.framework/Versions/A/Headers/SkypeAPI-Carbon.h"; sourceTree = "<group>"; };
+		8C9CE77612E2463700017A02 /* Skype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Skype.h; path = Skype.framework/Versions/A/Headers/Skype.h; sourceTree = "<group>"; };
+		8C9CE77812E2465B00017A02 /* Skype.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Skype.framework; sourceTree = "<group>"; };
+		8C9CE85C12E2683800017A02 /* BlockerModule.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = BlockerModule.icns; sourceTree = "<group>"; };
+		8C9CE86112E2698300017A02 /* BlockerModule.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = BlockerModule.ico; sourceTree = "<group>"; };
+		8C9CE8B412E28E2300017A02 /* SkypeEnvoy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SkypeEnvoy-Info.plist"; sourceTree = "<group>"; };
 		8CD1974412D4C59600C69AC9 /* WPACommon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WPACommon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD1974512D4C59600C69AC9 /* WPACommon-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WPACommon-Info.plist"; sourceTree = "<group>"; };
 		8CD1978F12D4D0F400C69AC9 /* Growl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Growl.h; path = Growl.framework/Versions/A/Headers/Growl.h; sourceTree = "<group>"; };
@@ -484,6 +524,12 @@
 		8CD1986012D506B700C69AC9 /* iChatModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iChatModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD1988112D5079F00C69AC9 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 		8CD1989D12D5092F00C69AC9 /* GCalModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GCalModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CDCC0FA12E2B5F400CEAAD3 /* SkypeManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkypeManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CDCC0FD12E2B5F400CEAAD3 /* SkypeManager-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SkypeManager-Info.plist"; sourceTree = "<group>"; };
+		8CDCC10512E2B7BA00CEAAD3 /* SkypeManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkypeManagerDelegate.h; sourceTree = "<group>"; };
+		8CDCC10612E2B7BA00CEAAD3 /* SkypeManagerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkypeManagerDelegate.m; sourceTree = "<group>"; };
+		8CDCC10A12E2B86E00CEAAD3 /* SkypeManager.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SkypeManager.xib; sourceTree = "<group>"; };
+		8CDCC12B12E2BD6D00CEAAD3 /* skmain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = skmain.m; sourceTree = "<group>"; };
 		8CF8B5FA12D821B5009C7E3D /* Schema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Schema.h; sourceTree = "<group>"; };
 		8CF8B5FB12D821B5009C7E3D /* StatsTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsTable.m; sourceTree = "<group>"; };
 		8CF8B5FC12D821B5009C7E3D /* StatsTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsTable.h; sourceTree = "<group>"; };
@@ -588,6 +634,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8CDCC0F812E2B5F400CEAAD3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CDCC10112E2B64400CEAAD3 /* Skype.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D11072E0486CEB800E47090 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -611,6 +665,7 @@
 				8CD1973E12D4C55D00C69AC9 /* Data Models */,
 				8CD1967212D46CF400C69AC9 /* RTMModule */,
 				8CD1966D12D46C8800C69AC9 /* SkypeModule */,
+				8C9CE75512E23ABE00017A02 /* SkypeManager */,
 				8CD1967712D46DDB00C69AC9 /* WPAFramework */,
 				8CD1967112D46CCA00C69AC9 /* GCalModule */,
 				8CD1967012D46CBE00C69AC9 /* GmailModule */,
@@ -656,6 +711,7 @@
 				8C0D93F012D63D3D009F3280 /* WPADev.app */,
 				8C66A74112DFCB11000644ED /* Switcher */,
 				8C66A77612DFCE20000644ED /* BlockerModule.bundle */,
+				8CDCC0FA12E2B5F400CEAAD3 /* SkypeManager.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -673,6 +729,8 @@
 				8C0D93F212D63D3D009F3280 /* WPADev-Info.plist */,
 				8C0D943A12D64018009F3280 /* Cocoa.framework */,
 				8C66A77712DFCE20000644ED /* BlockerModule-Info.plist */,
+				8C9CE8B412E28E2300017A02 /* SkypeEnvoy-Info.plist */,
+				8CDCC0FD12E2B5F400CEAAD3 /* SkypeManager-Info.plist */,
 			);
 			name = WorkPlayAway;
 			sourceTree = "<group>";
@@ -709,6 +767,8 @@
 		8C66A73412DFC6CB000644ED /* BlockerModule */ = {
 			isa = PBXGroup;
 			children = (
+				8C9CE86112E2698300017A02 /* BlockerModule.ico */,
+				8C9CE85C12E2683800017A02 /* BlockerModule.icns */,
 				8C66A76112DFCD23000644ED /* BlockerModule.h */,
 				8C66A76212DFCD23000644ED /* BlockerModule.m */,
 				8C66A7BB12DFEE8A000644ED /* BlockerModule.xib */,
@@ -734,12 +794,28 @@
 			path = English.lproj;
 			sourceTree = "<group>";
 		};
+		8C9CE75512E23ABE00017A02 /* SkypeManager */ = {
+			isa = PBXGroup;
+			children = (
+				8CDCC12B12E2BD6D00CEAAD3 /* skmain.m */,
+				8CDCC10A12E2B86E00CEAAD3 /* SkypeManager.xib */,
+				8C9CE77412E2463700017A02 /* SkypeAPI.h */,
+				8C9CE77512E2463700017A02 /* SkypeAPI-Carbon.h */,
+				8C9CE77612E2463700017A02 /* Skype.h */,
+				8C9CE77812E2465B00017A02 /* Skype.framework */,
+				8CDCC10512E2B7BA00CEAAD3 /* SkypeManagerDelegate.h */,
+				8CDCC10612E2B7BA00CEAAD3 /* SkypeManagerDelegate.m */,
+			);
+			name = SkypeManager;
+			sourceTree = "<group>";
+		};
 		8CD1966D12D46C8800C69AC9 /* SkypeModule */ = {
 			isa = PBXGroup;
 			children = (
 				8C77292312D46AC600F71FE7 /* SkypeModule.m */,
 				8C77294812D46AC600F71FE7 /* SkypeModule.h */,
 				8C77294D12D46AC600F71FE7 /* SkypeState.h */,
+				8C9CE76312E2449900017A02 /* SkypeState.m */,
 				8C77294E12D46AC600F71FE7 /* SkypeBlue.ico */,
 				8C77294912D46AC600F71FE7 /* SkypeTest-Info.plist */,
 				8C77294A12D46AC600F71FE7 /* SkypeModule-Info.plist */,
@@ -902,6 +978,7 @@
 				8C77291E12D46AC600F71FE7 /* WPAMainController.m */,
 				8C77292212D46AC600F71FE7 /* WPADelegate.m */,
 				8C0D948912D64486009F3280 /* INSTALL_PLUGINS.sh */,
+				8C3AB4AB12E2CEBF00A19AA4 /* README.txt */,
 			);
 			name = WPAMain;
 			sourceTree = "<group>";
@@ -992,7 +1069,6 @@
 				8C66A77212DFCE20000644ED /* Resources */,
 				8C66A77312DFCE20000644ED /* Sources */,
 				8C66A77412DFCE20000644ED /* Frameworks */,
-				8C66A88512E0C286000644ED /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1085,6 +1161,7 @@
 				8CD1984D12D5061300C69AC9 /* Resources */,
 				8CD1984E12D5061300C69AC9 /* Sources */,
 				8CD1984F12D5061300C69AC9 /* Frameworks */,
+				8C9CE89412E2702600017A02 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1131,6 +1208,24 @@
 			productName = GCalModule;
 			productReference = 8CD1989D12D5092F00C69AC9 /* GCalModule.bundle */;
 			productType = "com.apple.product-type.bundle";
+		};
+		8CDCC0F912E2B5F400CEAAD3 /* SkypeManager */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8CDCC10012E2B5F400CEAAD3 /* Build configuration list for PBXNativeTarget "SkypeManager" */;
+			buildPhases = (
+				8CDCC0F612E2B5F400CEAAD3 /* Resources */,
+				8CDCC0F712E2B5F400CEAAD3 /* Sources */,
+				8CDCC0F812E2B5F400CEAAD3 /* Frameworks */,
+				8CDCC11112E2BB0000CEAAD3 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SkypeManager;
+			productName = SkypeManager;
+			productReference = 8CDCC0FA12E2B5F400CEAAD3 /* SkypeManager.app */;
+			productType = "com.apple.product-type.application";
 		};
 		8D1107260486CEB800E47090 /* WorkPlayAway */ = {
 			isa = PBXNativeTarget;
@@ -1186,11 +1281,12 @@
 				8CD197CE12D4FDC800C69AC9 /* RTMModule */,
 				8CD1980E12D5041700C69AC9 /* GmailModule */,
 				8CD1983E12D505BB00C69AC9 /* AdiumModule */,
-				8CD1985012D5061300C69AC9 /* SkypeModule */,
 				8CD1985F12D506B700C69AC9 /* iChatModule */,
 				8CD1989C12D5092F00C69AC9 /* GCalModule */,
 				8C66A74012DFCB11000644ED /* Switcher */,
 				8C66A77512DFCE20000644ED /* BlockerModule */,
+				8CD1985012D5061300C69AC9 /* SkypeModule */,
+				8CDCC0F912E2B5F400CEAAD3 /* SkypeManager */,
 			);
 		};
 /* End PBXProject section */
@@ -1209,6 +1305,7 @@
 				8C0D944912D6408D009F3280 /* Growl Registration Ticket.growlRegDict in Resources */,
 				8C0D944A12D6408D009F3280 /* TimerDialog.xib in Resources */,
 				8C0D944B12D6408D009F3280 /* Info.plist in Resources */,
+				8C3AB4AC12E2CEBF00A19AA4 /* README.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1217,6 +1314,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C66A7BC12DFEE8A000644ED /* BlockerModule.xib in Resources */,
+				8C9CE85D12E2683800017A02 /* BlockerModule.icns in Resources */,
+				8C9CE86212E2698300017A02 /* BlockerModule.ico in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1281,6 +1380,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8CDCC0F612E2B5F400CEAAD3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CDCC10B12E2B86E00CEAAD3 /* SkypeManager.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D1107290486CEB800E47090 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1294,6 +1401,7 @@
 				8C7729B612D46AC600F71FE7 /* TimerDialog.xib in Resources */,
 				8C7729BD12D46AC600F71FE7 /* Info.plist in Resources */,
 				8C0D948A12D64486009F3280 /* INSTALL_PLUGINS.sh in Resources */,
+				8C3AB4AD12E2CEBF00A19AA4 /* README.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1312,19 +1420,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [ -d ${HOME}/Library/Application\\ Support/${PRODUCT_NAME} ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME} exists'\nelse \n\tmkdir ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}\nfi\n\nif [ -d ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins exists'\nelse\n\tmkdir ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins\nfi\n\ncp -r ${TARGET_BUILD_DIR}/*.bundle ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins";
-		};
-		8C66A88512E0C286000644ED /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "cp -r ${TARGET_BUILD_DIR}/Switcher ${TARGET_BUILD_DIR}/BlockerModule.bundle/Contents/MacOS/";
 		};
 		8CD197B912D4FD6200C69AC9 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1454,6 +1549,16 @@
 			files = (
 				8CD198A312D5096F00C69AC9 /* CalDAVParser.m in Sources */,
 				8CD198A112D5095800C69AC9 /* GCalModule.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CDCC0F712E2B5F400CEAAD3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CDCC11B12E2BD2000CEAAD3 /* SkypeState.m in Sources */,
+				8CDCC10712E2B7BA00CEAAD3 /* SkypeManagerDelegate.m in Sources */,
+				8CDCC12C12E2BD6D00CEAAD3 /* skmain.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2032,6 +2137,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_OBJC_GC = supported;
@@ -2059,6 +2168,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_GC = supported;
 				GCC_MODEL_TUNING = G5;
@@ -2179,6 +2292,64 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = GCalModule;
 				WRAPPER_EXTENSION = bundle;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		8CDCC0FE12E2B5F400CEAAD3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "SkypeManager-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = SkypeManager;
+			};
+			name = Debug;
+		};
+		8CDCC0FF12E2B5F400CEAAD3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "SkypeManager-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = SkypeManager;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -2339,6 +2510,15 @@
 			buildConfigurations = (
 				8CD1989E12D5092F00C69AC9 /* Debug */,
 				8CD1989F12D5092F00C69AC9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8CDCC10012E2B5F400CEAAD3 /* Build configuration list for PBXNativeTarget "SkypeManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8CDCC0FE12E2B5F400CEAAD3 /* Debug */,
+				8CDCC0FF12E2B5F400CEAAD3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

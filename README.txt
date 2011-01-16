@@ -1,0 +1,2 @@
+To install just copy WorkPlayAway and SkypeManager to /Applications.
+Then to install the plugins you need to run INSTALLPLUGINS.sh -- you will need to provide the root password (only) at install time because the URL blocker needs to have permission to modify /etc/hosts.

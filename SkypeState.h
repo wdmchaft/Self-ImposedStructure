@@ -1,22 +1,20 @@
 //
 //  SkypeState.h
-//  Nudge
+//  SkypeMonitor
 //
 //  Created by Charles on 12/19/10.
-//  Copyright 2010 workplayaway.com. All rights reserved.
+//  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
 
 typedef enum {
-	STATE_THINKING, STATE_AWAY, STATE_RUNNING,
-} StateType;
+	SKYPE_STATE_AWAY, SKYPE_STATE_DND, SKYPE_STATE_INVISIBLE, SKYPE_STATE_ONLINE, SKYPE_STATE_INVALID
+} SkypeStateType;
 
-typedef enum {
-	SEQ_START, SEQ_RESP1, SEQ_RESP2,
-} SequenceState;
 
-@protocol SkypeState
-
+@interface SkypeState : NSObject {
+}
++ (NSString*) stateToString: (SkypeStateType) state;
 
 @end
