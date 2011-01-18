@@ -13,6 +13,8 @@
 		activeExecutable = 8C0D93F112D63D3D009F3280 /* WPADev */;
 		activeTarget = 8C0D93EF12D63D3D009F3280 /* WPADev */;
 		addToTargets = (
+			8C0D93EF12D63D3D009F3280 /* WPADev */,
+			8CD1983E12D505BB00C69AC9 /* AdiumModule */,
 		);
 		breakpoints = (
 			8C0D963812D669D7009F3280 /* PreferencesWindow.m:237 */,
@@ -38,6 +40,9 @@
 			8C9CE63812E115AC00017A02 /* BlockerModule.m:71 */,
 			8C3AB4A512E2CB6200A19AA4 /* WPADelegate.m:99 */,
 			8C73EF7112E55ABB0056FAFF /* SkypeEnvoy.m:21 */,
+			8C73F03912E584E50056FAFF /* SkypeState.m:17 */,
+			8C73F05512E588AA0056FAFF /* AdiumModule.m:127 */,
+			8C73F06912E589380056FAFF /* AdiumModule.m:119 */,
 		);
 		codeSenseManager = 8C77290512D46A1800F71FE7 /* Code sense */;
 		executables = (
@@ -281,6 +286,61 @@
 			8C73EFFB12E571360056FAFF /* PBXTextBookmark */ = 8C73EFFB12E571360056FAFF /* PBXTextBookmark */;
 			8C73EFFD12E571610056FAFF /* PBXTextBookmark */ = 8C73EFFD12E571610056FAFF /* PBXTextBookmark */;
 			8C73EFFE12E571610056FAFF /* PBXTextBookmark */ = 8C73EFFE12E571610056FAFF /* PBXTextBookmark */;
+			8C73EFFF12E576590056FAFF /* PBXBookmark */ = 8C73EFFF12E576590056FAFF /* PBXBookmark */;
+			8C73F01C12E57F2A0056FAFF /* PBXTextBookmark */ = 8C73F01C12E57F2A0056FAFF /* PBXTextBookmark */;
+			8C73F01D12E57F2A0056FAFF /* PBXTextBookmark */ = 8C73F01D12E57F2A0056FAFF /* PBXTextBookmark */;
+			8C73F01E12E57F2A0056FAFF /* PBXTextBookmark */ = 8C73F01E12E57F2A0056FAFF /* PBXTextBookmark */;
+			8C73F01F12E57F2A0056FAFF /* PBXTextBookmark */ = 8C73F01F12E57F2A0056FAFF /* PBXTextBookmark */;
+			8C73F02012E57F2A0056FAFF /* PBXTextBookmark */ = 8C73F02012E57F2A0056FAFF /* PBXTextBookmark */;
+			8C73F02112E57F2A0056FAFF /* PBXTextBookmark */ = 8C73F02112E57F2A0056FAFF /* PBXTextBookmark */;
+			8C73F02212E57F2A0056FAFF /* PBXTextBookmark */ = 8C73F02212E57F2A0056FAFF /* PBXTextBookmark */;
+			8C73F02312E57F2A0056FAFF /* PBXTextBookmark */ = 8C73F02312E57F2A0056FAFF /* PBXTextBookmark */;
+			8C73F02612E57F2A0056FAFF /* PBXBookmark */ = 8C73F02612E57F2A0056FAFF /* PBXBookmark */;
+			8C73F02712E57F2A0056FAFF /* PBXTextBookmark */ = 8C73F02712E57F2A0056FAFF /* PBXTextBookmark */;
+			8C73F02A12E57F2A0056FAFF /* PBXTextBookmark */ = 8C73F02A12E57F2A0056FAFF /* PBXTextBookmark */;
+			8C73F02B12E57F2A0056FAFF /* PBXTextBookmark */ = 8C73F02B12E57F2A0056FAFF /* PBXTextBookmark */;
+			8C73F02C12E57F2A0056FAFF /* PBXTextBookmark */ = 8C73F02C12E57F2A0056FAFF /* PBXTextBookmark */;
+			8C73F02F12E57F2A0056FAFF /* PBXTextBookmark */ = 8C73F02F12E57F2A0056FAFF /* PBXTextBookmark */;
+			8C73F03012E57F2A0056FAFF /* PBXTextBookmark */ = 8C73F03012E57F2A0056FAFF /* PBXTextBookmark */;
+			8C73F03312E580410056FAFF /* PBXTextBookmark */ = 8C73F03312E580410056FAFF /* PBXTextBookmark */;
+			8C73F03412E580410056FAFF /* PBXTextBookmark */ = 8C73F03412E580410056FAFF /* PBXTextBookmark */;
+			8C73F03512E580410056FAFF /* PBXTextBookmark */ = 8C73F03512E580410056FAFF /* PBXTextBookmark */;
+			8C73F03612E580410056FAFF /* PBXTextBookmark */ = 8C73F03612E580410056FAFF /* PBXTextBookmark */;
+			8C73F03712E580410056FAFF /* PBXTextBookmark */ = 8C73F03712E580410056FAFF /* PBXTextBookmark */;
+			8C73F04312E586F70056FAFF /* PBXTextBookmark */ = 8C73F04312E586F70056FAFF /* PBXTextBookmark */;
+			8C73F04412E586F70056FAFF /* PBXTextBookmark */ = 8C73F04412E586F70056FAFF /* PBXTextBookmark */;
+			8C73F04512E586F70056FAFF /* PBXTextBookmark */ = 8C73F04512E586F70056FAFF /* PBXTextBookmark */;
+			8C73F04812E586F70056FAFF /* PBXTextBookmark */ = 8C73F04812E586F70056FAFF /* PBXTextBookmark */;
+			8C73F04912E586F70056FAFF /* PBXTextBookmark */ = 8C73F04912E586F70056FAFF /* PBXTextBookmark */;
+			8C73F04A12E586F70056FAFF /* PBXTextBookmark */ = 8C73F04A12E586F70056FAFF /* PBXTextBookmark */;
+			8C73F04B12E586F70056FAFF /* PBXTextBookmark */ = 8C73F04B12E586F70056FAFF /* PBXTextBookmark */;
+			8C73F04C12E586F70056FAFF /* PBXTextBookmark */ = 8C73F04C12E586F70056FAFF /* PBXTextBookmark */;
+			8C73F04D12E586F70056FAFF /* PBXTextBookmark */ = 8C73F04D12E586F70056FAFF /* PBXTextBookmark */;
+			8C73F04E12E586F70056FAFF /* PBXTextBookmark */ = 8C73F04E12E586F70056FAFF /* PBXTextBookmark */;
+			8C73F04F12E586F70056FAFF /* PBXTextBookmark */ = 8C73F04F12E586F70056FAFF /* PBXTextBookmark */;
+			8C73F05012E586F70056FAFF /* PBXTextBookmark */ = 8C73F05012E586F70056FAFF /* PBXTextBookmark */;
+			8C73F05112E586F70056FAFF /* PBXTextBookmark */ = 8C73F05112E586F70056FAFF /* PBXTextBookmark */;
+			8C73F05712E588B00056FAFF /* PBXTextBookmark */ = 8C73F05712E588B00056FAFF /* PBXTextBookmark */;
+			8C73F05812E588B00056FAFF /* PBXTextBookmark */ = 8C73F05812E588B00056FAFF /* PBXTextBookmark */;
+			8C73F05912E588B00056FAFF /* PBXTextBookmark */ = 8C73F05912E588B00056FAFF /* PBXTextBookmark */;
+			8C73F05A12E588B00056FAFF /* PBXTextBookmark */ = 8C73F05A12E588B00056FAFF /* PBXTextBookmark */;
+			8C73F05B12E588B00056FAFF /* PBXTextBookmark */ = 8C73F05B12E588B00056FAFF /* PBXTextBookmark */;
+			8C73F05C12E588B00056FAFF /* PBXTextBookmark */ = 8C73F05C12E588B00056FAFF /* PBXTextBookmark */;
+			8C73F05D12E588B00056FAFF /* PBXTextBookmark */ = 8C73F05D12E588B00056FAFF /* PBXTextBookmark */;
+			8C73F06012E589120056FAFF /* PBXTextBookmark */ = 8C73F06012E589120056FAFF /* PBXTextBookmark */;
+			8C73F06112E589120056FAFF /* PBXTextBookmark */ = 8C73F06112E589120056FAFF /* PBXTextBookmark */;
+			8C73F06212E589120056FAFF /* PBXTextBookmark */ = 8C73F06212E589120056FAFF /* PBXTextBookmark */;
+			8C73F06312E589120056FAFF /* PBXTextBookmark */ = 8C73F06312E589120056FAFF /* PBXTextBookmark */;
+			8C73F06412E589120056FAFF /* PBXTextBookmark */ = 8C73F06412E589120056FAFF /* PBXTextBookmark */;
+			8C73F06512E589120056FAFF /* PBXTextBookmark */ = 8C73F06512E589120056FAFF /* PBXTextBookmark */;
+			8C73F07112E58A6C0056FAFF /* PBXTextBookmark */ = 8C73F07112E58A6C0056FAFF /* PBXTextBookmark */;
+			8C73F07212E58A6C0056FAFF /* PBXTextBookmark */ = 8C73F07212E58A6C0056FAFF /* PBXTextBookmark */;
+			8C73F07312E58A6C0056FAFF /* PBXTextBookmark */ = 8C73F07312E58A6C0056FAFF /* PBXTextBookmark */;
+			8C73F07412E58A6C0056FAFF /* PBXTextBookmark */ = 8C73F07412E58A6C0056FAFF /* PBXTextBookmark */;
+			8C73F07512E58A6C0056FAFF /* PBXTextBookmark */ = 8C73F07512E58A6C0056FAFF /* PBXTextBookmark */;
+			8C73F07612E58A6C0056FAFF /* PBXTextBookmark */ = 8C73F07612E58A6C0056FAFF /* PBXTextBookmark */;
+			8C73F07712E58A6C0056FAFF /* PBXTextBookmark */ = 8C73F07712E58A6C0056FAFF /* PBXTextBookmark */;
+			8C73F07812E58A6C0056FAFF /* PBXTextBookmark */ = 8C73F07812E58A6C0056FAFF /* PBXTextBookmark */;
 			8C9CE60612E1118500017A02 = 8C9CE60612E1118500017A02 /* PBXTextBookmark */;
 			8C9CE61C12E114D300017A02 = 8C9CE61C12E114D300017A02 /* PBXTextBookmark */;
 			8C9CE68612E124D600017A02 = 8C9CE68612E124D600017A02 /* PBXTextBookmark */;
@@ -531,7 +591,7 @@
 		ignoreCount = 0;
 		lineNumber = 237;
 		location = WPADev;
-		modificationTime = 317024197.082439;
+		modificationTime = 317033066.773103;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -565,11 +625,11 @@
 		delayBeforeContinue = 0;
 		fileReference = 8C77292212D46AC600F71FE7 /* WPADelegate.m */;
 		functionName = "-stop";
-		hitCount = 1;
+		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 99;
 		location = WPADev;
-		modificationTime = 317024252.319045;
+		modificationTime = 317033067.704172;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -723,7 +783,7 @@
 		ignoreCount = 0;
 		lineNumber = 281;
 		location = WPADev;
-		modificationTime = 317024197.580151;
+		modificationTime = 317033067.507866;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -741,7 +801,7 @@
 		ignoreCount = 0;
 		lineNumber = 287;
 		location = WPADev;
-		modificationTime = 317024197.649232;
+		modificationTime = 317033067.623816;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -1087,9 +1147,9 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 21;
-		modificationTime = 317024196.500654;
+		modificationTime = 317033066.446047;
 		originalNumberOfMultipleMatches = 1;
-		state = 0;
+		state = 1;
 	};
 	8C73EF7512E55AEA0056FAFF /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -1683,6 +1743,608 @@
 		vrLen = 1145;
 		vrLoc = 458;
 	};
+	8C73EFFF12E576590056FAFF /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 8C77296012D46AC600F71FE7 /* AdiumModule.h */;
+	};
+	8C73F00012E577C30056FAFF /* AdiumState.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {846, 694}}";
+			sepNavSelRange = "{295, 18}";
+			sepNavVisRange = "{0, 480}";
+		};
+	};
+	8C73F00112E578160056FAFF /* AdiumState.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {846, 694}}";
+			sepNavSelRange = "{245, 0}";
+			sepNavVisRange = "{0, 579}";
+		};
+	};
+	8C73F01C12E57F2A0056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77293712D46AC600F71FE7 /* BaseModule.m */;
+		name = "BaseModule.m: 35";
+		rLen = 0;
+		rLoc = 575;
+		rType = 0;
+		vrLen = 420;
+		vrLoc = 517;
+	};
+	8C73F01D12E57F2A0056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292312D46AC600F71FE7 /* SkypeModule.m */;
+		name = "SkypeModule.m: 48";
+		rLen = 0;
+		rLoc = 1153;
+		rType = 0;
+		vrLen = 634;
+		vrLoc = 969;
+	};
+	8C73F01E12E57F2A0056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77294712D46AC600F71FE7 /* AdiumModule.m */;
+		name = "AdiumModule.m: 58";
+		rLen = 0;
+		rLoc = 1303;
+		rType = 0;
+		vrLen = 867;
+		vrLoc = 538;
+	};
+	8C73F01F12E57F2A0056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77296012D46AC600F71FE7 /* AdiumModule.h */;
+		name = "AdiumModule.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1163;
+		vrLoc = 0;
+	};
+	8C73F02012E57F2A0056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C73F00012E577C30056FAFF /* AdiumState.h */;
+		name = "AdiumState.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 394;
+		vrLoc = 0;
+	};
+	8C73F02112E57F2A0056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C73F00112E578160056FAFF /* AdiumState.m */;
+		name = "AdiumState.m: 19";
+		rLen = 0;
+		rLoc = 347;
+		rType = 0;
+		vrLen = 609;
+		vrLoc = 20;
+	};
+	8C73F02212E57F2A0056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77296412D46AC600F71FE7 /* Adium.h */;
+		name = "Adium.h: 11";
+		rLen = 16;
+		rLoc = 331;
+		rType = 0;
+		vrLen = 1219;
+		vrLoc = 0;
+	};
+	8C73F02312E57F2A0056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77296412D46AC600F71FE7 /* Adium.h */;
+		name = "Adium.h: 11";
+		rLen = 16;
+		rLoc = 331;
+		rType = 0;
+		vrLen = 1249;
+		vrLoc = 0;
+	};
+	8C73F02612E57F2A0056FAFF /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 8C77294712D46AC600F71FE7 /* AdiumModule.m */;
+	};
+	8C73F02712E57F2A0056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77294712D46AC600F71FE7 /* AdiumModule.m */;
+		name = "AdiumModule.m: 44";
+		rLen = 0;
+		rLoc = 920;
+		rType = 0;
+		vrLen = 1338;
+		vrLoc = 342;
+	};
+	8C73F02A12E57F2A0056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C73F00012E577C30056FAFF /* AdiumState.h */;
+		name = "AdiumState.h: 15";
+		rLen = 18;
+		rLoc = 295;
+		rType = 0;
+		vrLen = 480;
+		vrLoc = 0;
+	};
+	8C73F02B12E57F2A0056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C73F00112E578160056FAFF /* AdiumState.m */;
+		name = "AdiumState.m: 22";
+		rLen = 0;
+		rLoc = 436;
+		rType = 0;
+		vrLen = 588;
+		vrLoc = 0;
+	};
+	8C73F02C12E57F2A0056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C73F00112E578160056FAFF /* AdiumState.m */;
+		name = "AdiumState.m: 12";
+		rLen = 0;
+		rLoc = 245;
+		rType = 0;
+		vrLen = 579;
+		vrLoc = 0;
+	};
+	8C73F02F12E57F2A0056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77296012D46AC600F71FE7 /* AdiumModule.h */;
+		name = "AdiumModule.h: 43";
+		rLen = 0;
+		rLoc = 1189;
+		rType = 0;
+		vrLen = 1390;
+		vrLoc = 0;
+	};
+	8C73F03012E57F2A0056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292312D46AC600F71FE7 /* SkypeModule.m */;
+		name = "SkypeModule.m: 44";
+		rLen = 0;
+		rLoc = 1136;
+		rType = 0;
+		vrLen = 1227;
+		vrLoc = 458;
+	};
+	8C73F03312E580410056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77296412D46AC600F71FE7 /* Adium.h */;
+		name = "Adium.h: 11";
+		rLen = 16;
+		rLoc = 331;
+		rType = 0;
+		vrLen = 1246;
+		vrLoc = 3;
+	};
+	8C73F03412E580410056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77294712D46AC600F71FE7 /* AdiumModule.m */;
+		name = "AdiumModule.m: 44";
+		rLen = 0;
+		rLoc = 920;
+		rType = 0;
+		vrLen = 1254;
+		vrLoc = 342;
+	};
+	8C73F03512E580410056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C73F00112E578160056FAFF /* AdiumState.m */;
+		name = "AdiumState.m: 12";
+		rLen = 0;
+		rLoc = 245;
+		rType = 0;
+		vrLen = 579;
+		vrLoc = 0;
+	};
+	8C73F03612E580410056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77296012D46AC600F71FE7 /* AdiumModule.h */;
+		name = "AdiumModule.h: 43";
+		rLen = 0;
+		rLoc = 1189;
+		rType = 0;
+		vrLen = 1390;
+		vrLoc = 0;
+	};
+	8C73F03712E580410056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292312D46AC600F71FE7 /* SkypeModule.m */;
+		name = "SkypeModule.m: 44";
+		rLen = 0;
+		rLoc = 1136;
+		rType = 0;
+		vrLen = 1145;
+		vrLoc = 458;
+	};
+	8C73F03912E584E50056FAFF /* SkypeState.m:17 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 8C9CE76312E2449900017A02 /* SkypeState.m */;
+		functionName = "+stateToString:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 17;
+		modificationTime = 317033066.4461;
+		originalNumberOfMultipleMatches = 1;
+		state = 0;
+	};
+	8C73F04312E586F70056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77296412D46AC600F71FE7 /* Adium.h */;
+		name = "Adium.h: 12";
+		rLen = 4;
+		rLoc = 378;
+		rType = 0;
+		vrLen = 1219;
+		vrLoc = 0;
+	};
+	8C73F04412E586F70056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C9CE76312E2449900017A02 /* SkypeState.m */;
+		name = "SkypeState.m: 14";
+		rLen = 0;
+		rLoc = 243;
+		rType = 0;
+		vrLen = 587;
+		vrLoc = 0;
+	};
+	8C73F04512E586F70056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C9CE76312E2449900017A02 /* SkypeState.m */;
+		name = "SkypeState.m: 14";
+		rLen = 0;
+		rLoc = 243;
+		rType = 0;
+		vrLen = 599;
+		vrLoc = 3;
+	};
+	8C73F04812E586F70056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77296012D46AC600F71FE7 /* AdiumModule.h */;
+		name = "AdiumModule.h: 44";
+		rLen = 0;
+		rLoc = 1206;
+		rType = 0;
+		vrLen = 1485;
+		vrLoc = 0;
+	};
+	8C73F04912E586F70056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77294712D46AC600F71FE7 /* AdiumModule.m */;
+		name = "AdiumModule.m: 100";
+		rLen = 47;
+		rLoc = 2238;
+		rType = 0;
+		vrLen = 1375;
+		vrLoc = 2176;
+	};
+	8C73F04A12E586F70056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77294712D46AC600F71FE7 /* AdiumModule.m */;
+		name = "AdiumModule.m: 102";
+		rLen = 0;
+		rLoc = 2299;
+		rType = 0;
+		vrLen = 1326;
+		vrLoc = 1749;
+	};
+	8C73F04B12E586F70056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C73F00112E578160056FAFF /* AdiumState.m */;
+		name = "AdiumState.m: 12";
+		rLen = 0;
+		rLoc = 245;
+		rType = 0;
+		vrLen = 579;
+		vrLoc = 0;
+	};
+	8C73F04C12E586F70056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C73F00112E578160056FAFF /* AdiumState.m */;
+		name = "AdiumState.m: 12";
+		rLen = 0;
+		rLoc = 245;
+		rType = 0;
+		vrLen = 579;
+		vrLoc = 0;
+	};
+	8C73F04D12E586F70056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77294712D46AC600F71FE7 /* AdiumModule.m */;
+		name = "AdiumModule.m: 44";
+		rLen = 0;
+		rLoc = 920;
+		rType = 0;
+		vrLen = 1478;
+		vrLoc = 956;
+	};
+	8C73F04E12E586F70056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77296012D46AC600F71FE7 /* AdiumModule.h */;
+		rLen = 0;
+		rLoc = 9223372036854775706;
+		rType = 0;
+	};
+	8C73F04F12E586F70056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77296012D46AC600F71FE7 /* AdiumModule.h */;
+		name = "AdiumModule.h: 11";
+		rLen = 10;
+		rLoc = 193;
+		rType = 0;
+		vrLen = 1485;
+		vrLoc = 0;
+	};
+	8C73F05012E586F70056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77296012D46AC600F71FE7 /* AdiumModule.h */;
+		name = "AdiumModule.h: 43";
+		rLen = 0;
+		rLoc = 1189;
+		rType = 0;
+		vrLen = 1485;
+		vrLoc = 0;
+	};
+	8C73F05112E586F70056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292312D46AC600F71FE7 /* SkypeModule.m */;
+		name = "SkypeModule.m: 44";
+		rLen = 0;
+		rLoc = 1136;
+		rType = 0;
+		vrLen = 1145;
+		vrLoc = 458;
+	};
+	8C73F05512E588AA0056FAFF /* AdiumModule.m:127 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 8C77294712D46AC600F71FE7 /* AdiumModule.m */;
+		functionName = "-loadDefaults";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 127;
+		location = AdiumModule;
+		modificationTime = 317033066.446327;
+		originalNumberOfMultipleMatches = 1;
+		state = 0;
+	};
+	8C73F05712E588B00056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C9CE76312E2449900017A02 /* SkypeState.m */;
+		name = "SkypeState.m: 14";
+		rLen = 0;
+		rLoc = 243;
+		rType = 0;
+		vrLen = 599;
+		vrLoc = 3;
+	};
+	8C73F05812E588B00056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77294712D46AC600F71FE7 /* AdiumModule.m */;
+		name = "AdiumModule.m: 102";
+		rLen = 0;
+		rLoc = 2299;
+		rType = 0;
+		vrLen = 1144;
+		vrLoc = 2007;
+	};
+	8C73F05912E588B00056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77294712D46AC600F71FE7 /* AdiumModule.m */;
+		name = "AdiumModule.m: 102";
+		rLen = 0;
+		rLoc = 2299;
+		rType = 0;
+		vrLen = 1146;
+		vrLoc = 2005;
+	};
+	8C73F05A12E588B00056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C73F00112E578160056FAFF /* AdiumState.m */;
+		name = "AdiumState.m: 12";
+		rLen = 0;
+		rLoc = 245;
+		rType = 0;
+		vrLen = 579;
+		vrLoc = 0;
+	};
+	8C73F05B12E588B00056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77296012D46AC600F71FE7 /* AdiumModule.h */;
+		name = "AdiumModule.h: 11";
+		rLen = 10;
+		rLoc = 193;
+		rType = 0;
+		vrLen = 1485;
+		vrLoc = 0;
+	};
+	8C73F05C12E588B00056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77296012D46AC600F71FE7 /* AdiumModule.h */;
+		name = "AdiumModule.h: 43";
+		rLen = 0;
+		rLoc = 1189;
+		rType = 0;
+		vrLen = 1485;
+		vrLoc = 0;
+	};
+	8C73F05D12E588B00056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292312D46AC600F71FE7 /* SkypeModule.m */;
+		name = "SkypeModule.m: 44";
+		rLen = 0;
+		rLoc = 1136;
+		rType = 0;
+		vrLen = 1145;
+		vrLoc = 458;
+	};
+	8C73F06012E589120056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C9CE76312E2449900017A02 /* SkypeState.m */;
+		name = "SkypeState.m: 14";
+		rLen = 0;
+		rLoc = 243;
+		rType = 0;
+		vrLen = 566;
+		vrLoc = 37;
+	};
+	8C73F06112E589120056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77294712D46AC600F71FE7 /* AdiumModule.m */;
+		name = "AdiumModule.m: 102";
+		rLen = 0;
+		rLoc = 2299;
+		rType = 0;
+		vrLen = 1146;
+		vrLoc = 2005;
+	};
+	8C73F06212E589120056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C73F00112E578160056FAFF /* AdiumState.m */;
+		name = "AdiumState.m: 12";
+		rLen = 0;
+		rLoc = 245;
+		rType = 0;
+		vrLen = 579;
+		vrLoc = 0;
+	};
+	8C73F06312E589120056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77296012D46AC600F71FE7 /* AdiumModule.h */;
+		name = "AdiumModule.h: 11";
+		rLen = 10;
+		rLoc = 193;
+		rType = 0;
+		vrLen = 1485;
+		vrLoc = 0;
+	};
+	8C73F06412E589120056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77296012D46AC600F71FE7 /* AdiumModule.h */;
+		name = "AdiumModule.h: 43";
+		rLen = 0;
+		rLoc = 1189;
+		rType = 0;
+		vrLen = 1485;
+		vrLoc = 0;
+	};
+	8C73F06512E589120056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292312D46AC600F71FE7 /* SkypeModule.m */;
+		name = "SkypeModule.m: 44";
+		rLen = 0;
+		rLoc = 1136;
+		rType = 0;
+		vrLen = 1145;
+		vrLoc = 458;
+	};
+	8C73F06912E589380056FAFF /* AdiumModule.m:119 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 8C77294712D46AC600F71FE7 /* AdiumModule.m */;
+		functionName = "-loadView";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 119;
+		location = AdiumModule;
+		modificationTime = 317033066.446569;
+		originalNumberOfMultipleMatches = 1;
+		state = 0;
+	};
+	8C73F07112E58A6C0056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C9CE76312E2449900017A02 /* SkypeState.m */;
+		name = "SkypeState.m: 14";
+		rLen = 0;
+		rLoc = 243;
+		rType = 0;
+		vrLen = 533;
+		vrLoc = 75;
+	};
+	8C73F07212E58A6C0056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77296012D46AC600F71FE7 /* AdiumModule.h */;
+		name = "AdiumModule.h: 30";
+		rLen = 0;
+		rLoc = 661;
+		rType = 0;
+		vrLen = 1351;
+		vrLoc = 0;
+	};
+	8C73F07312E58A6C0056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77294712D46AC600F71FE7 /* AdiumModule.m */;
+		name = "AdiumModule.m: 19";
+		rLen = 0;
+		rLoc = 371;
+		rType = 0;
+		vrLen = 1043;
+		vrLoc = 0;
+	};
+	8C73F07412E58A6C0056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77294712D46AC600F71FE7 /* AdiumModule.m */;
+		name = "AdiumModule.m: 158";
+		rLen = 116;
+		rLoc = 4032;
+		rType = 0;
+		vrLen = 1743;
+		vrLoc = 2430;
+	};
+	8C73F07512E58A6C0056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C73F00112E578160056FAFF /* AdiumState.m */;
+		name = "AdiumState.m: 12";
+		rLen = 0;
+		rLoc = 245;
+		rType = 0;
+		vrLen = 579;
+		vrLoc = 0;
+	};
+	8C73F07612E58A6C0056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77296012D46AC600F71FE7 /* AdiumModule.h */;
+		name = "AdiumModule.h: 11";
+		rLen = 10;
+		rLoc = 193;
+		rType = 0;
+		vrLen = 1289;
+		vrLoc = 0;
+	};
+	8C73F07712E58A6C0056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77296012D46AC600F71FE7 /* AdiumModule.h */;
+		name = "AdiumModule.h: 41";
+		rLen = 0;
+		rLoc = 1189;
+		rType = 0;
+		vrLen = 1289;
+		vrLoc = 0;
+	};
+	8C73F07812E58A6C0056FAFF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292312D46AC600F71FE7 /* SkypeModule.m */;
+		name = "SkypeModule.m: 44";
+		rLen = 0;
+		rLoc = 1136;
+		rType = 0;
+		vrLen = 1145;
+		vrLoc = 458;
+	};
 	8C77290012D469F900F71FE7 /* WorkPlayAway */ = {
 		isa = PBXExecutable;
 		activeArgIndices = (
@@ -2175,9 +2837,9 @@
 	};
 	8C77294712D46AC600F71FE7 /* AdiumModule.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {733, 884}}";
-			sepNavSelRange = "{1153, 0}";
-			sepNavVisRange = "{800, 605}";
+			sepNavIntBoundsRect = "{{0, 0}, {846, 2067}}";
+			sepNavSelRange = "{4032, 116}";
+			sepNavVisRange = "{2430, 1743}";
 		};
 	};
 	8C77294812D46AC600F71FE7 /* SkypeModule.h */ = {
@@ -2269,6 +2931,13 @@
 			sepNavVisRange = "{367, 628}";
 		};
 	};
+	8C77296012D46AC600F71FE7 /* AdiumModule.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {846, 646}}";
+			sepNavSelRange = "{1189, 0}";
+			sepNavVisRange = "{0, 1289}";
+		};
+	};
 	8C77296112D46AC600F71FE7 /* ListsHandler.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {642, 715}}";
@@ -2286,6 +2955,13 @@
 	8C77296312D46AC600F71FE7 /* WPAFramework-info.plist */ = {
 		uiCtxt = {
 			sepNavWindowFrame = "{{15, 42}, {907, 831}}";
+		};
+	};
+	8C77296412D46AC600F71FE7 /* Adium.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1727, 4251}}";
+			sepNavSelRange = "{378, 4}";
+			sepNavVisRange = "{0, 1219}";
 		};
 	};
 	8C77296712D46AC600F71FE7 /* CalDAVParser.h */ = {
@@ -2318,7 +2994,7 @@
 	};
 	8C77296D12D46AC600F71FE7 /* Utility.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {797, 559}}";
+			sepNavIntBoundsRect = "{{0, 0}, {839, 559}}";
 			sepNavSelRange = "{706, 0}";
 			sepNavVisRange = "{343, 731}";
 		};
@@ -2394,7 +3070,7 @@
 		ignoreCount = 0;
 		lineNumber = 196;
 		location = WPADev;
-		modificationTime = 317024196.499219;
+		modificationTime = 317033066.4458;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -2432,7 +3108,7 @@
 		ignoreCount = 0;
 		lineNumber = 46;
 		location = BlockerModule;
-		modificationTime = 317024196.499292;
+		modificationTime = 317033066.445892;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -2450,7 +3126,7 @@
 		ignoreCount = 0;
 		lineNumber = 71;
 		location = BlockerModule;
-		modificationTime = 317024196.499312;
+		modificationTime = 317033066.445927;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -2488,7 +3164,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {824, 507}}";
 			sepNavSelRange = "{243, 0}";
-			sepNavVisRange = "{0, 608}";
+			sepNavVisRange = "{75, 533}";
 			sepNavWindowFrame = "{{505, 4}, {907, 831}}";
 		};
 	};
@@ -2540,7 +3216,7 @@
 		ignoreCount = 0;
 		lineNumber = 142;
 		location = WPADev;
-		modificationTime = 317024196.49902;
+		modificationTime = 317033066.445695;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -3085,7 +3761,7 @@
 		fRef = 8C77294712D46AC600F71FE7 /* AdiumModule.m */;
 		name = "AdiumModule.m: 58";
 		rLen = 0;
-		rLoc = 1153;
+		rLoc = 1303;
 		rType = 0;
 		vrLen = 605;
 		vrLoc = 800;
@@ -3144,7 +3820,7 @@
 		ignoreCount = 0;
 		lineNumber = 116;
 		location = WorkPlayAway;
-		modificationTime = 317024196.49791;
+		modificationTime = 317033066.445197;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -3162,7 +3838,7 @@
 		ignoreCount = 0;
 		lineNumber = 35;
 		location = WPADev;
-		modificationTime = 317024197.127282;
+		modificationTime = 317033066.862175;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -3180,7 +3856,7 @@
 		ignoreCount = 0;
 		lineNumber = 33;
 		location = WPADev;
-		modificationTime = 317024197.192508;
+		modificationTime = 317033066.971793;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -3198,7 +3874,7 @@
 		ignoreCount = 0;
 		lineNumber = 509;
 		location = WPADev;
-		modificationTime = 317024197.25137;
+		modificationTime = 317033067.036422;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -3216,7 +3892,7 @@
 		ignoreCount = 0;
 		lineNumber = 509;
 		location = WPADev;
-		modificationTime = 317024197.343007;
+		modificationTime = 317033067.15541;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -3234,7 +3910,7 @@
 		ignoreCount = 0;
 		lineNumber = 508;
 		location = WPADev;
-		modificationTime = 317024197.396593;
+		modificationTime = 317033067.260158;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -3288,7 +3964,7 @@
 		ignoreCount = 0;
 		lineNumber = 31;
 		location = WPADev;
-		modificationTime = 317024197.465702;
+		modificationTime = 317033067.335092;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -3331,7 +4007,7 @@
 		ignoreCount = 0;
 		lineNumber = 39;
 		location = GmailModule;
-		modificationTime = 317024196.498488;
+		modificationTime = 317033066.445463;
 		originalNumberOfMultipleMatches = 1;
 		state = 0;
 	};
@@ -3349,7 +4025,7 @@
 		ignoreCount = 0;
 		lineNumber = 354;
 		location = GmailModule;
-		modificationTime = 317024196.498553;
+		modificationTime = 317033066.44549;
 		originalNumberOfMultipleMatches = 1;
 		state = 0;
 	};
@@ -3367,7 +4043,7 @@
 		ignoreCount = 0;
 		lineNumber = 361;
 		location = GmailModule;
-		modificationTime = 317024196.498605;
+		modificationTime = 317033066.445516;
 		originalNumberOfMultipleMatches = 1;
 		state = 0;
 	};
@@ -3543,7 +4219,7 @@
 		ignoreCount = 0;
 		lineNumber = 547;
 		location = RTMModule;
-		modificationTime = 317024196.498655;
+		modificationTime = 317033066.445565;
 		originalNumberOfMultipleMatches = 1;
 		state = 0;
 	};
@@ -3575,7 +4251,7 @@
 		ignoreCount = 0;
 		lineNumber = 82;
 		location = RTMModule;
-		modificationTime = 317024196.498718;
+		modificationTime = 317033066.445594;
 		originalNumberOfMultipleMatches = 1;
 		state = 0;
 	};
@@ -3593,7 +4269,7 @@
 		ignoreCount = 0;
 		lineNumber = 75;
 		location = RTMModule;
-		modificationTime = 317024196.498877;
+		modificationTime = 317033066.445619;
 		originalNumberOfMultipleMatches = 1;
 		state = 0;
 	};
@@ -3651,7 +4327,7 @@
 		ignoreCount = 0;
 		lineNumber = 130;
 		location = WPADev;
-		modificationTime = 317024197.54868;
+		modificationTime = 317033067.441628;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};

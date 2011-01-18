@@ -44,6 +44,8 @@
 		8C66A85F12E0BAE6000644ED /* BlockerModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C66A76212DFCD23000644ED /* BlockerModule.m */; };
 		8C73EF9512E563220056FAFF /* SkypeManager-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CDCC0FD12E2B5F400CEAAD3 /* SkypeManager-Info.plist */; };
 		8C73EFA712E563660056FAFF /* BlockerModule-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C66A77712DFCE20000644ED /* BlockerModule-Info.plist */; };
+		8C73F00212E578160056FAFF /* AdiumState.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F00112E578160056FAFF /* AdiumState.m */; };
+		8C73F00312E578160056FAFF /* AdiumState.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F00112E578160056FAFF /* AdiumState.m */; };
 		8C77298B12D46AC600F71FE7 /* AddMod.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77291812D46AC600F71FE7 /* AddMod.xib */; };
 		8C77298D12D46AC600F71FE7 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77291B12D46AC600F71FE7 /* PreferencesWindow.xib */; };
 		8C77298E12D46AC600F71FE7 /* AddModWinController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77291C12D46AC600F71FE7 /* AddModWinController.m */; };
@@ -397,6 +399,8 @@
 		8C66A77612DFCE20000644ED /* BlockerModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlockerModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C66A77712DFCE20000644ED /* BlockerModule-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BlockerModule-Info.plist"; sourceTree = "<group>"; };
 		8C66A7BB12DFEE8A000644ED /* BlockerModule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlockerModule.xib; sourceTree = "<group>"; };
+		8C73F00012E577C30056FAFF /* AdiumState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdiumState.h; sourceTree = "<group>"; };
+		8C73F00112E578160056FAFF /* AdiumState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdiumState.m; sourceTree = "<group>"; };
 		8C77290712D46AC600F71FE7 /* iChatModule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = iChatModule.xib; sourceTree = "<group>"; };
 		8C77290812D46AC600F71FE7 /* iChatModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iChatModule.m; sourceTree = "<group>"; };
 		8C77290912D46AC600F71FE7 /* iChatModule-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iChatModule-Info.plist"; sourceTree = "<group>"; };
@@ -825,11 +829,13 @@
 		8CD1966E12D46C9600C69AC9 /* AdiumModule */ = {
 			isa = PBXGroup;
 			children = (
+				8C73F00012E577C30056FAFF /* AdiumState.h */,
 				8C77296412D46AC600F71FE7 /* Adium.h */,
 				8C77295F12D46AC600F71FE7 /* AdiumModule.xib */,
 				8C77296012D46AC600F71FE7 /* AdiumModule.h */,
 				8C77295712D46AC600F71FE7 /* AdiumModule-Info.plist */,
 				8C77294712D46AC600F71FE7 /* AdiumModule.m */,
+				8C73F00112E578160056FAFF /* AdiumState.m */,
 			);
 			name = AdiumModule;
 			sourceTree = "<group>";
@@ -1476,6 +1482,7 @@
 				8CF8BCB712DA112B009C7E3D /* TaskInfo.m in Sources */,
 				8CF8C13E12DC2B59009C7E3D /* WorkTable.m in Sources */,
 				8CF8C14412DC2CB7009C7E3D /* SummaryTable.m in Sources */,
+				8C73F00212E578160056FAFF /* AdiumState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1540,6 +1547,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CD1984612D505FB00C69AC9 /* AdiumModule.m in Sources */,
+				8C73F00312E578160056FAFF /* AdiumState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
