@@ -31,10 +31,15 @@
 {
 	thinking = NO;
 }
+
 -(void) stop
 {
+	started = NO;
 }
--(void) start{}
+
+-(void) start{
+	started = YES;
+}
 
 -(void) goAway
 {

@@ -36,11 +36,10 @@
 
 -(void) start
 {
-	NSBundle *myBundle = [NSBundle bundleForClass:[self class]];
+	[super start];
 	NSString *monitorPath = [NSString stringWithFormat:@"%@/%@.app/Contents/MacOS/%@",@"/Applications/", 
 							 SKYPEMONITOR,SKYPEMONITOR];
 	NSLog(@"monitorPath = %@", monitorPath);
-	NSError *errInfo;
 	monitorTask = [NSTask launchedTaskWithLaunchPath:monitorPath arguments:[NSArray new]];
 }
 
@@ -48,6 +47,7 @@
 {
 	if (monitorTask)
 		[monitorTask terminate];
+	[super stop];
 }
 
 -(void) think

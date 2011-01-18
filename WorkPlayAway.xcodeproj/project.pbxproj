@@ -42,6 +42,8 @@
 		8C66A77F12DFCE4E000644ED /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
 		8C66A7BC12DFEE8A000644ED /* BlockerModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C66A7BB12DFEE8A000644ED /* BlockerModule.xib */; };
 		8C66A85F12E0BAE6000644ED /* BlockerModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C66A76212DFCD23000644ED /* BlockerModule.m */; };
+		8C73EF9512E563220056FAFF /* SkypeManager-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CDCC0FD12E2B5F400CEAAD3 /* SkypeManager-Info.plist */; };
+		8C73EFA712E563660056FAFF /* BlockerModule-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C66A77712DFCE20000644ED /* BlockerModule-Info.plist */; };
 		8C77298B12D46AC600F71FE7 /* AddMod.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77291812D46AC600F71FE7 /* AddMod.xib */; };
 		8C77298D12D46AC600F71FE7 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77291B12D46AC600F71FE7 /* PreferencesWindow.xib */; };
 		8C77298E12D46AC600F71FE7 /* AddModWinController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77291C12D46AC600F71FE7 /* AddModWinController.m */; };
@@ -513,7 +515,6 @@
 		8C9CE77812E2465B00017A02 /* Skype.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Skype.framework; sourceTree = "<group>"; };
 		8C9CE85C12E2683800017A02 /* BlockerModule.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = BlockerModule.icns; sourceTree = "<group>"; };
 		8C9CE86112E2698300017A02 /* BlockerModule.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = BlockerModule.ico; sourceTree = "<group>"; };
-		8C9CE8B412E28E2300017A02 /* SkypeEnvoy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SkypeEnvoy-Info.plist"; sourceTree = "<group>"; };
 		8CD1974412D4C59600C69AC9 /* WPACommon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WPACommon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD1974512D4C59600C69AC9 /* WPACommon-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WPACommon-Info.plist"; sourceTree = "<group>"; };
 		8CD1978F12D4D0F400C69AC9 /* Growl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Growl.h; path = Growl.framework/Versions/A/Headers/Growl.h; sourceTree = "<group>"; };
@@ -728,9 +729,6 @@
 				8CD1988112D5079F00C69AC9 /* ScriptingBridge.framework */,
 				8C0D93F212D63D3D009F3280 /* WPADev-Info.plist */,
 				8C0D943A12D64018009F3280 /* Cocoa.framework */,
-				8C66A77712DFCE20000644ED /* BlockerModule-Info.plist */,
-				8C9CE8B412E28E2300017A02 /* SkypeEnvoy-Info.plist */,
-				8CDCC0FD12E2B5F400CEAAD3 /* SkypeManager-Info.plist */,
 			);
 			name = WorkPlayAway;
 			sourceTree = "<group>";
@@ -747,8 +745,6 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8CD1974512D4C59600C69AC9 /* WPACommon-Info.plist */,
-				8D1107310486CEB800E47090 /* WorkPlayAway-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
 			);
@@ -767,6 +763,7 @@
 		8C66A73412DFC6CB000644ED /* BlockerModule */ = {
 			isa = PBXGroup;
 			children = (
+				8C66A77712DFCE20000644ED /* BlockerModule-Info.plist */,
 				8C9CE86112E2698300017A02 /* BlockerModule.ico */,
 				8C9CE85C12E2683800017A02 /* BlockerModule.icns */,
 				8C66A76112DFCD23000644ED /* BlockerModule.h */,
@@ -797,6 +794,7 @@
 		8C9CE75512E23ABE00017A02 /* SkypeManager */ = {
 			isa = PBXGroup;
 			children = (
+				8CDCC0FD12E2B5F400CEAAD3 /* SkypeManager-Info.plist */,
 				8CDCC12B12E2BD6D00CEAAD3 /* skmain.m */,
 				8CDCC10A12E2B86E00CEAAD3 /* SkypeManager.xib */,
 				8C9CE77412E2463700017A02 /* SkypeAPI.h */,
@@ -917,6 +915,7 @@
 		8CD1967712D46DDB00C69AC9 /* WPAFramework */ = {
 			isa = PBXGroup;
 			children = (
+				8CD1974512D4C59600C69AC9 /* WPACommon-Info.plist */,
 				8C77296312D46AC600F71FE7 /* WPAFramework-info.plist */,
 				8C77293812D46AC600F71FE7 /* BaseModule.h */,
 				8C77293712D46AC600F71FE7 /* BaseModule.m */,
@@ -943,6 +942,7 @@
 		8CD1978912D4C89D00C69AC9 /* WPAMain */ = {
 			isa = PBXGroup;
 			children = (
+				8D1107310486CEB800E47090 /* WorkPlayAway-Info.plist */,
 				8CF8BCB512DA112B009C7E3D /* TaskInfo.h */,
 				8CF8BCB612DA112B009C7E3D /* TaskInfo.m */,
 				8CF8BB5A12D9F961009C7E3D /* RefreshListHandler.h */,
@@ -1217,6 +1217,7 @@
 				8CDCC0F712E2B5F400CEAAD3 /* Sources */,
 				8CDCC0F812E2B5F400CEAAD3 /* Frameworks */,
 				8CDCC11112E2BB0000CEAAD3 /* CopyFiles */,
+				8C73EE8312E454F50056FAFF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1313,6 +1314,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C73EFA712E563660056FAFF /* BlockerModule-Info.plist in Resources */,
 				8C66A7BC12DFEE8A000644ED /* BlockerModule.xib in Resources */,
 				8C9CE85D12E2683800017A02 /* BlockerModule.icns in Resources */,
 				8C9CE86212E2698300017A02 /* BlockerModule.ico in Resources */,
@@ -1384,6 +1386,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C73EF9512E563220056FAFF /* SkypeManager-Info.plist in Resources */,
 				8CDCC10B12E2B86E00CEAAD3 /* SkypeManager.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1420,6 +1423,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [ -d ${HOME}/Library/Application\\ Support/${PRODUCT_NAME} ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME} exists'\nelse \n\tmkdir ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}\nfi\n\nif [ -d ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins exists'\nelse\n\tmkdir ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins\nfi\n\ncp -r ${TARGET_BUILD_DIR}/*.bundle ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins";
+		};
+		8C73EE8312E454F50056FAFF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = " cp -r ${TARGET_BUILD_DIR}/SkypeManager.app /Applications";
 		};
 		8CD197B912D4FD6200C69AC9 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
