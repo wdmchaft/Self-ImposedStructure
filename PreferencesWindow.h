@@ -26,7 +26,12 @@
 	NSButton *ignoreSaverButton;
 	NSTextField *weeklyGoalText;
 	NSTextField *dailyGoalText;
+	NSTextField *brbText;
+	NSTextField *summaryText;
+	NSStepper *brbStepper;
+	NSStepper *summaryStepper;
 }
+
 @property (retain, nonatomic) IBOutlet NSTableView *modulesTable;
 @property (retain, nonatomic) IBOutlet NSButton *addButton;
 @property (retain, nonatomic) IBOutlet NSButton *removeButton;
@@ -41,6 +46,10 @@
 @property (retain, nonatomic) IBOutlet NSButton *ignoreSaverButton;
 @property (retain, nonatomic) IBOutlet NSTextField *dailyGoalText;
 @property (retain, nonatomic) IBOutlet NSTextField *weeklyGoalText;
+@property (retain, nonatomic) IBOutlet NSTextField *brbText;
+@property (retain, nonatomic) IBOutlet NSTextField *summaryText;
+@property (retain, nonatomic) IBOutlet NSStepper *brbStepper;
+@property (retain, nonatomic) IBOutlet NSStepper *summaryStepper;
 
 - (IBAction) clickAdd: (id) sender;
 - (IBAction) clickRemove: (id) sender;
@@ -54,4 +63,9 @@
 -(BOOL) removeFromLogin;
 -(IBAction) dailyGoalChanged: (id) sender;
 -(IBAction) weeklyGoalChanged: (id) sender;
+- (IBAction) clickBRBStepper: (id) sender;
+- (IBAction) clickSummaryStepper: (id) sender;
+- (IBAction) summaryChanged: (id) sender;
+- (IBAction) brbChanged: (id) sender;
+
 @end

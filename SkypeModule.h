@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "BaseModule.h"
+#import "BaseInstance.h"
 #import "SkypeState.h"
 
 #define WORKSTATE @"WorkState"
@@ -16,13 +16,9 @@
 
 #define SKYPEMONITOR @"SkypeManager"
 
-typedef enum {
-	STATE_THINKING, STATE_AWAY, STATE_RUNNING,
-} StateType;
 
-
-@interface SkypeModule : BaseModule {
-	StateType state;
+@interface SkypeModule : BaseInstance {
+	WPAStateType state;
 	NSString *clientApplicationName;
 	NSDistributedNotificationCenter *center;
 	NSPopUpButton *workStatusButton;
@@ -33,7 +29,7 @@ typedef enum {
 	SkypeStateType skypeAwayState;
 	NSTask *monitorTask;
 }
-@property (nonatomic) StateType state;
+@property (nonatomic) WPAStateType state;
 @property (nonatomic, retain) NSString* clientApplicationName;
 @property (nonatomic, retain) NSDistributedNotificationCenter *center;
 @property (nonatomic, retain) IBOutlet NSPopUpButton *workStatusButton;
@@ -47,5 +43,5 @@ typedef enum {
 - (IBAction) workStatusChanged: (id) sender;
 - (IBAction) playStatusChanged: (id) sender;
 - (IBAction) awayStatusChanged: (id) sender;
--(SkypeStateType) wpaStateToSkypeState: (StateType) wpaState;
+-(SkypeStateType) wpaStateToSkypeState: (WPAStateType) wpaState;
 @end

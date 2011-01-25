@@ -10,7 +10,7 @@
 #import "ResponseRESTHandler.h"
 
 
-@interface CompleteHandler : ResponseRESTHandler <NSXMLParserDelegate>{
+@interface CompleteRespHandler : ResponseRESTHandler <NSXMLParserDelegate>{
 
 }
 

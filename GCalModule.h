@@ -7,10 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "BaseModule.h"
+#import "BaseInstance.h"
 #import "CalDAVParserDelegate.h"
 
-@interface GCalModule : BaseModule <CalDAVParserDelegate>{
+@interface GCalModule : BaseInstance <CalDAVParserDelegate>{
 	NSTextField *userField;
 	NSSecureTextField *passwordField;
 	NSTextField *refreshField;
@@ -21,38 +21,28 @@
 	NSString *passwordStr;
 	NSString *calURLStr;
 	NSMutableData *respBuffer;
-	NSTimeInterval refresh;
 	int lookAhead;
-	NSString *summaryStr;
-	NSString *eventDescStr;
-	BOOL titleDone;
-	BOOL summaryDone;
-	BOOL idDone;
-	NSTimer *refreshTimer;
 	NSStepper *stepperRefresh;
 	NSStepper *stepperLookAhead;
 	NSStepper *stepperWarning;
 	NSDate *refreshDate;
-	NSDate *eventDate;
-	NSString *locationStr;
 	BOOL addThis;
 	NSTimeInterval warningWindow;
 	NSMutableArray *alarmsList;
+	NSMutableDictionary *currentEvent;
+	BOOL summaryMode;
+	NSMutableArray *eventsList;
+	<AlertHandler> alertHandler;
 }
 @property (nonatomic,retain) NSString *userStr;
 @property (nonatomic,retain) NSString *calURLStr;
-@property (nonatomic,retain) NSString *summaryStr;
-@property (nonatomic,retain) NSString *locationStr;
-@property (nonatomic,retain) NSString *eventDescStr;
 @property (nonatomic,retain) NSString *passwordStr;
 @property (nonatomic, retain) NSDate *refreshDate;
 @property (nonatomic,retain) NSMutableData *respBuffer;
-@property (nonatomic) NSTimeInterval refresh;
 @property (nonatomic) NSTimeInterval warningWindow;
 @property (nonatomic) int lookAhead;
 @property (nonatomic) BOOL addThis;
-@property (nonatomic, retain) NSDate *eventDate;
-@property (nonatomic, retain) NSTimer *refreshTimer;
+@property (nonatomic) BOOL summaryMode;
 @property (nonatomic, retain) IBOutlet NSTextField *userField;
 @property (nonatomic, retain) IBOutlet NSSecureTextField *passwordField;
 @property (nonatomic, retain) IBOutlet NSTextField *refreshField;
@@ -63,16 +53,18 @@
 @property (nonatomic, retain) IBOutlet NSStepper *stepperLookAhead;
 @property (nonatomic, retain) IBOutlet NSStepper *stepperWarning;
 @property (nonatomic,retain) NSMutableArray *alarmsList;
+@property (nonatomic,retain) NSMutableDictionary *currentEvent;
+@property (nonatomic,retain) NSMutableArray *eventsList;
+@property (nonatomic,retain) <AlertHandler> alertHandler;
 
 //-(void) saveDefaultValue: (NSObject*) val forKey: (NSString*) key;
 //-(void) clearDefaultValue: (NSObject*) val forKey: (NSString*) key;
--(void) scheduleNextRefresh;
 -(IBAction) clickRefreshStepper: (id) sender;
 -(IBAction) clickLookAheadStepper: (id) sender;
 -(IBAction) clickWarningStepper: (id) sender;
 -(BOOL) isInLookAhead: (NSDate*) date;
--(void) refreshData: (NSTimer*) theTimer;
+-(void) refreshData;
 - (void) handleWarningAlarm: (NSTimer*) theTimer;
-
-
+- (void) processEvents;
+-(NSString*) timeStrFor:(NSDate*) date;
 @end

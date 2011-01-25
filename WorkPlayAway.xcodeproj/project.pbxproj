@@ -6,6 +6,22 @@
 	objectVersion = 45;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		8C5DEC6E12E8C58A00EE93F1 /* All */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 8C5DEC7912E8C5E900EE93F1 /* Build configuration list for PBXAggregateTarget "All" */;
+			buildPhases = (
+			);
+			dependencies = (
+				8C5DEC7212E8C59D00EE93F1 /* PBXTargetDependency */,
+				8C5DEC7412E8C5A300EE93F1 /* PBXTargetDependency */,
+				8C5DEC7612E8C5A300EE93F1 /* PBXTargetDependency */,
+			);
+			name = All;
+			productName = All;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		8C0D93F912D63DBD009F3280 /* IconData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77293C12D46AC600F71FE7 /* IconData.m */; };
 		8C0D93FB12D63DBD009F3280 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
@@ -36,16 +52,48 @@
 		8C0D95A512D65326009F3280 /* WPACommon.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
 		8C0D95B112D6535A009F3280 /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
 		8C0D969112D67AFC009F3280 /* TaskDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77297812D46AC600F71FE7 /* TaskDialog.xib */; };
+		8C1C929012EA3E8E0077D343 /* SummaryTaskData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F3C912E78F310056FAFF /* SummaryTaskData.m */; };
+		8C1C929612EA3EA30077D343 /* SummaryEventData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F3DB12E793190056FAFF /* SummaryEventData.m */; };
+		8C1C92A212EA3EC00077D343 /* SummaryData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F3D612E790B60056FAFF /* SummaryData.m */; };
+		8C1C92E512EB593C0077D343 /* GrowlDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1C92E412EB593C0077D343 /* GrowlDelegate.m */; };
+		8C1C92E612EB593C0077D343 /* GrowlDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1C92E412EB593C0077D343 /* GrowlDelegate.m */; };
 		8C3AB4AC12E2CEBF00A19AA4 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C3AB4AB12E2CEBF00A19AA4 /* README.txt */; };
 		8C3AB4AD12E2CEBF00A19AA4 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C3AB4AB12E2CEBF00A19AA4 /* README.txt */; };
+		8C5DEC0012E8BFAE00EE93F1 /* RulesTableData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77291912D46AC600F71FE7 /* RulesTableData.m */; };
+		8C5DEC1812E8BFD100EE93F1 /* FilterRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77290E12D46AC600F71FE7 /* FilterRule.m */; };
+		8C5DEC2812E8C05E00EE93F1 /* gmail.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C77295212D46AC600F71FE7 /* gmail.ico */; };
+		8C5DEC5012E8C4B800EE93F1 /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
+		8C5DEC5C12E8C4DF00EE93F1 /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
+		8C5DEC7E12E8C62700EE93F1 /* TestEventModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5DEC7C12E8C62700EE93F1 /* TestEventModule.m */; };
+		8C5DEC7F12E8C62700EE93F1 /* TestEventModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C5DEC7D12E8C62700EE93F1 /* TestEventModule.xib */; };
+		8C5DEC8312E8C64200EE93F1 /* TestTaskModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5DEC8112E8C64200EE93F1 /* TestTaskModule.m */; };
+		8C5DEC8412E8C64200EE93F1 /* TestTaskModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C5DEC8212E8C64200EE93F1 /* TestTaskModule.xib */; };
+		8C5DEF3B12E9F3A900EE93F1 /* SummaryDeadlineData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5DEF3A12E9F3A900EE93F1 /* SummaryDeadlineData.m */; };
+		8C5DEF3C12E9F3A900EE93F1 /* SummaryDeadlineData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5DEF3A12E9F3A900EE93F1 /* SummaryDeadlineData.m */; };
 		8C66A74612DFCB58000644ED /* HostsFileSwitcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C66A72A12DFC598000644ED /* HostsFileSwitcher.m */; };
 		8C66A77F12DFCE4E000644ED /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
 		8C66A7BC12DFEE8A000644ED /* BlockerModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C66A7BB12DFEE8A000644ED /* BlockerModule.xib */; };
 		8C66A85F12E0BAE6000644ED /* BlockerModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C66A76212DFCD23000644ED /* BlockerModule.m */; };
 		8C73EF9512E563220056FAFF /* SkypeManager-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CDCC0FD12E2B5F400CEAAD3 /* SkypeManager-Info.plist */; };
 		8C73EFA712E563660056FAFF /* BlockerModule-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C66A77712DFCE20000644ED /* BlockerModule-Info.plist */; };
-		8C73F00212E578160056FAFF /* AdiumState.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F00112E578160056FAFF /* AdiumState.m */; };
 		8C73F00312E578160056FAFF /* AdiumState.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F00112E578160056FAFF /* AdiumState.m */; };
+		8C73F08F12E5E49E0056FAFF /* SummaryHUD.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C73F08E12E5E49E0056FAFF /* SummaryHUD.xib */; };
+		8C73F09012E5E49E0056FAFF /* SummaryHUD.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C73F08E12E5E49E0056FAFF /* SummaryHUD.xib */; };
+		8C73F09B12E5F6590056FAFF /* SummaryHUDControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F09A12E5F6590056FAFF /* SummaryHUDControl.m */; };
+		8C73F09C12E5F6590056FAFF /* SummaryHUDControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F09A12E5F6590056FAFF /* SummaryHUDControl.m */; };
+		8C73F3CA12E78F310056FAFF /* SummaryTaskData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F3C912E78F310056FAFF /* SummaryTaskData.m */; };
+		8C73F3D712E790B60056FAFF /* SummaryData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F3D612E790B60056FAFF /* SummaryData.m */; };
+		8C73F3DC12E793190056FAFF /* SummaryEventData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F3DB12E793190056FAFF /* SummaryEventData.m */; };
+		8C73F3DF12E793340056FAFF /* SummaryMailData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F3DE12E793340056FAFF /* SummaryMailData.m */; };
+		8C73F3E012E793340056FAFF /* SummaryMailData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F3DE12E793340056FAFF /* SummaryMailData.m */; };
+		8C73F46E12E7F9DC0056FAFF /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C73F46D12E7F9DC0056FAFF /* BWToolkitFramework.framework */; };
+		8C73F46F12E7F9DC0056FAFF /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C73F46D12E7F9DC0056FAFF /* BWToolkitFramework.framework */; };
+		8C73F4A012E7FA0B0056FAFF /* BWToolkitFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C73F46D12E7F9DC0056FAFF /* BWToolkitFramework.framework */; };
+		8C73F4A612E7FA670056FAFF /* BWToolkitFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C73F46D12E7F9DC0056FAFF /* BWToolkitFramework.framework */; };
+		8C73F4B312E7FA8C0056FAFF /* BWToolkitFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C73F46D12E7F9DC0056FAFF /* BWToolkitFramework.framework */; };
+		8C73F89812E891D80056FAFF /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
+		8C73F8B512E893CC0056FAFF /* TestMailModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F8B412E893CC0056FAFF /* TestMailModule.m */; };
+		8C73F8B812E893EC0056FAFF /* TestMailModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C73F8B712E893EC0056FAFF /* TestMailModule.xib */; };
 		8C77298B12D46AC600F71FE7 /* AddMod.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77291812D46AC600F71FE7 /* AddMod.xib */; };
 		8C77298D12D46AC600F71FE7 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77291B12D46AC600F71FE7 /* PreferencesWindow.xib */; };
 		8C77298E12D46AC600F71FE7 /* AddModWinController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77291C12D46AC600F71FE7 /* AddModWinController.m */; };
@@ -64,6 +112,13 @@
 		8C7729B612D46AC600F71FE7 /* TimerDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77295B12D46AC600F71FE7 /* TimerDialog.xib */; };
 		8C7729BD12D46AC600F71FE7 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C77296912D46AC600F71FE7 /* Info.plist */; };
 		8C7729C212D46AC600F71FE7 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C77297C12D46AC600F71FE7 /* Growl.framework */; };
+		8C82AECF12EB98A300830486 /* RefreshManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C82AECE12EB98A300830486 /* RefreshManager.m */; };
+		8C82AED012EB98A300830486 /* RefreshManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C82AECE12EB98A300830486 /* RefreshManager.m */; };
+		8C82AF6112ECF25D00830486 /* BaseInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C82AF6012ECF25D00830486 /* BaseInstance.m */; };
+		8C82AF6212ECF25D00830486 /* BaseInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C82AF6012ECF25D00830486 /* BaseInstance.m */; };
+		8C82AF6B12ED239500830486 /* BaseInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C82AF6012ECF25D00830486 /* BaseInstance.m */; };
+		8C82AFBC12ED33C100830486 /* GMailRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C82AFBB12ED33C100830486 /* GMailRequestHandler.m */; };
+		8C82B67912EF314100830486 /* CompleteProcessHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C82B67812EF314100830486 /* CompleteProcessHandler.m */; };
 		8C9CE85D12E2683800017A02 /* BlockerModule.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CE85C12E2683800017A02 /* BlockerModule.icns */; };
 		8C9CE86212E2698300017A02 /* BlockerModule.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CE86112E2698300017A02 /* BlockerModule.ico */; };
 		8C9CE88812E2700900017A02 /* Skype.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C9CE77812E2465B00017A02 /* Skype.framework */; };
@@ -75,7 +130,7 @@
 		8CD1979712D4EACD00C69AC9 /* IconData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77293C12D46AC600F71FE7 /* IconData.m */; };
 		8CD197D612D4FDFD00C69AC9 /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
 		8CD197E212D4FED200C69AC9 /* RefreshHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77296F12D46AC600F71FE7 /* RefreshHandler.m */; };
-		8CD197E812D4FED200C69AC9 /* CompleteHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77295E12D46AC600F71FE7 /* CompleteHandler.m */; };
+		8CD197E812D4FED200C69AC9 /* CompleteRespHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77295E12D46AC600F71FE7 /* CompleteRespHandler.m */; };
 		8CD197E912D4FED200C69AC9 /* ListsHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77296112D46AC600F71FE7 /* ListsHandler.m */; };
 		8CD197EA12D4FED200C69AC9 /* ResponseRESTHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77293012D46AC600F71FE7 /* ResponseRESTHandler.m */; };
 		8CD197EB12D4FED200C69AC9 /* ListHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77293112D46AC600F71FE7 /* ListHandler.m */; };
@@ -188,6 +243,76 @@
 			remoteGlobalIDString = 8CD1989C12D5092F00C69AC9;
 			remoteInfo = GCalModule;
 		};
+		8C5DEBDE12E8AF5400EE93F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C73F89212E891D00056FAFF;
+			remoteInfo = TestMailModule;
+		};
+		8C5DEC4E12E8C4B300EE93F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CD1974312D4C59600C69AC9;
+			remoteInfo = WPACommon;
+		};
+		8C5DEC5A12E8C4DA00EE93F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CD1974312D4C59600C69AC9;
+			remoteInfo = WPACommon;
+		};
+		8C5DEC6312E8C56400EE93F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C5DEC4812E8C4A600EE93F1;
+			remoteInfo = TestTaskModule;
+		};
+		8C5DEC6512E8C56400EE93F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C5DEC5412E8C4D000EE93F1;
+			remoteInfo = TestEventModule;
+		};
+		8C5DEC6A12E8C57400EE93F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C5DEC4812E8C4A600EE93F1;
+			remoteInfo = TestTaskModule;
+		};
+		8C5DEC6C12E8C57400EE93F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C5DEC5412E8C4D000EE93F1;
+			remoteInfo = TestEventModule;
+		};
+		8C5DEC7112E8C59D00EE93F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CDCC0F912E2B5F400CEAAD3;
+			remoteInfo = SkypeManager;
+		};
+		8C5DEC7312E8C5A300EE93F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C0D93EF12D63D3D009F3280;
+			remoteInfo = WPADev;
+		};
+		8C5DEC7512E8C5A300EE93F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D1107260486CEB800E47090;
+			remoteInfo = WorkPlayAway;
+		};
 		8C66A77D12DFCE46000644ED /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -229,6 +354,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8C66A77512DFCE20000644ED;
 			remoteInfo = BlockerModule;
+		};
+		8C73F89912E891E20056FAFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CD1974312D4C59600C69AC9;
+			remoteInfo = WPACommon;
+		};
+		8C73F8BC12E8975B0056FAFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C73F89212E891D00056FAFF;
+			remoteInfo = TestMailModule;
 		};
 		8CD1975312D4C61D00C69AC9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -330,6 +469,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				8C73F4A612E7FA670056FAFF /* BWToolkitFramework.framework in CopyFiles */,
 				8C0D943912D64007009F3280 /* WPACommon.framework in CopyFiles */,
 				8C0D944F12D640D1009F3280 /* Growl.framework in CopyFiles */,
 			);
@@ -360,6 +500,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				8C73F4B312E7FA8C0056FAFF /* BWToolkitFramework.framework in CopyFiles */,
 				8C0D95A512D65326009F3280 /* WPACommon.framework in CopyFiles */,
 				8CD198C612D511F500C69AC9 /* Growl.framework in CopyFiles */,
 			);
@@ -371,6 +512,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				8C73F4A012E7FA0B0056FAFF /* BWToolkitFramework.framework in CopyFiles */,
 				8CDCC11012E2BAE200CEAAD3 /* Skype.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -390,7 +532,22 @@
 		8C0D93F212D63D3D009F3280 /* WPADev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WPADev-Info.plist"; sourceTree = "<group>"; };
 		8C0D943A12D64018009F3280 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		8C0D948912D64486009F3280 /* INSTALL_PLUGINS.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = INSTALL_PLUGINS.sh; sourceTree = "<group>"; };
+		8C1C92DE12EB504A0077D343 /* Instance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Instance.h; sourceTree = "<group>"; };
+		8C1C92E312EB593C0077D343 /* GrowlDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrowlDelegate.h; sourceTree = "<group>"; };
+		8C1C92E412EB593C0077D343 /* GrowlDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrowlDelegate.m; sourceTree = "<group>"; };
 		8C3AB4AB12E2CEBF00A19AA4 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		8C5DEC4912E8C4A600EE93F1 /* TestTaskModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestTaskModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C5DEC4A12E8C4A600EE93F1 /* TestTaskModule-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TestTaskModule-Info.plist"; sourceTree = "<group>"; };
+		8C5DEC5512E8C4D000EE93F1 /* TestEventModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestEventModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C5DEC5612E8C4D000EE93F1 /* TestEventModule-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TestEventModule-Info.plist"; sourceTree = "<group>"; };
+		8C5DEC7B12E8C62700EE93F1 /* TestEventModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestEventModule.h; sourceTree = "<group>"; };
+		8C5DEC7C12E8C62700EE93F1 /* TestEventModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestEventModule.m; sourceTree = "<group>"; };
+		8C5DEC7D12E8C62700EE93F1 /* TestEventModule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestEventModule.xib; sourceTree = "<group>"; };
+		8C5DEC8012E8C64200EE93F1 /* TestTaskModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTaskModule.h; sourceTree = "<group>"; };
+		8C5DEC8112E8C64200EE93F1 /* TestTaskModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTaskModule.m; sourceTree = "<group>"; };
+		8C5DEC8212E8C64200EE93F1 /* TestTaskModule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestTaskModule.xib; sourceTree = "<group>"; };
+		8C5DEF3912E9F3A900EE93F1 /* SummaryDeadlineData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummaryDeadlineData.h; sourceTree = "<group>"; };
+		8C5DEF3A12E9F3A900EE93F1 /* SummaryDeadlineData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummaryDeadlineData.m; sourceTree = "<group>"; };
 		8C66A72912DFC598000644ED /* HostsFileSwitcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HostsFileSwitcher.h; sourceTree = "<group>"; };
 		8C66A72A12DFC598000644ED /* HostsFileSwitcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HostsFileSwitcher.m; sourceTree = "<group>"; };
 		8C66A74112DFCB11000644ED /* Switcher */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Switcher; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -401,6 +558,25 @@
 		8C66A7BB12DFEE8A000644ED /* BlockerModule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlockerModule.xib; sourceTree = "<group>"; };
 		8C73F00012E577C30056FAFF /* AdiumState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdiumState.h; sourceTree = "<group>"; };
 		8C73F00112E578160056FAFF /* AdiumState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdiumState.m; sourceTree = "<group>"; };
+		8C73F08E12E5E49E0056FAFF /* SummaryHUD.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SummaryHUD.xib; sourceTree = "<group>"; };
+		8C73F09912E5F6590056FAFF /* SummaryHUDControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummaryHUDControl.h; sourceTree = "<group>"; };
+		8C73F09A12E5F6590056FAFF /* SummaryHUDControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummaryHUDControl.m; sourceTree = "<group>"; };
+		8C73F10512E624080056FAFF /* Design.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Design.rtf; sourceTree = "<group>"; };
+		8C73F3C812E78F310056FAFF /* SummaryTaskData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummaryTaskData.h; sourceTree = "<group>"; };
+		8C73F3C912E78F310056FAFF /* SummaryTaskData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummaryTaskData.m; sourceTree = "<group>"; };
+		8C73F3D512E790B60056FAFF /* SummaryData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummaryData.h; sourceTree = "<group>"; };
+		8C73F3D612E790B60056FAFF /* SummaryData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummaryData.m; sourceTree = "<group>"; };
+		8C73F3DA12E793190056FAFF /* SummaryEventData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummaryEventData.h; sourceTree = "<group>"; };
+		8C73F3DB12E793190056FAFF /* SummaryEventData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummaryEventData.m; sourceTree = "<group>"; };
+		8C73F3DD12E793340056FAFF /* SummaryMailData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummaryMailData.h; sourceTree = "<group>"; };
+		8C73F3DE12E793340056FAFF /* SummaryMailData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummaryMailData.m; sourceTree = "<group>"; };
+		8C73F45812E7F8CB0056FAFF /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = /Users/me/Tools/bwtoolkit/build/Release/BWToolkitFramework.framework; sourceTree = "<absolute>"; };
+		8C73F46D12E7F9DC0056FAFF /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BWToolkitFramework.framework; sourceTree = "<group>"; };
+		8C73F89312E891D00056FAFF /* TestMailModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestMailModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C73F89412E891D00056FAFF /* TestMailModule-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TestMailModule-Info.plist"; sourceTree = "<group>"; };
+		8C73F8B412E893CC0056FAFF /* TestMailModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestMailModule.m; sourceTree = "<group>"; };
+		8C73F8B612E893EC0056FAFF /* TestMailModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestMailModule.h; sourceTree = "<group>"; };
+		8C73F8B712E893EC0056FAFF /* TestMailModule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestMailModule.xib; sourceTree = "<group>"; };
 		8C77290712D46AC600F71FE7 /* iChatModule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = iChatModule.xib; sourceTree = "<group>"; };
 		8C77290812D46AC600F71FE7 /* iChatModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iChatModule.m; sourceTree = "<group>"; };
 		8C77290912D46AC600F71FE7 /* iChatModule-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iChatModule-Info.plist"; sourceTree = "<group>"; };
@@ -440,7 +616,6 @@
 		8C77293112D46AC600F71FE7 /* ListHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListHandler.m; sourceTree = "<group>"; };
 		8C77293212D46AC600F71FE7 /* AddModWinController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddModWinController.h; sourceTree = "<group>"; };
 		8C77293312D46AC600F71FE7 /* AlertHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertHandler.h; sourceTree = "<group>"; };
-		8C77293412D46AC600F71FE7 /* TasksHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TasksHandler.h; sourceTree = "<group>"; };
 		8C77293512D46AC600F71FE7 /* RTMModule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RTMModule.xib; sourceTree = "<group>"; };
 		8C77293612D46AC600F71FE7 /* Module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Module.h; sourceTree = "<group>"; };
 		8C77293712D46AC600F71FE7 /* BaseModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModule.m; sourceTree = "<group>"; };
@@ -482,7 +657,7 @@
 		8C77295B12D46AC600F71FE7 /* TimerDialog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimerDialog.xib; sourceTree = "<group>"; };
 		8C77295C12D46AC600F71FE7 /* ResponseRESTHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseRESTHandler.h; sourceTree = "<group>"; };
 		8C77295D12D46AC600F71FE7 /* RTMCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMCallback.h; sourceTree = "<group>"; };
-		8C77295E12D46AC600F71FE7 /* CompleteHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompleteHandler.m; sourceTree = "<group>"; };
+		8C77295E12D46AC600F71FE7 /* CompleteRespHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompleteRespHandler.m; sourceTree = "<group>"; };
 		8C77295F12D46AC600F71FE7 /* AdiumModule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdiumModule.xib; sourceTree = "<group>"; };
 		8C77296012D46AC600F71FE7 /* AdiumModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdiumModule.h; sourceTree = "<group>"; };
 		8C77296112D46AC600F71FE7 /* ListsHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListsHandler.m; sourceTree = "<group>"; };
@@ -505,13 +680,23 @@
 		8C77297312D46AC600F71FE7 /* ListsHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListsHandler.h; sourceTree = "<group>"; };
 		8C77297412D46AC600F71FE7 /* TokenHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenHandler.h; sourceTree = "<group>"; };
 		8C77297512D46AC600F71FE7 /* FrobHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrobHandler.h; sourceTree = "<group>"; };
-		8C77297612D46AC600F71FE7 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		8C77297812D46AC600F71FE7 /* TaskDialog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskDialog.xib; sourceTree = "<group>"; };
-		8C77297912D46AC600F71FE7 /* CompleteHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompleteHandler.h; sourceTree = "<group>"; };
+		8C77297912D46AC600F71FE7 /* CompleteRespHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompleteRespHandler.h; sourceTree = "<group>"; };
 		8C77297C12D46AC600F71FE7 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Growl.framework; sourceTree = "<group>"; };
 		8C77297D12D46AC600F71FE7 /* XMLParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParse.h; sourceTree = "<group>"; };
 		8C77297E12D46AC600F71FE7 /* RequestREST.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestREST.h; sourceTree = "<group>"; };
 		8C77297F12D46AC600F71FE7 /* SkypeBlue.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = SkypeBlue.icns; sourceTree = "<group>"; };
+		8C82AECD12EB98A300830486 /* RefreshManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshManager.h; sourceTree = "<group>"; };
+		8C82AECE12EB98A300830486 /* RefreshManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshManager.m; sourceTree = "<group>"; };
+		8C82AF1C12EBEDB100830486 /* Refreshable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Refreshable.h; sourceTree = "<group>"; };
+		8C82AF5C12ECD12000830486 /* Reporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reporter.h; sourceTree = "<group>"; };
+		8C82AF5D12ECD17100830486 /* TaskList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskList.h; sourceTree = "<group>"; };
+		8C82AF5F12ECF25D00830486 /* BaseInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseInstance.h; sourceTree = "<group>"; };
+		8C82AF6012ECF25D00830486 /* BaseInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseInstance.m; sourceTree = "<group>"; };
+		8C82AFBA12ED33C100830486 /* GMailRequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMailRequestHandler.h; sourceTree = "<group>"; };
+		8C82AFBB12ED33C100830486 /* GMailRequestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMailRequestHandler.m; sourceTree = "<group>"; };
+		8C82B67712EF314100830486 /* CompleteProcessHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompleteProcessHandler.h; sourceTree = "<group>"; };
+		8C82B67812EF314100830486 /* CompleteProcessHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompleteProcessHandler.m; sourceTree = "<group>"; };
 		8C9CE76312E2449900017A02 /* SkypeState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkypeState.m; sourceTree = "<group>"; };
 		8C9CE77412E2463700017A02 /* SkypeAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SkypeAPI.h; path = Skype.framework/Versions/A/Headers/SkypeAPI.h; sourceTree = "<group>"; };
 		8C9CE77512E2463700017A02 /* SkypeAPI-Carbon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SkypeAPI-Carbon.h"; path = "Skype.framework/Versions/A/Headers/SkypeAPI-Carbon.h"; sourceTree = "<group>"; };
@@ -564,6 +749,23 @@
 				8C0D95B112D6535A009F3280 /* WPACommon.framework in Frameworks */,
 				8C0D941512D63E0D009F3280 /* Growl.framework in Frameworks */,
 				8C0D943B12D64018009F3280 /* Cocoa.framework in Frameworks */,
+				8C73F46E12E7F9DC0056FAFF /* BWToolkitFramework.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C5DEC4712E8C4A600EE93F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C5DEC5012E8C4B800EE93F1 /* WPACommon.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C5DEC5312E8C4D000EE93F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C5DEC5C12E8C4DF00EE93F1 /* WPACommon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -579,6 +781,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C66A77F12DFCE4E000644ED /* WPACommon.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C73F89112E891D00056FAFF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C73F89812E891D80056FAFF /* WPACommon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,6 +861,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C73F46F12E7F9DC0056FAFF /* BWToolkitFramework.framework in Frameworks */,
 				8CD1975512D4C62500C69AC9 /* WPACommon.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				8C7729C212D46AC600F71FE7 /* Growl.framework in Frameworks */,
@@ -663,19 +874,13 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				8C66A73512DFC6E3000644ED /* Blocker */,
-				8C66A73412DFC6CB000644ED /* BlockerModule */,
+				8C73F8B212E8933B0056FAFF /* Modules */,
+				8C73F8B112E8932C0056FAFF /* Test */,
+				8C73F08D12E5E4460056FAFF /* SummaryHUD */,
 				8CF8C14012DC2B71009C7E3D /* Reporting */,
 				8CD1978912D4C89D00C69AC9 /* WPAMain */,
 				8CD1973E12D4C55D00C69AC9 /* Data Models */,
-				8CD1967212D46CF400C69AC9 /* RTMModule */,
-				8CD1966D12D46C8800C69AC9 /* SkypeModule */,
-				8C9CE75512E23ABE00017A02 /* SkypeManager */,
 				8CD1967712D46DDB00C69AC9 /* WPAFramework */,
-				8CD1967112D46CCA00C69AC9 /* GCalModule */,
-				8CD1967012D46CBE00C69AC9 /* GmailModule */,
-				8CD1966F12D46CA000C69AC9 /* iChatModule */,
-				8CD1966E12D46C9600C69AC9 /* AdiumModule */,
 				8C77292412D46AC600F71FE7 /* English.lproj */,
 				8C77296912D46AC600F71FE7 /* Info.plist */,
 				8C77297C12D46AC600F71FE7 /* Growl.framework */,
@@ -717,6 +922,9 @@
 				8C66A74112DFCB11000644ED /* Switcher */,
 				8C66A77612DFCE20000644ED /* BlockerModule.bundle */,
 				8CDCC0FA12E2B5F400CEAAD3 /* SkypeManager.app */,
+				8C73F89312E891D00056FAFF /* TestMailModule.bundle */,
+				8C5DEC4912E8C4A600EE93F1 /* TestTaskModule.bundle */,
+				8C5DEC5512E8C4D000EE93F1 /* TestEventModule.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -724,6 +932,7 @@
 		29B97314FDCFA39411CA2CEA /* WorkPlayAway */ = {
 			isa = PBXGroup;
 			children = (
+				8C73F46D12E7F9DC0056FAFF /* BWToolkitFramework.framework */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				8C77292D12D46AC600F71FE7 /* PreferencesWindow.h */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -733,6 +942,10 @@
 				8CD1988112D5079F00C69AC9 /* ScriptingBridge.framework */,
 				8C0D93F212D63D3D009F3280 /* WPADev-Info.plist */,
 				8C0D943A12D64018009F3280 /* Cocoa.framework */,
+				8C73F45812E7F8CB0056FAFF /* BWToolkitFramework.framework */,
+				8C73F89412E891D00056FAFF /* TestMailModule-Info.plist */,
+				8C5DEC4A12E8C4A600EE93F1 /* TestTaskModule-Info.plist */,
+				8C5DEC5612E8C4D000EE93F1 /* TestEventModule-Info.plist */,
 			);
 			name = WorkPlayAway;
 			sourceTree = "<group>";
@@ -764,6 +977,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8C5DEC4212E8C46700EE93F1 /* TestTaskModule */ = {
+			isa = PBXGroup;
+			children = (
+				8C5DEC8012E8C64200EE93F1 /* TestTaskModule.h */,
+				8C5DEC8112E8C64200EE93F1 /* TestTaskModule.m */,
+				8C5DEC8212E8C64200EE93F1 /* TestTaskModule.xib */,
+			);
+			name = TestTaskModule;
+			sourceTree = "<group>";
+		};
+		8C5DEC7A12E8C60300EE93F1 /* TestEventModule */ = {
+			isa = PBXGroup;
+			children = (
+				8C5DEC7B12E8C62700EE93F1 /* TestEventModule.h */,
+				8C5DEC7C12E8C62700EE93F1 /* TestEventModule.m */,
+				8C5DEC7D12E8C62700EE93F1 /* TestEventModule.xib */,
+			);
+			name = TestEventModule;
+			sourceTree = "<group>";
+		};
 		8C66A73412DFC6CB000644ED /* BlockerModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -784,6 +1017,62 @@
 				8C66A72A12DFC598000644ED /* HostsFileSwitcher.m */,
 			);
 			name = Blocker;
+			sourceTree = "<group>";
+		};
+		8C73F08D12E5E4460056FAFF /* SummaryHUD */ = {
+			isa = PBXGroup;
+			children = (
+				8C5DEF3912E9F3A900EE93F1 /* SummaryDeadlineData.h */,
+				8C5DEF3A12E9F3A900EE93F1 /* SummaryDeadlineData.m */,
+				8C73F3DD12E793340056FAFF /* SummaryMailData.h */,
+				8C73F3DE12E793340056FAFF /* SummaryMailData.m */,
+				8C73F3DA12E793190056FAFF /* SummaryEventData.h */,
+				8C73F3DB12E793190056FAFF /* SummaryEventData.m */,
+				8C73F3D512E790B60056FAFF /* SummaryData.h */,
+				8C73F3D612E790B60056FAFF /* SummaryData.m */,
+				8C73F3C812E78F310056FAFF /* SummaryTaskData.h */,
+				8C73F3C912E78F310056FAFF /* SummaryTaskData.m */,
+				8C73F08E12E5E49E0056FAFF /* SummaryHUD.xib */,
+				8C73F09912E5F6590056FAFF /* SummaryHUDControl.h */,
+				8C73F09A12E5F6590056FAFF /* SummaryHUDControl.m */,
+			);
+			name = SummaryHUD;
+			sourceTree = "<group>";
+		};
+		8C73F88E12E8918D0056FAFF /* TestMailModule */ = {
+			isa = PBXGroup;
+			children = (
+				8C73F8B612E893EC0056FAFF /* TestMailModule.h */,
+				8C73F8B712E893EC0056FAFF /* TestMailModule.xib */,
+				8C73F8B412E893CC0056FAFF /* TestMailModule.m */,
+			);
+			name = TestMailModule;
+			sourceTree = "<group>";
+		};
+		8C73F8B112E8932C0056FAFF /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				8C5DEC7A12E8C60300EE93F1 /* TestEventModule */,
+				8C5DEC4212E8C46700EE93F1 /* TestTaskModule */,
+				8C73F88E12E8918D0056FAFF /* TestMailModule */,
+			);
+			name = Test;
+			sourceTree = "<group>";
+		};
+		8C73F8B212E8933B0056FAFF /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				8CD1966F12D46CA000C69AC9 /* iChatModule */,
+				8CD1966E12D46C9600C69AC9 /* AdiumModule */,
+				8CD1967112D46CCA00C69AC9 /* GCalModule */,
+				8CD1967012D46CBE00C69AC9 /* GmailModule */,
+				8CD1967212D46CF400C69AC9 /* RTMModule */,
+				8CD1966D12D46C8800C69AC9 /* SkypeModule */,
+				8C9CE75512E23ABE00017A02 /* SkypeManager */,
+				8C66A73512DFC6E3000644ED /* Blocker */,
+				8C66A73412DFC6CB000644ED /* BlockerModule */,
+			);
+			name = Modules;
 			sourceTree = "<group>";
 		};
 		8C77292412D46AC600F71FE7 /* English.lproj */ = {
@@ -855,6 +1144,8 @@
 		8CD1967012D46CBE00C69AC9 /* GmailModule */ = {
 			isa = PBXGroup;
 			children = (
+				8C82AFBA12ED33C100830486 /* GMailRequestHandler.h */,
+				8C82AFBB12ED33C100830486 /* GMailRequestHandler.m */,
 				8C77295212D46AC600F71FE7 /* gmail.ico */,
 				8C77295112D46AC600F71FE7 /* GmailModule-Info.plist */,
 				8C77291912D46AC600F71FE7 /* RulesTableData.m */,
@@ -886,6 +1177,7 @@
 		8CD1967212D46CF400C69AC9 /* RTMModule */ = {
 			isa = PBXGroup;
 			children = (
+				8C73F10512E624080056FAFF /* Design.rtf */,
 				8C77295612D46AC600F71FE7 /* TaskDialogController.h */,
 				8C77296212D46AC600F71FE7 /* Secret.h */,
 				8C77295412D46AC600F71FE7 /* rtm.ico */,
@@ -894,7 +1186,7 @@
 				8C77297412D46AC600F71FE7 /* TokenHandler.h */,
 				8C77297512D46AC600F71FE7 /* FrobHandler.h */,
 				8C77296A12D46AC600F71FE7 /* RTMModule_Prefix.pch */,
-				8C77297912D46AC600F71FE7 /* CompleteHandler.h */,
+				8C77297912D46AC600F71FE7 /* CompleteRespHandler.h */,
 				8C77296E12D46AC600F71FE7 /* RefreshHandler.h */,
 				8C77296F12D46AC600F71FE7 /* RefreshHandler.m */,
 				8C77297012D46AC600F71FE7 /* ListHandler.h */,
@@ -902,7 +1194,7 @@
 				8C77295312D46AC600F71FE7 /* RTMModule-Info.plist */,
 				8C77295C12D46AC600F71FE7 /* ResponseRESTHandler.h */,
 				8C77295D12D46AC600F71FE7 /* RTMCallback.h */,
-				8C77295E12D46AC600F71FE7 /* CompleteHandler.m */,
+				8C77295E12D46AC600F71FE7 /* CompleteRespHandler.m */,
 				8C77296112D46AC600F71FE7 /* ListsHandler.m */,
 				8C77293012D46AC600F71FE7 /* ResponseRESTHandler.m */,
 				8C77293112D46AC600F71FE7 /* ListHandler.m */,
@@ -914,6 +1206,8 @@
 				8C77294512D46AC600F71FE7 /* RequestREST.m */,
 				8C77294612D46AC600F71FE7 /* FrobHandler.m */,
 				8C77291F12D46AC600F71FE7 /* RTMModule.h */,
+				8C82B67712EF314100830486 /* CompleteProcessHandler.h */,
+				8C82B67812EF314100830486 /* CompleteProcessHandler.m */,
 			);
 			name = RTMModule;
 			sourceTree = "<group>";
@@ -921,6 +1215,9 @@
 		8CD1967712D46DDB00C69AC9 /* WPAFramework */ = {
 			isa = PBXGroup;
 			children = (
+				8C77293A12D46AC600F71FE7 /* State.h */,
+				8C82AF5D12ECD17100830486 /* TaskList.h */,
+				8C82AF5C12ECD12000830486 /* Reporter.h */,
 				8CD1974512D4C59600C69AC9 /* WPACommon-Info.plist */,
 				8C77296312D46AC600F71FE7 /* WPAFramework-info.plist */,
 				8C77293812D46AC600F71FE7 /* BaseModule.h */,
@@ -928,11 +1225,13 @@
 				8C77293612D46AC600F71FE7 /* Module.h */,
 				8C77293E12D46AC600F71FE7 /* Note.h */,
 				8C77293D12D46AC600F71FE7 /* Note.m */,
-				8C77293412D46AC600F71FE7 /* TasksHandler.h */,
 				8C77296C12D46AC600F71FE7 /* Utility.h */,
 				8C77296D12D46AC600F71FE7 /* Utility.m */,
 				8C77297D12D46AC600F71FE7 /* XMLParse.h */,
 				8C77295812D46AC600F71FE7 /* XMLParse.m */,
+				8C1C92DE12EB504A0077D343 /* Instance.h */,
+				8C82AF5F12ECF25D00830486 /* BaseInstance.h */,
+				8C82AF6012ECF25D00830486 /* BaseInstance.m */,
 			);
 			name = WPAFramework;
 			sourceTree = "<group>";
@@ -948,6 +1247,9 @@
 		8CD1978912D4C89D00C69AC9 /* WPAMain */ = {
 			isa = PBXGroup;
 			children = (
+				8C82AF1C12EBEDB100830486 /* Refreshable.h */,
+				8C82AECD12EB98A300830486 /* RefreshManager.h */,
+				8C82AECE12EB98A300830486 /* RefreshManager.m */,
 				8D1107310486CEB800E47090 /* WorkPlayAway-Info.plist */,
 				8CF8BCB512DA112B009C7E3D /* TaskInfo.h */,
 				8CF8BCB612DA112B009C7E3D /* TaskInfo.m */,
@@ -956,9 +1258,7 @@
 				8CF8B60012D821B5009C7E3D /* TimeDefines.h */,
 				8CD1978F12D4D0F400C69AC9 /* Growl.h */,
 				8C77296B12D46AC600F71FE7 /* Columns.h */,
-				8C77297612D46AC600F71FE7 /* Message.h */,
 				8C77297812D46AC600F71FE7 /* TaskDialog.xib */,
-				8C77293A12D46AC600F71FE7 /* State.h */,
 				8C77293312D46AC600F71FE7 /* AlertHandler.h */,
 				8C77293B12D46AC600F71FE7 /* IconData.h */,
 				8C77293C12D46AC600F71FE7 /* IconData.m */,
@@ -985,6 +1285,8 @@
 				8C77292212D46AC600F71FE7 /* WPADelegate.m */,
 				8C0D948912D64486009F3280 /* INSTALL_PLUGINS.sh */,
 				8C3AB4AB12E2CEBF00A19AA4 /* README.txt */,
+				8C1C92E312EB593C0077D343 /* GrowlDelegate.h */,
+				8C1C92E412EB593C0077D343 /* GrowlDelegate.m */,
 			);
 			name = WPAMain;
 			sourceTree = "<group>";
@@ -1046,11 +1348,50 @@
 				8C0D941412D63DDF009F3280 /* PBXTargetDependency */,
 				8C66A8C712E0C9E4000644ED /* PBXTargetDependency */,
 				8C66A8C912E0C9E4000644ED /* PBXTargetDependency */,
+				8C73F8BD12E8975B0056FAFF /* PBXTargetDependency */,
+				8C5DEC6412E8C56400EE93F1 /* PBXTargetDependency */,
+				8C5DEC6612E8C56400EE93F1 /* PBXTargetDependency */,
 			);
 			name = WPADev;
 			productName = WPADev;
 			productReference = 8C0D93F012D63D3D009F3280 /* WPADev.app */;
 			productType = "com.apple.product-type.application";
+		};
+		8C5DEC4812E8C4A600EE93F1 /* TestTaskModule */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C5DEC4D12E8C4A600EE93F1 /* Build configuration list for PBXNativeTarget "TestTaskModule" */;
+			buildPhases = (
+				8C5DEC4512E8C4A600EE93F1 /* Resources */,
+				8C5DEC4612E8C4A600EE93F1 /* Sources */,
+				8C5DEC4712E8C4A600EE93F1 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8C5DEC4F12E8C4B300EE93F1 /* PBXTargetDependency */,
+			);
+			name = TestTaskModule;
+			productName = TestTaskModule;
+			productReference = 8C5DEC4912E8C4A600EE93F1 /* TestTaskModule.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		8C5DEC5412E8C4D000EE93F1 /* TestEventModule */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C5DEC5912E8C4D000EE93F1 /* Build configuration list for PBXNativeTarget "TestEventModule" */;
+			buildPhases = (
+				8C5DEC5112E8C4D000EE93F1 /* Resources */,
+				8C5DEC5212E8C4D000EE93F1 /* Sources */,
+				8C5DEC5312E8C4D000EE93F1 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8C5DEC5B12E8C4DA00EE93F1 /* PBXTargetDependency */,
+			);
+			name = TestEventModule;
+			productName = TestEventModule;
+			productReference = 8C5DEC5512E8C4D000EE93F1 /* TestEventModule.bundle */;
+			productType = "com.apple.product-type.bundle";
 		};
 		8C66A74012DFCB11000644ED /* Switcher */ = {
 			isa = PBXNativeTarget;
@@ -1085,6 +1426,24 @@
 			name = BlockerModule;
 			productName = BlockerModule;
 			productReference = 8C66A77612DFCE20000644ED /* BlockerModule.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		8C73F89212E891D00056FAFF /* TestMailModule */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C73F89712E891D00056FAFF /* Build configuration list for PBXNativeTarget "TestMailModule" */;
+			buildPhases = (
+				8C73F88F12E891D00056FAFF /* Resources */,
+				8C73F89012E891D00056FAFF /* Sources */,
+				8C73F89112E891D00056FAFF /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8C73F89A12E891E20056FAFF /* PBXTargetDependency */,
+			);
+			name = TestMailModule;
+			productName = TestMailModule;
+			productReference = 8C73F89312E891D00056FAFF /* TestMailModule.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 		8CD1974312D4C59600C69AC9 /* WPACommon */ = {
@@ -1256,6 +1615,9 @@
 				8CD198AA12D509C100C69AC9 /* PBXTargetDependency */,
 				8C66A8CC12E0CA08000644ED /* PBXTargetDependency */,
 				8C66A8CE12E0CA08000644ED /* PBXTargetDependency */,
+				8C5DEBDF12E8AF5400EE93F1 /* PBXTargetDependency */,
+				8C5DEC6B12E8C57400EE93F1 /* PBXTargetDependency */,
+				8C5DEC6D12E8C57400EE93F1 /* PBXTargetDependency */,
 			);
 			name = WorkPlayAway;
 			productInstallPath = "$(HOME)/Applications";
@@ -1282,6 +1644,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				8C5DEC6E12E8C58A00EE93F1 /* All */,
 				8C0D93EF12D63D3D009F3280 /* WPADev */,
 				8D1107260486CEB800E47090 /* WorkPlayAway */,
 				8CD1974312D4C59600C69AC9 /* WPACommon */,
@@ -1294,6 +1657,9 @@
 				8C66A77512DFCE20000644ED /* BlockerModule */,
 				8CD1985012D5061300C69AC9 /* SkypeModule */,
 				8CDCC0F912E2B5F400CEAAD3 /* SkypeManager */,
+				8C73F89212E891D00056FAFF /* TestMailModule */,
+				8C5DEC4812E8C4A600EE93F1 /* TestTaskModule */,
+				8C5DEC5412E8C4D000EE93F1 /* TestEventModule */,
 			);
 		};
 /* End PBXProject section */
@@ -1313,6 +1679,23 @@
 				8C0D944A12D6408D009F3280 /* TimerDialog.xib in Resources */,
 				8C0D944B12D6408D009F3280 /* Info.plist in Resources */,
 				8C3AB4AC12E2CEBF00A19AA4 /* README.txt in Resources */,
+				8C73F08F12E5E49E0056FAFF /* SummaryHUD.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C5DEC4512E8C4A600EE93F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C5DEC8412E8C64200EE93F1 /* TestTaskModule.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C5DEC5112E8C4D000EE93F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C5DEC7F12E8C62700EE93F1 /* TestEventModule.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1324,6 +1707,15 @@
 				8C66A7BC12DFEE8A000644ED /* BlockerModule.xib in Resources */,
 				8C9CE85D12E2683800017A02 /* BlockerModule.icns in Resources */,
 				8C9CE86212E2698300017A02 /* BlockerModule.ico in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C73F88F12E891D00056FAFF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C5DEC2812E8C05E00EE93F1 /* gmail.ico in Resources */,
+				8C73F8B812E893EC0056FAFF /* TestMailModule.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1411,6 +1803,7 @@
 				8C7729BD12D46AC600F71FE7 /* Info.plist in Resources */,
 				8C0D948A12D64486009F3280 /* INSTALL_PLUGINS.sh in Resources */,
 				8C3AB4AD12E2CEBF00A19AA4 /* README.txt in Resources */,
+				8C73F09012E5E49E0056FAFF /* SummaryHUD.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1482,7 +1875,31 @@
 				8CF8BCB712DA112B009C7E3D /* TaskInfo.m in Sources */,
 				8CF8C13E12DC2B59009C7E3D /* WorkTable.m in Sources */,
 				8CF8C14412DC2CB7009C7E3D /* SummaryTable.m in Sources */,
-				8C73F00212E578160056FAFF /* AdiumState.m in Sources */,
+				8C73F09B12E5F6590056FAFF /* SummaryHUDControl.m in Sources */,
+				8C73F3CA12E78F310056FAFF /* SummaryTaskData.m in Sources */,
+				8C73F3D712E790B60056FAFF /* SummaryData.m in Sources */,
+				8C73F3DC12E793190056FAFF /* SummaryEventData.m in Sources */,
+				8C73F3DF12E793340056FAFF /* SummaryMailData.m in Sources */,
+				8C5DEF3C12E9F3A900EE93F1 /* SummaryDeadlineData.m in Sources */,
+				8C1C92E612EB593C0077D343 /* GrowlDelegate.m in Sources */,
+				8C82AED012EB98A300830486 /* RefreshManager.m in Sources */,
+				8C82AF6212ECF25D00830486 /* BaseInstance.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C5DEC4612E8C4A600EE93F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C5DEC8312E8C64200EE93F1 /* TestTaskModule.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C5DEC5212E8C4D000EE93F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C5DEC7E12E8C62700EE93F1 /* TestEventModule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1502,10 +1919,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8C73F89012E891D00056FAFF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C5DEC1812E8BFD100EE93F1 /* FilterRule.m in Sources */,
+				8C5DEC0012E8BFAE00EE93F1 /* RulesTableData.m in Sources */,
+				8C73F8B512E893CC0056FAFF /* TestMailModule.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8CD1974112D4C59600C69AC9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C82AF6B12ED239500830486 /* BaseInstance.m in Sources */,
 				8CD1974A12D4C5D900C69AC9 /* BaseModule.m in Sources */,
 				8CD1974D12D4C5D900C69AC9 /* Note.m in Sources */,
 				8CD1975012D4C5D900C69AC9 /* Utility.m in Sources */,
@@ -1519,7 +1947,7 @@
 			files = (
 				8CF8BB7212D9FBA6009C7E3D /* RefreshListHandler.m in Sources */,
 				8CD197E212D4FED200C69AC9 /* RefreshHandler.m in Sources */,
-				8CD197E812D4FED200C69AC9 /* CompleteHandler.m in Sources */,
+				8CD197E812D4FED200C69AC9 /* CompleteRespHandler.m in Sources */,
 				8CD197E912D4FED200C69AC9 /* ListsHandler.m in Sources */,
 				8CD197EA12D4FED200C69AC9 /* ResponseRESTHandler.m in Sources */,
 				8CD197EB12D4FED200C69AC9 /* ListHandler.m in Sources */,
@@ -1529,6 +1957,7 @@
 				8CD197F012D4FED200C69AC9 /* TimelineHandler.m in Sources */,
 				8CD197F112D4FED200C69AC9 /* RequestREST.m in Sources */,
 				8CD197F212D4FED200C69AC9 /* FrobHandler.m in Sources */,
+				8C82B67912EF314100830486 /* CompleteProcessHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1539,6 +1968,7 @@
 				8CD1981A12D5047E00C69AC9 /* FilterRule.m in Sources */,
 				8CD1981912D5047A00C69AC9 /* GmailModule.m in Sources */,
 				8CD1981812D5046400C69AC9 /* RulesTableData.m in Sources */,
+				8C82AFBC12ED33C100830486 /* GMailRequestHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1590,6 +2020,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C1C92A212EA3EC00077D343 /* SummaryData.m in Sources */,
+				8C73F3E012E793340056FAFF /* SummaryMailData.m in Sources */,
+				8C1C929612EA3EA30077D343 /* SummaryEventData.m in Sources */,
+				8C1C929012EA3E8E0077D343 /* SummaryTaskData.m in Sources */,
 				8CD1979712D4EACD00C69AC9 /* IconData.m in Sources */,
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				8C77298E12D46AC600F71FE7 /* AddModWinController.m in Sources */,
@@ -1609,6 +2043,11 @@
 				8CF8BCB812DA112B009C7E3D /* TaskInfo.m in Sources */,
 				8CF8C13D12DC2B59009C7E3D /* WorkTable.m in Sources */,
 				8CF8C14312DC2CB7009C7E3D /* SummaryTable.m in Sources */,
+				8C73F09C12E5F6590056FAFF /* SummaryHUDControl.m in Sources */,
+				8C5DEF3B12E9F3A900EE93F1 /* SummaryDeadlineData.m in Sources */,
+				8C1C92E512EB593C0077D343 /* GrowlDelegate.m in Sources */,
+				8C82AECF12EB98A300830486 /* RefreshManager.m in Sources */,
+				8C82AF6112ECF25D00830486 /* BaseInstance.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1650,6 +2089,56 @@
 			target = 8CD1989C12D5092F00C69AC9 /* GCalModule */;
 			targetProxy = 8C0D941312D63DDF009F3280 /* PBXContainerItemProxy */;
 		};
+		8C5DEBDF12E8AF5400EE93F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C73F89212E891D00056FAFF /* TestMailModule */;
+			targetProxy = 8C5DEBDE12E8AF5400EE93F1 /* PBXContainerItemProxy */;
+		};
+		8C5DEC4F12E8C4B300EE93F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CD1974312D4C59600C69AC9 /* WPACommon */;
+			targetProxy = 8C5DEC4E12E8C4B300EE93F1 /* PBXContainerItemProxy */;
+		};
+		8C5DEC5B12E8C4DA00EE93F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CD1974312D4C59600C69AC9 /* WPACommon */;
+			targetProxy = 8C5DEC5A12E8C4DA00EE93F1 /* PBXContainerItemProxy */;
+		};
+		8C5DEC6412E8C56400EE93F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C5DEC4812E8C4A600EE93F1 /* TestTaskModule */;
+			targetProxy = 8C5DEC6312E8C56400EE93F1 /* PBXContainerItemProxy */;
+		};
+		8C5DEC6612E8C56400EE93F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C5DEC5412E8C4D000EE93F1 /* TestEventModule */;
+			targetProxy = 8C5DEC6512E8C56400EE93F1 /* PBXContainerItemProxy */;
+		};
+		8C5DEC6B12E8C57400EE93F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C5DEC4812E8C4A600EE93F1 /* TestTaskModule */;
+			targetProxy = 8C5DEC6A12E8C57400EE93F1 /* PBXContainerItemProxy */;
+		};
+		8C5DEC6D12E8C57400EE93F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C5DEC5412E8C4D000EE93F1 /* TestEventModule */;
+			targetProxy = 8C5DEC6C12E8C57400EE93F1 /* PBXContainerItemProxy */;
+		};
+		8C5DEC7212E8C59D00EE93F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CDCC0F912E2B5F400CEAAD3 /* SkypeManager */;
+			targetProxy = 8C5DEC7112E8C59D00EE93F1 /* PBXContainerItemProxy */;
+		};
+		8C5DEC7412E8C5A300EE93F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C0D93EF12D63D3D009F3280 /* WPADev */;
+			targetProxy = 8C5DEC7312E8C5A300EE93F1 /* PBXContainerItemProxy */;
+		};
+		8C5DEC7612E8C5A300EE93F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D1107260486CEB800E47090 /* WorkPlayAway */;
+			targetProxy = 8C5DEC7512E8C5A300EE93F1 /* PBXContainerItemProxy */;
+		};
 		8C66A77E12DFCE46000644ED /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8C66A74012DFCB11000644ED /* Switcher */;
@@ -1679,6 +2168,16 @@
 			isa = PBXTargetDependency;
 			target = 8C66A77512DFCE20000644ED /* BlockerModule */;
 			targetProxy = 8C66A8CD12E0CA08000644ED /* PBXContainerItemProxy */;
+		};
+		8C73F89A12E891E20056FAFF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CD1974312D4C59600C69AC9 /* WPACommon */;
+			targetProxy = 8C73F89912E891E20056FAFF /* PBXContainerItemProxy */;
+		};
+		8C73F8BD12E8975B0056FAFF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C73F89212E891D00056FAFF /* TestMailModule */;
+			targetProxy = 8C73F8BC12E8975B0056FAFF /* PBXContainerItemProxy */;
 		};
 		8CD1975412D4C61D00C69AC9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1844,6 +2343,131 @@
 			};
 			name = Release;
 		};
+		8C5DEC4B12E8C4A600EE93F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "TestTaskModule-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = TestTaskModule;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		8C5DEC4C12E8C4A600EE93F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "TestTaskModule-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = TestTaskModule;
+				WRAPPER_EXTENSION = bundle;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		8C5DEC5712E8C4D000EE93F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "TestEventModule-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = TestEventModule;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		8C5DEC5812E8C4D000EE93F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "TestEventModule-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = TestEventModule;
+				WRAPPER_EXTENSION = bundle;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		8C5DEC6F12E8C58A00EE93F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = All;
+			};
+			name = Debug;
+		};
+		8C5DEC7012E8C58A00EE93F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = All;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		8C66A74312DFCB13000644ED /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1937,6 +2561,58 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = BlockerModule;
+				WRAPPER_EXTENSION = bundle;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		8C73F89512E891D00056FAFF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "TestMailModule-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = TestMailModule;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		8C73F89612E891D00056FAFF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "TestMailModule-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = TestMailModule;
 				WRAPPER_EXTENSION = bundle;
 				ZERO_LINK = NO;
 			};
@@ -2386,6 +3062,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../Tools/bwtoolkit/build/Release\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -2408,6 +3085,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../Tools/bwtoolkit/build/Release\"",
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2457,6 +3135,33 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		8C5DEC4D12E8C4A600EE93F1 /* Build configuration list for PBXNativeTarget "TestTaskModule" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C5DEC4B12E8C4A600EE93F1 /* Debug */,
+				8C5DEC4C12E8C4A600EE93F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C5DEC5912E8C4D000EE93F1 /* Build configuration list for PBXNativeTarget "TestEventModule" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C5DEC5712E8C4D000EE93F1 /* Debug */,
+				8C5DEC5812E8C4D000EE93F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C5DEC7912E8C5E900EE93F1 /* Build configuration list for PBXAggregateTarget "All" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C5DEC6F12E8C58A00EE93F1 /* Debug */,
+				8C5DEC7012E8C58A00EE93F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8C66A74512DFCB31000644ED /* Build configuration list for PBXNativeTarget "Switcher" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -2471,6 +3176,15 @@
 			buildConfigurations = (
 				8C66A77812DFCE21000644ED /* Debug */,
 				8C66A77912DFCE21000644ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C73F89712E891D00056FAFF /* Build configuration list for PBXNativeTarget "TestMailModule" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C73F89512E891D00056FAFF /* Debug */,
+				8C73F89612E891D00056FAFF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

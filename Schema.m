@@ -182,20 +182,20 @@
 	return answer;
 }
 
-+(NSString*) entityNameForState:(int) state
++(NSString*) entityNameForState:(WPAStateType) state
 {
 	switch (state) {
-		case STATE_THINKTIME:
-		case STATE_THINKING:
+		case WPASTATE_THINKTIME:
+		case WPASTATE_THINKING:
 			return @"Work";
 			break;
-		case STATE_AWAY:
+		case WPASTATE_AWAY:
 			return @"Away";
 			break;
-		case STATE_PUTZING:
+		case WPASTATE_FREE:
 			return @"Free";
 			break;
-		case STATE_OFF:
+		case WPASTATE_OFF:
 		default:
 			return nil;
 	}

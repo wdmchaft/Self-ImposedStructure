@@ -8,9 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 #import "iChat.h"
-#import "BaseModule.h"
+#import "BaseInstance.h"
 
-@interface iChatModule : BaseModule {
+@interface iChatModule : BaseInstance {
 
 }
 

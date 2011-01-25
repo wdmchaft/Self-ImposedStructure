@@ -14,7 +14,7 @@
 @synthesize modulesTable, amwControl, 
 growlIntervalText,addButton, removeButton, newModuleView, tableData, 
 startOnLaunchButton, launchOnBootButton, growlStepper, editButton, ignoreSaverButton,
-dailyGoalText, weeklyGoalText;
+dailyGoalText, weeklyGoalText, brbText, summaryText, brbStepper, summaryStepper;
 
 - (void)awakeFromNib
 {
@@ -77,6 +77,10 @@ dailyGoalText, weeklyGoalText;
 	[growlStepper setIntValue:ctx.growlInterval];
 	[weeklyGoalText setIntValue:(ctx.weeklyGoal/60)];
 	[dailyGoalText setIntValue:(ctx.dailyGoal/60)];
+	[summaryText setIntValue:(ctx.timeAwayThreshold/60)];
+	[brbText setIntValue:(ctx.brbThreshold/60)];
+	[summaryStepper setIntValue:(ctx.timeAwayThreshold/60)];
+	[brbStepper setIntValue:(ctx.brbThreshold/60)];
 }
 
 - (IBAction) clickAdd: (NSButton*) sender
@@ -84,7 +88,6 @@ dailyGoalText, weeklyGoalText;
     if (amwControl == nil) {
         amwControl = [[AddModWinController alloc] initWithWindowNibName:@"AddMod"];
     }
-	//	amwControl.tasksHandler = self;
 	amwControl.tableData = tableData;
 	amwControl.tableView = modulesTable;
 	[amwControl setCurrCtrl: nil];
@@ -141,16 +144,16 @@ dailyGoalText, weeklyGoalText;
 	<Module> mod = [ctx.instancesMap objectForKey: key];
 	mod.enabled = !mod.enabled;
 	if (mod.enabled){
-		switch (ctx.startingState) {
-			case STATE_AWAY:
+		switch (ctx.currentState) {
+			case WPASTATE_AWAY:
 				[mod goAway];
 				break;
-			case STATE_PUTZING:
+			case WPASTATE_FREE:
 				[mod putter];
 				break;
-			case STATE_THINKING:
+			case WPASTATE_THINKING:
 				[mod think];
-			case STATE_THINKTIME:
+			case WPASTATE_THINKTIME:
 				[mod think];
 			default:
 				break;
@@ -286,5 +289,32 @@ dailyGoalText, weeklyGoalText;
 {
 	[Context sharedContext].weeklyGoal  = (weeklyGoalText.intValue * 60);
 	[[Context sharedContext] saveDefaults];
+}
+
+- (IBAction) clickBRBStepper: (id) sender
+{
+	int stepVal = brbStepper.intValue;
+	brbText.intValue = stepVal;
+	[Context sharedContext].brbThreshold = stepVal * 60;
+	[[Context sharedContext] saveDefaults];
+}
+
+- (IBAction) clickSummaryStepper: (id) sender
+{
+	int stepVal = summaryStepper.intValue;
+	summaryText.intValue = stepVal;
+	[Context sharedContext].timeAwayThreshold = stepVal * 60;
+	[[Context sharedContext] saveDefaults];
+}
+
+- (IBAction) summaryChanged: (id) sender
+{
+	[Context sharedContext].timeAwayThreshold = [sender intValue] * 60;
+}
+
+- (IBAction) brbChanged: (id) sender
+{
+	[Context sharedContext].brbThreshold = [sender intValue] * 60;
+
 }
 @end

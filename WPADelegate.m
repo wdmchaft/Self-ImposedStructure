@@ -13,6 +13,7 @@
 #import "Growl.h"
 #import "IconsFile.h"
 #import "TaskInfo.h"
+#import "WPAMainController.h"
 
 @implementation WPADelegate
 @synthesize window;
@@ -21,6 +22,7 @@
 @synthesize persistentStoreCoordinator;
 @synthesize managedObjectModel;
 @synthesize managedObjectContext;
+@synthesize skipRefresh;
 
 -(void) start 
 {
@@ -33,42 +35,35 @@
 	// start listening for pause commands
 	NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
 	[center addObserver:self selector:@selector(handleNotification:) name:@"org.ottoject.nudge.Concentrate" object:nil];
-
-	// fire up all the alerting modules
-
-	[self setState: ctx.startingState];
 	
 	[self performSelector:@selector(growlLoop)];
+
 	ctx.running = YES;
-	
-	NSDictionary *modules = [[Context sharedContext] instancesMap];
-	<Module> module = nil;
-	NSString *modName = nil;
-	for (modName in modules){
-		module = [modules objectForKey:modName];
-		if (module.enabled){
-			module.handler = self;
-			[module start];
-		}
-	}
-	
-	
 }
 
 -(void) setState: (int) state
 {
+	Context *ctx = [Context sharedContext];
 	switch (state) {
-		case STATE_AWAY:
-			[self goAway];
+		case WPASTATE_AWAY:
+		
+			[self awayState];
 			break;
-		case STATE_PUTZING:
-			[self putter];
+		case WPASTATE_FREE:
+			if (!ctx.running){
+				[self start];
+			}	[self freeState];
 			break;
-		case STATE_THINKING:
+		case WPASTATE_THINKING:
 			[Context sharedContext].thinkTime = 0;
-		case STATE_THINKTIME:
-			[self think: [Context sharedContext].thinkTime];
+		case WPASTATE_THINKTIME:
+			if (!ctx.running){
+				[self start];
+			}
+			[self workState: [Context sharedContext].thinkTime];
 			break;
+		case WPASTATE_OFF:
+			[self stop];
 	}
 }
 
@@ -79,8 +74,9 @@
 
 	NSLog(@"app launched");
 	[GrowlApplicationBridge setGrowlDelegate:self];
+	WPAMainController *wpam = (WPAMainController*)[window delegate];
 	if (ctx.startOnLoad){
-		[self start];
+		[wpam clickStart:self];
 	}
 	[window setTitle:__APPNAME__];
 }
@@ -89,6 +85,8 @@
 -(void) stop 
 {
 	Context	*ctx = [Context sharedContext];
+	NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
+	[center removeObserver:self name:@"org.ottoject.nudge.Concentrate" object:nil];	
 	// shut up!
 	while ([ctx.alertQ count] > 0) {
 		[ctx.alertQ removeObjectAtIndex:0];
@@ -103,11 +101,9 @@
 		}
 	}
 	[Context sharedContext].running = NO;
-	
 }
 
-
--(void) think: (int) minutes
+-(void) workState: (int) minutes
 {
 	Context *ctx = [Context sharedContext];
 	// first dump everything not urgent into save queue...
@@ -130,6 +126,7 @@
 		module.handler = self;
 		module = [modules objectForKey:modName];
 		if (module.enabled){
+			module.skipRefresh = skipRefresh;
 			[module think];
 		}
 	}
@@ -148,12 +145,11 @@
 	NSNotification *notice = [NSNotification notificationWithName:@"org.ottoject.alarm" object:nil];
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	[nc postNotification:notice];
-	[self putter];
+	[self freeState];
 }
 
--(void) putter
+-(void) freeState
 {
-	
 	Context *ctx = [Context sharedContext];
 	[ctx.thinkTimer invalidate];
 	ctx.thinkTimer = nil;
@@ -171,13 +167,14 @@
 		module = [modules objectForKey:modName];
 		if (module.enabled){
 			module.handler = self;
+			module.skipRefresh = skipRefresh;
 			[module putter];
 		}
 	}
 	
 }
 
-- (void) goAway 
+- (void) awayState 
 { 
 	Context *ctx = [Context sharedContext];
 	// first dump everything (EVERYTHING) into save queue...
@@ -195,6 +192,7 @@
 		module = [modules objectForKey:modName];
 		if (module.enabled){
 			module.handler = self;
+			module.skipRefresh = skipRefresh;
 			[module goAway];
 		}
 	}
@@ -205,6 +203,7 @@
 	// mr. user has returned from the bathroom/meeting/snack/whacking off whatever
 	// fire back up where we left off
 }
+					 
 -(void) growlLoop 
 {
 	NSMutableArray *q = [[Context sharedContext]alertQ];
@@ -279,7 +278,7 @@
 {
 	NSLog(@"received %@",alert.message);
 	Context *ctx = [Context sharedContext];
-	if (ctx.startingState == STATE_PUTZING) {
+	if (ctx.currentState == WPASTATE_FREE) {
 		[self queueAlert:alert];
 	}
 	else {
@@ -316,7 +315,7 @@
 		}
 	}
 }
-
+/*
 -(NSArray*) getAllTasks
 {
 	NSMutableDictionary *gather = [NSMutableDictionary new];
@@ -344,15 +343,15 @@
 	}
 	return [gather allValues];
 }
-
+*/
 - (IBAction) clickPreferences: (id) sender
 {
     if (prefsWindow == nil) {
         prefsWindow = [[PreferencesWindow alloc] initWithWindowNibName:@"PreferencesWindow"];
     }
 	
-	[prefsWindow showWindow: self];
-	[prefsWindow.window makeKeyAndOrderFront:self];
+	[prefsWindow showWindow: nil];
+	//[prefsWindow.window makeKeyAndOrderFront:nil];
 	[[prefsWindow window] orderFrontRegardless];
 
 }
@@ -362,8 +361,8 @@
 	if (statsWindow == nil)
 		statsWindow = [[StatsWindow alloc] initWithWindowNibName:@"StatsWindow"];
 	
-	[statsWindow showWindow:self];
-	[statsWindow.window makeKeyAndOrderFront:self];
+	[statsWindow showWindow:nil];
+//	[statsWindow.window makeKeyAndOrderFront:nil];
 	[[statsWindow window] orderFrontRegardless];
 }
 
@@ -469,17 +468,17 @@
 -(NSString*) entityNameForState:(int) state
 {
 	switch (state) {
-		case STATE_THINKTIME:
-		case STATE_THINKING:
+		case WPASTATE_THINKTIME:
+		case WPASTATE_THINKING:
 			return @"Work";
 			break;
-		case STATE_AWAY:
+		case WPASTATE_AWAY:
 			return @"Away";
 			break;
-		case STATE_PUTZING:
+		case WPASTATE_FREE:
 			return @"Free";
 			break;
-		case STATE_OFF:
+		case WPASTATE_OFF:
 		default:
 			return nil;
 	}
@@ -549,7 +548,7 @@
 	NSString *newTask = ctx.currentTask == nil ? @"[No Task]" : ctx.currentTask.name;		
 	NSString *newSource = ctx.currentTask == nil || ctx.currentTask.source == nil ? @"[Adhoc]" : [ctx.currentTask.source description];		
 
-	if (state == STATE_THINKING || state == STATE_THINKTIME){
+	if (state == WPASTATE_THINKING || state == WPASTATE_THINKTIME){
 		source = [self findSource: newSource inContext: moc];
 		if (source == nil){
 			source = [NSEntityDescription
@@ -696,6 +695,8 @@
  */
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
+	WPAMainController *wpam = (WPAMainController*)[window delegate];
+	[wpam running:NO];
 	
     if (!managedObjectContext) return NSTerminateNow;
 	

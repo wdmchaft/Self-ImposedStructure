@@ -22,16 +22,17 @@
 #import "RefreshHandler.h"
 #import "RefreshListHandler.h"
 #import "TaskDialogController.h"
+#import "Utility.h"
+#import "CompleteProcessHandler.h"
 
 @implementation RTMModule 
 
-@synthesize refreshCycle;
+@dynamic refreshInterval;
 @synthesize tokenStr; 
 @synthesize userStr; 
 @synthesize passwordStr; 
 @synthesize frobStr; 
 @synthesize listNameStr;
-@synthesize refreshTimer;
 @synthesize idMapping;
 @synthesize tasksDict;
 @synthesize tasksList;
@@ -49,33 +50,10 @@
 @synthesize listIdStr;
 @synthesize timelineStr;
 @synthesize alarmSet;
-
-//-(void) getList
-//{
-//	RequestREST *rr = [[RequestREST alloc]init];
-//
-//	NSString *idStr = [self.idMapping objectForKey:listNameStr];
-//	NSMutableDictionary *params =  [NSMutableDictionary dictionaryWithObjectsAndKeys:
-//									tokenStr, @"auth_token",
-//									@"rtm.tasks.getList", @"method",
-//									idStr,@"list_id",
-//									@"xml", @"format",
-//									@"status:incomplete:", @"filter",
-//									APIKEY, @"api_key", nil];
-//	
-//	ListHandler *listHandlr = (ListHandler*)[[ListHandler alloc]initWithContext:self andDelegate:self]; 
-//	[rr sendRequestWithURL:[rr createURLWithFamily:@"rest" 
-//									   usingSecret:SECRET 
-//										 andParams:params]
-//				andHandler: listHandlr];
-//	[rr release];
-//}
-
--(void) updateList
-{
-		RefreshListHandler *refHandler = [[[RefreshListHandler alloc]initWithContext:self andDelegate:self] autorelease];
-		[self runListReqWithHandler:refHandler];
-}
+@synthesize handler;
+@synthesize lastError;
+@dynamic notificationName;
+@dynamic notificationTitle;
 
 -(NSString*) getNotificationName
 {
@@ -107,7 +85,7 @@
 		alert.title =super.description;
 		alert.message=taskName;
 		alert.params = tc;
-		[[super handler] handleAlert:alert];
+		[handler handleAlert:alert];
 	}
 	[self taskRefreshDone];
 }
@@ -134,42 +112,20 @@
 	
 }
 
+-(void) updateList
+{
+	RefreshListHandler *refHandler = [[[RefreshListHandler alloc]initWithContext:self andDelegate:self] autorelease];
+	[self runListReqWithHandler:refHandler];
+}
+
 -(void) startRefresh: (NSTimer*) theTimer
 {
 	RefreshHandler *refHandler = [[[RefreshHandler alloc]initWithContext:self andDelegate:self] autorelease];
 	[self runListReqWithHandler:refHandler];
 }
 
--(NSString*) timeStrFor:(NSDate*) date
+- (void) processAlertsWithAlarms: (BOOL) setAlarms
 {
-	NSString *ret = nil;
-	NSDateFormatter *compDate = [NSDateFormatter new];;
-	[compDate  setDateFormat:@"yyyyMMdd" ];
-	NSString *todayStr = [compDate stringFromDate:[NSDate date]];
-	NSDate *tomorrow = [[NSDate date] dateByAddingTimeInterval:24*60*60];
-	NSString *tomorrowStr = [compDate stringFromDate:tomorrow];
-	NSString *eDateStr = [compDate stringFromDate:date];
-	if ([todayStr isEqualToString:eDateStr]){
-		NSDateFormatter *timeDate = [NSDateFormatter new];
-		[timeDate setDateFormat: @"hh:mm"];
-		ret = [NSString stringWithFormat:@"Today at %@", [timeDate stringFromDate:date]];
-	}
-	else if ([tomorrowStr isEqualToString:eDateStr] ){
-		NSDateFormatter *timeDate = [NSDateFormatter new];
-		[timeDate setDateFormat: @"hh:mm"];
-		ret = [NSString stringWithFormat:@"Tomorrow at %@", [timeDate stringFromDate:date]];
-		
-	}else{
-		NSDateFormatter *timeDate = [NSDateFormatter new];
-		[timeDate setDateFormat: @"ddd' at 'hh:mm"];
-		ret = [timeDate stringFromDate:date];
-	}
-	return ret;
-}
-
-- (void) refreshDone
-{
-	[self taskRefreshDone];
 	for(int i = 0; i < [tasksList count]; i++){
 		NSString *key = [tasksList objectAtIndex:i];
 		NSDictionary *item = nil;
@@ -181,7 +137,7 @@
 		}
 		Note *alert = [[Note alloc]init];
 		alert.moduleName = super.description;
-		NSString *dateStr = date ? [self timeStrFor:date] : @"";
+		NSString *dateStr = date ? [Utility timeStrFor:date] : @"";
 		NSString *alertTitle = [listNameStr copy];
 		if (cr == NSOrderedDescending) {
 			alertTitle = [alertTitle stringByAppendingFormat:@"[Task Due: %@]",dateStr];
@@ -189,12 +145,13 @@
 			alertTitle = [alertTitle stringByAppendingFormat:@"[Task OverDue: %@]",dateStr];
 		}
 		alert.title = alertTitle;
+		alert.clickable = YES;
 		
 		alert.message=[item objectForKey:@"name"];
 		alert.params = item;
-		[[super handler] handleAlert:alert];
+		[handler handleAlert:alert];
 		
-		if (cr == NSOrderedDescending) {
+		if (cr == NSOrderedDescending && setAlarms == YES) {
 			NSTimeInterval dueInterval = [date timeIntervalSinceNow];
 			if (alarmSet == nil){
 				alarmSet = [NSMutableDictionary new];
@@ -217,44 +174,38 @@
 				[alarmSet setObject:timer forKey:key];	
 			}
 		}
-	}		
-	[self scheduleNextRefresh];	
+	}			
+}
+
+
+- (void) refreshDone
+{
+	[self taskRefreshDone];
+	[self processAlertsWithAlarms:YES];
+	[BaseInstance sendDone:handler];
 }
 
 - (void) handleWarningAlarm: (NSTimer*) theTimer
 {
 	Note *alert = (Note*)[theTimer userInfo];
-	[[super handler] handleAlert:alert];
+	[handler handleAlert:alert];
 }
 
-- (void) scheduleNextRefresh
+- (void) refresh: (<AlertHandler>) alertHandler
 {
-
-	refreshTimer = [NSTimer scheduledTimerWithTimeInterval:refreshCycle * 60
-													target:self 
-												  selector:@selector(startRefresh:)
-												  userInfo:nil
-												   repeats:NO];	
-}
--(void) start
-{
+	self.handler = alertHandler;
 	[self startRefresh: nil];
 }
--(void) think
-{
-	[super think];
-}
 
--(void) putter
+- (void) stateChange: (WPAStateType) newState
 {
-	//[self startRefresh:nil];
+	if (newState == WPASTATE_OFF){
+		[self stop];
+	}
 }
 
 -(void) stop
 {
-	if (refreshTimer != nil){
-		[refreshTimer invalidate];
-	}
 	if (alarmSet){
 		NSArray *keys = [alarmSet allKeys];
 		int count = [keys count];
@@ -265,6 +216,7 @@
 			[alarmSet removeObjectForKey:key];
 			count --;
 		}
+		alarmSet = nil;
 	}
 }
 
@@ -294,8 +246,9 @@
 		super.description =@"RTM Module";
 		super.notificationName = @"Task Alert";
 		super.notificationTitle = @"Task Msg";
-		refreshCycle = 15;
-		[refreshText setIntValue:refreshCycle];	
+		super.category = CATEGORY_TASKS;
+		super.refreshInterval = 15 * 60;
+		[refreshText setIntValue:super.refreshInterval / 60];	
 	}
 	return self;
 }
@@ -314,7 +267,7 @@
 	[progInd setHidden:YES];
 	[userText setStringValue:userStr == nil ? @"" : userStr];
 	[passwordText setStringValue:passwordStr == nil ? @"" : passwordStr];
-	[refreshText setStringValue:[NSString stringWithFormat:@"%d", refreshCycle]];
+	[refreshText setStringValue:[NSString stringWithFormat:@"%d", super.refreshInterval / 60]];
 	if (tokenStr == nil) {
 		NSAlert *alert = [NSAlert alertWithMessageText:@"Not Authorized" 
 										 defaultButton:nil alternateButton:nil 
@@ -337,7 +290,7 @@
 	listIdStr = [super loadDefaultForKey:LISTID];
 	NSNumber *temp =  [super loadDefaultForKey:REFRESH];
 	if (temp) {
-		refreshCycle = [temp intValue];
+		super.refreshInterval = [temp intValue];
 	}
 }
 
@@ -347,7 +300,7 @@
 	[super clearDefaults];
 	[super clearDefaultValue:userStr forKey:EMAIL];
 	[super clearDefaultValue:passwordStr forKey:PASSWORD];
-	[super clearDefaultValue:[NSNumber numberWithInt:refreshCycle] forKey:REFRESH];
+	[super clearDefaultValue:[NSNumber numberWithInt:super.refreshInterval] forKey:REFRESH];
 	[super clearDefaultValue:listNameStr forKey:LISTNAME];
 	[super clearDefaultValue: listIdStr forKey:LISTID];
 	[[NSUserDefaults standardUserDefaults] synchronize];	
@@ -359,7 +312,7 @@
 	[super saveDefaultValue:tokenStr forKey:TOKEN];
 	[super saveDefaultValue:userStr forKey:EMAIL];
 	[super saveDefaultValue:passwordStr forKey:PASSWORD];
-	[super saveDefaultValue:[NSNumber numberWithInt:refreshCycle] forKey:REFRESH];
+	[super saveDefaultValue:[NSNumber numberWithInt:super.refreshInterval] forKey:REFRESH];
 	[super saveDefaultValue:listNameStr forKey:LISTNAME];
 	[super saveDefaultValue: listIdStr forKey:LISTID];
 	[[NSUserDefaults standardUserDefaults] synchronize];		
@@ -370,7 +323,7 @@
 	[super startValidation:callback];
 	userStr = userText.stringValue;
 	passwordStr = passwordText.stringValue;
-	refreshCycle = refreshText.intValue;
+	super.refreshInterval = refreshText.intValue / 60;
 
 	listNameStr = [listsCombo titleOfSelectedItem];
 	listIdStr = [idMapping objectForKey:listNameStr];
@@ -435,7 +388,9 @@
 			firstClick = YES;
 			authButton.title =@"Authorize";
 			[progInd setHidden: YES];
-		}	}
+			lastError = nil;
+		}	
+	}
 	else {
 		RequestREST *rr = [[RequestREST alloc]init];
 		NSString *urlStr = [rr createURLWithFamily: @"auth" 
@@ -475,6 +430,7 @@
 		[self getLists];
 	}
 }
+
 -(void) getMyLists
 {
 	[self getLists];
@@ -536,7 +492,7 @@
 	listNameStr = listsCombo.stringValue;
 }
 
--(NSArray*) trackingItems;
+-(NSArray*) getTasks;
 {
 	return tasksList;
 }
@@ -551,4 +507,11 @@
 	return [super description];
 }
 
+- (void) markComplete:(NSDictionary *)ctx
+{
+	CompleteProcessHandler *cph = [[	CompleteProcessHandler alloc]initWithContext: ctx 
+																			token: tokenStr 
+																	  andDelegate: self];
+	[cph start];
+}
 @end

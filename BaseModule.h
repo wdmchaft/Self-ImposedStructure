@@ -12,11 +12,13 @@
 
 @interface BaseModule : NSViewController <Module> {
 @protected
+	WPAModuleType type;
 	BOOL thinking;
 	BOOL away;
 	BOOL started;
 	BOOL sticky;
 	BOOL enabled;
+	BOOL skipRefresh;
 	NSString *lastError;
 	NSString *description;
 	NSString *notificationName;
@@ -28,11 +30,13 @@
 	NSArray *trackingItems;
 }
 
+@property (nonatomic) WPAModuleType type;
 @property (nonatomic) BOOL sticky;
 @property (nonatomic) BOOL thinking;
 @property (nonatomic) BOOL started;
 @property (nonatomic) BOOL enabled;
 @property (nonatomic) BOOL away;
+@property (nonatomic) BOOL skipRefresh;
 @property (nonatomic, retain) NSString *description;
 @property (nonatomic, retain) NSString *notificationName;
 @property (nonatomic, retain) NSString *notificationTitle;
@@ -52,8 +56,8 @@
 -(id) loadDefaultForKey: (NSString*) key;
 //-(void) createTrackingItem: (NSString*) item;
 - (void) refreshTasks;
+- (void) sendSummaryDone;
 
-- (NSWindowController*) getDetailWindow: (NSDictionary*) params;
 + (NSString*) decode: (NSString*) inStr;
 + (NSString*) encode: (NSString*) inStr;
 @end

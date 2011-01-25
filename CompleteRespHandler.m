@@ -6,14 +6,14 @@
 //  Copyright 2010 workplayaway.com. All rights reserved.
 //
 
-#import "CompleteHandler.h"
+#import "CompleteRespHandler.h"
 #import "XMLParse.h"
 
 
-@implementation CompleteHandler
-- (CompleteHandler*) initWithHandler:(<RTMCallback>) delegate 
+@implementation CompleteRespHandler
+- (CompleteRespHandler*) initWithHandler:(<RTMCallback>) delegate 
 {
-	if (self =(CompleteHandler*)[super initWithContext:nil andDelegate:delegate])
+	if (self =(CompleteRespHandler*)[super initWithContext:nil andDelegate:delegate])
 	{
 	}
 	return self;

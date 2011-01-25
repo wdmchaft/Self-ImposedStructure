@@ -22,17 +22,22 @@
 	NSTimer *thinkTimer;
 	BOOL startOnLoad;
 	BOOL loadOnLogin;
-	int startingState;
+	WPAStateType currentState;
 	int thinkTime;
 	NSString *alertName;
 	TaskInfo *currentTask;
-//	NSString *currentSource;
 	NSManagedObject *currentActivity;
 	BOOL ignoreScreenSaver;
 	BOOL running;
 	NSArray *tasksList;
 	NSTimeInterval dailyGoal;
 	NSTimeInterval weeklyGoal;
+	NSDate *lastStateChange;
+	BOOL showSummary;
+	BOOL autoBackToWork;
+	NSTimeInterval timeAwayThreshold;
+	NSTimeInterval brbThreshold;
+	WPAStateType previousState;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *instancesMap;
@@ -48,13 +53,20 @@
 @property (nonatomic) BOOL loadOnLogin;
 @property (nonatomic) BOOL ignoreScreenSaver;
 @property (nonatomic) BOOL running;
-@property (nonatomic) int startingState;
+@property (nonatomic) BOOL autoBackToWork;
+@property (nonatomic) BOOL showSummary;
 @property (nonatomic) int thinkTime;
 @property (nonatomic, retain) NSString *alertName;
 @property (nonatomic, retain) TaskInfo *currentTask;
 //@property (nonatomic, retain) NSString *currentSource;
 @property (nonatomic, retain) NSManagedObject *currentActivity;
 @property (nonatomic, retain) NSArray *tasksList;
+@property (nonatomic, retain) NSDate *lastStateChange;
+@property (nonatomic) NSTimeInterval timeAwayThreshold;
+@property (nonatomic) NSTimeInterval brbThreshold;
+@property (nonatomic) WPAStateType currentState;
+@property (nonatomic, readonly) WPAStateType previousState;
+@property (nonatomic, readonly) int enabledModulesCount;
 
 + (Context*)sharedContext;
 - (void) loadBundles;
@@ -66,5 +78,14 @@
 - (NSString*) descriptionForModule: (<Module>) mod;
 - (NSData*) iconForModule: (<Module>) mod;
 - (void) removeDefaultsForKey: (NSString*) keyPrefix;
+
+- (void) refreshModules: (<AlertHandler>) handler withLoop: (BOOL) loopingOn;
+- (void) scheduleModules: (<AlertHandler>) handler withLoop: (BOOL) loopingOn;
+- (void) busyModules ;
+- (void) freeModules ;
+- (void) awayModules ;
+- (NSArray*) refreshableModules;
+- (NSArray*) getTasks ;
+
 
 @end

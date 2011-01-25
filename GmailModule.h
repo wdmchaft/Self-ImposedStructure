@@ -7,11 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "BaseModule.h"
+#import "BaseInstance.h"
 #import "RulesTableData.h"
+#import "GMailRequestHandler.h"
 
 #define MAX_FAIL 3
-@interface GmailModule : BaseModule <NSXMLParserDelegate>{
+@interface GmailModule : BaseInstance {
 	NSTextField *userField;
 	NSSecureTextField *passwordField;
 	NSTextField *frequencyField;
@@ -37,6 +38,8 @@
 	NSButton *removeRuleButton;
 	RulesTableData *rulesData;
 	NSInteger failCount;
+	BOOL summaryMode;
+//	GMailRequestHandler *refeshHandler;
 }
 @property (nonatomic,retain) NSString *userStr;
 @property (nonatomic,retain) NSString *titleStr;
@@ -58,16 +61,17 @@
 @property (nonatomic, retain) IBOutlet NSTextField *frequencyField;
 @property (nonatomic, retain) IBOutlet NSStepper *stepper;
 @property (nonatomic, retain) NSMutableArray* rules;
+//@property (nonatomic, retain) GMailRequestHandler* refreshHandler;
 @property (nonatomic, retain) IBOutlet NSTableView* rulesTable;
 @property (nonatomic, retain) IBOutlet NSButton* addRuleButton;
 @property (nonatomic, retain) IBOutlet NSButton* removeRuleButton;
 @property (nonatomic, retain) RulesTableData *rulesData;
 @property (nonatomic) NSInteger failCount;
+@property (nonatomic) BOOL summaryMode;
 
 
--(void) scheduleNextRefresh;
 -(IBAction) clickStepper: (id) sender;
-- (void) refreshData:(NSTimer *)timer;
+- (void) refreshData:(GMailRequestHandler*) handler;
 - (IBAction) clickAddRule: (id) sender;
 - (IBAction) clickRemoveRule: (id) sender;
 - (IBAction) typeChanged: (id) sender;

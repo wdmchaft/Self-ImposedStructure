@@ -29,7 +29,7 @@
 	
     // Get the data out of the context
     char *outputBuffer;
-    long outputLength = BIO_get_mem_data(context, &outputBuffer);
+    BIO_get_mem_data(context, &outputBuffer);
     NSString *encodedString = [NSString
 							   stringWithCString:outputBuffer encoding: NSUTF8StringEncoding];
 							//   length:outputLength];
@@ -39,4 +39,47 @@
 	
     return encodedString;
 }
+
++(NSString*) timeStrFor:(NSDate*) date
+{
+	NSString *ret = nil;
+	NSDateFormatter *compDate = [NSDateFormatter new];;
+	[compDate  setDateFormat:@"yyyyMMdd" ];
+	NSString *todayStr = [compDate stringFromDate:[NSDate date]];
+	NSDate *tomorrow = [[NSDate date] dateByAddingTimeInterval:24*60*60];
+	NSString *tomorrowStr = [compDate stringFromDate:tomorrow];
+	NSString *eDateStr = [compDate stringFromDate:date];
+	if ([todayStr isEqualToString:eDateStr]){
+		NSDateFormatter *timeDate = [NSDateFormatter new];
+		[timeDate setDateFormat: @"hh:mm"];
+		ret = [NSString stringWithFormat:@"Today at %@", [timeDate stringFromDate:date]];
+	}
+	else if ([tomorrowStr isEqualToString:eDateStr] ){
+		NSDateFormatter *timeDate = [NSDateFormatter new];
+		[timeDate setDateFormat: @"hh:mm"];
+		ret = [NSString stringWithFormat:@"Tomorrow at %@", [timeDate stringFromDate:date]];
+		
+	}else{
+		NSDateFormatter *timeDate = [NSDateFormatter new];
+		[timeDate setDateFormat: @"ddd' at 'hh:mm"];
+		ret = [timeDate stringFromDate:date];
+	}
+	return ret;
+}
+
++ (NSString*) encode: (NSString*) inStr
+{
+	NSString *out = [inStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	out = [out stringByReplacingOccurrencesOfString:@"," withString:@"%2C"];
+	return out;
+}
+
++ (NSString*) decode: (NSString*) inStr
+{
+	NSString *out = [inStr stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	out = [out stringByReplacingOccurrencesOfString:@"%2C" withString:@","];
+	return out;
+}
+
+
 @end

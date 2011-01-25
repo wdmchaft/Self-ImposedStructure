@@ -11,9 +11,11 @@
 #import "WPADelegate.h"
 #import "State.h"
 #import "StatsWindow.h"
+#import "RefreshManager.h"
+#import "GrowlDelegate.h"
 
-@interface WPAMainController :NSObject <NSComboBoxDelegate> {
-
+@interface WPAMainController :NSObject <NSComboBoxDelegate,NSWindowDelegate> {
+	NSWindow *myWindow;
 	NSButton *startButton;
 	NSSegmentedControl *controls;
 	NSComboBox *taskComboBox;
@@ -22,8 +24,13 @@
 	NSStatusItem *statusItem;
 	NSMenu *statusMenu;
 	NSTimer *statusTimer;
+	NSWindow *hudWindow;
+	RefreshManager *refreshManager;
+	GrowlDelegate *growlDelegate;
+	NSTimer *thinkTimer;
 }
 
+@property (retain, nonatomic) IBOutlet NSWindow	*myWindow;
 @property (retain, nonatomic) IBOutlet NSButton *startButton;
 
 @property (retain, nonatomic) IBOutlet NSButton *refreshButton;
@@ -31,7 +38,11 @@
 @property (retain, nonatomic) IBOutlet NSComboBox *taskComboBox;
 @property (retain, nonatomic) IBOutlet NSStatusItem *statusItem;
 @property (retain, nonatomic) IBOutlet NSMenu *statusMenu;
-@property (retain, nonatomic) IBOutlet NSTimer *statusTimer;
+@property (retain, nonatomic)  NSTimer *statusTimer;
+@property (retain, nonatomic)  NSWindow *hudWindow;
+@property (retain, nonatomic)  RefreshManager *refreshManager;
+@property (retain, nonatomic)  GrowlDelegate *growlDelegate;
+@property (retain, nonatomic)  NSTimer *thinkTimer;
 
 - (IBAction) clickStart: (id) sender;
 - (IBAction) clickControls: (id) sender;
@@ -41,7 +52,7 @@
 -(IBAction) clickPlay: (id) sender;
 -(IBAction) clickWork: (id) sender;
 -(IBAction) clickTimed: (id) sender;
-- (void) changeState: (int) state;
+- (void) changeState: (WPAStateType) state;
 - (void) tasksChanged: (NSNotification*) notification;
 
 -(void)handleScreenSaverStart:(NSNotification*) notification;
@@ -49,5 +60,8 @@
 - (void) enableUI: (BOOL) onOff;
 - (void) initStatusMenu;
 - (void) updateStatus: (NSTimer*) timer;
-
+- (BOOL) shouldGoBackToWork;
+- (BOOL) needsSummary;
+- (void) running: (BOOL) onOff;
+- (void) summaryClosed:(NSNotification*) notification;
 @end

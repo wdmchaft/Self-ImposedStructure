@@ -11,46 +11,29 @@
 
 @implementation iChatModule
 
--(void) start
+- (void) changeState: (WPAStateType) newState
 {
-}
-
--(void) think
-{
-	[super think];
+	
+	iChatMyStatus newStatus;
+	switch (newState) {
+		case WPASTATE_THINKING:
+			newStatus = iChatMyStatusInvisible;
+			break;
+		case WPASTATE_AWAY:
+			newStatus = iChatMyStatusAway;
+			break;
+		case WPASTATE_FREE:
+			newStatus = iChatMyStatusAvailable;
+			break;
+		default:
+			break;
+	}
 	iChatApplication *iChatApp = [SBApplication applicationWithBundleIdentifier:@"com.apple.iChat"];
 	NSArray *services = [iChatApp services];
 	for (iChatService *service in services)
 	{
-		service.status = iChatMyStatusInvisible;
+		service.status = newStatus;
 	}
-	
-}
-
--(void) putter
-{
-
-	[super think];
-	iChatApplication *iChatApp = [SBApplication applicationWithBundleIdentifier:@"com.apple.iChat"];
-	NSArray *services = [iChatApp services];
-	for (iChatService *service in services)
-	{
-		service.status = iChatMyStatusAvailable;
-	}
-	
-}
-
--(void) goAway
-{
-
-	[super think];
-	iChatApplication *iChatApp = [SBApplication applicationWithBundleIdentifier:@"com.apple.iChat"];
-	NSArray *services = [iChatApp services];
-	for (iChatService *service in services)
-	{
-		service.status = iChatMyStatusAway;
-	}
-	
 }
 
 -(void) startValidation: (NSObject*) callback  

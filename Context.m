@@ -6,10 +6,81 @@
 //  Copyright 2010 workplayaway.com. All rights reserved.
 //
 
-#import "Context.h"
-#import "BaseModule.h"
+//#import "BaseModule.h"
 #import "IconsFile.h"
 #import "TaskInfo.h"
+#import "State.h"
+#import "Utility.h"
+#import "BaseInstance.h"
+#import "TaskList.h"
+
+@interface Context : NSObject {
+	NSMutableDictionary *instancesMap; // maps module name to instance of module
+	NSMutableDictionary *bundlesMap; // maps plugin name to its bundle
+	NSMutableDictionary *iconsMap; // maps module name to its icon;
+	NSMutableArray *savedQ;
+	NSMutableArray *alertQ;
+	int growlInterval;
+	NSTimer *thinkTimer;
+	BOOL startOnLoad;
+	BOOL loadOnLogin;
+	int thinkTime;
+	NSString *alertName;
+	TaskInfo *currentTask;
+	NSManagedObject *currentActivity;
+	BOOL ignoreScreenSaver;
+	BOOL running;
+	NSArray *tasksList;
+	NSTimeInterval dailyGoal;
+	NSTimeInterval weeklyGoal;
+	NSDate *lastStateChange;
+	BOOL showSummary;
+	BOOL autoBackToWork;
+	NSTimeInterval timeAwayThreshold;
+	NSTimeInterval brbThreshold;
+	WPAStateType previousState;
+}
+
+@property (nonatomic, retain) NSMutableDictionary *instancesMap;
+@property (nonatomic, retain) NSMutableDictionary *bundlesMap;
+@property (nonatomic, retain) NSMutableDictionary *iconsMap;
+@property (nonatomic, retain, readonly) NSMutableArray *savedQ;
+@property (nonatomic, retain) NSMutableArray *alertQ;
+@property (nonatomic) NSTimeInterval weeklyGoal;
+@property (nonatomic) NSTimeInterval dailyGoal;
+@property (nonatomic) int growlInterval;
+@property (nonatomic, retain) NSTimer *thinkTimer;
+@property (nonatomic) BOOL startOnLoad;
+@property (nonatomic) BOOL loadOnLogin;
+@property (nonatomic) BOOL ignoreScreenSaver;
+@property (nonatomic) BOOL running;
+@property (nonatomic) BOOL autoBackToWork;
+@property (nonatomic) BOOL showSummary;
+@property (nonatomic) WPAStateType currentState;
+@property (nonatomic) int thinkTime;
+@property (nonatomic, retain) NSString *alertName;
+@property (nonatomic, retain) TaskInfo *currentTask;
+//@property (nonatomic, retain) NSString *currentSource;
+@property (nonatomic, retain) NSManagedObject *currentActivity;
+@property (nonatomic, retain) NSArray *tasksList;
+@property (nonatomic, retain) NSDate *lastStateChange;
+@property (nonatomic) NSTimeInterval timeAwayThreshold;
+@property (nonatomic) NSTimeInterval brbThreshold;
+@property (nonatomic) WPAStateType previousState;
+@property (nonatomic) int enabledModulesCount;
++ (Context*)sharedContext;
+- (void) loadBundles;
+- (void) initFromDefaults;
+- (void) saveModules;
+- (void) saveDefaults;
+- (void) saveTask;
+- (TaskInfo*) readTask:(NSUserDefaults*) defaults;
+- (NSString*) descriptionForModule: (<Module>) mod;
+- (NSData*) iconForModule: (<Module>) mod;
+- (void) removeDefaultsForKey: (NSString*) keyPrefix;
+
+@end
+
 
 @implementation Context
 @synthesize alertQ;
@@ -20,17 +91,23 @@
 @synthesize startOnLoad;
 @synthesize instancesMap;
 @synthesize iconsMap;
-@synthesize startingState;
+@synthesize currentState;
 @synthesize thinkTime;
 @synthesize loadOnLogin;
 @synthesize alertName;
 @synthesize currentActivity;
 @synthesize currentTask;
-//@synthesize currentSource;
 @synthesize ignoreScreenSaver;
 @synthesize tasksList;
 @synthesize weeklyGoal;
 @synthesize dailyGoal;
+@synthesize lastStateChange;
+@synthesize previousState;
+@synthesize timeAwayThreshold;
+@synthesize brbThreshold;
+@synthesize autoBackToWork;
+@synthesize showSummary;
+@synthesize enabledModulesCount;
 
 
 static Context* sharedContext = nil;
@@ -146,13 +223,19 @@ static Context* sharedContext = nil;
 	if (temp != nil){
 		loadOnLogin = [((NSNumber*) temp) intValue];
 	}
-	temp = [ud objectForKey:@"StartingState"];
-	if (temp != nil){
-		startingState = [((NSNumber*) temp) intValue];
-	}
+	
+	/**
+	 If this is the first time the the initial state is OFF
+	 **/
+	temp = [ud objectForKey:@"CurrentState"];
+	[self setCurrentState: temp ? [((NSNumber*) temp) intValue] : WPASTATE_OFF]; // 
+	
+	temp = [ud objectForKey:@"PreviousState"];
+	previousState = temp? [((NSNumber*) temp) intValue] : WPASTATE_FREE;
+					 
 	temp = [ud objectForKey:@"IgnoreScreenSaver"];
 	if (temp != nil){
-		startingState = [((NSNumber*) temp) intValue];
+		ignoreScreenSaver = [((NSNumber*) temp) intValue];
 	}
 	temp = [ud objectForKey:@"GrowlInterval"];
 	growlInterval = (temp == nil) ? 10 : [((NSNumber*) temp) intValue];
@@ -168,6 +251,21 @@ static Context* sharedContext = nil;
 	
 	temp = [ud objectForKey:@"AlertName"];
 	alertName = (temp == nil) ? @"Beep" : (NSString*)temp;
+	
+	temp = [ud objectForKey:@"showSummary"];
+	showSummary = (temp ? [((NSNumber*) temp) intValue] : YES);
+	
+	temp = [ud objectForKey:@"autoBackToWork"];
+	autoBackToWork = (temp ? [((NSNumber*) temp) intValue] : YES);
+	
+	temp = [ud objectForKey:@"BRBThreshold"];
+	brbThreshold = (temp ? [((NSNumber*) temp) intValue] : 10 * 60);
+	
+	temp = [ud objectForKey:@"TimeAwayThreshold"];
+	timeAwayThreshold = (temp ? [((NSNumber*) temp) intValue] : 4 * 60 * 60);
+		
+	temp = [ud objectForKey:@"LastStateChange"];
+	lastStateChange = (temp ? (NSDate*) temp : [NSDate distantPast]);
 
 	
 	// ModulesList : <modName1>, <pluginNameY>, <modName2>, <pluginNameX>, <modName3>, <pluginNameZ>, etc...
@@ -180,7 +278,7 @@ static Context* sharedContext = nil;
 	for (int i = 0; i < count;i++) {
 		int idx1 = i * 2;
 		int idx2 = idx1 + 1;
-		NSString *name = [BaseModule decode:[modsAndTypes objectAtIndex:idx1]];
+		NSString *name = [Utility decode:[modsAndTypes objectAtIndex:idx1]];
 		NSString *pluginName = [modsAndTypes objectAtIndex:idx2];
 		// 
 		// lookup the pluginName vs the map of actual existing plugins (plugins that *have* bundles)
@@ -200,7 +298,7 @@ static Context* sharedContext = nil;
 		NSString *bundleName = [modulesMap objectForKey:modName];
 		NSBundle *bundle = [bundlesMap objectForKey: bundleName]; 
  		Class modClass = bundle.principalClass;
-		BaseModule *mod = [modClass alloc];
+		BaseInstance *mod = [modClass alloc];
 		//
 		// the NIB name should match the plugin
 		//
@@ -211,20 +309,26 @@ static Context* sharedContext = nil;
 	}
 	// this depends on having the instances map set
 	currentTask = [self readTask:ud];
-
 }
+
 -(void) saveDefaults
 {
 	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
 	[ud setObject: [NSNumber numberWithInt:startOnLoad] forKey: @"StartOnLoad"];
 	[ud setObject: [NSNumber numberWithInt:loadOnLogin] forKey: @"LoadOnLogin"];
 	[ud setObject: [NSNumber numberWithInt:ignoreScreenSaver] forKey: @"IgnoreScreenSaver"];
-	[ud setObject: [NSNumber numberWithInt:startingState] forKey: @"StartingState"];
+	[ud setObject: [NSNumber numberWithInt:currentState] forKey: @"currentState"];
 	[ud setObject: [NSNumber numberWithInt:thinkTime] forKey: @"ThinkTime"];
 	[ud setObject: [NSNumber numberWithInt:growlInterval] forKey: @"GrowlInterval"];
 	[ud setObject: [NSNumber numberWithInt:thinkTime] forKey: @"ThinkTime"];
-	[ud setObject: [NSNumber numberWithInt:thinkTime] forKey: @"WeeklyGoal"];
-	[ud setObject: [NSNumber numberWithInt:thinkTime] forKey: @"DailyGoal"];
+	[ud setObject: [NSNumber numberWithInt:weeklyGoal] forKey: @"WeeklyGoal"];
+	[ud setObject: [NSNumber numberWithInt:dailyGoal] forKey: @"DailyGoal"];
+	[ud setObject: [NSNumber numberWithInt:timeAwayThreshold] forKey: @"TimeAwayThreshold"];
+	[ud setObject: [NSNumber numberWithInt:brbThreshold] forKey: @"BRBThreshold"];
+	[ud setObject: [NSNumber numberWithInt:autoBackToWork] forKey: @"AutoBackToWork"];
+	[ud setObject: [NSNumber numberWithInt:showSummary] forKey: @"ShowSummary"];
+	[ud setObject: [NSNumber numberWithInt:previousState] forKey: @"PreviousState"];
+	[ud setObject: lastStateChange forKey: @"LastStateChange"];
 	[ud setObject: alertName forKey: @"AlertName"];
 	[self saveModules];
 	[self saveTask];
@@ -232,6 +336,7 @@ static Context* sharedContext = nil;
 	[ud synchronize];
 	
 }
+
 - (void) removeDefaultsForKey: (NSString*) keyPrefix
 {
 	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
@@ -246,7 +351,7 @@ static Context* sharedContext = nil;
 {
 	NSString *modsString = @"";
 	for (NSString *name in [instancesMap allKeys]){
-		NSString *escName = [BaseModule encode:name];
+		NSString *escName = [Utility encode:name];
 		NSString *comma = [modsString length] == 0?@"" : @",";
 		modsString = [modsString stringByAppendingString:comma];
 		modsString = [modsString stringByAppendingString:escName];
@@ -315,6 +420,93 @@ static Context* sharedContext = nil;
 		alertQ = [NSMutableArray new];
 	}
 	return alertQ;
+}
+
+- (void) setCurrentState:(WPAStateType) newState;
+{
+	previousState = currentState;
+	currentState = newState;
+	lastStateChange = [NSDate date];
+}
+
+- (int) enabledModulesCount{
+	int count;
+	for (NSString *name in instancesMap){
+		<Instance> mod = [instancesMap objectForKey: name];
+		count += mod.enabled;
+	}
+	return count;
+}
+
+
+- (void) busyModules {
+	for (NSString *name in instancesMap){
+		id thing = [instancesMap objectForKey: name];
+		<Instance> inst = (<Instance>) thing;
+		if ( inst.enabled && [thing respondsToSelector:@selector(setState:)]){
+			[inst setState: WPASTATE_THINKING];
+		}
+	}
+}
+
+- (void) freeModules {
+	for (NSString *name in instancesMap){
+		id thing = [instancesMap objectForKey: name];
+		<Instance> inst = (<Instance>) thing;
+		if ( inst.enabled && [thing respondsToSelector:@selector(setState:)]){
+			[inst setState: WPASTATE_FREE];
+		}
+	}
+}
+
+- (void) awayModules {
+	for (NSString *name in instancesMap){
+		id thing = [instancesMap objectForKey: name];
+		<Instance> inst = (<Instance>) thing;
+		if ( inst.enabled && [thing respondsToSelector:@selector(setState:)]){
+			[inst setState: WPASTATE_AWAY];
+		}		
+	}
+}	
+- (NSArray*) refreshableModules
+{
+	NSMutableArray *ret = [NSMutableArray new];
+	for (NSString *name in instancesMap){
+		id thing = [instancesMap objectForKey: name];
+		<Instance> inst = (<Instance>) thing;
+		if ( inst.enabled && [thing respondsToSelector:@selector(refresh:)]){
+			[ret addObject:thing];
+		}
+	}
+	return [NSArray arrayWithArray:ret];
+}
+
+- (NSArray*) getTasks {
+	NSMutableDictionary *gather = [NSMutableDictionary new];
+	<Module> module = nil;
+	NSString *name = nil;
+	for (name in instancesMap){
+		id thing = [instancesMap objectForKey: name];
+		<TaskList> list  = (<TaskList>) thing;
+		<Instance> inst  = (<Instance>) thing;
+		if (inst.enabled && [thing conformsToProtocol:@protocol(TaskList)]){
+			NSArray *items = [list getTasks];
+			if (items){
+				for(NSString *item in items){
+					TaskInfo *info = [[TaskInfo alloc] initWithName:item 
+															source : module 
+															project:[module projectForTask:item]];
+					TaskInfo *fo = [gather objectForKey:info.name];
+					if (fo){
+						fo.description = [NSString stringWithFormat:@"%@ [%@]",fo.name,[fo.source description] ];
+						info.description = [NSString stringWithFormat:@"%@ [%@]",info.name,[info.source description] ];
+					}
+					[gather setObject:info forKey:info.description];
+				}
+			}
+		}
+	}
+	return [gather allValues];
 }
 @end
 

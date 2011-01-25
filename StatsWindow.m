@@ -62,7 +62,7 @@
 - (void) setContents
 {
 	WPADelegate *nad = (WPADelegate*) [NSApplication sharedApplication].delegate;
-	[nad newRecord:[Context sharedContext].startingState];
+	[nad newRecord:[Context sharedContext].currentState];
 
 	statsArray = [Schema statsReportForDate:[NSDate date] inContext:nad.managedObjectContext];
 	statsData = [[SummaryTable alloc]initWithRows: statsArray];

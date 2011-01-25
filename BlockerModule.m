@@ -14,32 +14,16 @@
 @synthesize blackList;
 @synthesize addButton,removeButton, listBrowser;
 
--(void) think
+- (void) stateChange: (WPAStateType) newState
 {
-	thinking = YES;
-	[self block];
-}
--(void) putter;
-{
-	thinking = NO;
-	[self unblock];
-}
--(void) stop
-{
-	[self unblock];
+	if (newState == WPASTATE_THINKING)
+		[self block];
+	else {
+		[self unblock];
+	}
+
 }
 
--(void) start
-{
-	
-}
-
--(void) goAway
-{
-	away = YES;
-	thinking = NO;
-	[self unblock];
-}
 
 -(void) startValidation: (NSObject*) callback  
 {
@@ -92,13 +76,13 @@
 	if (res != 0) {
 		switch(res){
 			case 1:
-				[super sendError:@"Error reading hosts file" module:[self description]];
+				NSLog(@"Error reading hosts file");
 				break;
 			case 2:
-				[super sendError:@"Error writing backup file" module:[self description]];
+				NSLog(@"Error reading hosts file");
 				break;
 			case 3:
-				[super sendError:@"Error updating hosts file" module:[self description]];
+				NSLog(@"Error reading hosts file");
 				break;
 		}
 	}
@@ -117,7 +101,7 @@
 	if (res != 0) {
 		switch(res){
 			case 3:
-				[super sendError:@"Error restoring original hosts file" module:[self description]];
+				NSLog(@"Error restoring original hosts file");
 				break;
 		}
 	}

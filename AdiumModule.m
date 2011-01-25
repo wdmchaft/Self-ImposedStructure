@@ -8,7 +8,7 @@
 
 #import "AdiumModule.h"
 #import "Adium.h"
-
+#import "State.h"
 
 @implementation AdiumModule
 @synthesize state;
@@ -19,47 +19,31 @@
 @synthesize playStatusButton;
 @synthesize awayStatusButton;
 
-
--(void) think
+-(void) changeState: (WPAStateType) newState
 {
-	[super think];
+	
+	AdiumStatusTypes newStatus;
+	switch (newState) {
+		case WPASTATE_THINKING:
+			newStatus = adiumWorkState;
+			break;
+		case WPASTATE_AWAY:
+			newStatus = adiumAwayState;
+			break;
+		case WPASTATE_FREE:
+			newStatus = adiumPlayState;
+			break;
+		default:
+			break;
+	}
 	AdiumApplication *addiumApp = [SBApplication applicationWithBundleIdentifier:@"com.adiumX.adiumX"];
 	
 	NSArray *array = [addiumApp statuses];
 	for (AdiumStatus *stat in array){
-		if (stat.statusType == adiumWorkState){
-		[addiumApp setGlobalStatus:stat];
-		}
-	}
-
-}
-
--(void) putter
-{
-	[super putter];
-	AdiumApplication *addiumApp = [SBApplication applicationWithBundleIdentifier:@"com.adiumX.adiumX"];
-
-	NSArray *array = [addiumApp statuses];
-	for (AdiumStatus *stat in array){
-		if (stat.statusType == adiumPlayState){
+		if (stat.statusType == newStatus){
 			[addiumApp setGlobalStatus:stat];
 		}
 	}
-
-}
-
--(void) goAway
-{
-	[super goAway];
-	AdiumApplication *addiumApp = [SBApplication applicationWithBundleIdentifier:@"com.adiumX.adiumX"];
-
-	NSArray *array = [addiumApp statuses];
-	for (AdiumStatus *stat in array){
-		if (stat.statusType == adiumAwayState){
-			[addiumApp setGlobalStatus:stat];
-		}
-	}
-//	NSLog(@"status is %@", addiumApp.globalStatus.title);
 }
 
 -(void) startValidation: (NSObject*) callback  

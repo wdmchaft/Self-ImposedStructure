@@ -22,6 +22,8 @@
 @synthesize detailController;
 @synthesize away;
 @synthesize thinking;
+@synthesize type;
+@synthesize skipRefresh;
 
 -(void) think
 {
@@ -37,10 +39,6 @@
 	started = NO;
 }
 
--(void) start{
-	started = YES;
-}
-
 -(void) goAway
 {
 	away = YES;
@@ -50,15 +48,10 @@
 {
 }
 
-- (NSWindowController*) getDetailWindow: (NSDictionary*) params;
-{
-	return nil;
-}
-
 -(void) setAlertCallback:(<AlertHandler>) hndl
 {	
 	handler = hndl;
-}
+} 
 - (void) sendError: (NSString*) error module:(NSString*) modName
 {
 	Note *alert = [[Note alloc]init];
@@ -73,10 +66,12 @@
 {
 	validationHandler = callback;
 }
+
 - (void) clearValidation
 {
 	validationHandler = nil;
 }
+
 -(void) saveDefaults{
 	[self saveDefaultValue:[NSNumber numberWithInt:enabled] forKey:ENABLED];
 }
@@ -89,6 +84,7 @@
 	NSNumber *temp = [self loadDefaultForKey:ENABLED];
 	enabled = [temp intValue];
 }
+
 + (NSString*) encode: (NSString*) inStr
 {
 	NSString *out = [inStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -128,6 +124,20 @@
 
 -(void) refreshTasks
 {
+}
+
+// should be overridden
+- (void) getSummary
+{
+	[self sendSummaryDone];
+}
+
+- (void) sendSummaryDone
+{
+	Note *alert = [[Note alloc]init];
+	alert.moduleName = [self description];
+	alert.params = [NSDictionary new]; // empty - not nil
+	[handler handleAlert:alert];
 }
 
 - (NSString*) projectForTask: (NSString*) task

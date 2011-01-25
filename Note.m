@@ -16,6 +16,8 @@
 @synthesize message;
 @synthesize params;
 @synthesize sticky;
+@synthesize clickable;
+@synthesize lastAlert;
 
 -(id) copyWithZone: (NSZone *) zone
 {
@@ -27,7 +29,8 @@
     [copy setTitle:[self title]];
     [copy setMessage:[self message]];
     [copy setParams:[self params]];
-	
+	[copy setClickable: [self clickable]];
+	[copy setLastAlert: [self lastAlert]];
     return copy;
 }
 

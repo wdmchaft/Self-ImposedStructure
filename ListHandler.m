@@ -79,7 +79,7 @@ didStartElement:(NSString *)elementName
 		listId = id; 
     }
 	if ( [elementName isEqualToString:@"err"]){
-		NSString* code = [attributeDict objectForKey:@"code"];
+		//NSString* code = [attributeDict objectForKey:@"code"];
 		NSString* msg = [attributeDict objectForKey:@"msg"];
 		[context sendError:msg module:[context description]];
 	}

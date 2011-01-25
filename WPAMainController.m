@@ -14,27 +14,18 @@
 #import "Module.h"
 #import "TimerDialogController.h"
 #import "TaskInfo.h"
+#import "SummaryHUDControl.h"
 
 @implementation WPAMainController
-@synthesize  startButton, controls, taskComboBox, refreshButton, statusItem, statusMenu, statusTimer;
+@synthesize  startButton, controls, taskComboBox, refreshButton, statusItem, statusMenu, statusTimer, myWindow;
+@synthesize hudWindow, refreshManager, growlDelegate, thinkTimer;
 
 - (void)awakeFromNib
 {
+	[myWindow setDelegate: self];
 	WPADelegate *del = (WPADelegate*)[NSApplication sharedApplication].delegate;
 	[del.window setReleasedWhenClosed:FALSE];
 	Context *ctx = [Context sharedContext];
-
-
-	[controls setSelectedSegment:ctx.startingState];
-	if (ctx.startOnLoad){
-		
-		startButton.title = @"Stop";
-		[del newRecord:ctx.startingState];
-
-	} else {
-		
-		startButton.title = @"Start";
-	}
 	
 	NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
 	[center addObserver: self selector:@selector(statusHandler:)
@@ -43,7 +34,7 @@
 				   name:@"org.ottoject.tasks" object:nil];
 	
 	[taskComboBox removeAllItems];
-	NSArray *allTasks = [(WPADelegate*)[[NSApplication sharedApplication] delegate] getAllTasks];
+	NSArray *allTasks = [ctx getTasks];
 	for(TaskInfo *info in allTasks){
 		[taskComboBox addItemWithObjectValue:info]; 
 	}
@@ -93,11 +84,11 @@
 		[[statusMenu itemWithTag:2] setEnabled:YES];
 		[[statusMenu itemWithTag:3] setEnabled:YES];
 		[[statusMenu itemWithTag:4] setEnabled:YES];
-		if (ctx.startingState == STATE_PUTZING) {
+		if (ctx.currentState == WPASTATE_FREE) {
 			[statusItem setTitle:@"P"];
 			[[statusMenu itemWithTag:2] setState:NSOnState];
 		}
-		if (ctx.startingState == STATE_AWAY) {
+		if (ctx.currentState == WPASTATE_AWAY) {
 			[statusItem setTitle:@"A"];
 			[[statusMenu itemWithTag:3] setState:NSOnState];
 		
@@ -107,7 +98,7 @@
 			NSUInteger mins = ceil(interval / 60);
 			[statusItem setTitle: [NSString stringWithFormat:@"%d",mins] ];
 			[[statusMenu itemWithTag:4] setState:NSOnState];
-		} else if (ctx.startingState == STATE_THINKING) {
+		} else if (ctx.currentState == WPASTATE_THINKING) {
 			[statusItem setTitle:@"W"];
 			[[statusMenu itemWithTag:1] setState:NSOnState];
 		}
@@ -119,46 +110,42 @@
 {
 	[taskComboBox removeAllItems];
 	Context *ctx = [Context sharedContext];
-	ctx.tasksList = [(WPADelegate*)[[NSApplication sharedApplication] delegate] getAllTasks];
+	ctx.tasksList = [ctx getTasks];
 	for(TaskInfo *info in ctx.tasksList){
 		[taskComboBox addItemWithObjectValue:info]; 
 	}
 }
 
-- (void)comboBoxSelectionDidChange:(NSNotification *)notification
-{
-	Context *ctx = [Context sharedContext];
-	NSComboBox *cb = taskComboBox;
-	
-	NSObject *selObj = [cb objectValueOfSelectedItem];
-	if (selObj.class == NSString.class){
-		ctx.currentTask = [TaskInfo new];
-		ctx.currentTask.name = (NSString*) selObj;
-	}
-	ctx.currentTask = (TaskInfo*) selObj;
-	if (ctx.currentTask == nil){
-		NSLog(@"%@",cb.stringValue);
-	}
-	[ctx saveTask];
-	
-//	if ([ctx.currentTask isEqualToString:@"No Current Task"]){
-//		ctx.currentTask = nil;
+//- (void)comboBoxSelectionDidChange:(NSNotification *)notification
+//{
+//	Context *ctx = [Context sharedContext];
+//	NSComboBox *cb = taskComboBox;
+//	
+//	NSObject *selObj = [cb objectValueOfSelectedItem];
+//	if (selObj.class == NSString.class){
+//		ctx.currentTask = [TaskInfo new];
+//		ctx.currentTask.name = (NSString*) selObj;
 //	}
-	
-	// we changed jobs so write a new tracking record
-	if (ctx.startingState == STATE_THINKING || ctx.startingState == STATE_THINKTIME){
-		[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:ctx.startingState];
-	}
-}
-- (void) comboBoxSelectionWillChange:(NSNotification *)notification
-{
-}
-- (void) comboBoxWillDismiss:(NSNotification *)notification
-{
-}
-- (void) comboBoxWillPopUp:(NSNotification *)notification
-{
-}
+//	ctx.currentTask = (TaskInfo*) selObj;
+//	if (ctx.currentTask == nil){
+//		NSLog(@"%@",cb.stringValue);
+//	}
+//	[ctx saveTask];
+//
+//	// we changed jobs so write a new tracking record
+//	if (ctx.currentState == WPASTATE_THINKING || ctx.currentState == WPASTATE_THINKTIME){
+//		[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:ctx.currentState];
+//	}
+//}
+//- (void) comboBoxSelectionWillChange:(NSNotification *)notification
+//{
+//}
+//- (void) comboBoxWillDismiss:(NSNotification *)notification
+//{
+//}
+//- (void) comboBoxWillPopUp:(NSNotification *)notification
+//{
+//}
 
 - (void) enableUI: (BOOL) onOff
 {
@@ -168,93 +155,184 @@
 }
 
 -(IBAction) clickStart: (NSButton*) sender {
-	BOOL running = ([Context sharedContext].running);
-	if (running){
+	[self running:YES];
+}
+
+- (void) running: (BOOL) on
+{
+	Context *ctx = [Context sharedContext];
+	WPAStateType newState = ctx.previousState;
+	if (on == NO){
 		[(WPADelegate*)[[NSApplication sharedApplication] delegate] stop];
 		startButton.title = @"Start";
-		[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:STATE_OFF];
+		newState = WPASTATE_OFF;
 		[statusTimer invalidate];
 	} else {
-		[(WPADelegate*)[[NSApplication sharedApplication] delegate] start];
 		startButton.title = @"Stop";
-		[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:[Context sharedContext].startingState];
 		statusTimer = [NSTimer scheduledTimerWithTimeInterval:15 target: self selector:@selector(updateStatus:) userInfo:nil repeats:NO];
+		newState = WPASTATE_FREE;
 	}
-	[self enableUI:!running];
+	ctx.running = on;
+	[self enableUI:ctx.running];
 	[self initStatusMenu];
+	[self changeState:newState];
 }
 
 - (IBAction) clickTimed: (id) sender
 {
-	[self changeState: STATE_THINKTIME];
-	[controls setSelectedSegment: STATE_THINKTIME];	
+	[self changeState: WPASTATE_THINKTIME];
+	[controls setSelectedSegment: WPASTATE_THINKTIME];	
 }
 
 - (IBAction) clickWork: (id) sender
 {
-	[self changeState: STATE_THINKING];
-	[controls setSelectedSegment: STATE_THINKING];	
+	[self changeState: WPASTATE_THINKING];
+	[controls setSelectedSegment: WPASTATE_THINKING];	
 
 }
 
 - (IBAction) clickPlay: (id) sender
 {
-	[self changeState: STATE_PUTZING];
-	[controls setSelectedSegment: STATE_PUTZING];	
+	[self changeState: WPASTATE_FREE];
+	[controls setSelectedSegment: WPASTATE_FREE];	
 }
 
 - (IBAction) clickAway: (id) sender
 {
-	[self changeState: STATE_AWAY];
-	[controls setSelectedSegment: STATE_AWAY];
+	[self changeState: WPASTATE_AWAY];
+	[controls setSelectedSegment: WPASTATE_AWAY];
 }
 
 - (IBAction) clickControls: (id) sender
 {
-	int state = controls.selectedSegment;
-	if (state == STATE_THINKTIME){
+	int newState = controls.selectedSegment;
+//	if (newState == WPASTATE_THINKTIME){
+//		TimerDialogController *tdc = [[TimerDialogController alloc] initWithWindowNibName:@"TimerDialog"];
+//		NSWindow *tdcWindow = [tdc window];
+//		[tdcWindow orderFrontRegardless];
+//		[NSApp runModalForWindow: tdcWindow];
+//
+//	}
+	[self changeState:newState];
+}
+
+// decide if we need to display a summary screen - this should be shown if 
+// 1 the preferences say show it at all
+// 2 the user is back from power off or sleep
+// 3 and he was away for a time longer than the preferred threshold
+//
+- (BOOL) needsSummary
+{
+	Context *ctx = [Context sharedContext];
+	if (ctx.showSummary == YES){
+		if (ctx.currentState!= WPASTATE_FREE) {
+			NSDate *lastChange = ctx.lastStateChange;
+			NSTimeInterval timeAway = [[NSDate date] timeIntervalSinceDate:lastChange];
+			if (timeAway > ctx.timeAwayThreshold)
+				return YES;
+		}
+	}
+	return NO;
+}
+
+// decide if we need to go right back to work
+// 1 the preferences say we want that option 
+// 2 and we were *in fact* previously working
+// 3 and the time period we were away is SHORTER than the preferred threshold
+//
+- (BOOL) shouldGoBackToWork
+{
+	Context *ctx = [Context sharedContext];
+	if (ctx.autoBackToWork && (ctx.currentState == WPASTATE_THINKTIME || ctx.previousState == WPASTATE_THINKING)){
+		if (ctx.previousState == WPASTATE_AWAY || ctx.currentState == WPASTATE_OFF) {
+			NSDate *lastChange = ctx.lastStateChange;
+			NSTimeInterval timeAway = [[NSDate date] timeIntervalSinceDate:lastChange];
+			if (timeAway < ctx.brbThreshold)
+				return TRUE;
+		}	
+	}
+	return NO;
+}
+
+// If a summary is necessary then control hands off to SummaryHUDController for the duration
+// Essentially we are in a pause until the data for the summary is collected, presented to the user 
+// and finally dismissed by the user (and again, all under control of SummaryHUDController)
+//
+- (void) showSummaryScreen
+{
+	NSLog(@"Show Summary screne here");
+	Context *ctx = [Context sharedContext];
+	SummaryHUDControl *shc = [[SummaryHUDControl alloc]initWithWindowNibName:@"SummaryHUD"];
+	hudWindow = shc.window;
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+											 selector:@selector(summaryClosed:) 
+												 name:NSWindowWillCloseNotification 
+											   object:shc.window];
+
+	ctx.currentState = WPASTATE_SUMMARY;
+	[shc processSummary];
+	
+}
+
+- (void) summaryClosed:(NSNotification*) notification{
+	NSLog(@"summaryClosed");
+	[[NSNotificationCenter defaultCenter] removeObserver:self  
+												 name:NSWindowWillCloseNotification 
+											   object:nil];
+	refreshManager = [[RefreshManager alloc]initWithHandler:growlDelegate];
+	[refreshManager startWithRefresh:NO];
+	[controls setSelectedSegment: WPASTATE_FREE];
+
+}
+
+
+- (void) changeState: (WPAStateType) newState
+{
+	Context *ctx = [Context sharedContext];
+	//
+	// were we just away for a (longish) while?
+	if (newState == WPASTATE_FREE)
+	{
+		if ([self needsSummary]){
+			[self showSummaryScreen];
+			return;
+		}
+		if ([self shouldGoBackToWork]) {
+			newState = WPASTATE_THINKING;
+		} else {
+			[ctx freeModules];
+		}
+
+	}
+	if (newState == WPASTATE_THINKTIME){
 		TimerDialogController *tdc = [[TimerDialogController alloc] initWithWindowNibName:@"TimerDialog"];
 		NSWindow *tdcWindow = [tdc window];
 		[tdcWindow orderFrontRegardless];
 		[NSApp runModalForWindow: tdcWindow];
-
-	}
-	Context *ctx = [Context sharedContext];
-	if (ctx.running){
-		[(WPADelegate*)[[NSApplication sharedApplication] delegate] setState:state];
-	}
-
-	ctx.startingState = state == STATE_THINKTIME ? STATE_THINKING : state;
-	[ctx saveDefaults];
-	[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:state];
-		
-}
-
-- (void) changeState: (int) state
-{
-	Context *ctx = [Context sharedContext];
-	if (state == STATE_THINKTIME){
-		TimerDialogController *tdc = [[TimerDialogController alloc] initWithWindowNibName:@"TimerDialog"];
-		NSWindow *tdcWindow = [tdc window];
-		
-		[NSApp runModalForWindow: tdcWindow];
-
-		
+		newState = WPASTATE_THINKING;
 	} else {
-		[ctx.thinkTimer invalidate];
-		ctx.thinkTimer = nil;
+		[thinkTimer invalidate];
+		thinkTimer = nil;
 	}
-	if (ctx.running){
-		[(WPADelegate*)[[NSApplication sharedApplication] delegate] setState:state];
+	if (newState == WPASTATE_THINKING){
+		[ctx busyModules];
+	}
+	if (newState == WPASTATE_AWAY){
+		[ctx awayModules];
 	}
 	
-	ctx.startingState = state == STATE_THINKTIME ? STATE_THINKING : state;
+	ctx.currentState = newState == WPASTATE_THINKTIME ? WPASTATE_THINKING : newState;
+	[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:newState];
 	[ctx saveDefaults];
-	[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:state];
 	[self initStatusMenu];
+	if (refreshManager == nil){
+		refreshManager = [[RefreshManager alloc]initWithHandler:growlDelegate];
+		[refreshManager startWithRefresh:YES];
+	}
 }
 
 -(IBAction) changeCombo: (id) sender {
+	NSLog(@"changeCombo");
 	Context *ctx = [Context sharedContext];
 	NSComboBox *cb = (NSComboBox*) sender;
 	
@@ -272,15 +350,15 @@
 	[ctx saveTask];
 	
 	// we changed jobs so write a new tracking record
-	if (ctx.startingState == STATE_THINKING || ctx.startingState == STATE_THINKTIME){
-		[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:ctx.startingState];
+	if (ctx.currentState == WPASTATE_THINKING || ctx.currentState == WPASTATE_THINKTIME){
+		[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:ctx.currentState];
 	}
 }
 
 
 -(void) statusHandler: (NSNotification*) notification
 {
-	controls.selectedSegment = 0;
+	controls.selectedSegment = WPASTATE_FREE; // WPASTATE_FREE
 }
 
 - (void) clickRefresh:(id)sender
@@ -292,16 +370,15 @@
 {	
 	
 	if (![Context sharedContext].ignoreScreenSaver){
-		[self changeState:STATE_AWAY]; 
-		[controls setSelectedSegment: STATE_AWAY];
+		[controls setSelectedSegment: WPASTATE_AWAY];
 	}
 }
 
 -(void)handleScreenSaverStop:(NSNotification*) notification
 {	
 	if (![Context sharedContext].ignoreScreenSaver){
-		[self changeState:STATE_PUTZING]; 
-		[controls setSelectedSegment: STATE_PUTZING];
+		[self changeState:WPASTATE_FREE]; 
+		[controls setSelectedSegment: WPASTATE_FREE];
 	}
 }
 

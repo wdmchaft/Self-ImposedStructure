@@ -7,17 +7,17 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "BaseModule.h"
+#import "BaseInstance.h"
 #import "RTMCallback.h"
+#import "Reporter.h"
+#import "TaskList.h"
 
-@interface RTMModule : BaseModule <RTMCallback>{
-	int refreshCycle;
+@interface RTMModule : BaseInstance <Reporter, TaskList, RTMCallback>{
 	NSString *tokenStr;
 	NSString *userStr;
 	NSString *passwordStr;
 	NSString *frobStr;
 	NSString *listNameStr;
-	NSTimer *refreshTimer;
 	NSString *timelineStr;
 
 	NSMutableDictionary *idMapping;
@@ -36,9 +36,10 @@
 	BOOL firstClick;
 	NSProgressIndicator *progInd;	
 	NSMutableDictionary *alarmSet;
+	<AlertHandler> handler;
+	NSString *lastError;
 }
 
-@property (nonatomic) int refreshCycle;
 @property (nonatomic, retain) NSString *tokenStr;
 @property (nonatomic, retain) NSString *frobStr;
 @property (nonatomic, retain) NSString *userStr;
@@ -46,7 +47,6 @@
 @property (nonatomic, retain) NSString *listNameStr;
 @property (nonatomic, retain) NSString *listIdStr;
 @property (nonatomic, retain) NSString *timelineStr;
-@property (nonatomic, retain) NSTimer *refreshTimer;
 @property (nonatomic, retain) NSMutableDictionary *idMapping;
 @property (nonatomic, retain) NSMutableDictionary *tasksDict;
 @property (nonatomic, retain) NSMutableArray *tasksList;
@@ -61,6 +61,8 @@
 @property (nonatomic, retain) IBOutlet NSButton *authButton;
 @property (nonatomic, retain) IBOutlet NSProgressIndicator *progInd;
 @property (nonatomic, retain) NSMutableDictionary *alarmSet;
+@property (nonatomic, retain) <AlertHandler> handler;
+@property (nonatomic, retain) NSString *lastError;
 @property(nonatomic) BOOL firstClick;
 
 - (IBAction) clickRefreshStepper: (id) sender;
@@ -68,8 +70,7 @@
 - (IBAction) clickList: (id) sender;
 - (void) getLists;
 - (void) updateList;
-- (void) scheduleNextRefresh;
 - (void) startRefresh: (NSTimer*) theTimer;
 - (void) handleWarningAlarm: (NSTimer*) theTimer;
-
+- (void) stop;
 @end

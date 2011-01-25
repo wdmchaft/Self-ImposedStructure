@@ -7,14 +7,14 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "BaseModule.h"
+#import "BaseInstance.h"
 #define BLOCKERFILE @"hostsblocker"
 #define BACKUPFILE @"hostsbackup.txt"
 #define DOMAIN_COL @"Domain"
 #define SWITCHER @"Switcher"
 #define TXT @"txt"
 
-@interface BlockerModule : BaseModule <NSTableViewDataSource> {
+@interface BlockerModule : BaseInstance <NSTableViewDataSource> {
 	NSMutableArray *blackList;
 	NSTableView *listBrowser;
 	NSButton *addButton;

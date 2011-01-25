@@ -1,0 +1,40 @@
+Plugins
+
+Need to implement respond to a variety of messages (or not)
+All plugins should implement start and stop -- just to basically turn on and turn off -- baseModule will set the on/off state and the super on should be called first and off should be called less in the specialized implementations
+
+Plugins which provide information should respond to stateFree, stateWorking and stateAway and getSummary -- at the very least a stateFree will normally start periodic refresh activities stateAway may want to free up resources.  getSummary should cause an information refresh to be sent but should signal completion by sending an empty alert (e.g. title and message are empty strings and params is an empty dictionary)  this is used to coordinate displaying a summary screen at various times.
+
+Plugins which provide tasks should respond to refreshTasks in order to update the internal list of tasks and when complete should post a notification named "org.ottoject.tasks" (the associated object can be nil - it is not used)
+
+States
+WPA has 5 states:
+WPASTATE_OFF
+WPASTATE_FREE
+WPASTATE_THINKING
+WPASTATE_THINKTIME
+WPASTATE_AWAY
+
+RefreshManager
+
+Free
+if (was away or off && greater than threshold) {
+	show summary
+	reset refresh timers
+}
+if (was away && less than threshold){
+back to work
+}
+	
+if (refreshtimer == nil) {
+	perform refresh
+	set timer
+}
+send state changes
+
+busy
+	send state changes
+	
+away
+	send state changes
+off

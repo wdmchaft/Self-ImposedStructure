@@ -36,45 +36,34 @@
 
 -(void) start
 {
-	[super start];
 	NSString *monitorPath = [NSString stringWithFormat:@"%@/%@.app/Contents/MacOS/%@",@"/Applications/", 
 							 SKYPEMONITOR,SKYPEMONITOR];
 	NSLog(@"monitorPath = %@", monitorPath);
 	monitorTask = [NSTask launchedTaskWithLaunchPath:monitorPath arguments:[NSArray new]];
 }
 
--(void) stop
-{
-	if (monitorTask)
-		[monitorTask terminate];
-	[super stop];
-}
 
--(void) think
-{
-	[super think];
-	state = STATE_THINKING;
-	[self sendMsg];
-}
-
-- (SkypeStateType) wpaStateToSkypeState: (StateType) wpaState
+- (SkypeStateType) wpaStateToSkypeState: (WPAStateType) wpaState
 {
 	switch (wpaState) {
-		case STATE_RUNNING:
+		case WPASTATE_FREE:
 			return skypePlayState;
 			break;
-		case STATE_AWAY:
+		case WPASTATE_AWAY:
 			return skypeAwayState;
 			break;
-		case STATE_THINKING:
+		case WPASTATE_THINKING:
 			return skypeWorkState;
 			break;
 	}
-	return	 SKYPE_STATE_INVALID;
+	return SKYPE_STATE_INVALID;
 }
 
 - (void) sendMsg
 {
+	if (!monitorTask){
+		[self start];
+	}
 	SkypeStateType skypeState = (SkypeStateType)[self wpaStateToSkypeState:state];
 	NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:skypeState], @"state",nil ];
 	NSNotification *msg = [NSNotification notificationWithName:@"com.workplayaway.skypemanager" 
@@ -84,17 +73,16 @@
 }
 
 
--(void) putter
+- (void) stateChange: (WPAStateType) newState
 {
-	[super putter];
-	state = STATE_RUNNING;	
-	[self sendMsg];
-}
-
--(void) goAway
-{
-	[super goAway];
-	state = STATE_AWAY;	
+	state = newState;
+	if (state == WPASTATE_OFF){
+		if (monitorTask){
+			[monitorTask terminate];
+			monitorTask = nil;
+		}
+		return;
+	}
 	[self sendMsg];
 }
 

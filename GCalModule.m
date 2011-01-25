@@ -23,34 +23,31 @@
 @synthesize userStr;
 @synthesize passwordStr;
 @synthesize respBuffer;
-@synthesize refresh;
-@synthesize summaryStr;
 @synthesize userField;
 @synthesize passwordField;
 @synthesize refreshField;
 @synthesize lookAheadField;
 @synthesize lookAhead;
-@synthesize refreshTimer;
 @synthesize stepperRefresh;
 @synthesize stepperLookAhead;
 @synthesize calURLField;
 @synthesize calURLStr;
-@synthesize locationStr;
 @synthesize refreshDate;
-@synthesize eventDate;
-@synthesize eventDescStr;
 @synthesize addThis;
 @synthesize alarmsList;
 @synthesize warningWindow;
 @synthesize stepperWarning;
 @synthesize warningField;
-
-
+@synthesize currentEvent;
+@synthesize summaryMode;
+@synthesize eventsList;
+@synthesize alertHandler;
 -(void) setId
 {
 	super.description =@"GCal Module";
 	super.notificationName = @"Event Alert";
 	super.notificationTitle = @"Upcoming Event";
+	super.category = CATEGORY_EVENTS;
 	warningWindow = 15;
 }
 
@@ -73,12 +70,8 @@
 	return self;
 }
 
--(void) refreshData: (NSTimer*) theTimer
+-(void) refreshData
 {
-	if (refreshTimer != nil){
-		[refreshTimer invalidate];
-		refreshTimer = nil;
-	}
 	if (alarmsList != nil && [alarmsList count] > 0){
 		int count = [alarmsList count];
 		while (count > 0) {
@@ -103,29 +96,16 @@
 	NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
 	if (!theConnection) {
 		// Inform the user that the connection failed.
-		[super sendError:[NSString stringWithFormat:@"No connection for url %@",urlStr] 
-				  module:[self description]];
+		[BaseInstance sendErrorToHandler:alertHandler 
+								   error:[NSString stringWithFormat:@"No connection for url %@",urlStr] 
+								  module:[self description]];
 	}
 }
 
-
--(void) start
+-(void) refresh: (<AlertHandler>) handler
 {
-	super.started = YES;
-	[self refreshData:nil];
-}
--(void) putter
-{
-	//[self refreshData:nil];
-}
-
--(void) stop
-{
-	if (refreshTimer){
-		[refreshTimer invalidate];
-	}
-	refreshTimer = nil;
-	super.started = NO;
+	alertHandler = handler;
+	[self refreshData];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
@@ -159,7 +139,7 @@
 		// just log this error -- we are having connection problems
 		NSLog(@"%@", err);
 	} else {
-		[super sendError: err module: [self description]];
+		[BaseInstance sendErrorToHandler:alertHandler error: err module: [self description]];
 	}
 
 	if (super.validationHandler){
@@ -167,7 +147,6 @@
 		[super.validationHandler performSelector:validSel
 									  withObject:[error localizedDescription]];
 	}
-	[refreshTimer invalidate];
 }
 
 
@@ -177,10 +156,6 @@
 {
 	NSString *respStr = [[[NSString alloc] initWithData:respBuffer encoding:NSUTF8StringEncoding]autorelease];
 	
-	// schedule another refresh 
-	if (!super.validationHandler){
-		[self scheduleNextRefresh];
-	}
 	// look for errors now
 	NSRange errRange = [respStr rangeOfString:ERRSTR];
 	
@@ -188,7 +163,9 @@
 		// Authentication failure occurred
 		
 		if (!super.validationHandler){
-			[super sendError:@"Authentication Failure" module:[self description]];
+			[BaseInstance sendErrorToHandler:alertHandler 
+									   error:@"Authentication Failure" 
+									  module:[self description]];
 			return;
 		} else {
 			[super.validationHandler performSelector:@selector(validationComplete:) 
@@ -201,22 +178,47 @@
 	}
 	CalDAVParser *parser = [[CalDAVParser alloc]init];
 	parser.data = respStr;
+	eventsList = [NSMutableArray new];
 	[parser parse:self];
-}
--(void) goAway
-{
+	[self processEvents];
+	[BaseInstance sendDone:alertHandler];
 }
 
--(void) think
+- (void) processEvents
 {
+	for (NSDictionary *event in eventsList){
+		Note *note = [[Note alloc]init];
+		note.moduleName = super.description;
+		NSDate *eventDate = [event objectForKey:@"start"];
+		note.title = [self timeStrFor:eventDate];
+		note.message = [event objectForKey:@"summary"];
+		if (summaryMode)
+			note.params = event;
+		
+		[alertHandler handleAlert:note];
+		
+		if (!summaryMode){
+			NSTimeInterval fireTime = [eventDate timeIntervalSinceNow];
+			fireTime -= warningWindow;
+			NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:fireTime 
+															  target:self 
+															selector:@selector(handleWarningAlarm:) 
+															userInfo:note
+															 repeats:NO];
+			if (alarmsList == nil){
+				alarmsList = [NSMutableArray new];
+			}
+			[alarmsList addObject: timer];
+		}
+	}
+	summaryMode = NO;
 }
-- (void) doesNotRecognizeSelector:(SEL)aSelector
-{
-	[super doesNotRecognizeSelector:aSelector];
-}
+
+
 -(void)beginEvent
 {
 	addThis = NO;
+	currentEvent = [NSMutableDictionary new];
 }
 #define ONEDAYSECS (60 * 60 * 24)
 // this will return true only if the tested date is later than now and before the end
@@ -260,49 +262,32 @@
 	return ret;
 }
 
--(void)endEvent{
+-(void) endEvent {
 	if (addThis == YES){
-		
-		Note *note = [[Note alloc]init];
-		note.moduleName = super.description;
-		note.title = [self timeStrFor:eventDate];
-		note.message = summaryStr;
-
-		[[super handler] handleAlert:note];
-		
-		NSTimeInterval fireTime = [eventDate timeIntervalSinceNow];
-		fireTime -= warningWindow;
-		NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:fireTime 
-														  target:self 
-														selector:@selector(handleWarningAlarm:) 
-														userInfo:note
-														 repeats:NO];
-		if (alarmsList == nil){
-			alarmsList = [NSMutableArray new];
-		}
-		[alarmsList addObject: timer];
+		[eventsList addObject:currentEvent];
 	}
 }
 
 - (void) handleWarningAlarm: (NSTimer*) theTimer
 {
 	Note *alert = (Note*)[theTimer userInfo];
-	[[super handler] handleAlert:alert];
+	[alertHandler handleAlert:alert];
 }
 
 -(void)summary: (NSString*) str
 {
-	self.summaryStr = str;
+	
+	[currentEvent setObject:str forKey:@"summary"];
 }
 
 -(void) eventDescription: (NSString*) str
 {
-	self.eventDescStr = str;
+	[currentEvent setObject:str forKey:@"desc"];
 }
 
 -(void) location: (NSString*) str
 {
-	self.locationStr = str;
+	[currentEvent setObject:str forKey:@"location"];
 }
 
 -(void)dateStart: (NSString*) stamp
@@ -310,36 +295,21 @@
 	NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
 	[inputFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
 	[inputFormatter setDateFormat:@"yyyyMMdd'T'HHmmss'Z\r\n'"];
-	eventDate = [inputFormatter dateFromString:stamp]; 
-	if ([self isInLookAhead:eventDate]){
+	NSDate *start = [inputFormatter dateFromString:stamp]; 
+	if ([self isInLookAhead:start]){
 		addThis = YES;
 	}
-//	NSComparisonResult res = [eventDate compare:refreshDate];
-//	NSDateFormatter *outDate = [NSDateFormatter new];;
-//	[outDate  setDateFormat:@"MM'/'dd'/'yy @ HH:mm" ];
-//	NSLog(@"event date:%@", [outDate stringFromDate:eventDate]);
-//	if (res ==  NSOrderedDescending){
-//		NSLog(@"adding this");
-//		addThis = YES;
-//	}
+	[currentEvent setObject:start forKey:@"start"];
 }
 
 -(void)dateEnd: (NSString*) stamp
 {
-}
+	NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
+	[inputFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+	[inputFormatter setDateFormat:@"yyyyMMdd'T'HHmmss'Z\r\n'"];
+	NSDate *endDate = [inputFormatter dateFromString:stamp]; 
 
-- (void) scheduleNextRefresh
-{
-	SEL refData = @selector(refreshData:);
-	NSMethodSignature *sig = [self methodSignatureForSelector:refData];
-	NSInvocation *inv = [NSInvocation invocationWithMethodSignature:sig];
-	[inv setTarget:self];
-	//refreshTimer = [NSTimer scheduledTimerWithTimeInterval:refresh invocation:inv repeats:NO];
-	refreshTimer = [NSTimer scheduledTimerWithTimeInterval:refresh * 60
-													  target:self 
-													selector:@selector(refreshData:)
-													userInfo:nil
-													 repeats:NO];
+	[currentEvent setObject:endDate forKey:@"end"];
 }
 
 - (void) startValidation: (NSObject*) callback
@@ -347,11 +317,11 @@
 	[super startValidation:callback];
 	userStr = userField.stringValue;
 	passwordStr = passwordField.stringValue;
-	refresh = refreshField.intValue;
+	super.refreshInterval = refreshField.intValue * 60;
 	calURLStr = calURLField.stringValue;
 	warningWindow = warningField.intValue;
 	lookAhead = lookAheadField.intValue;
-	[self refreshData: nil];
+	[self refreshData];
 }
 
 -(void) saveDefaults{
@@ -359,7 +329,7 @@
 	[super saveDefaultValue:userStr forKey:EMAIL];
 	[super saveDefaultValue:passwordStr forKey:PASSWORD];
 	[super saveDefaultValue:calURLStr forKey:CALURL];
-	[super saveDefaultValue:[NSNumber numberWithInt:refresh] forKey:REFRESH];
+	[super saveDefaultValue:[NSNumber numberWithInt:super.refreshInterval] forKey:REFRESH];
 	[super saveDefaultValue:[NSNumber numberWithInt:warningWindow] forKey:WARNINGWINDOW];
 	[super saveDefaultValue:[NSNumber numberWithInt:lookAhead] forKey:LOOKAHEAD];
 	[[NSUserDefaults standardUserDefaults] synchronize];
@@ -371,7 +341,7 @@
 
 	[userField setStringValue:userStr == nil ? @"" : userStr];
 	[passwordField setStringValue:passwordStr == nil ? @"" : passwordStr];
-	[refreshField setIntValue:refresh];
+	[refreshField setIntValue:super.refreshInterval * 60];
 	[calURLField setStringValue:calURLStr == nil ? @"" : calURLStr];
 	[lookAheadField setIntValue:lookAhead];
 	[warningField setIntValue:warningWindow];
@@ -385,7 +355,7 @@
 	calURLStr = [super loadDefaultForKey:CALURL];
 	NSNumber *temp =  [super loadDefaultForKey:REFRESH];
 	if (temp) {
-		refresh = [temp intValue];
+		super.refreshInterval = [temp intValue];
 	}
 	temp =  [super loadDefaultForKey:LOOKAHEAD];
 	if (temp) {
@@ -401,7 +371,7 @@
 	[super clearDefaults];
 	[super clearDefaultValue:userStr forKey:EMAIL];
 	[super clearDefaultValue:passwordStr forKey:PASSWORD];
-	[super clearDefaultValue:[NSNumber numberWithInt:refresh] forKey:REFRESH];
+	[super clearDefaultValue:[NSNumber numberWithInt:super.refreshInterval] forKey:REFRESH];
 	[super clearDefaultValue:[NSNumber numberWithInt:lookAhead] forKey:LOOKAHEAD];
 	[super clearDefaultValue:[NSNumber numberWithInt:warningWindow] forKey:WARNINGWINDOW];
 	[super clearDefaultValue:calURLStr forKey:CALURL];

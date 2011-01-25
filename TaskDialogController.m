@@ -10,8 +10,9 @@
 #import "TaskDialogController.h"
 #import "RequestREST.h"
 //#import "RTGTestAppDelegate.h"
-#import "CompleteHandler.h"
+#import "CompleteRespHandler.h"
 #import "ListsHandler.h"
+#import "BaseInstance.h"
 
 @implementation TaskDialogController
 @synthesize busyIndicator;
@@ -83,7 +84,7 @@
 									@"xml", @"format",
 									APIKEY, @"api_key", nil];
 	
-	CompleteHandler *handler = (CompleteHandler*)[[CompleteHandler alloc]initWithHandler:self]; 
+	CompleteRespHandler *handler = (CompleteRespHandler*)[[CompleteRespHandler alloc]initWithHandler:self]; 
 	[busyIndicator startAnimation:self];
 	
 	context.timelineStr = nil; // we are about to fetch a new time line
@@ -101,7 +102,9 @@
 
 	if (![tlHandler timeLine]){
 		
-		[context sendError:@"No time line received" module:[context description]]; 
+		[BaseInstance sendErrorToHandler:context.handler 
+								   error:@"No time line received" 
+								  module:[context description]]; 
 		NSLog(@"oops -- bad");
 	}
 	else 
@@ -143,7 +146,7 @@
 									@"xml", @"format",
 									APIKEY, @"api_key", nil];
 	
-	CompleteHandler *handler = (CompleteHandler*)[[CompleteHandler alloc]initWithHandler:self]; 
+	CompleteRespHandler *handler = (CompleteRespHandler*)[[CompleteRespHandler alloc]initWithHandler:self]; 
 	[busyIndicator startAnimation:self];
 	
 	context.timelineStr = nil; // we are about to fetch a new time line

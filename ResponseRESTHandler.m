@@ -55,7 +55,9 @@
 		// just log this error -- we are having connection problems
 		NSLog(@"%@", err);
 	} else {
-		[context sendError: err module: [self description]];
+		[BaseInstance sendErrorToHandler:context.handler 
+								   error: err 
+								  module: [self description]];
 	}
 	if (context.validationHandler){
 		[context.validationHandler performSelector:@selector(validationComplete:) 
