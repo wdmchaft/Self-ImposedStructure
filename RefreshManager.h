@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "AlertHandler.h"
+#import "Growl.h"
 
 
 @interface RefreshManager : NSObject {

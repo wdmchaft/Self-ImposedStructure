@@ -160,6 +160,8 @@ highestTagValue,minTagValue,hrefStr,rules, alertHandler, validationHandler;
 	
 	NSString *key = nil;
 	NSDictionary *item = nil;
+	int msgCount = [msgDict count];
+	int count = 0;
 	for (key in msgDict){
 		item = [msgDict objectForKey: key];	
 		FilterResult res = [FilterRule processFilters:rules forMessage: msgDict];
@@ -171,7 +173,7 @@ highestTagValue,minTagValue,hrefStr,rules, alertHandler, validationHandler;
 			alert.sticky = (res == RESULT_IMPORTANT);
 			alert.urgent = (res == RESULT_IMPORTANT);
 			alert.params = msgDict;
-		
+			alert.lastAlert = ++count == msgCount;
 			
 			[alertHandler handleAlert:alert];
 		}
@@ -181,7 +183,6 @@ highestTagValue,minTagValue,hrefStr,rules, alertHandler, validationHandler;
 	//	[super saveDefaultValue: minTagValue forKey: MINTAGVALUE];
 		[[NSUserDefaults standardUserDefaults] synchronize];
 	}
-	[BaseInstance sendDone:alertHandler];
 	[((<CallBack>)callback) didFinishRequest: self];
 }
  

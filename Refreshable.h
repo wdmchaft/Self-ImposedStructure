@@ -12,6 +12,5 @@
 @protocol Refreshable
 
 -(void) refresh:(<AlertHandler>) handler;
--(NSTimeInterval) refreshInterval;
-
+@property (nonatomic) NSTimeInterval refreshInterval;
 @end

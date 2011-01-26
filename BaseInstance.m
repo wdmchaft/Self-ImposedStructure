@@ -19,6 +19,14 @@
 @synthesize category;
 @synthesize refreshInterval;
 
+- (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+	self = [super initWithNibName: nibNameOrNil bundle: nibBundleOrNil];
+	if (self) {
+		refreshInterval = 15 * 60;
+	}
+	return self;
+}
 
 -(void) startValidation: (NSObject*) callback  
 {
@@ -40,7 +48,6 @@
 	NSNumber *temp = [self loadDefaultForKey:ENABLED];
 	enabled = [temp intValue];
 }
-
 
 -(void) saveDefaultValue: (NSObject*) val forKey: (NSString*) key
 {
@@ -69,11 +76,5 @@
 	alert.params = nil;
 	[handler handleError: alert];
 }
-+ (void) sendDone:(<AlertHandler>) handler 
-{
-	Note *alert = [[Note alloc]init];
-	alert.moduleName = [self description];
-	alert.lastAlert = YES;
-	[handler handleAlert:alert];
-}
+
 @end

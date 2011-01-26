@@ -157,6 +157,9 @@
 -(IBAction) clickStart: (NSButton*) sender {
 	[self running:YES];
 }
+-(IBAction) clickStop: (NSButton*) sender {
+	[self running:NO];
+}
 
 - (void) running: (BOOL) on
 {
@@ -165,16 +168,20 @@
 	if (on == NO){
 		[(WPADelegate*)[[NSApplication sharedApplication] delegate] stop];
 		startButton.title = @"Start";
+		[startButton setAction: @selector(clickStart:)];
+		[growlDelegate stop];
 		newState = WPASTATE_OFF;
 		[statusTimer invalidate];
 	} else {
 		startButton.title = @"Stop";
+		[startButton setAction: @selector(clickStop:)];
 		statusTimer = [NSTimer scheduledTimerWithTimeInterval:15 target: self selector:@selector(updateStatus:) userInfo:nil repeats:NO];
+		growlDelegate = [GrowlDelegate new];
 		newState = WPASTATE_FREE;
 	}
 	ctx.running = on;
-	[self enableUI:ctx.running];
-	[self initStatusMenu];
+//	[self enableUI:ctx.running];
+//	[self initStatusMenu];
 	[self changeState:newState];
 }
 
@@ -225,7 +232,7 @@
 {
 	Context *ctx = [Context sharedContext];
 	if (ctx.showSummary == YES){
-		if (ctx.currentState!= WPASTATE_FREE) {
+		if (ctx.currentState!= WPASTATE_FREE && ctx.currentState != WPASTATE_SUMMARY) {
 			NSDate *lastChange = ctx.lastStateChange;
 			NSTimeInterval timeAway = [[NSDate date] timeIntervalSinceDate:lastChange];
 			if (timeAway > ctx.timeAwayThreshold)
@@ -282,7 +289,8 @@
 	refreshManager = [[RefreshManager alloc]initWithHandler:growlDelegate];
 	[refreshManager startWithRefresh:NO];
 	[controls setSelectedSegment: WPASTATE_FREE];
-
+	[self changeState:WPASTATE_FREE];
+	//[Context sharedContext].currentState= WPASTATE_FREE;
 }
 
 
@@ -310,7 +318,7 @@
 		[tdcWindow orderFrontRegardless];
 		[NSApp runModalForWindow: tdcWindow];
 		newState = WPASTATE_THINKING;
-	} else {
+	} else if (thinkTimer) {
 		[thinkTimer invalidate];
 		thinkTimer = nil;
 	}
@@ -325,9 +333,14 @@
 	[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:newState];
 	[ctx saveDefaults];
 	[self initStatusMenu];
-	if (refreshManager == nil){
+	[self enableUI:(newState != WPASTATE_OFF)];
+	if (refreshManager == nil && newState != WPASTATE_OFF){
 		refreshManager = [[RefreshManager alloc]initWithHandler:growlDelegate];
 		[refreshManager startWithRefresh:YES];
+	}
+	if (newState == WPASTATE_OFF){
+		[refreshManager stop];
+		refreshManager = nil;
 	}
 }
 

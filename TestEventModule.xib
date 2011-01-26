@@ -225,12 +225,12 @@
 					<int key="connectionID">13</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">stepper</string>
+					<object class="IBActionConnection" key="connection">
+						<string key="label">clickStepper:</string>
 						<reference key="source" ref="1001"/>
 						<reference key="destination" ref="821074575"/>
 					</object>
-					<int key="connectionID">27</int>
+					<int key="connectionID">29</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -238,15 +238,15 @@
 						<reference key="source" ref="1001"/>
 						<reference key="destination" ref="112141330"/>
 					</object>
-					<int key="connectionID">28</int>
+					<int key="connectionID">120</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">clickStepper:</string>
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">stepper</string>
 						<reference key="source" ref="1001"/>
 						<reference key="destination" ref="821074575"/>
 					</object>
-					<int key="connectionID">29</int>
+					<int key="connectionID">121</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -388,7 +388,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{369, 242}, {480, 368}}</string>
+					<string>{{353, 53}, {480, 368}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{628, 654}</string>
 					<string>{{357, 416}, {480, 272}}</string>
@@ -433,17 +433,17 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">119</int>
+			<int key="maxID">121</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBPartialClassDescription">
-					<string key="className">BaseModule</string>
+					<string key="className">BaseInstance</string>
 					<string key="superclassName">NSViewController</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">BaseModule.h</string>
+						<string key="minorKey">BaseInstance.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -455,7 +455,7 @@
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">TestEventModule</string>
-					<string key="superclassName">BaseModule</string>
+					<string key="superclassName">BaseInstance</string>
 					<object class="NSMutableDictionary" key="actions">
 						<string key="NS.key.0">clickStepper:</string>
 						<string key="NS.object.0">id</string>
@@ -556,6 +556,13 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">AppKit.framework/Headers/NSUserInterfaceItemSearching.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSApplication</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">BWToolkitFramework.framework/Headers/NSApplication+BWAdditions.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -928,6 +935,13 @@
 					<string key="className">NSView</string>
 					<string key="superclassName">NSResponder</string>
 					<reference key="sourceIdentifier" ref="646337771"/>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">BWToolkitFramework.framework/Headers/NSView+BWAdditions.h</string>
+					</object>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">NSViewController</string>

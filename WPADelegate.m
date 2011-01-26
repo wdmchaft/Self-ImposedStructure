@@ -8,12 +8,19 @@
 
 #import "WPADelegate.h"
 #import "Context.h"
-#import "Module.h"
+#import "Instance.h"
 #import "Note.h"
 #import "Growl.h"
 #import "IconsFile.h"
 #import "TaskInfo.h"
 #import "WPAMainController.h"
+#import "State.h"
+
+@protocol StateCtrl
+
+-(void)stateChange: (WPAStateType) newState;
+
+@end
 
 @implementation WPADelegate
 @synthesize window;
@@ -22,7 +29,6 @@
 @synthesize persistentStoreCoordinator;
 @synthesize managedObjectModel;
 @synthesize managedObjectContext;
-@synthesize skipRefresh;
 
 -(void) start 
 {
@@ -41,39 +47,11 @@
 	ctx.running = YES;
 }
 
--(void) setState: (int) state
-{
-	Context *ctx = [Context sharedContext];
-	switch (state) {
-		case WPASTATE_AWAY:
-		
-			[self awayState];
-			break;
-		case WPASTATE_FREE:
-			if (!ctx.running){
-				[self start];
-			}	[self freeState];
-			break;
-		case WPASTATE_THINKING:
-			[Context sharedContext].thinkTime = 0;
-		case WPASTATE_THINKTIME:
-			if (!ctx.running){
-				[self start];
-			}
-			[self workState: [Context sharedContext].thinkTime];
-			break;
-		case WPASTATE_OFF:
-			[self stop];
-	}
-}
-
-
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	// Insert code here to initialize your application 
 	Context *ctx = [Context sharedContext];
 
 	NSLog(@"app launched");
-	[GrowlApplicationBridge setGrowlDelegate:self];
 	WPAMainController *wpam = (WPAMainController*)[window delegate];
 	if (ctx.startOnLoad){
 		[wpam clickStart:self];
@@ -93,49 +71,17 @@
 	} 
 	NSDictionary *modules = [[Context sharedContext] instancesMap];
 	NSString *modName;
-	<Module> module = nil;
+	NSObject *module = nil;
 	for (modName in modules){
 		module = [modules objectForKey:modName];
-		if (module.started == YES){
-			[module stop];
+		if (((<Instance>)module).enabled){
+			if ([module respondsToSelector:@selector(stateChange:)]){
+				[((<StateCtrl>)module) stateChange:WPASTATE_OFF];
+			}
+		
 		}
 	}
 	[Context sharedContext].running = NO;
-}
-
--(void) workState: (int) minutes
-{
-	Context *ctx = [Context sharedContext];
-	// first dump everything not urgent into save queue...
-	NSMutableArray	*replaceQ = [[NSMutableArray alloc] initWithCapacity:10];
-
-	while ([ctx.alertQ count] > 0) {
-		Note *moveAlert = [ctx.alertQ objectAtIndex:0];
-		if (moveAlert.urgent) {
-			[replaceQ addObject: moveAlert];
-		} else {
-			[ctx.savedQ addObject:moveAlert];
-		}
-		[ctx.alertQ removeObjectAtIndex:0];
-	} 
-	ctx.alertQ = replaceQ;
-	NSDictionary *modules = [[Context sharedContext] instancesMap];
-	<Module> module = nil;
-	NSString *modName = nil;
-	for (modName in modules){
-		module.handler = self;
-		module = [modules objectForKey:modName];
-		if (module.enabled){
-			module.skipRefresh = skipRefresh;
-			[module think];
-		}
-	}
-	if (minutes > 0){
-		ctx.thinkTimer = [NSTimer scheduledTimerWithTimeInterval:minutes * 60 
-														  target:self 
-														selector:@selector(alarm) 
-														userInfo:nil repeats:NO];
-	}
 }
 
 - (void) alarm
@@ -148,150 +94,6 @@
 	[self freeState];
 }
 
--(void) freeState
-{
-	Context *ctx = [Context sharedContext];
-	[ctx.thinkTimer invalidate];
-	ctx.thinkTimer = nil;
-	
-	// first dump everything saved into the queue...
-	while ([ctx.savedQ count] > 0) {
-		Note *moveAlert = [ctx.savedQ objectAtIndex:0];
-		[ctx.alertQ insertObject: moveAlert atIndex:0];
-		[ctx.savedQ removeObjectAtIndex:0];
-	} 
-	NSDictionary *modules = [[Context sharedContext] instancesMap];
-	<Module> module = nil;
-	NSString *modName = nil;
-	for (modName in modules){
-		module = [modules objectForKey:modName];
-		if (module.enabled){
-			module.handler = self;
-			module.skipRefresh = skipRefresh;
-			[module putter];
-		}
-	}
-	
-}
-
-- (void) awayState 
-{ 
-	Context *ctx = [Context sharedContext];
-	// first dump everything (EVERYTHING) into save queue...
-	
-	while ([ctx.alertQ count] > 0) {
-		Note *moveAlert = [ctx.alertQ objectAtIndex:0];
-		[ctx.savedQ addObject: moveAlert];
-		[ctx.alertQ removeObjectAtIndex:0];
-	} 
-
-	NSDictionary *modules = [[Context sharedContext] instancesMap];
-	<Module> module = nil;
-	NSString *modName = nil;
-	for (modName in modules){
-		module = [modules objectForKey:modName];
-		if (module.enabled){
-			module.handler = self;
-			module.skipRefresh = skipRefresh;
-			[module goAway];
-		}
-	}
-}
-
-- (void) back
-{
-	// mr. user has returned from the bathroom/meeting/snack/whacking off whatever
-	// fire back up where we left off
-}
-					 
--(void) growlLoop 
-{
-	NSMutableArray *q = [[Context sharedContext]alertQ];
-//	NSLogDebug(@"Checking Q...");
-	if ([q count] > 0){
-		[self growlAlert:[q objectAtIndex:0]];
-		[q removeObjectAtIndex:0];
-	}
-	int interval = [Context sharedContext].growlInterval;
-	[self performSelector:@selector(growlLoop) withObject:nil afterDelay:interval];
-}
-
--(void) growlAlert: (Note*) alert
-{
-	NSLog(@"showing alert %@", alert.message);
-	<Module> sender = [[[Context sharedContext] instancesMap] objectForKey:alert.moduleName];
-	
-
-	[GrowlApplicationBridge
-	 notifyWithTitle: alert.title == nil ? sender.notificationTitle : alert.title
-	 description:alert.message
-	 notificationName:sender.notificationName
-	 iconData:[[Context sharedContext]iconForModule:sender]
-	 priority:0
-	 isSticky:alert.sticky
-	 clickContext:alert.params];
-}
-
-- (void) growlNotificationWasClicked:(id)ctx 
-{
-	<Module> callMod = [[Context sharedContext].instancesMap objectForKey:[ctx objectForKey: @"module"]];
-	
-	[callMod handleClick:ctx];
-		
-}
-
--(void) saveAlert: (Note*) alert
-{
-	Context *ctx = [Context sharedContext];
-	if ([ctx.savedQ containsObject: alert]){
-		NSLog(@"skipping duplicate alert %@", alert.message);
-		return; 
-	}
-	[ctx.savedQ addObject:alert];
-}
-
--(void) queueAlert: (Note*) alert
-{
-	Context *ctx = [Context sharedContext];
-	if ([ctx.alertQ containsObject: alert]){
-		NSLog(@"skipping duplicate alert %@", alert.message);
-		return; 
-	}
-	[[Context sharedContext].alertQ addObject:alert];
-}
-
--(void) handleError: (Note*) error
-{
-	<Module> sender = [[[Context sharedContext] instancesMap] objectForKey:error.moduleName];
-	
-	[GrowlApplicationBridge
-	 notifyWithTitle:@"Error!"
-	 description:error.message
-	 notificationName:@"Error Alert"
-	 iconData:[[Context sharedContext]iconForModule:sender]
-	 priority:0
-	 isSticky:YES
-	 clickContext:nil];
-}
-
--(void) handleAlert:(Note*) alert 
-{
-	NSLog(@"received %@",alert.message);
-	Context *ctx = [Context sharedContext];
-	if (ctx.currentState == WPASTATE_FREE) {
-		[self queueAlert:alert];
-	}
-	else {
-		if ([alert urgent] == YES ){
-			[self queueAlert:alert];
-		} else {
-			[self saveAlert: alert];
-			NSLog(@"saved %@",alert.message);
-	}
-	}
-
-}
-
 -(void)handleNotification:(NSNotification*) notification
 {	
 	NSDictionary *dict = [notification userInfo];
@@ -300,8 +102,6 @@
 	[Context sharedContext].thinkTime = [minStr intValue];
 	[self setState:[state intValue]]; 
 }
-
-
 
 -(void) refreshTasks
 {
@@ -315,43 +115,13 @@
 		}
 	}
 }
-/*
--(NSArray*) getAllTasks
-{
-	NSMutableDictionary *gather = [NSMutableDictionary new];
-	NSDictionary *modules = [[Context sharedContext] instancesMap];
-	<Module> module = nil;
-	NSString *modName = nil;
-	for (modName in modules){
-		module = [modules objectForKey:modName];
-		if (module.enabled){
-			NSArray *items = module.trackingItems;
-			if (items){
-				for(NSString *item in items){
-					TaskInfo *info = [[TaskInfo alloc] initWithName:item 
-					source : module 
-					project:[module projectForTask:item]];
-					TaskInfo *fo = [gather objectForKey:info.name];
-					if (fo){
-						fo.description = [NSString stringWithFormat:@"%@ [%@]",fo.name,[fo.source description] ];
-						info.description = [NSString stringWithFormat:@"%@ [%@]",info.name,[info.source description] ];
-					}
-					[gather setObject:info forKey:info.description];
-				}
-			}
-		}
-	}
-	return [gather allValues];
-}
-*/
+
 - (IBAction) clickPreferences: (id) sender
 {
     if (prefsWindow == nil) {
         prefsWindow = [[PreferencesWindow alloc] initWithWindowNibName:@"PreferencesWindow"];
     }
 	
-	[prefsWindow showWindow: nil];
-	//[prefsWindow.window makeKeyAndOrderFront:nil];
 	[[prefsWindow window] orderFrontRegardless];
 
 }
@@ -361,8 +131,6 @@
 	if (statsWindow == nil)
 		statsWindow = [[StatsWindow alloc] initWithWindowNibName:@"StatsWindow"];
 	
-	[statsWindow showWindow:nil];
-//	[statsWindow.window makeKeyAndOrderFront:nil];
 	[[statsWindow window] orderFrontRegardless];
 }
 

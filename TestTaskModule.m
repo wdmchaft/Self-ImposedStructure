@@ -13,23 +13,21 @@
 
 @implementation TestTaskModule
 
-@synthesize refresh;
 @synthesize frequencyField;
-@synthesize refreshTimer;
 @synthesize stepper;
-@synthesize summaryMode;
 @synthesize allTasks;
 @dynamic notificationName;
 @dynamic notificationTitle;
+@dynamic refreshInterval;
 
 -(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 	if (self){
-		super.description =@"Test Tasks";
-		super.notificationName = @"Mail Alert";
-		super.notificationTitle = @"Test Email Msg";
-		super.category = CATEGORY_TASKS;
+		description =@"Test Tasks";
+		notificationName = @"Mail Alert";
+		notificationTitle = @"Test Email Msg";
+		category = CATEGORY_TASKS;
 
 		NSDictionary *dict1 = [NSDictionary dictionaryWithObjectsAndKeys:
 							   [self description], @"module",
@@ -100,31 +98,27 @@
 
 -(void) refreshData: (<AlertHandler>) handler
 {
-	
+	NSMutableArray *incomp = [NSMutableArray new];
 	for (NSDictionary *item in allTasks){
-		
 		BOOL done = ((NSNumber*)[item objectForKey:@"done"]).intValue;
 		if (!done) {
+			[incomp addObject:item];
+		}
+	}
+	for (int i = 0; i < [incomp count];i++){
+		NSDictionary *item = [incomp objectAtIndex:i];
+	
 			Note *alert = [[Note alloc]init];
-			alert.moduleName = super.description;
+			alert.moduleName = description;
 			alert.title =[item objectForKey:@"name"];
 			alert.message=[item objectForKey:@"name"];
-			if (summaryMode){
-				alert.params = item;
-			} else {			
-				alert.params = item;
-			}
+			alert.clickable = YES;
+			alert.params = item;
+			alert.lastAlert = (i + 1 == [incomp count]);
 			[handler handleAlert:alert];
-		}
+		
 		
 	}
-	[BaseInstance sendDone:handler];
-}
-
-- (void) getSummary
-{
-	summaryMode = YES;
-	[self refreshData: nil];
 }
 
 -(void) refresh: (<AlertHandler>) handler
@@ -147,27 +141,17 @@
 	[allTasks replaceObjectAtIndex:idx withObject: newDict];
 }
 
-- (void) scheduleNextRefresh
-{
-	NSTimeInterval timeRef = refresh * 60;
-	refreshTimer = [NSTimer scheduledTimerWithTimeInterval:timeRef
-										   target:self 
-										 selector: @selector(refreshData:) 
-										 userInfo:nil
-										  repeats:NO];
-
-}
-
 - (void) startValidation: (NSObject*) callback
 {
 	[super startValidation:callback];
-	[super.validationHandler performSelector:@selector(validationComplete:) 
+	refreshInterval = frequencyField.intValue * 60;
+	[validationHandler performSelector:@selector(validationComplete:) 
 								  withObject:nil];
 }
 
 -(void) saveDefaults{ 
 	[super saveDefaults];
-	[super saveDefaultValue:[NSNumber numberWithInt:refresh] forKey:REFRESH];
+	[super saveDefaultValue:[NSNumber numberWithInt:refreshInterval] forKey:REFRESH];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 };
 
@@ -176,7 +160,7 @@
 -(void) loadView
 {
 	[super loadView];
-	[frequencyField setStringValue:[NSString stringWithFormat:@"%d", refresh]];
+	[frequencyField setStringValue:[NSString stringWithFormat:@"%d", refreshInterval / 60]];
 
 }
 
@@ -185,7 +169,7 @@
 	[super loadDefaults];
 	NSNumber *temp =  [super loadDefaultForKey:REFRESH];
 	if (temp) {
-		refresh = [temp intValue];
+		refreshInterval = [temp intValue];
 	}
 }
 

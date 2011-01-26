@@ -39,7 +39,7 @@
 -(void) startValidation: (NSObject*) callback  
 {
 	[super startValidation:callback];
-	[super.validationHandler performSelector:@selector(validationComplete:) 
+	[validationHandler performSelector:@selector(validationComplete:) 
 								  withObject:nil];	
 }
 

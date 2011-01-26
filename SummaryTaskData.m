@@ -16,11 +16,10 @@
 objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
 	id theValue;
-    NSParameterAssert(row >= 0 && row < [super.data count]);
-    NSDictionary *params  = [super.data objectAtIndex:row];
-	NSCell *cell = [tableColumn headerCell];
-	NSString *colName = (NSString*) [cell stringValue];
-	if ([colName isEqualToString:@"COL2"]){
+    NSParameterAssert(row >= 0 && row < [data count]);
+    NSDictionary *params  = [data objectAtIndex:row];
+	NSString *colId = [tableColumn identifier];
+	if ([colId isEqualToString:@"COL2"]){
 		NSString *val;
 		val = (NSString*)[params objectForKey:@"name"];
 		theValue = val;

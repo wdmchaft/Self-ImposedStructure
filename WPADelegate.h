@@ -15,15 +15,13 @@
 #import "PreferencesWindow.h"
 #import "StatsWindow.h"
 
-@interface WPADelegate : NSObject <NSApplicationDelegate, 
-										AlertHandler, GrowlApplicationBridgeDelegate> {
+@interface WPADelegate : NSObject <NSApplicationDelegate> {
     NSWindow *window;
     NSPersistentStoreCoordinator *persistentStoreCoordinator;
     NSManagedObjectModel *managedObjectModel;
     NSManagedObjectContext *managedObjectContext;
 	PreferencesWindow *prefsWindow;
 	StatsWindow *statsWindow;
-	BOOL skipRefresh;										
 }
 
 @property (assign) IBOutlet NSWindow *window;
@@ -32,17 +30,10 @@
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) PreferencesWindow *prefsWindow;
 @property (retain, nonatomic) IBOutlet StatsWindow *statsWindow;
-@property (nonatomic)  BOOL skipRefresh;
 
--(void) awayState;
 -(void) start;
 -(void) stop;
--(void) workState: (int) minutes;
--(void) freeState;
--(void) setState: (int) state;
 
--(void) growlAlert: (Note*) alert;
-- (void) growlNotificationWasClicked:(id)ctx;
 //-(NSArray*) getAllTasks;
 -(NSString*) entityNameForState: (int) state;
 - (NSManagedObject*) findTask: (NSString*) name inContext: (NSManagedObjectContext*) moc;

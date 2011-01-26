@@ -25,7 +25,6 @@
 @synthesize addRuleButton;
 @synthesize removeRuleButton;
 @synthesize rulesData;
-@synthesize summaryMode;
 @dynamic notificationTitle;
 @dynamic notificationName;
 @dynamic refreshInterval;
@@ -34,10 +33,10 @@
 {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 	if (self){
-		super.description =@"Test Mail Module";
-		super.notificationName = @"Mail Alert";
-		super.notificationTitle = @"Test Email Msg";
-		super.category = CATEGORY_EMAIL;
+		description =@"Test Mail Module";
+		notificationName = @"Mail Alert";
+		notificationTitle = @"Test Email Msg";
+		category = CATEGORY_EMAIL;
 	}
 	return self;
 }
@@ -47,7 +46,7 @@
 	rulesData = [[RulesTableData alloc] initWithRules:rules];
 	rulesTable.dataSource = rulesData;
 	[rulesTable noteNumberOfRowsChanged];
-	refresh= 600;
+	refresh= 60;
 }
 
 
@@ -56,70 +55,71 @@
 	NSDictionary *dict1 = [NSDictionary dictionaryWithObjectsAndKeys:
 						   [super description], @"module",
 						   @"this is a summary",@"summary",
-						    @"title for summary",@"title",
-						    @"Mark Ratner",@"name",
-						    @"ratner@fasttimes.com",@"email",
-						    @"http://fasttimes.com",@"href",
+						   @"title for summary",@"title",
+						   @"Mark Ratner",@"name",
+						   @"ratner@fasttimes.com",@"email",
+						   @"http://fasttimes.com",@"href",
 						   nil];
 	NSDictionary *dict2 = [NSDictionary dictionaryWithObjectsAndKeys:
 						   [super description], @"module",
 						   @"I'm sooo wasted!",@"summary",
-						    @"stoner humor",@"title",
-						    @"Jeff Spicolli",@"name",
-						    @"spicolli@fasttimes.com",@"email",
-						    @"http://fasttimes.com",@"href",
+						   @"stoner humor",@"title",
+						   @"Jeff Spicolli",@"name",
+						   @"spicolli@fasttimes.com",@"email",
+						   @"http://fasttimes.com",@"href",
 						   nil];
 	NSDictionary *dict3 = [NSDictionary dictionaryWithObjectsAndKeys:
 						   [super description], @"module",
 						   @"Dude where's my car?",@"summary",
-						    @"more stoner humor",@"title",
-						    @"That Guy",@"name",
-						    @"that.guy@wheresmycar.com",@"email",
-						    @"http://wheresmycar.com",@"href",
+						   @"more stoner humor",@"title",
+						   @"That Guy",@"name",
+						   @"that.guy@wheresmycar.com",@"email",
+						   @"http://wheresmycar.com",@"href",
 						   nil];
 	NSDictionary *dict4 = [NSDictionary dictionaryWithObjectsAndKeys:
 						   [super description], @"module",
 						   @"Urgent Message",@"summary",
-						    @"urgent stoner humor",@"title",
-						    @"That Urgent Guy",@"name",
-						    @"that.urgent.guy@wheresmycar.com",@"email",
-						    @"http://urgent.com",@"href",
+						   @"urgent stoner humor",@"title",
+						   @"That Urgent Guy",@"name",
+						   @"that.urgent.guy@wheresmycar.com",@"email",
+						   @"http://urgent.com",@"href",
 						   nil];
 	NSDictionary *dict5 = [NSDictionary dictionaryWithObjectsAndKeys:
 						   [super description], @"module",
 						   @"Unimportant Message",@"summary",
-						    @"ignorance is bliss",@"title",
-						    @"That Boring Guy",@"name",
-						    @"that.unimportant.guy@wheresmycar.org",@"email",
-						    @"http://unimportant.com", @"href",
+						   @"ignorance is bliss",@"title",
+						   @"That Boring Guy",@"name",
+						   @"that.unimportant.guy@wheresmycar.org",@"email",
+						   @"http://unimportant.com", @"href",
 						   nil];
 	NSArray *msgs = [NSArray arrayWithObjects: dict1,dict2,dict3,dict4,dict5,nil];
+	NSMutableArray *sendItems = [NSMutableArray new];
 	for (NSDictionary *item in msgs){
 		FilterResult res = [FilterRule processFilters:rules forMessage: item];
 		if (res != RESULT_IGNORE) {
-			Note *alert = [[Note alloc]init];
-			alert.moduleName = super.description;
-			alert.title =[item objectForKey:@"title"];
-			alert.message=[item objectForKey:@"summary"];
-			alert.sticky = (res == RESULT_IMPORTANT);
-			alert.urgent = (res == RESULT_IMPORTANT);
-			alert.params = item;
-			[handler handleAlert:alert];
+			[sendItems addObject:item];
 		}
 	}
-	[BaseInstance sendDone:handler];
-
-}
-
-- (void) getSummary
-{
-	summaryMode = YES;
-	[self refreshData: nil];
+	
+	for (int i = 0; i < [sendItems count];i++){
+		NSDictionary *item = [sendItems objectAtIndex:i];
+		Note *alert = [[Note alloc]init];
+		FilterResult res = [FilterRule processFilters:rules forMessage: item];
+		alert.moduleName = description;
+		alert.title =[item objectForKey:@"title"];
+		alert.message=[item objectForKey:@"summary"];
+		alert.sticky = (res == RESULT_IMPORTANT);
+		alert.urgent = (res == RESULT_IMPORTANT);
+		alert.clickable = YES;
+		alert.params = item;
+		alert.lastAlert = (i+1 == [sendItems count]);
+		[handler handleAlert:alert];
+	}
+	
 }
 
 -(void) refresh: (<AlertHandler>) handler
 {
-	summaryMode = NO;
 	[self refreshData:handler];
 }
 
@@ -134,13 +134,14 @@
 - (void) startValidation: (NSObject*) callback
 {
 	[super startValidation:callback];
-	[super.validationHandler performSelector:@selector(validationComplete:) 
-								  withObject:nil];
+	refreshInterval = frequencyField.intValue * 60;
+	[validationHandler performSelector:@selector(validationComplete:) 
+							withObject:nil];
 }
 
 -(void) saveDefaults{ 
 	[super saveDefaults];
-	[super saveDefaultValue:[NSNumber numberWithInt:super.refreshInterval] forKey:REFRESH];
+	[super saveDefaultValue:[NSNumber numberWithInt:refreshInterval] forKey:REFRESH];
 	[self saveRules];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 };
@@ -156,7 +157,7 @@
 		count++;
 	}
 }
-						 
+
 - (void) loadRules
 {
 	NSNumber *temp = [super loadDefaultForKey:RULECOUNT];
@@ -171,7 +172,7 @@
 		[rules addObject:rule];
 	}
 }
-	
+
 - (void) clearRules
 {
 	NSNumber *temp = [super loadDefaultForKey:RULECOUNT];
@@ -186,7 +187,7 @@
 -(void) loadView
 {
 	[super loadView];
-	[frequencyField setStringValue:[NSString stringWithFormat:@"%d", super.refreshInterval]];
+	[frequencyField setStringValue:[NSString stringWithFormat:@"%d", refreshInterval/60]];
 	rulesData.allRules = rules;
 	rulesTable.dataSource = rulesData;
 }
@@ -196,14 +197,14 @@
 	[super loadDefaults];
 	NSNumber *temp =  [super loadDefaultForKey:REFRESH];
 	if (temp) {
-		super.refreshInterval = [temp intValue];
+		refreshInterval = [temp intValue];
 	}
 	[self loadRules];
 }
 
 -(void) clearDefaults{
 	[super clearDefaults];
-
+	
 	[super clearDefaultValue:[NSNumber numberWithInt:frequencyField.intValue] forKey:REFRESH];
 	[self clearRules];
 	[[NSUserDefaults standardUserDefaults] synchronize];	
@@ -237,17 +238,17 @@
 }
 
 - (IBAction) typeChanged: (id) sender
-   {
-	   NSTableView* tView = (NSTableView*)sender;
-	   NSInteger rowIdx = [tView selectedRow];
-	   NSPopUpButtonCell *pop = [tView selectedCell];
-	   int idx = [pop indexOfSelectedItem];
-	   FilterRule *rule = [rules objectAtIndex:rowIdx];
-	   rule.ruleType = idx;
-	   
+{
+	NSTableView* tView = (NSTableView*)sender;
+	NSInteger rowIdx = [tView selectedRow];
+	NSPopUpButtonCell *pop = [tView selectedCell];
+	int idx = [pop indexOfSelectedItem];
+	FilterRule *rule = [rules objectAtIndex:rowIdx];
+	rule.ruleType = idx;
+	
 	//   NSLog(@"cell idx  = %d", idx);
 	//   NSLog(@"cell title = %@", [pop titleOfSelectedItem]);
-   }
+}
 - (IBAction) fieldChanged: (id) sender
 {
 	NSTableView* tView = (NSTableView*)sender;

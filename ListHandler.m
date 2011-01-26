@@ -54,7 +54,7 @@ didStartElement:(NSString *)elementName
 		[currentDict setObject:[[[NSString alloc] initWithString:listId]retain] forKey:@"list_id"]; 
 		[currentDict setObject:[[[NSString alloc] initWithString:id]retain] forKey:@"taskseries_id"]; 
 		[currentDict setObject:[[[NSString alloc] initWithString:name]retain] forKey:@"name"]; 
-		[currentDict setObject:super.context.description forKey:@"module"];
+		[currentDict setObject:context.description forKey:@"module"];
     }
 	//
 	// START ELEMENT: task (part of taskseries)

@@ -15,8 +15,8 @@
 objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
 	id theValue;
-    NSParameterAssert(row >= 0 && row < [super.data count]);
-    NSDictionary *params  = [super.data objectAtIndex:row];
+    NSParameterAssert(row >= 0 && row < [data count]);
+    NSDictionary *params  = [data objectAtIndex:row];
 	theValue = [params objectForKey:@"summary"];
 
     return theValue;

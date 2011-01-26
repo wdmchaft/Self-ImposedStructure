@@ -15,29 +15,28 @@
 
 @implementation TestEventModule
 
-@synthesize refresh;
-
 @synthesize frequencyField;
 @synthesize stepper;
-@dynamic notificationName;
-@dynamic notificationTitle;
-
+@dynamic refreshInterval;
 
 -(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 	if (self){
-		super.description =@"Test Event Module";
-		super.notificationName = @"Mail Alert";
-		super.notificationTitle = @"Test Email Msg";
-		super.category = CATEGORY_EVENTS;
-		refresh = 600;
+		description =@"Test Event Module";
+		notificationName = @"Mail Alert";
+		notificationTitle = @"Test Email Msg";
+		category = CATEGORY_EVENTS;
+		refreshInterval = 600;
+		[frequencyField setStringValue:[NSString stringWithFormat:@"%d", refreshInterval / 60 ]];
+
 	}
 	return self;
 }
 
 - (void)awakeFromNib
 {
+	[frequencyField setStringValue:[NSString stringWithFormat:@"%d", refreshInterval / 60 ]];
 
 }
 
@@ -72,20 +71,17 @@
 	
 
 	NSArray *msgs = [NSArray arrayWithObjects: dict1,dict2,dict3, nil];
-	for (NSDictionary *item in msgs){
-		
+	for (int i = 0; i < [msgs count];i++){
+		NSDictionary *item = [msgs objectAtIndex:i];
 		Note *alert = [[Note alloc]init];
-		alert.moduleName = super.description;
+		alert.moduleName = description;
 		alert.title =[item objectForKey:@"desc"];
 		alert.message=[item objectForKey:@"summary"];
 		alert.params = item;
-		
+		alert.lastAlert = (i+1 == [msgs count]);
 		[handler handleAlert:alert];
 		
 	}
-	[BaseInstance sendDone:handler];
-
-	
 }
 
 - (void) refresh: (<AlertHandler>) handler;
@@ -105,13 +101,15 @@
 - (void) startValidation: (NSObject*) callback
 {
 	[super startValidation:callback];
-	[super.validationHandler performSelector:@selector(validationComplete:) 
+	refreshInterval = frequencyField.intValue * 60;
+	[validationHandler performSelector:@selector(validationComplete:) 
 								  withObject:nil];
 }
 
 -(void) saveDefaults{ 
 	[super saveDefaults];
-	[super saveDefaultValue:[NSNumber numberWithInt:refresh] forKey:REFRESH];
+	NSTimeInterval temp = refreshInterval;
+	[super saveDefaultValue:[NSNumber numberWithInt:temp] forKey:REFRESH];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 };
 
@@ -119,7 +117,7 @@
 -(void) loadView
 {
 	[super loadView];
-	[frequencyField setStringValue:[NSString stringWithFormat:@"%d", refresh]];
+	[frequencyField setStringValue:[NSString stringWithFormat:@"%d", refreshInterval / 60 ]];
 }
 
 -(void) loadDefaults
@@ -127,7 +125,7 @@
 	[super loadDefaults];
 	NSNumber *temp =  [super loadDefaultForKey:REFRESH];
 	if (temp) {
-		refresh = [temp intValue];
+		refreshInterval = [temp intValue];
 	}
 }
 
@@ -142,5 +140,4 @@
 {
 	frequencyField.intValue = stepper.intValue;
 }
-
 @end

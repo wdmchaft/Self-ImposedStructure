@@ -52,10 +52,10 @@
 //{
 //	self = [super init];
 //	if (self){
-//		super.description =@"Gmail Module";
-//		super.notificationName = @"Mail Alert";
-//		super.notificationTitle = @"Gmail Msg";
-//		super.type = MODULE_EMAIL;
+//		description =@"Gmail Module";
+//		notificationName = @"Mail Alert";
+//		notificationTitle = @"Gmail Msg";
+//		type = MODULE_EMAIL;
 //		minTagValue = [[NSNumber alloc]initWithInteger: 0];		
 //		highestTagValue = [[NSNumber alloc ]initWithLongLong:minTagValue.longLongValue];
 //	}	
@@ -65,9 +65,9 @@
 {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 	if (self){
-		super.description =@"Gmail Module";
-		super.notificationName = @"Mail Alert";
-		super.notificationTitle = @"Gmail Msg";
+		description =@"Gmail Module";
+		notificationName = @"Mail Alert";
+		notificationTitle = @"Gmail Msg";
 		minTagValue = [[NSNumber alloc]initWithInteger: 0];		
 		highestTagValue = [[NSNumber alloc ]initWithLongLong:minTagValue.longLongValue];
 	}
@@ -121,15 +121,6 @@
 	[super saveDefaultValue:minTagValue forKey:MINTAGVALUE];
 }
 
-- (void) getSummary:(<AlertHandler>) AlertHandler
-{
-	GMailRequestHandler *refreshHandler = [[GMailRequestHandler alloc] initWithTagValue: highestTagValue 
-																				  rules: rules 
-																				handler: AlertHandler
-																			   delegate:self];
-	[self refreshData:refreshHandler];
-}
-
 - (void) refresh: (<AlertHandler>) AlertHandler{
 	
 	GMailRequestHandler *refreshHandler = 
@@ -160,7 +151,7 @@
 		&& userStr != nil 
 		&& [passwordStr isEqualToString:passwordField.stringValue]
 		&& [userStr isEqualToString:userField.stringValue]) {
-		[super.validationHandler performSelector:@selector(validationComplete:) 
+		[validationHandler performSelector:@selector(validationComplete:) 
 									  withObject:nil];
 	}
 	else{

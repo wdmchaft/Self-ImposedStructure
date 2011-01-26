@@ -50,9 +50,11 @@
 
 - (void) startWithRefresh: (BOOL) doRefresh;
 {
+	NSLog(@"startWithRefresh");
 	running = YES;
 	for (TimerInfo *info in timers){
 		NSTimeInterval startInterval = doRefresh ? 0 : [info.module refreshInterval];
+		NSLog(@"starting cycle for %@ in %d secs", [info.module description], [info.module refreshInterval]);
 		info.timer = [NSTimer scheduledTimerWithTimeInterval:startInterval
 													  target:self
 													selector:@selector(doRefresh:) 
@@ -66,15 +68,16 @@
 	TimerInfo *info = (TimerInfo*)timer.userInfo;
 	[info.timer invalidate];
 	info.timer = nil;
+	NSLog(@"doRefresh for %@", [info.module description]);
 	if (running){
-	[info.module refresh:alertHandler];
+		[info.module refresh:alertHandler];
 	}
 	if (running){
-	info.timer = [NSTimer scheduledTimerWithTimeInterval:[info.module refreshInterval] 
-												  target:self
-												selector:@selector(doRefresh:) 
-												userInfo: info
-												 repeats:NO];
+		info.timer = [NSTimer scheduledTimerWithTimeInterval:[info.module refreshInterval] 
+													  target:self
+													selector:@selector(doRefresh:) 
+													userInfo: info
+													 repeats:NO];
 	}
 }
 

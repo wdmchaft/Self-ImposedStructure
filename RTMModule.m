@@ -57,12 +57,12 @@
 
 -(NSString*) getNotificationName
 {
-	return super.notificationName;	
+	return notificationName;	
 }
 
 -(NSString*) getNotificationTitle
 {
-	return super.notificationTitle;	
+	return notificationTitle;	
 }
 
 /**
@@ -77,14 +77,17 @@
 
 - (void) listDone 
 {
+	int taskCount = [tasksList count];
+	int count = 0;
 	for (NSString *taskName in tasksList){
 		NSDictionary *tc = [[NSDictionary alloc]initWithDictionary:
 							[tasksDict objectForKey:taskName] copyItems:YES];
 		Note *alert = [[Note alloc]init];
-		alert.moduleName = super.description;
-		alert.title =super.description;
+		alert.moduleName = description;
+		alert.title =description;
 		alert.message=taskName;
 		alert.params = tc;
+		alert.lastAlert = ++count == taskCount;
 		[handler handleAlert:alert];
 	}
 	[self taskRefreshDone];
@@ -136,7 +139,7 @@
 			cr = [date compare:[NSDate date]];
 		}
 		Note *alert = [[Note alloc]init];
-		alert.moduleName = super.description;
+		alert.moduleName = description;
 		NSString *dateStr = date ? [Utility timeStrFor:date] : @"";
 		NSString *alertTitle = [listNameStr copy];
 		if (cr == NSOrderedDescending) {
@@ -182,7 +185,6 @@
 {
 	[self taskRefreshDone];
 	[self processAlertsWithAlarms:YES];
-	[BaseInstance sendDone:handler];
 }
 
 - (void) handleWarningAlarm: (NSTimer*) theTimer
@@ -243,12 +245,12 @@
 {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 	if (self){
-		super.description =@"RTM Module";
-		super.notificationName = @"Task Alert";
-		super.notificationTitle = @"Task Msg";
-		super.category = CATEGORY_TASKS;
-		super.refreshInterval = 15 * 60;
-		[refreshText setIntValue:super.refreshInterval / 60];	
+		description =@"RTM Module";
+		notificationName = @"Task Alert";
+		notificationTitle = @"Task Msg";
+		category = CATEGORY_TASKS;
+		refreshInterval = 15 * 60;
+		[refreshText setIntValue:refreshInterval / 60];	
 	}
 	return self;
 }
@@ -267,7 +269,7 @@
 	[progInd setHidden:YES];
 	[userText setStringValue:userStr == nil ? @"" : userStr];
 	[passwordText setStringValue:passwordStr == nil ? @"" : passwordStr];
-	[refreshText setStringValue:[NSString stringWithFormat:@"%d", super.refreshInterval / 60]];
+	[refreshText setStringValue:[NSString stringWithFormat:@"%d", refreshInterval / 60]];
 	if (tokenStr == nil) {
 		NSAlert *alert = [NSAlert alertWithMessageText:@"Not Authorized" 
 										 defaultButton:nil alternateButton:nil 
@@ -290,7 +292,7 @@
 	listIdStr = [super loadDefaultForKey:LISTID];
 	NSNumber *temp =  [super loadDefaultForKey:REFRESH];
 	if (temp) {
-		super.refreshInterval = [temp intValue];
+		refreshInterval = [temp intValue];
 	}
 }
 
@@ -300,7 +302,7 @@
 	[super clearDefaults];
 	[super clearDefaultValue:userStr forKey:EMAIL];
 	[super clearDefaultValue:passwordStr forKey:PASSWORD];
-	[super clearDefaultValue:[NSNumber numberWithInt:super.refreshInterval] forKey:REFRESH];
+	[super clearDefaultValue:[NSNumber numberWithInt:refreshInterval] forKey:REFRESH];
 	[super clearDefaultValue:listNameStr forKey:LISTNAME];
 	[super clearDefaultValue: listIdStr forKey:LISTID];
 	[[NSUserDefaults standardUserDefaults] synchronize];	
@@ -312,7 +314,7 @@
 	[super saveDefaultValue:tokenStr forKey:TOKEN];
 	[super saveDefaultValue:userStr forKey:EMAIL];
 	[super saveDefaultValue:passwordStr forKey:PASSWORD];
-	[super saveDefaultValue:[NSNumber numberWithInt:super.refreshInterval] forKey:REFRESH];
+	[super saveDefaultValue:[NSNumber numberWithInt:refreshInterval] forKey:REFRESH];
 	[super saveDefaultValue:listNameStr forKey:LISTNAME];
 	[super saveDefaultValue: listIdStr forKey:LISTID];
 	[[NSUserDefaults standardUserDefaults] synchronize];		
@@ -323,11 +325,11 @@
 	[super startValidation:callback];
 	userStr = userText.stringValue;
 	passwordStr = passwordText.stringValue;
-	super.refreshInterval = refreshText.intValue / 60;
+	refreshInterval = refreshText.intValue / 60;
 
 	listNameStr = [listsCombo titleOfSelectedItem];
 	listIdStr = [idMapping objectForKey:listNameStr];
-	[super.validationHandler performSelector:@selector(validationComplete:) 
+	[validationHandler performSelector:@selector(validationComplete:) 
 								  withObject:nil];	}
 
 - (void) clickAuthButton: (id) sender

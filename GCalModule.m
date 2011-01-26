@@ -44,10 +44,10 @@
 @synthesize alertHandler;
 -(void) setId
 {
-	super.description =@"GCal Module";
-	super.notificationName = @"Event Alert";
-	super.notificationTitle = @"Upcoming Event";
-	super.category = CATEGORY_EVENTS;
+	description =@"GCal Module";
+	notificationName = @"Event Alert";
+	notificationTitle = @"Upcoming Event";
+	category = CATEGORY_EVENTS;
 	warningWindow = 15;
 }
 
@@ -142,9 +142,9 @@
 		[BaseInstance sendErrorToHandler:alertHandler error: err module: [self description]];
 	}
 
-	if (super.validationHandler){
+	if (validationHandler){
 		SEL validSel = @selector(validationComplete:);
-		[super.validationHandler performSelector:validSel
+		[validationHandler performSelector:validSel
 									  withObject:[error localizedDescription]];
 	}
 }
@@ -162,18 +162,18 @@
 	if (errRange.location != NSNotFound){
 		// Authentication failure occurred
 		
-		if (!super.validationHandler){
+		if (!validationHandler){
 			[BaseInstance sendErrorToHandler:alertHandler 
 									   error:@"Authentication Failure" 
 									  module:[self description]];
 			return;
 		} else {
-			[super.validationHandler performSelector:@selector(validationComplete:) 
+			[validationHandler performSelector:@selector(validationComplete:) 
 										  withObject:@"Authentication Failure"];		
 		}
 	} 
-	else if (super.validationHandler){
-		[super.validationHandler performSelector:@selector(validationComplete:) 
+	else if (validationHandler){
+		[validationHandler performSelector:@selector(validationComplete:) 
 									  withObject:nil];
 	}
 	CalDAVParser *parser = [[CalDAVParser alloc]init];
@@ -181,20 +181,20 @@
 	eventsList = [NSMutableArray new];
 	[parser parse:self];
 	[self processEvents];
-	[BaseInstance sendDone:alertHandler];
 }
 
 - (void) processEvents
 {
+	int eventCount = [eventsList count];
+	int count = 0;
 	for (NSDictionary *event in eventsList){
 		Note *note = [[Note alloc]init];
-		note.moduleName = super.description;
+		note.moduleName = description;
 		NSDate *eventDate = [event objectForKey:@"start"];
 		note.title = [self timeStrFor:eventDate];
 		note.message = [event objectForKey:@"summary"];
-		if (summaryMode)
-			note.params = event;
-		
+		note.params = event;
+		note.lastAlert = ++count == eventCount;
 		[alertHandler handleAlert:note];
 		
 		if (!summaryMode){
@@ -317,7 +317,7 @@
 	[super startValidation:callback];
 	userStr = userField.stringValue;
 	passwordStr = passwordField.stringValue;
-	super.refreshInterval = refreshField.intValue * 60;
+	refreshInterval = refreshField.intValue * 60;
 	calURLStr = calURLField.stringValue;
 	warningWindow = warningField.intValue;
 	lookAhead = lookAheadField.intValue;
@@ -329,7 +329,7 @@
 	[super saveDefaultValue:userStr forKey:EMAIL];
 	[super saveDefaultValue:passwordStr forKey:PASSWORD];
 	[super saveDefaultValue:calURLStr forKey:CALURL];
-	[super saveDefaultValue:[NSNumber numberWithInt:super.refreshInterval] forKey:REFRESH];
+	[super saveDefaultValue:[NSNumber numberWithInt:refreshInterval] forKey:REFRESH];
 	[super saveDefaultValue:[NSNumber numberWithInt:warningWindow] forKey:WARNINGWINDOW];
 	[super saveDefaultValue:[NSNumber numberWithInt:lookAhead] forKey:LOOKAHEAD];
 	[[NSUserDefaults standardUserDefaults] synchronize];
@@ -341,7 +341,7 @@
 
 	[userField setStringValue:userStr == nil ? @"" : userStr];
 	[passwordField setStringValue:passwordStr == nil ? @"" : passwordStr];
-	[refreshField setIntValue:super.refreshInterval * 60];
+	[refreshField setIntValue:refreshInterval * 60];
 	[calURLField setStringValue:calURLStr == nil ? @"" : calURLStr];
 	[lookAheadField setIntValue:lookAhead];
 	[warningField setIntValue:warningWindow];
@@ -355,7 +355,7 @@
 	calURLStr = [super loadDefaultForKey:CALURL];
 	NSNumber *temp =  [super loadDefaultForKey:REFRESH];
 	if (temp) {
-		super.refreshInterval = [temp intValue];
+		refreshInterval = [temp intValue];
 	}
 	temp =  [super loadDefaultForKey:LOOKAHEAD];
 	if (temp) {
@@ -371,7 +371,7 @@
 	[super clearDefaults];
 	[super clearDefaultValue:userStr forKey:EMAIL];
 	[super clearDefaultValue:passwordStr forKey:PASSWORD];
-	[super clearDefaultValue:[NSNumber numberWithInt:super.refreshInterval] forKey:REFRESH];
+	[super clearDefaultValue:[NSNumber numberWithInt:refreshInterval] forKey:REFRESH];
 	[super clearDefaultValue:[NSNumber numberWithInt:lookAhead] forKey:LOOKAHEAD];
 	[super clearDefaultValue:[NSNumber numberWithInt:warningWindow] forKey:WARNINGWINDOW];
 	[super clearDefaultValue:calURLStr forKey:CALURL];

@@ -14,15 +14,13 @@
 @interface TestEventModule : BaseInstance <Reporter> {
 
 	NSTextField *frequencyField;
-
-	NSTimeInterval refresh;
-
 	NSStepper *stepper;
+//	NSTimeInterval refreshInterval;
 }
 
-@property (nonatomic) NSTimeInterval refresh;
 @property (nonatomic, retain) IBOutlet NSTextField *frequencyField;
 @property (nonatomic, retain) IBOutlet NSStepper *stepper;
+//@property (nonatomic) NSTimeInterval refreshInterval;
 
 -(IBAction) clickStepper: (id) sender;
 - (void) refreshData:(<AlertHandler>)timer;

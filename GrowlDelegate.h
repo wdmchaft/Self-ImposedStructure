@@ -22,4 +22,6 @@
 
 -(void) growlAlert: (Note*) alert;
 - (void) growlNotificationWasClicked:(id)ctx;
+- (void) growlLoop:(NSTimer *)timeIn;
+- (void) stop;
 @end

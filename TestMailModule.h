@@ -37,7 +37,6 @@
 @property (nonatomic, retain) IBOutlet NSButton* addRuleButton;
 @property (nonatomic, retain) IBOutlet NSButton* removeRuleButton;
 @property (nonatomic, retain) RulesTableData *rulesData;
-@property (nonatomic) BOOL summaryMode;
 
 
 -(IBAction) clickStepper: (id) sender;

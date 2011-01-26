@@ -12,8 +12,8 @@
 #import "TaskList.h"
 #import "Instance.h"
 #import "Reporter.h"
+#import <BGHUDAppKit/BGHUDAppKit.h>
 
-#import <BWToolkitFramework/BWToolkitFramework.h>
 @implementation SummaryHUDControl
 @synthesize finishedCount;
 @synthesize doneCount;
@@ -53,15 +53,8 @@
 -(void) handleAlert:(Note*) alert 
 {
 	Context *ctx = [Context sharedContext];
-	if (alert.lastAlert){
-		doneCount++;
-		
-		NSLog(@"received done from %@",alert.moduleName);
-		if (doneCount == finishedCount){
-			[self allSummaryDataReceived];
-		}
-	}
-	else {
+
+
 		NSLog(@"received %@",alert.message);
 		<Instance> modForAlert = [ctx.instancesMap objectForKey:alert.moduleName];
 		NSDate *due = nil;
@@ -86,8 +79,15 @@
 			default:
 				break;
 		}
-	}
 	
+	if (alert.lastAlert){
+		doneCount++;
+		
+		NSLog(@"received done from %@",alert.moduleName);
+		if (doneCount == finishedCount){
+			[self allSummaryDataReceived];
+		}
+	}	
 }
 -(void) handleError: (Note*) error{
 	if (doneCount++ == finishedCount){
@@ -127,7 +127,7 @@
 	NSArray *allCols = modulesTable.tableColumns;
 	NSTableColumn *col1 = [allCols objectAtIndex:0];
 	
-    NSButtonCell *cell;
+    BGHUDButtonCell *cell;
     cell = [[NSButtonCell alloc] init];
     [cell setButtonType:NSSwitchButton];
     [cell setTitle:@""];
@@ -160,8 +160,8 @@
 	tasksData = [SummaryTaskData new];
 	deadlinesData = [SummaryDeadlineData new];
 	eventsData = [SummaryEventData new];
-//	[self initTaskTable: deadlinesTable];
-//	[self initTaskTable: tasksTable];
+	[self initTaskTable: deadlinesTable];
+	[self initTaskTable: tasksTable];
 	[deadlinesTable setDoubleAction:@selector(handleDouble:)];
 	[tasksTable setDoubleAction:@selector(handleDouble:)];
 	[eventsTable setDoubleAction:@selector(handleDouble:)];

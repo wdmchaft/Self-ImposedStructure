@@ -13,6 +13,7 @@
 #import "Utility.h"
 #import "BaseInstance.h"
 #import "TaskList.h"
+#import "Reporter.h"
 
 @interface Context : NSObject {
 	NSMutableDictionary *instancesMap; // maps module name to instance of module
@@ -453,8 +454,8 @@ static Context* sharedContext = nil;
 	for (NSString *name in instancesMap){
 		id thing = [instancesMap objectForKey: name];
 		<Instance> inst = (<Instance>) thing;
-		if ( inst.enabled && [thing respondsToSelector:@selector(setState:)]){
-			[inst setState: WPASTATE_FREE];
+		if ( inst.enabled && [thing respondsToSelector:@selector(stateChange:)]){
+			[inst stateChange: WPASTATE_FREE];
 		}
 	}
 }
@@ -464,7 +465,7 @@ static Context* sharedContext = nil;
 		id thing = [instancesMap objectForKey: name];
 		<Instance> inst = (<Instance>) thing;
 		if ( inst.enabled && [thing respondsToSelector:@selector(setState:)]){
-			[inst setState: WPASTATE_AWAY];
+			[inst stateChange: WPASTATE_AWAY];
 		}		
 	}
 }	
@@ -474,8 +475,10 @@ static Context* sharedContext = nil;
 	for (NSString *name in instancesMap){
 		id thing = [instancesMap objectForKey: name];
 		<Instance> inst = (<Instance>) thing;
-		if ( inst.enabled && [thing respondsToSelector:@selector(refresh:)]){
-			[ret addObject:thing];
+		if ( inst.enabled && [thing conformsToProtocol:@protocol(Reporter)]){
+			if (((<Reporter>)thing).refreshInterval) { // only add it if the refresh interval is sane
+				[ret addObject:thing];
+			}
 		}
 	}
 	return [NSArray arrayWithArray:ret];

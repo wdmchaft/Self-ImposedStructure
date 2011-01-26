@@ -11,14 +11,15 @@
 
 @implementation GrowlDelegate
 @synthesize alertQ, savedQ;
-
+@synthesize timer;
 - (id) init
 {
+	NSLog(@"GrowlDelegate started");
 	if (self){
 		[GrowlApplicationBridge setGrowlDelegate:self];
 		alertQ = [NSMutableArray new];
 		savedQ = [NSMutableArray new];
-		[self performSelector:@selector(growlLoop)];
+		[self performSelector:@selector(growlLoop:)];
 	}
 	return self;
 }
@@ -99,10 +100,12 @@
 	
 }
 
--(void) growlLoop: (NSTimer*) timer;
+-(void) growlLoop: (NSTimer*) timeIn;
 {
-	[timer invalidate];
-	timer = nil;
+	if (timer){
+		[timer invalidate];
+		timer = nil;
+	}
 	NSMutableArray *q = [[Context sharedContext]alertQ];
 	//	NSLogDebug(@"Checking Q...");
 	if ([q count] > 0){
@@ -110,18 +113,25 @@
 		[q removeObjectAtIndex:0];
 	}
 	int interval = [Context sharedContext].growlInterval;
-	[self performSelector:@selector(growlLoop) withObject:nil afterDelay:interval];
+	//[self performSelector:@selector(growlLoop:) withObject:nil afterDelay:interval];
 	timer = [NSTimer scheduledTimerWithTimeInterval:interval
 													  target:self 
 													selector:@selector(growlLoop:)
 													userInfo:nil
 													 repeats:NO]; 
 }
+- (void) stop
+{
+	[timer invalidate];
+	timer = nil;
+	[GrowlApplicationBridge setGrowlDelegate:nil];
 
+}
 - (void) finalize {
 	if (timer){
 		[timer invalidate];
 		timer = nil;
 	}
+	[super finalize];
 }
 @end

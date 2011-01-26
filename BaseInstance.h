@@ -12,14 +12,7 @@
 
 
 @interface BaseInstance : NSViewController <Instance> {
-	//
-	//  BaseInstance.m
-	//  Nudge
-	//
-	//  Created by Charles on 11/18/10.
-	//  Copyright 2010 workplayaway.com. All rights reserved.
-	//	
-	
+
 	BOOL enabled;
 	
 	NSString *description;
@@ -48,9 +41,7 @@
 -(void) saveDefaultValue: (NSObject*) val forKey: (NSString*) key;
 -(void) clearDefaultValue: (NSObject*) val forKey: (NSString*) key;
 -(id) loadDefaultForKey: (NSString*) key;
-//-(void) createTrackingItem: (NSString*) item;
 + (void) sendErrorToHandler:(<AlertHandler>) handler error:(NSString*) err module:(NSString*) modName;
-+ (void) sendDone:(<AlertHandler>) handler;
 
 @end
 

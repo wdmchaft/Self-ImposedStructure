@@ -111,9 +111,9 @@
 {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 	if (self){
-		super.description =@"Blocker Module";
-		super.notificationName = @"Blocker Alert";
-		super.notificationTitle = @"Blocker Msg";
+		description =@"Blocker Module";
+		notificationName = @"Blocker Alert";
+		notificationTitle = @"Blocker Msg";
 	}
 	return self;
 }
