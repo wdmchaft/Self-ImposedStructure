@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 
-@protocol TaskList
+@protocol TaskList <Instance>
 
 - (NSArray*) getTasks;
 - (void) refreshTasks;

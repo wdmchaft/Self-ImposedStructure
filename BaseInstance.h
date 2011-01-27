@@ -15,7 +15,7 @@
 
 	BOOL enabled;
 	
-	NSString *description;
+	NSString *name;
 	NSString *notificationName;
 	NSString *notificationTitle;
 	NSObject *validationHandler;
@@ -25,7 +25,7 @@
 }
 
 @property (nonatomic) BOOL enabled;
-@property (nonatomic, retain) NSString *description;
+@property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *notificationName;
 @property (nonatomic, retain) NSString *notificationTitle;
 @property (nonatomic, retain) NSObject *validationHandler;

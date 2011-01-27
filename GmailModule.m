@@ -23,7 +23,6 @@
 @synthesize userStr;
 @synthesize passwordStr;
 @synthesize respBuffer;
-@synthesize refresh;
 @synthesize msgDict;
 @synthesize titleStr;
 @synthesize summaryStr;
@@ -54,7 +53,7 @@
 {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 	if (self){
-		description =@"Gmail Module";
+		name =@"Gmail Module";
 		notificationName = @"Mail Alert";
 		notificationTitle = @"Gmail Msg";
 		minTagValue = [[NSNumber alloc]initWithInteger: 0];		
@@ -83,8 +82,6 @@
 
 -(void) refreshData: (GMailRequestHandler*) refreshHandler
 {
-	refreshTimer = nil;
-
 	NSString *host = [[NSString alloc] initWithString:@"https://mail.google.com"];
 	NSString *urlStr = [[NSString alloc]initWithFormat: @"%@%@",host,@"/mail/feed/atom"];
 	NSURL *url = [[[NSURL alloc]initWithString:urlStr]autorelease];
@@ -130,7 +127,7 @@
 - (void) startValidation: (NSObject*) callback
 {
 	[super startValidation:callback];
-	refresh = frequencyField.intValue;
+	refreshInterval = frequencyField.intValue * 60;
 	// 
 	// if the password / user already are set and haven't changed 
 	// then don't bother connecting to validate
@@ -154,7 +151,7 @@
 	[super saveDefaults];
 	[super saveDefaultValue:userStr forKey:EMAIL];
 	[super saveDefaultValue:passwordStr forKey:PASSWORD];
-	[super saveDefaultValue:[NSNumber numberWithInt:refresh] forKey:REFRESH];
+	[super saveDefaultValue:[NSNumber numberWithInt:refreshInterval] forKey:REFRESH];
 	[self saveRules];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 };
@@ -203,7 +200,7 @@
 
 	[userField setStringValue:userStr == nil ? @"" : userStr];
 	[passwordField setStringValue:passwordStr == nil ? @"" : passwordStr];
-	[frequencyField setStringValue:[NSString stringWithFormat:@"%d", refresh]];
+	[frequencyField setIntValue:refreshInterval/60];
 	rulesData.allRules = rules;
 	rulesTable.dataSource = rulesData;
 }
@@ -215,7 +212,7 @@
 	userStr = [super loadDefaultForKey:EMAIL];
 	NSNumber *temp =  [super loadDefaultForKey:REFRESH];
 	if (temp) {
-		refresh = [temp intValue];
+		refreshInterval = [temp intValue];
 	}
 	temp = [super loadDefaultForKey:MINTAGVALUE];
 	if (temp) {

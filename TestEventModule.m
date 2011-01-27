@@ -25,7 +25,7 @@
 {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 	if (self){
-		description =@"Test Event Module";
+		name =@"Test Event Module";
 		notificationName = @"Mail Alert";
 		notificationTitle = @"Test Email Msg";
 		category = CATEGORY_EVENTS;
@@ -76,14 +76,14 @@
 	for (int i = 0; i < [msgs count];i++){
 		NSDictionary *item = [msgs objectAtIndex:i];
 		Note *alert = [[Note alloc]init];
-		alert.moduleName = description;
+		alert.moduleName = name;
 		alert.title =[item objectForKey:@"desc"];
 		alert.message=[item objectForKey:@"summary"];
 		alert.params = item;
 		[handler handleAlert:alert];
 		
 	}
-	[BaseInstance sendDone: handler module: description];
+	[BaseInstance sendDone: handler module: name];
 }
 
 - (void) refresh: (<AlertHandler>) handler;

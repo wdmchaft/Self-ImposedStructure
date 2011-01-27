@@ -11,7 +11,7 @@
 
 @implementation BaseInstance
 @synthesize enabled;
-@synthesize description;
+@synthesize name;
 @synthesize notificationTitle;
 @synthesize notificationName;
 @synthesize validationHandler;
@@ -51,19 +51,19 @@
 
 -(void) saveDefaultValue: (NSObject*) val forKey: (NSString*) key
 {
-	NSString *myKey = [[NSString alloc]initWithFormat:@"%@.%@",[Utility encode:description],key];
+	NSString *myKey = [[NSString alloc]initWithFormat:@"%@.%@",[Utility encode:name],key];
 	[[NSUserDefaults standardUserDefaults] setObject:val forKey:myKey];
 }
 
 -(void) clearDefaultValue: (NSObject*) val forKey: (NSString*) key
 {
-	NSString *myKey = [[NSString alloc]initWithFormat:@"%@.%@",[Utility encode:description],key];
+	NSString *myKey = [[NSString alloc]initWithFormat:@"%@.%@",[Utility encode:name],key];
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:myKey];
 }
 
 -(id) loadDefaultForKey: (NSString*) key
 {
-	NSString *myKey = [[NSString alloc]initWithFormat:@"%@.%@",[Utility encode:description],key];
+	NSString *myKey = [[NSString alloc]initWithFormat:@"%@.%@",[Utility encode:name],key];
 	return [[NSUserDefaults standardUserDefaults] objectForKey:myKey];
 }
 

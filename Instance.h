@@ -13,17 +13,17 @@
 typedef enum {
 	CATEGORY_OTHER, CATEGORY_EVENTS, CATEGORY_EMAIL, CATEGORY_CHAT_CONTROL, CATEGORY_TASKS
 } WPAModuleCategory;
-@protocol Instance
+@protocol Instance <NSObject>
 /** basic required */
 @required
-- (BOOL) enabled; // allows the module to be turned on and off
 - (void) startValidation:(NSObject*) handler;
 - (void) clearValidation;
 - (void) saveDefaults;
 - (void) loadDefaults;
 - (void) clearDefaults;
-- (WPAModuleCategory) category;
-@property (nonatomic, retain) NSString* description;
+@property (nonatomic) WPAModuleCategory category;
+@property (nonatomic, retain) NSString* name;
+@property (nonatomic) BOOL enabled ;// allows the module to be turned on and off
 
 /* All that follow are optional
 

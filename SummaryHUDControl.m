@@ -153,7 +153,7 @@
 	<TaskList> callMod = [ctx.instancesMap objectForKey:modName];
 	[callMod markComplete:params completeHandler:self];
 	[progInd startAnimation:self];
-	((NSObject*)currentList) = callMod;
+	currentList = callMod;
 	currentTable = sender;
 }
 
@@ -163,7 +163,7 @@
 	SummaryData *sumData = currentTable.dataSource;
 	[sumData.data removeAllObjects];
 	[((<Reporter>)currentList) refresh:self];
-	[currentTable deselectAll];
+	[currentTable deselectAll:self];
 }
 
 -(void) awakeFromNib

@@ -127,10 +127,11 @@
 		8C82BE1912EFEB4F00830486 /* rtm.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C77295412D46AC600F71FE7 /* rtm.ico */; };
 		8C82C79412F17BB200830486 /* wpa.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C82C79312F17BB200830486 /* wpa.ico */; };
 		8C82C79512F17BB200830486 /* wpa.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C82C79312F17BB200830486 /* wpa.ico */; };
+		8C82C85212F1E82500830486 /* wpa.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8C82C85112F1E82500830486 /* wpa.icns */; };
+		8C82C85312F1E82500830486 /* wpa.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8C82C85112F1E82500830486 /* wpa.icns */; };
 		8C9CE85D12E2683800017A02 /* BlockerModule.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CE85C12E2683800017A02 /* BlockerModule.icns */; };
 		8C9CE86212E2698300017A02 /* BlockerModule.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CE86112E2698300017A02 /* BlockerModule.ico */; };
 		8C9CE88812E2700900017A02 /* Skype.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C9CE77812E2465B00017A02 /* Skype.framework */; };
-		8CD1974A12D4C5D900C69AC9 /* BaseModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77293712D46AC600F71FE7 /* BaseModule.m */; };
 		8CD1974D12D4C5D900C69AC9 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77293D12D46AC600F71FE7 /* Note.m */; };
 		8CD1975012D4C5D900C69AC9 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77296D12D46AC600F71FE7 /* Utility.m */; };
 		8CD1975212D4C5D900C69AC9 /* XMLParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77295812D46AC600F71FE7 /* XMLParse.m */; };
@@ -624,9 +625,6 @@
 		8C77293212D46AC600F71FE7 /* AddModWinController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddModWinController.h; sourceTree = "<group>"; };
 		8C77293312D46AC600F71FE7 /* AlertHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertHandler.h; sourceTree = "<group>"; };
 		8C77293512D46AC600F71FE7 /* RTMModule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RTMModule.xib; sourceTree = "<group>"; };
-		8C77293612D46AC600F71FE7 /* Module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Module.h; sourceTree = "<group>"; };
-		8C77293712D46AC600F71FE7 /* BaseModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModule.m; sourceTree = "<group>"; };
-		8C77293812D46AC600F71FE7 /* BaseModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModule.h; sourceTree = "<group>"; };
 		8C77293912D46AC600F71FE7 /* WPA_DataModel.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = WPA_DataModel.xcdatamodel; sourceTree = "<group>"; };
 		8C77293A12D46AC600F71FE7 /* State.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = State.h; sourceTree = "<group>"; };
 		8C77293B12D46AC600F71FE7 /* IconData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconData.h; sourceTree = "<group>"; };
@@ -710,6 +708,7 @@
 		8C82BAB812EF93F900830486 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		8C82C1AC12F0630000830486 /* Stateful.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stateful.h; sourceTree = "<group>"; };
 		8C82C79312F17BB200830486 /* wpa.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = wpa.ico; sourceTree = "<group>"; };
+		8C82C85112F1E82500830486 /* wpa.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = wpa.icns; sourceTree = "<group>"; };
 		8C9CE76312E2449900017A02 /* SkypeState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkypeState.m; sourceTree = "<group>"; };
 		8C9CE77412E2463700017A02 /* SkypeAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SkypeAPI.h; path = Skype.framework/Versions/A/Headers/SkypeAPI.h; sourceTree = "<group>"; };
 		8C9CE77512E2463700017A02 /* SkypeAPI-Carbon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SkypeAPI-Carbon.h"; path = "Skype.framework/Versions/A/Headers/SkypeAPI-Carbon.h"; sourceTree = "<group>"; };
@@ -947,6 +946,7 @@
 		29B97314FDCFA39411CA2CEA /* WorkPlayAway */ = {
 			isa = PBXGroup;
 			children = (
+				8C82C85112F1E82500830486 /* wpa.icns */,
 				8C82C79312F17BB200830486 /* wpa.ico */,
 				8C73F46D12E7F9DC0056FAFF /* BWToolkitFramework.framework */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -1238,9 +1238,6 @@
 				8C82AF5C12ECD12000830486 /* Reporter.h */,
 				8CD1974512D4C59600C69AC9 /* WPACommon-Info.plist */,
 				8C77296312D46AC600F71FE7 /* WPAFramework-info.plist */,
-				8C77293812D46AC600F71FE7 /* BaseModule.h */,
-				8C77293712D46AC600F71FE7 /* BaseModule.m */,
-				8C77293612D46AC600F71FE7 /* Module.h */,
 				8C77293E12D46AC600F71FE7 /* Note.h */,
 				8C77293D12D46AC600F71FE7 /* Note.m */,
 				8C77296C12D46AC600F71FE7 /* Utility.h */,
@@ -1701,6 +1698,7 @@
 				8C3AB4AC12E2CEBF00A19AA4 /* README.txt in Resources */,
 				8C73F08F12E5E49E0056FAFF /* SummaryHUD.xib in Resources */,
 				8C82C79412F17BB200830486 /* wpa.ico in Resources */,
+				8C82C85212F1E82500830486 /* wpa.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1828,6 +1826,7 @@
 				8C3AB4AD12E2CEBF00A19AA4 /* README.txt in Resources */,
 				8C73F09012E5E49E0056FAFF /* SummaryHUD.xib in Resources */,
 				8C82C79512F17BB200830486 /* wpa.ico in Resources */,
+				8C82C85312F1E82500830486 /* wpa.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1959,7 +1958,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C82AF6B12ED239500830486 /* BaseInstance.m in Sources */,
-				8CD1974A12D4C5D900C69AC9 /* BaseModule.m in Sources */,
 				8CD1974D12D4C5D900C69AC9 /* Note.m in Sources */,
 				8CD1975012D4C5D900C69AC9 /* Utility.m in Sources */,
 				8CD1975212D4C5D900C69AC9 /* XMLParse.m in Sources */,

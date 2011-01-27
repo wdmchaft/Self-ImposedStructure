@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 
-@protocol Stateful
+@protocol Stateful <Instance>
 
 - (void) changeState:(WPAStateType) newState;
 

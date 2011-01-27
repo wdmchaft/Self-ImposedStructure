@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 
-@protocol Reporter
+@protocol Reporter <Instance>
 @required
 // implement these two to provide status information (email/events/tasks)
 - (void) refresh: (<AlertHandler>) handler;

@@ -35,7 +35,7 @@
     <Instance> module  = [modList objectAtIndex:row];
 	NSString *colName = (NSString*) [tableColumn identifier];
 	if ([colName isEqualToString:DESC_COL]){
-		theValue = module.description;
+		theValue = module.name;
 	}
 	if ([colName isEqualToString:SOURCE_COL]){
 		theValue = [[Context sharedContext] descriptionForModule:module];

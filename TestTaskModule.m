@@ -24,7 +24,7 @@
 {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 	if (self){
-		description =@"Test Tasks";
+		name =@"Test Tasks";
 		notificationName = @"Mail Alert";
 		notificationTitle = @"Test Email Msg";
 		category = CATEGORY_TASKS;
@@ -109,7 +109,7 @@
 		NSDictionary *item = [incomp objectAtIndex:i];
 	
 			Note *alert = [[Note alloc]init];
-			alert.moduleName = description;
+			alert.moduleName = name;
 			alert.title =[item objectForKey:@"name"];
 			alert.message=[item objectForKey:@"name"];
 			alert.clickable = YES;
@@ -118,7 +118,7 @@
 		
 		
 	}
-	[BaseInstance sendDone:handler module: description];
+	[BaseInstance sendDone:handler module: name];
 }
 
 -(void) refresh: (<AlertHandler>) handler

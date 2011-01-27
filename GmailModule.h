@@ -20,7 +20,6 @@
 	NSString* userStr;
 	NSString *passwordStr;
 	NSMutableData *respBuffer;
-	NSTimeInterval refresh;
 	NSMutableDictionary *msgDict;
 	NSString *titleStr;
 	NSString *summaryStr;
@@ -52,7 +51,6 @@
 @property (nonatomic,retain) NSString *hrefStr;
 @property (nonatomic,retain) NSMutableData *respBuffer;
 @property (nonatomic,retain) NSMutableDictionary *msgDict;
-@property (nonatomic) NSTimeInterval refresh;
 @property (nonatomic, retain) NSNumber *minTagValue;
 @property (nonatomic, retain) NSTimer *refreshTimer;
 @property (nonatomic, retain) IBOutlet NSTextField *userField;

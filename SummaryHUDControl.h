@@ -30,7 +30,7 @@
 	SummaryTaskData *tasksData;
 	SummaryMailData *mailsData;
 	WPAMainController *mainControl;
-	<TaskList> *currentList;
+	<TaskList> currentList;
 	NSTableView *currentTable;
 }
 
@@ -46,7 +46,7 @@
 @property (nonatomic, retain)  SummaryMailData *mailsData;
 @property (nonatomic, retain)  SummaryTaskData *tasksData;
 @property (nonatomic, retain)  WPAMainController *mainControl;
-@property (nonatomic, retain)  <TaskList> *currentList;
+@property (nonatomic, retain)  <TaskList> currentList;
 @property (nonatomic, retain) NSTableView *currentTable;
 - (void) processSummary;
 - (void) allSummaryDataReceived;

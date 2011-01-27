@@ -13,6 +13,9 @@
 @implementation GrowlDelegate
 @synthesize alertQ, savedQ;
 @synthesize timer;
+@dynamic category;
+@dynamic name; 
+@dynamic enabled;
 - (id) init
 {
 	NSLog(@"GrowlDelegate started");
@@ -205,4 +208,9 @@
 	}
 	[super finalize];
 }
+-(void)loadDefaults{}
+-(void)clearDefaults{}
+- (void) startValidation:(NSObject*) handler{}
+-(void)clearValidation{}
+-(void) saveDefaults{}
 @end

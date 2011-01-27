@@ -76,7 +76,7 @@
 - (void) saveDefaults;
 - (void) saveTask;
 - (TaskInfo*) readTask:(NSUserDefaults*) defaults;
-- (NSString*) descriptionForModule: (<Instance>) mod;
+- (NSString*) descriptionForModule: (NSObject*) mod;
 - (NSData*) iconForModule: (<Instance>) mod;
 - (void) removeDefaultsForKey: (NSString*) keyPrefix;
 

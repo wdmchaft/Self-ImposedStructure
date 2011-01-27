@@ -33,7 +33,7 @@
 {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 	if (self){
-		description =@"Test Mail Module";
+		name =@"Test Mail Module";
 		notificationName = @"Mail Alert";
 		notificationTitle = @"Test Email Msg";
 		category = CATEGORY_EMAIL;
@@ -105,7 +105,7 @@
 		NSDictionary *item = [sendItems objectAtIndex:i];
 		Note *alert = [[Note alloc]init];
 		FilterResult res = [FilterRule processFilters:rules forMessage: item];
-		alert.moduleName = description;
+		alert.moduleName = name;
 		alert.title =[item objectForKey:@"title"];
 		alert.message=[item objectForKey:@"summary"];
 		alert.sticky = (res == RESULT_IMPORTANT);
@@ -114,7 +114,7 @@
 		alert.params = item;
 		[handler handleAlert:alert];
 	}
-	[BaseInstance sendDone: handler module: description];	
+	[BaseInstance sendDone: handler module: name];	
 }
 
 -(void) refresh: (<AlertHandler>) handler

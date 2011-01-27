@@ -40,7 +40,7 @@ tableView, modNames, originalName;
 		}
 	}
 	<Instance> mod = (<Instance>) currCtrl;
-	mod.description = nameText.stringValue.copy;
+	mod.name = nameText.stringValue.copy;
 	[indicator setHidden:NO];
 	[indicator startAnimation:self];
 	[mod startValidation:self];
@@ -63,13 +63,13 @@ tableView, modNames, originalName;
 	}
 	[mod saveDefaults];
 	NSMutableDictionary *modsMap = [Context sharedContext].instancesMap;
-	if (originalName == nil || [originalName isEqualToString: mod.description]){
-		[modsMap setObject: mod forKey: mod.description];
+	if (originalName == nil || [originalName isEqualToString: mod.name]){
+		[modsMap setObject: mod forKey: mod.name];
 	} 
 	else {
 		[modsMap removeObjectForKey:originalName];
 		[[Context sharedContext] removeDefaultsForKey:originalName];
-		[modsMap setObject: mod forKey: mod.description];
+		[modsMap setObject: mod forKey: mod.name];
 	}
 	[mod clearValidation];
 	tableData.instances = modsMap;
@@ -94,7 +94,7 @@ tableView, modNames, originalName;
 		[[super window] setTitle: @"Edit Module"];
 
 		<Instance> mod = (<Instance>) currCtrl;
-		originalName = currCtrl.description.copy;
+		originalName = mod.name.copy;
 		NSString *modDesc = [[Context sharedContext] descriptionForModule: mod];
 		[typeButton selectItemWithTitle: modDesc];
 		[typeButton setEnabled: NO];
@@ -102,7 +102,7 @@ tableView, modNames, originalName;
 		configBox.contentView = currCtrl.view;
 		configBox.title = [NSString stringWithFormat:@"%@ Specific Settings:",modDesc];
 		[nameText setEnabled:YES];
-		[nameText setStringValue:mod.description];
+		[nameText setStringValue:mod.name];
 		[okButton setEnabled:YES];
 }
 }
@@ -163,7 +163,7 @@ tableView, modNames, originalName;
 		NSString *dispName = [[Context sharedContext] descriptionForModule:((<Instance>)currCtrl)];
 		modView= currCtrl.view;
 		dispName = dispName == nil ? [modClass description] : dispName;
-		((<Instance>)currCtrl).description = dispName.copy;
+		((<Instance>)currCtrl).name = dispName.copy;
 		nameText.stringValue = dispName.copy;
 		configBox.title = [NSString stringWithFormat:@"%@ Specific Settings:",dispName];
 //		currCtrl = [modClass alloc];	

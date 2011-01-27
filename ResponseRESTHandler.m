@@ -57,7 +57,7 @@
 	} else {
 		[BaseInstance sendErrorToHandler:context.handler 
 								   error: err 
-								  module: [self description]];
+								  module: context.name];
 	}
 	if (context.validationHandler){
 		[context.validationHandler performSelector:@selector(validationComplete:) 

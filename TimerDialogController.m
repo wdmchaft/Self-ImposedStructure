@@ -18,14 +18,14 @@
 -(void) windowDidLoad
 {
 	Context *ctx = [Context sharedContext];
-	[minutesField setStringValue:[NSString stringWithFormat:@"%d",ctx.thinkTime]];
+	[minutesField setIntValue:(ctx.thinkTime / 60)];
 	[self loadSoundNames];
 }
 
 -(void) showWindow:(id)sender
 {
 	Context *ctx = [Context sharedContext];
-	[minutesField setStringValue:[NSString stringWithFormat:@"%d",ctx.thinkTime]];
+	[minutesField setIntValue:(ctx.thinkTime / 60)];
 	[self loadSoundNames];
 }
 
@@ -56,7 +56,7 @@
 -(void) okClicked: (id) sender
 {
 	Context *ctx = [Context sharedContext];
-	ctx.thinkTime = [minutesField intValue];
+	ctx.thinkTime = ([minutesField intValue] * 60);
 	ctx.alertName = [alarmNames titleOfSelectedItem];
 	
 	[ctx saveDefaults];

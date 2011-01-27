@@ -88,7 +88,7 @@ highestTagValue,minTagValue,hrefStr,rules, alertHandler, validationHandler;
 		NSLog(@"%@", err);
 	} else {
 		if (alertHandler){
-			[BaseInstance sendErrorToHandler: alertHandler error: err module: [self description]];
+			[BaseInstance sendErrorToHandler: alertHandler error: err module: ((<Instance>)callback).name];
 		}
 	}
 	if (validationHandler){
@@ -163,14 +163,12 @@ highestTagValue,minTagValue,hrefStr,rules, alertHandler, validationHandler;
 	
 	NSString *key = nil;
 	NSDictionary *item = nil;
-	int msgCount = [msgDict count];
-	int count = 0;
 	for (key in msgDict){
 		item = [msgDict objectForKey: key];	
 		FilterResult res = [FilterRule processFilters:rules forMessage: msgDict];
 		if (res != RESULT_IGNORE) {
 			Note *alert = [[Note alloc]init];
-			alert.moduleName = callback.description;
+			alert.moduleName = ((<Instance>)callback).name;
 			alert.title =key;
 			alert.message=[item objectForKey:@"summary"];
 			alert.sticky = (res == RESULT_IMPORTANT);

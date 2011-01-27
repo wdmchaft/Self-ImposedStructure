@@ -10,11 +10,6 @@
 #import "Columns.h"
 #import "WPADelegate.h"
 #import "Instance.h"
-@protocol Stateful
-
-- (void) changeState:(WPAStateType) newState;
-
-@end
 
 @implementation PreferencesWindow
 @synthesize modulesTable, amwControl, 

@@ -74,8 +74,8 @@
 		NSDictionary *tc = [[NSDictionary alloc]initWithDictionary:
 							[tasksDict objectForKey:taskName] copyItems:YES];
 		Note *alert = [[Note alloc]init];
-		alert.moduleName = description;
-		alert.title =description;
+		alert.moduleName = name;
+		alert.title =name;
 		alert.message=taskName;
 		alert.params = tc;
 		alert.lastAlert = ++count == taskCount;
@@ -131,7 +131,7 @@
 			cr = [date compare:[NSDate date]];
 		}
 		Note *alert = [[Note alloc]init];
-		alert.moduleName = description;
+		alert.moduleName = name;
 		NSString *dateStr = date ? [Utility timeStrFor:date] : @"";
 		NSString *alertTitle = [listNameStr copy];
 		if (cr == NSOrderedDescending) {
@@ -170,7 +170,7 @@
 			}
 		}
 	}		
-	[BaseInstance sendDone: handler module:description];
+	[BaseInstance sendDone: handler module:name];
 }
 
 
@@ -238,7 +238,7 @@
 {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 	if (self){
-		description =@"RTM Module";
+		name =@"RTM Module";
 		notificationName = @"Task Alert";
 		notificationTitle = @"Task Msg";
 		category = CATEGORY_TASKS;
@@ -262,7 +262,7 @@
 	[progInd setHidden:YES];
 	[userText setStringValue:userStr == nil ? @"" : userStr];
 	[passwordText setStringValue:passwordStr == nil ? @"" : passwordStr];
-	[refreshText setStringValue:[NSString stringWithFormat:@"%d", refreshInterval / 60]];
+	[refreshText setIntValue: refreshInterval / 60];
 	if (tokenStr == nil) {
 		NSAlert *alert = [NSAlert alertWithMessageText:@"Not Authorized" 
 										 defaultButton:nil alternateButton:nil 
@@ -318,7 +318,7 @@
 	[super startValidation:callback];
 	userStr = userText.stringValue;
 	passwordStr = passwordText.stringValue;
-	refreshInterval = refreshText.intValue / 60;
+	refreshInterval = (refreshText.intValue * 60);
 
 	listNameStr = [listsCombo titleOfSelectedItem];
 	listIdStr = [idMapping objectForKey:listNameStr];

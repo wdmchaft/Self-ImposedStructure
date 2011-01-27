@@ -48,7 +48,7 @@
 
 -(void) setId
 {
-	description =@"GCal Module";
+	name =@"GCal Module";
 	notificationName = @"Event Alert";
 	notificationTitle = @"Upcoming Event";
 	category = CATEGORY_EVENTS;
@@ -102,7 +102,7 @@
 		// Inform the user that the connection failed.
 		[BaseInstance sendErrorToHandler:alertHandler 
 								   error:[NSString stringWithFormat:@"No connection for url %@",urlStr] 
-								  module:[self description]];
+								  module:name];
 	}
 }
 
@@ -143,7 +143,7 @@
 		// just log this error -- we are having connection problems
 		NSLog(@"%@", err);
 	} else {
-		[BaseInstance sendErrorToHandler:alertHandler error: err module: [self description]];
+		[BaseInstance sendErrorToHandler:alertHandler error: err module: name];
 	}
 
 	if (validationHandler){
@@ -159,7 +159,7 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
 	NSString *respStr = [[[NSString alloc] initWithData:respBuffer encoding:NSUTF8StringEncoding]autorelease];
-	
+	NSLog(@"%@",respStr);
 	// look for errors now
 	NSRange errRange = [respStr rangeOfString:ERRSTR];
 	
@@ -169,7 +169,7 @@
 		if (!validationHandler){
 			[BaseInstance sendErrorToHandler:alertHandler 
 									   error:@"Authentication Failure" 
-									  module:[self description]];
+									  module:[self name]];
 			return;
 		} else {
 			[validationHandler performSelector:@selector(validationComplete:) 
@@ -192,7 +192,7 @@
 
 	for (NSDictionary *event in eventsList){
 		Note *note = [[Note alloc]init];
-		note.moduleName = description;
+		note.moduleName = name;
 		NSDate *eventDate = [event objectForKey:@"start"];
 		note.title = [self timeStrFor:eventDate];
 		note.message = [event objectForKey:@"summary"];
@@ -214,7 +214,7 @@
 			[alarmsList addObject: timer];
 		}
 	}
-	[BaseInstance sendDone: alertHandler module: description];
+	[BaseInstance sendDone: alertHandler module: name];
 }
 
 
@@ -344,7 +344,7 @@
 
 	[userField setStringValue:userStr == nil ? @"" : userStr];
 	[passwordField setStringValue:passwordStr == nil ? @"" : passwordStr];
-	[refreshField setIntValue:refreshInterval * 60];
+	[refreshField setIntValue:refreshInterval / 60];
 	[calURLField setStringValue:calURLStr == nil ? @"" : calURLStr];
 	[lookAheadField setIntValue:lookAhead];
 	[warningField setIntValue:warningWindow];

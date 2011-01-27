@@ -54,7 +54,7 @@ didStartElement:(NSString *)elementName
 		[currentDict setObject:[[[NSString alloc] initWithString:listId]retain] forKey:@"list_id"]; 
 		[currentDict setObject:[[[NSString alloc] initWithString:id]retain] forKey:@"taskseries_id"]; 
 		[currentDict setObject:[[[NSString alloc] initWithString:name]retain] forKey:@"name"]; 
-		[currentDict setObject:context.description forKey:@"module"];
+		[currentDict setObject:context.name forKey:@"module"];
     }
 	//
 	// START ELEMENT: task (part of taskseries)
@@ -81,7 +81,7 @@ didStartElement:(NSString *)elementName
 	if ( [elementName isEqualToString:@"err"]){
 		//NSString* code = [attributeDict objectForKey:@"code"];
 		NSString* msg = [attributeDict objectForKey:@"msg"];
-		[context sendError:msg module:[context description]];
+		[context sendError:msg module:[context name]];
 	}
 	
 }

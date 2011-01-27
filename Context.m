@@ -80,7 +80,7 @@
 - (void) saveDefaults;
 - (void) saveTask;
 - (TaskInfo*) readTask:(NSUserDefaults*) defaults;
-- (NSString*) descriptionForModule: (<Instance>) mod;
+- (NSString*) descriptionForModule: (NSObject*) mod;
 - (NSData*) iconForModule: (<Instance>) mod;
 - (void) removeDefaultsForKey: (NSString*) keyPrefix;
 
@@ -308,7 +308,7 @@ static Context* sharedContext = nil;
 		// the NIB name should match the plugin
 		//
 		mod = [mod initWithNibName:bundleName bundle:bundle];
-		mod.description = modName;
+		mod.name = modName;
 		[instancesMap setObject: mod forKey:modName];
 		[mod loadDefaults];
 	}
@@ -375,7 +375,7 @@ static Context* sharedContext = nil;
 
 }
 
-- (NSString*) descriptionForModule: (<Instance>) mod 
+- (NSString*) descriptionForModule: (NSObject*) mod 
 {
 	Class clz = [mod class];
 	NSBundle *bundle = [bundlesMap objectForKey: [clz description]];
@@ -442,7 +442,7 @@ static Context* sharedContext = nil;
 	for (NSString *name in instancesMap){
 		NSObject* thing = [instancesMap objectForKey: name];
 		<Stateful> inst = (<Stateful>) thing;
-		if ( ((<Instance>)inst).enabled && [thing respondsToSelector:@selector(changeState:)]){
+		if ( ((<Instance>)inst).enabled && [thing conformsToProtocol:@protocol(Stateful)]){
 			[inst changeState: WPASTATE_THINKING];
 		}
 	}
@@ -453,8 +453,8 @@ static Context* sharedContext = nil;
 	for (NSString *name in instancesMap){
 		NSObject* thing = [instancesMap objectForKey: name];
 		<Stateful> inst = (<Stateful>) thing;
-		if ( ((<Instance>)inst).enabled && [thing respondsToSelector:@selector(stateChange:)]){
-			[inst stateChange: WPASTATE_FREE];
+		if ( ((<Instance>)inst).enabled && [thing conformsToProtocol:@protocol(Stateful)]){
+			[inst changeState: WPASTATE_FREE];
 		}
 	}
 	[growlDelegate changeState: WPASTATE_FREE];
@@ -464,8 +464,8 @@ static Context* sharedContext = nil;
 	for (NSString *name in instancesMap){
 		NSObject* thing = [instancesMap objectForKey: name];
 		<Stateful> inst = (<Stateful>) thing;
-		if ( ((<Instance>)inst).enabled && [thing respondsToSelector:@selector(setState:)]){
-			[inst stateChange: WPASTATE_AWAY];
+		if ( ((<Instance>)inst).enabled && [thing conformsToProtocol:@protocol(Stateful)]){
+			[inst changeState: WPASTATE_AWAY];
 		}		
 	}
 	[growlDelegate changeState: WPASTATE_AWAY];
@@ -503,8 +503,12 @@ static Context* sharedContext = nil;
 															project:[module projectForTask:item]];
 					TaskInfo *fo = [gather objectForKey:info.name];
 					if (fo){
-						fo.description = [NSString stringWithFormat:@"%@ [%@]",fo.name,[fo.source description] ];
-						info.description = [NSString stringWithFormat:@"%@ [%@]",info.name,[info.source description] ];
+						fo.description = [NSString stringWithFormat:@"%@ [%@]",
+										  fo.name,
+										  [((NSObject*)fo.source) description] ];
+						info.description = [NSString stringWithFormat:@"%@ [%@]",
+											info.name,
+											[((NSObject*)info.source) description] ];
 					}
 					[gather setObject:info forKey:info.description];
 				}

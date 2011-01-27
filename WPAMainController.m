@@ -97,6 +97,11 @@
 		}
 		if (thinkTimer){
 			NSTimeInterval interval = [[thinkTimer fireDate] timeIntervalSinceNow];
+			if (interval < 0){
+				[thinkTimer invalidate];
+				thinkTimer = nil;
+				return;
+			}
 			NSUInteger mins = ceil(interval / 60);
 			[statusItem setTitle: [NSString stringWithFormat:@"%d",mins] ];
 			[[statusMenu itemWithTag:4] setState:NSOnState];
