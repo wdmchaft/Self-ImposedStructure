@@ -52,5 +52,7 @@
 - (void) allSummaryDataReceived;
 - (void) handleDouble: (id) sender;
 - (IBAction) checkTask: (id) sender;
+- (void) processComplete: (NSTimer*)timer;
+
 
 @end

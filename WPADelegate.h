@@ -44,7 +44,6 @@
 - (double) countEntity: (NSString*) eName inContext: (NSManagedObjectContext*) moc;
 - (NSString*) dumpMObj: (NSManagedObject*) obj;
 - (BOOL) hasTask: (NSManagedObject*) mobj;
--(void) handleNotification:(NSNotification *)notification;
 
 -(IBAction) clickPreferences: (id) sender;
 -(IBAction) clickTasksInfo: (id) sender;

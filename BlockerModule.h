@@ -8,13 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 #import "BaseInstance.h"
+#import "Stateful.h"
 #define BLOCKERFILE @"hostsblocker"
 #define BACKUPFILE @"hostsbackup.txt"
 #define DOMAIN_COL @"Domain"
 #define SWITCHER @"Switcher"
 #define TXT @"txt"
 
-@interface BlockerModule : BaseInstance <NSTableViewDataSource> {
+@interface BlockerModule : BaseInstance <NSTableViewDataSource,Stateful> {
 	NSMutableArray *blackList;
 	NSTableView *listBrowser;
 	NSButton *addButton;

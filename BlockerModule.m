@@ -13,8 +13,14 @@
 @implementation BlockerModule
 @synthesize blackList;
 @synthesize addButton,removeButton, listBrowser;
+@dynamic refreshInterval;
+@dynamic notificationName;
+@dynamic notificationTitle;
+@dynamic enabled;
+@dynamic category;
+@dynamic name;
 
-- (void) stateChange: (WPAStateType) newState
+- (void) changeState: (WPAStateType) newState
 {
 	if (newState == WPASTATE_THINKING)
 		[self block];

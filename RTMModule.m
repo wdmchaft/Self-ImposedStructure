@@ -27,7 +27,6 @@
 
 @implementation RTMModule 
 
-@dynamic refreshInterval;
 @synthesize tokenStr; 
 @synthesize userStr; 
 @synthesize passwordStr; 
@@ -52,9 +51,12 @@
 @synthesize alarmSet;
 @synthesize handler;
 @synthesize lastError;
+@dynamic refreshInterval;
 @dynamic notificationName;
 @dynamic notificationTitle;
-
+@dynamic enabled;
+@dynamic category;
+@dynamic name;
 
 /**
  Responding to refresh tracking items

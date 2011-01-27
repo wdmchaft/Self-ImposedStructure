@@ -18,6 +18,12 @@
 @synthesize workStatusButton;
 @synthesize playStatusButton;
 @synthesize awayStatusButton;
+@dynamic refreshInterval;
+@dynamic notificationName;
+@dynamic notificationTitle;
+@dynamic enabled;
+@dynamic category;
+@dynamic name;
 
 -(void) changeState: (WPAStateType) newState
 {

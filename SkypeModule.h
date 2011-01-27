@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "BaseInstance.h"
 #import "SkypeState.h"
+#import "Stateful.h"
 
 #define WORKSTATE @"WorkState"
 #define PLAYSTATE @"PlayState"
@@ -17,7 +18,7 @@
 #define SKYPEMONITOR @"SkypeManager"
 
 
-@interface SkypeModule : BaseInstance {
+@interface SkypeModule : BaseInstance <Stateful> {
 	WPAStateType state;
 	NSString *clientApplicationName;
 	NSDistributedNotificationCenter *center;

@@ -11,7 +11,6 @@
 #include "ModulesTableData.h"
 #include "Context.h"
 #include "Columns.h"
-#import "Module.h"
 #import "TimerDialogController.h"
 #import "TaskInfo.h"
 #import "SummaryHUDControl.h"
@@ -213,7 +212,7 @@
 		startButton.title = @"Stop";
 		[startButton setAction: @selector(clickStop:)];
 		statusTimer = [NSTimer scheduledTimerWithTimeInterval:15 target: self selector:@selector(updateStatus:) userInfo:nil repeats:NO];
-		ctx.growlDelegate = [GrowlDelegate new];
+		ctx.growlDelegate = [GrowlManager new];
 		newState = WPASTATE_FREE;
 		// start listening for pause commands
 		[center addObserver:self selector:@selector(remoteNotify:) name:@"com.workplayaway.wpa" object:nil];

@@ -12,7 +12,7 @@
 #import "State.h"
 #import "StatsWindow.h"
 #import "RefreshManager.h"
-#import "GrowlDelegate.h"
+#import "GrowlManager.h"
 
 @interface WPAMainController :NSObject <NSComboBoxDelegate,NSWindowDelegate> {
 	NSWindow *myWindow;
@@ -67,4 +67,6 @@
 - (IBAction) clickAddActivity: (id) sender;
 - (void) fillActivities:(NSMenu*) menu;
 - (void) newActivity: (id) sender;
+- (void) setupHotKey;
+
 @end

@@ -45,6 +45,9 @@
 @dynamic refreshInterval;
 @dynamic notificationName;
 @dynamic notificationTitle;
+@dynamic enabled;
+@dynamic category;
+@dynamic name;
 
 -(void) setId
 {

@@ -19,6 +19,12 @@
 @synthesize playStatusButton;
 @synthesize awayStatusButton;
 @synthesize monitorTask;
+@dynamic refreshInterval;
+@dynamic notificationName;
+@dynamic notificationTitle;
+@dynamic enabled;
+@dynamic category;
+@dynamic name;
 
 -(SkypeModule*) initWithNibName: (NSString*) nibName 
 			   bundle: (NSBundle*) bundle {
@@ -73,7 +79,7 @@
 }
 
 
-- (void) stateChange: (WPAStateType) newState
+- (void) changeState: (WPAStateType) newState
 {
 	state = newState;
 	if (state == WPASTATE_OFF){

@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "BaseInstance.h"
 #import "AdiumState.h"
+#import "Stateful.h"
 
 #define WORKSTATE @"WorkState"
 #define PLAYSTATE @"PlayState"
@@ -18,7 +19,7 @@ typedef enum {
 		STATE_THINKING, STATE_AWAY, STATE_FREE,
 	} StateType;
 
-@interface AdiumModule : BaseInstance{
+@interface AdiumModule : BaseInstance <Stateful>{
 		StateType state;
 		NSPopUpButton *workStatusButton;
 		NSPopUpButton *awayStatusButton;

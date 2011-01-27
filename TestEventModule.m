@@ -20,6 +20,9 @@
 @dynamic refreshInterval;
 @dynamic notificationName;
 @dynamic notificationTitle;
+@dynamic name;
+@dynamic enabled;
+@dynamic category;
 
 -(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

@@ -7,7 +7,6 @@
 //
 
 #import "ModulesTableData.h"
-#include "Module.h"
 #include "Columns.h"
 #import "Context.h"
 

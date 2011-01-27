@@ -8,8 +8,6 @@
 
 #import "AddModWinController.h"
 #import "Context.h"
-#import "Module.h"
-#import "BaseModule.h"
 
 @implementation AddModWinController
 @synthesize okButton, cancelButton, typeButton, configBox, nothingView, currCtrl, indicator, nameText,tableData,

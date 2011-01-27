@@ -8,7 +8,6 @@
 
 //#import <Cocoa/Cocoa.h>
 #import "ModulesTableData.h"
-#import "Module.h"
 
 @interface AddModWinController : NSWindowController {
 	NSString *originalName;

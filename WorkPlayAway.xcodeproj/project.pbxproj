@@ -55,8 +55,8 @@
 		8C1C929012EA3E8E0077D343 /* SummaryTaskData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F3C912E78F310056FAFF /* SummaryTaskData.m */; };
 		8C1C929612EA3EA30077D343 /* SummaryEventData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F3DB12E793190056FAFF /* SummaryEventData.m */; };
 		8C1C92A212EA3EC00077D343 /* SummaryData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F3D612E790B60056FAFF /* SummaryData.m */; };
-		8C1C92E512EB593C0077D343 /* GrowlDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1C92E412EB593C0077D343 /* GrowlDelegate.m */; };
-		8C1C92E612EB593C0077D343 /* GrowlDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1C92E412EB593C0077D343 /* GrowlDelegate.m */; };
+		8C1C92E512EB593C0077D343 /* GrowlManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1C92E412EB593C0077D343 /* GrowlManager.m */; };
+		8C1C92E612EB593C0077D343 /* GrowlManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1C92E412EB593C0077D343 /* GrowlManager.m */; };
 		8C3AB4AC12E2CEBF00A19AA4 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C3AB4AB12E2CEBF00A19AA4 /* README.txt */; };
 		8C3AB4AD12E2CEBF00A19AA4 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C3AB4AB12E2CEBF00A19AA4 /* README.txt */; };
 		8C5DEC0012E8BFAE00EE93F1 /* RulesTableData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77291912D46AC600F71FE7 /* RulesTableData.m */; };
@@ -110,8 +110,6 @@
 		8C7729C212D46AC600F71FE7 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C77297C12D46AC600F71FE7 /* Growl.framework */; };
 		8C82AECF12EB98A300830486 /* RefreshManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C82AECE12EB98A300830486 /* RefreshManager.m */; };
 		8C82AED012EB98A300830486 /* RefreshManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C82AECE12EB98A300830486 /* RefreshManager.m */; };
-		8C82AF6112ECF25D00830486 /* BaseInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C82AF6012ECF25D00830486 /* BaseInstance.m */; };
-		8C82AF6212ECF25D00830486 /* BaseInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C82AF6012ECF25D00830486 /* BaseInstance.m */; };
 		8C82AF6B12ED239500830486 /* BaseInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C82AF6012ECF25D00830486 /* BaseInstance.m */; };
 		8C82AFBC12ED33C100830486 /* GMailRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C82AFBB12ED33C100830486 /* GMailRequestHandler.m */; };
 		8C82B67912EF314100830486 /* CompleteProcessHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C82B67812EF314100830486 /* CompleteProcessHandler.m */; };
@@ -119,8 +117,6 @@
 		8C82B80312EF4ADF00830486 /* BGHUDAppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C82B80112EF4ADF00830486 /* BGHUDAppKit.framework */; };
 		8C82B85812EF4B7C00830486 /* BGHUDAppKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C82B80112EF4ADF00830486 /* BGHUDAppKit.framework */; };
 		8C82B85912EF4B8900830486 /* BGHUDAppKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C82B80112EF4ADF00830486 /* BGHUDAppKit.framework */; };
-		8C82BAB412EF8F6700830486 /* HotKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C82BAB312EF8F6700830486 /* HotKeys.m */; };
-		8C82BAB512EF8F6700830486 /* HotKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C82BAB312EF8F6700830486 /* HotKeys.m */; };
 		8C82BAB912EF93F900830486 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C82BAB812EF93F900830486 /* Carbon.framework */; };
 		8C82BABD12EF941400830486 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C82BAB812EF93F900830486 /* Carbon.framework */; };
 		8C82BE1812EFEAEC00830486 /* gcal.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C77295012D46AC600F71FE7 /* gcal.ico */; };
@@ -542,8 +538,8 @@
 		8C0D943A12D64018009F3280 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		8C0D948912D64486009F3280 /* INSTALL_PLUGINS.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = INSTALL_PLUGINS.sh; sourceTree = "<group>"; };
 		8C1C92DE12EB504A0077D343 /* Instance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Instance.h; sourceTree = "<group>"; };
-		8C1C92E312EB593C0077D343 /* GrowlDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrowlDelegate.h; sourceTree = "<group>"; };
-		8C1C92E412EB593C0077D343 /* GrowlDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrowlDelegate.m; sourceTree = "<group>"; };
+		8C1C92E312EB593C0077D343 /* GrowlManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrowlManager.h; sourceTree = "<group>"; };
+		8C1C92E412EB593C0077D343 /* GrowlManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrowlManager.m; sourceTree = "<group>"; };
 		8C3AB4AB12E2CEBF00A19AA4 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		8C5DEC4912E8C4A600EE93F1 /* TestTaskModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestTaskModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C5DEC4A12E8C4A600EE93F1 /* TestTaskModule-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TestTaskModule-Info.plist"; sourceTree = "<group>"; };
@@ -1302,8 +1298,8 @@
 				8C77292212D46AC600F71FE7 /* WPADelegate.m */,
 				8C0D948912D64486009F3280 /* INSTALL_PLUGINS.sh */,
 				8C3AB4AB12E2CEBF00A19AA4 /* README.txt */,
-				8C1C92E312EB593C0077D343 /* GrowlDelegate.h */,
-				8C1C92E412EB593C0077D343 /* GrowlDelegate.m */,
+				8C1C92E312EB593C0077D343 /* GrowlManager.h */,
+				8C1C92E412EB593C0077D343 /* GrowlManager.m */,
 			);
 			name = WPAMain;
 			sourceTree = "<group>";
@@ -1904,10 +1900,8 @@
 				8C73F3DC12E793190056FAFF /* SummaryEventData.m in Sources */,
 				8C73F3DF12E793340056FAFF /* SummaryMailData.m in Sources */,
 				8C5DEF3C12E9F3A900EE93F1 /* SummaryDeadlineData.m in Sources */,
-				8C1C92E612EB593C0077D343 /* GrowlDelegate.m in Sources */,
+				8C1C92E612EB593C0077D343 /* GrowlManager.m in Sources */,
 				8C82AED012EB98A300830486 /* RefreshManager.m in Sources */,
-				8C82AF6212ECF25D00830486 /* BaseInstance.m in Sources */,
-				8C82BAB412EF8F6700830486 /* HotKeys.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2068,10 +2062,8 @@
 				8CF8C14312DC2CB7009C7E3D /* SummaryTable.m in Sources */,
 				8C73F09C12E5F6590056FAFF /* SummaryHUDControl.m in Sources */,
 				8C5DEF3B12E9F3A900EE93F1 /* SummaryDeadlineData.m in Sources */,
-				8C1C92E512EB593C0077D343 /* GrowlDelegate.m in Sources */,
+				8C1C92E512EB593C0077D343 /* GrowlManager.m in Sources */,
 				8C82AECF12EB98A300830486 /* RefreshManager.m in Sources */,
-				8C82AF6112ECF25D00830486 /* BaseInstance.m in Sources */,
-				8C82BAB512EF8F6700830486 /* HotKeys.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

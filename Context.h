@@ -8,9 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 #import "State.h"
-#import "Module.h"
 #import "TaskInfo.h"
-#import "GrowlDelegate.h"
+#import "GrowlManager.h"
 
 @interface Context : NSObject {
 	NSMutableDictionary *instancesMap; // maps module name to instance of module
@@ -38,7 +37,7 @@
 	NSTimeInterval timeAwayThreshold;
 	NSTimeInterval brbThreshold;
 	WPAStateType previousState;
-	GrowlDelegate *growlDelegate;
+	GrowlManager *growlDelegate;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *instancesMap;
@@ -67,7 +66,7 @@
 @property (nonatomic) NSTimeInterval brbThreshold;
 @property (nonatomic) WPAStateType currentState;
 @property (nonatomic, readonly) WPAStateType previousState;
-@property (nonatomic,retain) GrowlDelegate *growlDelegate;
+@property (nonatomic,retain) GrowlManager *growlDelegate;
 
 + (Context*)sharedContext;
 - (void) loadBundles;

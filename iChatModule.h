@@ -9,8 +9,9 @@
 #import <Cocoa/Cocoa.h>
 #import "iChat.h"
 #import "BaseInstance.h"
+#import "Stateful.h"
 
-@interface iChatModule : BaseInstance {
+@interface iChatModule : BaseInstance <Stateful> {
 
 }
 

@@ -15,7 +15,7 @@
 #import "TaskList.h"
 #import "Reporter.h"
 #import "Stateful.h"
-#import "GrowlDelegate.h"
+#import "GrowlManager.h"
 
 @interface Context : NSObject {
 	NSMutableDictionary *instancesMap; // maps module name to instance of module
@@ -43,7 +43,7 @@
 	NSTimeInterval brbThreshold;
 	WPAStateType previousState;
 	WPAStateType currentState;
-	GrowlDelegate *growlDelegate;
+	GrowlManager *growlDelegate;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *instancesMap;
@@ -69,7 +69,7 @@
 @property (nonatomic, retain) NSManagedObject *currentActivity;
 @property (nonatomic, retain) NSArray *tasksList;
 @property (nonatomic, retain) NSDate *lastStateChange;
-@property (nonatomic, retain) GrowlDelegate *growlDelegate;
+@property (nonatomic, retain) GrowlManager *growlDelegate;
 @property (nonatomic) NSTimeInterval timeAwayThreshold;
 @property (nonatomic) NSTimeInterval brbThreshold;
 @property (nonatomic) WPAStateType previousState;

@@ -151,10 +151,21 @@
 	NSString *modName = [params objectForKey:@"module"];
 	Context *ctx = [Context sharedContext];
 	<TaskList> callMod = [ctx.instancesMap objectForKey:modName];
-	[callMod markComplete:params completeHandler:self];
-	[progInd startAnimation:self];
 	currentList = callMod;
 	currentTable = sender;
+	[progInd startAnimation:self];
+	[NSTimer scheduledTimerWithTimeInterval:0
+												  target:self
+												selector:@selector(processComplete:) 
+												userInfo: params
+												 repeats:NO];
+}
+
+- (void) processComplete: (NSTimer*)timer
+{	
+	NSDictionary* params = timer.userInfo;
+
+	[currentList markComplete:params completeHandler:self];
 }
 
 - (void) handleComplete: (NSString*) error
