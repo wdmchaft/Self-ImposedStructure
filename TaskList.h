@@ -14,5 +14,5 @@
 - (NSArray*) getTasks;
 - (void) refreshTasks;
 - (NSString*) projectForTask: (NSString*) task;
-- (void) markComplete:(NSDictionary *)ctx;
+- (void) markComplete:(NSDictionary *)ctx completeHandler:(NSObject*) callback;
 @end

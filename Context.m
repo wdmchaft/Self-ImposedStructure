@@ -14,6 +14,8 @@
 #import "BaseInstance.h"
 #import "TaskList.h"
 #import "Reporter.h"
+#import "Stateful.h"
+#import "GrowlDelegate.h"
 
 @interface Context : NSObject {
 	NSMutableDictionary *instancesMap; // maps module name to instance of module
@@ -40,6 +42,8 @@
 	NSTimeInterval timeAwayThreshold;
 	NSTimeInterval brbThreshold;
 	WPAStateType previousState;
+	WPAStateType currentState;
+	GrowlDelegate *growlDelegate;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *instancesMap;
@@ -65,10 +69,10 @@
 @property (nonatomic, retain) NSManagedObject *currentActivity;
 @property (nonatomic, retain) NSArray *tasksList;
 @property (nonatomic, retain) NSDate *lastStateChange;
+@property (nonatomic, retain) GrowlDelegate *growlDelegate;
 @property (nonatomic) NSTimeInterval timeAwayThreshold;
 @property (nonatomic) NSTimeInterval brbThreshold;
 @property (nonatomic) WPAStateType previousState;
-@property (nonatomic) int enabledModulesCount;
 + (Context*)sharedContext;
 - (void) loadBundles;
 - (void) initFromDefaults;
@@ -76,8 +80,8 @@
 - (void) saveDefaults;
 - (void) saveTask;
 - (TaskInfo*) readTask:(NSUserDefaults*) defaults;
-- (NSString*) descriptionForModule: (<Module>) mod;
-- (NSData*) iconForModule: (<Module>) mod;
+- (NSString*) descriptionForModule: (<Instance>) mod;
+- (NSData*) iconForModule: (<Instance>) mod;
 - (void) removeDefaultsForKey: (NSString*) keyPrefix;
 
 @end
@@ -108,7 +112,7 @@
 @synthesize brbThreshold;
 @synthesize autoBackToWork;
 @synthesize showSummary;
-@synthesize enabledModulesCount;
+@synthesize growlDelegate;
 
 
 static Context* sharedContext = nil;
@@ -188,7 +192,7 @@ static Context* sharedContext = nil;
 		TaskInfo *info = [[TaskInfo alloc] init];
 		info.name = (NSString*)task;
 		if (source){
-			info.source = (<Module>)[instancesMap objectForKey:(NSString*) source];
+			info.source = (<TaskList>)[instancesMap objectForKey:(NSString*) source];
 		}
 		return info;
 	}
@@ -204,8 +208,8 @@ static Context* sharedContext = nil;
 	if (currentTask){
 		[ud setObject:currentTask.name forKey:@"currentTask"];
 		if (currentTask.source){
-			<Module> src = currentTask.source;
-			NSString *srcName = src.description;
+			<TaskList> src = currentTask.source;
+			NSString *srcName = ((NSObject*)src).description;
 			[ud setObject:srcName forKey:@"currentSource"];
 		} 
 	}
@@ -371,7 +375,7 @@ static Context* sharedContext = nil;
 
 }
 
-- (NSString*) descriptionForModule: (<Module>) mod 
+- (NSString*) descriptionForModule: (<Instance>) mod 
 {
 	Class clz = [mod class];
 	NSBundle *bundle = [bundlesMap objectForKey: [clz description]];
@@ -379,11 +383,15 @@ static Context* sharedContext = nil;
 	return dispName;
 }
 
-- (NSData*) iconForModule: (<Module>) mod 
+- (NSData*) iconForModule: (<Instance>) mod 
 {
-	NSString *name = [[mod class]description];
+	NSString *name = [[((NSObject*)mod) class]description];
 	if (iconsMap == nil){
 		iconsMap = [[NSMutableDictionary alloc]initWithCapacity:[bundlesMap count]];
+	}
+	if (name == nil){
+		NSString *path = [NSString stringWithFormat:@"%@/wpa.ico",[[NSBundle mainBundle] resourcePath]];
+		return [NSData dataWithContentsOfFile:path];
 	}
 	if ([[iconsMap allKeys] indexOfObject:name] == NSNotFound) {
 		
@@ -427,48 +435,42 @@ static Context* sharedContext = nil;
 {
 	previousState = currentState;
 	currentState = newState;
-	lastStateChange = [NSDate date];
+	lastStateChange = [NSDate new];
 }
-
-- (int) enabledModulesCount{
-	int count;
-	for (NSString *name in instancesMap){
-		<Instance> mod = [instancesMap objectForKey: name];
-		count += mod.enabled;
-	}
-	return count;
-}
-
 
 - (void) busyModules {
 	for (NSString *name in instancesMap){
-		id thing = [instancesMap objectForKey: name];
-		<Instance> inst = (<Instance>) thing;
-		if ( inst.enabled && [thing respondsToSelector:@selector(setState:)]){
-			[inst setState: WPASTATE_THINKING];
+		NSObject* thing = [instancesMap objectForKey: name];
+		<Stateful> inst = (<Stateful>) thing;
+		if ( ((<Instance>)inst).enabled && [thing respondsToSelector:@selector(changeState:)]){
+			[inst changeState: WPASTATE_THINKING];
 		}
 	}
+	[growlDelegate changeState: WPASTATE_THINKING];
 }
 
 - (void) freeModules {
 	for (NSString *name in instancesMap){
-		id thing = [instancesMap objectForKey: name];
-		<Instance> inst = (<Instance>) thing;
-		if ( inst.enabled && [thing respondsToSelector:@selector(stateChange:)]){
+		NSObject* thing = [instancesMap objectForKey: name];
+		<Stateful> inst = (<Stateful>) thing;
+		if ( ((<Instance>)inst).enabled && [thing respondsToSelector:@selector(stateChange:)]){
 			[inst stateChange: WPASTATE_FREE];
 		}
 	}
+	[growlDelegate changeState: WPASTATE_FREE];
 }
 
 - (void) awayModules {
 	for (NSString *name in instancesMap){
-		id thing = [instancesMap objectForKey: name];
-		<Instance> inst = (<Instance>) thing;
-		if ( inst.enabled && [thing respondsToSelector:@selector(setState:)]){
+		NSObject* thing = [instancesMap objectForKey: name];
+		<Stateful> inst = (<Stateful>) thing;
+		if ( ((<Instance>)inst).enabled && [thing respondsToSelector:@selector(setState:)]){
 			[inst stateChange: WPASTATE_AWAY];
 		}		
 	}
+	[growlDelegate changeState: WPASTATE_AWAY];
 }	
+
 - (NSArray*) refreshableModules
 {
 	NSMutableArray *ret = [NSMutableArray new];
@@ -486,7 +488,7 @@ static Context* sharedContext = nil;
 
 - (NSArray*) getTasks {
 	NSMutableDictionary *gather = [NSMutableDictionary new];
-	<Module> module = nil;
+	<TaskList> module = nil;
 	NSString *name = nil;
 	for (name in instancesMap){
 		id thing = [instancesMap objectForKey: name];

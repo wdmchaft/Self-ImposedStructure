@@ -19,7 +19,6 @@
 	NSMutableArray *allTasks;
 }
 
-@property (nonatomic, retain) NSTimer *refreshTimer;
 @property (nonatomic, retain) IBOutlet NSTextField *frequencyField;
 @property (nonatomic, retain) IBOutlet NSStepper *stepper;
 @property (nonatomic,retain) NSMutableArray *allTasks;

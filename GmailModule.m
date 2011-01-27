@@ -28,7 +28,6 @@
 @synthesize titleStr;
 @synthesize summaryStr;
 @synthesize idStr;
-@synthesize highestTagValue;
 @synthesize minTagValue;
 @synthesize userField;
 @synthesize passwordField;
@@ -46,21 +45,11 @@
 @synthesize rulesData;
 @synthesize failCount;
 @synthesize summaryMode;
-//@synthesize refreshHandler;
+@dynamic refreshInterval;
+@dynamic notificationName;
+@dynamic notificationTitle;
 
-//-(id) init
-//{
-//	self = [super init];
-//	if (self){
-//		description =@"Gmail Module";
-//		notificationName = @"Mail Alert";
-//		notificationTitle = @"Gmail Msg";
-//		type = MODULE_EMAIL;
-//		minTagValue = [[NSNumber alloc]initWithInteger: 0];		
-//		highestTagValue = [[NSNumber alloc ]initWithLongLong:minTagValue.longLongValue];
-//	}	
-//	return self;
-//}
+
 -(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -69,7 +58,6 @@
 		notificationName = @"Mail Alert";
 		notificationTitle = @"Gmail Msg";
 		minTagValue = [[NSNumber alloc]initWithInteger: 0];		
-		highestTagValue = [[NSNumber alloc ]initWithLongLong:minTagValue.longLongValue];
 	}
 	return self;
 }
@@ -124,7 +112,7 @@
 - (void) refresh: (<AlertHandler>) AlertHandler{
 	
 	GMailRequestHandler *refreshHandler = 
-		[[GMailRequestHandler alloc] initWithTagValue: highestTagValue 
+		[[GMailRequestHandler alloc] initWithTagValue: minTagValue 
 												rules: rules 
 											  handler: AlertHandler
 											 delegate:self];
@@ -231,7 +219,7 @@
 	}
 	temp = [super loadDefaultForKey:MINTAGVALUE];
 	if (temp) {
-		minTagValue = temp;
+		minTagValue = [[NSNumber alloc]initWithLongLong:((NSNumber*) temp).longLongValue];
 	}
 	[self loadRules];
 }

@@ -18,6 +18,8 @@
 @synthesize frequencyField;
 @synthesize stepper;
 @dynamic refreshInterval;
+@dynamic notificationName;
+@dynamic notificationTitle;
 
 -(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -78,10 +80,10 @@
 		alert.title =[item objectForKey:@"desc"];
 		alert.message=[item objectForKey:@"summary"];
 		alert.params = item;
-		alert.lastAlert = (i+1 == [msgs count]);
 		[handler handleAlert:alert];
 		
 	}
+	[BaseInstance sendDone: handler module: description];
 }
 
 - (void) refresh: (<AlertHandler>) handler;

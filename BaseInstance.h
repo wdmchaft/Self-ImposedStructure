@@ -42,6 +42,6 @@
 -(void) clearDefaultValue: (NSObject*) val forKey: (NSString*) key;
 -(id) loadDefaultForKey: (NSString*) key;
 + (void) sendErrorToHandler:(<AlertHandler>) handler error:(NSString*) err module:(NSString*) modName;
-
++ (void) sendDone: (<AlertHandler>) handler module: (NSString*) modName;
 @end
 

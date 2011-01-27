@@ -32,7 +32,7 @@
 	id theValue;
 	NSArray *modList = [instances allValues];
     NSParameterAssert(row >= 0 && row < [modList count]);
-    <Module> module  = [modList objectAtIndex:row];
+    <Instance> module  = [modList objectAtIndex:row];
 	NSString *colName = (NSString*) [tableColumn identifier];
 	if ([colName isEqualToString:DESC_COL]){
 		theValue = module.description;

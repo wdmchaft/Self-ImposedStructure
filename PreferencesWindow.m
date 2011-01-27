@@ -9,6 +9,12 @@
 #import "PreferencesWindow.h"
 #import "Columns.h"
 #import "WPADelegate.h"
+#import "Instance.h"
+@protocol Stateful
+
+- (void) changeState:(WPAStateType) newState;
+
+@end
 
 @implementation PreferencesWindow
 @synthesize modulesTable, amwControl, 
@@ -104,7 +110,7 @@ dailyGoalText, weeklyGoalText, brbText, summaryText, brbStepper, summaryStepper;
 		NSTableColumn *col = [[modulesTable tableColumns] objectAtIndex:0];
 		NSString *instName = [tableData objValueForTableColumn:col row:rowNum];
 		
-		<Module> mod = [[Context sharedContext].instancesMap objectForKey:instName];
+		<Instance> mod = [[Context sharedContext].instancesMap objectForKey:instName];
 		
 		if (amwControl == nil) {
 			amwControl = [[AddModWinController alloc] initWithWindowNibName:@"AddMod"];
@@ -125,7 +131,7 @@ dailyGoalText, weeklyGoalText, brbText, summaryText, brbStepper, summaryStepper;
 		NSTableColumn *col = [[modulesTable tableColumns] objectAtIndex:0];
 		NSString *instName = [tableData objValueForTableColumn:col row:rowNum];
 		
-		<Module> mod = [[Context sharedContext].instancesMap objectForKey:instName];
+		<Instance> mod = [[Context sharedContext].instancesMap objectForKey:instName];
 		[mod clearDefaults];
 		[[Context sharedContext].instancesMap removeObjectForKey:instName];
 		[[Context sharedContext] saveModules];
@@ -141,26 +147,19 @@ dailyGoalText, weeklyGoalText, brbText, summaryText, brbStepper, summaryStepper;
 	Context *ctx = [Context sharedContext];
 	NSArray *keys = [ctx.instancesMap allKeys];
 	NSString *key = [keys objectAtIndex:row];
-	<Module> mod = [ctx.instancesMap objectForKey: key];
+	<Instance> mod = [ctx.instancesMap objectForKey: key];
+	
 	mod.enabled = !mod.enabled;
-	if (mod.enabled){
-		switch (ctx.currentState) {
-			case WPASTATE_AWAY:
-				[mod goAway];
-				break;
-			case WPASTATE_FREE:
-				[mod putter];
-				break;
-			case WPASTATE_THINKING:
-				[mod think];
-			case WPASTATE_THINKTIME:
-				[mod think];
-			default:
-				break;
+	if ([((NSObject*)mod) respondsToSelector:@selector(changeState:)])
+	{
+		<Stateful> sc = (<Stateful>) mod;
+		if (mod.enabled){
+			[sc changeState:ctx.currentState];
 		}
-	}
-	else {
-		[mod stop];
+		else {
+		
+			[sc changeState:WPASTATE_OFF];
+		}
 	}
 	[mod saveDefaults];	
 }

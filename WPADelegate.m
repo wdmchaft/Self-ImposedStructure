@@ -15,6 +15,7 @@
 #import "TaskInfo.h"
 #import "WPAMainController.h"
 #import "State.h"
+#import "HotKeys.h"
 
 @protocol StateCtrl
 
@@ -30,22 +31,21 @@
 @synthesize managedObjectModel;
 @synthesize managedObjectContext;
 
--(void) start 
-{
-	// check for trouble
-	Context *ctx = [Context sharedContext];
-	if ([ctx.instancesMap count] == 0){
-		NSLog(@"no modules found");
-	}
-	
-	// start listening for pause commands
-	NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
-	[center addObserver:self selector:@selector(handleNotification:) name:@"org.ottoject.nudge.Concentrate" object:nil];
-	
-	[self performSelector:@selector(growlLoop)];
-
-	ctx.running = YES;
-}
+//-(void) start 
+//{
+//	// check for trouble
+//	Context *ctx = [Context sharedContext];
+//	if ([ctx.instancesMap count] == 0){
+//		NSLog(@"no modules found");
+//	}
+//	
+//	// start listening for pause commands
+//	NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
+//	[center addObserver:self selector:@selector(handleNotification:) name:@"org.ottoject.nudge.Concentrate" object:nil];
+//	
+//
+//	ctx.running = YES;
+//}
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	// Insert code here to initialize your application 
@@ -60,57 +60,39 @@
 }
 
 
--(void) stop 
-{
-	Context	*ctx = [Context sharedContext];
-	NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
-	[center removeObserver:self name:@"org.ottoject.nudge.Concentrate" object:nil];	
-	// shut up!
-	while ([ctx.alertQ count] > 0) {
-		[ctx.alertQ removeObjectAtIndex:0];
-	} 
-	NSDictionary *modules = [[Context sharedContext] instancesMap];
-	NSString *modName;
-	NSObject *module = nil;
-	for (modName in modules){
-		module = [modules objectForKey:modName];
-		if (((<Instance>)module).enabled){
-			if ([module respondsToSelector:@selector(stateChange:)]){
-				[((<StateCtrl>)module) stateChange:WPASTATE_OFF];
-			}
-		
-		}
-	}
-	[Context sharedContext].running = NO;
-}
+//-(void) stop 
+//{
+//	Context	*ctx = [Context sharedContext];
+//	NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
+//	[center removeObserver:self name:@"org.ottoject.nudge.Concentrate" object:nil];	
+//	// shut up!
+//	while ([ctx.alertQ count] > 0) {
+//		[ctx.alertQ removeObjectAtIndex:0];
+//	} 
+//	NSDictionary *modules = [[Context sharedContext] instancesMap];
+//	NSString *modName;
+//	NSObject *module = nil;
+//	for (modName in modules){
+//		module = [modules objectForKey:modName];
+//		if (((<Instance>)module).enabled){
+//			if ([module respondsToSelector:@selector(stateChange:)]){
+//				[((<StateCtrl>)module) stateChange:WPASTATE_OFF];
+//			}
+//		
+//		}
+//	}
+//	[Context sharedContext].running = NO;
+//}
 
-- (void) alarm
-{
-	NSSound *systemSound = [NSSound soundNamed:[Context sharedContext].alertName];
-	[systemSound play];
-	NSNotification *notice = [NSNotification notificationWithName:@"org.ottoject.alarm" object:nil];
-	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-	[nc postNotification:notice];
-	[self freeState];
-}
-
--(void)handleNotification:(NSNotification*) notification
-{	
-	NSDictionary *dict = [notification userInfo];
-	NSNumber *minStr =  [dict objectForKey:@"time"];
-	NSNumber *state =  [dict objectForKey:@"state"];
-	[Context sharedContext].thinkTime = [minStr intValue];
-	[self setState:[state intValue]]; 
-}
 
 -(void) refreshTasks
 {
 	NSDictionary *modules = [[Context sharedContext] instancesMap];
-	<Module> module = nil;
+	<TaskList> module = nil;
 	NSString *modName = nil;
 	for (modName in modules){
 		module = [modules objectForKey:modName];
-		if (module.enabled){
+		if (((<Instance>)module).enabled){
 			[module refreshTasks];
 		}
 	}
@@ -121,7 +103,8 @@
     if (prefsWindow == nil) {
         prefsWindow = [[PreferencesWindow alloc] initWithWindowNibName:@"PreferencesWindow"];
     }
-	
+	[[statsWindow window] resignKeyWindow];
+	[[prefsWindow window] makeKeyWindow];
 	[[prefsWindow window] orderFrontRegardless];
 
 }
@@ -130,7 +113,8 @@
 {
 	if (statsWindow == nil)
 		statsWindow = [[StatsWindow alloc] initWithWindowNibName:@"StatsWindow"];
-	
+	[[prefsWindow window] resignKeyWindow];
+	[[statsWindow window] makeKeyWindow];
 	[[statsWindow window] orderFrontRegardless];
 }
 

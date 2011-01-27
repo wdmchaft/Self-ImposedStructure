@@ -10,7 +10,7 @@
 #import "State.h"
 #import "Module.h"
 #import "TaskInfo.h"
-
+#import "GrowlDelegate.h"
 
 @interface Context : NSObject {
 	NSMutableDictionary *instancesMap; // maps module name to instance of module
@@ -38,6 +38,7 @@
 	NSTimeInterval timeAwayThreshold;
 	NSTimeInterval brbThreshold;
 	WPAStateType previousState;
+	GrowlDelegate *growlDelegate;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *instancesMap;
@@ -66,7 +67,7 @@
 @property (nonatomic) NSTimeInterval brbThreshold;
 @property (nonatomic) WPAStateType currentState;
 @property (nonatomic, readonly) WPAStateType previousState;
-@property (nonatomic, readonly) int enabledModulesCount;
+@property (nonatomic,retain) GrowlDelegate *growlDelegate;
 
 + (Context*)sharedContext;
 - (void) loadBundles;
@@ -75,8 +76,8 @@
 - (void) saveDefaults;
 - (void) saveTask;
 - (TaskInfo*) readTask:(NSUserDefaults*) defaults;
-- (NSString*) descriptionForModule: (<Module>) mod;
-- (NSData*) iconForModule: (<Module>) mod;
+- (NSString*) descriptionForModule: (<Instance>) mod;
+- (NSData*) iconForModule: (<Instance>) mod;
 - (void) removeDefaultsForKey: (NSString*) keyPrefix;
 
 - (void) refreshModules: (<AlertHandler>) handler withLoop: (BOOL) loopingOn;

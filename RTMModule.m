@@ -55,15 +55,6 @@
 @dynamic notificationName;
 @dynamic notificationTitle;
 
--(NSString*) getNotificationName
-{
-	return notificationName;	
-}
-
--(NSString*) getNotificationTitle
-{
-	return notificationTitle;	
-}
 
 /**
  Responding to refresh tracking items
@@ -129,6 +120,7 @@
 
 - (void) processAlertsWithAlarms: (BOOL) setAlarms
 {
+
 	for(int i = 0; i < [tasksList count]; i++){
 		NSString *key = [tasksList objectAtIndex:i];
 		NSDictionary *item = nil;
@@ -177,7 +169,8 @@
 				[alarmSet setObject:timer forKey:key];	
 			}
 		}
-	}			
+	}		
+	[BaseInstance sendDone: handler module:description];
 }
 
 
@@ -509,11 +502,11 @@
 	return [super description];
 }
 
-- (void) markComplete:(NSDictionary *)ctx
+- (void) markComplete:(NSDictionary *)ctx completeHandler: (NSObject*) callback
 {
-	CompleteProcessHandler *cph = [[	CompleteProcessHandler alloc]initWithContext: ctx 
+	CompleteProcessHandler *cph = [[CompleteProcessHandler alloc]initWithContext: ctx 
 																			token: tokenStr 
-																	  andDelegate: self];
+																	  andDelegate: callback];
 	[cph start];
 }
 @end

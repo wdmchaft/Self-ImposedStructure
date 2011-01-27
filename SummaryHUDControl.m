@@ -26,7 +26,9 @@
 @synthesize eventsTable;
 @synthesize mailTable;
 @synthesize mainControl;
-
+@synthesize progInd;
+@synthesize currentTable;
+@synthesize currentList;
 
 - (void) processSummary
 {
@@ -54,7 +56,15 @@
 {
 	Context *ctx = [Context sharedContext];
 
-
+	if (alert.lastAlert){
+		doneCount++;
+		
+		NSLog(@"received done from %@",alert.moduleName);
+//		if (doneCount == finishedCount){
+			[self allSummaryDataReceived];
+//		}
+	}	
+	else {
 		NSLog(@"received %@",alert.message);
 		<Instance> modForAlert = [ctx.instancesMap objectForKey:alert.moduleName];
 		NSDate *due = nil;
@@ -80,19 +90,13 @@
 				break;
 		}
 	
-	if (alert.lastAlert){
-		doneCount++;
-		
-		NSLog(@"received done from %@",alert.moduleName);
-		if (doneCount == finishedCount){
-			[self allSummaryDataReceived];
-		}
-	}	
+	 }
 }
+
 -(void) handleError: (Note*) error{
-	if (doneCount++ == finishedCount){
-		[self allSummaryDataReceived];
-	}
+	doneCount++;
+	[self allSummaryDataReceived];
+	
 }
 
 - (void) allSummaryDataReceived
@@ -131,7 +135,7 @@
     cell = [[NSButtonCell alloc] init];
     [cell setButtonType:NSSwitchButton];
     [cell setTitle:@""];
-    [cell setAction:@selector(toggleModule:)];
+    [cell setAction:@selector(checkTask:)];
     [cell setTarget:self];
 	
 	[col1 setDataCell:cell];
@@ -146,12 +150,20 @@
 	NSDictionary *params = [sumData.data objectAtIndex:row];
 	NSString *modName = [params objectForKey:@"module"];
 	Context *ctx = [Context sharedContext];
-	id callMod = [ctx.instancesMap objectForKey:modName];
-	
-	if ([callMod conformsToProtocol:@protocol(TaskList)]) {
-		[(<TaskList>)callMod markComplete:params];
-		[sender noteNumberOfRowsChanged];
-	}
+	<TaskList> callMod = [ctx.instancesMap objectForKey:modName];
+	[callMod markComplete:params completeHandler:self];
+	[progInd startAnimation:self];
+	((NSObject*)currentList) = callMod;
+	currentTable = sender;
+}
+
+- (void) handleComplete: (NSString*) error
+{
+	[progInd stopAnimation:self];
+	SummaryData *sumData = currentTable.dataSource;
+	[sumData.data removeAllObjects];
+	[((<Reporter>)currentList) refresh:self];
+	[currentTable deselectAll];
 }
 
 -(void) awakeFromNib
@@ -174,7 +186,7 @@
 	SummaryData *sumData = ((NSTableView*)sender).dataSource;
 	
 	NSDictionary *ctx = [sumData.data objectAtIndex:row];
-	<Module> callMod = [[Context sharedContext].instancesMap objectForKey:[ctx objectForKey: @"module"]];
+	<Reporter> callMod = [[Context sharedContext].instancesMap objectForKey:[ctx objectForKey: @"module"]];
 	
 	[callMod handleClick:ctx];
 }

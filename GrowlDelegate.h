@@ -10,8 +10,10 @@
 #import "State.h"
 #import "Growl.h"
 #import "AlertHandler.h"
+#import "Instance.h"
+#import "Stateful.h"
 
-@interface GrowlDelegate : NSObject <GrowlApplicationBridgeDelegate, AlertHandler> {
+@interface GrowlDelegate : NSObject <GrowlApplicationBridgeDelegate, AlertHandler, Stateful> {
 	NSMutableArray *savedQ;
 	NSMutableArray *alertQ;
 	NSTimer	 *timer;
@@ -21,7 +23,12 @@
 @property (nonatomic,retain) NSTimer *timer;
 
 -(void) growlAlert: (Note*) alert;
+- (void) growlThis: (NSString*) this;
 - (void) growlNotificationWasClicked:(id)ctx;
 - (void) growlLoop:(NSTimer *)timeIn;
 - (void) stop;
+- (void) changeState:(WPAStateType)newState;
+- (void) workState;
+- (void) freeState;
+- (void) awayState;
 @end

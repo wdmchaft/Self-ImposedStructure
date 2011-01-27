@@ -7,19 +7,20 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "Module.h"
+#import "Instance.h"
+#import "TaskList.h"
 
 @interface TaskInfo : NSObject {
-	<Module> source;
+	<TaskList> source;
 	NSString *name;
 	NSString *project;
 	NSString *description;
 }
 
-@property (nonatomic, retain) <Module> source;
+@property (nonatomic, retain) <TaskList> source;
 @property (nonatomic,retain) NSString *name;
 @property (nonatomic,retain) NSString *project;
 @property (nonatomic,retain) NSString *description;
 
--(id) initWithName: (NSString*) item source: (<Module>) mod  project: (NSString*) proj;
+-(id) initWithName: (NSString*) item source: (<TaskList>) mod  project: (NSString*) proj;
 @end

@@ -58,6 +58,7 @@
 	Context *ctx = [Context sharedContext];
 	ctx.thinkTime = [minutesField intValue];
 	ctx.alertName = [alarmNames titleOfSelectedItem];
+	
 	[ctx saveDefaults];
 	[NSApp endSheet: [super window]];
 	[super.window close];

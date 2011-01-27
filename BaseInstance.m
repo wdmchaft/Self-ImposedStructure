@@ -77,4 +77,11 @@
 	[handler handleError: alert];
 }
 
++ (void) sendDone: (<AlertHandler>) handler module: (NSString*) modName
+{
+	Note *alert = [[Note alloc]init];
+	alert.moduleName = modName;
+	alert.lastAlert = YES;
+	[handler handleAlert: alert];
+}
 @end

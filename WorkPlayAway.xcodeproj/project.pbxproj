@@ -125,6 +125,8 @@
 		8C82BABD12EF941400830486 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C82BAB812EF93F900830486 /* Carbon.framework */; };
 		8C82BE1812EFEAEC00830486 /* gcal.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C77295012D46AC600F71FE7 /* gcal.ico */; };
 		8C82BE1912EFEB4F00830486 /* rtm.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C77295412D46AC600F71FE7 /* rtm.ico */; };
+		8C82C79412F17BB200830486 /* wpa.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C82C79312F17BB200830486 /* wpa.ico */; };
+		8C82C79512F17BB200830486 /* wpa.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C82C79312F17BB200830486 /* wpa.ico */; };
 		8C9CE85D12E2683800017A02 /* BlockerModule.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CE85C12E2683800017A02 /* BlockerModule.icns */; };
 		8C9CE86212E2698300017A02 /* BlockerModule.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CE86112E2698300017A02 /* BlockerModule.ico */; };
 		8C9CE88812E2700900017A02 /* Skype.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C9CE77812E2465B00017A02 /* Skype.framework */; };
@@ -706,6 +708,8 @@
 		8C82BAB212EF8F6700830486 /* HotKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotKeys.h; sourceTree = "<group>"; };
 		8C82BAB312EF8F6700830486 /* HotKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotKeys.m; sourceTree = "<group>"; };
 		8C82BAB812EF93F900830486 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		8C82C1AC12F0630000830486 /* Stateful.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stateful.h; sourceTree = "<group>"; };
+		8C82C79312F17BB200830486 /* wpa.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = wpa.ico; sourceTree = "<group>"; };
 		8C9CE76312E2449900017A02 /* SkypeState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkypeState.m; sourceTree = "<group>"; };
 		8C9CE77412E2463700017A02 /* SkypeAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SkypeAPI.h; path = Skype.framework/Versions/A/Headers/SkypeAPI.h; sourceTree = "<group>"; };
 		8C9CE77512E2463700017A02 /* SkypeAPI-Carbon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SkypeAPI-Carbon.h"; path = "Skype.framework/Versions/A/Headers/SkypeAPI-Carbon.h"; sourceTree = "<group>"; };
@@ -943,6 +947,7 @@
 		29B97314FDCFA39411CA2CEA /* WorkPlayAway */ = {
 			isa = PBXGroup;
 			children = (
+				8C82C79312F17BB200830486 /* wpa.ico */,
 				8C73F46D12E7F9DC0056FAFF /* BWToolkitFramework.framework */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				8C77292D12D46AC600F71FE7 /* PreferencesWindow.h */,
@@ -1245,6 +1250,7 @@
 				8C1C92DE12EB504A0077D343 /* Instance.h */,
 				8C82AF5F12ECF25D00830486 /* BaseInstance.h */,
 				8C82AF6012ECF25D00830486 /* BaseInstance.m */,
+				8C82C1AC12F0630000830486 /* Stateful.h */,
 			);
 			name = WPAFramework;
 			sourceTree = "<group>";
@@ -1694,6 +1700,7 @@
 				8C0D944B12D6408D009F3280 /* Info.plist in Resources */,
 				8C3AB4AC12E2CEBF00A19AA4 /* README.txt in Resources */,
 				8C73F08F12E5E49E0056FAFF /* SummaryHUD.xib in Resources */,
+				8C82C79412F17BB200830486 /* wpa.ico in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1820,6 +1827,7 @@
 				8C0D948A12D64486009F3280 /* INSTALL_PLUGINS.sh in Resources */,
 				8C3AB4AD12E2CEBF00A19AA4 /* README.txt in Resources */,
 				8C73F09012E5E49E0056FAFF /* SummaryHUD.xib in Resources */,
+				8C82C79512F17BB200830486 /* wpa.ico in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -112,10 +112,9 @@
 		alert.urgent = (res == RESULT_IMPORTANT);
 		alert.clickable = YES;
 		alert.params = item;
-		alert.lastAlert = (i+1 == [sendItems count]);
 		[handler handleAlert:alert];
 	}
-	
+	[BaseInstance sendDone: handler module: description];	
 }
 
 -(void) refresh: (<AlertHandler>) handler

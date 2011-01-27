@@ -39,7 +39,7 @@ tableView, modNames, originalName;
 			return;
 		}
 	}
-	<Module> mod = (<Module>) currCtrl;
+	<Instance> mod = (<Instance>) currCtrl;
 	mod.description = nameText.stringValue.copy;
 	[indicator setHidden:NO];
 	[indicator startAnimation:self];
@@ -56,7 +56,7 @@ tableView, modNames, originalName;
 		[alert runModal];
 		return;
 	}
-	 <Module> mod = (<Module>) currCtrl;
+	 <Instance> mod = (<Instance>) currCtrl;
 	// if there is no original name we are adding a module - otherwise modifying existing module
 	if (originalName == nil){
 		mod.enabled = YES;  // enable it if new
@@ -93,7 +93,7 @@ tableView, modNames, originalName;
 	else {
 		[[super window] setTitle: @"Edit Module"];
 
-		<Module> mod = (<Module>) currCtrl;
+		<Instance> mod = (<Instance>) currCtrl;
 		originalName = currCtrl.description.copy;
 		NSString *modDesc = [[Context sharedContext] descriptionForModule: mod];
 		[typeButton selectItemWithTitle: modDesc];
@@ -160,10 +160,10 @@ tableView, modNames, originalName;
 		NSViewController *temp = [modClass alloc];
 		temp = [temp initWithNibName:pluginName bundle:modBundle];
 		currCtrl = temp;
-		NSString *dispName = [[Context sharedContext] descriptionForModule:((<Module>)currCtrl)];
+		NSString *dispName = [[Context sharedContext] descriptionForModule:((<Instance>)currCtrl)];
 		modView= currCtrl.view;
 		dispName = dispName == nil ? [modClass description] : dispName;
-		((<Module>)currCtrl).description = dispName.copy;
+		((<Instance>)currCtrl).description = dispName.copy;
 		nameText.stringValue = dispName.copy;
 		configBox.title = [NSString stringWithFormat:@"%@ Specific Settings:",dispName];
 //		currCtrl = [modClass alloc];	

@@ -26,13 +26,11 @@
 	NSTimer *statusTimer;
 	NSWindow *hudWindow;
 	RefreshManager *refreshManager;
-	GrowlDelegate *growlDelegate;
 	NSTimer *thinkTimer;
 }
 
 @property (retain, nonatomic) IBOutlet NSWindow	*myWindow;
 @property (retain, nonatomic) IBOutlet NSButton *startButton;
-
 @property (retain, nonatomic) IBOutlet NSButton *refreshButton;
 @property (retain, nonatomic) IBOutlet NSSegmentedControl *controls;
 @property (retain, nonatomic) IBOutlet NSComboBox *taskComboBox;
@@ -41,7 +39,6 @@
 @property (retain, nonatomic)  NSTimer *statusTimer;
 @property (retain, nonatomic)  NSWindow *hudWindow;
 @property (retain, nonatomic)  RefreshManager *refreshManager;
-@property (retain, nonatomic)  GrowlDelegate *growlDelegate;
 @property (retain, nonatomic)  NSTimer *thinkTimer;
 
 - (IBAction) clickStart: (id) sender;
@@ -64,4 +61,10 @@
 - (BOOL) needsSummary;
 - (void) running: (BOOL) onOff;
 - (void) summaryClosed:(NSNotification*) notification;
+- (void) remoteNotify: (NSNotification*) notification;
+- (void) doThinkTime: (NSTimeInterval) thinkMin ;
+- (void) popStatusMenu;
+- (IBAction) clickAddActivity: (id) sender;
+- (void) fillActivities:(NSMenu*) menu;
+- (void) newActivity: (id) sender;
 @end

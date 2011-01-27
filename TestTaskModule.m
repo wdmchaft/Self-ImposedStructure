@@ -114,11 +114,11 @@
 			alert.message=[item objectForKey:@"name"];
 			alert.clickable = YES;
 			alert.params = item;
-			alert.lastAlert = (i + 1 == [incomp count]);
 			[handler handleAlert:alert];
 		
 		
 	}
+	[BaseInstance sendDone:handler module: description];
 }
 
 -(void) refresh: (<AlertHandler>) handler

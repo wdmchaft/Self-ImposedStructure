@@ -54,6 +54,7 @@ highestTagValue,minTagValue,hrefStr,rules, alertHandler, validationHandler;
 		rules = inRules;
 		alertHandler = handler;
 		callback = delegate;
+		NSLog(@"mintagval = %qi", minTagValue.longLongValue);
 	}
 	return self;
 }
@@ -112,6 +113,8 @@ highestTagValue,minTagValue,hrefStr,rules, alertHandler, validationHandler;
 	NSNumber *tagVal = [self getIdTagValue: idStr];
 	
 	if (tagVal.longLongValue > minTagValue.longLongValue) {
+		long long val = tagVal.longLongValue - minTagValue.longLongValue;
+		NSLog(@"val = %qi", val);
 		if (tagVal.longLongValue > highestTagValue.longLongValue){
 	
 			highestTagValue = tagVal;
@@ -167,13 +170,12 @@ highestTagValue,minTagValue,hrefStr,rules, alertHandler, validationHandler;
 		FilterResult res = [FilterRule processFilters:rules forMessage: msgDict];
 		if (res != RESULT_IGNORE) {
 			Note *alert = [[Note alloc]init];
-			alert.moduleName = super.description;
+			alert.moduleName = callback.description;
 			alert.title =key;
 			alert.message=[item objectForKey:@"summary"];
 			alert.sticky = (res == RESULT_IMPORTANT);
 			alert.urgent = (res == RESULT_IMPORTANT);
 			alert.params = msgDict;
-			alert.lastAlert = ++count == msgCount;
 			
 			[alertHandler handleAlert:alert];
 		}
@@ -183,6 +185,7 @@ highestTagValue,minTagValue,hrefStr,rules, alertHandler, validationHandler;
 	//	[super saveDefaultValue: minTagValue forKey: MINTAGVALUE];
 		[[NSUserDefaults standardUserDefaults] synchronize];
 	}
+	[BaseInstance sendDone: alertHandler module: callback.description];
 	[((<CallBack>)callback) didFinishRequest: self];
 }
  
@@ -193,7 +196,7 @@ highestTagValue,minTagValue,hrefStr,rules, alertHandler, validationHandler;
 {
 	// End Element Processing
     if ( [elementName isEqualToString:@"entry"]) {
-		[self addEntry:msgDict];
+		[self addEntry];
 	}
     else if ( [elementName isEqualToString:@"title"]) {
 		titleStr = bufferStr;

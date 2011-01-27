@@ -18,7 +18,7 @@
 
 @implementation WPAMainController
 @synthesize  startButton, controls, taskComboBox, refreshButton, statusItem, statusMenu, statusTimer, myWindow;
-@synthesize hudWindow, refreshManager, growlDelegate, thinkTimer;
+@synthesize hudWindow, refreshManager, thinkTimer;
 
 - (void)awakeFromNib
 {
@@ -58,6 +58,7 @@
 	if (ctx.startOnLoad){
 		statusTimer = [NSTimer scheduledTimerWithTimeInterval:15 target: self selector:@selector(updateStatus:) userInfo:nil repeats:NO];
 	}
+	[self setupHotKey];
 }
 
 -(void) updateStatus: (NSTimer*) timer
@@ -73,6 +74,8 @@
 	[[statusMenu itemWithTag:2] setState:NSOffState];
 	[[statusMenu itemWithTag:3] setState:NSOffState];
 	[[statusMenu itemWithTag:4] setState:NSOffState];
+	[[statusMenu itemWithTag:6] setTitle:@"Start"];
+	[[statusMenu itemWithTag:6] setAction:@selector(clickStart:)];
 	if (!ctx.running) {
 		[statusItem setTitle:@"?"];
 		[[statusMenu itemWithTag:1] setEnabled:NO];
@@ -91,10 +94,9 @@
 		if (ctx.currentState == WPASTATE_AWAY) {
 			[statusItem setTitle:@"A"];
 			[[statusMenu itemWithTag:3] setState:NSOnState];
-		
 		}
-		if (ctx.thinkTimer){
-			NSTimeInterval interval = [[ctx.thinkTimer fireDate] timeIntervalSinceNow];
+		if (thinkTimer){
+			NSTimeInterval interval = [[thinkTimer fireDate] timeIntervalSinceNow];
 			NSUInteger mins = ceil(interval / 60);
 			[statusItem setTitle: [NSString stringWithFormat:@"%d",mins] ];
 			[[statusMenu itemWithTag:4] setState:NSOnState];
@@ -102,8 +104,67 @@
 			[statusItem setTitle:@"W"];
 			[[statusMenu itemWithTag:1] setState:NSOnState];
 		}
-
+		NSMenuItem *aMenuItem = [statusMenu itemWithTag:5];
+		[self fillActivities:aMenuItem.submenu];
+		[[statusMenu itemWithTag:6] setTitle:@"Stop"];
+		[[statusMenu itemWithTag:6] setAction:@selector(clickStop:)];
 	}
+}
+
+- (void) fillActivities: (NSMenu*) menu
+{
+	[menu setAutoenablesItems:NO];
+	Context *ctx = [Context sharedContext];
+	ctx.tasksList = [ctx getTasks];
+	// clear anything out first
+	while ([[menu itemArray] count] > 2) {
+		NSMenuItem *mi = [menu itemAtIndex:2];
+		[menu removeItem:mi];
+	}
+	for(TaskInfo *info in ctx.tasksList){
+		NSMenuItem *mi = [[NSMenuItem alloc]initWithTitle:info.description 
+												   action:@selector(newActivity:)
+											keyEquivalent:@""];
+		[mi setTarget:self];
+		[menu addItem:mi]; 
+		mi.state = NSOffState;
+		[mi setEnabled:YES];
+		[mi setRepresentedObject:info];
+		if (ctx.currentTask && [ctx.currentTask isEqual:info]){
+			mi.state = NSOnState;
+	}
+	}
+}
+
+- (void) newActivity: (id) sender
+{
+	NSLog(@"newActivity");
+	Context *ctx = [Context sharedContext];
+	NSMenuItem *mi = (NSMenuItem *) sender;
+	
+	ctx.currentTask = [mi representedObject];
+	
+	// if we get don't get the default or empty then it is "adhoc" task  (with no source)
+	
+	if (ctx.currentTask == nil){
+		if (![mi.title isEqualToString:@"No Current Task"] && [mi.title length] > 0) {
+			TaskInfo *newTI = [TaskInfo	new];
+			newTI.name = mi.title;
+			ctx.currentTask = newTI;
+		}
+	}
+	[ctx saveTask];
+	
+	// we changed jobs so write a new tracking record
+	if (ctx.currentState == WPASTATE_THINKING || ctx.currentState == WPASTATE_THINKTIME){
+		[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:ctx.currentState];
+	}
+	[ctx.growlDelegate growlThis:[NSString stringWithFormat: @"New Activity: %@",ctx.currentTask.name]];
+	[self initStatusMenu];
+}
+
+- (IBAction) clickAddActivity: (id) sender
+{
 }
 
 - (void) tasksChanged: (NSNotification*) notification
@@ -115,37 +176,6 @@
 		[taskComboBox addItemWithObjectValue:info]; 
 	}
 }
-
-//- (void)comboBoxSelectionDidChange:(NSNotification *)notification
-//{
-//	Context *ctx = [Context sharedContext];
-//	NSComboBox *cb = taskComboBox;
-//	
-//	NSObject *selObj = [cb objectValueOfSelectedItem];
-//	if (selObj.class == NSString.class){
-//		ctx.currentTask = [TaskInfo new];
-//		ctx.currentTask.name = (NSString*) selObj;
-//	}
-//	ctx.currentTask = (TaskInfo*) selObj;
-//	if (ctx.currentTask == nil){
-//		NSLog(@"%@",cb.stringValue);
-//	}
-//	[ctx saveTask];
-//
-//	// we changed jobs so write a new tracking record
-//	if (ctx.currentState == WPASTATE_THINKING || ctx.currentState == WPASTATE_THINKTIME){
-//		[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:ctx.currentState];
-//	}
-//}
-//- (void) comboBoxSelectionWillChange:(NSNotification *)notification
-//{
-//}
-//- (void) comboBoxWillDismiss:(NSNotification *)notification
-//{
-//}
-//- (void) comboBoxWillPopUp:(NSNotification *)notification
-//{
-//}
 
 - (void) enableUI: (BOOL) onOff
 {
@@ -165,19 +195,23 @@
 {
 	Context *ctx = [Context sharedContext];
 	WPAStateType newState = ctx.previousState;
+	NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
 	if (on == NO){
-		[(WPADelegate*)[[NSApplication sharedApplication] delegate] stop];
+//		[(WPADelegate*)[[NSApplication sharedApplication] delegate] stop];
 		startButton.title = @"Start";
 		[startButton setAction: @selector(clickStart:)];
-		[growlDelegate stop];
+		[ctx.growlDelegate stop];
 		newState = WPASTATE_OFF;
 		[statusTimer invalidate];
+		[center removeObserver:self name:@"com.workplayaway.wpa" object:nil];
 	} else {
 		startButton.title = @"Stop";
 		[startButton setAction: @selector(clickStop:)];
 		statusTimer = [NSTimer scheduledTimerWithTimeInterval:15 target: self selector:@selector(updateStatus:) userInfo:nil repeats:NO];
-		growlDelegate = [GrowlDelegate new];
+		ctx.growlDelegate = [GrowlDelegate new];
 		newState = WPASTATE_FREE;
+		// start listening for pause commands
+		[center addObserver:self selector:@selector(remoteNotify:) name:@"com.workplayaway.wpa" object:nil];
 	}
 	ctx.running = on;
 //	[self enableUI:ctx.running];
@@ -213,13 +247,6 @@
 - (IBAction) clickControls: (id) sender
 {
 	int newState = controls.selectedSegment;
-//	if (newState == WPASTATE_THINKTIME){
-//		TimerDialogController *tdc = [[TimerDialogController alloc] initWithWindowNibName:@"TimerDialog"];
-//		NSWindow *tdcWindow = [tdc window];
-//		[tdcWindow orderFrontRegardless];
-//		[NSApp runModalForWindow: tdcWindow];
-//
-//	}
 	[self changeState:newState];
 }
 
@@ -286,13 +313,47 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self  
 												 name:NSWindowWillCloseNotification 
 											   object:nil];
-	refreshManager = [[RefreshManager alloc]initWithHandler:growlDelegate];
+	refreshManager = [[RefreshManager alloc]initWithHandler:[Context sharedContext].growlDelegate];
 	[refreshManager startWithRefresh:NO];
 	[controls setSelectedSegment: WPASTATE_FREE];
 	[self changeState:WPASTATE_FREE];
 	//[Context sharedContext].currentState= WPASTATE_FREE;
 }
 
+- (void) remoteNotify: (NSNotification*) notification
+{	
+	NSDictionary *dict = [notification userInfo];
+	NSNumber *minStr =  [dict objectForKey:@"time"];
+	NSNumber *state =  [dict objectForKey:@"state"];
+	switch ([state intValue]) {
+		case WPASTATE_THINKTIME:
+			[self doThinkTime: [minStr intValue]];
+			break;
+		case WPASTATE_AWAY:
+			[self clickAway:nil];
+			break;
+		case WPASTATE_THINKING:
+			[self clickWork:nil];
+			break;
+		case WPASTATE_FREE:
+			[self clickAway:nil];
+			break;
+		default:
+			break;
+	}
+}
+
+- (void) doThinkTime: (NSTimeInterval) thinkMin 
+{
+	Context *ctx = [Context sharedContext];
+	ctx.thinkTime = thinkMin  * 60;
+	[ctx saveDefaults];
+	thinkTimer = [NSTimer scheduledTimerWithTimeInterval:ctx.thinkTime target:self selector:@selector(timerAlarm:) userInfo:nil repeats:NO];
+	[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:WPASTATE_THINKING];
+	[ctx busyModules];
+	[controls setSelectedSegment: WPASTATE_THINKTIME];
+	[self initStatusMenu];   
+}
 
 - (void) changeState: (WPAStateType) newState
 {
@@ -317,6 +378,7 @@
 		NSWindow *tdcWindow = [tdc window];
 		[tdcWindow orderFrontRegardless];
 		[NSApp runModalForWindow: tdcWindow];
+		thinkTimer = [NSTimer scheduledTimerWithTimeInterval:ctx.thinkTime target:self selector:@selector(timerAlarm:) userInfo:nil repeats:NO];
 		newState = WPASTATE_THINKING;
 	} else if (thinkTimer) {
 		[thinkTimer invalidate];
@@ -335,7 +397,7 @@
 	[self initStatusMenu];
 	[self enableUI:(newState != WPASTATE_OFF)];
 	if (refreshManager == nil && newState != WPASTATE_OFF){
-		refreshManager = [[RefreshManager alloc]initWithHandler:growlDelegate];
+		refreshManager = [[RefreshManager alloc]initWithHandler:ctx.growlDelegate];
 		[refreshManager startWithRefresh:YES];
 	}
 	if (newState == WPASTATE_OFF){
@@ -344,6 +406,13 @@
 	}
 }
 
+- (void) timerAlarm: (NSTimer*) timer 
+{
+	NSSound *systemSound = [NSSound soundNamed:[Context sharedContext].alertName];
+	[systemSound play];
+	[self changeState:WPASTATE_FREE];
+}
+					  
 -(IBAction) changeCombo: (id) sender {
 	NSLog(@"changeCombo");
 	Context *ctx = [Context sharedContext];
@@ -395,5 +464,36 @@
 	}
 }
 
+- (void) popStatusMenu
+{
+	[statusItem popUpStatusItemMenu:statusMenu];
+}
+
+OSStatus hotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
+						 void *userData)
+{
+	WPAMainController *self = (WPAMainController*) userData;
+	//Do something once the key is pressed
+	[self popStatusMenu];
+	return noErr;
+}
+
+- (void) setupHotKey
+{
+	//Register the Hotkeys
+	EventHotKeyRef gMyHotKeyRef;
+	EventHotKeyID gMyHotKeyID;
+	EventTypeSpec eventType;
+	eventType.eventClass=kEventClassKeyboard;
+	eventType.eventKind=kEventHotKeyPressed;
+	
+	InstallApplicationEventHandler(&hotKeyHandler,1,&eventType,(void*)self,NULL);
+	
+	gMyHotKeyID.signature='htk1';
+	gMyHotKeyID.id=1;
+	
+	
+	RegisterEventHotKey(24, cmdKey+optionKey, gMyHotKeyID, GetApplicationEventTarget(), 0, &gMyHotKeyRef);
+}
 
 @end

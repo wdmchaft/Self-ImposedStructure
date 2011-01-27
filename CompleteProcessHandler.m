@@ -52,7 +52,7 @@
 	}
 }
 
-- (void) sendComplete: (NSString*) method
+- (void) sendComplete
 {
 	//	RTGTestAppDelegate *delegate = (<NSApplicationDelegate>)[NSApplication sharedApplication];
 	//	context = [delegate context];
@@ -60,7 +60,7 @@
 
 	NSMutableDictionary *params =  [NSMutableDictionary dictionaryWithObjectsAndKeys:
 									token, @"auth_token",
-									method, @"method",
+									@"rtm.tasks.complete", @"method",
 									[context objectForKey:@"task_id"], @"task_id",
 									[context objectForKey:@"taskseries_id"], @"taskseries_id",
 									[context objectForKey:@"list_id"], @"list_id",
@@ -80,8 +80,8 @@
 
 - (void) rmDone
 {
-	if ([callback respondsToSelector:@selector(completeDone)]){
-		[callback completeDone];
+	if ([callback respondsToSelector:@selector(handleComplete:)]){
+		[callback handleComplete:nil];
 	}
 }
 

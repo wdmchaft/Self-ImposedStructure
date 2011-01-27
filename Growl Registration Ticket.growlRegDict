@@ -6,6 +6,7 @@
         <integer>1</integer>
         <key>AllNotifications</key>
         <array>
+                <string>WPA Alert</string>
                 <string>Error Alert</string>
                 <string>Task Alert</string>
                 <string>Event Alert</string>
@@ -14,6 +15,7 @@
         </array>
         <key>DefaultNotifications</key>
         <array>
+                <string>WPA Alert</string>
                 <string>Error Alert</string>
                 <string>Task Alert</string>
                 <string>Event Alert</string>

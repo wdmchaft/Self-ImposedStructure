@@ -9,8 +9,9 @@
 #import <Cocoa/Cocoa.h>
 #import "BaseInstance.h"
 #import "CalDAVParserDelegate.h"
+#import "Reporter.h"
 
-@interface GCalModule : BaseInstance <CalDAVParserDelegate>{
+@interface GCalModule : BaseInstance <CalDAVParserDelegate, Reporter>{
 	NSTextField *userField;
 	NSSecureTextField *passwordField;
 	NSTextField *refreshField;

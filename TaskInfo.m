@@ -20,16 +20,26 @@
 	if (![[object class] isEqual: [self class]])
 		return NO;
 	TaskInfo *otherTask = (TaskInfo*) object;
-	if (![name isEqualToString: otherTask.name])
+	if (name == nil && otherTask.name)
 		return NO;
-	if (![project isEqualToString: otherTask.project])
+	if (otherTask.name == nil && name)
 		return NO;
-	if (![source isEqual: otherTask.source])
+	if (name && otherTask.name && ![name isEqualToString: otherTask.name])
+		return NO;
+	if (project == nil && otherTask.project)
+		return NO;
+	if (otherTask.project == nil && project)
+		return NO;
+	if (project && otherTask.project && ![project isEqualToString: otherTask.project])
+		return NO;
+	if (source == nil && otherTask.source == nil)
+		return YES;
+	if (![((NSObject*)source) isEqual: ((NSObject*)otherTask.source)])
 		return NO;
 	return YES;
 }
 
--(id) initWithName: (NSString*) item source: (<Module>) mod  project: (NSString*) proj
+-(id) initWithName: (NSString*) item source: (<TaskList>) mod  project: (NSString*) proj
 {
 	if (self)
 	{

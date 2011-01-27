@@ -31,8 +31,8 @@
 @property (nonatomic, retain) PreferencesWindow *prefsWindow;
 @property (retain, nonatomic) IBOutlet StatsWindow *statsWindow;
 
--(void) start;
--(void) stop;
+//-(void) start;
+//-(void) stop;
 
 //-(NSArray*) getAllTasks;
 -(NSString*) entityNameForState: (int) state;

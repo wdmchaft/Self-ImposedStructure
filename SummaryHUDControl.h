@@ -23,12 +23,15 @@
 	NSTableView *mailTable;
 	NSTableView *tasksTable;
 	NSTableView *eventsTable;
+	NSProgressIndicator *progInd;
 
 	SummaryEventData *eventsData;
 	SummaryDeadlineData *deadlinesData;
 	SummaryTaskData *tasksData;
 	SummaryMailData *mailsData;
 	WPAMainController *mainControl;
+	<TaskList> *currentList;
+	NSTableView *currentTable;
 }
 
 @property (nonatomic) int finishedCount;
@@ -37,11 +40,14 @@
 @property (nonatomic, retain) IBOutlet NSTableView *eventsTable;
 @property (nonatomic, retain) IBOutlet NSTableView *mailTable;
 @property (nonatomic, retain) IBOutlet NSTableView *tasksTable;
+@property (nonatomic, retain) IBOutlet NSProgressIndicator *progInd;
 @property (nonatomic, retain)  SummaryDeadlineData *deadlinesData;
 @property (nonatomic, retain)  SummaryEventData *eventsData;
 @property (nonatomic, retain)  SummaryMailData *mailsData;
 @property (nonatomic, retain)  SummaryTaskData *tasksData;
 @property (nonatomic, retain)  WPAMainController *mainControl;
+@property (nonatomic, retain)  <TaskList> *currentList;
+@property (nonatomic, retain) NSTableView *currentTable;
 - (void) processSummary;
 - (void) allSummaryDataReceived;
 - (void) handleDouble: (id) sender;

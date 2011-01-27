@@ -42,6 +42,10 @@
 @synthesize summaryMode;
 @synthesize eventsList;
 @synthesize alertHandler;
+@dynamic refreshInterval;
+@dynamic notificationName;
+@dynamic notificationTitle;
+
 -(void) setId
 {
 	description =@"GCal Module";
@@ -185,8 +189,7 @@
 
 - (void) processEvents
 {
-	int eventCount = [eventsList count];
-	int count = 0;
+
 	for (NSDictionary *event in eventsList){
 		Note *note = [[Note alloc]init];
 		note.moduleName = description;
@@ -194,7 +197,7 @@
 		note.title = [self timeStrFor:eventDate];
 		note.message = [event objectForKey:@"summary"];
 		note.params = event;
-		note.lastAlert = ++count == eventCount;
+		
 		[alertHandler handleAlert:note];
 		
 		if (!summaryMode){
@@ -211,7 +214,7 @@
 			[alarmsList addObject: timer];
 		}
 	}
-	summaryMode = NO;
+	[BaseInstance sendDone: alertHandler module: description];
 }
 
 
@@ -391,5 +394,8 @@
 -(IBAction) clickWarningStepper: (id) sender
 {
 	warningField.intValue = stepperWarning.intValue;
+}
+- (void) handleClick: (NSDictionary*) params
+{
 }
 @end

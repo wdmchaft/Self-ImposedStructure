@@ -8,6 +8,7 @@
 
 #import "GrowlDelegate.h"
 #import "Context.h"
+#import "Reporter.h"
 
 @implementation GrowlDelegate
 @synthesize alertQ, savedQ;
@@ -46,13 +47,13 @@
 
 -(void) handleError: (Note*) error
 {
-	<Module> sender = [[[Context sharedContext] instancesMap] objectForKey:error.moduleName];
+	<Reporter> sender = [[[Context sharedContext] instancesMap] objectForKey:error.moduleName];
 	
 	[GrowlApplicationBridge
 	 notifyWithTitle:@"Error!"
 	 description:error.message
 	 notificationName:@"Error Alert"
-	 iconData:[[Context sharedContext]iconForModule:sender]
+	 iconData:[[Context sharedContext]iconForModule:((<Instance>)sender)]
 	 priority:0
 	 isSticky:YES
 	 clickContext:nil];
@@ -60,8 +61,12 @@
 
 -(void) handleAlert:(Note*) alert 
 {
-	NSLog(@"received %@",alert.message);
 	Context *ctx = [Context sharedContext];
+	// ignore when flagged as lastAlert -- means a refresh cycle is complete
+	if (alert.lastAlert){
+		NSLog(@"cycle ended for %@", alert.moduleName);
+		return;
+	}
 	if (ctx.currentState == WPASTATE_FREE) {
 		[self queueAlert:alert];
 	}
@@ -76,17 +81,29 @@
 	
 }
 
+- (void) growlThis: (NSString*) this
+{
+	[GrowlApplicationBridge
+	 notifyWithTitle: @"FYI"
+	 description:this
+	 notificationName:@"WPA Alert"
+	 iconData:[[Context sharedContext]iconForModule:nil]
+	 priority:0
+	 isSticky:NO
+	 clickContext: nil];
+}
+
 -(void) growlAlert: (Note*) alert
 {
 	NSLog(@"showing alert %@", alert.message);
-	<Module> sender = [[[Context sharedContext] instancesMap] objectForKey:alert.moduleName];
+	<Reporter> sender = [[[Context sharedContext] instancesMap] objectForKey:alert.moduleName];
 	
 	
 	[GrowlApplicationBridge
 	 notifyWithTitle: alert.title == nil ? sender.notificationTitle : alert.title
 	 description:alert.message
 	 notificationName:sender.notificationName
-	 iconData:[[Context sharedContext]iconForModule:sender]
+	 iconData:[[Context sharedContext]iconForModule:((<Instance>)sender)]
 	 priority:0
 	 isSticky:alert.sticky
 	 clickContext: alert.clickable ? alert.params : nil];
@@ -94,7 +111,7 @@
 
 - (void) growlNotificationWasClicked:(id)ctx 
 {
-	<Module> callMod = [[Context sharedContext].instancesMap objectForKey:[ctx objectForKey: @"module"]];
+	<Reporter> callMod = [[Context sharedContext].instancesMap objectForKey:[ctx objectForKey: @"module"]];
 	
 	[callMod handleClick:ctx];
 	
@@ -120,6 +137,60 @@
 													userInfo:nil
 													 repeats:NO]; 
 }
+
+- (void) changeState:(WPAStateType)newState
+{
+	switch (newState) {
+		case WPASTATE_FREE:
+			[self freeState];
+			break;
+		case WPASTATE_AWAY:
+			[self awayState];
+			break;
+		case WPASTATE_THINKING:
+			[self workState];
+			break;
+		default:
+			break;
+	}
+}
+
+- (void) freeState
+{	
+	// first dump everything saved into the growl queue...
+	while ([savedQ count] > 0) {
+		Note *moveAlert = [savedQ objectAtIndex:0];
+		[alertQ insertObject: moveAlert atIndex:0];
+		[savedQ removeObjectAtIndex:0];
+	} 
+}
+
+ - (void) awayState
+{
+	// dump everything (EVERYTHING) in the growl queue into save queue...
+	
+	while ([alertQ count] > 0) {
+		Note *moveAlert = [alertQ objectAtIndex:0];
+		[savedQ addObject: moveAlert];
+		[alertQ removeObjectAtIndex:0];
+	} 
+}
+
+- (void) workState
+{
+	NSMutableArray	*replaceQ = [[NSMutableArray alloc] initWithCapacity:10];
+	while ([alertQ count] > 0) {
+		Note *moveAlert = [alertQ objectAtIndex:0];
+		if (moveAlert.urgent) {
+			[replaceQ addObject: moveAlert];
+		} else {
+			[savedQ addObject:moveAlert];
+		}
+		[alertQ removeObjectAtIndex:0];
+	} 
+	alertQ = replaceQ;
+}
+
 - (void) stop
 {
 	[timer invalidate];

@@ -10,9 +10,10 @@
 #import "BaseInstance.h"
 #import "RulesTableData.h"
 #import "GMailRequestHandler.h"
+#import "Reporter.h"
 
 #define MAX_FAIL 3
-@interface GmailModule : BaseInstance {
+@interface GmailModule : BaseInstance <Reporter>{
 	NSTextField *userField;
 	NSSecureTextField *passwordField;
 	NSTextField *frequencyField;
@@ -26,7 +27,6 @@
 	NSString *idStr;
 	NSString *nameStr;
 	NSString *emailStr;
-	NSNumber *highestTagValue;
 	NSNumber *minTagValue;
 	NSTimer *refreshTimer;
 	NSStepper *stepper;
@@ -53,7 +53,6 @@
 @property (nonatomic,retain) NSMutableData *respBuffer;
 @property (nonatomic,retain) NSMutableDictionary *msgDict;
 @property (nonatomic) NSTimeInterval refresh;
-@property (nonatomic, retain) NSNumber *highestTagValue;
 @property (nonatomic, retain) NSNumber *minTagValue;
 @property (nonatomic, retain) NSTimer *refreshTimer;
 @property (nonatomic, retain) IBOutlet NSTextField *userField;

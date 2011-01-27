@@ -8,13 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 #import "StatsRecord.h"
-
+#import "State.h"
 @interface Schema : NSObject {
 
 }
 + (NSString*) dumpMObj: (NSManagedObject*) obj;
 + (BOOL) hasTask: (NSManagedObject*) mobj;
-+ (NSString*) entityNameForState:(int) state;
++ (NSString*) entityNameForState:(WPAStateType) state;
 + (NSManagedObject*) findTask: (NSString*) name inContext: (NSManagedObjectContext*) moc;
 + (double) countEntity: (NSString*) name inContext: (NSManagedObjectContext*) moc;
 + (void) fetchIntoRecord: (StatsRecord*) record 
