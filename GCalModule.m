@@ -162,7 +162,7 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
 	NSString *respStr = [[[NSString alloc] initWithData:respBuffer encoding:NSUTF8StringEncoding]autorelease];
-	NSLog(@"%@",respStr);
+	//NSLog(@"%@",respStr);
 	// look for errors now
 	NSRange errRange = [respStr rangeOfString:ERRSTR];
 	
