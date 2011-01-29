@@ -17,11 +17,6 @@
 #import "State.h"
 #import "HotKeys.h"
 
-@protocol StateCtrl
-
--(void)stateChange: (WPAStateType) newState;
-
-@end
 
 @implementation WPADelegate
 @synthesize window;
@@ -31,24 +26,7 @@
 @synthesize managedObjectModel;
 @synthesize managedObjectContext;
 
-//-(void) start 
-//{
-//	// check for trouble
-//	Context *ctx = [Context sharedContext];
-//	if ([ctx.instancesMap count] == 0){
-//		NSLog(@"no modules found");
-//	}
-//	
-//	// start listening for pause commands
-//	NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
-//	[center addObserver:self selector:@selector(handleNotification:) name:@"org.ottoject.nudge.Concentrate" object:nil];
-//	
-//
-//	ctx.running = YES;
-//}
-
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-	// Insert code here to initialize your application 
 	Context *ctx = [Context sharedContext];
 
 	NSLog(@"app launched");
@@ -57,45 +35,6 @@
 		[wpam clickStart:self];
 	}
 	[window setTitle:__APPNAME__];
-}
-
-
-//-(void) stop 
-//{
-//	Context	*ctx = [Context sharedContext];
-//	NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
-//	[center removeObserver:self name:@"org.ottoject.nudge.Concentrate" object:nil];	
-//	// shut up!
-//	while ([ctx.alertQ count] > 0) {
-//		[ctx.alertQ removeObjectAtIndex:0];
-//	} 
-//	NSDictionary *modules = [[Context sharedContext] instancesMap];
-//	NSString *modName;
-//	NSObject *module = nil;
-//	for (modName in modules){
-//		module = [modules objectForKey:modName];
-//		if (((<Instance>)module).enabled){
-//			if ([module respondsToSelector:@selector(stateChange:)]){
-//				[((<StateCtrl>)module) stateChange:WPASTATE_OFF];
-//			}
-//		
-//		}
-//	}
-//	[Context sharedContext].running = NO;
-//}
-
-
--(void) refreshTasks
-{
-	NSDictionary *modules = [[Context sharedContext] instancesMap];
-	<TaskList> module = nil;
-	NSString *modName = nil;
-	for (modName in modules){
-		module = [modules objectForKey:modName];
-		if (((<Instance>)module).enabled){
-			[module refreshTasks];
-		}
-	}
 }
 
 - (IBAction) clickPreferences: (id) sender

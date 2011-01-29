@@ -13,6 +13,8 @@
 #import "StatsWindow.h"
 #import "RefreshManager.h"
 #import "GrowlManager.h"
+#import "StatusIconView.h"
+#import "TotalsManager.h"
 
 @interface WPAMainController :NSObject <NSComboBoxDelegate,NSWindowDelegate> {
 	NSWindow *myWindow;
@@ -27,6 +29,10 @@
 	NSWindow *hudWindow;
 	RefreshManager *refreshManager;
 	NSTimer *thinkTimer;
+	StatusIconView *siView;
+	NSTimeInterval dailyWorkTotal;
+	NSTimeInterval weeklyWorkTotal;
+	TotalsManager *totalsManager;
 }
 
 @property (retain, nonatomic) IBOutlet NSWindow	*myWindow;
@@ -40,6 +46,8 @@
 @property (retain, nonatomic)  NSWindow *hudWindow;
 @property (retain, nonatomic)  RefreshManager *refreshManager;
 @property (retain, nonatomic)  NSTimer *thinkTimer;
+@property (retain, nonatomic)  StatusIconView *siView;
+@property (retain, nonatomic)  TotalsManager *totalsManager;
 
 - (IBAction) clickStart: (id) sender;
 - (IBAction) clickControls: (id) sender;
@@ -55,7 +63,7 @@
 -(void)handleScreenSaverStart:(NSNotification*) notification;
 -(void)handleScreenSaverStop:(NSNotification*) notification;
 - (void) enableUI: (BOOL) onOff;
-- (void) initStatusMenu;
+- (void) buildStatusMenu;
 - (void) updateStatus: (NSTimer*) timer;
 - (BOOL) shouldGoBackToWork;
 - (BOOL) needsSummary;

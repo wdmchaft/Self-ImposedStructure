@@ -21,8 +21,6 @@
 	NSMutableDictionary *instancesMap; // maps module name to instance of module
 	NSMutableDictionary *bundlesMap; // maps plugin name to its bundle
 	NSMutableDictionary *iconsMap; // maps module name to its icon;
-	NSMutableArray *savedQ;
-	NSMutableArray *alertQ;
 	int growlInterval;
 	NSTimer *thinkTimer;
 	BOOL startOnLoad;
@@ -49,8 +47,7 @@
 @property (nonatomic, retain) NSMutableDictionary *instancesMap;
 @property (nonatomic, retain) NSMutableDictionary *bundlesMap;
 @property (nonatomic, retain) NSMutableDictionary *iconsMap;
-@property (nonatomic, retain, readonly) NSMutableArray *savedQ;
-@property (nonatomic, retain) NSMutableArray *alertQ;
+
 @property (nonatomic) NSTimeInterval weeklyGoal;
 @property (nonatomic) NSTimeInterval dailyGoal;
 @property (nonatomic) int growlInterval;
@@ -88,7 +85,7 @@
 
 
 @implementation Context
-@synthesize alertQ;
+//@synthesize alertQ;
 @synthesize growlInterval;
 @synthesize running;
 @synthesize thinkTimer;
@@ -415,22 +412,6 @@ static Context* sharedContext = nil;
 	return ret;
 }
 
-- (NSMutableArray*) savedQ
-{
-	if (!savedQ){
-		savedQ = [NSMutableArray new];
-	}
-	return savedQ;
-}
-
-- (NSMutableArray*) alertQ
-{
-	if (!alertQ){
-		alertQ = [NSMutableArray new];
-	}
-	return alertQ;
-}
-
 - (void) setCurrentState:(WPAStateType) newState;
 {
 	previousState = currentState;
@@ -484,6 +465,21 @@ static Context* sharedContext = nil;
 		}
 	}
 	return [NSArray arrayWithArray:ret];
+}
+
+
+-(void) refreshTasks
+{
+	NSDictionary *modules = [[Context sharedContext] instancesMap];
+
+	<Instance> module = nil;
+	NSString *modName = nil;
+	for (modName in modules){
+		module = [modules objectForKey:modName];
+		if (module.enabled && [module conformsToProtocol:@protocol(TaskList)]){
+			[ ( (<TaskList>) module) refreshTasks];
+		}
+	}
 }
 
 - (NSArray*) getTasks {

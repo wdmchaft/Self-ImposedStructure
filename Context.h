@@ -15,8 +15,6 @@
 	NSMutableDictionary *instancesMap; // maps module name to instance of module
 	NSMutableDictionary *bundlesMap; // maps plugin name to its bundle
 	NSMutableDictionary *iconsMap; // maps module name to its icon;
-	NSMutableArray *savedQ;
-	NSMutableArray *alertQ;
 	int growlInterval;
 	NSTimer *thinkTimer;
 	BOOL startOnLoad;
@@ -43,8 +41,6 @@
 @property (nonatomic, retain) NSMutableDictionary *instancesMap;
 @property (nonatomic, retain) NSMutableDictionary *bundlesMap;
 @property (nonatomic, retain) NSMutableDictionary *iconsMap;
-@property (nonatomic, retain, readonly) NSMutableArray *savedQ;
-@property (nonatomic, retain) NSMutableArray *alertQ;
 @property (nonatomic) NSTimeInterval weeklyGoal;
 @property (nonatomic) NSTimeInterval dailyGoal;
 @property (nonatomic) int growlInterval;
@@ -84,6 +80,7 @@
 - (void) busyModules ;
 - (void) freeModules ;
 - (void) awayModules ;
+- (void) refreshTasks;
 - (NSArray*) refreshableModules;
 - (NSArray*) getTasks ;
 

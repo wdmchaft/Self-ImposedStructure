@@ -38,3 +38,8 @@ busy
 away
 	send state changes
 off
+
+Goals
+wpa keeps track of a daily and a weekly goal of work time. WPA will keep the goals visible to the user by
+1 having the icon show progress towards the daily goal
+2 providing reports of the goal and whether it was attained or not

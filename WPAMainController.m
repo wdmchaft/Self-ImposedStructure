@@ -17,7 +17,7 @@
 
 @implementation WPAMainController
 @synthesize  startButton, controls, taskComboBox, refreshButton, statusItem, statusMenu, statusTimer, myWindow;
-@synthesize hudWindow, refreshManager, thinkTimer;
+@synthesize hudWindow, refreshManager, thinkTimer, siView, totalsManager;
 
 - (void)awakeFromNib
 {
@@ -48,27 +48,49 @@
 	[dCenter addObserver:self selector:@selector(handleScreenSaverStop:) name:@"com.apple.screensaver.didstop" object:nil];
 	[taskComboBox setDelegate:self];
 	[self enableUI: ctx.running];
+	totalsManager = [TotalsManager new];
 	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
 	statusItem.menu = statusMenu;
 	//[statusItem setTitle:@"X"];
-	[self initStatusMenu];
+	[self buildStatusMenu];
 	[statusItem setHighlightMode:YES];
 	[statusMenu  setAutoenablesItems:NO];
 	if (ctx.startOnLoad){
-		statusTimer = [NSTimer scheduledTimerWithTimeInterval:15 target: self selector:@selector(updateStatus:) userInfo:nil repeats:NO];
+		statusTimer = [NSTimer scheduledTimerWithTimeInterval:totalsManager.interval
+													   target: self 
+													 selector:@selector(updateStatus:) 
+													 userInfo:nil 
+													  repeats:NO];
 	}
 	[self setupHotKey];
 }
 
 -(void) updateStatus: (NSTimer*) timer
 {
-	[self initStatusMenu];
-	statusTimer = [NSTimer scheduledTimerWithTimeInterval:15 target: self selector:@selector(updateStatus:) userInfo:nil repeats:NO];
+	Context *ctx = [Context sharedContext];
+	[self buildStatusMenu];
+	statusTimer = [NSTimer scheduledTimerWithTimeInterval:totalsManager.interval 
+												   target: self 
+												 selector:@selector(updateStatus:) 
+												 userInfo:nil 
+												  repeats:NO];
+	[totalsManager addInterval:ctx.currentState];
 }
 
--(void) initStatusMenu
+-(void) buildStatusMenu
 {
 	Context *ctx = [Context sharedContext];
+	NSRect rect = {{0,0},{22.0,22.0}};
+	if (siView == nil) {
+		siView = [[StatusIconView alloc]initWithFrame:rect];
+		siView.statusItem = statusItem;
+		siView.statusMenu = statusMenu;
+	}
+	siView.goal = ctx.dailyGoal;
+	siView.current = totalsManager.workToday;
+	NSLog(@"goal = %f current = %f", siView.goal, siView.current);
+	[statusItem setView:siView];
+	
 	[[statusMenu itemWithTag:1] setState:NSOffState];
 	[[statusMenu itemWithTag:2] setState:NSOffState];
 	[[statusMenu itemWithTag:3] setState:NSOffState];
@@ -76,7 +98,7 @@
 	[[statusMenu itemWithTag:6] setTitle:@"Start"];
 	[[statusMenu itemWithTag:6] setAction:@selector(clickStart:)];
 	if (!ctx.running) {
-		[statusItem setTitle:@"?"];
+		//[statusItem setTitle:@"?"];
 		[[statusMenu itemWithTag:1] setEnabled:NO];
 		[[statusMenu itemWithTag:2] setEnabled:NO];
 		[[statusMenu itemWithTag:3] setEnabled:NO];
@@ -87,11 +109,11 @@
 		[[statusMenu itemWithTag:3] setEnabled:YES];
 		[[statusMenu itemWithTag:4] setEnabled:YES];
 		if (ctx.currentState == WPASTATE_FREE) {
-			[statusItem setTitle:@"P"];
+	//		[statusItem setTitle:@"P"];
 			[[statusMenu itemWithTag:2] setState:NSOnState];
 		}
 		if (ctx.currentState == WPASTATE_AWAY) {
-			[statusItem setTitle:@"A"];
+	//		[statusItem setTitle:@"A"];
 			[[statusMenu itemWithTag:3] setState:NSOnState];
 		}
 		if (thinkTimer){
@@ -102,10 +124,10 @@
 				return;
 			}
 			NSUInteger mins = ceil(interval / 60);
-			[statusItem setTitle: [NSString stringWithFormat:@"%d",mins] ];
+	//		[statusItem setTitle: [NSString stringWithFormat:@"%d",mins] ];
 			[[statusMenu itemWithTag:4] setState:NSOnState];
 		} else if (ctx.currentState == WPASTATE_THINKING) {
-			[statusItem setTitle:@"W"];
+	//		[statusItem setTitle:@"W"];
 			[[statusMenu itemWithTag:1] setState:NSOnState];
 		}
 		NSMenuItem *aMenuItem = [statusMenu itemWithTag:5];
@@ -164,7 +186,7 @@
 		[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:ctx.currentState];
 	}
 	[ctx.growlDelegate growlThis:[NSString stringWithFormat: @"New Activity: %@",ctx.currentTask.name]];
-	[self initStatusMenu];
+	[self buildStatusMenu];
 }
 
 - (IBAction) clickAddActivity: (id) sender
@@ -211,7 +233,11 @@
 	} else {
 		startButton.title = @"Stop";
 		[startButton setAction: @selector(clickStop:)];
-		statusTimer = [NSTimer scheduledTimerWithTimeInterval:15 target: self selector:@selector(updateStatus:) userInfo:nil repeats:NO];
+		statusTimer = [NSTimer scheduledTimerWithTimeInterval:totalsManager.interval 
+													   target: self 
+													 selector:@selector(updateStatus:) 
+													 userInfo:nil 
+													  repeats:NO];
 		ctx.growlDelegate = [GrowlManager new];
 		newState = WPASTATE_FREE;
 		// start listening for pause commands
@@ -219,7 +245,7 @@
 	}
 	ctx.running = on;
 //	[self enableUI:ctx.running];
-//	[self initStatusMenu];
+//	[self buildStatusMenu];
 	[self changeState:newState];
 }
 
@@ -356,7 +382,7 @@
 	[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:WPASTATE_THINKING];
 	[ctx busyModules];
 	[controls setSelectedSegment: WPASTATE_THINKTIME];
-	[self initStatusMenu];   
+	[self buildStatusMenu];   
 }
 
 - (void) changeState: (WPAStateType) newState
@@ -398,7 +424,7 @@
 	ctx.currentState = newState == WPASTATE_THINKTIME ? WPASTATE_THINKING : newState;
 	[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:newState];
 	[ctx saveDefaults];
-	[self initStatusMenu];
+	[self buildStatusMenu];
 	[self enableUI:(newState != WPASTATE_OFF)];
 	if (refreshManager == nil && newState != WPASTATE_OFF){
 		refreshManager = [[RefreshManager alloc]initWithHandler:ctx.growlDelegate];
@@ -444,12 +470,12 @@
 
 -(void) statusHandler: (NSNotification*) notification
 {
-	controls.selectedSegment = WPASTATE_FREE; // WPASTATE_FREE
+	controls.selectedSegment = WPASTATE_FREE; 
 }
 
 - (void) clickRefresh:(id)sender
 {
-	[(WPADelegate*)[[NSApplication sharedApplication] delegate]refreshTasks];
+	[[Context sharedContext]refreshTasks];
 }
 
 -(void)handleScreenSaverStart:(NSNotification*) notification

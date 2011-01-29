@@ -30,7 +30,6 @@
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) PreferencesWindow *prefsWindow;
 @property (retain, nonatomic) IBOutlet StatsWindow *statsWindow;
-
 //-(void) start;
 //-(void) stop;
 
@@ -38,15 +37,14 @@
 -(NSString*) entityNameForState: (int) state;
 - (NSManagedObject*) findTask: (NSString*) name inContext: (NSManagedObjectContext*) moc;
 - (NSManagedObject*) findSource: (NSString*) name inContext: (NSManagedObjectContext*) moc;
--(void) newRecord:(int)state;
-- (void) refreshTasks;
+- (void) newRecord:(int)state;
 - (IBAction) removeStore: (id) sender;
 - (double) countEntity: (NSString*) eName inContext: (NSManagedObjectContext*) moc;
 - (NSString*) dumpMObj: (NSManagedObject*) obj;
 - (BOOL) hasTask: (NSManagedObject*) mobj;
 
--(IBAction) clickPreferences: (id) sender;
--(IBAction) clickTasksInfo: (id) sender;
--(IBAction)handleNewMainWindowMenu:(NSMenuItem *)sender;
+- (IBAction) clickPreferences: (id) sender;
+- (IBAction) clickTasksInfo: (id) sender;
+- (IBAction)handleNewMainWindowMenu:(NSMenuItem *)sender;
 
 @end
