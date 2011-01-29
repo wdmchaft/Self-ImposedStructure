@@ -43,9 +43,10 @@
 	[greenPath moveToPoint:center ] ;
 	
 	// draw an arc (perc is a certain percentage ; something between 0 and 1
-	[greenPath appendBezierPathWithArcWithCenter:center 
-										  radius:size_x/2-1 
-									  startAngle:0 endAngle: 360 * ratio ] ;
+	[greenPath appendBezierPathWithArcWithCenter: center 
+										  radius: size_x/2-1 
+									  startAngle: 360 - (360 * ratio) + 90 
+										endAngle: 0 + 90] ;
 	
 	// close the slice , by drawing a line to the center
 	[greenPath lineToPoint: NSMakePoint(size_x/2, size_y/2) ] ;
@@ -61,9 +62,10 @@
 	[redPath moveToPoint:center ] ;
 	
 	// draw an arc (perc is a certain percentage ; something between 0 and 1
-	[redPath appendBezierPathWithArcWithCenter:center 
-										  radius:size_x/2-1 
-									  startAngle: 360 * ratio endAngle: 359] ;
+	[redPath appendBezierPathWithArcWithCenter: center 
+										radius: size_x/2-1 
+									startAngle: 0 +90
+									  endAngle: (360 - (360 * ratio)) + 90] ;
 	
 	// close the slice , by drawing a line to the center
 	[redPath lineToPoint: NSMakePoint(size_x/2, size_y/2) ] ;
