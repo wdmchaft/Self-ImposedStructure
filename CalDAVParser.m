@@ -12,6 +12,23 @@
 @implementation CalDAVParser
 
 @synthesize data;
+- (void) descriptionIfExists: (NSString*) testStr target:(id) handler 
+{
+	NSRange descRange = [testStr rangeOfString:@"DESCRIPTION:"];
+	if (descRange.location == NSNotFound)
+		return;
+	NSString *desc = [testStr substringFromIndex:descRange.location + descRange.length];
+	[handler eventDescription:desc];
+}
+
+- (void) locationIfExists: (NSString*) testStr target:(id) handler 
+{
+	NSRange locRange = [testStr rangeOfString:@"LOCATION:"];
+	if (locRange.location == NSNotFound)
+		return;
+	NSString *loc = [testStr substringFromIndex:locRange.location + locRange.length];
+	[handler location:loc];
+}
 
 - (void)parse: (<CalDAVParserDelegate>) handler
 
@@ -34,20 +51,16 @@
 		if ([handler respondsToSelector: @selector(dateEnd:)]){
 			[handler dateEnd:start];
 		}
-		
-		[scan scanUpToString:@"DESCRIPTION:" intoString:&ignore];
-		[scan scanString:@"DESCRIPTION:" intoString:&ignore];
-		NSString *descriptionStr = [NSString new];		
-		[scan scanUpToString:@"LAST-MODIFIED:" intoString:&descriptionStr];
+				
+		[scan scanUpToString:@"LAST-MODIFIED:" intoString:&ignore];
 		if ([handler respondsToSelector: @selector(eventDescription:)]){
-			[handler eventDescription: descriptionStr];
+			[self descriptionIfExists:ignore target: handler];
 		}
-		NSString *locationStr = [NSString new];
-		[scan scanUpToString:@"LOCATION:" intoString:&ignore];
-		[scan scanString:@"LOCATION:" intoString:&ignore];
-		[scan scanUpToString:@"SEQUENCE:" intoString:&locationStr]			;
+
+		[scan scanUpToString:@"SEQUENCE:" intoString:&ignore]			;
 		if ([handler respondsToSelector: @selector(location:)]){
-				[handler location: locationStr];
+			[self locationIfExists:ignore target:handler];
+				[handler location: ignore];
 		}
 		[scan scanUpToString:@"SUMMARY:" intoString:&ignore];
 		[scan scanString:@"SUMMARY:" intoString:&ignore];

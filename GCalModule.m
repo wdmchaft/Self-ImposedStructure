@@ -157,31 +157,35 @@
 }
 
 
-#define ERRSTR @"<HEAD>\n<TITLE>Unauthorized</TITLE>\n</HEAD>"
-
+#define AUTHERR @"<HEAD>\n<TITLE>Unauthorized</TITLE>\n</HEAD>"
+#define SUCCESSSTR @"BEGIN:VCALENDAR"
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
 	NSString *respStr = [[[NSString alloc] initWithData:respBuffer encoding:NSUTF8StringEncoding]autorelease];
-	//NSLog(@"%@",respStr);
-	// look for errors now
-	NSRange errRange = [respStr rangeOfString:ERRSTR];
-	
-	if (errRange.location != NSNotFound){
-		// Authentication failure occurred
+	NSLog(@"respStr = %@", respStr);
+	NSRange successRange = [respStr rangeOfString:SUCCESSSTR];
+	if (successRange.location == NSNotFound){
+		// Some failure occurred
+		NSLog(@"%@",respStr);
+		NSString *errStr = @"Unknown error occurred see log for details";
+		NSRange authRange = [respStr rangeOfString:AUTHERR];
 		
+		if (authRange.location != NSNotFound){
+			errStr = @"Authentication Failure";
+		}
 		if (!validationHandler){
 			[BaseInstance sendErrorToHandler:alertHandler 
-									   error:@"Authentication Failure" 
+									   error:errStr
 									  module:[self name]];
 			return;
 		} else {
 			[validationHandler performSelector:@selector(validationComplete:) 
-										  withObject:@"Authentication Failure"];		
+									withObject:errStr];		
 		}
 	} 
 	else if (validationHandler){
 		[validationHandler performSelector:@selector(validationComplete:) 
-									  withObject:nil];
+								withObject:nil];
 	}
 	CalDAVParser *parser = [[CalDAVParser alloc]init];
 	parser.data = respStr;
@@ -232,8 +236,11 @@
 // an exact match of now or the edge of the window will return false (no big deal) 
 -(BOOL) isInLookAhead: (NSDate*) date
 {
+	NSDateFormatter *compDate = [NSDateFormatter new];
+	[compDate  setDateFormat:@"MM/dd/yy hh:mm" ];
 	NSDate *today = [NSDate date];
 	NSDate *window = [today dateByAddingTimeInterval:ONEDAYSECS * lookAhead];
+	NSLog(@"date = %@", [compDate stringFromDate:date],[compDate stringFromDate:window]);
 	NSComparisonResult compareToNow = [date compare:today];
 	NSComparisonResult compareToLater = [date compare:window];
 	if (compareToNow == NSOrderedDescending){
@@ -298,6 +305,9 @@
 
 -(void)dateStart: (NSString*) stamp
 {
+	if ([stamp isEqualToString:@"20110202T200000Z\r\n"]){
+		NSLog(@"stop!");
+	}
 	NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
 	[inputFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
 	[inputFormatter setDateFormat:@"yyyyMMdd'T'HHmmss'Z\r\n'"];
