@@ -130,30 +130,40 @@ highestTagValue,minTagValue,hrefStr,rules, alertHandler, validationHandler;
 	}
 	
 }
-#define ERRSTR @"<HEAD>\n<TITLE>Unauthorized</TITLE>\n</HEAD>"
+#define AUTHERR @"<HEAD>\n<TITLE>Unauthorized</TITLE>\n</HEAD>"
+#define SUCCESSSTR @"<tagline>New messages in your Gmail Inbox</tagline>"
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
 	NSString *respStr = [[[NSString alloc] initWithData:respBuffer encoding:NSUTF8StringEncoding]autorelease];
-	
+	NSLog(@"%@",respStr);
 	// look for errors now
-	NSRange errRange = [respStr rangeOfString:ERRSTR];
-	
-	if (errRange.location != NSNotFound){
-		// Authentication failure occurred
+	NSRange successRange = [respStr rangeOfString:SUCCESSSTR];
+
+	if (successRange.location == NSNotFound){
+		// Some failure occurred
+		NSLog(@"%@",respStr);
+		NSString *errStr = @"Unknown error occurred see log for details";
+		NSRange authRange = [respStr rangeOfString:AUTHERR];
 		
+		if (authRange.location != NSNotFound){
+			errStr = @"Gmail account fails to authenticate.  (Perhaps retry password.)";
+		}
 		if (!validationHandler){
-			[BaseInstance sendErrorToHandler:alertHandler error:@"Authentication Failure" module:[self description]];
+			[BaseInstance sendErrorToHandler:alertHandler 
+									   error:errStr
+									  module:[((<Instance>)callback) name]];
+			return;
 		} else {
 			[validationHandler performSelector:@selector(validationComplete:) 
-										  withObject:[NSString stringWithFormat:@"Gmail account fails to authenticate.  (Perhaps retry password.)"]];		
+									withObject:errStr];		
 		}
 	} 
 	else if (validationHandler){
 		[validationHandler performSelector:@selector(validationComplete:) 
-									  withObject:nil];
-		return;
+								withObject:nil];
 	}
+	
 	msgDict = [NSMutableDictionary new];
 	XMLParse *parser = [[XMLParse alloc]initWithData: respBuffer andDelegate: self];
 	[parser parseData];
@@ -173,7 +183,7 @@ highestTagValue,minTagValue,hrefStr,rules, alertHandler, validationHandler;
 			alert.message=[item objectForKey:@"summary"];
 			alert.sticky = (res == RESULT_IMPORTANT);
 			alert.urgent = (res == RESULT_IMPORTANT);
-			alert.params = msgDict;
+			alert.params = item;
 			
 			[alertHandler handleAlert:alert];
 		}

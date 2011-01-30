@@ -58,6 +58,7 @@
 		name =@"Gmail Module";
 		notificationName = @"Mail Alert";
 		notificationTitle = @"Gmail Msg";
+		category = CATEGORY_EMAIL;
 		minTagValue = [[NSNumber alloc]initWithInteger: 0];		
 	}
 	return self;

@@ -65,8 +65,8 @@
 	
 	// draw an arc 
 	CGFloat endAngle = (360 - (360 * ratio)) + 90;
-	NSLog(@"ratio = %f", ratio);
-	NSLog(@"endAngle = %f", endAngle);
+//	NSLog(@"ratio = %f", ratio);
+//	NSLog(@"endAngle = %f", endAngle);
 	[redPath appendBezierPathWithArcWithCenter: center 
 										radius: size_x/2-2 
 									startAngle: -270 
