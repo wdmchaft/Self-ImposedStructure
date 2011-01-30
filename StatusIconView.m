@@ -31,6 +31,8 @@
 	
 	CGFloat size_x = dirtyRect.size.width;
 	CGFloat size_y = dirtyRect.size.height;
+
+	NSPoint center = NSMakePoint( size_x/2, size_y/2 )  ;
 	
 	// set some line width
 	
@@ -38,15 +40,14 @@
 	
 	// move to the center so that we have a closed slice
 	// size_x and size_y are the height and width of the view
-	NSPoint center = NSMakePoint( size_x/2, size_y/2 )  ;
 	
 	[greenPath moveToPoint:center ] ;
 	
-	// draw an arc (perc is a certain percentage ; something between 0 and 1
+	// draw an arc 
 	[greenPath appendBezierPathWithArcWithCenter: center 
-										  radius: size_x/2-1 
-									  startAngle: 360 - (360 * ratio) + 90 
-										endAngle: 0 + 90] ;
+										  radius: size_x/2-2 
+										startAngle:90 - (360 * ratio)
+										endAngle: 90];
 	
 	// close the slice , by drawing a line to the center
 	[greenPath lineToPoint: NSMakePoint(size_x/2, size_y/2) ] ;
@@ -55,17 +56,21 @@
 	[[NSColor greenColor] set] ;
 	// and fill it
 	[greenPath fill] ; 
+	
 	NSBezierPath *redPath = [NSBezierPath bezierPath];
 	
 	[redPath setLineWidth: 0 ] ;
 	
 	[redPath moveToPoint:center ] ;
 	
-	// draw an arc (perc is a certain percentage ; something between 0 and 1
+	// draw an arc 
+	CGFloat endAngle = (360 - (360 * ratio)) + 90;
+	NSLog(@"ratio = %f", ratio);
+	NSLog(@"endAngle = %f", endAngle);
 	[redPath appendBezierPathWithArcWithCenter: center 
-										radius: size_x/2-1 
-									startAngle: 0 +90
-									  endAngle: (360 - (360 * ratio)) + 90] ;
+										radius: size_x/2-2 
+									startAngle: -270 
+									  endAngle: -270 + (360 * (1-ratio))  ] ;
 	
 	// close the slice , by drawing a line to the center
 	[redPath lineToPoint: NSMakePoint(size_x/2, size_y/2) ] ;
