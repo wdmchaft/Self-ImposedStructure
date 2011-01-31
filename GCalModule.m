@@ -162,7 +162,6 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
 	NSString *respStr = [[[NSString alloc] initWithData:respBuffer encoding:NSUTF8StringEncoding]autorelease];
-	NSLog(@"respStr = %@", respStr);
 	NSRange successRange = [respStr rangeOfString:SUCCESSSTR];
 	if (successRange.location == NSNotFound){
 		// Some failure occurred
@@ -305,9 +304,6 @@
 
 -(void)dateStart: (NSString*) stamp
 {
-	if ([stamp isEqualToString:@"20110202T200000Z\r\n"]){
-		NSLog(@"stop!");
-	}
 	NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
 	[inputFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
 	[inputFormatter setDateFormat:@"yyyyMMdd'T'HHmmss'Z\r\n'"];

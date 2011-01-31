@@ -88,7 +88,6 @@
 	}
 	siView.goal = ctx.dailyGoal;
 	siView.current = totalsManager.workToday;
-	NSLog(@"goal = %f current = %f", siView.goal, siView.current);
 	[statusItem setView:siView];
 	
 	[[statusMenu itemWithTag:1] setState:NSOffState];

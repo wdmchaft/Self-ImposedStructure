@@ -153,6 +153,7 @@
 	<TaskList> callMod = [ctx.instancesMap objectForKey:modName];
 	currentList = callMod;
 	currentTable = sender;
+	[progInd setHidden:NO];
 	[progInd startAnimation:self];
 	[NSTimer scheduledTimerWithTimeInterval:0
 												  target:self
@@ -171,6 +172,7 @@
 - (void) handleComplete: (NSString*) error
 {
 	[progInd stopAnimation:self];
+	[progInd setHidden:YES];
 	SummaryData *sumData = currentTable.dataSource;
 	[sumData.data removeAllObjects];
 	[((<Reporter>)currentList) refresh:self];
