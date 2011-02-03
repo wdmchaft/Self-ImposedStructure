@@ -50,7 +50,7 @@
 
 - (void) startWithRefresh: (BOOL) doRefresh;
 {
-	NSLog(@"startWithRefresh");
+	NSLog(@"startWithRefresh: %@", doRefresh ? @"YES" : @"NO");
 	running = YES;
 	for (TimerInfo *info in timers){
 		NSTimeInterval startInterval = doRefresh ? 0 : [info.module refreshInterval];

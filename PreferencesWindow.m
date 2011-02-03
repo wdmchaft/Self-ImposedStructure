@@ -64,6 +64,9 @@ dailyGoalText, weeklyGoalText, brbText, summaryText, brbStepper, summaryStepper;
 	
 	[growlIntervalText setStringValue:[[NSString alloc] initWithFormat:@"%d",ctx.growlInterval]];
 	[growlStepper setIntValue:ctx.growlInterval];
+	NSWindow *win = [super window];
+	[win setLevel:NSFloatingWindowLevel];
+	[win orderFront:self];
 }
 
 - (void) showWindow:(id)sender
@@ -82,19 +85,35 @@ dailyGoalText, weeklyGoalText, brbText, summaryText, brbStepper, summaryStepper;
 	[brbText setIntValue:(ctx.brbThreshold/60)];
 	[summaryStepper setIntValue:(ctx.timeAwayThreshold/60)];
 	[brbStepper setIntValue:(ctx.brbThreshold/60)];
+	[[super window]setLevel:NSFloatingWindowLevel];
+	[[super window]orderFront:self];
+	[super showWindow:sender];
+}
+
+- (void) addClosed: (NSNotification*) notification
+{
+	[NSApp endModalSession:editModuleSession];
+	[[NSNotificationCenter defaultCenter] removeObserver:self 
+													name: NSWindowWillCloseNotification 
+												  object:amwControl.window];
 }
 
 - (IBAction) clickAdd: (NSButton*) sender
 {
-    if (amwControl == nil) {
-        amwControl = [[AddModWinController alloc] initWithWindowNibName:@"AddMod"];
-    }
+	amwControl = [[AddModWinController alloc] initWithWindowNibName:@"AddMod"];
 	amwControl.tableData = tableData;
 	amwControl.tableView = modulesTable;
 	[amwControl setCurrCtrl: nil];
-	
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+											 selector:@selector(addClosed:) 
+												 name:NSWindowWillCloseNotification 
+											   object:amwControl.window];
 //	[amwControl.window makeKeyAndOrderFront:self];
-	[amwControl showWindow: self];
+	editModuleSession = [NSApp beginModalSessionForWindow:amwControl.window];
+	[NSApp runModalSession:editModuleSession];
+	
+//	[NSApp runModalForWindow:amwControl.window];
+	//[amwControl showWindow: self];
 }
 
 - (IBAction) clickEdit: (NSButton*) sender
@@ -107,15 +126,17 @@ dailyGoalText, weeklyGoalText, brbText, summaryText, brbStepper, summaryStepper;
 		
 		<Instance> mod = [[Context sharedContext].instancesMap objectForKey:instName];
 		
-		if (amwControl == nil) {
+	//	if (amwControl == nil) {
 			amwControl = [[AddModWinController alloc] initWithWindowNibName:@"AddMod"];
-		}
+	//	}
 		amwControl.tableData = tableData;
 		amwControl.tableView = modulesTable;
 		//    [amwControl.window makeKeyAndOrderFront:nil];
 		[amwControl setCurrCtrl: (NSViewController*)mod];
-		[amwControl showWindow: self];
-		[amwControl.window makeKeyAndOrderFront:self];
+		[NSApp runModalForWindow:amwControl.window];
+
+//		[amwControl showWindow: self];
+//		[amwControl.window makeKeyAndOrderFront:self];
 	}
 }
 

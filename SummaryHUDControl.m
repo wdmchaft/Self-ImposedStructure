@@ -112,7 +112,8 @@
 {
 	mainControl = sender; 
 	[super.window makeKeyAndOrderFront:nil];
-	[super.window orderFrontRegardless];
+	[super.window center];
+	[super showWindow:sender];
 }
 
 - (void) windowDidLoad
@@ -123,7 +124,6 @@
 	deadlinesTable.dataSource = deadlinesData;
 	mailTable.dataSource = mailsData;
 	[super.window makeKeyAndOrderFront:nil];
-	[super.window orderFrontRegardless];
 }
 
 -(void) initTaskTable: (NSTableView*) modulesTable

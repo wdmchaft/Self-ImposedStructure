@@ -8,13 +8,15 @@
 
 #import "TotalsManager.h"
 #import "Context.h"
+#import "WPADelegate.h"
+
 //
 // Keeps track of (approximate) weekly and daily totals of away, work and free time
 // the values are incremented using addInterval ( called frequently )
 // the values are reset nightly and weekly and this class manages the necessary timers
 //
 @implementation TotalsManager
-@synthesize dailyRolloverTimer, rolloverDay;
+@synthesize dailyRolloverTimer, rolloverDay, rolloverHour;
 @synthesize awayToday, workToday, freeToday;
 @synthesize awayWeek, workWeek, freeWeek;
 @synthesize interval;
@@ -34,11 +36,22 @@
 															userInfo:[[NSDate alloc]initWithTimeIntervalSinceNow:0]
 															 repeats:YES];
 	}
-	awayToday = workToday = freeToday = 0;
+	// write a record
+	WPADelegate *del = (WPADelegate*)[NSApplication sharedApplication].delegate;
+	NSTimeInterval rollAdjust = - (60 * 60 * rolloverHour);
+	NSDate *effectiveRollDate = [NSDate dateWithTimeIntervalSinceNow:rollAdjust];
+	[del newSummaryForDate:effectiveRollDate 
+					  goal:[Context sharedContext].dailyGoal 
+					  work:workToday 
+					  free:freeToday];
+
 	
 	// Get the weekday component of the current date
 	// and if its the rollover day.... then rollover for the week
 	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+	
+	awayToday = workToday = freeToday = 0;
+
 	NSDateComponents *comps = [gregorian components:NSWeekdayCalendarUnit fromDate:timer.fireDate];	
 	if (comps.weekday == rolloverDay){
 		awayWeek = workWeek = freeWeek = 0;
@@ -52,11 +65,13 @@
 	int ALLCOMPS = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit;
 	// Get the weekday component of the current date
 	NSDateComponents *rollComps = [gregorian components:ALLCOMPS fromDate:today];
+	if (rollHour <= rollComps.hour){
+		rollComps.day += 1;
+	}
 	rollComps.hour = rollHour;
-	rollComps.day += 1;
 	NSDate *rollDate = [gregorian dateFromComponents:rollComps];
 	NSTimeInterval rollInterval = [rollDate timeIntervalSinceNow];
-	NSDateFormatter *compDate = [NSDateFormatter new];;
+	NSDateFormatter *compDate = [NSDateFormatter new];
 	[compDate  setDateFormat:@"yyyy-MM-dd hh:mm" ];
 	NSString *rollStr = [compDate stringFromDate:rollDate];
 	int hour = rollInterval / 3600; 
@@ -75,11 +90,12 @@
 	{
 		NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
 		NSNumber *temp = [ud objectForKey:@"DailyRolloverHour"]; // defaults to zero (aka midnight)
-		int rolloverHour = temp ? [temp intValue] : 0;
+		rolloverHour = temp ? [temp intValue] : 0;
+		NSLog(@"rollover hour: %d", rolloverHour);
 		temp = [ud objectForKey:@"WeeklyRolloverDay"];
 		rolloverDay = temp ? [temp intValue] + 1 : 1; //  defaults to 1 (aka sunday using NSCalendar)
 		temp = [ud objectForKey:@"StatusInterval"]; 
-		interval = temp ? [temp intValue] : 15;
+		interval = temp ? [temp intValue] : 30;
 		dailyRolloverTimer = [self getTimerForRollHour: rolloverHour];
 	}
 	return self;

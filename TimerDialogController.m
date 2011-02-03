@@ -27,6 +27,18 @@
 	Context *ctx = [Context sharedContext];
 	[minutesField setIntValue:(ctx.thinkTime / 60)];
 	[self loadSoundNames];
+	[[super window]setLevel:NSFloatingWindowLevel];
+	[super showWindow:sender];
+}
+
+- (void) close
+{
+	[NSApp stopModal];
+}
+
+- (void) windowWillClose:(NSNotification *)notification
+{
+	[NSApp stopModal];
 }
 
 -(void) loadSoundNames
@@ -60,7 +72,7 @@
 	ctx.alertName = [alarmNames titleOfSelectedItem];
 	
 	[ctx saveDefaults];
-	[NSApp endSheet: [super window]];
+	[NSApp stopModal];
 	[super.window close];
 }
 @end

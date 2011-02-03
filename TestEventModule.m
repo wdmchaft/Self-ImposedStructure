@@ -49,27 +49,27 @@
 -(void) refreshData: (<AlertHandler>) handler
 {
 	NSDictionary *dict1 = [NSDictionary dictionaryWithObjectsAndKeys:
-						  @"in the drawing room", @"location",
-						   [super description],@"module",
-						   @"kill professor plum with pipewrench",@"desc",
-						   @"kill professor plum",@"summary",
-						   [NSDate date],@"starts",
+						  @"in the drawing room",	@"location",
+						   [super description],		@"module",
+						   @"Win at Bridge",		@"desc",
+						   @"Bridge Club Meeting",	@"summary",
+						   [NSDate date],			@"starts",
 						   [NSDate dateWithTimeIntervalSinceNow:60*60],@"ends",
 						   nil];
 	NSDictionary *dict2= [NSDictionary dictionaryWithObjectsAndKeys:
-						   @"in the conservatory", @"location",
-						   [super description],@"module",
-						   @"kill mrs jones with revolver",@"desc",
-						   @"kill mrs jones",@"summary",
-						   [NSDate dateWithTimeIntervalSinceNow:-60*60],@"starts",
-						   [NSDate dateWithTimeIntervalSinceNow:60*60],@"ends",
+						   @"Dentist Office",	@"location",
+						   [super description],	@"module",
+						   @"Teeth Cleaning",	@"desc",
+						   @"get nice white teeth",	@"summary",
+						   [NSDate dateWithTimeIntervalSinceNow:3 * 60*60],@"starts",
+						   [NSDate dateWithTimeIntervalSinceNow:4 * 60*60],@"ends",
 						   nil];
 	
 	NSDictionary *dict3= [NSDictionary dictionaryWithObjectsAndKeys:
-						  @"in the ballroom", @"location",
-						  [super description],@"module",
-						  @"do a little dance",@"desc",
-						  @"do a little dance, make a little love, get down tonight!",@"summary",
+						  @"in the ballroom",	@"location",
+						  [super description],	@"module",
+						  @"do a little dance",	@"desc",
+						  @"Date Night",		@"summary",
 						  [NSDate dateWithTimeIntervalSinceNow:24*60*60],@"starts",
 						  [NSDate dateWithTimeIntervalSinceNow:26*60*60],@"ends",
 						  nil];

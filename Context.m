@@ -22,7 +22,6 @@
 	NSMutableDictionary *bundlesMap; // maps plugin name to its bundle
 	NSMutableDictionary *iconsMap; // maps module name to its icon;
 	int growlInterval;
-	NSTimer *thinkTimer;
 	BOOL startOnLoad;
 	BOOL loadOnLogin;
 	int thinkTime;
@@ -88,7 +87,6 @@
 //@synthesize alertQ;
 @synthesize growlInterval;
 @synthesize running;
-@synthesize thinkTimer;
 @synthesize bundlesMap;
 @synthesize startOnLoad;
 @synthesize instancesMap;
@@ -451,6 +449,17 @@ static Context* sharedContext = nil;
 	}
 	[growlDelegate changeState: WPASTATE_AWAY];
 }	
+
+- (void) stopModules {
+	for (NSString *name in instancesMap){
+		NSObject* thing = [instancesMap objectForKey: name];
+		<Stateful> inst = (<Stateful>) thing;
+		if ( ((<Instance>)inst).enabled && [thing conformsToProtocol:@protocol(Stateful)]){
+			[inst changeState: WPASTATE_OFF];
+		}		
+	}
+	[growlDelegate changeState: WPASTATE_OFF];
+}
 
 - (NSArray*) refreshableModules
 {

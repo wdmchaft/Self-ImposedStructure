@@ -239,11 +239,8 @@
 	[compDate  setDateFormat:@"MM/dd/yy hh:mm" ];
 	NSDate *today = [NSDate date];
 	NSDate *window = [today dateByAddingTimeInterval:ONEDAYSECS * lookAhead];
-	NSLog(@"date = %@", [compDate stringFromDate:date],[compDate stringFromDate:window]);
 	NSComparisonResult compareToNow = [date compare:today];
 	NSComparisonResult compareToLater = [date compare:window];
-	if (compareToNow == NSOrderedDescending){
-	}
 	return (compareToNow == NSOrderedDescending && compareToLater == NSOrderedAscending );
 }
 

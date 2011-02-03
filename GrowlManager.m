@@ -96,7 +96,7 @@
 
 -(void) growlAlert: (Note*) alert
 {
-	NSLog(@"showing alert %@", alert.message);
+//	NSLog(@"showing alert %@", alert.message);
 	<Reporter> sender = [[[Context sharedContext] instancesMap] objectForKey:alert.moduleName];
 	
 	

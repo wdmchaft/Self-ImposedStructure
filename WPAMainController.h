@@ -15,6 +15,8 @@
 #import "GrowlManager.h"
 #import "StatusIconView.h"
 #import "TotalsManager.h"
+#import "PreferencesWindow.h"
+#import "AddActivityDialogController.h"
 
 @interface WPAMainController :NSObject <NSComboBoxDelegate,NSWindowDelegate> {
 	NSWindow *myWindow;
@@ -23,6 +25,7 @@
 	NSComboBox *taskComboBox;
 	NSButton *refreshButton;
 	StatsWindow *statsWindow;
+	PreferencesWindow	*prefsWindow;
 	NSStatusItem *statusItem;
 	NSMenu *statusMenu;
 	NSTimer *statusTimer;
@@ -33,6 +36,7 @@
 	NSTimeInterval dailyWorkTotal;
 	NSTimeInterval weeklyWorkTotal;
 	TotalsManager *totalsManager;
+	AddActivityDialogController *addActivityWindow;
 }
 
 @property (retain, nonatomic) IBOutlet NSWindow	*myWindow;
@@ -48,6 +52,9 @@
 @property (retain, nonatomic)  NSTimer *thinkTimer;
 @property (retain, nonatomic)  StatusIconView *siView;
 @property (retain, nonatomic)  TotalsManager *totalsManager;
+@property (retain, nonatomic) PreferencesWindow *prefsWindow;
+@property (retain, nonatomic) StatsWindow *statsWindow;
+@property (retain, nonatomic) AddActivityDialogController *addActivityWindow;
 
 - (IBAction) clickStart: (id) sender;
 - (IBAction) clickControls: (id) sender;
@@ -60,10 +67,11 @@
 - (void) changeState: (WPAStateType) state;
 - (void) tasksChanged: (NSNotification*) notification;
 
--(void)handleScreenSaverStart:(NSNotification*) notification;
+- (void)handleScreenSaverStart:(NSNotification*) notification;
 -(void)handleScreenSaverStop:(NSNotification*) notification;
 - (void) enableUI: (BOOL) onOff;
 - (void) buildStatusMenu;
+- (void) enableStatusMenu: (BOOL) onOff;
 - (void) updateStatus: (NSTimer*) timer;
 - (BOOL) shouldGoBackToWork;
 - (BOOL) needsSummary;
@@ -76,5 +84,12 @@
 - (void) fillActivities:(NSMenu*) menu;
 - (void) newActivity: (id) sender;
 - (void) setupHotKey;
+- (IBAction) showSummaryScreen: (id) sender;
+
+- (void) prefsClosed: (NSNotification*) notify;
+- (void) statsClosed: (NSNotification*) notify;
+- (void) clickPreferences: (id) sender;
+- (void) clickStatsWindow: (id) sender;
+- (void) addActClosed: (NSNotification*) notify;
 
 @end

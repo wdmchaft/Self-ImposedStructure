@@ -15,7 +15,7 @@
 #import "PreferencesWindow.h"
 #import "StatsWindow.h"
 
-@interface WPADelegate : NSObject <NSApplicationDelegate> {
+@interface WPADelegate : NSObject <NSApplicationDelegate, NSWindowDelegate> {
     NSWindow *window;
     NSPersistentStoreCoordinator *persistentStoreCoordinator;
     NSManagedObjectModel *managedObjectModel;
@@ -38,6 +38,7 @@
 - (NSManagedObject*) findTask: (NSString*) name inContext: (NSManagedObjectContext*) moc;
 - (NSManagedObject*) findSource: (NSString*) name inContext: (NSManagedObjectContext*) moc;
 - (void) newRecord:(int)state;
+- (void) newSummaryForDate: (NSDate*) date goal: (int) goalTime work: (int) workTime free: (int) freeTime;
 - (IBAction) removeStore: (id) sender;
 - (double) countEntity: (NSString*) eName inContext: (NSManagedObjectContext*) moc;
 - (NSString*) dumpMObj: (NSManagedObject*) obj;
@@ -46,5 +47,4 @@
 - (IBAction) clickPreferences: (id) sender;
 - (IBAction) clickTasksInfo: (id) sender;
 - (IBAction)handleNewMainWindowMenu:(NSMenuItem *)sender;
-
 @end

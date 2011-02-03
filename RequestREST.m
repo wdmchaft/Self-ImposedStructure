@@ -35,6 +35,7 @@
 		}
 	}
 	urlStr = [urlStr stringByAppendingFormat:@"&api_sig=%@", apiSig];
+	NSLog(@"urlStr= %@", urlStr);
 	return urlStr;
 }
 
@@ -72,6 +73,7 @@
 
 - (NSURLConnection*) sendRequestWithURL: (NSString*) urlStr andHandler:(ResponseRESTHandler*) handler
 {
+	NSLog(@"sendRequestWithURL for %@", urlStr);
 	NSURL *url = [[[NSURL alloc]initWithString:urlStr]autorelease];
 	NSURLRequest *theRequest=[NSURLRequest requestWithURL:url];
 	NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:handler];

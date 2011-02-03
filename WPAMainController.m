@@ -14,11 +14,11 @@
 #import "TimerDialogController.h"
 #import "TaskInfo.h"
 #import "SummaryHUDControl.h"
+#import "AddActivityDialogController.h"
 
 @implementation WPAMainController
 @synthesize  startButton, controls, taskComboBox, refreshButton, statusItem, statusMenu, statusTimer, myWindow;
-@synthesize hudWindow, refreshManager, thinkTimer, siView, totalsManager;
-
+@synthesize hudWindow, refreshManager, thinkTimer, siView, totalsManager, prefsWindow, statsWindow, addActivityWindow;
 - (void)awakeFromNib
 {
 	[myWindow setDelegate: self];
@@ -77,6 +77,14 @@
 	[totalsManager addInterval:ctx.currentState];
 }
 
+-(void) enableStatusMenu: (BOOL) yesNo
+{
+	NSArray *items = [statusMenu itemArray];
+	for (NSMenuItem *item in items){
+		[item setEnabled:yesNo];
+	}
+}
+
 -(void) buildStatusMenu
 {
 	Context *ctx = [Context sharedContext];
@@ -86,6 +94,7 @@
 		siView.statusItem = statusItem;
 		siView.statusMenu = statusMenu;
 	}
+	siView.timer = thinkTimer;
 	siView.goal = ctx.dailyGoal;
 	siView.current = totalsManager.workToday;
 	[statusItem setView:siView];
@@ -140,7 +149,9 @@
 {
 	[menu setAutoenablesItems:NO];
 	Context *ctx = [Context sharedContext];
-	ctx.tasksList = [ctx getTasks];
+	if (ctx.tasksList == nil){
+		ctx.tasksList = [ctx getTasks];
+	}
 	// clear anything out first
 	while ([[menu itemArray] count] > 2) {
 		NSMenuItem *mi = [menu itemAtIndex:2];
@@ -190,8 +201,25 @@
 
 - (IBAction) clickAddActivity: (id) sender
 {
+	addActivityWindow = [[AddActivityDialogController alloc] initWithWindowNibName:@"AddActivityDialog"];
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+											 selector:@selector(addActClosed:) 
+												 name:NSWindowWillCloseNotification 
+											   object:addActivityWindow.window];
+	[addActivityWindow.window makeKeyAndOrderFront:self];
+	[addActivityWindow.window setOrderedIndex:0];
+	[NSApp runModalForWindow:addActivityWindow.window];
 }
 
+- (void) addActClosed: (NSNotification*) notify
+{
+	[NSApp stopModal];
+	[self enableStatusMenu:YES];
+	[self buildStatusMenu];
+	[[NSNotificationCenter defaultCenter] removeObserver:self  
+													name:NSWindowWillCloseNotification 
+												  object:addActivityWindow];
+}
 - (void) tasksChanged: (NSNotification*) notification
 {
 	[taskComboBox removeAllItems];
@@ -212,6 +240,7 @@
 -(IBAction) clickStart: (NSButton*) sender {
 	[self running:YES];
 }
+
 -(IBAction) clickStop: (NSButton*) sender {
 	[self running:NO];
 }
@@ -321,9 +350,8 @@
 // Essentially we are in a pause until the data for the summary is collected, presented to the user 
 // and finally dismissed by the user (and again, all under control of SummaryHUDController)
 //
-- (void) showSummaryScreen
+- (void) showSummaryScreen: (id) sender
 {
-	NSLog(@"Show Summary screne here");
 	Context *ctx = [Context sharedContext];
 	SummaryHUDControl *shc = [[SummaryHUDControl alloc]initWithWindowNibName:@"SummaryHUD"];
 	hudWindow = shc.window;
@@ -346,7 +374,6 @@
 	[refreshManager startWithRefresh:NO];
 	[controls setSelectedSegment: WPASTATE_FREE];
 	[self changeState:WPASTATE_FREE];
-	//[Context sharedContext].currentState= WPASTATE_FREE;
 }
 
 - (void) remoteNotify: (NSNotification*) notification
@@ -377,7 +404,11 @@
 	Context *ctx = [Context sharedContext];
 	ctx.thinkTime = thinkMin  * 60;
 	[ctx saveDefaults];
-	thinkTimer = [NSTimer scheduledTimerWithTimeInterval:ctx.thinkTime target:self selector:@selector(timerAlarm:) userInfo:nil repeats:NO];
+	thinkTimer = [NSTimer scheduledTimerWithTimeInterval:ctx.thinkTime 
+												  target:self 
+												selector:@selector(timerAlarm:) 
+												userInfo:[NSNumber numberWithDouble:ctx.thinkTime] 
+												 repeats:NO];
 	[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:WPASTATE_THINKING];
 	[ctx busyModules];
 	[controls setSelectedSegment: WPASTATE_THINKTIME];
@@ -392,7 +423,7 @@
 	if (newState == WPASTATE_FREE)
 	{
 		if ([self needsSummary]){
-			[self showSummaryScreen];
+			[self showSummaryScreen: self];
 			return;
 		}
 		if ([self shouldGoBackToWork]) {
@@ -405,9 +436,18 @@
 	if (newState == WPASTATE_THINKTIME){
 		TimerDialogController *tdc = [[TimerDialogController alloc] initWithWindowNibName:@"TimerDialog"];
 		NSWindow *tdcWindow = [tdc window];
+		[self enableStatusMenu:NO];
 		[tdcWindow orderFrontRegardless];
 		[NSApp runModalForWindow: tdcWindow];
-		thinkTimer = [NSTimer scheduledTimerWithTimeInterval:ctx.thinkTime target:self selector:@selector(timerAlarm:) userInfo:nil repeats:NO];
+		[self enableStatusMenu:YES];
+		if (ctx.thinkTime){
+			thinkTimer = [NSTimer scheduledTimerWithTimeInterval:ctx.thinkTime 
+													  target:self 
+														selector:@selector(timerAlarm:) 
+														userInfo:[NSNumber numberWithDouble:ctx.thinkTime] 
+														 repeats:NO];
+			
+		}
 		newState = WPASTATE_THINKING;
 	} else if (thinkTimer) {
 		[thinkTimer invalidate];
@@ -419,7 +459,9 @@
 	if (newState == WPASTATE_AWAY){
 		[ctx awayModules];
 	}
-	
+	if (newState == WPASTATE_OFF){
+		[ctx stopModules];
+	}
 	ctx.currentState = newState == WPASTATE_THINKTIME ? WPASTATE_THINKING : newState;
 	[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:newState];
 	[ctx saveDefaults];
@@ -440,6 +482,8 @@
 	NSSound *systemSound = [NSSound soundNamed:[Context sharedContext].alertName];
 	[systemSound play];
 	[self changeState:WPASTATE_FREE];
+	[thinkTimer invalidate];
+	thinkTimer  = nil;
 }
 					  
 -(IBAction) changeCombo: (id) sender {
@@ -464,6 +508,8 @@
 	if (ctx.currentState == WPASTATE_THINKING || ctx.currentState == WPASTATE_THINKTIME){
 		[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:ctx.currentState];
 	}
+	[ctx.growlDelegate growlThis:[NSString stringWithFormat: @"New Activity: %@",ctx.currentTask.name]];
+
 }
 
 
@@ -497,6 +543,29 @@
 {
 	[statusItem popUpStatusItemMenu:statusMenu];
 }
+
+- (IBAction) clickPreferences: (id) sender
+{
+    if (prefsWindow == nil) {
+        prefsWindow = [[PreferencesWindow alloc] initWithWindowNibName:@"PreferencesWindow"];
+    }
+	[[prefsWindow window] makeKeyAndOrderFront:self];
+	[[prefsWindow window] setOrderedIndex:0];
+
+}
+
+
+
+-(IBAction) clickStatsWindow: (id) sender
+{
+	if (statsWindow == nil)
+		statsWindow = [[StatsWindow alloc] initWithWindowNibName:@"StatsWindow"];
+
+	[[statsWindow window] makeKeyAndOrderFront:self];
+	[[statsWindow window] setOrderedIndex:0];
+}
+
+
 
 OSStatus hotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 						 void *userData)

@@ -35,7 +35,7 @@
 		NSDictionary *dict1 = [NSDictionary dictionaryWithObjectsAndKeys:
 							   [self description], @"module",
 							   @"list_id",@"list_id",
-							   @"Milk!",@"name",
+							   @"Get Some Milk!",@"name",
 							   @"taskseries_id",@"taskseries_id",
 							   @"id",@"id",
 							   [NSDate date],@"due_time",
@@ -44,7 +44,7 @@
 		NSDictionary *dict2 = [NSDictionary dictionaryWithObjectsAndKeys:
 							   [self description], @"module",
 							   @"list_id",@"list_id",
-							   @"remember the catfood",@"name",
+							   @"Go For a Walk",@"name",
 							   @"taskseries_id",@"taskseries_id",
 							   @"id",@"id",
 							   [NSNumber numberWithInt:NO], @"done",
@@ -53,7 +53,7 @@
 		NSDictionary *dict3 = [NSDictionary dictionaryWithObjectsAndKeys:
 							   [self description], @"module",
 							   @"list_id",@"list_id",
-							   @"remember the dog",@"name",
+							   @"update the blog",@"name",
 							   @"taskseries_id",@"taskseries_id",
 							   @"id",@"id",
 							   past ,@"due_time",
@@ -63,7 +63,7 @@
 		NSDictionary *dict4 = [NSDictionary dictionaryWithObjectsAndKeys:
 							   [self description], @"module",
 							   @"list_id",@"list_id",
-							   @"remember the french fries",@"name",
+							   @"Complete the WENUS report",@"name",
 							   @"taskseries_id",@"taskseries_id",
 							   @"id",@"id",
 							   plusOneDay,@"due_time",
@@ -74,7 +74,7 @@
 		NSDictionary *dict5 = [NSDictionary dictionaryWithObjectsAndKeys:
 							   [self description], @"module",
 							   @"list_id",@"list_id",
-							   @"remember the dental floss",@"name",
+							   @"Signup for Little League",@"name",
 							   @"taskseries_id",@"taskseries_id",
 							   @"id",@"id",
 							   plus3Day,@"due_time",
@@ -83,7 +83,7 @@
 		NSDictionary *dict6 = [NSDictionary dictionaryWithObjectsAndKeys:
 							   [self description], @"module",
 							   @"list_id",@"list_id",
-							   @"don't forget",@"name",
+							   @"get pvr to record Glee",@"name",
 							   @"taskseries_id",@"taskseries_id",
 							   @"id",@"id",
 							   [NSDate date],@"due_time",

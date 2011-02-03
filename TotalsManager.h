@@ -13,6 +13,7 @@
 @interface TotalsManager : NSObject {
 	NSTimer *dailyRolloverTimer;
 	int rolloverDay;
+	int rolloverHour;
 	NSTimeInterval awayToday;
 	NSTimeInterval freeToday;
 	NSTimeInterval workToday;
@@ -30,6 +31,7 @@
 @property (nonatomic) NSTimeInterval freeWeek;
 @property (nonatomic) NSTimeInterval workWeek;
 @property (nonatomic) int rolloverDay;
+@property (nonatomic) int rolloverHour;
 @property (nonatomic,retain) NSTimer *dailyRolloverTimer;
 
 //- (void) dailyRollover: (NSTimer*) timer;

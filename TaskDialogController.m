@@ -229,7 +229,6 @@
 - (void) showWindow:(id)sender
 {
 	[super.window makeKeyAndOrderFront:self];
-	[super.window orderFrontRegardless];
 }
 
 - (void) windowDidLoad

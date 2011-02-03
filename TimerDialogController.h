@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface TimerDialogController : NSWindowController {
+@interface TimerDialogController : NSWindowController <NSWindowDelegate>{
 	NSTextField *minutesField;
 	NSPopUpButton *alarmNames;
 	NSButton *okButton;

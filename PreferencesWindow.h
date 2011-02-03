@@ -30,6 +30,7 @@
 	NSTextField *summaryText;
 	NSStepper *brbStepper;
 	NSStepper *summaryStepper;
+	NSModalSession editModuleSession;
 }
 
 @property (retain, nonatomic) IBOutlet NSTableView *modulesTable;
@@ -50,6 +51,7 @@
 @property (retain, nonatomic) IBOutlet NSTextField *summaryText;
 @property (retain, nonatomic) IBOutlet NSStepper *brbStepper;
 @property (retain, nonatomic) IBOutlet NSStepper *summaryStepper;
+@property ( nonatomic) NSModalSession editModuleSession;
 
 - (IBAction) clickAdd: (id) sender;
 - (IBAction) clickRemove: (id) sender;
@@ -67,5 +69,5 @@
 - (IBAction) clickSummaryStepper: (id) sender;
 - (IBAction) summaryChanged: (id) sender;
 - (IBAction) brbChanged: (id) sender;
-
+- (void) addClosed: (NSNotification*) notification;
 @end

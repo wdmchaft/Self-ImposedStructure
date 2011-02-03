@@ -65,8 +65,8 @@
 						   nil];
 	NSDictionary *dict2 = [NSDictionary dictionaryWithObjectsAndKeys:
 						   [super description], @"module",
-						   @"I'm sooo wasted!",@"summary",
-						   @"stoner humor",@"title",
+						   @"We still on for Pizza?",@"summary",
+						   @"Hey Mr. Hand!",@"title",
 						   @"Jeff Spicolli",@"name",
 						   @"spicolli@fasttimes.com",@"email",
 						   @"http://fasttimes.com",@"href",
@@ -81,11 +81,11 @@
 						   nil];
 	NSDictionary *dict4 = [NSDictionary dictionaryWithObjectsAndKeys:
 						   [super description], @"module",
-						   @"Urgent Message",@"summary",
-						   @"urgent stoner humor",@"title",
-						   @"That Urgent Guy",@"name",
-						   @"that.urgent.guy@wheresmycar.com",@"email",
-						   @"http://urgent.com",@"href",
+						   @"User Id Enclosed",@"summary",
+						   @"Get Fast Refund From Turbo Tax",@"title",
+						   @"Quicken",@"name",
+						   @"alert@quicken.com", @"email",
+						   @"http://quicken.com",@"href",
 						   nil];
 	NSDictionary *dict5 = [NSDictionary dictionaryWithObjectsAndKeys:
 						   [super description], @"module",

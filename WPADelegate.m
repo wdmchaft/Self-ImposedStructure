@@ -37,24 +37,10 @@
 	[window setTitle:__APPNAME__];
 }
 
-- (IBAction) clickPreferences: (id) sender
+- (WPAMainController*) mainCtrl
 {
-    if (prefsWindow == nil) {
-        prefsWindow = [[PreferencesWindow alloc] initWithWindowNibName:@"PreferencesWindow"];
-    }
-	[[statsWindow window] resignKeyWindow];
-	[[prefsWindow window] makeKeyWindow];
-	[[prefsWindow window] orderFrontRegardless];
+	return (WPAMainController*)[window delegate];
 
-}
-
--(IBAction) clickTasksInfo: (id) sender
-{
-	if (statsWindow == nil)
-		statsWindow = [[StatsWindow alloc] initWithWindowNibName:@"StatsWindow"];
-	[[prefsWindow window] resignKeyWindow];
-	[[statsWindow window] makeKeyWindow];
-	[[statsWindow window] orderFrontRegardless];
 }
 
 
@@ -217,6 +203,21 @@
 	NSDictionary *dict = [desc propertiesByName];
 	BOOL answer = [dict objectForKey:@"task"] != nil;
 	return answer;
+}
+
+- (void) newSummaryForDate: (NSDate*) date goal: (int) goalTime work: (int) workTime free: (int) freeTime
+{
+	// new work record
+	NSManagedObjectContext *moc = [self managedObjectContext];
+	NSManagedObject *summary = nil;
+	summary = [NSEntityDescription
+			  insertNewObjectForEntityForName:@"DailySummary"
+			  inManagedObjectContext:moc];
+		
+	[summary setValue: date forKey: @"recordDate"];
+	[summary setValue:[NSNumber numberWithInt:workTime] forKey:@"timeWork"];
+	[summary setValue:[NSNumber numberWithInt:freeTime] forKey:@"timeFree"];
+	[summary setValue:[NSNumber numberWithInt:freeTime] forKey:@"timeGoal"];
 }
 
 - (void) newRecord: (int) state
@@ -387,7 +388,8 @@
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
 	WPAMainController *wpam = (WPAMainController*)[window delegate];
-	[wpam running:NO];
+	[wpam changeState:WPASTATE_OFF];
+	//[wpam running:NO];
 	
     if (!managedObjectContext) return NSTerminateNow;
 	
@@ -437,7 +439,6 @@
 -(IBAction)handleNewMainWindowMenu:(NSMenuItem *)sender
 {
 	[window makeKeyAndOrderFront:self];
-	[window orderFrontRegardless];
 }
 
 @end

@@ -16,7 +16,6 @@
 	NSMutableDictionary *bundlesMap; // maps plugin name to its bundle
 	NSMutableDictionary *iconsMap; // maps module name to its icon;
 	int growlInterval;
-	NSTimer *thinkTimer;
 	BOOL startOnLoad;
 	BOOL loadOnLogin;
 	WPAStateType currentState;
@@ -44,7 +43,6 @@
 @property (nonatomic) NSTimeInterval weeklyGoal;
 @property (nonatomic) NSTimeInterval dailyGoal;
 @property (nonatomic) int growlInterval;
-@property (nonatomic, retain) NSTimer *thinkTimer;
 @property (nonatomic) BOOL startOnLoad;
 @property (nonatomic) BOOL loadOnLogin;
 @property (nonatomic) BOOL ignoreScreenSaver;
@@ -80,6 +78,7 @@
 - (void) busyModules ;
 - (void) freeModules ;
 - (void) awayModules ;
+- (void) stopModules ;
 - (void) refreshTasks;
 - (NSArray*) refreshableModules;
 - (NSArray*) getTasks ;
