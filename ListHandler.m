@@ -81,7 +81,7 @@ didStartElement:(NSString *)elementName
 	if ( [elementName isEqualToString:@"err"]){
 		//NSString* code = [attributeDict objectForKey:@"code"];
 		NSString* msg = [attributeDict objectForKey:@"msg"];
-		[context sendError:msg module:[context name]];
+		[BaseInstance sendErrorToHandler:context.handler error:msg module:[context name]];
 	}
 	
 }

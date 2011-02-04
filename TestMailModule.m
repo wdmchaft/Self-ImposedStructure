@@ -56,7 +56,7 @@
 -(void) refreshData: (<AlertHandler>) handler
 {
 	NSDictionary *dict1 = [NSDictionary dictionaryWithObjectsAndKeys:
-						   [super description], @"module",
+						   [self name], @"module",
 						   @"this is a summary",@"summary",
 						   @"title for summary",@"title",
 						   @"Mark Ratner",@"name",
@@ -64,7 +64,7 @@
 						   @"http://fasttimes.com",@"href",
 						   nil];
 	NSDictionary *dict2 = [NSDictionary dictionaryWithObjectsAndKeys:
-						   [super description], @"module",
+						   [self name], @"module",
 						   @"We still on for Pizza?",@"summary",
 						   @"Hey Mr. Hand!",@"title",
 						   @"Jeff Spicolli",@"name",
@@ -72,7 +72,7 @@
 						   @"http://fasttimes.com",@"href",
 						   nil];
 	NSDictionary *dict3 = [NSDictionary dictionaryWithObjectsAndKeys:
-						   [super description], @"module",
+						   [self name], @"module",
 						   @"Dude where's my car?",@"summary",
 						   @"more stoner humor",@"title",
 						   @"That Guy",@"name",
@@ -80,7 +80,7 @@
 						   @"http://wheresmycar.com",@"href",
 						   nil];
 	NSDictionary *dict4 = [NSDictionary dictionaryWithObjectsAndKeys:
-						   [super description], @"module",
+						   [self name], @"module",
 						   @"User Id Enclosed",@"summary",
 						   @"Get Fast Refund From Turbo Tax",@"title",
 						   @"Quicken",@"name",
@@ -88,7 +88,7 @@
 						   @"http://quicken.com",@"href",
 						   nil];
 	NSDictionary *dict5 = [NSDictionary dictionaryWithObjectsAndKeys:
-						   [super description], @"module",
+						   [self name], @"module",
 						   @"Unimportant Message",@"summary",
 						   @"ignorance is bliss",@"title",
 						   @"That Boring Guy",@"name",

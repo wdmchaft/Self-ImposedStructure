@@ -97,23 +97,23 @@ dailyGoalText, weeklyGoalText, brbText, summaryText, brbStepper, summaryStepper;
 													name: NSWindowWillCloseNotification 
 												  object:amwControl.window];
 }
-
+- (void) runModal
+{
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+											 selector:@selector(addClosed:) 
+												 name:NSWindowWillCloseNotification 
+											   object:amwControl.window];
+	editModuleSession = [NSApp beginModalSessionForWindow:amwControl.window];
+	[NSApp runModalSession:editModuleSession];
+}
 - (IBAction) clickAdd: (NSButton*) sender
 {
 	amwControl = [[AddModWinController alloc] initWithWindowNibName:@"AddMod"];
 	amwControl.tableData = tableData;
 	amwControl.tableView = modulesTable;
 	[amwControl setCurrCtrl: nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self 
-											 selector:@selector(addClosed:) 
-												 name:NSWindowWillCloseNotification 
-											   object:amwControl.window];
-//	[amwControl.window makeKeyAndOrderFront:self];
-	editModuleSession = [NSApp beginModalSessionForWindow:amwControl.window];
-	[NSApp runModalSession:editModuleSession];
 	
-//	[NSApp runModalForWindow:amwControl.window];
-	//[amwControl showWindow: self];
+	[self runModal];
 }
 
 - (IBAction) clickEdit: (NSButton*) sender
@@ -123,20 +123,12 @@ dailyGoalText, weeklyGoalText, brbText, summaryText, brbStepper, summaryStepper;
 		//objectValueForTableColumn:row:
 		NSTableColumn *col = [[modulesTable tableColumns] objectAtIndex:0];
 		NSString *instName = [tableData objValueForTableColumn:col row:rowNum];
-		
+		amwControl = [[AddModWinController alloc] initWithWindowNibName:@"AddMod"];
 		<Instance> mod = [[Context sharedContext].instancesMap objectForKey:instName];
-		
-	//	if (amwControl == nil) {
-			amwControl = [[AddModWinController alloc] initWithWindowNibName:@"AddMod"];
-	//	}
+		amwControl.currCtrl = mod;
 		amwControl.tableData = tableData;
 		amwControl.tableView = modulesTable;
-		//    [amwControl.window makeKeyAndOrderFront:nil];
-		[amwControl setCurrCtrl: (NSViewController*)mod];
-		[NSApp runModalForWindow:amwControl.window];
-
-//		[amwControl showWindow: self];
-//		[amwControl.window makeKeyAndOrderFront:self];
+		[self runModal];
 	}
 }
 

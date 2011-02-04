@@ -273,6 +273,8 @@
 		[alert runModal];	
 	}
 	else {
+		[progInd startAnimation:self];
+		[progInd setHidden:NO];
 		[self getLists];
 	}
 }
@@ -426,11 +428,6 @@
 		// we have a token - now get the valid RTM task lists
 		[self getLists];
 	}
-}
-
--(void) getMyLists
-{
-	[self getLists];
 }
 
 -(void) getLists

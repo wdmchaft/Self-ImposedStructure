@@ -24,7 +24,12 @@
 	[myWindow setDelegate: self];
 	WPADelegate *del = (WPADelegate*)[NSApplication sharedApplication].delegate;
 	[del.window setReleasedWhenClosed:FALSE];
+	
+	// if nothing is configured lets run preferences
 	Context *ctx = [Context sharedContext];
+	if ([ctx.instancesMap count] == 0){
+		[self clickPreferences:self];
+	}
 	
 	NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
 	[center addObserver: self selector:@selector(statusHandler:)
@@ -55,13 +60,13 @@
 	[self buildStatusMenu];
 	[statusItem setHighlightMode:YES];
 	[statusMenu  setAutoenablesItems:NO];
-	if (ctx.startOnLoad){
+//	if (ctx.startOnLoad){
 		statusTimer = [NSTimer scheduledTimerWithTimeInterval:totalsManager.interval
 													   target: self 
 													 selector:@selector(updateStatus:) 
 													 userInfo:nil 
 													  repeats:NO];
-	}
+//	}
 	[self setupHotKey];
 }
 
@@ -97,6 +102,7 @@
 	siView.timer = thinkTimer;
 	siView.goal = ctx.dailyGoal;
 	siView.current = totalsManager.workToday;
+	siView.state = ctx.currentState;
 	[statusItem setView:siView];
 	
 	[[statusMenu itemWithTag:1] setState:NSOffState];

@@ -112,7 +112,7 @@ highestTagValue,minTagValue,hrefStr,rules, alertHandler, validationHandler;
 {
 	NSNumber *tagVal = [self getIdTagValue: idStr];
 	
-	if (tagVal.longLongValue > minTagValue.longLongValue) {
+//	if (tagVal.longLongValue > minTagValue.longLongValue) {
 		long long val = tagVal.longLongValue - minTagValue.longLongValue;
 		NSLog(@"val = %qi", val);
 		if (tagVal.longLongValue > highestTagValue.longLongValue){
@@ -127,7 +127,7 @@ highestTagValue,minTagValue,hrefStr,rules, alertHandler, validationHandler;
 								   hrefStr, @"href",
 								   nil];
 		[msgDict setObject:entryDict forKey: titleStr];	
-	}
+//	}
 	
 }
 #define AUTHERR @"<HEAD>\n<TITLE>Unauthorized</TITLE>\n</HEAD>"

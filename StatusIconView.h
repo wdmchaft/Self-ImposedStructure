@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+#import "State.h"
 
 @interface StatusIconView : NSView {
 	NSTimeInterval goal;
@@ -20,6 +20,7 @@
 	CGFloat size_y;
 	CGFloat innerRadius;
 	CGFloat outerRadius;
+	WPAStateType state;
 }
 @property (nonatomic) NSTimeInterval goal;
 @property (nonatomic) NSTimeInterval current;
@@ -31,4 +32,5 @@
 @property (nonatomic) CGFloat size_x;
 @property (nonatomic) CGFloat outerRadius;
 @property (nonatomic) CGFloat innerRadius;
+@property (nonatomic) WPAStateType state;
 @end

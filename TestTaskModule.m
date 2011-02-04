@@ -33,7 +33,7 @@
 		category = CATEGORY_TASKS;
 
 		NSDictionary *dict1 = [NSDictionary dictionaryWithObjectsAndKeys:
-							   [self description], @"module",
+							   [self name], @"module",
 							   @"list_id",@"list_id",
 							   @"Get Some Milk!",@"name",
 							   @"taskseries_id",@"taskseries_id",
@@ -51,7 +51,7 @@
 							   nil];
 		NSDate *past = [NSDate dateWithTimeIntervalSinceNow:-60*60];
 		NSDictionary *dict3 = [NSDictionary dictionaryWithObjectsAndKeys:
-							   [self description], @"module",
+							   [self name], @"module",
 							   @"list_id",@"list_id",
 							   @"update the blog",@"name",
 							   @"taskseries_id",@"taskseries_id",
@@ -61,7 +61,7 @@
 							   nil];
 		NSDate *plusOneDay = [NSDate dateWithTimeIntervalSinceNow:24*60*60*60];
 		NSDictionary *dict4 = [NSDictionary dictionaryWithObjectsAndKeys:
-							   [self description], @"module",
+							   [self name], @"module",
 							   @"list_id",@"list_id",
 							   @"Complete the WENUS report",@"name",
 							   @"taskseries_id",@"taskseries_id",
@@ -72,7 +72,7 @@
 		NSDate *plus3Day = [NSDate dateWithTimeIntervalSinceNow:3*24*60*60*60];
 		
 		NSDictionary *dict5 = [NSDictionary dictionaryWithObjectsAndKeys:
-							   [self description], @"module",
+							   [self name], @"module",
 							   @"list_id",@"list_id",
 							   @"Signup for Little League",@"name",
 							   @"taskseries_id",@"taskseries_id",
@@ -81,7 +81,7 @@
 							   [NSNumber numberWithInt:NO], @"done",
 							   nil];	
 		NSDictionary *dict6 = [NSDictionary dictionaryWithObjectsAndKeys:
-							   [self description], @"module",
+							   [self name], @"module",
 							   @"list_id",@"list_id",
 							   @"get pvr to record Glee",@"name",
 							   @"taskseries_id",@"taskseries_id",
@@ -136,12 +136,13 @@
 	[[NSWorkspace sharedWorkspace] openURL:url];
 }
 
-- (void) markComplete: (NSDictionary *) ctx
+- (void) markComplete:(NSDictionary *)ctx completeHandler:(NSObject*) callback
 {
 	NSMutableDictionary *newDict = [NSMutableDictionary dictionaryWithDictionary:ctx];
 	int idx = [allTasks indexOfObject:ctx];
 	[newDict setObject:[NSNumber numberWithInt:1] forKey:@"done"];
 	[allTasks replaceObjectAtIndex:idx withObject: newDict];
+	[callback performSelector:@selector(handleComplete:) withObject:nil];
 }
 
 - (void) startValidation: (NSObject*) callback

@@ -73,7 +73,7 @@ tableView, modNames, originalName;
 	tableData.instances = modsMap;
 	[[Context sharedContext] saveModules];
 	[tableView noteNumberOfRowsChanged];
-	[super.window performClose:self];
+	[super.window close];
 }
 
 - (void) initFields

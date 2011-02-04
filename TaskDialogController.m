@@ -225,10 +225,11 @@
 	[busyIndicator stopAnimation:self];
 	[self loadLists];
 }
-
+//NSWindow
 - (void) showWindow:(id)sender
 {
-	[super.window makeKeyAndOrderFront:self];
+	[super.window makeKeyWindow];
+	[super.window orderFrontRegardless];
 }
 
 - (void) windowDidLoad

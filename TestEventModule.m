@@ -50,7 +50,7 @@
 {
 	NSDictionary *dict1 = [NSDictionary dictionaryWithObjectsAndKeys:
 						  @"in the drawing room",	@"location",
-						   [super description],		@"module",
+						   [self name],		@"module",
 						   @"Win at Bridge",		@"desc",
 						   @"Bridge Club Meeting",	@"summary",
 						   [NSDate date],			@"starts",
@@ -58,7 +58,7 @@
 						   nil];
 	NSDictionary *dict2= [NSDictionary dictionaryWithObjectsAndKeys:
 						   @"Dentist Office",	@"location",
-						   [super description],	@"module",
+						   [self name],	@"module",
 						   @"Teeth Cleaning",	@"desc",
 						   @"get nice white teeth",	@"summary",
 						   [NSDate dateWithTimeIntervalSinceNow:3 * 60*60],@"starts",
@@ -67,7 +67,7 @@
 	
 	NSDictionary *dict3= [NSDictionary dictionaryWithObjectsAndKeys:
 						  @"in the ballroom",	@"location",
-						  [super description],	@"module",
+						  [self name],	@"module",
 						  @"do a little dance",	@"desc",
 						  @"Date Night",		@"summary",
 						  [NSDate dateWithTimeIntervalSinceNow:24*60*60],@"starts",

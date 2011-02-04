@@ -54,7 +54,7 @@
 	running = YES;
 	for (TimerInfo *info in timers){
 		NSTimeInterval startInterval = doRefresh ? 0 : [info.module refreshInterval];
-		NSLog(@"starting cycle for %@ in %d secs", [info.module description], [info.module refreshInterval]);
+		NSLog(@"starting cycle for %@ in %f secs", [info.module name] , [info.module refreshInterval]);
 		info.timer = [NSTimer scheduledTimerWithTimeInterval:startInterval
 													  target:self
 													selector:@selector(doRefresh:) 

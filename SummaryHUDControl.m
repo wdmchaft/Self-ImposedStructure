@@ -71,20 +71,25 @@
 		switch (modForAlert.category) {
 			case CATEGORY_EMAIL:
 				
-				[mailsData.data addObject:alert.params];
+				if (![mailsData.data containsObject:alert.params])
+					[mailsData.data addObject:alert.params];
 				break;
 			case CATEGORY_TASKS:
 				
 				due = [alert.params objectForKey:@"due_time"];
 				if (due){
-					[deadlinesData.data addObject:alert.params];
+					if (![deadlinesData.data containsObject:alert.params])
+						[deadlinesData.data addObject:alert.params];
 				}
 				else {
-					[tasksData.data addObject:alert.params];
+					if (![tasksData.data containsObject:alert.params])
+						[tasksData.data addObject:alert.params];
 				}
 				break;
 			case CATEGORY_EVENTS:
-				[eventsData.data addObject:alert.params];
+				
+				if (![eventsData.data containsObject:alert.params])
+					[eventsData.data addObject:alert.params];
 				break;
 			default:
 				break;
