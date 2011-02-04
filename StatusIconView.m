@@ -100,7 +100,7 @@
 
 - (void)drawRect:(NSRect)dirtyRect {
 	
-	CGFloat goalRatio = (current > goal) ? 1 : current / goal;
+	CGFloat goalRatio = !current && !goal ? 0 : (current > goal) ? 1 : current / goal;
 	
 	// just draw a blue circle if we are off
 	if (state == WPASTATE_OFF){

@@ -137,7 +137,7 @@
 				thinkTimer = nil;
 				return;
 			}
-			NSUInteger mins = ceil(interval / 60);
+	//		NSUInteger mins = ceil(interval / 60);
 	//		[statusItem setTitle: [NSString stringWithFormat:@"%d",mins] ];
 			[[statusMenu itemWithTag:4] setState:NSOnState];
 		} else if (ctx.currentState == WPASTATE_THINKING) {
@@ -555,9 +555,7 @@
     if (prefsWindow == nil) {
         prefsWindow = [[PreferencesWindow alloc] initWithWindowNibName:@"PreferencesWindow"];
     }
-	[[prefsWindow window] makeKeyAndOrderFront:self];
-	[[prefsWindow window] setOrderedIndex:0];
-
+	[prefsWindow showWindow:self];
 }
 
 

@@ -29,8 +29,8 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	Context *ctx = [Context sharedContext];
 
-	NSLog(@"app launched");
 	WPAMainController *wpam = (WPAMainController*)[window delegate];
+	NSLog(@"app launched");
 	if (ctx.startOnLoad){
 		[wpam clickStart:self];
 	}

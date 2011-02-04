@@ -252,10 +252,10 @@ static Context* sharedContext = nil;
 	temp = [ud objectForKey:@"AlertName"];
 	alertName = (temp == nil) ? @"Beep" : (NSString*)temp;
 	
-	temp = [ud objectForKey:@"showSummary"];
+	temp = [ud objectForKey:@"ShowSummary"];
 	showSummary = (temp ? [((NSNumber*) temp) intValue] : YES);
 	
-	temp = [ud objectForKey:@"autoBackToWork"];
+	temp = [ud objectForKey:@"AutoBackToWork"];
 	autoBackToWork = (temp ? [((NSNumber*) temp) intValue] : YES);
 	
 	temp = [ud objectForKey:@"BRBThreshold"];

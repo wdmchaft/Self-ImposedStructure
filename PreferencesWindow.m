@@ -57,20 +57,20 @@ dailyGoalText, weeklyGoalText, brbText, summaryText, brbStepper, summaryStepper;
 	[cell release];
 	
 	workView = modulesTable;
-	[launchOnBootButton setIntValue:(ctx.loadOnLogin == YES)];
-	[startOnLaunchButton setIntValue:(ctx.startOnLoad == YES)];
-	[ignoreSaverButton setIntValue:(ctx.ignoreScreenSaver == YES)];
-
-	
-	[growlIntervalText setStringValue:[[NSString alloc] initWithFormat:@"%d",ctx.growlInterval]];
-	[growlStepper setIntValue:ctx.growlInterval];
-	NSWindow *win = [super window];
-	[win setLevel:NSFloatingWindowLevel];
-	[win orderFront:self];
+//	[launchOnBootButton setIntValue:(ctx.loadOnLogin == YES)];
+//	[startOnLaunchButton setIntValue:(ctx.startOnLoad == YES)];
+//	[ignoreSaverButton setIntValue:(ctx.ignoreScreenSaver == YES)];
+//
+//	
+//	[growlIntervalText setStringValue:[[NSString alloc] initWithFormat:@"%d",ctx.growlInterval]];
+//	[growlStepper setIntValue:ctx.growlInterval];
+//	NSWindow *win = [super window];
+//	[win orderFront:self];
 }
 
 - (void) showWindow:(id)sender
 {
+	[super showWindow:sender];
 	Context *ctx = [Context sharedContext];
 	[launchOnBootButton setIntValue:(ctx.loadOnLogin == YES)];
 	[startOnLaunchButton setIntValue:(ctx.startOnLoad == YES)];
@@ -79,15 +79,13 @@ dailyGoalText, weeklyGoalText, brbText, summaryText, brbStepper, summaryStepper;
 	
 	[growlIntervalText setStringValue:[[NSString alloc] initWithFormat:@"%d",ctx.growlInterval]];
 	[growlStepper setIntValue:ctx.growlInterval];
-	[weeklyGoalText setIntValue:(ctx.weeklyGoal/60)];
-	[dailyGoalText setIntValue:(ctx.dailyGoal/60)];
-	[summaryText setIntValue:(ctx.timeAwayThreshold/60)];
-	[brbText setIntValue:(ctx.brbThreshold/60)];
+	[weeklyGoalText setDoubleValue:(ctx.weeklyGoal/60)];
+	[dailyGoalText setDoubleValue:(ctx.dailyGoal/60)];
+	[summaryText setDoubleValue:(ctx.timeAwayThreshold/60)];
+	[brbText setDoubleValue:(ctx.brbThreshold/60)];
 	[summaryStepper setIntValue:(ctx.timeAwayThreshold/60)];
-	[brbStepper setIntValue:(ctx.brbThreshold/60)];
-	[[super window]setLevel:NSFloatingWindowLevel];
+	[brbStepper setDoubleValue:(ctx.brbThreshold/60)];
 	[[super window]orderFront:self];
-	[super showWindow:sender];
 }
 
 - (void) addClosed: (NSNotification*) notification
