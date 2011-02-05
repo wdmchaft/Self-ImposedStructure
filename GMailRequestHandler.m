@@ -15,8 +15,8 @@
 
 @implementation GMailRequestHandler
 
-@synthesize respBuffer, titleStr,summaryStr,idStr,nameStr, emailStr,
-highestTagValue,minTagValue,hrefStr,rules, alertHandler, validationHandler;
+@synthesize respBuffer, titleStr,summaryStr,idStr,nameStr, emailStr, issuedDate, modifiedDate,
+highestTagValue,minTagValue,hrefStr,rules, alertHandler, validationHandler, timeStampFormatter;
 @synthesize msgDict;
 @synthesize callback;
 @synthesize bufferStr;
@@ -125,6 +125,8 @@ highestTagValue,minTagValue,hrefStr,rules, alertHandler, validationHandler;
 								   nameStr, @"name",
 								   emailStr, @"email",
 								   hrefStr, @"href",
+								   modifiedDate, @"modified",
+								   issuedDate, @"issued",
 								   nil];
 		[msgDict setObject:entryDict forKey: titleStr];	
 //	}
@@ -216,9 +218,23 @@ highestTagValue,minTagValue,hrefStr,rules, alertHandler, validationHandler;
 		nameStr = bufferStr;
 	} else if ( [elementName isEqualToString:@"email"]){
 		emailStr = bufferStr;
+	} else if ( [elementName isEqualToString:@"issued"]){
+		issuedDate = [self dateFromTimeStamp:bufferStr];
+	} else if ( [elementName isEqualToString:@"modified"]){
+		modifiedDate = [self dateFromTimeStamp:bufferStr];
 	}
+
 }
- 
+
+- (NSDate*) dateFromTimeStamp:(NSString*)stamp{
+	if (timeStampFormatter == nil){
+		timeStampFormatter = [[NSDateFormatter alloc] init];
+		[timeStampFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+		[timeStampFormatter setDateFormat:@"yyyyMMdd'T'HHmmss'Z'"];
+	}
+	return [timeStampFormatter dateFromString:stamp]; 
+}
+
  - (void)parser:(NSXMLParser *)parser 
 					didStartElement:(NSString *)elementName 
 					   namespaceURI:(NSString *)namespaceURI 

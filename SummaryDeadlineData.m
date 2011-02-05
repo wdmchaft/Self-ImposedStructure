@@ -24,14 +24,23 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 	{
 		theValue = [NSNumber numberWithInt:0];
 	}
-	else {
+	else if  ([colName isEqualToString:@"COL2"]){
 		NSDate *due = (NSDate*) [params objectForKey:@"due_time"];
-		NSString *dateStr = [Utility timeStrFor:due];
-		theValue  = [NSString stringWithFormat:@"[%@] %@",dateStr, (NSString*)[params objectForKey:@"name"]];
+		theValue = [Utility shortTimeStrFor:due];
+	} else {
+		theValue = [params objectForKey:@"name"];
 	}
 	
 	return theValue;
 }
 
-
+- (void) sort
+{
+	NSSortDescriptor *dueDescriptor =
+    [[[NSSortDescriptor alloc] initWithKey:@"due_time"
+								 ascending:YES
+								  selector:@selector(compare:)] autorelease];
+	NSArray *descriptors = [NSArray arrayWithObjects:dueDescriptor,nil];
+	data = [NSMutableArray arrayWithArray:[data sortedArrayUsingDescriptors:descriptors]];
+}
 @end

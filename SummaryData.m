@@ -27,5 +27,10 @@
 	return [data count];
 }
 
+- (void) sort
+{
+	NSLog(@"sort base class");
+}
+
 
 @end

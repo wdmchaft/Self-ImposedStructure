@@ -14,5 +14,5 @@
 }
 @property (nonatomic, retain) NSMutableArray *data;
 
-
+- (void) sort;
 @end

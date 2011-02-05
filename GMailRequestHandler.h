@@ -25,12 +25,14 @@
 	NSString *bufferStr;
 	NSNumber *highestTagValue;
 	NSNumber *minTagValue;
+	NSDate *issuedDate;
+	NSDate *modifiedDate;
 	NSString *hrefStr;
 	NSArray *rules;
 	<AlertHandler> alertHandler;
 	NSObject *validationHandler;
 	NSObject *callback;
-	
+	NSDateFormatter *timeStampFormatter;
 }
 
 @property (nonatomic,retain) NSMutableData *respBuffer;
@@ -41,6 +43,8 @@
 @property (nonatomic,retain) NSString *nameStr;
 @property (nonatomic,retain) NSString *hrefStr;
 @property (nonatomic,retain) NSString *summaryStr;
+@property (nonatomic,retain) NSDate *issuedDate;
+@property (nonatomic,retain) NSDate *modifiedDate;
 @property (nonatomic,retain) NSString *bufferStr;
 @property (nonatomic, retain) NSNumber *highestTagValue;
 @property (nonatomic, retain) NSNumber *minTagValue;
@@ -49,6 +53,7 @@
 @property (nonatomic, retain) <AlertHandler> alertHandler;
 @property (nonatomic, retain) NSObject* validationHandler;
 @property (nonatomic, retain) NSObject* callback;
+@property (nonatomic, retain) NSDateFormatter *timeStampFormatter;
 
 -(NSNumber*) getIdTagValue: (NSString*) tag;
 - (void) addEntry: (NSMutableDictionary*) msgDict;
@@ -57,5 +62,5 @@
 			   handler: (<AlertHandler>) handler
 			  delegate: (NSObject*) delegate;
 -(id) initForValidation: (NSObject*) handler;
-
+- (NSDate*) dateFromTimeStamp:(NSString*) stamp;
 @end

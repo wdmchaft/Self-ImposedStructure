@@ -61,7 +61,26 @@
 		
 	}else{
 		NSDateFormatter *timeDate = [NSDateFormatter new];
-		[timeDate setDateFormat: @"ddd' at 'hh:mm"];
+		[timeDate setDateFormat: @"MM/dd'-'hh:mm"];
+		ret = [timeDate stringFromDate:date];
+	}
+	return ret;
+}
++(NSString*) shortTimeStrFor:(NSDate*) date
+{
+	NSString *ret = nil;
+	NSDateFormatter *compDate = [NSDateFormatter new];;
+	[compDate  setDateFormat:@"yyyyMMdd" ];
+	NSString *todayStr = [compDate stringFromDate:[NSDate date]];
+	NSString *eDateStr = [compDate stringFromDate:date];
+	if ([todayStr isEqualToString:eDateStr]){
+		NSDateFormatter *timeDate = [NSDateFormatter new];
+		[timeDate setDateFormat: @"hh:mm"];
+		ret = [NSString stringWithFormat:@"%@", [timeDate stringFromDate:date]];
+	}
+	else{
+		NSDateFormatter *timeDate = [NSDateFormatter new];
+		[timeDate setDateFormat: @"MM/dd'-'hh:mm"];
 		ret = [timeDate stringFromDate:date];
 	}
 	return ret;

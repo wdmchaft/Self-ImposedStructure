@@ -7,6 +7,7 @@
 //
 
 #import "SummaryEventData.h"
+#import "Utility.h"
 
 
 @implementation SummaryEventData
@@ -17,10 +18,24 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 	id theValue;
     NSParameterAssert(row >= 0 && row < [data count]);
     NSDictionary *params  = [data objectAtIndex:row];
-
-	theValue = [params objectForKey:@"summary"];
+	NSString *colName = [tableColumn identifier];
+	if ([colName isEqualToString:@"COL1"]){
+		NSDate *starts = [params objectForKey:@"starts"];
+		theValue = [Utility shortTimeStrFor:starts];
+	} else {
+		theValue = [params objectForKey:@"summary"];
+	}
+	
 
     return theValue;
 }
-
+- (void) sort
+{
+	NSSortDescriptor *dueDescriptor =
+    [[[NSSortDescriptor alloc] initWithKey:@"starts"
+								 ascending:YES
+								  selector:@selector(compare:)] autorelease];
+	NSArray *descriptors = [NSArray arrayWithObjects:dueDescriptor,nil];
+	data = [NSMutableArray arrayWithArray:[data sortedArrayUsingDescriptors:descriptors]];
+}
 @end

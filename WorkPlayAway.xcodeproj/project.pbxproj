@@ -194,6 +194,8 @@
 		8CDCC11012E2BAE200CEAAD3 /* Skype.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C9CE77812E2465B00017A02 /* Skype.framework */; };
 		8CDCC11B12E2BD2000CEAAD3 /* SkypeState.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9CE76312E2449900017A02 /* SkypeState.m */; };
 		8CDCC12C12E2BD6D00CEAAD3 /* skmain.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDCC12B12E2BD6D00CEAAD3 /* skmain.m */; };
+		8CE3C15012FD100400F8D641 /* WPASummary.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE3C14F12FD100400F8D641 /* WPASummary.m */; };
+		8CE3C15112FD100400F8D641 /* WPASummary.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE3C14F12FD100400F8D641 /* WPASummary.m */; };
 		8CF8B60312D821B5009C7E3D /* StatsTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8B5FB12D821B5009C7E3D /* StatsTable.m */; };
 		8CF8B60412D821B5009C7E3D /* Schema.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8B5FD12D821B5009C7E3D /* Schema.m */; };
 		8CF8B60512D821B5009C7E3D /* StatsRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8B5FF12D821B5009C7E3D /* StatsRecord.m */; };
@@ -762,6 +764,8 @@
 		8CDCC10612E2B7BA00CEAAD3 /* SkypeManagerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkypeManagerDelegate.m; sourceTree = "<group>"; };
 		8CDCC10A12E2B86E00CEAAD3 /* SkypeManager.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SkypeManager.xib; sourceTree = "<group>"; };
 		8CDCC12B12E2BD6D00CEAAD3 /* skmain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = skmain.m; sourceTree = "<group>"; };
+		8CE3C14E12FD100400F8D641 /* WPASummary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPASummary.h; sourceTree = "<group>"; };
+		8CE3C14F12FD100400F8D641 /* WPASummary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPASummary.m; sourceTree = "<group>"; };
 		8CF8B5FA12D821B5009C7E3D /* Schema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Schema.h; sourceTree = "<group>"; };
 		8CF8B5FB12D821B5009C7E3D /* StatsTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsTable.m; sourceTree = "<group>"; };
 		8CF8B5FC12D821B5009C7E3D /* StatsTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsTable.h; sourceTree = "<group>"; };
@@ -1348,6 +1352,8 @@
 				8C82CF8A12F3BEAC00830486 /* StatusIconView.m */,
 				8C82D01A12F3DC7000830486 /* TotalsManager.h */,
 				8C82D01B12F3DC7000830486 /* TotalsManager.m */,
+				8CE3C14E12FD100400F8D641 /* WPASummary.h */,
+				8CE3C14F12FD100400F8D641 /* WPASummary.m */,
 			);
 			name = WPAMain;
 			sourceTree = "<group>";
@@ -1961,6 +1967,7 @@
 				8C82D01C12F3DC7000830486 /* TotalsManager.m in Sources */,
 				8C18041812F770DB0061FDE6 /* AddActivityDialogController.m in Sources */,
 				8CCD644412FA1B8700A4D2ED /* GraphData2.m in Sources */,
+				8CE3C15012FD100400F8D641 /* WPASummary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2128,6 +2135,7 @@
 				8C82D01D12F3DC7000830486 /* TotalsManager.m in Sources */,
 				8C18041712F770DB0061FDE6 /* AddActivityDialogController.m in Sources */,
 				8CCD644312FA1B8700A4D2ED /* GraphData2.m in Sources */,
+				8CE3C15112FD100400F8D641 /* WPASummary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

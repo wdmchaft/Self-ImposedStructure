@@ -55,6 +55,7 @@
 
 -(void) refreshData: (<AlertHandler>) handler
 {
+	NSDate *now = [NSDate date];
 	NSDictionary *dict1 = [NSDictionary dictionaryWithObjectsAndKeys:
 						   [self name], @"module",
 						   @"this is a summary",@"summary",
@@ -62,6 +63,7 @@
 						   @"Mark Ratner",@"name",
 						   @"ratner@fasttimes.com",@"email",
 						   @"http://fasttimes.com",@"href",
+						   now, @"issued",
 						   nil];
 	NSDictionary *dict2 = [NSDictionary dictionaryWithObjectsAndKeys:
 						   [self name], @"module",
@@ -70,7 +72,8 @@
 						   @"Jeff Spicolli",@"name",
 						   @"spicolli@fasttimes.com",@"email",
 						   @"http://fasttimes.com",@"href",
-						   nil];
+						   [NSDate dateWithTimeIntervalSinceNow:-660.0], @"issued",
+   nil];
 	NSDictionary *dict3 = [NSDictionary dictionaryWithObjectsAndKeys:
 						   [self name], @"module",
 						   @"Dude where's my car?",@"summary",
@@ -78,6 +81,7 @@
 						   @"That Guy",@"name",
 						   @"that.guy@wheresmycar.com",@"email",
 						   @"http://wheresmycar.com",@"href",
+						   [NSDate dateWithTimeIntervalSinceNow:-120.0], @"issued",
 						   nil];
 	NSDictionary *dict4 = [NSDictionary dictionaryWithObjectsAndKeys:
 						   [self name], @"module",
@@ -86,6 +90,7 @@
 						   @"Quicken",@"name",
 						   @"alert@quicken.com", @"email",
 						   @"http://quicken.com",@"href",
+						   [NSDate dateWithTimeIntervalSinceNow:-360.0], @"issued",
 						   nil];
 	NSDictionary *dict5 = [NSDictionary dictionaryWithObjectsAndKeys:
 						   [self name], @"module",
@@ -94,6 +99,7 @@
 						   @"That Boring Guy",@"name",
 						   @"that.unimportant.guy@wheresmycar.org",@"email",
 						   @"http://unimportant.com", @"href",
+						   [NSDate dateWithTimeIntervalSinceNow:-480.0], @"issued",
 						   nil];
 	NSArray *msgs = [NSArray arrayWithObjects: dict1,dict2,dict3,dict4,dict5,nil];
 	NSMutableArray *sendItems = [NSMutableArray new];

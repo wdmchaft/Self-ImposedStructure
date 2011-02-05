@@ -12,5 +12,6 @@
 @interface SummaryMailData : SummaryData {
 
 }
+- (void) sort;
 
 @end

@@ -107,6 +107,11 @@
 - (void) allSummaryDataReceived
 {
 	[self showWindow: nil];
+	[(SummaryTaskData*)tasksTable.dataSource sort];
+	[(SummaryEventData*)eventsTable.dataSource sort];
+	[(SummaryDeadlineData*)deadlinesTable.dataSource sort];
+	[(SummaryMailData*)mailTable.dataSource sort];
+
 	[tasksTable noteNumberOfRowsChanged];
 	[eventsTable noteNumberOfRowsChanged];
 	[deadlinesTable noteNumberOfRowsChanged];
@@ -115,10 +120,14 @@
 
 - (void) showWindow:(id)sender
 {
+	[super showWindow:sender];
+	NSDateFormatter *fmttr = [NSDateFormatter new];
+	[fmttr setDateStyle:NSDateFormatterMediumStyle];
+	[fmttr setTimeStyle:NSDateFormatterShortStyle];
+	[super.window setTitle:[fmttr stringForObjectValue:[NSDate date]]];
 	mainControl = sender; 
 	[super.window makeKeyAndOrderFront:nil];
 	[super.window center];
-	[super showWindow:sender];
 }
 
 - (void) windowDidLoad
