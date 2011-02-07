@@ -34,14 +34,13 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 
 - (void) sort
 {
-	NSLog(@"sort mail data");
-	NSSortDescriptor *dueDescriptor =
-    [[[NSSortDescriptor alloc] initWithKey:@"issued"
-								 ascending:YES
-								  selector:@selector(compare:)] autorelease];
-	NSArray *descriptors = [NSArray arrayWithObjects:dueDescriptor,nil];
-	data = [NSMutableArray arrayWithArray:[data sortedArrayUsingDescriptors:descriptors]];
-	[super sort];
+	if ([data count] > 0 ){
+		NSSortDescriptor *dueDescriptor =
+		[[NSSortDescriptor alloc] initWithKey:@"issued"
+									 ascending:YES];
+		NSArray *descriptors = [NSArray arrayWithObjects:dueDescriptor,nil];
+		[data sortUsingDescriptors:descriptors];
+	}
 }
 
 @end

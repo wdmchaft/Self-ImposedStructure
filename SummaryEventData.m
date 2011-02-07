@@ -32,10 +32,10 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 - (void) sort
 {
 	NSSortDescriptor *dueDescriptor =
-    [[[NSSortDescriptor alloc] initWithKey:@"starts"
+    [[NSSortDescriptor alloc] initWithKey:@"starts"
 								 ascending:YES
-								  selector:@selector(compare:)] autorelease];
+								  selector:@selector(compare:)];
 	NSArray *descriptors = [NSArray arrayWithObjects:dueDescriptor,nil];
-	data = [NSMutableArray arrayWithArray:[data sortedArrayUsingDescriptors:descriptors]];
+	[data sortUsingDescriptors:descriptors];
 }
 @end

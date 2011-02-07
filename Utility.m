@@ -68,6 +68,10 @@
 }
 +(NSString*) shortTimeStrFor:(NSDate*) date
 {
+	if (date == nil){
+		NSLog(@"nil date!");
+		return @"";
+	}
 	NSString *ret = nil;
 	NSDateFormatter *compDate = [NSDateFormatter new];;
 	[compDate  setDateFormat:@"yyyyMMdd" ];

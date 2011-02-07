@@ -204,7 +204,7 @@
 				<key>PBXProjectModuleGUID</key>
 				<string>8C9486E612FD26C6000CA791</string>
 				<key>PBXProjectModuleLabel</key>
-				<string>SummaryHUDControl.m</string>
+				<string>GMailRequestHandler.m</string>
 				<key>PBXSplitModuleInNavigatorKey</key>
 				<dict>
 					<key>Split0</key>
@@ -212,27 +212,29 @@
 						<key>PBXProjectModuleGUID</key>
 						<string>8C9486F912FD281C000CA791</string>
 						<key>PBXProjectModuleLabel</key>
-						<string>SummaryHUDControl.m</string>
+						<string>GMailRequestHandler.m</string>
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>8CA6678812FDDEB4004FD7EE</string>
+						<string>8CA6689612FF75E8004FD7EE</string>
 						<key>history</key>
 						<array>
 							<string>8C9486FB12FD281C000CA791</string>
 							<string>8CA6671E12FD344D004FD7EE</string>
 							<string>8CA6671F12FD344D004FD7EE</string>
-							<string>8CA6673912FDAA93004FD7EE</string>
 							<string>8CA6673A12FDAA93004FD7EE</string>
 							<string>8CA6673D12FDAA93004FD7EE</string>
-							<string>8CA6673F12FDAA93004FD7EE</string>
-							<string>8CA6674012FDAA93004FD7EE</string>
 							<string>8CA6676012FDBAA2004FD7EE</string>
 							<string>8CA6676812FDBBB5004FD7EE</string>
 							<string>8CA6676912FDBBB5004FD7EE</string>
 							<string>8CA6678212FDDE50004FD7EE</string>
-							<string>8CA6678312FDDE50004FD7EE</string>
-							<string>8CA6676712FDBBB5004FD7EE</string>
+							<string>8CA6685912FE2780004FD7EE</string>
+							<string>8CA6686812FE28B6004FD7EE</string>
+							<string>8CA6688012FF1C0B004FD7EE</string>
+							<string>8CA6688112FF1C0B004FD7EE</string>
+							<string>8CA6688212FF1C0B004FD7EE</string>
+							<string>8CA6688312FF1C0B004FD7EE</string>
+							<string>8CA6688412FF1C0B004FD7EE</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -248,7 +250,7 @@
 				<key>PBXModuleWindowStatusBarHidden2</key>
 				<false/>
 				<key>RubberWindowFrame</key>
-				<string>149 63 907 775 0 0 1440 878 </string>
+				<string>125 86 907 775 0 0 1440 878 </string>
 			</dict>
 		</dict>
 	</array>
@@ -476,7 +478,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>RTMModule.m</string>
+								<string>GMailRequestHandler.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -484,11 +486,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>RTMModule.m</string>
+										<string>GMailRequestHandler.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>8CA6678712FDDEB4004FD7EE</string>
+										<string>8CA6689512FF75E8004FD7EE</string>
 										<key>history</key>
 										<array>
 											<string>8CD196D812D4C37800C69AC9</string>
@@ -651,9 +653,9 @@
 											<string>8C9486F112FD281C000CA791</string>
 											<string>8C9486F212FD281C000CA791</string>
 											<string>8C9486F312FD281C000CA791</string>
-											<string>8CA666F612FD2A67004FD7EE</string>
 											<string>8CA6673612FDAA93004FD7EE</string>
-											<string>8CA6673712FDAA93004FD7EE</string>
+											<string>8CA6688E12FF1C7A004FD7EE</string>
+											<string>8CA6688F12FF1C7A004FD7EE</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -857,15 +859,15 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>8CA6678912FDDEB4004FD7EE</string>
+		<string>8CA6685512FE271E004FD7EE</string>
 		<string>8CA666E712FD2845004FD7EE</string>
 		<string>8CA666E812FD2845004FD7EE</string>
-		<string>8CD1967312D46D7A00C69AC9</string>
-		<string>1CD10A99069EF8BA00B06720</string>
 		<string>/Users/me/Experiment/WorkPlayAway/WorkPlayAway.xcodeproj</string>
-		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>1C78EAAD065D492600B07095</string>
+		<string>8CD1967312D46D7A00C69AC9</string>
+		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>8C9486E612FD26C6000CA791</string>
+		<string>1CD10A99069EF8BA00B06720</string>
 	</array>
 	<key>WindowString</key>
 	<string>180 55 1256 823 0 0 1440 878 </string>
@@ -906,6 +908,8 @@
 							<string>306pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -958,7 +962,7 @@
 			<key>WindowToolGUID</key>
 			<string>8CD1967312D46D7A00C69AC9</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
@@ -1041,10 +1045,10 @@
 									<key>Frame</key>
 									<string>{{466, 0}, {556, 399}}</string>
 									<key>RubberWindowFrame</key>
-									<string>414 85 1022 790 0 0 1440 878 </string>
+									<string>525 52 1022 790 0 0 1440 878 </string>
 								</dict>
 								<key>RubberWindowFrame</key>
-								<string>414 85 1022 790 0 0 1440 878 </string>
+								<string>525 52 1022 790 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXDebugSessionModule</string>
@@ -1078,7 +1082,7 @@
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
 			<key>WindowString</key>
-			<string>414 85 1022 790 0 0 1440 878 </string>
+			<string>525 52 1022 790 0 0 1440 878 </string>
 			<key>WindowToolGUID</key>
 			<string>1CD10A99069EF8BA00B06720</string>
 			<key>WindowToolIsVisible</key>
@@ -1100,12 +1104,14 @@
 							<key>Dock</key>
 							<array>
 								<dict>
+									<key>BecomeActive</key>
+									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>TaskInfo.m</string>
+										<string>GMailRequestHandler.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -1126,8 +1132,6 @@
 							<string>522pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -1206,7 +1210,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {816, 424}}</string>
 								<key>RubberWindowFrame</key>
-								<string>470 351 816 465 0 0 1440 878 </string>
+								<string>736 188 816 465 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXDebugCLIModule</string>
@@ -1235,7 +1239,7 @@
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.consoleV3</string>
 			<key>WindowString</key>
-			<string>470 351 816 465 0 0 1440 878 </string>
+			<string>736 188 816 465 0 0 1440 878 </string>
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>
@@ -1490,8 +1494,8 @@
 			<true/>
 			<key>TableOfContents</key>
 			<array>
-				<string>8C18020212F601260061FDE6</string>
-				<string>8C18020312F601260061FDE6</string>
+				<string>8CA6685512FE271E004FD7EE</string>
+				<string>8CA6685612FE271E004FD7EE</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
 				<string>1CA1AED706398EBD00589147</string>
 			</array>
@@ -1500,7 +1504,7 @@
 			<key>WindowString</key>
 			<string>294 431 744 409 0 0 1440 878 </string>
 			<key>WindowToolGUID</key>
-			<string>8C18020212F601260061FDE6</string>
+			<string>8CA6685512FE271E004FD7EE</string>
 			<key>WindowToolIsVisible</key>
 			<false/>
 		</dict>

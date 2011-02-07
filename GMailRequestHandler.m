@@ -230,7 +230,7 @@ highestTagValue,minTagValue,hrefStr,rules, alertHandler, validationHandler, time
 	if (timeStampFormatter == nil){
 		timeStampFormatter = [[NSDateFormatter alloc] init];
 		[timeStampFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
-		[timeStampFormatter setDateFormat:@"yyyyMMdd'T'HHmmss'Z'"];
+		[timeStampFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
 	}
 	return [timeStampFormatter dateFromString:stamp]; 
 }
