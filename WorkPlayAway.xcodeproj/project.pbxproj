@@ -143,6 +143,8 @@
 		8C9CE85D12E2683800017A02 /* BlockerModule.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CE85C12E2683800017A02 /* BlockerModule.icns */; };
 		8C9CE86212E2698300017A02 /* BlockerModule.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CE86112E2698300017A02 /* BlockerModule.ico */; };
 		8C9CE88812E2700900017A02 /* Skype.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C9CE77812E2465B00017A02 /* Skype.framework */; };
+		8CA668A412FF86C5004FD7EE /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA668A312FF86C5004FD7EE /* LaunchAtLoginController.m */; };
+		8CA668A512FF86C5004FD7EE /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA668A312FF86C5004FD7EE /* LaunchAtLoginController.m */; };
 		8CCD644312FA1B8700A4D2ED /* GraphData2.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CCD644212FA1B8700A4D2ED /* GraphData2.m */; };
 		8CCD644412FA1B8700A4D2ED /* GraphData2.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CCD644212FA1B8700A4D2ED /* GraphData2.m */; };
 		8CD1974D12D4C5D900C69AC9 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77293D12D46AC600F71FE7 /* Note.m */; };
@@ -746,6 +748,8 @@
 		8C9CE77812E2465B00017A02 /* Skype.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Skype.framework; sourceTree = "<group>"; };
 		8C9CE85C12E2683800017A02 /* BlockerModule.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = BlockerModule.icns; sourceTree = "<group>"; };
 		8C9CE86112E2698300017A02 /* BlockerModule.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = BlockerModule.ico; sourceTree = "<group>"; };
+		8CA668A212FF86C5004FD7EE /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchAtLoginController.h; sourceTree = "<group>"; };
+		8CA668A312FF86C5004FD7EE /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchAtLoginController.m; sourceTree = "<group>"; };
 		8CCD644112FA1B8700A4D2ED /* GraphData2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphData2.h; sourceTree = "<group>"; };
 		8CCD644212FA1B8700A4D2ED /* GraphData2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphData2.m; sourceTree = "<group>"; };
 		8CD1974412D4C59600C69AC9 /* WPACommon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WPACommon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -758,6 +762,7 @@
 		8CD1986012D506B700C69AC9 /* iChatModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iChatModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD1988112D5079F00C69AC9 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 		8CD1989D12D5092F00C69AC9 /* GCalModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GCalModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CDC038A1300809600BA478C /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Menu.h; sourceTree = "<group>"; };
 		8CDCC0FA12E2B5F400CEAAD3 /* SkypeManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkypeManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CDCC0FD12E2B5F400CEAAD3 /* SkypeManager-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SkypeManager-Info.plist"; sourceTree = "<group>"; };
 		8CDCC10512E2B7BA00CEAAD3 /* SkypeManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkypeManagerDelegate.h; sourceTree = "<group>"; };
@@ -1300,6 +1305,8 @@
 		8CD1978912D4C89D00C69AC9 /* WPAMain */ = {
 			isa = PBXGroup;
 			children = (
+				8CA668A212FF86C5004FD7EE /* LaunchAtLoginController.h */,
+				8CA668A312FF86C5004FD7EE /* LaunchAtLoginController.m */,
 				8C18042A12F777E50061FDE6 /* AddActivityDialog.xib */,
 				8C18041512F770DB0061FDE6 /* AddActivityDialogController.h */,
 				8C18041612F770DB0061FDE6 /* AddActivityDialogController.m */,
@@ -1354,6 +1361,7 @@
 				8C82D01B12F3DC7000830486 /* TotalsManager.m */,
 				8CE3C14E12FD100400F8D641 /* WPASummary.h */,
 				8CE3C14F12FD100400F8D641 /* WPASummary.m */,
+				8CDC038A1300809600BA478C /* Menu.h */,
 			);
 			name = WPAMain;
 			sourceTree = "<group>";
@@ -1968,6 +1976,7 @@
 				8C18041812F770DB0061FDE6 /* AddActivityDialogController.m in Sources */,
 				8CCD644412FA1B8700A4D2ED /* GraphData2.m in Sources */,
 				8CE3C15012FD100400F8D641 /* WPASummary.m in Sources */,
+				8CA668A412FF86C5004FD7EE /* LaunchAtLoginController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2136,6 +2145,7 @@
 				8C18041712F770DB0061FDE6 /* AddActivityDialogController.m in Sources */,
 				8CCD644312FA1B8700A4D2ED /* GraphData2.m in Sources */,
 				8CE3C15112FD100400F8D641 /* WPASummary.m in Sources */,
+				8CA668A512FF86C5004FD7EE /* LaunchAtLoginController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

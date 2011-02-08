@@ -9,6 +9,7 @@
 #import "RefreshManager.h"
 #import "Context.h"
 #import "Reporter.h"
+#import "Utility.h"
 
 @interface TimerInfo : NSObject
 {
@@ -33,6 +34,7 @@
 
 - (id) initWithHandler:(<AlertHandler>) handler;
 {
+	NSLog(@"RefreshManager initWithHandler");
 	if (self){ 
 		Context *ctx = [Context sharedContext];
 		NSArray *refreshable = [ctx refreshableModules];
@@ -53,26 +55,34 @@
 	NSLog(@"startWithRefresh: %@", doRefresh ? @"YES" : @"NO");
 	running = YES;
 	for (TimerInfo *info in timers){
-		NSTimeInterval startInterval = doRefresh ? 0 : [info.module refreshInterval];
-		NSLog(@"starting cycle for %@ in %f secs", [info.module name] , [info.module refreshInterval]);
-		info.timer = [NSTimer scheduledTimerWithTimeInterval:startInterval
-													  target:self
-													selector:@selector(doRefresh:) 
-													  userInfo: info
-													 repeats:NO];
+		if ([info.module refreshInterval] > 0 ) {
+			NSTimeInterval startInterval = doRefresh ? 0 : [info.module refreshInterval];
+			NSLog(@"starting cycle for %@ in %f secs at %@", [info.module name] , [info.module refreshInterval],
+				  [Utility shortTimeStrFor:[NSDate dateWithTimeIntervalSinceNow:[info.module refreshInterval]]]);
+			info.timer = [NSTimer scheduledTimerWithTimeInterval:startInterval
+														  target:self
+														selector:@selector(doRefresh:) 
+														  userInfo: info
+														 repeats:NO];
+		}
 	}
 }
 
 - (void) doRefresh: (NSTimer*) timer
 {
 	TimerInfo *info = (TimerInfo*)timer.userInfo;
+
 	[info.timer invalidate];
 	info.timer = nil;
-	NSLog(@"doRefresh for %@", [info.module description]);
+	NSLog(@"%@ doRefresh for %@ at " , self,[info.module name], [Utility shortTimeStrFor:[NSDate date]]);
 	if (running){
 		[info.module refresh:alertHandler];
 	}
 	if (running){
+		NSLog(@"next refresh for %@ in %f secs at %@", 
+			  [info.module name], 
+			  [info.module refreshInterval],
+			  [Utility shortTimeStrFor:[NSDate dateWithTimeIntervalSinceNow:[info.module refreshInterval]]]);
 		info.timer = [NSTimer scheduledTimerWithTimeInterval:[info.module refreshInterval] 
 													  target:self
 													selector:@selector(doRefresh:) 
@@ -83,6 +93,7 @@
 
 - (void)stop
 {
+	NSLog(@"RefreshManager stop");
 	running = NO;
 	for (TimerInfo *info in timers){
 		[info.timer invalidate];

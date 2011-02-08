@@ -8,6 +8,7 @@
 
 #import "GMailRequestHandler.h"
 #import "XMLParse.h"
+#import "Reporter.h"
 
 @protocol CallBack
 - (void) didFinishRequest: (GMailRequestHandler*) rHandler;
@@ -54,7 +55,7 @@ highestTagValue,minTagValue,hrefStr,rules, alertHandler, validationHandler, time
 		rules = inRules;
 		alertHandler = handler;
 		callback = delegate;
-		NSLog(@"mintagval = %qi", minTagValue.longLongValue);
+		//NSLog(@"mintagval = %qi", minTagValue.longLongValue);
 	}
 	return self;
 }
@@ -114,19 +115,20 @@ highestTagValue,minTagValue,hrefStr,rules, alertHandler, validationHandler, time
 	
 //	if (tagVal.longLongValue > minTagValue.longLongValue) {
 		long long val = tagVal.longLongValue - minTagValue.longLongValue;
-		NSLog(@"val = %qi", val);
+		//NSLog(@"val = %qi", val);
 		if (tagVal.longLongValue > highestTagValue.longLongValue){
 	
 			highestTagValue = tagVal;
 		}
 		NSDictionary *entryDict = [[NSDictionary alloc]initWithObjectsAndKeys:
-								   summaryStr,@"summary",
-								   titleStr, @"title",
-								   nameStr, @"name",
-								   emailStr, @"email",
+								   ((<Instance>)callback).name, REPORTER_MODULE,
+								   summaryStr,MAIL_SUMMARY,
+								   titleStr, MAIL_SUBJECT,
+								   nameStr, MAIL_NAME,
+								   emailStr, MAIL_EMAIL,
 								   hrefStr, @"href",
 								   modifiedDate, @"modified",
-								   issuedDate, @"issued",
+								   issuedDate, MAIL_ARRIVAL_TIME,
 								   nil];
 		[msgDict setObject:entryDict forKey: titleStr];	
 //	}
@@ -138,7 +140,7 @@ highestTagValue,minTagValue,hrefStr,rules, alertHandler, validationHandler, time
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
 	NSString *respStr = [[[NSString alloc] initWithData:respBuffer encoding:NSUTF8StringEncoding]autorelease];
-	NSLog(@"%@",respStr);
+	//NSLog(@"%@",respStr);
 	// look for errors now
 	NSRange successRange = [respStr rangeOfString:SUCCESSSTR];
 

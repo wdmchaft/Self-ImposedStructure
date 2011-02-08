@@ -7,7 +7,7 @@
 //
 
 #import "SummaryTaskData.h"
-
+#import "Reporter.h"
 
 @implementation SummaryTaskData
 
@@ -21,7 +21,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 	NSString *colId = [tableColumn identifier];
 	if ([colId isEqualToString:@"COL2"]){
 		NSString *val;
-		val = (NSString*)[params objectForKey:@"name"];
+		val = (NSString*)[params objectForKey:TASK_NAME];
 		theValue = val;
 	} else {
 		theValue = [NSNumber numberWithInt: 0];

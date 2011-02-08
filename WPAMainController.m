@@ -15,6 +15,7 @@
 #import "TaskInfo.h"
 #import "SummaryHUDControl.h"
 #import "AddActivityDialogController.h"
+#import "Menu.h"
 
 @implementation WPAMainController
 @synthesize  startButton, controls, taskComboBox, refreshButton, statusItem, statusMenu, statusTimer, myWindow;
@@ -86,7 +87,9 @@
 {
 	NSArray *items = [statusMenu itemArray];
 	for (NSMenuItem *item in items){
-		[item setEnabled:yesNo];
+		if (item.tag == MENU_WORK || item.tag == MENU_TIMED || item.tag == MENU_FREE || item.tag == MENU_AWAY){
+			[item setEnabled:yesNo];
+		}
 	}
 }
 
@@ -105,30 +108,30 @@
 	siView.state = ctx.currentState;
 	[statusItem setView:siView];
 	
-	[[statusMenu itemWithTag:1] setState:NSOffState];
-	[[statusMenu itemWithTag:2] setState:NSOffState];
-	[[statusMenu itemWithTag:3] setState:NSOffState];
-	[[statusMenu itemWithTag:4] setState:NSOffState];
-	[[statusMenu itemWithTag:6] setTitle:@"Start"];
-	[[statusMenu itemWithTag:6] setAction:@selector(clickStart:)];
+	[[statusMenu itemWithTag:MENU_WORK] setState:NSOffState];
+	[[statusMenu itemWithTag:MENU_AWAY] setState:NSOffState];
+	[[statusMenu itemWithTag:MENU_FREE] setState:NSOffState];
+	[[statusMenu itemWithTag:MENU_TIMED] setState:NSOffState];
+	[[statusMenu itemWithTag:MENU_STOPSTART] setTitle:@"Start"];
+	[[statusMenu itemWithTag:MENU_STOPSTART] setAction:@selector(clickStart:)];
 	if (!ctx.running) {
 		//[statusItem setTitle:@"?"];
-		[[statusMenu itemWithTag:1] setEnabled:NO];
-		[[statusMenu itemWithTag:2] setEnabled:NO];
-		[[statusMenu itemWithTag:3] setEnabled:NO];
-		[[statusMenu itemWithTag:4] setEnabled:NO];
+		[[statusMenu itemWithTag:MENU_WORK] setEnabled:NO];
+		[[statusMenu itemWithTag:MENU_AWAY] setEnabled:NO];
+		[[statusMenu itemWithTag:MENU_FREE] setEnabled:NO];
+		[[statusMenu itemWithTag:MENU_TIMED] setEnabled:NO];
 	} else {
-		[[statusMenu itemWithTag:1] setEnabled:YES];
-		[[statusMenu itemWithTag:2] setEnabled:YES];
-		[[statusMenu itemWithTag:3] setEnabled:YES];
-		[[statusMenu itemWithTag:4] setEnabled:YES];
+		[[statusMenu itemWithTag:MENU_WORK] setEnabled:YES];
+		[[statusMenu itemWithTag:MENU_AWAY] setEnabled:YES];
+		[[statusMenu itemWithTag:MENU_FREE] setEnabled:YES];
+		[[statusMenu itemWithTag:MENU_TIMED] setEnabled:YES];
 		if (ctx.currentState == WPASTATE_FREE) {
 	//		[statusItem setTitle:@"P"];
-			[[statusMenu itemWithTag:2] setState:NSOnState];
+			[[statusMenu itemWithTag:MENU_FREE] setState:NSOnState];
 		}
 		if (ctx.currentState == WPASTATE_AWAY) {
 	//		[statusItem setTitle:@"A"];
-			[[statusMenu itemWithTag:3] setState:NSOnState];
+			[[statusMenu itemWithTag:MENU_AWAY] setState:NSOnState];
 		}
 		if (thinkTimer){
 			NSTimeInterval interval = [[thinkTimer fireDate] timeIntervalSinceNow];
@@ -137,17 +140,15 @@
 				thinkTimer = nil;
 				return;
 			}
-	//		NSUInteger mins = ceil(interval / 60);
-	//		[statusItem setTitle: [NSString stringWithFormat:@"%d",mins] ];
-			[[statusMenu itemWithTag:4] setState:NSOnState];
-		} else if (ctx.currentState == WPASTATE_THINKING) {
-	//		[statusItem setTitle:@"W"];
-			[[statusMenu itemWithTag:1] setState:NSOnState];
+			[[statusMenu itemWithTag:MENU_TIMED] setState:NSOnState];
+		} 
+		else if (ctx.currentState == WPASTATE_THINKING) {
+			[[statusMenu itemWithTag:MENU_WORK] setState:NSOnState];
 		}
 		NSMenuItem *aMenuItem = [statusMenu itemWithTag:5];
 		[self fillActivities:aMenuItem.submenu];
-		[[statusMenu itemWithTag:6] setTitle:@"Stop"];
-		[[statusMenu itemWithTag:6] setAction:@selector(clickStop:)];
+		[[statusMenu itemWithTag:MENU_STOPSTART] setTitle:@"Stop"];
+		[[statusMenu itemWithTag:MENU_STOPSTART] setAction:@selector(clickStop:)];
 	}
 }
 
@@ -358,6 +359,7 @@
 //
 - (void) showSummaryScreen: (id) sender
 {
+	[self enableStatusMenu:NO];
 	Context *ctx = [Context sharedContext];
 	SummaryHUDControl *shc = [[SummaryHUDControl alloc]initWithWindowNibName:@"SummaryHUD"];
 	hudWindow = shc.window;
@@ -376,8 +378,13 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self  
 												 name:NSWindowWillCloseNotification 
 											   object:nil];
-	refreshManager = [[RefreshManager alloc]initWithHandler:[Context sharedContext].growlDelegate];
+	
+	// after a summary is displayed then turn off the refresh cycle
+	if (refreshManager == nil) {
+		refreshManager = [[RefreshManager alloc]initWithHandler:[Context sharedContext].growlDelegate];
+	}
 	[refreshManager startWithRefresh:NO];
+
 	[controls setSelectedSegment: WPASTATE_FREE];
 	[self changeState:WPASTATE_FREE];
 }

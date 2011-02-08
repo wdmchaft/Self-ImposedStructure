@@ -7,7 +7,19 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+#import "Instance.h"
+#define EVENT_START @"start"
+#define EVENT_END @"end"
+#define EVENT_DESC @"desc"
+#define EVENT_SUMMARY @"summary"
+#define TASK_DUE @"due_time"
+#define TASK_NAME @"name"
+#define REPORTER_MODULE @"module"
+#define MAIL_EMAIL @"email"
+#define MAIL_SUMMARY @"summary"
+#define MAIL_SUBJECT @"title"
+#define MAIL_NAME @"name"
+#define MAIL_ARRIVAL_TIME @"issued"
 
 @protocol Reporter <Instance>
 @required

@@ -53,16 +53,16 @@
 						   [self name],		@"module",
 						   @"Win at Bridge",		@"desc",
 						   @"Bridge Club Meeting",	@"summary",
-						   [NSDate date],			@"starts",
-						   [NSDate dateWithTimeIntervalSinceNow:60*60],@"ends",
+						   [NSDate date],			@"start",
+						   [NSDate dateWithTimeIntervalSinceNow:60*60],@"start",
 						   nil];
 	NSDictionary *dict2= [NSDictionary dictionaryWithObjectsAndKeys:
 						   @"Dentist Office",	@"location",
 						   [self name],	@"module",
 						   @"Teeth Cleaning",	@"desc",
 						   @"get nice white teeth",	@"summary",
-						   [NSDate dateWithTimeIntervalSinceNow:3 * 60*60],@"starts",
-						   [NSDate dateWithTimeIntervalSinceNow:4 * 60*60],@"ends",
+						   [NSDate dateWithTimeIntervalSinceNow:3 * 60*60],@"start",
+						   [NSDate dateWithTimeIntervalSinceNow:4 * 60*60],@"end",
 						   nil];
 	
 	NSDictionary *dict3= [NSDictionary dictionaryWithObjectsAndKeys:
@@ -70,8 +70,8 @@
 						  [self name],	@"module",
 						  @"do a little dance",	@"desc",
 						  @"Date Night",		@"summary",
-						  [NSDate dateWithTimeIntervalSinceNow:24*60*60],@"starts",
-						  [NSDate dateWithTimeIntervalSinceNow:26*60*60],@"ends",
+						  [NSDate dateWithTimeIntervalSinceNow:24*60*60],@"start",
+						  [NSDate dateWithTimeIntervalSinceNow:26*60*60],@"end",
 						  nil];
 	
 

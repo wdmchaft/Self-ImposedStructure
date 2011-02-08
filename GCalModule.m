@@ -199,9 +199,9 @@
 	for (NSDictionary *event in eventsList){
 		Note *note = [[Note alloc]init];
 		note.moduleName = name;
-		NSDate *eventDate = [event objectForKey:@"start"];
+		NSDate *eventDate = [event objectForKey:EVENT_START];
 		note.title = [self timeStrFor:eventDate];
-		note.message = [event objectForKey:@"summary"];
+		note.message = [event objectForKey:EVENT_SUMMARY];
 		note.params = event;
 		
 		[alertHandler handleAlert:note];
@@ -265,7 +265,7 @@
 		
 	}else{
 		NSDateFormatter *timeDate = [NSDateFormatter new];
-		[timeDate setDateFormat: @"ddd' at 'hh:mm"];
+		[timeDate setDateFormat: @"MM/dd' at 'hh:mm"];
 		ret = [timeDate stringFromDate:date];
 	}
 	return ret;
@@ -273,7 +273,8 @@
 
 -(void) endEvent {
 	if (addThis == YES){
-		[eventsList addObject:currentEvent];
+		[currentEvent setObject: self.name forKey:REPORTER_MODULE];
+		[eventsList addObject:[NSDictionary dictionaryWithDictionary:currentEvent]];
 	}
 }
 
@@ -286,12 +287,12 @@
 -(void)summary: (NSString*) str
 {
 	
-	[currentEvent setObject:str forKey:@"summary"];
+	[currentEvent setObject:str forKey:EVENT_SUMMARY];
 }
 
 -(void) eventDescription: (NSString*) str
 {
-	[currentEvent setObject:str forKey:@"desc"];
+	[currentEvent setObject:str forKey:EVENT_DESC];
 }
 
 -(void) location: (NSString*) str
@@ -308,7 +309,7 @@
 	if ([self isInLookAhead:start]){
 		addThis = YES;
 	}
-	[currentEvent setObject:start forKey:@"start"];
+	[currentEvent setObject:start forKey:EVENT_START];
 }
 
 -(void)dateEnd: (NSString*) stamp
@@ -318,7 +319,7 @@
 	[inputFormatter setDateFormat:@"yyyyMMdd'T'HHmmss'Z\r\n'"];
 	NSDate *endDate = [inputFormatter dateFromString:stamp]; 
 
-	[currentEvent setObject:endDate forKey:@"end"];
+	[currentEvent setObject:endDate forKey:EVENT_END];
 }
 
 - (void) startValidation: (NSObject*) callback

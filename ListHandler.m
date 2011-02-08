@@ -9,7 +9,7 @@
 #import "ListHandler.h"
 #import "XMLParse.h"
 #import "Secret.h"
-
+#import "Reporter.h"
 
 @implementation ListHandler
 @synthesize tempList;
@@ -53,8 +53,8 @@ didStartElement:(NSString *)elementName
 		self.currentDict = [NSMutableDictionary new];
 		[currentDict setObject:[[[NSString alloc] initWithString:listId]retain] forKey:@"list_id"]; 
 		[currentDict setObject:[[[NSString alloc] initWithString:id]retain] forKey:@"taskseries_id"]; 
-		[currentDict setObject:[[[NSString alloc] initWithString:name]retain] forKey:@"name"]; 
-		[currentDict setObject:context.name forKey:@"module"];
+		[currentDict setObject:[[[NSString alloc] initWithString:name]retain] forKey:TASK_NAME]; 
+		[currentDict setObject:context.name forKey:REPORTER_MODULE];
     }
 	//
 	// START ELEMENT: task (part of taskseries)
@@ -66,12 +66,11 @@ didStartElement:(NSString *)elementName
 		[currentDict setObject:[[[NSString alloc] initWithString:id]retain] forKey:@"task_id"]; 
 		if ([hasDueTimeStr isEqualToString:@"1"]){
 			NSString *dueTimeStr = [attributeDict objectForKey:@"due"];
-		//	[currentDict setObject:[[[NSString alloc] initWithString:dueTimeStr]retain] forKey:@"due_time"]; 
 			NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
 			[inputFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
 			[inputFormatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
 			NSDate *dueDate = [inputFormatter dateFromString:dueTimeStr];
-			[currentDict setObject:dueDate forKey:@"due_time"];
+			[currentDict setObject:dueDate forKey:TASK_DUE];
 		}
     }
 	if ( [elementName isEqualToString:@"list"]) {

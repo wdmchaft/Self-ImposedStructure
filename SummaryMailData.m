@@ -8,6 +8,7 @@
 
 #import "SummaryMailData.h"
 #import "Utility.h"
+#import "Reporter.h"
 
 @implementation SummaryMailData
 
@@ -17,17 +18,16 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 	id theValue;
     NSParameterAssert(row >= 0 && row < [data count]);
     NSDictionary *params  = [data objectAtIndex:row];
-	theValue = [params objectForKey:@"email"];
 	NSString *colName = [tableColumn identifier];
 	if ([colName isEqualToString:@"COL1"])
 	{
-		theValue = [params objectForKey:@"email"];
+		theValue = [params objectForKey:MAIL_EMAIL];
 	}
 	else if  ([colName isEqualToString:@"COL2"]){
-		NSDate *due = (NSDate*) [params objectForKey:@"issued"];
+		NSDate *due = (NSDate*) [params objectForKey:MAIL_ARRIVAL_TIME];
 		theValue = [Utility shortTimeStrFor:due];
 	} else {
-		theValue = [params objectForKey:@"summary"];
+		theValue = [params objectForKey:MAIL_SUMMARY];
 	}
     return theValue;
 }
