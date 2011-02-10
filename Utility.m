@@ -90,6 +90,29 @@
 	return ret;
 }
 
++(NSString*) MdStrFor:(NSDate*) date
+{
+	if (date == nil){
+		NSLog(@"nil date!");
+		return @"";
+	}
+	NSDateFormatter *compDate = [NSDateFormatter new];;
+	[compDate  setDateFormat:@"M/d" ];
+	NSString *eDateStr = [compDate stringFromDate:date];
+	return eDateStr;
+}
+
++(NSString*) dStrFor:(NSDate*) date
+{
+	if (date == nil){
+		NSLog(@"nil date!");
+		return @"";
+	}
+	NSDateFormatter *compDate = [NSDateFormatter new];;
+	[compDate  setDateFormat:@"d" ];
+	NSString *eDateStr = [compDate stringFromDate:date];
+	return eDateStr;
+}
 + (NSString*) encode: (NSString*) inStr
 {
 	NSString *out = [inStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];

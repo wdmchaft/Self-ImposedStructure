@@ -89,10 +89,7 @@
 		
 		NSNumber *interval = [obj valueForKey: @"interval"];
 		 
-//		if (endDate == nil){
-//			NSDate *start = [obj valueForKey:@"startTime"];
-//			endDate = [start dateByAddingTimeInterval:[interval doubleValue]];
-//		}
+
 		NSDate *endDate = [obj valueForKey:@"endTime"];	
 		if (endDate){
 			NSTimeInterval maxInt = [endDate timeIntervalSinceDate:oneMonth];
@@ -243,6 +240,5 @@
 	record.hour = hourCum;
 	record.month = allCum;
 }
-
 
 @end

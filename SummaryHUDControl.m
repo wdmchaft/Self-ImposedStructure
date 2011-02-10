@@ -59,13 +59,13 @@
 	if (alert.lastAlert){
 		doneCount++;
 		
-		NSLog(@"received done from %@",alert.moduleName);
+	//	NSLog(@"received done from %@",alert.moduleName);
 //		if (doneCount == finishedCount){
 			[self allSummaryDataReceived];
 //		}
 	}	
 	else {
-		NSLog(@"received %@",alert.message);
+	//	NSLog(@"received %@",alert.message);
 		<Instance> modForAlert = [ctx.instancesMap objectForKey:alert.moduleName];
 		NSDate *due = nil;
 		switch (modForAlert.category) {

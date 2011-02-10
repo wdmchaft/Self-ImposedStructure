@@ -114,7 +114,7 @@
 	[[statusMenu itemWithTag:MENU_TIMED] setState:NSOffState];
 	[[statusMenu itemWithTag:MENU_STOPSTART] setTitle:@"Start"];
 	[[statusMenu itemWithTag:MENU_STOPSTART] setAction:@selector(clickStart:)];
-	if (!ctx.running) {
+	if (!ctx.running || ctx.currentState == WPASTATE_SUMMARY) {
 		//[statusItem setTitle:@"?"];
 		[[statusMenu itemWithTag:MENU_WORK] setEnabled:NO];
 		[[statusMenu itemWithTag:MENU_AWAY] setEnabled:NO];
@@ -202,7 +202,7 @@
 	if (ctx.currentState == WPASTATE_THINKING || ctx.currentState == WPASTATE_THINKTIME){
 		[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:ctx.currentState];
 	}
-	[ctx.growlDelegate growlThis:[NSString stringWithFormat: @"New Activity: %@",ctx.currentTask.name]];
+	[ctx.growlManager growlThis:[NSString stringWithFormat: @"New Activity: %@",ctx.currentTask.name]];
 	[self buildStatusMenu];
 }
 
@@ -261,7 +261,7 @@
 //		[(WPADelegate*)[[NSApplication sharedApplication] delegate] stop];
 		startButton.title = @"Start";
 		[startButton setAction: @selector(clickStart:)];
-		[ctx.growlDelegate stop];
+		[ctx.growlManager stop];
 		newState = WPASTATE_OFF;
 		[statusTimer invalidate];
 		[center removeObserver:self name:@"com.workplayaway.wpa" object:nil];
@@ -273,7 +273,7 @@
 													 selector:@selector(updateStatus:) 
 													 userInfo:nil 
 													  repeats:NO];
-		ctx.growlDelegate = [GrowlManager new];
+		ctx.growlManager = [GrowlManager new];
 		newState = WPASTATE_FREE;
 		// start listening for pause commands
 		[center addObserver:self selector:@selector(remoteNotify:) name:@"com.workplayaway.wpa" object:nil];
@@ -363,12 +363,14 @@
 	Context *ctx = [Context sharedContext];
 	SummaryHUDControl *shc = [[SummaryHUDControl alloc]initWithWindowNibName:@"SummaryHUD"];
 	hudWindow = shc.window;
+	[hudWindow orderOut:self];
 	[[NSNotificationCenter defaultCenter] addObserver:self 
 											 selector:@selector(summaryClosed:) 
 												 name:NSWindowWillCloseNotification 
 											   object:shc.window];
 
 	ctx.currentState = WPASTATE_SUMMARY;
+	[self buildStatusMenu];
 	[shc processSummary];
 	
 }
@@ -381,8 +383,9 @@
 	
 	// after a summary is displayed then turn off the refresh cycle
 	if (refreshManager == nil) {
-		refreshManager = [[RefreshManager alloc]initWithHandler:[Context sharedContext].growlDelegate];
+		refreshManager = [[RefreshManager alloc]initWithHandler:[Context sharedContext].growlManager];
 	}
+	[[Context sharedContext].growlManager clearQueues];
 	[refreshManager startWithRefresh:NO];
 
 	[controls setSelectedSegment: WPASTATE_FREE];
@@ -481,7 +484,7 @@
 	[self buildStatusMenu];
 	[self enableUI:(newState != WPASTATE_OFF)];
 	if (refreshManager == nil && newState != WPASTATE_OFF){
-		refreshManager = [[RefreshManager alloc]initWithHandler:ctx.growlDelegate];
+		refreshManager = [[RefreshManager alloc]initWithHandler:ctx.growlManager];
 		[refreshManager startWithRefresh:YES];
 	}
 	if (newState == WPASTATE_OFF){
@@ -521,7 +524,7 @@
 	if (ctx.currentState == WPASTATE_THINKING || ctx.currentState == WPASTATE_THINKTIME){
 		[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:ctx.currentState];
 	}
-	[ctx.growlDelegate growlThis:[NSString stringWithFormat: @"New Activity: %@",ctx.currentTask.name]];
+	[ctx.growlManager growlThis:[NSString stringWithFormat: @"New Activity: %@",ctx.currentTask.name]];
 
 }
 
@@ -571,7 +574,7 @@
 {
 	if (statsWindow == nil)
 		statsWindow = [[StatsWindow alloc] initWithWindowNibName:@"StatsWindow"];
-
+	[statsWindow showWindow:self];
 	[[statsWindow window] makeKeyAndOrderFront:self];
 	[[statsWindow window] setOrderedIndex:0];
 }

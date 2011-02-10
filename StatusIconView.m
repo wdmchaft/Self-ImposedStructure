@@ -9,8 +9,21 @@
 #import "StatusIconView.h"
 #import "WPADelegate.h"
 #import "WPAMainController.h"
-#define PI 3.14159265358979323846
+#import <AppKit/AppKit.h>
+#import <AppKit/NSStringDrawing.h>
 
+#define PI 3.14159265358979323846
+/**
+ colors:
+ red h12 s83 v82
+ blue 199 100 94
+ grey 193 12 67
+ yello 48 76 80
+ orange 28 95 92
+ purple 284 23 77
+ green 116 48 61
+ 
+ **/
 
 @implementation StatusIconView
 @synthesize goal;
@@ -33,10 +46,38 @@
 		size_y = frame.size.height;
 		center = NSMakePoint(size_x/2, size_y/2);
 		innerRadius = size_x/2 - 5;
-		outerRadius = size_x/2 - 2;
+		outerRadius = size_x/2 - 3;
 		
 	}
     return self;
+}
+
+- (CGFloat) calcHueForRatio: (CGFloat) ratio
+{
+	/** at zero we should be red (90) and at 100 we should be at orange (60) **/
+	CGFloat start = 0.0;
+	CGFloat end = 60.0;
+	CGFloat range = start - end;
+	CGFloat dist = ratio * range;
+	return dist;
+}
+
+- (void) drawGradient
+{
+	NSRect bounds = [self bounds];
+	NSColor *outerColor = [NSColor colorWithDeviceWhite:1.0 alpha:0.0];
+	NSColor *innerColor = [NSColor colorWithDeviceWhite:1.0 alpha:30.0];
+	NSGradient* aGradient = [[NSGradient alloc]
+							 initWithStartingColor:outerColor
+							 endingColor:innerColor];
+	
+	NSPoint centerPoint = NSMakePoint(NSMidX(bounds), NSMidY(bounds));
+	NSPoint otherPoint = NSMakePoint(centerPoint.x + 4, centerPoint.y + 4);
+	CGFloat firstRadius = MIN( ((bounds.size.width/2.0) - 2.0),
+							  ((bounds.size.height/2.0) -2.0) );
+	[aGradient drawFromCenter:centerPoint radius:firstRadius
+					 toCenter:otherPoint radius:0.0
+					  options:0];
 }
 
 - (void) drawSweepWithRadius: (int ) radius 
@@ -97,36 +138,149 @@
 		[redPath fill] ;
 	}
 }
+-(void) dumpColor: (NSColor*) color
+{
+	CGFloat red,green,blue,alpha;
+	CGFloat h,s,v;
+	[color getRed:&red green:&green blue:&blue alpha:&alpha];
+	NSLog(@"r: %f g: %f b: %f a: %f", red, green, blue, alpha);
+	[color getHue:&h saturation:&s brightness:&v alpha:&alpha];
+	NSLog(@"h: %f s: %f v: %f a: %f", h, s, v, alpha);
+}
+- (void) drawDoneness:(CGFloat) ratio
+{
+	CGFloat hue = [self calcHueForRatio: ratio];
+	NSColor *fore = [NSColor colorWithDeviceHue:hue saturation:0.90 brightness:0.90 alpha:1];
+	[self drawSweepWithRadius: outerRadius
+					backColor:[NSColor whiteColor]
+					foreColor:fore
+					 andRatio: 1];
+}
+- (void) drawOff
+{
+	[self drawSweepWithRadius: outerRadius
+					backColor:[NSColor whiteColor]
+					foreColor:[NSColor blackColor]
+					 andRatio: 1];
+	
+	
+	[self drawSweepWithRadius: innerRadius 
+					backColor:[NSColor whiteColor]
+					foreColor:[NSColor whiteColor]
+					 andRatio: 1];
+}
 
-- (void)drawRect:(NSRect)dirtyRect {
+-(void) drawLetter: (NSString*) inStr center: (NSPoint) pt
+{
+	NSPoint pt1 = NSMakePoint(size_x/3 ,1);
+	NSSize size = NSMakeSize(size_x/2 - 1, size_y/2-1);
+	NSFont *font = [NSFont systemFontOfSize:size_x * 4/7];
+	NSRect rect = [font boundingRectForGlyph:[inStr characterAtIndex:0]];
 	
+	NSDictionary *attrs = [NSDictionary dictionaryWithObjectsAndKeys:
+						   [NSColor whiteColor], NSForegroundColorAttributeName,
+						   font, NSFontAttributeName,
+						   nil];
+	NSPoint newPt;
+	newPt.x = pt.x - rect.size.width / 2;
+	//newPt.y = (pt.y - rect.size.height / 2 )- [font descender];
+	newPt.y = (pt.y - [font ascender] / 2);
+	[inStr drawAtPoint:newPt withAttributes:attrs];
+}
+- (void) drawRect:(NSRect)dirtyRect
+{
 	CGFloat goalRatio = !current && !goal ? 0 : (current > goal) ? 1 : current / goal;
-	
-	// just draw a blue circle if we are off
-	if (state == WPASTATE_OFF){
-		[self drawSweepWithRadius:outerRadius 
-						backColor:[NSColor whiteColor] 
-						foreColor:[NSColor cyanColor] 
-						 andRatio:1.0];
+	if (state == WPASTATE_OFF) {
+		[self drawOff];
+		NSLog(@"off");	
 		return;
 	}
-	
-	if (timer) {
-		NSNumber *total = timer.userInfo;
-		NSTimeInterval interval = [total doubleValue] - [timer.fireDate timeIntervalSinceNow];
-		CGFloat timerRatio = interval / [total doubleValue];
-		[self drawSweepWithRadius: outerRadius
-						backColor:[NSColor whiteColor]
-						foreColor:[NSColor blueColor]
-						 andRatio: timerRatio];
+	[self drawDoneness:goalRatio];
+
+	switch (state) {
+
+		case WPASTATE_THINKING:
+			NSLog(@"thinking");
+			[self drawLetter:@"T" center:center];
+			break;
+		case WPASTATE_THINKTIME:
+			[self drawLetter:@"T" center:center];
+			break;
+		case WPASTATE_FREE:
+			[self drawLetter:@"F" center:center];
+			break;
+		case WPASTATE_AWAY:
+			[self drawLetter:@"A" center:center];
+			break;
+		case WPASTATE_SUMMARY:
+			[self drawLetter:@"?" center:center];
+			break;
+
+		default:
+			break;
 	}
-	
-	[self drawSweepWithRadius: (timer ? innerRadius : outerRadius)
-					backColor:[NSColor redColor]
-					foreColor:[NSColor greenColor]
-					 andRatio: goalRatio];
-	
 }
+
+
+/*- (void)drawRect:(NSRect)dirtyRect {
+ 
+ CGFloat goalRatio = !current && !goal ? 0 : (current > goal) ? 1 : current / goal;
+ 
+ // just draw a blue circle if we are off193 12 67 -- 96a7ac
+ if (state == WPASTATE_OFF ){
+ NSLog(@"should be grey");
+ NSColor *foreColor = [NSColor colorWithDeviceHue:196 saturation:0.14 brightness:0.67 alpha:1];
+ //NSColor *foreColor = [NSColor brownColor];
+ [self dumpColor: foreColor];
+ [self drawSweepWithRadius:outerRadius 
+ backColor:[NSColor whiteColor] 
+ foreColor:foreColor 
+ andRatio:1.0];
+ [self drawGradient];
+ return;
+ }
+ // yellow h:48 s:76 v:80 
+ if (state == WPASTATE_SUMMARY ){
+ NSLog(@"should be yellow");
+ NSColor *foreColor = [NSColor colorWithDeviceHue:48 saturation:0.76 brightness:0.80 alpha:1];
+ //	NSColor *foreColor = [NSColor yellowColor];
+ [self dumpColor: foreColor];
+ [self drawSweepWithRadius:outerRadius 
+ backColor:[NSColor whiteColor] 
+ foreColor:foreColor
+ andRatio:1.0];
+ [self drawGradient];
+ return;
+ }
+ // red h12 s83 v82
+ 
+ if (state == WPASTATE_FREE ){
+ NSLog(@"should be red");
+ NSColor *foreColor = [NSColor colorWithDeviceHue:0.12 saturation:0.83 brightness:0.82 alpha:1];
+ [self drawSweepWithRadius:outerRadius 
+ backColor:[NSColor whiteColor] 
+ foreColor:foreColor 
+ andRatio:1.0];
+ [self drawGradient];
+ return;
+ }
+ if (timer) {
+ NSNumber *total = timer.userInfo;
+ NSTimeInterval interval = [total doubleValue] - [timer.fireDate timeIntervalSinceNow];
+ CGFloat timerRatio = interval / [total doubleValue];
+ [self drawSweepWithRadius: outerRadius
+ backColor:[NSColor whiteColor]
+ foreColor:[NSColor blueColor]
+ andRatio: timerRatio];
+ }
+ 
+ [self drawSweepWithRadius: (timer ? innerRadius : outerRadius)
+ backColor:[NSColor redColor]
+ foreColor:[NSColor greenColor]
+ andRatio: goalRatio];
+ // draw the gradient
+ [self drawGradient];
+ }*/
 
 - (void)mouseDown:(NSEvent *)theEvent {
     [statusItem popUpStatusItemMenu:statusMenu]; 

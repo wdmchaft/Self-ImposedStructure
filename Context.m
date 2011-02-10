@@ -40,7 +40,7 @@
 	NSTimeInterval brbThreshold;
 	WPAStateType previousState;
 	WPAStateType currentState;
-	GrowlManager *growlDelegate;
+	GrowlManager *growlManager;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *instancesMap;
@@ -65,7 +65,7 @@
 @property (nonatomic, retain) NSManagedObject *currentActivity;
 @property (nonatomic, retain) NSArray *tasksList;
 @property (nonatomic, retain) NSDate *lastStateChange;
-@property (nonatomic, retain) GrowlManager *growlDelegate;
+@property (nonatomic, retain) GrowlManager *growlManager;
 @property (nonatomic) NSTimeInterval timeAwayThreshold;
 @property (nonatomic) NSTimeInterval brbThreshold;
 @property (nonatomic) WPAStateType previousState;
@@ -107,7 +107,7 @@
 @synthesize brbThreshold;
 @synthesize autoBackToWork;
 @synthesize showSummary;
-@synthesize growlDelegate;
+@synthesize growlManager;
 
 
 static Context* sharedContext = nil;
@@ -425,7 +425,7 @@ static Context* sharedContext = nil;
 			[inst changeState: WPASTATE_THINKING];
 		}
 	}
-	[growlDelegate changeState: WPASTATE_THINKING];
+	[growlManager changeState: WPASTATE_THINKING];
 }
 
 - (void) freeModules {
@@ -436,7 +436,7 @@ static Context* sharedContext = nil;
 			[inst changeState: WPASTATE_FREE];
 		}
 	}
-	[growlDelegate changeState: WPASTATE_FREE];
+	[growlManager changeState: WPASTATE_FREE];
 }
 
 - (void) awayModules {
@@ -447,7 +447,7 @@ static Context* sharedContext = nil;
 			[inst changeState: WPASTATE_AWAY];
 		}		
 	}
-	[growlDelegate changeState: WPASTATE_AWAY];
+	[growlManager changeState: WPASTATE_AWAY];
 }	
 
 - (void) stopModules {
@@ -458,7 +458,7 @@ static Context* sharedContext = nil;
 			[inst changeState: WPASTATE_OFF];
 		}		
 	}
-	[growlDelegate changeState: WPASTATE_OFF];
+	[growlManager changeState: WPASTATE_OFF];
 }
 
 - (NSArray*) refreshableModules

@@ -218,8 +218,16 @@
 	[summary setValue:[NSNumber numberWithInt:workTime] forKey:@"timeWork"];
 	[summary setValue:[NSNumber numberWithInt:freeTime] forKey:@"timeFree"];
 	[summary setValue:[NSNumber numberWithInt:freeTime] forKey:@"timeGoal"];
+	NSError *err = nil;
+	[moc save:&err];
+	if (err){
+		[[NSApplication sharedApplication] presentError:err];
+	}
 }
 
+- (void) genData
+{
+}
 - (void) newRecord: (int) state
 {
 	Context *ctx = [Context sharedContext];
@@ -278,6 +286,11 @@
 	}
 	else {
 		ctx.currentActivity = nil;
+	}
+	NSError *err = nil;
+	[moc save:&err];
+	if (err){
+		[[NSApplication sharedApplication] presentError:err];
 	}
 }
 

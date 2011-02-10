@@ -18,6 +18,8 @@
 +(NSString *)base64EncodedString:(char*) bytes withLength: (int) length;
 +(NSString*) timeStrFor:(NSDate*) date;
 +(NSString*) shortTimeStrFor:(NSDate*) date;
++(NSString*) MdStrFor:(NSDate*) date;
++(NSString*) dStrFor:(NSDate*) date;
 
 + (NSString*) encode: (NSString*) inStr;
 + (NSString*) decode: (NSString*) inStr;

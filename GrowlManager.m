@@ -28,10 +28,16 @@
 	return self;
 }
 
+- (void) clearQueues
+{
+	alertQ = [NSMutableArray new];
+	savedQ = [NSMutableArray new];
+}
+
 -(void) saveAlert: (Note*) alert
 {
 	if ([savedQ containsObject: alert]){
-		NSLog(@"skipping duplicate alert %@", alert.message);
+	//	NSLog(@"skipping duplicate alert %@", alert.message);
 		return; 
 	}
 	[savedQ addObject:alert];
@@ -40,7 +46,7 @@
 -(void) queueAlert: (Note*) alert
 {
 	if ([alertQ containsObject: alert]){
-		NSLog(@"skipping duplicate alert %@", alert.message);
+	//	NSLog(@"skipping duplicate alert %@", alert.message);
 		return; 
 	}
 	[alertQ addObject:alert];

@@ -34,7 +34,7 @@
 	NSTimeInterval timeAwayThreshold;
 	NSTimeInterval brbThreshold;
 	WPAStateType previousState;
-	GrowlManager *growlDelegate;
+	GrowlManager *growlManager;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *instancesMap;
@@ -60,7 +60,7 @@
 @property (nonatomic) NSTimeInterval brbThreshold;
 @property (nonatomic) WPAStateType currentState;
 @property (nonatomic, readonly) WPAStateType previousState;
-@property (nonatomic,retain) GrowlManager *growlDelegate;
+@property (nonatomic,retain) GrowlManager *growlManager;
 
 + (Context*)sharedContext;
 - (void) loadBundles;
