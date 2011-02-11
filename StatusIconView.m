@@ -201,10 +201,10 @@
 	switch (state) {
 
 		case WPASTATE_THINKING:
-			[self drawLetter:@"T" center:center];
+			[self drawLetter:@"W" center:center];
 			break;
 		case WPASTATE_THINKTIME:
-			[self drawLetter:@"T" center:center];
+			[self drawLetter:@"W" center:center];
 			break;
 		case WPASTATE_FREE:
 			[self drawLetter:@"F" center:center];
