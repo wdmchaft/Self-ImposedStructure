@@ -104,7 +104,8 @@
 	}
 	siView.timer = thinkTimer;
 	siView.goal = ctx.dailyGoal;
-	siView.current = totalsManager.workToday;
+	siView.work = totalsManager.workToday;
+	siView.free = totalsManager.freeToday;
 	siView.state = ctx.currentState;
 	[statusItem setView:siView];
 	

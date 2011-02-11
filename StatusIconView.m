@@ -11,23 +11,14 @@
 #import "WPAMainController.h"
 #import <AppKit/AppKit.h>
 #import <AppKit/NSStringDrawing.h>
+#import "Context.h"
 
 #define PI 3.14159265358979323846
-/**
- colors:
- red h12 s83 v82
- blue 199 100 94
- grey 193 12 67
- yello 48 76 80
- orange 28 95 92
- purple 284 23 77
- green 116 48 61
- 
- **/
 
 @implementation StatusIconView
 @synthesize goal;
-@synthesize current;
+@synthesize work;
+@synthesize free;
 @synthesize statusMenu;
 @synthesize statusItem;
 @synthesize timer;
@@ -189,9 +180,23 @@
 	newPt.y = (pt.y - [font ascender] / 2);
 	[inStr drawAtPoint:newPt withAttributes:attrs];
 }
+
+-(NSString*) formatTime: (NSTimeInterval) interval
+{
+	if (interval == 0)
+		return @"None";
+	if (interval < 60){
+		return [NSString stringWithFormat:@"%d secs",(int)floor(interval)];
+	}
+	if (interval < 3600){
+		return [NSString stringWithFormat:@"%d min", (int) floor(interval/60)];
+	}
+	return [NSString stringWithFormat:@"%d:%.2d", (int) floor(interval/3600), (int)floor(fmod(interval,3600))];
+}
+
 - (void) drawRect:(NSRect)dirtyRect
 {
-	CGFloat goalRatio = !current && !goal ? 0 : (current > goal) ? 1 : current / goal;
+	CGFloat goalRatio = !work && !goal ? 0 : (work > goal) ? 1 : work / goal;
 	if (state == WPASTATE_OFF) {
 		[self drawOff];
 		return;
@@ -219,8 +224,15 @@
 		default:
 			break;
 	}
+	NSLog(@"work = %f free = %f", work, free);
+	NSString *tipStr = [NSString stringWithFormat: 
+						@"Work: %@ Free: %@\nTask: %@", 
+						[self formatTime:work],
+						[self formatTime:free],
+						[Context sharedContext].currentTask];
+	[self setToolTip:tipStr];
 }
-
+	 
 - (void)mouseDown:(NSEvent *)theEvent {
     [statusItem popUpStatusItemMenu:statusMenu]; 
 	

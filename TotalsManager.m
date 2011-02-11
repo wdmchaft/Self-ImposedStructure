@@ -95,7 +95,7 @@
 		temp = [ud objectForKey:@"WeeklyRolloverDay"];
 		rolloverDay = temp ? [temp intValue] + 1 : 1; //  defaults to 1 (aka sunday using NSCalendar)
 		temp = [ud objectForKey:@"StatusInterval"]; 
-		interval = temp ? [temp intValue] : 30;
+		interval = temp ? [temp intValue] : 10;
 		dailyRolloverTimer = [self getTimerForRollHour: rolloverHour];
 	}
 	return self;

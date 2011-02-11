@@ -11,7 +11,8 @@
 
 @interface StatusIconView : NSView {
 	NSTimeInterval goal;
-	NSTimeInterval current;
+	NSTimeInterval work;
+	NSTimeInterval free;
 	NSTimer *timer;
 	NSMenu *statusMenu;
 	NSStatusItem *statusItem;
@@ -23,7 +24,8 @@
 	WPAStateType state;
 }
 @property (nonatomic) NSTimeInterval goal;
-@property (nonatomic) NSTimeInterval current;
+@property (nonatomic) NSTimeInterval free;
+@property (nonatomic) NSTimeInterval work;
 @property (nonatomic, retain) NSMenu *statusMenu;
 @property (nonatomic, retain) NSStatusItem *statusItem;
 @property (nonatomic, retain) NSTimer *timer;

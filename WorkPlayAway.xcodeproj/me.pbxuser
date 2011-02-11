@@ -9,19 +9,19 @@
 	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
 		activeArchitecturePreference = x86_64;
-		activeBuildConfigurationName = Debug;
+		activeBuildConfigurationName = Release;
 		activeExecutable = 8C0D93F112D63D3D009F3280 /* WPADev */;
-		activeTarget = 8C0D93EF12D63D3D009F3280 /* WPADev */;
+		activeTarget = 8C5DEC6E12E8C58A00EE93F1 /* All */;
 		addToTargets = (
 			8C0D93EF12D63D3D009F3280 /* WPADev */,
 			8D1107260486CEB800E47090 /* WorkPlayAway */,
 		);
 		breakpoints = (
-			8C82C22412F098D300830486 /* WPAMainController.m:258 */,
+			8C82C22412F098D300830486 /* WPAMainController.m:259 */,
 			8C82C5FE12F11A3400830486 /* HotKeys.m:37 */,
-			8C18035912F68FD50061FDE6 /* WPAMainController.m:427 */,
-			8C18036F12F691F10061FDE6 /* StatusIconView.m:224 */,
-			8C6A898312F938460007FEC7 /* WPAMainController.m:224 */,
+			8C18035912F68FD50061FDE6 /* WPAMainController.m:428 */,
+			8C18036F12F691F10061FDE6 /* StatusIconView.m:255 */,
+			8C6A898312F938460007FEC7 /* WPAMainController.m:225 */,
 			8CCD662E12FB3F2100A4D2ED /* RTMModule.m:268 */,
 			8CCD664412FB40E500A4D2ED /* RTMModule.m:435 */,
 			8CCD664612FB40E600A4D2ED /* RTMModule.m:454 */,
@@ -34,7 +34,7 @@
 			8CDC05D9130226B700BA478C /* GoalChart.m:104 */,
 			8CDC05DB130226EB00BA478C /* GoalChart.m:104 */,
 			8CDC05EE130228CA00BA478C /* GoalChart.m:104 */,
-			8CDC09A91304E40400BA478C /* StatusIconView.m:158 */,
+			8CDC09A91304E40400BA478C /* StatusIconView.m:149 */,
 		);
 		codeSenseManager = 8C77290512D46A1800F71FE7 /* Code sense */;
 		executables = (
@@ -752,6 +752,40 @@
 			8CDC09D513057F3800BA478C /* PBXTextBookmark */ = 8CDC09D513057F3800BA478C /* PBXTextBookmark */;
 			8CDC09D91305892900BA478C /* PBXTextBookmark */ = 8CDC09D91305892900BA478C /* PBXTextBookmark */;
 			8CDC09DA1305892900BA478C /* PBXTextBookmark */ = 8CDC09DA1305892900BA478C /* PBXTextBookmark */;
+			8CDC09E01305A87A00BA478C /* PBXTextBookmark */ = 8CDC09E01305A87A00BA478C /* PBXTextBookmark */;
+			8CDC09E11305A87A00BA478C /* PBXTextBookmark */ = 8CDC09E11305A87A00BA478C /* PBXTextBookmark */;
+			8CDC09E41305A8AB00BA478C /* PBXTextBookmark */ = 8CDC09E41305A8AB00BA478C /* PBXTextBookmark */;
+			8CDC09E51305A8AB00BA478C /* PBXTextBookmark */ = 8CDC09E51305A8AB00BA478C /* PBXTextBookmark */;
+			8CDC09E91305D7B500BA478C /* PBXTextBookmark */ = 8CDC09E91305D7B500BA478C /* PBXTextBookmark */;
+			8CDC09EA1305D7B500BA478C /* PBXTextBookmark */ = 8CDC09EA1305D7B500BA478C /* PBXTextBookmark */;
+			8CDC09EB1305D7B500BA478C /* PBXTextBookmark */ = 8CDC09EB1305D7B500BA478C /* PBXTextBookmark */;
+			8CDC09EC1305D7B500BA478C /* PBXTextBookmark */ = 8CDC09EC1305D7B500BA478C /* PBXTextBookmark */;
+			8CDC09ED1305D7B500BA478C /* PBXTextBookmark */ = 8CDC09ED1305D7B500BA478C /* PBXTextBookmark */;
+			8CDC09EE1305D7B500BA478C /* PBXTextBookmark */ = 8CDC09EE1305D7B500BA478C /* PBXTextBookmark */;
+			8CDC09EF1305D7B500BA478C /* PBXTextBookmark */ = 8CDC09EF1305D7B500BA478C /* PBXTextBookmark */;
+			8CDC09FC1305D8BC00BA478C /* PBXTextBookmark */ = 8CDC09FC1305D8BC00BA478C /* PBXTextBookmark */;
+			8CDC09FD1305D8BC00BA478C /* PBXTextBookmark */ = 8CDC09FD1305D8BC00BA478C /* PBXTextBookmark */;
+			8CDC0A071305DA8400BA478C /* PBXTextBookmark */ = 8CDC0A071305DA8400BA478C /* PBXTextBookmark */;
+			8CDC0A081305DA8400BA478C /* PBXTextBookmark */ = 8CDC0A081305DA8400BA478C /* PBXTextBookmark */;
+			8CDC0A0E1305DAC300BA478C /* PBXTextBookmark */ = 8CDC0A0E1305DAC300BA478C /* PBXTextBookmark */;
+			8CDC0A0F1305DAC300BA478C /* PBXTextBookmark */ = 8CDC0A0F1305DAC300BA478C /* PBXTextBookmark */;
+			8CDC0A131305DB2300BA478C /* PBXTextBookmark */ = 8CDC0A131305DB2300BA478C /* PBXTextBookmark */;
+			8CDC0A141305DB2300BA478C /* PBXTextBookmark */ = 8CDC0A141305DB2300BA478C /* PBXTextBookmark */;
+			8CDC0A1A1305DC5500BA478C /* PBXTextBookmark */ = 8CDC0A1A1305DC5500BA478C /* PBXTextBookmark */;
+			8CDC0A1B1305DC5500BA478C /* PBXTextBookmark */ = 8CDC0A1B1305DC5500BA478C /* PBXTextBookmark */;
+			8CDC0A1C1305DC5500BA478C /* PBXTextBookmark */ = 8CDC0A1C1305DC5500BA478C /* PBXTextBookmark */;
+			8CDC0A1D1305DC5500BA478C /* PBXTextBookmark */ = 8CDC0A1D1305DC5500BA478C /* PBXTextBookmark */;
+			8CDC0A251305DDAE00BA478C /* PBXTextBookmark */ = 8CDC0A251305DDAE00BA478C /* PBXTextBookmark */;
+			8CDC0A261305DDAE00BA478C /* PBXTextBookmark */ = 8CDC0A261305DDAE00BA478C /* PBXTextBookmark */;
+			8CDC0A271305DDAE00BA478C /* PBXTextBookmark */ = 8CDC0A271305DDAE00BA478C /* PBXTextBookmark */;
+			8CDC0A2E1305DEA900BA478C /* PBXTextBookmark */ = 8CDC0A2E1305DEA900BA478C /* PBXTextBookmark */;
+			8CDC0A2F1305DEA900BA478C /* PBXTextBookmark */ = 8CDC0A2F1305DEA900BA478C /* PBXTextBookmark */;
+			8CDC0A621305E61500BA478C /* PBXTextBookmark */ = 8CDC0A621305E61500BA478C /* PBXTextBookmark */;
+			8CDC0A631305E61500BA478C /* PBXTextBookmark */ = 8CDC0A631305E61500BA478C /* PBXTextBookmark */;
+			8CDC0A641305E61500BA478C /* PBXTextBookmark */ = 8CDC0A641305E61500BA478C /* PBXTextBookmark */;
+			8CDC0A651305E61500BA478C /* PBXTextBookmark */ = 8CDC0A651305E61500BA478C /* PBXTextBookmark */;
+			8CDC0A681305E63D00BA478C /* PBXTextBookmark */ = 8CDC0A681305E63D00BA478C /* PBXTextBookmark */;
+			8CDC0A691305E63D00BA478C /* PBXTextBookmark */ = 8CDC0A691305E63D00BA478C /* PBXTextBookmark */;
 			8CDCC12312E2BD3000CEAAD3 = 8CDCC12312E2BD3000CEAAD3 /* PBXTextBookmark */;
 			8CDCC12512E2BD3000CEAAD3 = 8CDCC12512E2BD3000CEAAD3 /* PBXTextBookmark */;
 			8CDCC13412E2C05E00CEAAD3 = 8CDCC13412E2C05E00CEAAD3 /* PBXTextBookmark */;
@@ -988,7 +1022,7 @@
 		vrLen = 1983;
 		vrLoc = 896;
 	};
-	8C18035912F68FD50061FDE6 /* WPAMainController.m:427 */ = {
+	8C18035912F68FD50061FDE6 /* WPAMainController.m:428 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -1000,13 +1034,13 @@
 		functionName = "-doThinkTime:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 427;
+		lineNumber = 428;
 		location = WPADev;
-		modificationTime = 319125430.854668;
+		modificationTime = 319150250.366321;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
-	8C18036F12F691F10061FDE6 /* StatusIconView.m:224 */ = {
+	8C18036F12F691F10061FDE6 /* StatusIconView.m:255 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -1018,9 +1052,9 @@
 		functionName = "-drawRect:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 224;
+		lineNumber = 255;
 		location = WorkPlayAway;
-		modificationTime = 319125429.261606;
+		modificationTime = 319150240.091707;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -1086,9 +1120,9 @@
 	};
 	8C1C92E412EB593C0077D343 /* GrowlManager.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {846, 2821}}";
+			sepNavIntBoundsRect = "{{0, 0}, {846, 2795}}";
 			sepNavSelRange = "{1803, 0}";
-			sepNavVisRange = "{1335, 1244}";
+			sepNavVisRange = "{1363, 1267}";
 			sepNavWindowFrame = "{{437, 45}, {907, 831}}";
 		};
 	};
@@ -1245,7 +1279,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 105";
 		rLen = 0;
-		rLoc = 5595;
+		rLoc = 6731;
 		rType = 0;
 		vrLen = 1024;
 		vrLoc = 1848;
@@ -1422,7 +1456,7 @@
 		vrLen = 1400;
 		vrLoc = 864;
 	};
-	8C6A898312F938460007FEC7 /* WPAMainController.m:224 */ = {
+	8C6A898312F938460007FEC7 /* WPAMainController.m:225 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -1434,9 +1468,9 @@
 		functionName = "-addActClosed:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 224;
+		lineNumber = 225;
 		location = WPADev;
-		modificationTime = 319125430.922695;
+		modificationTime = 319150250.4408;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -1459,7 +1493,7 @@
 		fRef = 8C82CF8912F3BEAC00830486 /* StatusIconView.h */;
 		name = "StatusIconView.h: 22";
 		rLen = 0;
-		rLoc = 444;
+		rLoc = 463;
 		rType = 0;
 		vrLen = 855;
 		vrLoc = 0;
@@ -2044,9 +2078,9 @@
 	};
 	8C77291E12D46AC600F71FE7 /* WPAMainController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1190, 7878}}";
-			sepNavSelRange = "{12056, 0}";
-			sepNavVisRange = "{11050, 1934}";
+			sepNavIntBoundsRect = "{{0, 0}, {894, 7553}}";
+			sepNavSelRange = "{3683, 0}";
+			sepNavVisRange = "{1762, 1782}";
 			sepNavWindowFrame = "{{61, 0}, {907, 831}}";
 		};
 	};
@@ -2062,7 +2096,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1300, 2132}}";
 			sepNavSelRange = "{1789, 0}";
-			sepNavVisRange = "{1494, 1135}";
+			sepNavVisRange = "{1494, 1247}";
 			sepNavWindowFrame = "{{38, 21}, {907, 831}}";
 		};
 	};
@@ -2664,9 +2698,9 @@
 	};
 	8C82AECE12EB98A300830486 /* RefreshManager.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1190, 1352}}";
+			sepNavIntBoundsRect = "{{0, 0}, {846, 1352}}";
 			sepNavSelRange = "{1151, 0}";
-			sepNavVisRange = "{1060, 1610}";
+			sepNavVisRange = "{435, 1476}";
 			sepNavWindowFrame = "{{404, 38}, {907, 831}}";
 		};
 	};
@@ -3023,7 +3057,7 @@
 			sepNavWindowFrame = "{{61, 0}, {907, 831}}";
 		};
 	};
-	8C82C22412F098D300830486 /* WPAMainController.m:258 */ = {
+	8C82C22412F098D300830486 /* WPAMainController.m:259 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -3035,9 +3069,9 @@
 		functionName = "-running:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 258;
+		lineNumber = 259;
 		location = WorkPlayAway;
-		modificationTime = 319125429.261454;
+		modificationTime = 319150240.091167;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -3114,9 +3148,9 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 37;
-		modificationTime = 319125429.261534;
+		modificationTime = 319150660.470772;
 		originalNumberOfMultipleMatches = 1;
-		state = 0;
+		state = 1;
 	};
 	8C82C60212F11A3E00830486 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -3227,16 +3261,16 @@
 	};
 	8C82CF8912F3BEAC00830486 /* StatusIconView.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {839, 515}}";
-			sepNavSelRange = "{444, 0}";
-			sepNavVisRange = "{0, 935}";
+			sepNavIntBoundsRect = "{{0, 0}, {876, 507}}";
+			sepNavSelRange = "{281, 0}";
+			sepNavVisRange = "{0, 994}";
 		};
 	};
 	8C82CF8A12F3BEAC00830486 /* StatusIconView.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {876, 2834}}";
-			sepNavSelRange = "{3896, 0}";
-			sepNavVisRange = "{3827, 1126}";
+			sepNavIntBoundsRect = "{{0, 0}, {876, 3120}}";
+			sepNavSelRange = "{5249, 0}";
+			sepNavVisRange = "{5456, 790}";
 			sepNavWindowFrame = "{{15, 42}, {907, 831}}";
 		};
 	};
@@ -3266,9 +3300,9 @@
 	};
 	8C82D01B12F3DC7000830486 /* TotalsManager.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {824, 1664}}";
-			sepNavSelRange = "{3510, 0}";
-			sepNavVisRange = "{541, 2273}";
+			sepNavIntBoundsRect = "{{0, 0}, {846, 1664}}";
+			sepNavSelRange = "{3743, 0}";
+			sepNavVisRange = "{205, 2067}";
 		};
 	};
 	8C9486ED12FD281C000CA791 /* PBXTextBookmark */ = {
@@ -3377,9 +3411,9 @@
 		ignoreCount = 0;
 		lineNumber = 124;
 		location = GmailModule;
-		modificationTime = 319125429.262214;
+		modificationTime = 319150660.470879;
 		originalNumberOfMultipleMatches = 1;
-		state = 0;
+		state = 1;
 	};
 	8CA6688A12FF1C6C004FD7EE /* GMailRequestHandler.m:224 */ = {
 		isa = PBXFileBreakpoint;
@@ -3395,9 +3429,9 @@
 		ignoreCount = 0;
 		lineNumber = 224;
 		location = GmailModule;
-		modificationTime = 319125429.262247;
+		modificationTime = 319150660.470905;
 		originalNumberOfMultipleMatches = 1;
-		state = 0;
+		state = 1;
 	};
 	8CA6688E12FF1C7A004FD7EE /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -3514,9 +3548,9 @@
 		ignoreCount = 0;
 		lineNumber = 268;
 		location = RTMModule;
-		modificationTime = 319125429.262126;
+		modificationTime = 319150660.470945;
 		originalNumberOfMultipleMatches = 1;
-		state = 0;
+		state = 1;
 	};
 	8CCD663212FB3F4100A4D2ED /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -3542,9 +3576,9 @@
 		ignoreCount = 0;
 		lineNumber = 435;
 		location = RTMModule;
-		modificationTime = 319125429.26216;
+		modificationTime = 319150660.470929;
 		originalNumberOfMultipleMatches = 1;
-		state = 0;
+		state = 1;
 	};
 	8CCD664612FB40E600A4D2ED /* RTMModule.m:454 */ = {
 		isa = PBXFileBreakpoint;
@@ -3560,9 +3594,9 @@
 		ignoreCount = 0;
 		lineNumber = 454;
 		location = RTMModule;
-		modificationTime = 319125429.26219;
+		modificationTime = 319150660.470844;
 		originalNumberOfMultipleMatches = 1;
-		state = 0;
+		state = 1;
 	};
 	8CCD66C812FB7A7600A4D2ED /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -6210,7 +6244,7 @@
 		ignoreCount = 0;
 		lineNumber = 146;
 		location = WPADev;
-		modificationTime = 319125431.099604;
+		modificationTime = 319150250.609789;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -6800,7 +6834,7 @@
 		ignoreCount = 0;
 		lineNumber = 126;
 		location = WPADev;
-		modificationTime = 319125431.151478;
+		modificationTime = 319150250.681018;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -12118,7 +12152,7 @@
 		ignoreCount = 0;
 		lineNumber = 104;
 		location = WPADev;
-		modificationTime = 319125431.280839;
+		modificationTime = 319150250.785543;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -12321,7 +12355,7 @@
 		ignoreCount = 0;
 		lineNumber = 104;
 		location = WPADev;
-		modificationTime = 319125431.380739;
+		modificationTime = 319150250.86894;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -12339,7 +12373,7 @@
 		ignoreCount = 0;
 		lineNumber = 104;
 		location = WPADev;
-		modificationTime = 319125431.514384;
+		modificationTime = 319150250.972615;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -12357,7 +12391,7 @@
 		ignoreCount = 0;
 		lineNumber = 104;
 		location = WPADev;
-		modificationTime = 319125431.59948;
+		modificationTime = 319150251.022789;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -12910,7 +12944,7 @@
 		ignoreCount = 0;
 		lineNumber = 104;
 		location = WPADev;
-		modificationTime = 319125431.713252;
+		modificationTime = 319150251.123767;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -13108,7 +13142,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 574";
 		rLen = 0;
-		rLoc = 17884;
+		rLoc = 17921;
 		rType = 0;
 		vrLen = 1223;
 		vrLoc = 17075;
@@ -13188,7 +13222,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 574";
 		rLen = 0;
-		rLoc = 17884;
+		rLoc = 17921;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 17075;
@@ -13208,7 +13242,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 574";
 		rLen = 0;
-		rLoc = 17884;
+		rLoc = 17921;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 17075;
@@ -13228,7 +13262,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 574";
 		rLen = 0;
-		rLoc = 17884;
+		rLoc = 17921;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 17075;
@@ -13248,7 +13282,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 574";
 		rLen = 0;
-		rLoc = 17884;
+		rLoc = 17921;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 17075;
@@ -13268,7 +13302,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 574";
 		rLen = 0;
-		rLoc = 17884;
+		rLoc = 17921;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 17075;
@@ -13288,7 +13322,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 574";
 		rLen = 0;
-		rLoc = 17884;
+		rLoc = 17921;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 17075;
@@ -13308,7 +13342,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 574";
 		rLen = 0;
-		rLoc = 17884;
+		rLoc = 17921;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 17075;
@@ -13328,7 +13362,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 574";
 		rLen = 0;
-		rLoc = 17884;
+		rLoc = 17921;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 17075;
@@ -13348,7 +13382,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 574";
 		rLen = 0;
-		rLoc = 17884;
+		rLoc = 17921;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 17075;
@@ -13368,7 +13402,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 574";
 		rLen = 0;
-		rLoc = 17884;
+		rLoc = 17921;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 17075;
@@ -13388,7 +13422,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 574";
 		rLen = 0;
-		rLoc = 17884;
+		rLoc = 17921;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 17075;
@@ -13408,7 +13442,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 574";
 		rLen = 0;
-		rLoc = 17884;
+		rLoc = 17921;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 17075;
@@ -13428,7 +13462,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 574";
 		rLen = 0;
-		rLoc = 17884;
+		rLoc = 17921;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 17075;
@@ -13448,7 +13482,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 574";
 		rLen = 0;
-		rLoc = 17884;
+		rLoc = 17921;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 17075;
@@ -13468,7 +13502,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 574";
 		rLen = 0;
-		rLoc = 17884;
+		rLoc = 17921;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 17075;
@@ -13488,7 +13522,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 574";
 		rLen = 0;
-		rLoc = 17884;
+		rLoc = 17921;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 17075;
@@ -13508,7 +13542,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 574";
 		rLen = 0;
-		rLoc = 17884;
+		rLoc = 17921;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 17075;
@@ -13528,7 +13562,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 574";
 		rLen = 0;
-		rLoc = 17884;
+		rLoc = 17921;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 17075;
@@ -13578,7 +13612,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 574";
 		rLen = 0;
-		rLoc = 17884;
+		rLoc = 17921;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 17075;
@@ -13608,7 +13642,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 574";
 		rLen = 0;
-		rLoc = 17884;
+		rLoc = 17921;
 		rType = 0;
 		vrLen = 1222;
 		vrLoc = 17078;
@@ -13638,7 +13672,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 574";
 		rLen = 0;
-		rLoc = 17884;
+		rLoc = 17921;
 		rType = 0;
 		vrLen = 1240;
 		vrLoc = 17141;
@@ -13668,7 +13702,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 574";
 		rLen = 0;
-		rLoc = 17884;
+		rLoc = 17921;
 		rType = 0;
 		vrLen = 1159;
 		vrLoc = 17276;
@@ -13688,7 +13722,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 574";
 		rLen = 0;
-		rLoc = 17884;
+		rLoc = 17921;
 		rType = 0;
 		vrLen = 1258;
 		vrLoc = 17281;
@@ -13728,7 +13762,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 574";
 		rLen = 0;
-		rLoc = 17884;
+		rLoc = 17921;
 		rType = 0;
 		vrLen = 1258;
 		vrLoc = 17281;
@@ -14102,7 +14136,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 485";
 		rLen = 0;
-		rLoc = 6990;
+		rLoc = 7027;
 		rType = 0;
 		vrLen = 1615;
 		vrLoc = 14547;
@@ -14112,7 +14146,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 525";
 		rLen = 0;
-		rLoc = 16779;
+		rLoc = 16816;
 		rType = 0;
 		vrLen = 1683;
 		vrLoc = 11667;
@@ -14149,7 +14183,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 106";
 		rLen = 0;
-		rLoc = 5595;
+		rLoc = 6731;
 		rType = 0;
 		vrLen = 1461;
 		vrLoc = 1690;
@@ -14159,7 +14193,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 525";
 		rLen = 0;
-		rLoc = 16779;
+		rLoc = 16816;
 		rType = 0;
 		vrLen = 1756;
 		vrLoc = 11450;
@@ -14169,7 +14203,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 373";
 		rLen = 0;
-		rLoc = 12308;
+		rLoc = 12345;
 		rType = 0;
 		vrLen = 1961;
 		vrLoc = 10969;
@@ -14209,7 +14243,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 365";
 		rLen = 0;
-		rLoc = 12004;
+		rLoc = 12041;
 		rType = 0;
 		vrLen = 1943;
 		vrLoc = 10969;
@@ -14219,7 +14253,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 366";
 		rLen = 0;
-		rLoc = 12056;
+		rLoc = 12093;
 		rType = 0;
 		vrLen = 1934;
 		vrLoc = 11050;
@@ -14239,7 +14273,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 366";
 		rLen = 0;
-		rLoc = 12056;
+		rLoc = 12093;
 		rType = 0;
 		vrLen = 1934;
 		vrLoc = 11050;
@@ -14249,7 +14283,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 147";
 		rLen = 0;
-		rLoc = 5595;
+		rLoc = 6731;
 		rType = 0;
 		vrLen = 1432;
 		vrLoc = 2631;
@@ -14269,7 +14303,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 45";
 		rLen = 0;
-		rLoc = 1232;
+		rLoc = 1129;
 		rType = 0;
 		vrLen = 1590;
 		vrLoc = 254;
@@ -14289,7 +14323,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 44";
 		rLen = 0;
-		rLoc = 1162;
+		rLoc = 1059;
 		rType = 0;
 		vrLen = 1615;
 		vrLoc = 816;
@@ -14309,7 +14343,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 44";
 		rLen = 0;
-		rLoc = 1150;
+		rLoc = 1047;
 		rType = 0;
 		vrLen = 1633;
 		vrLoc = 819;
@@ -14329,7 +14363,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 45";
 		rLen = 0;
-		rLoc = 1219;
+		rLoc = 1116;
 		rType = 0;
 		vrLen = 1670;
 		vrLoc = 838;
@@ -14349,7 +14383,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 45";
 		rLen = 0;
-		rLoc = 1228;
+		rLoc = 1125;
 		rType = 0;
 		vrLen = 1613;
 		vrLoc = 963;
@@ -14369,7 +14403,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 45";
 		rLen = 0;
-		rLoc = 1232;
+		rLoc = 1129;
 		rType = 0;
 		vrLen = 1667;
 		vrLoc = 838;
@@ -14389,7 +14423,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 147";
 		rLen = 0;
-		rLoc = 5595;
+		rLoc = 6731;
 		rType = 0;
 		vrLen = 1551;
 		vrLoc = 3353;
@@ -14409,7 +14443,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 155";
 		rLen = 0;
-		rLoc = 5595;
+		rLoc = 6731;
 		rType = 0;
 		vrLen = 1573;
 		vrLoc = 2676;
@@ -14459,7 +14493,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 155";
 		rLen = 0;
-		rLoc = 5595;
+		rLoc = 6731;
 		rType = 0;
 		vrLen = 1568;
 		vrLoc = 3027;
@@ -14469,7 +14503,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 157";
 		rLen = 0;
-		rLoc = 5595;
+		rLoc = 6731;
 		rType = 0;
 		vrLen = 1661;
 		vrLoc = 3323;
@@ -14489,7 +14523,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 135";
 		rLen = 0;
-		rLoc = 5595;
+		rLoc = 6731;
 		rType = 0;
 		vrLen = 1608;
 		vrLoc = 3381;
@@ -14509,7 +14543,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 146";
 		rLen = 0;
-		rLoc = 5595;
+		rLoc = 6731;
 		rType = 0;
 		vrLen = 1742;
 		vrLoc = 3144;
@@ -14529,7 +14563,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 135";
 		rLen = 0;
-		rLoc = 5595;
+		rLoc = 6731;
 		rType = 0;
 		vrLen = 1843;
 		vrLoc = 3147;
@@ -14549,7 +14583,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 156";
 		rLen = 0;
-		rLoc = 5595;
+		rLoc = 6731;
 		rType = 0;
 		vrLen = 1765;
 		vrLoc = 3122;
@@ -14569,7 +14603,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 156";
 		rLen = 0;
-		rLoc = 5595;
+		rLoc = 6731;
 		rType = 0;
 		vrLen = 1843;
 		vrLoc = 3122;
@@ -14579,7 +14613,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 134";
 		rLen = 0;
-		rLoc = 3519;
+		rLoc = 3416;
 		rType = 0;
 		vrLen = 1753;
 		vrLoc = 2734;
@@ -14599,7 +14633,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 55";
 		rLen = 0;
-		rLoc = 1229;
+		rLoc = 1126;
 		rType = 0;
 		vrLen = 1645;
 		vrLoc = 920;
@@ -14639,7 +14673,7 @@
 		fRef = 8C82CF8912F3BEAC00830486 /* StatusIconView.h */;
 		name = "StatusIconView.h: 23";
 		rLen = 0;
-		rLoc = 444;
+		rLoc = 463;
 		rType = 0;
 		vrLen = 935;
 		vrLoc = 0;
@@ -14649,7 +14683,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 152";
 		rLen = 0;
-		rLoc = 4862;
+		rLoc = 5301;
 		rType = 0;
 		vrLen = 1086;
 		vrLoc = 594;
@@ -14659,7 +14693,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 181";
 		rLen = 0;
-		rLoc = 5463;
+		rLoc = 6334;
 		rType = 0;
 		vrLen = 827;
 		vrLoc = 3818;
@@ -14679,7 +14713,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 159";
 		rLen = 0;
-		rLoc = 4563;
+		rLoc = 4460;
 		rType = 0;
 		vrLen = 1004;
 		vrLoc = 3526;
@@ -14689,7 +14723,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 164";
 		rLen = 0;
-		rLoc = 4945;
+		rLoc = 5375;
 		rType = 0;
 		vrLen = 1004;
 		vrLoc = 3526;
@@ -14709,7 +14743,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 164";
 		rLen = 0;
-		rLoc = 4945;
+		rLoc = 5375;
 		rType = 0;
 		vrLen = 1016;
 		vrLoc = 4063;
@@ -14719,7 +14753,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 169";
 		rLen = 0;
-		rLoc = 5171;
+		rLoc = 6042;
 		rType = 0;
 		vrLen = 1074;
 		vrLoc = 4063;
@@ -14739,7 +14773,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 169";
 		rLen = 0;
-		rLoc = 5171;
+		rLoc = 6042;
 		rType = 0;
 		vrLen = 944;
 		vrLoc = 4193;
@@ -14759,7 +14793,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 189";
 		rLen = 0;
-		rLoc = 5560;
+		rLoc = 6431;
 		rType = 0;
 		vrLen = 896;
 		vrLoc = 4454;
@@ -14769,7 +14803,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 187";
 		rLen = 0;
-		rLoc = 5493;
+		rLoc = 6364;
 		rType = 0;
 		vrLen = 803;
 		vrLoc = 4244;
@@ -14789,7 +14823,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 187";
 		rLen = 0;
-		rLoc = 5493;
+		rLoc = 6364;
 		rType = 0;
 		vrLen = 1000;
 		vrLoc = 3724;
@@ -14809,7 +14843,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 187";
 		rLen = 0;
-		rLoc = 5493;
+		rLoc = 6364;
 		rType = 0;
 		vrLen = 959;
 		vrLoc = 3796;
@@ -14829,7 +14863,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 187";
 		rLen = 0;
-		rLoc = 5493;
+		rLoc = 6364;
 		rType = 0;
 		vrLen = 996;
 		vrLoc = 3818;
@@ -14849,7 +14883,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 187";
 		rLen = 0;
-		rLoc = 5493;
+		rLoc = 6364;
 		rType = 0;
 		vrLen = 966;
 		vrLoc = 3858;
@@ -14869,7 +14903,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 187";
 		rLen = 0;
-		rLoc = 5493;
+		rLoc = 6364;
 		rType = 0;
 		vrLen = 937;
 		vrLoc = 3891;
@@ -14889,7 +14923,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 187";
 		rLen = 0;
-		rLoc = 5493;
+		rLoc = 6364;
 		rType = 0;
 		vrLen = 885;
 		vrLoc = 3958;
@@ -14909,7 +14943,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 187";
 		rLen = 0;
-		rLoc = 5493;
+		rLoc = 6364;
 		rType = 0;
 		vrLen = 891;
 		vrLoc = 3997;
@@ -14929,7 +14963,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 187";
 		rLen = 0;
-		rLoc = 5493;
+		rLoc = 6364;
 		rType = 0;
 		vrLen = 770;
 		vrLoc = 4120;
@@ -14949,7 +14983,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 210";
 		rLen = 0;
-		rLoc = 5493;
+		rLoc = 6364;
 		rType = 0;
 		vrLen = 1089;
 		vrLoc = 3869;
@@ -14969,7 +15003,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 210";
 		rLen = 0;
-		rLoc = 5493;
+		rLoc = 6364;
 		rType = 0;
 		vrLen = 974;
 		vrLoc = 3985;
@@ -14989,7 +15023,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 212";
 		rLen = 0;
-		rLoc = 5493;
+		rLoc = 6364;
 		rType = 0;
 		vrLen = 1002;
 		vrLoc = 4021;
@@ -15009,7 +15043,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 212";
 		rLen = 0;
-		rLoc = 5493;
+		rLoc = 6364;
 		rType = 0;
 		vrLen = 1012;
 		vrLoc = 3992;
@@ -15029,7 +15063,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 214";
 		rLen = 0;
-		rLoc = 5493;
+		rLoc = 6364;
 		rType = 0;
 		vrLen = 1076;
 		vrLoc = 4048;
@@ -15049,7 +15083,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 214";
 		rLen = 0;
-		rLoc = 5493;
+		rLoc = 6364;
 		rType = 0;
 		vrLen = 1109;
 		vrLoc = 4070;
@@ -15069,7 +15103,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 214";
 		rLen = 0;
-		rLoc = 5493;
+		rLoc = 6364;
 		rType = 0;
 		vrLen = 1107;
 		vrLoc = 4087;
@@ -15089,7 +15123,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 215";
 		rLen = 0;
-		rLoc = 5493;
+		rLoc = 6364;
 		rType = 0;
 		vrLen = 1140;
 		vrLoc = 4129;
@@ -15109,7 +15143,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 215";
 		rLen = 0;
-		rLoc = 5493;
+		rLoc = 6364;
 		rType = 0;
 		vrLen = 1087;
 		vrLoc = 4201;
@@ -15129,7 +15163,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 215";
 		rLen = 0;
-		rLoc = 5493;
+		rLoc = 6364;
 		rType = 0;
 		vrLen = 1087;
 		vrLoc = 4201;
@@ -15139,7 +15173,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 153";
 		rLen = 0;
-		rLoc = 3950;
+		rLoc = 3847;
 		rType = 0;
 		vrLen = 968;
 		vrLoc = 3392;
@@ -15159,7 +15193,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 153";
 		rLen = 0;
-		rLoc = 3950;
+		rLoc = 3847;
 		rType = 0;
 		vrLen = 1008;
 		vrLoc = 3414;
@@ -15169,7 +15203,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 154";
 		rLen = 0;
-		rLoc = 3873;
+		rLoc = 3770;
 		rType = 0;
 		vrLen = 1077;
 		vrLoc = 3281;
@@ -15219,7 +15253,7 @@
 		fRef = 8C82CF8912F3BEAC00830486 /* StatusIconView.h */;
 		name = "StatusIconView.h: 23";
 		rLen = 0;
-		rLoc = 444;
+		rLoc = 463;
 		rType = 0;
 		vrLen = 935;
 		vrLoc = 0;
@@ -15230,7 +15264,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 1;
-		rLoc = 179;
+		rLoc = 170;
 		rType = 1;
 	};
 	8CDC09991304E1AA00BA478C /* PBXTextBookmark */ = {
@@ -15238,7 +15272,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 186";
 		rLen = 0;
-		rLoc = 4861;
+		rLoc = 5300;
 		rType = 0;
 		vrLen = 978;
 		vrLoc = 4221;
@@ -15258,7 +15292,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 191";
 		rLen = 0;
-		rLoc = 4992;
+		rLoc = 5828;
 		rType = 0;
 		vrLen = 977;
 		vrLoc = 4674;
@@ -15268,7 +15302,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 191";
 		rLen = 0;
-		rLoc = 4992;
+		rLoc = 5828;
 		rType = 0;
 		vrLen = 977;
 		vrLoc = 4674;
@@ -15288,7 +15322,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 191";
 		rLen = 0;
-		rLoc = 4992;
+		rLoc = 5828;
 		rType = 0;
 		vrLen = 908;
 		vrLoc = 571;
@@ -15298,7 +15332,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 60";
 		rLen = 0;
-		rLoc = 1038;
+		rLoc = 935;
 		rType = 0;
 		vrLen = 1148;
 		vrLoc = 756;
@@ -15313,7 +15347,7 @@
 		vrLen = 1890;
 		vrLoc = 746;
 	};
-	8CDC09A91304E40400BA478C /* StatusIconView.m:158 */ = {
+	8CDC09A91304E40400BA478C /* StatusIconView.m:149 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -15325,9 +15359,9 @@
 		functionName = "-drawDoneness:";
 		hitCount = 1;
 		ignoreCount = 0;
-		lineNumber = 158;
+		lineNumber = 149;
 		location = WPADev;
-		modificationTime = 319125440.639236;
+		modificationTime = 319150273.229857;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -15336,7 +15370,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 155";
 		rLen = 0;
-		rLoc = 3896;
+		rLoc = 3793;
 		rType = 0;
 		vrLen = 1045;
 		vrLoc = 3437;
@@ -15356,7 +15390,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 155";
 		rLen = 0;
-		rLoc = 3896;
+		rLoc = 3793;
 		rType = 0;
 		vrLen = 1026;
 		vrLoc = 3456;
@@ -15376,7 +15410,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 155";
 		rLen = 0;
-		rLoc = 3896;
+		rLoc = 3793;
 		rType = 0;
 		vrLen = 1067;
 		vrLoc = 3497;
@@ -15396,7 +15430,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 155";
 		rLen = 0;
-		rLoc = 3896;
+		rLoc = 3793;
 		rType = 0;
 		vrLen = 1147;
 		vrLoc = 3530;
@@ -15416,7 +15450,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 155";
 		rLen = 0;
-		rLoc = 3896;
+		rLoc = 3793;
 		rType = 0;
 		vrLen = 1074;
 		vrLoc = 3608;
@@ -15436,7 +15470,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 155";
 		rLen = 0;
-		rLoc = 3896;
+		rLoc = 3793;
 		rType = 0;
 		vrLen = 1081;
 		vrLoc = 3781;
@@ -15456,7 +15490,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 153";
 		rLen = 0;
-		rLoc = 3896;
+		rLoc = 3793;
 		rType = 0;
 		vrLen = 1128;
 		vrLoc = 3821;
@@ -15490,7 +15524,7 @@
 		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
 		name = "StatusIconView.m: 156";
 		rLen = 0;
-		rLoc = 3896;
+		rLoc = 3793;
 		rType = 0;
 		vrLen = 1126;
 		vrLoc = 3827;
@@ -15504,6 +15538,346 @@
 		rType = 0;
 		vrLen = 1244;
 		vrLoc = 1335;
+	};
+	8CDC09E01305A87A00BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
+		name = "StatusIconView.m: 156";
+		rLen = 0;
+		rLoc = 3793;
+		rType = 0;
+		vrLen = 1113;
+		vrLoc = 3964;
+	};
+	8CDC09E11305A87A00BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C1C92E412EB593C0077D343 /* GrowlManager.m */;
+		name = "GrowlManager.m: 85";
+		rLen = 0;
+		rLoc = 1803;
+		rType = 0;
+		vrLen = 1267;
+		vrLoc = 1363;
+	};
+	8CDC09E41305A8AB00BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
+		name = "StatusIconView.m: 156";
+		rLen = 0;
+		rLoc = 3793;
+		rType = 0;
+		vrLen = 1113;
+		vrLoc = 3964;
+	};
+	8CDC09E51305A8AB00BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C1C92E412EB593C0077D343 /* GrowlManager.m */;
+		name = "GrowlManager.m: 85";
+		rLen = 0;
+		rLoc = 1803;
+		rType = 0;
+		vrLen = 1267;
+		vrLoc = 1363;
+	};
+	8CDC09E91305D7B500BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C82CF8912F3BEAC00830486 /* StatusIconView.h */;
+		name = "StatusIconView.h: 15";
+		rLen = 0;
+		rLoc = 281;
+		rType = 0;
+		vrLen = 994;
+		vrLoc = 0;
+	};
+	8CDC09EA1305D7B500BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
+		name = "StatusIconView.m: 192";
+		rLen = 0;
+		rLoc = 5385;
+		rType = 0;
+		vrLen = 1114;
+		vrLoc = 4435;
+	};
+	8CDC09EB1305D7B500BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
+		name = "StatusIconView.m: 232";
+		rLen = 0;
+		rLoc = 6725;
+		rType = 0;
+		vrLen = 841;
+		vrLoc = 5268;
+	};
+	8CDC09EC1305D7B500BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C1C92E412EB593C0077D343 /* GrowlManager.m */;
+		name = "GrowlManager.m: 85";
+		rLen = 0;
+		rLoc = 1803;
+		rType = 0;
+		vrLen = 1267;
+		vrLoc = 1363;
+	};
+	8CDC09ED1305D7B500BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C82D01B12F3DC7000830486 /* TotalsManager.m */;
+		name = "TotalsManager.m: 94";
+		rLen = 0;
+		rLoc = 3510;
+		rType = 0;
+		vrLen = 1424;
+		vrLoc = 2765;
+	};
+	8CDC09EE1305D7B500BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
+		name = "WPAMainController.m: 366";
+		rLen = 0;
+		rLoc = 12093;
+		rType = 0;
+		vrLen = 2031;
+		vrLoc = 0;
+	};
+	8CDC09EF1305D7B500BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
+		name = "WPAMainController.m: 108";
+		rLen = 0;
+		rLoc = 3683;
+		rType = 0;
+		vrLen = 2001;
+		vrLoc = 2883;
+	};
+	8CDC09FC1305D8BC00BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
+		name = "StatusIconView.m: 235";
+		rLen = 0;
+		rLoc = 6725;
+		rType = 0;
+		vrLen = 751;
+		vrLoc = 5373;
+	};
+	8CDC09FD1305D8BC00BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
+		name = "WPAMainController.m: 108";
+		rLen = 0;
+		rLoc = 3683;
+		rType = 0;
+		vrLen = 1926;
+		vrLoc = 2958;
+	};
+	8CDC0A071305DA8400BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
+		name = "StatusIconView.m: 236";
+		rLen = 0;
+		rLoc = 6725;
+		rType = 0;
+		vrLen = 920;
+		vrLoc = 5135;
+	};
+	8CDC0A081305DA8400BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
+		name = "WPAMainController.m: 108";
+		rLen = 0;
+		rLoc = 3683;
+		rType = 0;
+		vrLen = 1986;
+		vrLoc = 2958;
+	};
+	8CDC0A0E1305DAC300BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
+		name = "StatusIconView.m: 236";
+		rLen = 0;
+		rLoc = 6725;
+		rType = 0;
+		vrLen = 892;
+		vrLoc = 5238;
+	};
+	8CDC0A0F1305DAC300BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
+		name = "WPAMainController.m: 108";
+		rLen = 0;
+		rLoc = 3683;
+		rType = 0;
+		vrLen = 1932;
+		vrLoc = 3035;
+	};
+	8CDC0A131305DB2300BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
+		name = "StatusIconView.m: 236";
+		rLen = 0;
+		rLoc = 6725;
+		rType = 0;
+		vrLen = 849;
+		vrLoc = 5257;
+	};
+	8CDC0A141305DB2300BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
+		name = "WPAMainController.m: 108";
+		rLen = 0;
+		rLoc = 3683;
+		rType = 0;
+		vrLen = 1988;
+		vrLoc = 3076;
+	};
+	8CDC0A1A1305DC5500BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
+		name = "StatusIconView.m: 236";
+		rLen = 0;
+		rLoc = 6725;
+		rType = 0;
+		vrLen = 936;
+		vrLoc = 5257;
+	};
+	8CDC0A1B1305DC5500BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C82AECE12EB98A300830486 /* RefreshManager.m */;
+		name = "RefreshManager.m: 55";
+		rLen = 0;
+		rLoc = 1151;
+		rType = 0;
+		vrLen = 1476;
+		vrLoc = 435;
+	};
+	8CDC0A1C1305DC5500BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
+		name = "WPAMainController.m: 108";
+		rLen = 0;
+		rLoc = 3683;
+		rType = 0;
+		vrLen = 1782;
+		vrLoc = 1762;
+	};
+	8CDC0A1D1305DC5500BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C82D01B12F3DC7000830486 /* TotalsManager.m */;
+		name = "TotalsManager.m: 98";
+		rLen = 0;
+		rLoc = 3743;
+		rType = 0;
+		vrLen = 1917;
+		vrLoc = 2136;
+	};
+	8CDC0A251305DDAE00BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
+		name = "StatusIconView.m: 180";
+		rLen = 0;
+		rLoc = 5336;
+		rType = 0;
+		vrLen = 1118;
+		vrLoc = 4176;
+	};
+	8CDC0A261305DDAE00BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
+		name = "StatusIconView.m: 179";
+		rLen = 0;
+		rLoc = 4834;
+		rType = 0;
+		vrLen = 1222;
+		vrLoc = 4135;
+	};
+	8CDC0A271305DDAE00BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C82D01B12F3DC7000830486 /* TotalsManager.m */;
+		name = "TotalsManager.m: 98";
+		rLen = 0;
+		rLoc = 3743;
+		rType = 0;
+		vrLen = 2006;
+		vrLoc = 130;
+	};
+	8CDC0A2E1305DEA900BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
+		name = "StatusIconView.m: 180";
+		rLen = 0;
+		rLoc = 4788;
+		rType = 0;
+		vrLen = 1226;
+		vrLoc = 4212;
+	};
+	8CDC0A2F1305DEA900BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C82D01B12F3DC7000830486 /* TotalsManager.m */;
+		name = "TotalsManager.m: 98";
+		rLen = 0;
+		rLoc = 3743;
+		rType = 0;
+		vrLen = 2004;
+		vrLoc = 134;
+	};
+	8CDC0A621305E61500BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C82CF8912F3BEAC00830486 /* StatusIconView.h */;
+		name = "StatusIconView.h: 15";
+		rLen = 0;
+		rLoc = 281;
+		rType = 0;
+		vrLen = 994;
+		vrLoc = 0;
+	};
+	8CDC0A631305E61500BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
+		name = "StatusIconView.m: 183";
+		rLen = 0;
+		rLoc = 5249;
+		rType = 0;
+		vrLen = 1045;
+		vrLoc = 4111;
+	};
+	8CDC0A641305E61500BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
+		name = "StatusIconView.m: 196";
+		rLen = 0;
+		rLoc = 5249;
+		rType = 0;
+		vrLen = 952;
+		vrLoc = 4850;
+	};
+	8CDC0A651305E61500BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C82D01B12F3DC7000830486 /* TotalsManager.m */;
+		name = "TotalsManager.m: 98";
+		rLen = 0;
+		rLoc = 3743;
+		rType = 0;
+		vrLen = 2092;
+		vrLoc = 180;
+	};
+	8CDC0A681305E63D00BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
+		name = "StatusIconView.m: 196";
+		rLen = 0;
+		rLoc = 5249;
+		rType = 0;
+		vrLen = 790;
+		vrLoc = 5456;
+	};
+	8CDC0A691305E63D00BA478C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C82D01B12F3DC7000830486 /* TotalsManager.m */;
+		name = "TotalsManager.m: 98";
+		rLen = 0;
+		rLoc = 3743;
+		rType = 0;
+		vrLen = 2067;
+		vrLoc = 205;
 	};
 	8CDCC0F912E2B5F400CEAAD3 /* SkypeManager */ = {
 		activeExec = 0;
