@@ -82,7 +82,6 @@
 			[self queueAlert:alert];
 		} else {
 			[self saveAlert: alert];
-			NSLog(@"saved %@",alert.message);
 		}
 	}
 	

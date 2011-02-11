@@ -50,7 +50,6 @@
 @property (nonatomic) NSTimeInterval weeklyGoal;
 @property (nonatomic) NSTimeInterval dailyGoal;
 @property (nonatomic) int growlInterval;
-@property (nonatomic, retain) NSTimer *thinkTimer;
 @property (nonatomic) BOOL startOnLoad;
 @property (nonatomic) BOOL loadOnLogin;
 @property (nonatomic) BOOL ignoreScreenSaver;
