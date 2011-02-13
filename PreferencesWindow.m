@@ -16,7 +16,8 @@
 @synthesize modulesTable, amwControl, 
 growlIntervalText,addButton, removeButton, newModuleView, tableData, 
 startOnLaunchButton, launchOnBootButton, growlStepper, editButton, ignoreSaverButton,
-dailyGoalText, weeklyGoalText, brbText, summaryText, brbStepper, summaryStepper;
+dailyGoalText, weeklyGoalText, brbText, summaryText, brbStepper, summaryStepper,
+enableHotKeyButton;
 
 - (void)awakeFromNib
 {
@@ -71,6 +72,7 @@ dailyGoalText, weeklyGoalText, brbText, summaryText, brbStepper, summaryStepper;
 	Context *ctx = [Context sharedContext];
 	[launchOnBootButton setIntValue:(ctx.loadOnLogin == YES)];
 	[startOnLaunchButton setIntValue:(ctx.startOnLoad == YES)];
+	[enableHotKeyButton setIntValue:(ctx.useHotKey == YES)];
 	[ignoreSaverButton setIntValue:(ctx.ignoreScreenSaver == YES)];
 	
 	
@@ -177,42 +179,21 @@ dailyGoalText, weeklyGoalText, brbText, summaryText, brbStepper, summaryStepper;
 	[[Context sharedContext] saveDefaults];
 }
 
+-(IBAction) clickEnableHotKey: (id) sender {
+	if (enableHotKeyButton.intValue == 1){
+		[Context sharedContext].useHotKey = YES;
+	} else {
+		[Context sharedContext].useHotKey = NO;
+	}
+	[[Context sharedContext] saveDefaults];
+}
+
 - (BOOL) addToLogin
 {
 	LaunchAtLoginController *lALCtrl = [LaunchAtLoginController new];
 	[lALCtrl setLaunchAtLogin:YES];
 	return YES;
 }
-//- (BOOL) addToLogin
-//{
-//	NSBundle *me = [NSBundle mainBundle];
-//	//NSString *template = @"tell application \"System Events\"\n make new login item at end with properties {path:\"%@\", hidden:false}\nend tell";
-//	NSString *script = @"tell application \"System Events\"\n make new login item at end with properties {path:\"";
-//	script = [script stringByAppendingString:[me executablePath]];
-//	script = [script stringByAppendingString:@"\", hidden:false}\nend tell"];
-//	//NSString *script = [NSString stringWithFormat:template,[me executablePath]];
-//	NSLog(@"script = %@", script);
-//	NSAppleScript *playScript;
-//	playScript = [[NSAppleScript alloc] initWithSource:script];
-//	NSMutableDictionary *errDict = [NSMutableDictionary new];
-//	[playScript executeAndReturnError:&errDict];
-//	if ([errDict count] != 0){
-//		NSAlert *alert = [NSAlert alertWithMessageText:nil 
-//										 defaultButton:nil
-//									   alternateButton:nil 
-//										   otherButton:nil 
-//							 informativeTextWithFormat:@"An error occurred adding the login item. \
-//						  You can attempt to add the app from the Users Preferences panel.\
-//						  See console log for more details." ];
-//		[alert runModal];
-//		NSLog(@"Errors running login item remove script ");
-//		for (NSString *key in errDict){
-//			NSLog(@"%@ = %@",key, [errDict objectForKey:key]);
-//		}
-//		return NO;
-//	} 
-//	return YES;
-//}
 
 - (BOOL) removeFromLogin
 {
@@ -220,38 +201,6 @@ dailyGoalText, weeklyGoalText, brbText, summaryText, brbStepper, summaryStepper;
 	[lALCtrl setLaunchAtLogin:NO];
 	return YES;
 }
-
-//-(BOOL) removeFromLogin
-//{
-//	//NSString *template1 = @"tell application \"System Events\"\n get the path of every login item\n if login item \"%@\" exists then delete login item targetAppPath\n end if\n end tell";
-//	NSString *script = @"tell application \"System Events\"\nif login item \"";	
-//	script = [script stringByAppendingString:__APPNAME__];
-//	script = [script stringByAppendingString:@"\" exists then\ndelete login item \""];
-//	script = [script stringByAppendingString:__APPNAME__];
-//	script = [script stringByAppendingString: @"\"\n end if\n end tell"];
-//	NSLog(@"script:\n%@", script);
-////	NSString *script = [NSString stringWithFormat:template,[me executablePath]];
-//	NSAppleScript *playScript;
-//	playScript = [[NSAppleScript alloc] initWithSource:script];
-//	NSMutableDictionary *errDict = [NSMutableDictionary new];
-//	[playScript executeAndReturnError:&errDict];
-//	if ([errDict count] > 0){
-//		NSAlert *alert = [NSAlert alertWithMessageText:nil 
-//										 defaultButton:nil
-//									   alternateButton:nil 
-//										   otherButton:nil 
-//							 informativeTextWithFormat:@"An error occurred removing the login item. \
-//						  You can attempt to remove the app from the Users Preferences panel.\
-//						  See console log for more details." ];
-//		[alert runModal];	
-//		NSLog(@"Errors running login item remove script ");
-//		for (NSString *key in errDict){
-//			NSLog(@"%@ = %@",key, [errDict objectForKey:key]);
-//		}
-//		return NO;
-//	}
-//	return YES;
-//}
 
 - (IBAction) clickLaunchOnBoot: (id) sender
 {	BOOL isOK;

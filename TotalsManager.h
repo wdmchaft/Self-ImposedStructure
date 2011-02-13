@@ -21,6 +21,7 @@
 	NSTimeInterval freeWeek;
 	NSTimeInterval workWeek;
 	NSTimeInterval interval;
+	BOOL recordChecked;
 }
 
 @property (nonatomic) NSTimeInterval interval;
@@ -33,8 +34,12 @@
 @property (nonatomic) int rolloverDay;
 @property (nonatomic) int rolloverHour;
 @property (nonatomic,retain) NSTimer *dailyRolloverTimer;
+@property (nonatomic) BOOL recordChecked;
 
 //- (void) dailyRollover: (NSTimer*) timer;
 //- (NSTimer*) getTimerForRollHour: (int) rollHour;
 - (void) addInterval:(WPAStateType) state;
+- (void) saveCurrent;
+- (void) initFromRecord;
+
 @end

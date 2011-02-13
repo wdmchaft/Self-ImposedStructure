@@ -83,6 +83,7 @@
 - (IBAction) clickAddActivity: (id) sender;
 - (void) fillActivities:(NSMenu*) menu;
 - (void) newActivity: (id) sender;
+- (void) setupHotKeyIfNecessary;
 - (void) setupHotKey;
 - (IBAction) showSummaryScreen: (id) sender;
 

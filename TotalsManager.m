@@ -19,11 +19,37 @@
 @synthesize dailyRolloverTimer, rolloverDay, rolloverHour;
 @synthesize awayToday, workToday, freeToday;
 @synthesize awayWeek, workWeek, freeWeek;
-@synthesize interval;
+@synthesize interval, recordChecked;
+
+- (void) initFromRecord
+{
+	WPADelegate *del = (WPADelegate*)[NSApplication sharedApplication].delegate;
+	NSTimeInterval rollAdjust = - (60 * 60 * rolloverHour);
+	NSDate *effectiveDate = [[dailyRolloverTimer fireDate] dateByAddingTimeInterval:rollAdjust];
+	NSTimeInterval work;
+	NSTimeInterval free;
+	[del findSummaryForDate:effectiveDate work:&work free:&free];
+	if (free > 0){
+		freeToday += free;
+	}
+	if (work > 0) {
+		workToday += work;
+	}
+}
+- (void)saveCurrent
+{
+	WPADelegate *del = (WPADelegate*)[NSApplication sharedApplication].delegate;
+	NSTimeInterval rollAdjust = - (60 * 60 * rolloverHour);
+	NSDate *effectiveRollDate = [[dailyRolloverTimer fireDate] dateByAddingTimeInterval:rollAdjust];
+	[del saveSummaryForDate:effectiveRollDate 
+					  goal:[Context sharedContext].dailyGoal 
+					  work:workToday 
+					  free:freeToday];
+}
 
 - (void) dailyRollover: (NSTimer*) timer
 {
-	NSDateFormatter *compDate = [NSDateFormatter new];;
+	NSDateFormatter *compDate = [NSDateFormatter new];
 	[compDate  setDateFormat:@"yyyyMMdd hh:mm" ];
 	NSString *todayStr = [compDate stringFromDate:timer.fireDate];
 	NSLog(@"rolling over @ %@", todayStr);
@@ -37,14 +63,7 @@
 															 repeats:YES];
 	}
 	// write a record
-	WPADelegate *del = (WPADelegate*)[NSApplication sharedApplication].delegate;
-	NSTimeInterval rollAdjust = - (60 * 60 * rolloverHour);
-	NSDate *effectiveRollDate = [NSDate dateWithTimeIntervalSinceNow:rollAdjust];
-	[del newSummaryForDate:effectiveRollDate 
-					  goal:[Context sharedContext].dailyGoal 
-					  work:workToday 
-					  free:freeToday];
-
+	[self saveCurrent];
 	
 	// Get the weekday component of the current date
 	// and if its the rollover day.... then rollover for the week
@@ -97,6 +116,7 @@
 		temp = [ud objectForKey:@"StatusInterval"]; 
 		interval = temp ? [temp intValue] : 10;
 		dailyRolloverTimer = [self getTimerForRollHour: rolloverHour];
+	//	[self initFromRecord];
 	}
 	return self;
 }
@@ -104,6 +124,10 @@
 
 - (void) addInterval:(WPAStateType) state
 {
+	if (!recordChecked){
+		[self initFromRecord];
+		recordChecked = YES;
+	}
 	switch (state) {
 		case WPASTATE_AWAY:
 			awayToday += interval;
@@ -123,5 +147,6 @@
 		default:
 			break;
 	}
+	[self saveCurrent];
 }
 @end

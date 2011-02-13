@@ -16,6 +16,7 @@
 	ModulesTableData *tableData;
 	NSButton *startOnLaunchButton;
 	NSButton *launchOnBootButton;
+	NSButton *enableHotKeyButton;
 	NSTextField *growlIntervalText;
 	NSButton *addButton;
 	NSButton *removeButton;
@@ -39,6 +40,7 @@
 @property (retain, nonatomic) IBOutlet NSButton *editButton;
 @property (retain, nonatomic) IBOutlet NSButton *launchOnBootButton;
 @property (retain, nonatomic) IBOutlet NSButton *startOnLaunchButton;
+@property (retain, nonatomic) IBOutlet NSButton *enableHotKeyButton;
 @property (retain, nonatomic) IBOutlet NSTextField *growlIntervalText;
 @property (retain, nonatomic) IBOutlet NSView *newModuleView;
 @property (retain, nonatomic) IBOutlet AddModWinController *amwControl;
@@ -57,6 +59,7 @@
 - (IBAction) clickRemove: (id) sender;
 - (IBAction) clickEdit: (id) sender;
 - (IBAction) clickStartOnLaunch: (id) sender;
+- (IBAction) cickEnableHotKey: (id) sender;
 - (IBAction) clickLaunchOnBoot: (id) sender;
 - (IBAction) clickGrowlStepper: (id) sender;
 - (IBAction) clickIgnoreSaverButton: (id) sender;

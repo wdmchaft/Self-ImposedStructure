@@ -68,7 +68,7 @@
 													 userInfo:nil 
 													  repeats:NO];
 //	}
-	[self setupHotKey];
+	[self setupHotKeyIfNecessary];
 }
 
 -(void) updateStatus: (NSTimer*) timer
@@ -591,6 +591,11 @@ OSStatus hotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 	return noErr;
 }
 
+- (void) setupHotKeyIfNecessary
+{
+	if ([Context sharedContext].useHotKey)
+		[self setupHotKey];
+}
 - (void) setupHotKey
 {
 	//Register the Hotkeys

@@ -25,6 +25,7 @@
 	NSManagedObject *currentActivity;
 	BOOL ignoreScreenSaver;
 	BOOL running;
+	BOOL useHotKey;
 	NSArray *tasksList;
 	NSTimeInterval dailyGoal;
 	NSTimeInterval weeklyGoal;
@@ -49,6 +50,7 @@
 @property (nonatomic) BOOL running;
 @property (nonatomic) BOOL autoBackToWork;
 @property (nonatomic) BOOL showSummary;
+@property (nonatomic) BOOL useHotKey;
 @property (nonatomic) int thinkTime;
 @property (nonatomic, retain) NSString *alertName;
 @property (nonatomic, retain) TaskInfo *currentTask;

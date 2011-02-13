@@ -36,6 +36,7 @@
 	NSDate *lastStateChange;
 	BOOL showSummary;
 	BOOL autoBackToWork;
+	BOOL useHotKey;
 	NSTimeInterval timeAwayThreshold;
 	NSTimeInterval brbThreshold;
 	WPAStateType previousState;
@@ -56,6 +57,7 @@
 @property (nonatomic) BOOL running;
 @property (nonatomic) BOOL autoBackToWork;
 @property (nonatomic) BOOL showSummary;
+@property (nonatomic) BOOL useHotKey;
 @property (nonatomic) WPAStateType currentState;
 @property (nonatomic) int thinkTime;
 @property (nonatomic, retain) NSString *alertName;
@@ -107,6 +109,7 @@
 @synthesize autoBackToWork;
 @synthesize showSummary;
 @synthesize growlManager;
+@synthesize useHotKey;
 
 
 static Context* sharedContext = nil;
@@ -257,6 +260,9 @@ static Context* sharedContext = nil;
 	temp = [ud objectForKey:@"AutoBackToWork"];
 	autoBackToWork = (temp ? [((NSNumber*) temp) intValue] : YES);
 	
+	temp = [ud objectForKey:@"UseHotKey"];
+	useHotKey = (temp ? [((NSNumber*) temp) intValue] : NO);
+	
 	temp = [ud objectForKey:@"BRBThreshold"];
 	brbThreshold = (temp ? [((NSNumber*) temp) intValue] : 10 * 60);
 	
@@ -327,6 +333,7 @@ static Context* sharedContext = nil;
 	[ud setObject: [NSNumber numberWithInt:autoBackToWork] forKey: @"AutoBackToWork"];
 	[ud setObject: [NSNumber numberWithInt:showSummary] forKey: @"ShowSummary"];
 	[ud setObject: [NSNumber numberWithInt:previousState] forKey: @"PreviousState"];
+	[ud setObject: [NSNumber numberWithInt:useHotKey] forKey: @"UseHotKey"];
 	[ud setObject: lastStateChange forKey: @"LastStateChange"];
 	[ud setObject: alertName forKey: @"AlertName"];
 	[self saveModules];

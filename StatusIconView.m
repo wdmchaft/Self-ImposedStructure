@@ -191,7 +191,31 @@
 	if (interval < 3600){
 		return [NSString stringWithFormat:@"%d min", (int) floor(interval/60)];
 	}
-	return [NSString stringWithFormat:@"%d:%.2d", (int) floor(interval/3600), (int)floor(fmod(interval,3600))];
+	return [NSString stringWithFormat:@"%d:%.2d", (int) floor(interval/3600), (int)floor(fmod(interval,3600)/60)];
+}
+
+- (void)drawClock: (CGFloat) ratio
+{
+	NSBezierPath *handPath = [NSBezierPath bezierPath] ;
+	
+	[handPath setLineWidth: 2 ] ;
+	
+	// move to the center so that we have a closed slice
+	
+	[handPath moveToPoint:center ] ;	
+	
+	// get our radians
+	CGFloat rad = PI/2 - (ratio * 2 * PI);
+	CGFloat xPos = cos(rad) * outerRadius;
+	CGFloat yPos = sin(rad) * outerRadius;
+	NSPoint pt = NSMakePoint(center.x + xPos, center.y+ yPos);
+	
+	// draw the line 
+	[handPath lineToPoint:pt];
+	[[NSColor whiteColor] set] ;
+	[handPath stroke] ;
+	
+	
 }
 
 - (void) drawRect:(NSRect)dirtyRect
@@ -206,10 +230,14 @@
 	switch (state) {
 
 		case WPASTATE_THINKING:
-			[self drawLetter:@"W" center:center];
-			break;
-		case WPASTATE_THINKTIME:
-			[self drawLetter:@"W" center:center];
+			if (timer){
+				NSNumber *total = timer.userInfo;
+				NSTimeInterval interval = [total doubleValue] - [timer.fireDate timeIntervalSinceNow];
+				CGFloat timerRatio = interval / [total doubleValue];
+				[self drawClock:timerRatio];
+			} else {
+				[self drawLetter:@"W" center:center];
+			}
 			break;
 		case WPASTATE_FREE:
 			[self drawLetter:@"F" center:center];
@@ -224,7 +252,6 @@
 		default:
 			break;
 	}
-	NSLog(@"work = %f free = %f", work, free);
 	NSString *tipStr = [NSString stringWithFormat: 
 						@"Work: %@ Free: %@\nTask: %@", 
 						[self formatTime:work],

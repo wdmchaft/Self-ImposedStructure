@@ -194,6 +194,8 @@
 		8CDC046E13010DCB00BA478C /* GoalChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC046C13010DCB00BA478C /* GoalChart.m */; };
 		8CDC08EC1304576C00BA478C /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CDC08EB1304576C00BA478C /* AppKit.framework */; };
 		8CDC08F01304578E00BA478C /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CDC08EB1304576C00BA478C /* AppKit.framework */; };
+		8CDC0B3813069BA600BA478C /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 8CDC0B3713069BA600BA478C /* Credits.rtf */; };
+		8CDC0B3913069BA600BA478C /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 8CDC0B3713069BA600BA478C /* Credits.rtf */; };
 		8CDCC10112E2B64400CEAAD3 /* Skype.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9CE77812E2465B00017A02 /* Skype.framework */; };
 		8CDCC10712E2B7BA00CEAAD3 /* SkypeManagerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDCC10612E2B7BA00CEAAD3 /* SkypeManagerDelegate.m */; };
 		8CDCC10B12E2B86E00CEAAD3 /* SkypeManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CDCC10A12E2B86E00CEAAD3 /* SkypeManager.xib */; };
@@ -770,6 +772,7 @@
 		8CDC046B13010DCB00BA478C /* GoalChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoalChart.h; sourceTree = "<group>"; };
 		8CDC046C13010DCB00BA478C /* GoalChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoalChart.m; sourceTree = "<group>"; };
 		8CDC08EB1304576C00BA478C /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		8CDC0B3713069BA600BA478C /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		8CDCC0FA12E2B5F400CEAAD3 /* SkypeManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkypeManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CDCC0FD12E2B5F400CEAAD3 /* SkypeManager-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SkypeManager-Info.plist"; sourceTree = "<group>"; };
 		8CDCC10512E2B7BA00CEAAD3 /* SkypeManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkypeManagerDelegate.h; sourceTree = "<group>"; };
@@ -1012,6 +1015,7 @@
 				8C5DEC5612E8C4D000EE93F1 /* TestEventModule-Info.plist */,
 				8C82BAB812EF93F900830486 /* Carbon.framework */,
 				8CDC08EB1304576C00BA478C /* AppKit.framework */,
+				8CDC0B3713069BA600BA478C /* Credits.rtf */,
 			);
 			name = WorkPlayAway;
 			sourceTree = "<group>";
@@ -1773,6 +1777,7 @@
 				8C82C79412F17BB200830486 /* wpa.ico in Resources */,
 				8C82C85212F1E82500830486 /* wpa.icns in Resources */,
 				8C18042C12F777E50061FDE6 /* AddActivityDialog.xib in Resources */,
+				8CDC0B3813069BA600BA478C /* Credits.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1903,6 +1908,7 @@
 				8C82C85312F1E82500830486 /* wpa.icns in Resources */,
 				8C1800FA12F4B7990061FDE6 /* marketing.rtf in Resources */,
 				8C18042B12F777E50061FDE6 /* AddActivityDialog.xib in Resources */,
+				8CDC0B3913069BA600BA478C /* Credits.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

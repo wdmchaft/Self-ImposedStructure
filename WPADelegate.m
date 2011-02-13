@@ -205,19 +205,57 @@
 	return answer;
 }
 
-- (void) newSummaryForDate: (NSDate*) date goal: (int) goalTime work: (int) workTime free: (int) freeTime
+- (NSManagedObject*) findSummaryForDate:(NSDate *)dateIn
+{
+	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+	NSEntityDescription *entity =
+    [NSEntityDescription entityForName:@"DailySummary"
+				inManagedObjectContext:managedObjectContext];
+	[request setEntity:entity];
+	
+	NSPredicate *predicate =
+    [NSPredicate predicateWithFormat:@"recordDate == %@", dateIn];
+	[request setPredicate:predicate];
+	
+	NSError *error = nil;
+	NSArray *array = [managedObjectContext executeFetchRequest:request error:&error];
+	if (array != nil && [array count] == 1) {
+		return [array objectAtIndex:0];
+	}
+	return nil;
+}
+
+- (void) findSummaryForDate: (NSDate*) dateIn work: (NSTimeInterval*) workInt free: (NSTimeInterval*) freeInt
+{
+	NSTimeInterval retWork = 0.0;
+	NSTimeInterval retFree = 0.0;
+
+	NSManagedObject *mob = [self findSummaryForDate:dateIn];
+	if (mob){
+		NSNumber *temp = [mob valueForKey:@"timeWork"];
+		retWork = [temp doubleValue];
+		temp = [mob valueForKey:@"timeFree"];
+		retFree = [temp doubleValue];
+	}
+	
+	*workInt = retWork;
+	*freeInt = retFree;
+}
+
+- (void) saveSummaryForDate: (NSDate*) date goal: (int) goalTime work: (int) workTime free: (int) freeTime
 {
 	// new work record
 	NSManagedObjectContext *moc = [self managedObjectContext];
-	NSManagedObject *summary = nil;
-	summary = [NSEntityDescription
-			  insertNewObjectForEntityForName:@"DailySummary"
-			  inManagedObjectContext:moc];
-		
+	NSManagedObject *summary = [self findSummaryForDate: date];
+	if (!summary){
+		summary = [NSEntityDescription
+				  insertNewObjectForEntityForName:@"DailySummary"
+				  inManagedObjectContext:moc];
+	}
 	[summary setValue: date forKey: @"recordDate"];
 	[summary setValue:[NSNumber numberWithInt:workTime] forKey:@"timeWork"];
 	[summary setValue:[NSNumber numberWithInt:freeTime] forKey:@"timeFree"];
-	[summary setValue:[NSNumber numberWithInt:freeTime] forKey:@"timeGoal"];
+	[summary setValue:[NSNumber numberWithInt:goalTime] forKey:@"timeGoal"];
 	NSError *err = nil;
 	[moc save:&err];
 	if (err){
@@ -225,9 +263,6 @@
 	}
 }
 
-- (void) genData
-{
-}
 - (void) newRecord: (int) state
 {
 	Context *ctx = [Context sharedContext];
