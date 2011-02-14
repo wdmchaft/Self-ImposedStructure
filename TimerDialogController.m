@@ -18,7 +18,7 @@
 -(void) windowDidLoad
 {
 	Context *ctx = [Context sharedContext];
-	[minutesField setIntValue:(ctx.thinkTime / 60)];
+//	[minutesField setIntValue:(ctx.thinkTime / 60)];
 	[self loadSoundNames];
 }
 
@@ -62,14 +62,16 @@
 			[alarmNames addItemWithTitle:displayName];
 		}
 	}
-	[alarmNames selectItemWithTitle:[Context sharedContext].alertName];
+	NSString *alertName = [[NSUserDefaults standardUserDefaults] stringForKey:@"alertName"];
+	[alarmNames selectItemWithTitle:alertName];
 }
 
 -(void) okClicked: (id) sender
 {
 	Context *ctx = [Context sharedContext];
 	ctx.thinkTime = ([minutesField intValue] * 60);
-	ctx.alertName = [alarmNames titleOfSelectedItem];
+	[[NSUserDefaults standardUserDefaults] setFloat:ctx.thinkTime forKey:@"thinkTime"];
+	[[NSUserDefaults standardUserDefaults] setObject:[alarmNames titleOfSelectedItem] forKey:@"alertName"];
 	
 	[ctx saveDefaults];
 	[NSApp stopModal];

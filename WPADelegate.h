@@ -44,8 +44,6 @@
 - (NSString*) dumpMObj: (NSManagedObject*) obj;
 - (BOOL) hasTask: (NSManagedObject*) mobj;
 
-- (IBAction) clickPreferences: (id) sender;
-- (IBAction) clickTasksInfo: (id) sender;
 - (IBAction)handleNewMainWindowMenu:(NSMenuItem *)sender;
 - (void) findSummaryForDate: (NSDate*) date work: (NSTimeInterval*) workInt free: (NSTimeInterval*) freeInt;
 

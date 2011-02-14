@@ -42,7 +42,7 @@
 	NSTimeInterval rollAdjust = - (60 * 60 * rolloverHour);
 	NSDate *effectiveRollDate = [[dailyRolloverTimer fireDate] dateByAddingTimeInterval:rollAdjust];
 	[del saveSummaryForDate:effectiveRollDate 
-					  goal:[Context sharedContext].dailyGoal 
+					   goal:[[NSUserDefaults standardUserDefaults]doubleForKey:@"dailyGoal"] 
 					  work:workToday 
 					  free:freeToday];
 }

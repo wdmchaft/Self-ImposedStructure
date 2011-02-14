@@ -16,10 +16,59 @@
 #import "SummaryHUDControl.h"
 #import "AddActivityDialogController.h"
 #import "Menu.h"
+#import "MinsToSecsTransformer.h"
+#import "SecsToMinsTransformer.h"
 
 @implementation WPAMainController
 @synthesize  startButton, controls, taskComboBox, refreshButton, statusItem, statusMenu, statusTimer, myWindow;
 @synthesize hudWindow, refreshManager, thinkTimer, siView, totalsManager, prefsWindow, statsWindow, addActivityWindow;
+
++ (void)initialize{
+	
+	MinsToSecsTransformer *mToSTransformer;
+	
+	// create an autoreleased instance of our value transformer
+	mToSTransformer = [[[MinsToSecsTransformer alloc] init]
+					   autorelease];
+	
+	// register it with the name that we refer to it with
+	[NSValueTransformer setValueTransformer:mToSTransformer
+									forName:@"MinsToSecsTransformer"];								
+
+	SecsToMinsTransformer *sToMTransformer;
+	 
+	// create an autoreleased instance of our value transformer
+	sToMTransformer = [[[SecsToMinsTransformer alloc] init]
+						autorelease];
+	 
+	// register it with the name that we refer to it with
+	[NSValueTransformer setValueTransformer:sToMTransformer
+									 forName:@"SecsToMinsTransformer"];									
+	
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *appDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
+								 @"YES",							@"autoBackToWork",
+								 @"YES",							@"showSummary",
+								 @"NO",								@"useHotKey",
+								 @"NO",								@"startOnLoad",
+								 @"NO",								@"ignoreScreenSaver",
+								 [NSNumber numberWithDouble:3600],	@"timeAwayThreshold",
+								 [NSNumber numberWithDouble:600],	@"backToWorkThreshold",
+								 [NSNumber numberWithDouble:20.0 * 60 * 60], @"weeklyGoal",
+								 [NSNumber numberWithDouble:4.0 * 60 * 60],	@"dailyGoal",
+								 [NSNumber numberWithDouble:1800],	@"thinkTime",
+								 [NSNumber numberWithDouble:30],	@"growlFrequency",
+								 [NSNumber numberWithInt:WPASTATE_OFF], @"currentState",
+								 [NSNumber numberWithInt:WPASTATE_FREE], @"previousState",
+								 [NSDate distantPast],				@"lastStateChange",
+								 @"Beep",							@"alertName",
+								 nil];
+	
+    [defaults registerDefaults:appDefaults];
+
+
+}
+	
 - (void)awakeFromNib
 {
 	[myWindow setDelegate: self];
@@ -61,13 +110,11 @@
 	[self buildStatusMenu];
 	[statusItem setHighlightMode:YES];
 	[statusMenu  setAutoenablesItems:NO];
-//	if (ctx.startOnLoad){
-		statusTimer = [NSTimer scheduledTimerWithTimeInterval:totalsManager.interval
-													   target: self 
-													 selector:@selector(updateStatus:) 
-													 userInfo:nil 
-													  repeats:NO];
-//	}
+	statusTimer = [NSTimer scheduledTimerWithTimeInterval:totalsManager.interval
+												   target: self 
+												 selector:@selector(updateStatus:) 
+												 userInfo:nil 
+												  repeats:NO];
 	[self setupHotKeyIfNecessary];
 }
 
@@ -103,7 +150,7 @@
 		siView.statusMenu = statusMenu;
 	}
 	siView.timer = thinkTimer;
-	siView.goal = ctx.dailyGoal;
+	siView.goal = [[NSUserDefaults standardUserDefaults]doubleForKey:@"dailyGoal"];
 	siView.work = totalsManager.workToday;
 	siView.free = totalsManager.freeToday;
 	siView.state = ctx.currentState;
@@ -324,12 +371,16 @@
 - (BOOL) needsSummary
 {
 	Context *ctx = [Context sharedContext];
-	if (ctx.showSummary == YES){
+	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+	BOOL showSummary = [ud boolForKey:@"showSummary"];
+	if (showSummary == YES){
 		if (ctx.currentState!= WPASTATE_FREE && ctx.currentState != WPASTATE_SUMMARY) {
 			NSDate *lastChange = ctx.lastStateChange;
 			NSTimeInterval timeAway = [[NSDate date] timeIntervalSinceDate:lastChange];
-			if (timeAway > ctx.timeAwayThreshold)
+			NSTimeInterval taInt =[ud doubleForKey:@"timeAwayThreshold"];
+			if (timeAway > taInt){
 				return YES;
+			}
 		}
 	}
 	return NO;
@@ -343,11 +394,14 @@
 - (BOOL) shouldGoBackToWork
 {
 	Context *ctx = [Context sharedContext];
-	if (ctx.autoBackToWork && (ctx.currentState == WPASTATE_THINKTIME || ctx.previousState == WPASTATE_THINKING)){
+	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+	BOOL autoBackToWork = [ud boolForKey:@"autoBackToWork"];
+	if (autoBackToWork && (ctx.currentState == WPASTATE_THINKTIME || ctx.previousState == WPASTATE_THINKING)){
 		if (ctx.previousState == WPASTATE_AWAY || ctx.currentState == WPASTATE_OFF) {
 			NSDate *lastChange = ctx.lastStateChange;
 			NSTimeInterval timeAway = [[NSDate date] timeIntervalSinceDate:lastChange];
-			if (timeAway < ctx.brbThreshold)
+			NSTimeInterval brbInt= [ud doubleForKey:@"backToWorkThreshold"];
+			if (timeAway < brbInt)
 				return TRUE;
 		}	
 	}
@@ -496,7 +550,8 @@
 
 - (void) timerAlarm: (NSTimer*) timer 
 {
-	NSSound *systemSound = [NSSound soundNamed:[Context sharedContext].alertName];
+	NSString *alertName = [[NSUserDefaults standardUserDefaults] objectForKey:@"alertName"];
+	NSSound *systemSound = [NSSound soundNamed:alertName];
 	[systemSound play];
 	[self changeState:WPASTATE_FREE];
 	[thinkTimer invalidate];
@@ -542,15 +597,17 @@
 
 -(void)handleScreenSaverStart:(NSNotification*) notification
 {	
-	
-	if (![Context sharedContext].ignoreScreenSaver){
+	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+	if (![ud boolForKey:@"ignoreScreenSaver"]){
+		[self changeState:WPASTATE_AWAY]; 
 		[controls setSelectedSegment: WPASTATE_AWAY];
 	}
 }
 
 -(void)handleScreenSaverStop:(NSNotification*) notification
 {	
-	if (![Context sharedContext].ignoreScreenSaver){
+	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+	if (![ud boolForKey:@"ignoreScreenSaver"]){
 		[self changeState:WPASTATE_FREE]; 
 		[controls setSelectedSegment: WPASTATE_FREE];
 	}
@@ -593,7 +650,7 @@ OSStatus hotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 
 - (void) setupHotKeyIfNecessary
 {
-	if ([Context sharedContext].useHotKey)
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"useHotKey"])
 		[self setupHotKey];
 }
 - (void) setupHotKey

@@ -27,11 +27,10 @@
 @synthesize managedObjectContext;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-	Context *ctx = [Context sharedContext];
 
 	WPAMainController *wpam = (WPAMainController*)[window delegate];
 	NSLog(@"app launched");
-	if (ctx.startOnLoad){
+	if ([[NSUserDefaults standardUserDefaults]boolForKey:@"startOnLoad"]){
 		[wpam clickStart:self];
 	}
 	[window setTitle:__APPNAME__];
@@ -210,17 +209,19 @@
 	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
 	NSEntityDescription *entity =
     [NSEntityDescription entityForName:@"DailySummary"
-				inManagedObjectContext:managedObjectContext];
-	[request setEntity:entity];
-	
-	NSPredicate *predicate =
-    [NSPredicate predicateWithFormat:@"recordDate == %@", dateIn];
-	[request setPredicate:predicate];
-	
-	NSError *error = nil;
-	NSArray *array = [managedObjectContext executeFetchRequest:request error:&error];
-	if (array != nil && [array count] == 1) {
-		return [array objectAtIndex:0];
+				inManagedObjectContext:[self managedObjectContext]];
+	if (entity) {
+		[request setEntity:entity];
+		
+		NSPredicate *predicate =
+		[NSPredicate predicateWithFormat:@"recordDate == %@", dateIn];
+		[request setPredicate:predicate];
+		
+		NSError *error = nil;
+		NSArray *array = [managedObjectContext executeFetchRequest:request error:&error];
+		if (array != nil && [array count] == 1) {
+			return [array objectAtIndex:0];
+		}
 	}
 	return nil;
 }

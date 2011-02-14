@@ -13,11 +13,8 @@
 #import "LaunchAtLoginController.h"
 
 @implementation PreferencesWindow
-@synthesize modulesTable, amwControl, 
-growlIntervalText,addButton, removeButton, newModuleView, tableData, 
-startOnLaunchButton, launchOnBootButton, growlStepper, editButton, ignoreSaverButton,
-dailyGoalText, weeklyGoalText, brbText, summaryText, brbStepper, summaryStepper,
-enableHotKeyButton;
+@synthesize modulesTable, amwControl,addButton, removeButton, newModuleView, tableData, 
+launchOnBootButton, editButton;
 
 - (void)awakeFromNib
 {
@@ -45,9 +42,6 @@ enableHotKeyButton;
 	modulesTable.dataSource = tableData;
 	[modulesTable noteNumberOfRowsChanged];
 	
-	
-	
-	
     NSButtonCell *cell;
     cell = [[NSButtonCell alloc] init];
     [cell setButtonType:NSSwitchButton];
@@ -59,31 +53,16 @@ enableHotKeyButton;
 	[cell release];
 	
 	workView = modulesTable;
-	
-	// reset loadOnLogin according to reality
-	
-	LaunchAtLoginController *lALCtrl = [LaunchAtLoginController new];
-	ctx.loadOnLogin = [lALCtrl launchAtLogin];
+
 }
 
 - (void) showWindow:(id)sender
 {
 	[super showWindow:sender];
 	Context *ctx = [Context sharedContext];
-	[launchOnBootButton setIntValue:(ctx.loadOnLogin == YES)];
-	[startOnLaunchButton setIntValue:(ctx.startOnLoad == YES)];
-	[enableHotKeyButton setIntValue:(ctx.useHotKey == YES)];
-	[ignoreSaverButton setIntValue:(ctx.ignoreScreenSaver == YES)];
+	LaunchAtLoginController *lALCtrl = [LaunchAtLoginController new];
+	[launchOnBootButton setIntValue: [lALCtrl launchAtLogin]];
 	
-	
-	[growlIntervalText setStringValue:[[NSString alloc] initWithFormat:@"%d",ctx.growlInterval]];
-	[growlStepper setIntValue:ctx.growlInterval];
-	[weeklyGoalText setDoubleValue:(ctx.weeklyGoal/60)];
-	[dailyGoalText setDoubleValue:(ctx.dailyGoal/60)];
-	[summaryText setDoubleValue:(ctx.timeAwayThreshold/60)];
-	[brbText setDoubleValue:(ctx.brbThreshold/60)];
-	[summaryStepper setIntValue:(ctx.timeAwayThreshold/60)];
-	[brbStepper setDoubleValue:(ctx.brbThreshold/60)];
 	[[super window]orderFront:self];
 }
 
@@ -169,25 +148,6 @@ enableHotKeyButton;
 	[mod saveDefaults];	
 }
 
-
--(IBAction) clickStartOnLaunch: (id) sender {
-	if (startOnLaunchButton.intValue == 1){
-		[Context sharedContext].startOnLoad = YES;
-	} else {
-		[Context sharedContext].startOnLoad = NO;
-	}
-	[[Context sharedContext] saveDefaults];
-}
-
--(IBAction) clickEnableHotKey: (id) sender {
-	if (enableHotKeyButton.intValue == 1){
-		[Context sharedContext].useHotKey = YES;
-	} else {
-		[Context sharedContext].useHotKey = NO;
-	}
-	[[Context sharedContext] saveDefaults];
-}
-
 - (BOOL) addToLogin
 {
 	LaunchAtLoginController *lALCtrl = [LaunchAtLoginController new];
@@ -207,76 +167,28 @@ enableHotKeyButton;
 	Context *ctx = [Context sharedContext];
 	if (launchOnBootButton.state == NSOffState){
 		isOK = [self removeFromLogin];
-		[Context sharedContext].loadOnLogin = NO;
 	} else {
 		isOK = [self addToLogin];
 	}
 	if (isOK)
 	{
-		ctx.loadOnLogin = (launchOnBootButton.state == NSOffState);
 		[ctx saveDefaults];
 
 	} else {
 		// back out the change to the checkbox on failure
-		[launchOnBootButton setState: ctx.loadOnLogin == YES ? NSOnState : NSOffState];
+		LaunchAtLoginController *lALCtrl = [LaunchAtLoginController new];
+		[launchOnBootButton setState: [lALCtrl launchAtLogin]];
 	}
 }
 
-
-- (IBAction) clickGrowlStepper: (id) sender
+- (IBAction) clickUseHotKey: (id) sender
 {
-	int stepVal = growlStepper.intValue;
-	growlIntervalText.intValue = stepVal;
-	[Context sharedContext].growlInterval = stepVal;
-	[[Context sharedContext] saveDefaults];
+	NSAlert *alert = [NSAlert alertWithMessageText:@"For your information" 
+									 defaultButton:nil alternateButton:nil 
+									   otherButton:nil 
+						 informativeTextWithFormat:@"This change will not take effect until you quit and restart."];
+	[alert runModal];	
+	
 }
 
-- (IBAction) clickIgnoreSaverButton: (id) sender
-{
-	if (ignoreSaverButton.intValue == 1){
-		[Context sharedContext].ignoreScreenSaver = YES;
-	} else {
-		[Context sharedContext].ignoreScreenSaver = NO;
-	}
-	[[Context sharedContext] saveDefaults];
-}
-
--(IBAction) dailyGoalChanged: (id) sender
-{
-	[Context sharedContext].dailyGoal = (dailyGoalText.intValue * 60);
-	[[Context sharedContext] saveDefaults];
-}
-
--(IBAction) weeklyGoalChanged: (id) sender
-{
-	[Context sharedContext].weeklyGoal  = (weeklyGoalText.intValue * 60);
-	[[Context sharedContext] saveDefaults];
-}
-
-- (IBAction) clickBRBStepper: (id) sender
-{
-	int stepVal = brbStepper.intValue;
-	brbText.intValue = stepVal;
-	[Context sharedContext].brbThreshold = stepVal * 60;
-	[[Context sharedContext] saveDefaults];
-}
-
-- (IBAction) clickSummaryStepper: (id) sender
-{
-	int stepVal = summaryStepper.intValue;
-	summaryText.intValue = stepVal;
-	[Context sharedContext].timeAwayThreshold = stepVal * 60;
-	[[Context sharedContext] saveDefaults];
-}
-
-- (IBAction) summaryChanged: (id) sender
-{
-	[Context sharedContext].timeAwayThreshold = [sender intValue] * 60;
-}
-
-- (IBAction) brbChanged: (id) sender
-{
-	[Context sharedContext].brbThreshold = [sender intValue] * 60;
-
-}
 @end
