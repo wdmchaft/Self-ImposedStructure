@@ -624,6 +624,8 @@
         prefsWindow = [[PreferencesWindow alloc] initWithWindowNibName:@"PreferencesWindow"];
     }
 	[prefsWindow showWindow:self];
+	[[prefsWindow window] makeKeyAndOrderFront:self];
+	[[statsWindow window] setOrderedIndex:0];
 }
 
 

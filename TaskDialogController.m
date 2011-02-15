@@ -29,12 +29,29 @@
 
 -(void) clickDismiss: (id) sender
 {
-	if ([[dismissButton title] isEqualToString: @"Update"]){
-		currentJob = JOB_MOVETO;
+	currentJob = JOB_NONE;
+}
+
+- (void) clickOk: (id) sender
+{
+	if (currentJob != JOB_NONE){
 		[self timelineRequest];
 	}
+	else {
+		[self close];
+	}
+}
+
+- (void) clickUpdate: (id) sender
+{
+	currentJob = JOB_MOVETO;
+}
+
+- (void) clickCancel: (id) sender
+{ 
 	[self close];
 }
+
 - (void) timelineRequest
 {
 	
@@ -54,18 +71,15 @@
 	[rr release];
 	
 }
+
 -(void) clickComplete: (id) sender
 {
 	currentJob = JOB_COMPLETE;
-	[self timelineRequest];
-
 }
 
 -(void) clickDelete: (id) sender
 {
-	currentJob = JOB_DELETE;
-	[self timelineRequest];
-	
+	currentJob = JOB_DELETE;	
 }
 
 - (void) sendMoveTo: (NSString*) newList
@@ -181,6 +195,7 @@
 	[nameField setStringValue:[tdc valueForKey:@"name"]];
 	[notesField setStringValue:[tdc valueForKey:@"notes"]];
 	[self loadLists];
+	currentJob = JOB_NONE;
 	
 }
 
@@ -225,7 +240,7 @@
 	[busyIndicator stopAnimation:self];
 	[self loadLists];
 }
-//NSWindow
+
 - (void) showWindow:(id)sender
 {
 	[super.window makeKeyWindow];
@@ -250,8 +265,7 @@
 
 -(void) listChanged:(id)sender
 {
-	[dismissButton setTitle:@"Update"];
-	currentJob = JOB_MOVETO;
+	[self clickUpdate:self];
 }
 
 -(TaskDialogController*)initWithWindowNibName:(NSString*)nibName andContext: (RTMModule*) mod andParams: (NSDictionary*) params

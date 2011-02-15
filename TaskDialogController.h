@@ -13,9 +13,12 @@
 #define JOB_DELETE 0
 #define JOB_COMPLETE 1
 #define JOB_MOVETO 2
+#define JOB_NONE 3
 
 @interface TaskDialogController : NSWindowController <RTMCallback> {
 	NSButton *dismissButton;
+	NSButton *okButton;
+	NSButton *cancelButton;
 	NSProgressIndicator *busyIndicator;
 	NSString *timelineStr;
 	NSTextField *nameField;
@@ -42,6 +45,8 @@
 - (IBAction) clickDismiss: (id)sender;
 - (IBAction) clickComplete: (id)sender;
 - (IBAction) clickDelete: (id)sender;
+- (IBAction) clickOk: (id)sender;
+- (IBAction) clickCancel: (id)sender;
 - (IBAction) listChanged: (id)sender;
 - (void) timelineRequest;
 
