@@ -135,9 +135,9 @@
 		[self growlAlert:[q objectAtIndex:0]];
 		[q removeObjectAtIndex:0];
 	}
-	int interval = [Context sharedContext].growlInterval;
+	NSTimeInterval gIInt = [[NSUserDefaults standardUserDefaults] doubleForKey:@"growlFrequency"];
 	//[self performSelector:@selector(growlLoop:) withObject:nil afterDelay:interval];
-	timer = [NSTimer scheduledTimerWithTimeInterval:interval
+	timer = [NSTimer scheduledTimerWithTimeInterval:gIInt
 													  target:self 
 													selector:@selector(growlLoop:)
 													userInfo:nil

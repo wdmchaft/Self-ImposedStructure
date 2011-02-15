@@ -21,24 +21,12 @@
 	NSMutableDictionary *instancesMap; // maps module name to instance of module
 	NSMutableDictionary *bundlesMap; // maps plugin name to its bundle
 	NSMutableDictionary *iconsMap; // maps module name to its icon;
-	int growlInterval;
-	BOOL startOnLoad;
-	BOOL loadOnLogin;
 	int thinkTime;
-	NSString *alertName;
 	TaskInfo *currentTask;
 	NSManagedObject *currentActivity;
-	BOOL ignoreScreenSaver;
 	BOOL running;
 	NSArray *tasksList;
-	NSTimeInterval dailyGoal;
-	NSTimeInterval weeklyGoal;
 	NSDate *lastStateChange;
-	BOOL showSummary;
-	BOOL autoBackToWork;
-	BOOL useHotKey;
-	NSTimeInterval timeAwayThreshold;
-	NSTimeInterval brbThreshold;
 	WPAStateType previousState;
 	WPAStateType currentState;
 	GrowlManager *growlManager;
@@ -48,27 +36,16 @@
 @property (nonatomic, retain) NSMutableDictionary *bundlesMap;
 @property (nonatomic, retain) NSMutableDictionary *iconsMap;
 
-@property (nonatomic) NSTimeInterval weeklyGoal;
-@property (nonatomic) NSTimeInterval dailyGoal;
-@property (nonatomic) int growlInterval;
-@property (nonatomic) BOOL startOnLoad;
-@property (nonatomic) BOOL loadOnLogin;
-@property (nonatomic) BOOL ignoreScreenSaver;
+
 @property (nonatomic) BOOL running;
-@property (nonatomic) BOOL autoBackToWork;
-@property (nonatomic) BOOL showSummary;
-@property (nonatomic) BOOL useHotKey;
 @property (nonatomic) WPAStateType currentState;
 @property (nonatomic) int thinkTime;
-@property (nonatomic, retain) NSString *alertName;
 @property (nonatomic, retain) TaskInfo *currentTask;
 //@property (nonatomic, retain) NSString *currentSource;
 @property (nonatomic, retain) NSManagedObject *currentActivity;
 @property (nonatomic, retain) NSArray *tasksList;
 @property (nonatomic, retain) NSDate *lastStateChange;
 @property (nonatomic, retain) GrowlManager *growlManager;
-@property (nonatomic) NSTimeInterval timeAwayThreshold;
-@property (nonatomic) NSTimeInterval brbThreshold;
 @property (nonatomic) WPAStateType previousState;
 + (Context*)sharedContext;
 - (void) loadBundles;
@@ -86,30 +63,19 @@
 
 @implementation Context
 //@synthesize alertQ;
-@synthesize growlInterval;
 @synthesize running;
 @synthesize bundlesMap;
-@synthesize startOnLoad;
 @synthesize instancesMap;
 @synthesize iconsMap;
 @synthesize currentState;
 @synthesize thinkTime;
-@synthesize loadOnLogin;
-@synthesize alertName;
 @synthesize currentActivity;
 @synthesize currentTask;
-@synthesize ignoreScreenSaver;
 @synthesize tasksList;
-@synthesize weeklyGoal;
-@synthesize dailyGoal;
 @synthesize lastStateChange;
 @synthesize previousState;
-@synthesize timeAwayThreshold;
-@synthesize brbThreshold;
-@synthesize autoBackToWork;
-@synthesize showSummary;
 @synthesize growlManager;
-@synthesize useHotKey;
+
 
 
 static Context* sharedContext = nil;
@@ -216,61 +182,17 @@ static Context* sharedContext = nil;
 {
 	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
 	
-	NSObject *temp = [ud objectForKey:@"StartOnLoad"];
-	if (temp != nil){
-		startOnLoad = [((NSNumber*) temp) intValue];
-		running = startOnLoad; // set running according to this -- we will be starting up ASAP
-	}
-	temp = [ud objectForKey:@"LoadOnLogin"];
-	if (temp != nil){
-		loadOnLogin = [((NSNumber*) temp) intValue];
-	}
-	
+	running = [ud boolForKey:@"startOnLoad"];// set running according to this -- we will be starting up ASAP
+
 	/**
 	 If this is the first time the the initial state is OFF
 	 **/
-	temp = [ud objectForKey:@"CurrentState"];
-	[self setCurrentState: temp ? [((NSNumber*) temp) intValue] : WPASTATE_OFF]; // 
-	
-	temp = [ud objectForKey:@"PreviousState"];
-	previousState = temp? [((NSNumber*) temp) intValue] : WPASTATE_FREE;
-					 
-	temp = [ud objectForKey:@"IgnoreScreenSaver"];
-	if (temp != nil){
-		ignoreScreenSaver = [((NSNumber*) temp) intValue];
-	}
-	temp = [ud objectForKey:@"GrowlInterval"];
-	growlInterval = (temp == nil) ? 10 : [((NSNumber*) temp) intValue];
-	
-	temp = [ud objectForKey:@"DailyGoal"];
-	dailyGoal = (temp == nil) ? 0 : [((NSNumber*) temp) intValue];
-	
-	temp = [ud objectForKey:@"WeeklyGoal"];
-	weeklyGoal = (temp == nil) ? 0 : [((NSNumber*) temp) intValue];
-	
-	temp = [ud objectForKey:@"ThinkTime"];
-	thinkTime =(temp == nil) ? 30 : [((NSNumber*) temp) intValue];
-	
-	temp = [ud objectForKey:@"AlertName"];
-	alertName = (temp == nil) ? @"Beep" : (NSString*)temp;
-	
-	temp = [ud objectForKey:@"ShowSummary"];
-	showSummary = (temp ? [((NSNumber*) temp) intValue] : YES);
-	
-	temp = [ud objectForKey:@"AutoBackToWork"];
-	autoBackToWork = (temp ? [((NSNumber*) temp) intValue] : YES);
-	
-	temp = [ud objectForKey:@"UseHotKey"];
-	useHotKey = (temp ? [((NSNumber*) temp) intValue] : NO);
-	
-	temp = [ud objectForKey:@"BRBThreshold"];
-	brbThreshold = (temp ? [((NSNumber*) temp) intValue] : 10 * 60);
-	
-	temp = [ud objectForKey:@"TimeAwayThreshold"];
-	timeAwayThreshold = (temp ? [((NSNumber*) temp) intValue] : 4 * 60 * 60);
-		
-	temp = [ud objectForKey:@"LastStateChange"];
-	lastStateChange = (temp ? (NSDate*) temp : [NSDate distantPast]);
+	currentState = [ud integerForKey:@"currentState"];
+	previousState = [ud integerForKey:@"previousState"];
+			 
+	thinkTime =[ud doubleForKey:@"thinkTime"];
+
+	lastStateChange = [ud objectForKey:@"lastStateChange"];
 
 	
 	// ModulesList : <modName1>, <pluginNameY>, <modName2>, <pluginNameX>, <modName3>, <pluginNameZ>, etc...
@@ -319,23 +241,11 @@ static Context* sharedContext = nil;
 -(void) saveDefaults
 {
 	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-	[ud setObject: [NSNumber numberWithInt:startOnLoad] forKey: @"StartOnLoad"];
-	[ud setObject: [NSNumber numberWithInt:loadOnLogin] forKey: @"LoadOnLogin"];
-	[ud setObject: [NSNumber numberWithInt:ignoreScreenSaver] forKey: @"IgnoreScreenSaver"];
+
 	[ud setObject: [NSNumber numberWithInt:currentState] forKey: @"currentState"];
-	[ud setObject: [NSNumber numberWithInt:thinkTime] forKey: @"ThinkTime"];
-	[ud setObject: [NSNumber numberWithInt:growlInterval] forKey: @"GrowlInterval"];
-	[ud setObject: [NSNumber numberWithInt:thinkTime] forKey: @"ThinkTime"];
-	[ud setObject: [NSNumber numberWithInt:weeklyGoal] forKey: @"WeeklyGoal"];
-	[ud setObject: [NSNumber numberWithInt:dailyGoal] forKey: @"DailyGoal"];
-	[ud setObject: [NSNumber numberWithInt:timeAwayThreshold] forKey: @"TimeAwayThreshold"];
-	[ud setObject: [NSNumber numberWithInt:brbThreshold] forKey: @"BRBThreshold"];
-	[ud setObject: [NSNumber numberWithInt:autoBackToWork] forKey: @"AutoBackToWork"];
-	[ud setObject: [NSNumber numberWithInt:showSummary] forKey: @"ShowSummary"];
-	[ud setObject: [NSNumber numberWithInt:previousState] forKey: @"PreviousState"];
-	[ud setObject: [NSNumber numberWithInt:useHotKey] forKey: @"UseHotKey"];
-	[ud setObject: lastStateChange forKey: @"LastStateChange"];
-	[ud setObject: alertName forKey: @"AlertName"];
+	[ud setObject: [NSNumber numberWithInt:thinkTime] forKey: @"thinkTime"];
+	[ud setObject: [NSNumber numberWithInt:previousState] forKey: @"previousState"];
+	[ud setObject: lastStateChange forKey: @"lastStateChange"];
 	[self saveModules];
 	[self saveTask];
 	

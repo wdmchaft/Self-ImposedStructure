@@ -53,12 +53,12 @@
  */
 - (void)skypeAttachResponse:(unsigned)aAttachResponseCode
 {
-	NSLog(@"got skype response code %d", aAttachResponseCode);
+	//NSLog(@"got skype response code %d", aAttachResponseCode);
 	//	if (aAttachResponseCode == YES){
 	NSString *statusStr = [SkypeState stateToString:state];
 	NSString *cmdStr = [[NSString alloc]initWithFormat:@"%@ %@",@"SET USERSTATUS", statusStr ];
 	NSString *res = [SkypeAPI sendSkypeCommand: cmdStr];
-	NSLog(@"sendSkypeCommand [%@] result = [%@]", cmdStr, res);
+	//NSLog(@"sendSkypeCommand [%@] result = [%@]", cmdStr, res);
 	//	}
 }
 
@@ -81,7 +81,7 @@
 
 - (void)skypeNotificationReceived:(NSString*)aNotificationString
 {
-	NSLog(@"skypeNotificationReceived: %@", aNotificationString);
+	//NSLog(@"skypeNotificationReceived: %@", aNotificationString);
 }
 
 

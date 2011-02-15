@@ -200,6 +200,17 @@
 		8CDC0BA41307C58000BA478C /* SecsToMinsTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC0BA21307C58000BA478C /* SecsToMinsTransformer.m */; };
 		8CDC0BBA1307CD1400BA478C /* MinsToSecsTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC0BB91307CD1400BA478C /* MinsToSecsTransformer.m */; };
 		8CDC0BBB1307CD1400BA478C /* MinsToSecsTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC0BB91307CD1400BA478C /* MinsToSecsTransformer.m */; };
+		8CDC0D631309D49400BA478C /* WorkModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC0D621309D49400BA478C /* WorkModule.m */; };
+		8CDC0D641309D49400BA478C /* WorkModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC0D621309D49400BA478C /* WorkModule.m */; };
+		8CDC0D781309D7C100BA478C /* WorkModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC0D621309D49400BA478C /* WorkModule.m */; };
+		8CDC0D7A1309D80000BA478C /* WorkModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CDC0D791309D80000BA478C /* WorkModule.xib */; };
+		8CDC0D841309E6C400BA478C /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
+		8CDC0E21130A465D00BA478C /* ChooseApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC0E20130A465D00BA478C /* ChooseApp.m */; };
+		8CDC0E22130A465D00BA478C /* ChooseApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC0E20130A465D00BA478C /* ChooseApp.m */; };
+		8CDC0E24130A46B000BA478C /* ChooseApp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CDC0E23130A46B000BA478C /* ChooseApp.xib */; };
+		8CDC0E25130A46B000BA478C /* ChooseApp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CDC0E23130A46B000BA478C /* ChooseApp.xib */; };
+		8CDC0E63130A5A4700BA478C /* ChooseApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC0E20130A465D00BA478C /* ChooseApp.m */; };
+		8CDC0E64130A5A5000BA478C /* ChooseApp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CDC0E23130A46B000BA478C /* ChooseApp.xib */; };
 		8CDCC10112E2B64400CEAAD3 /* Skype.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9CE77812E2465B00017A02 /* Skype.framework */; };
 		8CDCC10712E2B7BA00CEAAD3 /* SkypeManagerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDCC10612E2B7BA00CEAAD3 /* SkypeManagerDelegate.m */; };
 		8CDCC10B12E2B86E00CEAAD3 /* SkypeManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CDCC10A12E2B86E00CEAAD3 /* SkypeManager.xib */; };
@@ -496,6 +507,27 @@
 			remoteGlobalIDString = 8CD1989C12D5092F00C69AC9;
 			remoteInfo = GCalModule;
 		};
+		8CDC0D701309D73F00BA478C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CD1974312D4C59600C69AC9 /* WPACommon */;
+			remoteInfo = WPACommon;
+		};
+		8CDC0D731309D76000BA478C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CDC0D691309D68B00BA478C /* WorkModule */;
+			remoteInfo = WorkModule;
+		};
+		8CDC0D761309D77700BA478C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CDC0D691309D68B00BA478C /* WorkModule */;
+			remoteInfo = WorkModule;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -781,6 +813,14 @@
 		8CDC0BA21307C58000BA478C /* SecsToMinsTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecsToMinsTransformer.m; sourceTree = "<group>"; };
 		8CDC0BB81307CD1400BA478C /* MinsToSecsTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinsToSecsTransformer.h; sourceTree = "<group>"; };
 		8CDC0BB91307CD1400BA478C /* MinsToSecsTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MinsToSecsTransformer.m; sourceTree = "<group>"; };
+		8CDC0D611309D49400BA478C /* WorkModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkModule.h; sourceTree = "<group>"; };
+		8CDC0D621309D49400BA478C /* WorkModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkModule.m; sourceTree = "<group>"; };
+		8CDC0D6A1309D68B00BA478C /* WorkModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WorkModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CDC0D6B1309D68B00BA478C /* WorkModule-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WorkModule-Info.plist"; sourceTree = "<group>"; };
+		8CDC0D791309D80000BA478C /* WorkModule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkModule.xib; sourceTree = "<group>"; };
+		8CDC0E1F130A465D00BA478C /* ChooseApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseApp.h; sourceTree = "<group>"; };
+		8CDC0E20130A465D00BA478C /* ChooseApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseApp.m; sourceTree = "<group>"; };
+		8CDC0E23130A46B000BA478C /* ChooseApp.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChooseApp.xib; sourceTree = "<group>"; };
 		8CDCC0FA12E2B5F400CEAAD3 /* SkypeManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkypeManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CDCC0FD12E2B5F400CEAAD3 /* SkypeManager-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SkypeManager-Info.plist"; sourceTree = "<group>"; };
 		8CDCC10512E2B7BA00CEAAD3 /* SkypeManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkypeManagerDelegate.h; sourceTree = "<group>"; };
@@ -921,6 +961,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8CDC0D681309D68B00BA478C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CDC0D841309E6C400BA478C /* WPACommon.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8CDCC0F812E2B5F400CEAAD3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1002,6 +1050,7 @@
 				8C73F89312E891D00056FAFF /* TestMailModule.bundle */,
 				8C5DEC4912E8C4A600EE93F1 /* TestTaskModule.bundle */,
 				8C5DEC5512E8C4D000EE93F1 /* TestEventModule.bundle */,
+				8CDC0D6A1309D68B00BA478C /* WorkModule.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1009,10 +1058,6 @@
 		29B97314FDCFA39411CA2CEA /* WorkPlayAway */ = {
 			isa = PBXGroup;
 			children = (
-				8CDC0BB81307CD1400BA478C /* MinsToSecsTransformer.h */,
-				8CDC0BB91307CD1400BA478C /* MinsToSecsTransformer.m */,
-				8CDC0BA11307C58000BA478C /* SecsToMinsTransformer.h */,
-				8CDC0BA21307C58000BA478C /* SecsToMinsTransformer.m */,
 				8C82CFDF12F3D0BE00830486 /* Design.txt */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -1028,6 +1073,8 @@
 				8C82BAB812EF93F900830486 /* Carbon.framework */,
 				8CDC08EB1304576C00BA478C /* AppKit.framework */,
 				8CDC0B3713069BA600BA478C /* Credits.rtf */,
+				8CDC0D6B1309D68B00BA478C /* WorkModule-Info.plist */,
+				8CDC0D791309D80000BA478C /* WorkModule.xib */,
 			);
 			name = WorkPlayAway;
 			sourceTree = "<group>";
@@ -1146,6 +1193,7 @@
 		8C73F8B212E8933B0056FAFF /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				8CDC0D601309D47000BA478C /* WorkModule */,
 				8CD1966F12D46CA000C69AC9 /* iChatModule */,
 				8CD1966E12D46C9600C69AC9 /* AdiumModule */,
 				8CD1967112D46CCA00C69AC9 /* GCalModule */,
@@ -1331,6 +1379,10 @@
 		8CD1978912D4C89D00C69AC9 /* WPAMain */ = {
 			isa = PBXGroup;
 			children = (
+				8CDC0BB81307CD1400BA478C /* MinsToSecsTransformer.h */,
+				8CDC0BB91307CD1400BA478C /* MinsToSecsTransformer.m */,
+				8CDC0BA11307C58000BA478C /* SecsToMinsTransformer.h */,
+				8CDC0BA21307C58000BA478C /* SecsToMinsTransformer.m */,
 				8CA668A212FF86C5004FD7EE /* LaunchAtLoginController.h */,
 				8CA668A312FF86C5004FD7EE /* LaunchAtLoginController.m */,
 				8C18042A12F777E50061FDE6 /* AddActivityDialog.xib */,
@@ -1390,6 +1442,18 @@
 				8CDC038A1300809600BA478C /* Menu.h */,
 			);
 			name = WPAMain;
+			sourceTree = "<group>";
+		};
+		8CDC0D601309D47000BA478C /* WorkModule */ = {
+			isa = PBXGroup;
+			children = (
+				8CDC0D611309D49400BA478C /* WorkModule.h */,
+				8CDC0D621309D49400BA478C /* WorkModule.m */,
+				8CDC0E1F130A465D00BA478C /* ChooseApp.h */,
+				8CDC0E20130A465D00BA478C /* ChooseApp.m */,
+				8CDC0E23130A46B000BA478C /* ChooseApp.xib */,
+			);
+			name = WorkModule;
 			sourceTree = "<group>";
 		};
 		8CF8C14012DC2B71009C7E3D /* Reporting */ = {
@@ -1457,6 +1521,7 @@
 				8C73F8BD12E8975B0056FAFF /* PBXTargetDependency */,
 				8C5DEC6412E8C56400EE93F1 /* PBXTargetDependency */,
 				8C5DEC6612E8C56400EE93F1 /* PBXTargetDependency */,
+				8CDC0D741309D76000BA478C /* PBXTargetDependency */,
 			);
 			name = WPADev;
 			productName = WPADev;
@@ -1680,6 +1745,24 @@
 			productReference = 8CD1989D12D5092F00C69AC9 /* GCalModule.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
+		8CDC0D691309D68B00BA478C /* WorkModule */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8CDC0D6E1309D68E00BA478C /* Build configuration list for PBXNativeTarget "WorkModule" */;
+			buildPhases = (
+				8CDC0D661309D68B00BA478C /* Resources */,
+				8CDC0D671309D68B00BA478C /* Sources */,
+				8CDC0D681309D68B00BA478C /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8CDC0D711309D73F00BA478C /* PBXTargetDependency */,
+			);
+			name = WorkModule;
+			productName = WorkModule;
+			productReference = 8CDC0D6A1309D68B00BA478C /* WorkModule.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
 		8CDCC0F912E2B5F400CEAAD3 /* SkypeManager */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8CDCC10012E2B5F400CEAAD3 /* Build configuration list for PBXNativeTarget "SkypeManager" */;
@@ -1724,6 +1807,7 @@
 				8C5DEBDF12E8AF5400EE93F1 /* PBXTargetDependency */,
 				8C5DEC6B12E8C57400EE93F1 /* PBXTargetDependency */,
 				8C5DEC6D12E8C57400EE93F1 /* PBXTargetDependency */,
+				8CDC0D771309D77700BA478C /* PBXTargetDependency */,
 			);
 			name = WorkPlayAway;
 			productInstallPath = "$(HOME)/Applications";
@@ -1766,6 +1850,7 @@
 				8C73F89212E891D00056FAFF /* TestMailModule */,
 				8C5DEC4812E8C4A600EE93F1 /* TestTaskModule */,
 				8C5DEC5412E8C4D000EE93F1 /* TestEventModule */,
+				8CDC0D691309D68B00BA478C /* WorkModule */,
 			);
 		};
 /* End PBXProject section */
@@ -1790,6 +1875,7 @@
 				8C82C85212F1E82500830486 /* wpa.icns in Resources */,
 				8C18042C12F777E50061FDE6 /* AddActivityDialog.xib in Resources */,
 				8CDC0B3813069BA600BA478C /* Credits.rtf in Resources */,
+				8CDC0E24130A46B000BA478C /* ChooseApp.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1892,6 +1978,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8CDC0D661309D68B00BA478C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CDC0E64130A5A5000BA478C /* ChooseApp.xib in Resources */,
+				8CDC0D7A1309D80000BA478C /* WorkModule.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8CDCC0F612E2B5F400CEAAD3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1921,6 +2016,7 @@
 				8C1800FA12F4B7990061FDE6 /* marketing.rtf in Resources */,
 				8C18042B12F777E50061FDE6 /* AddActivityDialog.xib in Resources */,
 				8CDC0B3913069BA600BA478C /* Credits.rtf in Resources */,
+				8CDC0E25130A46B000BA478C /* ChooseApp.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2010,6 +2106,8 @@
 				8CDC046D13010DCB00BA478C /* GoalChart.m in Sources */,
 				8CDC0BA31307C58000BA478C /* SecsToMinsTransformer.m in Sources */,
 				8CDC0BBA1307CD1400BA478C /* MinsToSecsTransformer.m in Sources */,
+				8CDC0D631309D49400BA478C /* WorkModule.m in Sources */,
+				8CDC0E21130A465D00BA478C /* ChooseApp.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2131,6 +2229,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8CDC0D671309D68B00BA478C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CDC0E63130A5A4700BA478C /* ChooseApp.m in Sources */,
+				8CDC0D781309D7C100BA478C /* WorkModule.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8CDCC0F712E2B5F400CEAAD3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2182,6 +2289,8 @@
 				8CDC046E13010DCB00BA478C /* GoalChart.m in Sources */,
 				8CDC0BA41307C58000BA478C /* SecsToMinsTransformer.m in Sources */,
 				8CDC0BBB1307CD1400BA478C /* MinsToSecsTransformer.m in Sources */,
+				8CDC0D641309D49400BA478C /* WorkModule.m in Sources */,
+				8CDC0E22130A465D00BA478C /* ChooseApp.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2378,6 +2487,21 @@
 			isa = PBXTargetDependency;
 			target = 8CD1989C12D5092F00C69AC9 /* GCalModule */;
 			targetProxy = 8CD198A912D509C100C69AC9 /* PBXContainerItemProxy */;
+		};
+		8CDC0D711309D73F00BA478C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CD1974312D4C59600C69AC9 /* WPACommon */;
+			targetProxy = 8CDC0D701309D73F00BA478C /* PBXContainerItemProxy */;
+		};
+		8CDC0D741309D76000BA478C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CDC0D691309D68B00BA478C /* WorkModule */;
+			targetProxy = 8CDC0D731309D76000BA478C /* PBXContainerItemProxy */;
+		};
+		8CDC0D771309D77700BA478C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CDC0D691309D68B00BA478C /* WorkModule */;
+			targetProxy = 8CDC0D761309D77700BA478C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -3130,6 +3254,58 @@
 			};
 			name = Release;
 		};
+		8CDC0D6C1309D68D00BA478C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "WorkModule-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = WorkModule;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		8CDC0D6D1309D68D00BA478C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "WorkModule-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = WorkModule;
+				WRAPPER_EXTENSION = bundle;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		8CDCC0FE12E2B5F400CEAAD3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3382,6 +3558,15 @@
 			buildConfigurations = (
 				8CD1989E12D5092F00C69AC9 /* Debug */,
 				8CD1989F12D5092F00C69AC9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8CDC0D6E1309D68E00BA478C /* Build configuration list for PBXNativeTarget "WorkModule" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8CDC0D6C1309D68D00BA478C /* Debug */,
+				8CDC0D6D1309D68D00BA478C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
