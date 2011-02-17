@@ -99,9 +99,7 @@
 {
 	NSDictionary *dict = [notification userInfo];
 	NSRunningApplication *newApp = [dict objectForKey:@"NSWorkspaceApplicationKey"];
-	NSLog(@"got %@", newApp.bundleIdentifier);
 	for (WatchApp *wa in appsToWatch){
-		NSLog(@"id to find = %@",wa.idString);
 		if ([wa.idString isEqualToString:newApp.bundleIdentifier]){
 			//com.workplayaway.wpa
 			NSDictionary *dict = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:wa.state] forKey:@"state"];

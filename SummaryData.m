@@ -32,5 +32,9 @@
 	NSLog(@"sort base class");
 }
 
+- (void) clear
+{
+	[data removeAllObjects];
+}
 
 @end

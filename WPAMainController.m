@@ -463,7 +463,7 @@
 			[self clickWork:nil];
 			break;
 		case WPASTATE_FREE:
-			[self clickAway:nil];
+			[self clickPlay:nil];
 			break;
 		default:
 			break;

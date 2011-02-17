@@ -22,6 +22,7 @@
     NSManagedObjectContext *managedObjectContext;
 	PreferencesWindow *prefsWindow;
 	StatsWindow *statsWindow;
+	NSManagedObject *currentSummary;
 }
 
 @property (assign) IBOutlet NSWindow *window;
@@ -29,6 +30,7 @@
 @property (nonatomic, retain) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) PreferencesWindow *prefsWindow;
+@property (nonatomic, retain) NSManagedObject *currentSummary;
 @property (retain, nonatomic) IBOutlet StatsWindow *statsWindow;
 //-(void) start;
 //-(void) stop;
@@ -46,5 +48,6 @@
 
 - (IBAction)handleNewMainWindowMenu:(NSMenuItem *)sender;
 - (void) findSummaryForDate: (NSDate*) date work: (NSTimeInterval*) workInt free: (NSTimeInterval*) freeInt;
+- (void) saveData: (NSTimer*) timer;
 
 @end

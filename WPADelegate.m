@@ -25,6 +25,26 @@
 @synthesize persistentStoreCoordinator;
 @synthesize managedObjectModel;
 @synthesize managedObjectContext;
+@synthesize currentSummary;
+
++ (void) initialize
+{
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *appDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
+								 [NSNumber numberWithInt:600.0], @"diskFlushInterval", nil];
+    [defaults registerDefaults:appDefaults];
+}
+
+- (void) saveData: (NSTimer*) timer
+{
+	NSError *err;
+	[[self managedObjectContext] save: &err];
+	if (err){
+		[[NSApplication sharedApplication] presentError:err];
+	}
+	NSTimeInterval saveInt = [[NSUserDefaults standardUserDefaults] doubleForKey:@"diskFlushInterval"];
+	[NSTimer scheduledTimerWithTimeInterval:saveInt target:self selector:@selector(saveData:) userInfo:nil repeats:NO ];
+}
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 
@@ -34,6 +54,7 @@
 		[wpam clickStart:self];
 	}
 	[window setTitle:__APPNAME__];
+	[self saveData: nil];
 }
 
 - (WPAMainController*) mainCtrl
@@ -247,21 +268,35 @@
 {
 	// new work record
 	NSManagedObjectContext *moc = [self managedObjectContext];
-	NSManagedObject *summary = [self findSummaryForDate: date];
-	if (!summary){
-		summary = [NSEntityDescription
-				  insertNewObjectForEntityForName:@"DailySummary"
-				  inManagedObjectContext:moc];
+	BOOL needsNewRec = NO;
+	// if the currentSummary does not exist we are starting up so look for one for today (because we restarted)
+	// and if there is nothing for today then create a new one
+	if (currentSummary == nil){
+		currentSummary = [self findSummaryForDate: date];
+		if (!currentSummary){
+			needsNewRec = YES;
+		}
 	}
-	[summary setValue: date forKey: @"recordDate"];
-	[summary setValue:[NSNumber numberWithInt:workTime] forKey:@"timeWork"];
-	[summary setValue:[NSNumber numberWithInt:freeTime] forKey:@"timeFree"];
-	[summary setValue:[NSNumber numberWithInt:goalTime] forKey:@"timeGoal"];
-	NSError *err = nil;
-	[moc save:&err];
-	if (err){
-		[[NSApplication sharedApplication] presentError:err];
+	// or we are here and there is already a summary -- so check to see if the date has changed
+	else {
+		NSDate *recDate = (NSDate*)[currentSummary valueForKey:@"recordDate"];
+		if (![recDate isEqualToDate:date]){
+			needsNewRec = YES;
+		}
 	}
+	if (needsNewRec){
+	
+		currentSummary = [NSEntityDescription
+							insertNewObjectForEntityForName:@"DailySummary"
+							inManagedObjectContext:moc];
+		[currentSummary setValue: date forKey: @"recordDate"];
+		
+	}
+
+	[currentSummary setValue:[NSNumber numberWithInt:workTime] forKey:@"timeWork"];
+	[currentSummary setValue:[NSNumber numberWithInt:freeTime] forKey:@"timeFree"];
+	[currentSummary setValue:[NSNumber numberWithInt:goalTime] forKey:@"timeGoal"];
+
 }
 
 - (void) newRecord: (int) state
@@ -322,11 +357,6 @@
 	}
 	else {
 		ctx.currentActivity = nil;
-	}
-	NSError *err = nil;
-	[moc save:&err];
-	if (err){
-		[[NSApplication sharedApplication] presentError:err];
 	}
 }
 

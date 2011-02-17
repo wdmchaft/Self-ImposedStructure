@@ -32,6 +32,10 @@
 
 - (void) processSummary
 {
+	[(SummaryTaskData*)tasksTable.dataSource clear];
+	[(SummaryEventData*)eventsTable.dataSource clear];
+	[(SummaryDeadlineData*)deadlinesTable.dataSource clear];
+	[(SummaryMailData*)mailTable.dataSource clear];
 //	WPADelegate *del = (WPADelegate*)[NSApplication sharedApplication].delegate;
 	Context	*ctx = [Context sharedContext];
 	// tell all of the modules that *I* am their master until further notice
