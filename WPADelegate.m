@@ -37,7 +37,7 @@
 
 - (void) saveData: (NSTimer*) timer
 {
-	NSError *err;
+	NSError *err = nil;
 	[[self managedObjectContext] save: &err];
 	if (err){
 		[[NSApplication sharedApplication] presentError:err];

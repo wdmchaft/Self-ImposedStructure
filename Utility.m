@@ -61,7 +61,7 @@
 		
 	}else{
 		NSDateFormatter *timeDate = [NSDateFormatter new];
-		[timeDate setDateFormat: @"MM/dd'-'hh:mm"];
+		[timeDate setDateFormat: @"M/dd'-'hh:mm"];
 		ret = [timeDate stringFromDate:date];
 	}
 	return ret;
@@ -84,7 +84,7 @@
 	}
 	else{
 		NSDateFormatter *timeDate = [NSDateFormatter new];
-		[timeDate setDateFormat: @"MM/dd'-'hh:mm"];
+		[timeDate setDateFormat: @"M/dd'-'hh:mm"];
 		ret = [timeDate stringFromDate:date];
 	}
 	return ret;

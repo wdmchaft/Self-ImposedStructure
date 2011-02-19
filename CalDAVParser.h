@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface CalDAVParser : NSWindowController {
+@interface CalDAVParser : NSObject {
 	NSString *data;
 }
 @property (nonatomic, retain) NSString *data;

@@ -19,7 +19,8 @@
 #define MAIL_SUMMARY @"summary"
 #define MAIL_SUBJECT @"title"
 #define MAIL_NAME @"name"
-#define MAIL_ARRIVAL_TIME @"issued"
+#define MAIL_ARRIVAL_TIME @"received"
+#define MAIL_SENT_TIME @"issued"
 
 @protocol Reporter <Instance>
 @required
