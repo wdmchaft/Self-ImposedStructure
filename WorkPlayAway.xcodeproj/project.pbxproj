@@ -20,6 +20,29 @@
 			name = All;
 			productName = All;
 		};
+		8CDC10ED130CB3C400BA478C /* All Modules */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 8CDC10F0130CB3E300BA478C /* Build configuration list for PBXAggregateTarget "All Modules" */;
+			buildPhases = (
+			);
+			dependencies = (
+				8CDC110C130CB40E00BA478C /* PBXTargetDependency */,
+				8CDC110A130CB40E00BA478C /* PBXTargetDependency */,
+				8CDC1108130CB40E00BA478C /* PBXTargetDependency */,
+				8CDC1106130CB40E00BA478C /* PBXTargetDependency */,
+				8CDC1104130CB40E00BA478C /* PBXTargetDependency */,
+				8CDC1102130CB40E00BA478C /* PBXTargetDependency */,
+				8CDC1100130CB40E00BA478C /* PBXTargetDependency */,
+				8CDC10FE130CB40D00BA478C /* PBXTargetDependency */,
+				8CDC10FA130CB40D00BA478C /* PBXTargetDependency */,
+				8CDC10F8130CB40D00BA478C /* PBXTargetDependency */,
+				8CDC10F6130CB40D00BA478C /* PBXTargetDependency */,
+				8CDC10F4130CB40D00BA478C /* PBXTargetDependency */,
+				8CDC10F2130CB40D00BA478C /* PBXTargetDependency */,
+			);
+			name = "All Modules";
+			productName = "All Modules";
+		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
@@ -177,7 +200,6 @@
 		8CD1988212D5079F00C69AC9 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1988112D5079F00C69AC9 /* ScriptingBridge.framework */; };
 		8CD1989612D508EB00C69AC9 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1988112D5079F00C69AC9 /* ScriptingBridge.framework */; };
 		8CD198A112D5095800C69AC9 /* GCalModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77291112D46AC600F71FE7 /* GCalModule.m */; };
-		8CD198A312D5096F00C69AC9 /* CalDAVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77296512D46AC600F71FE7 /* CalDAVParser.m */; };
 		8CD198A612D5098A00C69AC9 /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
 		8CD198C612D511F500C69AC9 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C77297C12D46AC600F71FE7 /* Growl.framework */; };
 		8CD198E712D5134A00C69AC9 /* gmail.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C77295212D46AC600F71FE7 /* gmail.ico */; };
@@ -211,6 +233,13 @@
 		8CDC0E25130A46B000BA478C /* ChooseApp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CDC0E23130A46B000BA478C /* ChooseApp.xib */; };
 		8CDC0E63130A5A4700BA478C /* ChooseApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC0E20130A465D00BA478C /* ChooseApp.m */; };
 		8CDC0E64130A5A5000BA478C /* ChooseApp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CDC0E23130A46B000BA478C /* ChooseApp.xib */; };
+		8CDC10AD130CA70800BA478C /* AppleMailModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC1087130CA60D00BA478C /* AppleMailModule.m */; };
+		8CDC10BB130CA72B00BA478C /* AppleMailModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CDC10BA130CA72B00BA478C /* AppleMailModule.xib */; };
+		8CDC10CA130CB2B800BA478C /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
+		8CDC10CC130CB2F000BA478C /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1988112D5079F00C69AC9 /* ScriptingBridge.framework */; };
+		8CDC11C7130DC10A00BA478C /* AppleMailModule.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8CDC11C6130DC10A00BA478C /* AppleMailModule.icns */; };
+		8CDC11FA130E37F800BA478C /* MimeHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77296512D46AC600F71FE7 /* MimeHandler.m */; };
+		8CDC11FF130E39E800BA478C /* CalDAVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC11FE130E39E800BA478C /* CalDAVParser.m */; };
 		8CDCC10112E2B64400CEAAD3 /* Skype.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9CE77812E2465B00017A02 /* Skype.framework */; };
 		8CDCC10712E2B7BA00CEAAD3 /* SkypeManagerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDCC10612E2B7BA00CEAAD3 /* SkypeManagerDelegate.m */; };
 		8CDCC10B12E2B86E00CEAAD3 /* SkypeManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CDCC10A12E2B86E00CEAAD3 /* SkypeManager.xib */; };
@@ -241,62 +270,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		8C0D940712D63DDF009F3280 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8CD1974312D4C59600C69AC9;
-			remoteInfo = WPACommon;
-		};
-		8C0D940912D63DDF009F3280 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8CD197CE12D4FDC800C69AC9;
-			remoteInfo = RTMModule;
-		};
-		8C0D940B12D63DDF009F3280 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8CD1980E12D5041700C69AC9;
-			remoteInfo = GmailModule;
-		};
-		8C0D940D12D63DDF009F3280 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8CD1983E12D505BB00C69AC9;
-			remoteInfo = AdiumModule;
-		};
-		8C0D940F12D63DDF009F3280 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8CD1985012D5061300C69AC9;
-			remoteInfo = SkypeModule;
-		};
-		8C0D941112D63DDF009F3280 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8CD1985F12D506B700C69AC9;
-			remoteInfo = iChatModule;
-		};
-		8C0D941312D63DDF009F3280 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8CD1989C12D5092F00C69AC9;
-			remoteInfo = GCalModule;
-		};
-		8C5DEBDE12E8AF5400EE93F1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8C73F89212E891D00056FAFF;
-			remoteInfo = TestMailModule;
-		};
 		8C5DEC4E12E8C4B300EE93F1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -310,34 +283,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8CD1974312D4C59600C69AC9;
 			remoteInfo = WPACommon;
-		};
-		8C5DEC6312E8C56400EE93F1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8C5DEC4812E8C4A600EE93F1;
-			remoteInfo = TestTaskModule;
-		};
-		8C5DEC6512E8C56400EE93F1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8C5DEC5412E8C4D000EE93F1;
-			remoteInfo = TestEventModule;
-		};
-		8C5DEC6A12E8C57400EE93F1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8C5DEC4812E8C4A600EE93F1;
-			remoteInfo = TestTaskModule;
-		};
-		8C5DEC6C12E8C57400EE93F1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8C5DEC5412E8C4D000EE93F1;
-			remoteInfo = TestEventModule;
 		};
 		8C5DEC7112E8C59D00EE93F1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -374,47 +319,12 @@
 			remoteGlobalIDString = 8CD1974312D4C59600C69AC9;
 			remoteInfo = WPACommon;
 		};
-		8C66A8C612E0C9E4000644ED /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8C66A74012DFCB11000644ED;
-			remoteInfo = Switcher;
-		};
-		8C66A8C812E0C9E4000644ED /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8C66A77512DFCE20000644ED;
-			remoteInfo = BlockerModule;
-		};
-		8C66A8CB12E0CA08000644ED /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8C66A74012DFCB11000644ED;
-			remoteInfo = Switcher;
-		};
-		8C66A8CD12E0CA08000644ED /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8C66A77512DFCE20000644ED;
-			remoteInfo = BlockerModule;
-		};
 		8C73F89912E891E20056FAFF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 8CD1974312D4C59600C69AC9;
 			remoteInfo = WPACommon;
-		};
-		8C73F8BC12E8975B0056FAFF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8C73F89212E891D00056FAFF;
-			remoteInfo = TestMailModule;
 		};
 		8CD1975312D4C61D00C69AC9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -430,26 +340,12 @@
 			remoteGlobalIDString = 8CD1974312D4C59600C69AC9;
 			remoteInfo = WPACommon;
 		};
-		8CD197F512D4FEFF00C69AC9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8CD197CE12D4FDC800C69AC9;
-			remoteInfo = RTMModule;
-		};
 		8CD1981212D5042100C69AC9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 8CD1974312D4C59600C69AC9;
 			remoteInfo = WPACommon;
-		};
-		8CD1983612D5056D00C69AC9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8CD1980E12D5041700C69AC9;
-			remoteInfo = GmailModule;
 		};
 		8CD1984212D505C400C69AC9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -472,40 +368,12 @@
 			remoteGlobalIDString = 8CD1974312D4C59600C69AC9;
 			remoteInfo = WPACommon;
 		};
-		8CD1986812D506FA00C69AC9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8CD1983E12D505BB00C69AC9;
-			remoteInfo = AdiumModule;
-		};
-		8CD1986A12D506FA00C69AC9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8CD1985012D5061300C69AC9;
-			remoteInfo = SkypeModule;
-		};
-		8CD1986C12D506FA00C69AC9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8CD1985F12D506B700C69AC9;
-			remoteInfo = iChatModule;
-		};
 		8CD198A412D5098400C69AC9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 8CD1974312D4C59600C69AC9;
 			remoteInfo = WPACommon;
-		};
-		8CD198A912D509C100C69AC9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8CD1989C12D5092F00C69AC9;
-			remoteInfo = GCalModule;
 		};
 		8CDC0D701309D73F00BA478C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -514,19 +382,117 @@
 			remoteGlobalIDString = 8CD1974312D4C59600C69AC9;
 			remoteInfo = WPACommon;
 		};
-		8CDC0D731309D76000BA478C /* PBXContainerItemProxy */ = {
+		8CDC10CE130CB2FD00BA478C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8CDC0D691309D68B00BA478C;
+			remoteGlobalIDString = 8CD1974312D4C59600C69AC9 /* WPACommon */;
+			remoteInfo = WPACommon;
+		};
+		8CDC10F1130CB40D00BA478C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CDC10A6130CA6CA00BA478C /* AppleMailModule */;
+			remoteInfo = AppleMailModule;
+		};
+		8CDC10F3130CB40D00BA478C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CDC0D691309D68B00BA478C /* WorkModule */;
 			remoteInfo = WorkModule;
 		};
-		8CDC0D761309D77700BA478C /* PBXContainerItemProxy */ = {
+		8CDC10F5130CB40D00BA478C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8CDC0D691309D68B00BA478C;
-			remoteInfo = WorkModule;
+			remoteGlobalIDString = 8C5DEC5412E8C4D000EE93F1 /* TestEventModule */;
+			remoteInfo = TestEventModule;
+		};
+		8CDC10F7130CB40D00BA478C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C5DEC4812E8C4A600EE93F1 /* TestTaskModule */;
+			remoteInfo = TestTaskModule;
+		};
+		8CDC10F9130CB40D00BA478C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C73F89212E891D00056FAFF /* TestMailModule */;
+			remoteInfo = TestMailModule;
+		};
+		8CDC10FD130CB40D00BA478C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CD1985012D5061300C69AC9 /* SkypeModule */;
+			remoteInfo = SkypeModule;
+		};
+		8CDC10FF130CB40E00BA478C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C66A77512DFCE20000644ED /* BlockerModule */;
+			remoteInfo = BlockerModule;
+		};
+		8CDC1101130CB40E00BA478C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C66A74012DFCB11000644ED /* Switcher */;
+			remoteInfo = Switcher;
+		};
+		8CDC1103130CB40E00BA478C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CD1989C12D5092F00C69AC9 /* GCalModule */;
+			remoteInfo = GCalModule;
+		};
+		8CDC1105130CB40E00BA478C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CD1985F12D506B700C69AC9 /* iChatModule */;
+			remoteInfo = iChatModule;
+		};
+		8CDC1107130CB40E00BA478C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CD1983E12D505BB00C69AC9 /* AdiumModule */;
+			remoteInfo = AdiumModule;
+		};
+		8CDC1109130CB40E00BA478C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CD1980E12D5041700C69AC9 /* GmailModule */;
+			remoteInfo = GmailModule;
+		};
+		8CDC110B130CB40E00BA478C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CD197CE12D4FDC800C69AC9 /* RTMModule */;
+			remoteInfo = RTMModule;
+		};
+		8CDC110D130CB43800BA478C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CDC10ED130CB3C400BA478C /* All Modules */;
+			remoteInfo = "All Modules";
+		};
+		8CDC1112130CB46800BA478C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CDC10ED130CB3C400BA478C /* All Modules */;
+			remoteInfo = "All Modules";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -735,9 +701,9 @@
 		8C77296212D46AC600F71FE7 /* Secret.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Secret.h; sourceTree = "<group>"; };
 		8C77296312D46AC600F71FE7 /* WPAFramework-info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "WPAFramework-info.plist"; sourceTree = "<group>"; };
 		8C77296412D46AC600F71FE7 /* Adium.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Adium.h; sourceTree = "<group>"; };
-		8C77296512D46AC600F71FE7 /* CalDAVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalDAVParser.m; sourceTree = "<group>"; };
+		8C77296512D46AC600F71FE7 /* MimeHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MimeHandler.m; sourceTree = "<group>"; };
 		8C77296612D46AC600F71FE7 /* CalDAVParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalDAVParserDelegate.h; sourceTree = "<group>"; };
-		8C77296712D46AC600F71FE7 /* CalDAVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalDAVParser.h; sourceTree = "<group>"; };
+		8C77296712D46AC600F71FE7 /* MimeHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MimeHandler.h; sourceTree = "<group>"; };
 		8C77296912D46AC600F71FE7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C77296A12D46AC600F71FE7 /* RTMModule_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMModule_Prefix.pch; sourceTree = "<group>"; };
 		8C77296B12D46AC600F71FE7 /* Columns.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Columns.h; sourceTree = "<group>"; };
@@ -821,6 +787,15 @@
 		8CDC0E1F130A465D00BA478C /* ChooseApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseApp.h; sourceTree = "<group>"; };
 		8CDC0E20130A465D00BA478C /* ChooseApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseApp.m; sourceTree = "<group>"; };
 		8CDC0E23130A46B000BA478C /* ChooseApp.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChooseApp.xib; sourceTree = "<group>"; };
+		8CDC1086130CA60D00BA478C /* AppleMailModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleMailModule.h; sourceTree = "<group>"; };
+		8CDC1087130CA60D00BA478C /* AppleMailModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleMailModule.m; sourceTree = "<group>"; };
+		8CDC10A7130CA6CA00BA478C /* AppleMailModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppleMailModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CDC10A9130CA6CA00BA478C /* AppleMailModule-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AppleMailModule-Info.plist"; sourceTree = "<group>"; };
+		8CDC10BA130CA72B00BA478C /* AppleMailModule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppleMailModule.xib; sourceTree = "<group>"; };
+		8CDC10BE130CA93B00BA478C /* Mail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mail.h; sourceTree = "<group>"; };
+		8CDC11C6130DC10A00BA478C /* AppleMailModule.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppleMailModule.icns; sourceTree = "<group>"; };
+		8CDC11FD130E39E800BA478C /* CalDAVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalDAVParser.h; sourceTree = "<group>"; };
+		8CDC11FE130E39E800BA478C /* CalDAVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalDAVParser.m; sourceTree = "<group>"; };
 		8CDCC0FA12E2B5F400CEAAD3 /* SkypeManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkypeManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CDCC0FD12E2B5F400CEAAD3 /* SkypeManager-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SkypeManager-Info.plist"; sourceTree = "<group>"; };
 		8CDCC10512E2B7BA00CEAAD3 /* SkypeManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkypeManagerDelegate.h; sourceTree = "<group>"; };
@@ -969,6 +944,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8CDC10A5130CA6CA00BA478C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CDC10CA130CB2B800BA478C /* WPACommon.framework in Frameworks */,
+				8CDC10CC130CB2F000BA478C /* ScriptingBridge.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8CDCC0F812E2B5F400CEAAD3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1051,6 +1035,7 @@
 				8C5DEC4912E8C4A600EE93F1 /* TestTaskModule.bundle */,
 				8C5DEC5512E8C4D000EE93F1 /* TestEventModule.bundle */,
 				8CDC0D6A1309D68B00BA478C /* WorkModule.bundle */,
+				8CDC10A7130CA6CA00BA478C /* AppleMailModule.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1075,6 +1060,7 @@
 				8CDC0B3713069BA600BA478C /* Credits.rtf */,
 				8CDC0D6B1309D68B00BA478C /* WorkModule-Info.plist */,
 				8CDC0D791309D80000BA478C /* WorkModule.xib */,
+				8CDC10A9130CA6CA00BA478C /* AppleMailModule-Info.plist */,
 			);
 			name = WorkPlayAway;
 			sourceTree = "<group>";
@@ -1193,6 +1179,7 @@
 		8C73F8B212E8933B0056FAFF /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				8CDC1084130CA5D900BA478C /* AppleMailModule */,
 				8CDC0D601309D47000BA478C /* WorkModule */,
 				8CD1966F12D46CA000C69AC9 /* iChatModule */,
 				8CD1966E12D46C9600C69AC9 /* AdiumModule */,
@@ -1294,13 +1281,13 @@
 		8CD1967112D46CCA00C69AC9 /* GCalModule */ = {
 			isa = PBXGroup;
 			children = (
+				8CDC11FD130E39E800BA478C /* CalDAVParser.h */,
+				8CDC11FE130E39E800BA478C /* CalDAVParser.m */,
 				8C77295012D46AC600F71FE7 /* gcal.ico */,
 				8C77294F12D46AC600F71FE7 /* GCalModule-Info.plist */,
 				8C77290F12D46AC600F71FE7 /* GCalModule.h */,
-				8C77296512D46AC600F71FE7 /* CalDAVParser.m */,
 				8C77296612D46AC600F71FE7 /* CalDAVParserDelegate.h */,
 				8C77294112D46AC600F71FE7 /* GCalModule.xib */,
-				8C77296712D46AC600F71FE7 /* CalDAVParser.h */,
 				8C77291112D46AC600F71FE7 /* GCalModule.m */,
 			);
 			name = GCalModule;
@@ -1456,6 +1443,20 @@
 			name = WorkModule;
 			sourceTree = "<group>";
 		};
+		8CDC1084130CA5D900BA478C /* AppleMailModule */ = {
+			isa = PBXGroup;
+			children = (
+				8C77296712D46AC600F71FE7 /* MimeHandler.h */,
+				8C77296512D46AC600F71FE7 /* MimeHandler.m */,
+				8CDC11C6130DC10A00BA478C /* AppleMailModule.icns */,
+				8CDC10BE130CA93B00BA478C /* Mail.h */,
+				8CDC10BA130CA72B00BA478C /* AppleMailModule.xib */,
+				8CDC1086130CA60D00BA478C /* AppleMailModule.h */,
+				8CDC1087130CA60D00BA478C /* AppleMailModule.m */,
+			);
+			name = AppleMailModule;
+			sourceTree = "<group>";
+		};
 		8CF8C14012DC2B71009C7E3D /* Reporting */ = {
 			isa = PBXGroup;
 			children = (
@@ -1509,19 +1510,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				8C0D940812D63DDF009F3280 /* PBXTargetDependency */,
-				8C0D940A12D63DDF009F3280 /* PBXTargetDependency */,
-				8C0D940C12D63DDF009F3280 /* PBXTargetDependency */,
-				8C0D940E12D63DDF009F3280 /* PBXTargetDependency */,
-				8C0D941012D63DDF009F3280 /* PBXTargetDependency */,
-				8C0D941212D63DDF009F3280 /* PBXTargetDependency */,
-				8C0D941412D63DDF009F3280 /* PBXTargetDependency */,
-				8C66A8C712E0C9E4000644ED /* PBXTargetDependency */,
-				8C66A8C912E0C9E4000644ED /* PBXTargetDependency */,
-				8C73F8BD12E8975B0056FAFF /* PBXTargetDependency */,
-				8C5DEC6412E8C56400EE93F1 /* PBXTargetDependency */,
-				8C5DEC6612E8C56400EE93F1 /* PBXTargetDependency */,
-				8CDC0D741309D76000BA478C /* PBXTargetDependency */,
+				8CDC110E130CB43800BA478C /* PBXTargetDependency */,
 			);
 			name = WPADev;
 			productName = WPADev;
@@ -1763,6 +1752,24 @@
 			productReference = 8CDC0D6A1309D68B00BA478C /* WorkModule.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
+		8CDC10A6130CA6CA00BA478C /* AppleMailModule */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8CDC10AC130CA6CD00BA478C /* Build configuration list for PBXNativeTarget "AppleMailModule" */;
+			buildPhases = (
+				8CDC10A3130CA6CA00BA478C /* Resources */,
+				8CDC10A4130CA6CA00BA478C /* Sources */,
+				8CDC10A5130CA6CA00BA478C /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8CDC10CF130CB2FD00BA478C /* PBXTargetDependency */,
+			);
+			name = AppleMailModule;
+			productName = AppleMailModule;
+			productReference = 8CDC10A7130CA6CA00BA478C /* AppleMailModule.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
 		8CDCC0F912E2B5F400CEAAD3 /* SkypeManager */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8CDCC10012E2B5F400CEAAD3 /* Build configuration list for PBXNativeTarget "SkypeManager" */;
@@ -1796,18 +1803,7 @@
 			);
 			dependencies = (
 				8CD1975412D4C61D00C69AC9 /* PBXTargetDependency */,
-				8CD197F612D4FEFF00C69AC9 /* PBXTargetDependency */,
-				8CD1983712D5056D00C69AC9 /* PBXTargetDependency */,
-				8CD1986912D506FA00C69AC9 /* PBXTargetDependency */,
-				8CD1986B12D506FA00C69AC9 /* PBXTargetDependency */,
-				8CD1986D12D506FA00C69AC9 /* PBXTargetDependency */,
-				8CD198AA12D509C100C69AC9 /* PBXTargetDependency */,
-				8C66A8CC12E0CA08000644ED /* PBXTargetDependency */,
-				8C66A8CE12E0CA08000644ED /* PBXTargetDependency */,
-				8C5DEBDF12E8AF5400EE93F1 /* PBXTargetDependency */,
-				8C5DEC6B12E8C57400EE93F1 /* PBXTargetDependency */,
-				8C5DEC6D12E8C57400EE93F1 /* PBXTargetDependency */,
-				8CDC0D771309D77700BA478C /* PBXTargetDependency */,
+				8CDC1113130CB46800BA478C /* PBXTargetDependency */,
 			);
 			name = WorkPlayAway;
 			productInstallPath = "$(HOME)/Applications";
@@ -1834,6 +1830,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				8CDC10ED130CB3C400BA478C /* All Modules */,
 				8C5DEC6E12E8C58A00EE93F1 /* All */,
 				8C0D93EF12D63D3D009F3280 /* WPADev */,
 				8D1107260486CEB800E47090 /* WorkPlayAway */,
@@ -1851,6 +1848,7 @@
 				8C5DEC4812E8C4A600EE93F1 /* TestTaskModule */,
 				8C5DEC5412E8C4D000EE93F1 /* TestEventModule */,
 				8CDC0D691309D68B00BA478C /* WorkModule */,
+				8CDC10A6130CA6CA00BA478C /* AppleMailModule */,
 			);
 		};
 /* End PBXProject section */
@@ -1984,6 +1982,15 @@
 			files = (
 				8CDC0E64130A5A5000BA478C /* ChooseApp.xib in Resources */,
 				8CDC0D7A1309D80000BA478C /* WorkModule.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CDC10A3130CA6CA00BA478C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CDC10BB130CA72B00BA478C /* AppleMailModule.xib in Resources */,
+				8CDC11C7130DC10A00BA478C /* AppleMailModule.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2224,8 +2231,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CD198A312D5096F00C69AC9 /* CalDAVParser.m in Sources */,
 				8CD198A112D5095800C69AC9 /* GCalModule.m in Sources */,
+				8CDC11FF130E39E800BA478C /* CalDAVParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2235,6 +2242,15 @@
 			files = (
 				8CDC0E63130A5A4700BA478C /* ChooseApp.m in Sources */,
 				8CDC0D781309D7C100BA478C /* WorkModule.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CDC10A4130CA6CA00BA478C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CDC11FA130E37F800BA478C /* MimeHandler.m in Sources */,
+				8CDC10AD130CA70800BA478C /* AppleMailModule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2297,46 +2313,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		8C0D940812D63DDF009F3280 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8CD1974312D4C59600C69AC9 /* WPACommon */;
-			targetProxy = 8C0D940712D63DDF009F3280 /* PBXContainerItemProxy */;
-		};
-		8C0D940A12D63DDF009F3280 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8CD197CE12D4FDC800C69AC9 /* RTMModule */;
-			targetProxy = 8C0D940912D63DDF009F3280 /* PBXContainerItemProxy */;
-		};
-		8C0D940C12D63DDF009F3280 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8CD1980E12D5041700C69AC9 /* GmailModule */;
-			targetProxy = 8C0D940B12D63DDF009F3280 /* PBXContainerItemProxy */;
-		};
-		8C0D940E12D63DDF009F3280 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8CD1983E12D505BB00C69AC9 /* AdiumModule */;
-			targetProxy = 8C0D940D12D63DDF009F3280 /* PBXContainerItemProxy */;
-		};
-		8C0D941012D63DDF009F3280 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8CD1985012D5061300C69AC9 /* SkypeModule */;
-			targetProxy = 8C0D940F12D63DDF009F3280 /* PBXContainerItemProxy */;
-		};
-		8C0D941212D63DDF009F3280 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8CD1985F12D506B700C69AC9 /* iChatModule */;
-			targetProxy = 8C0D941112D63DDF009F3280 /* PBXContainerItemProxy */;
-		};
-		8C0D941412D63DDF009F3280 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8CD1989C12D5092F00C69AC9 /* GCalModule */;
-			targetProxy = 8C0D941312D63DDF009F3280 /* PBXContainerItemProxy */;
-		};
-		8C5DEBDF12E8AF5400EE93F1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8C73F89212E891D00056FAFF /* TestMailModule */;
-			targetProxy = 8C5DEBDE12E8AF5400EE93F1 /* PBXContainerItemProxy */;
-		};
 		8C5DEC4F12E8C4B300EE93F1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8CD1974312D4C59600C69AC9 /* WPACommon */;
@@ -2346,26 +2322,6 @@
 			isa = PBXTargetDependency;
 			target = 8CD1974312D4C59600C69AC9 /* WPACommon */;
 			targetProxy = 8C5DEC5A12E8C4DA00EE93F1 /* PBXContainerItemProxy */;
-		};
-		8C5DEC6412E8C56400EE93F1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8C5DEC4812E8C4A600EE93F1 /* TestTaskModule */;
-			targetProxy = 8C5DEC6312E8C56400EE93F1 /* PBXContainerItemProxy */;
-		};
-		8C5DEC6612E8C56400EE93F1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8C5DEC5412E8C4D000EE93F1 /* TestEventModule */;
-			targetProxy = 8C5DEC6512E8C56400EE93F1 /* PBXContainerItemProxy */;
-		};
-		8C5DEC6B12E8C57400EE93F1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8C5DEC4812E8C4A600EE93F1 /* TestTaskModule */;
-			targetProxy = 8C5DEC6A12E8C57400EE93F1 /* PBXContainerItemProxy */;
-		};
-		8C5DEC6D12E8C57400EE93F1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8C5DEC5412E8C4D000EE93F1 /* TestEventModule */;
-			targetProxy = 8C5DEC6C12E8C57400EE93F1 /* PBXContainerItemProxy */;
 		};
 		8C5DEC7212E8C59D00EE93F1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2392,35 +2348,10 @@
 			target = 8CD1974312D4C59600C69AC9 /* WPACommon */;
 			targetProxy = 8C66A78012DFCE54000644ED /* PBXContainerItemProxy */;
 		};
-		8C66A8C712E0C9E4000644ED /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8C66A74012DFCB11000644ED /* Switcher */;
-			targetProxy = 8C66A8C612E0C9E4000644ED /* PBXContainerItemProxy */;
-		};
-		8C66A8C912E0C9E4000644ED /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8C66A77512DFCE20000644ED /* BlockerModule */;
-			targetProxy = 8C66A8C812E0C9E4000644ED /* PBXContainerItemProxy */;
-		};
-		8C66A8CC12E0CA08000644ED /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8C66A74012DFCB11000644ED /* Switcher */;
-			targetProxy = 8C66A8CB12E0CA08000644ED /* PBXContainerItemProxy */;
-		};
-		8C66A8CE12E0CA08000644ED /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8C66A77512DFCE20000644ED /* BlockerModule */;
-			targetProxy = 8C66A8CD12E0CA08000644ED /* PBXContainerItemProxy */;
-		};
 		8C73F89A12E891E20056FAFF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8CD1974312D4C59600C69AC9 /* WPACommon */;
 			targetProxy = 8C73F89912E891E20056FAFF /* PBXContainerItemProxy */;
-		};
-		8C73F8BD12E8975B0056FAFF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8C73F89212E891D00056FAFF /* TestMailModule */;
-			targetProxy = 8C73F8BC12E8975B0056FAFF /* PBXContainerItemProxy */;
 		};
 		8CD1975412D4C61D00C69AC9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2432,21 +2363,10 @@
 			target = 8CD1974312D4C59600C69AC9 /* WPACommon */;
 			targetProxy = 8CD197D212D4FDD100C69AC9 /* PBXContainerItemProxy */;
 		};
-		8CD197F612D4FEFF00C69AC9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			comments = "`";
-			target = 8CD197CE12D4FDC800C69AC9 /* RTMModule */;
-			targetProxy = 8CD197F512D4FEFF00C69AC9 /* PBXContainerItemProxy */;
-		};
 		8CD1981312D5042100C69AC9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8CD1974312D4C59600C69AC9 /* WPACommon */;
 			targetProxy = 8CD1981212D5042100C69AC9 /* PBXContainerItemProxy */;
-		};
-		8CD1983712D5056D00C69AC9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8CD1980E12D5041700C69AC9 /* GmailModule */;
-			targetProxy = 8CD1983612D5056D00C69AC9 /* PBXContainerItemProxy */;
 		};
 		8CD1984312D505C400C69AC9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2463,45 +2383,95 @@
 			target = 8CD1974312D4C59600C69AC9 /* WPACommon */;
 			targetProxy = 8CD1986412D506DC00C69AC9 /* PBXContainerItemProxy */;
 		};
-		8CD1986912D506FA00C69AC9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8CD1983E12D505BB00C69AC9 /* AdiumModule */;
-			targetProxy = 8CD1986812D506FA00C69AC9 /* PBXContainerItemProxy */;
-		};
-		8CD1986B12D506FA00C69AC9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8CD1985012D5061300C69AC9 /* SkypeModule */;
-			targetProxy = 8CD1986A12D506FA00C69AC9 /* PBXContainerItemProxy */;
-		};
-		8CD1986D12D506FA00C69AC9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8CD1985F12D506B700C69AC9 /* iChatModule */;
-			targetProxy = 8CD1986C12D506FA00C69AC9 /* PBXContainerItemProxy */;
-		};
 		8CD198A512D5098400C69AC9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8CD1974312D4C59600C69AC9 /* WPACommon */;
 			targetProxy = 8CD198A412D5098400C69AC9 /* PBXContainerItemProxy */;
-		};
-		8CD198AA12D509C100C69AC9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8CD1989C12D5092F00C69AC9 /* GCalModule */;
-			targetProxy = 8CD198A912D509C100C69AC9 /* PBXContainerItemProxy */;
 		};
 		8CDC0D711309D73F00BA478C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8CD1974312D4C59600C69AC9 /* WPACommon */;
 			targetProxy = 8CDC0D701309D73F00BA478C /* PBXContainerItemProxy */;
 		};
-		8CDC0D741309D76000BA478C /* PBXTargetDependency */ = {
+		8CDC10CF130CB2FD00BA478C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8CDC0D691309D68B00BA478C /* WorkModule */;
-			targetProxy = 8CDC0D731309D76000BA478C /* PBXContainerItemProxy */;
+			target = 8CD1974312D4C59600C69AC9 /* WPACommon */;
+			targetProxy = 8CDC10CE130CB2FD00BA478C /* PBXContainerItemProxy */;
 		};
-		8CDC0D771309D77700BA478C /* PBXTargetDependency */ = {
+		8CDC10F2130CB40D00BA478C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CDC10A6130CA6CA00BA478C /* AppleMailModule */;
+			targetProxy = 8CDC10F1130CB40D00BA478C /* PBXContainerItemProxy */;
+		};
+		8CDC10F4130CB40D00BA478C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8CDC0D691309D68B00BA478C /* WorkModule */;
-			targetProxy = 8CDC0D761309D77700BA478C /* PBXContainerItemProxy */;
+			targetProxy = 8CDC10F3130CB40D00BA478C /* PBXContainerItemProxy */;
+		};
+		8CDC10F6130CB40D00BA478C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C5DEC5412E8C4D000EE93F1 /* TestEventModule */;
+			targetProxy = 8CDC10F5130CB40D00BA478C /* PBXContainerItemProxy */;
+		};
+		8CDC10F8130CB40D00BA478C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C5DEC4812E8C4A600EE93F1 /* TestTaskModule */;
+			targetProxy = 8CDC10F7130CB40D00BA478C /* PBXContainerItemProxy */;
+		};
+		8CDC10FA130CB40D00BA478C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C73F89212E891D00056FAFF /* TestMailModule */;
+			targetProxy = 8CDC10F9130CB40D00BA478C /* PBXContainerItemProxy */;
+		};
+		8CDC10FE130CB40D00BA478C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CD1985012D5061300C69AC9 /* SkypeModule */;
+			targetProxy = 8CDC10FD130CB40D00BA478C /* PBXContainerItemProxy */;
+		};
+		8CDC1100130CB40E00BA478C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C66A77512DFCE20000644ED /* BlockerModule */;
+			targetProxy = 8CDC10FF130CB40E00BA478C /* PBXContainerItemProxy */;
+		};
+		8CDC1102130CB40E00BA478C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C66A74012DFCB11000644ED /* Switcher */;
+			targetProxy = 8CDC1101130CB40E00BA478C /* PBXContainerItemProxy */;
+		};
+		8CDC1104130CB40E00BA478C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CD1989C12D5092F00C69AC9 /* GCalModule */;
+			targetProxy = 8CDC1103130CB40E00BA478C /* PBXContainerItemProxy */;
+		};
+		8CDC1106130CB40E00BA478C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CD1985F12D506B700C69AC9 /* iChatModule */;
+			targetProxy = 8CDC1105130CB40E00BA478C /* PBXContainerItemProxy */;
+		};
+		8CDC1108130CB40E00BA478C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CD1983E12D505BB00C69AC9 /* AdiumModule */;
+			targetProxy = 8CDC1107130CB40E00BA478C /* PBXContainerItemProxy */;
+		};
+		8CDC110A130CB40E00BA478C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CD1980E12D5041700C69AC9 /* GmailModule */;
+			targetProxy = 8CDC1109130CB40E00BA478C /* PBXContainerItemProxy */;
+		};
+		8CDC110C130CB40E00BA478C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CD197CE12D4FDC800C69AC9 /* RTMModule */;
+			targetProxy = 8CDC110B130CB40E00BA478C /* PBXContainerItemProxy */;
+		};
+		8CDC110E130CB43800BA478C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CDC10ED130CB3C400BA478C /* All Modules */;
+			targetProxy = 8CDC110D130CB43800BA478C /* PBXContainerItemProxy */;
+		};
+		8CDC1113130CB46800BA478C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CDC10ED130CB3C400BA478C /* All Modules */;
+			targetProxy = 8CDC1112130CB46800BA478C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -3306,6 +3276,79 @@
 			};
 			name = Release;
 		};
+		8CDC10AA130CA6CD00BA478C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "AppleMailModule-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = AppleMailModule;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		8CDC10AB130CA6CD00BA478C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "AppleMailModule-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = AppleMailModule;
+				WRAPPER_EXTENSION = bundle;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		8CDC10EE130CB3C500BA478C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = "All Modules";
+			};
+			name = Debug;
+		};
+		8CDC10EF130CB3C500BA478C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = "All Modules";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		8CDCC0FE12E2B5F400CEAAD3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3567,6 +3610,24 @@
 			buildConfigurations = (
 				8CDC0D6C1309D68D00BA478C /* Debug */,
 				8CDC0D6D1309D68D00BA478C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8CDC10AC130CA6CD00BA478C /* Build configuration list for PBXNativeTarget "AppleMailModule" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8CDC10AA130CA6CD00BA478C /* Debug */,
+				8CDC10AB130CA6CD00BA478C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8CDC10F0130CB3E300BA478C /* Build configuration list for PBXAggregateTarget "All Modules" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8CDC10EE130CB3C500BA478C /* Debug */,
+				8CDC10EF130CB3C500BA478C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
