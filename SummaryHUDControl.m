@@ -19,6 +19,7 @@
 @synthesize modules;
 @synthesize heights;
 @synthesize views;
+@synthesize label1, label2, label3, label4, label5, label6;
 
 @synthesize mainControl;
 
@@ -65,6 +66,31 @@
 	[super.window makeKeyAndOrderFront:nil];
 	
 }
+- (NSTextField*) labelForIdx: (int) idx
+{
+	switch (idx) {
+		case 0:
+			return label1;
+			break;
+		case 1:
+			return label2;
+			break;
+		case 2:
+			return label3;
+			break;
+		case 3:
+			return label4;
+			break;
+		case 4:
+			return label5;
+			break;
+		case 5:
+			return label6;
+			break;
+	}
+	return nil;
+}
+
 
 #define PADDING 10
 - (void) buildDisplay
@@ -79,6 +105,7 @@
 	[[super window] setFrame: currRect display:YES];
 	int count = 0;
 	int totalHeight = PADDING;
+	NSMutableArray *labelLocs = [NSMutableArray new];
 	NSEnumerator *modEnum = [modules reverseObjectEnumerator];
 	for (<Reporter> rpt in modEnum){
 		NSRect tableFrame;
@@ -87,21 +114,23 @@
 		tableFrame.origin.x = 5;
 		tableFrame.size.width = currRect.size.width - 10;
 		tableFrame.size.height = currHeight-20;
+
+		[labelLocs addObject: [NSNumber numberWithInt:tableFrame.origin.y + tableFrame.size.height]];
+
 		NSRect busyFrame;
 		busyFrame.origin.y = tableFrame.origin.y + (tableFrame.size.height / 2) - 16;
 		busyFrame.origin.x = tableFrame.origin.x + (tableFrame.size.width / 2) - 16;
-		NSProgressIndicator *progInd = [[NSProgressIndicator alloc] initWithFrame:busyFrame];
+		NSProgressIndicator *progInd = [[BGHUDProgressIndicator alloc] initWithFrame:busyFrame];
 		[progInd setStyle:NSProgressIndicatorSpinningStyle];
 		[progInd sizeToFit];
 		[progInd setHidden:YES];
-		NSBox *box = [[NSBox alloc] initWithFrame:tableFrame];
+		NSBox *box = [[BGHUDBox alloc] initWithFrame:tableFrame];
 		[view addSubview:box];
 		[view addSubview:progInd];
-		[box setTitle: rpt.summaryTitle];
 		NSSize margins; margins.height = 0; margins.width = 0;
 		[box setContentViewMargins:margins];
 		[box setBorderType:NSNoBorder];
-		box.titlePosition = NSAboveTop;
+		box.titlePosition = NSNoTitle;
 		SummaryViewController *svc = [self getViewForInstance:rpt view: box.contentView];
 		svc.prog = progInd;
 		[svc.view setFrame:[box.contentView bounds]];	
@@ -112,6 +141,22 @@
 		[NSTimer scheduledTimerWithTimeInterval:0 target:svc selector:@selector(refresh) userInfo: nil repeats:NO];
 
 		[tabTemp addObject: box];
+	}
+	// draw titles after the boxes so that they aren't overwritten and hidden.
+	count = 0;
+	NSArray *rptEnum = [[modules reverseObjectEnumerator] allObjects];
+	for (NSNumber *loc in labelLocs){
+		<Reporter> rpt = [rptEnum objectAtIndex:count];
+		NSPoint labelLoc;
+		labelLoc.y = loc.intValue;
+		labelLoc.x =10;
+		NSTextField *label = [self labelForIdx:count];
+		[label setFrameOrigin:labelLoc];
+		[label setStringValue:rpt.summaryTitle];
+		NSLog(@"label = %@", rpt.summaryTitle);
+		[label setHidden:NO];
+		[label sizeToFit];
+		count++;
 	}
 	views = [[NSArray alloc] initWithArray:tabTemp];
 }
@@ -150,6 +195,5 @@
 	}
 	return nil;
 }
-
 
 @end

@@ -2582,6 +2582,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = WPADev;
+				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Debug;
 		};
@@ -2611,6 +2612,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = WPADev;
+				VALID_ARCHS = "i386 x86_64";
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -3471,6 +3473,7 @@
 				INFOPLIST_FILE = "WorkPlayAway-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = WorkPlayAway;
+				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Debug;
 		};
@@ -3491,6 +3494,7 @@
 				INFOPLIST_FILE = "WorkPlayAway-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = WorkPlayAway;
+				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Release;
 		};

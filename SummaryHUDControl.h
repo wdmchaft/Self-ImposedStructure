@@ -21,7 +21,12 @@
 	NSArray *heights;
 	NSArray *views;
 	NSView *view;
-	
+	NSTextField *label1;
+	NSTextField *label2;
+	NSTextField *label3;
+	NSTextField *label4;
+	NSTextField *label5;
+	NSTextField *label6;
 	WPAMainController *mainControl;
 }
 
@@ -32,6 +37,12 @@
 @property (nonatomic, retain) IBOutlet NSView *view;
 
 @property (nonatomic, retain) WPAMainController *mainControl;
+@property (nonatomic, retain) IBOutlet 	NSTextField *label1;
+@property (nonatomic, retain) IBOutlet 	NSTextField *label2;
+@property (nonatomic, retain) IBOutlet 	NSTextField *label3;
+@property (nonatomic, retain) IBOutlet 	NSTextField *label4;
+@property (nonatomic, retain) IBOutlet 	NSTextField *label5;
+@property (nonatomic, retain) IBOutlet 	NSTextField *label6;
 
 - (void) buildDisplay;
 - (SummaryViewController*) getViewForInstance: (<Reporter>) inst view: (NSView*) box;

@@ -147,6 +147,7 @@
 		[alertHandler handleAlert:alert];
 	}
 	[BaseInstance sendDone:alertHandler module: name];	
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"com.workplayaway.fetchDone" object:nil];
 }
 
 - (void) startValidation: (NSObject*) callback

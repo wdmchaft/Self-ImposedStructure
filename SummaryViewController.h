@@ -8,17 +8,18 @@
 
 #import <Cocoa/Cocoa.h>
 #import "Reporter.h"
+#import <BGHUDAppKit/BGHUDAppKit.h>
 
 @interface SummaryViewController : NSViewController <NSTableViewDataSource, AlertHandler> {
-	NSTableView *table;
-	NSProgressIndicator *prog;
+	BGHUDTableView *table;
+	BGHUDProgressIndicator *prog;
 	<Reporter> reporter;
 	NSMutableArray *data;
 	NSSize size;
 }
 
-@property (nonatomic,retain) IBOutlet NSTableView *table; 
-@property (nonatomic,retain) IBOutlet NSProgressIndicator *prog; 
+@property (nonatomic,retain) IBOutlet BGHUDTableView *table; 
+@property (nonatomic,retain) IBOutlet BGHUDProgressIndicator *prog; 
 @property (nonatomic,retain) <Reporter> reporter; 
 @property (nonatomic,retain) NSMutableArray *data; 
 @property (nonatomic ) NSSize size; 

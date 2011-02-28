@@ -55,9 +55,8 @@
 
 - (void) refresh
 {
-	if (data){
-		[data removeAllObjects];
-	}
+	NSLog(@"refresh!");
+	data = nil;
 	[prog setHidden:NO];
 	[prog startAnimation:self];
 	[reporter refresh: self];
