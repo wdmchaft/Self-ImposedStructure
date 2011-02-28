@@ -40,6 +40,7 @@
 		notificationName = @"Mail Alert";
 		notificationTitle = @"Test Email Msg";
 		category = CATEGORY_EMAIL;
+		summaryTitle = @"Test Mail";
 	}
 	return self;
 }

@@ -34,7 +34,7 @@
 		category = CATEGORY_EVENTS;
 		refreshInterval = 600;
 		[frequencyField setStringValue:[NSString stringWithFormat:@"%d", refreshInterval / 60 ]];
-
+		summaryTitle = @"Test Event";
 	}
 	return self;
 }

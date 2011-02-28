@@ -56,6 +56,7 @@
 	notificationTitle = @"Upcoming Event";
 	category = CATEGORY_EVENTS;
 	warningWindow = 15;
+	summaryTitle = @"Calendar Events";
 }
 
 -(id) init

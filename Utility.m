@@ -40,6 +40,35 @@
     return encodedString;
 }
 
++ (NSData *)dataByBase64DecodingString:(NSString *)decode
+{
+    decode = [decode stringByAppendingString:@"\n"];
+    NSData *data = [decode dataUsingEncoding:NSASCIIStringEncoding];
+    
+    // Construct an OpenSSL context
+    BIO *command = BIO_new(BIO_f_base64());
+    BIO *context = BIO_new_mem_buf((void *)[data bytes], [data length]);
+	
+    // Tell the context to encode base64
+    context = BIO_push(command, context);
+	
+    // Encode all the data
+    NSMutableData *outputData = [NSMutableData data];
+    
+#define BUFFSIZE 256
+    int len;
+    char inbuf[BUFFSIZE];
+    while ((len = BIO_read(context, inbuf, BUFFSIZE)) > 0)
+    {
+        [outputData appendBytes:inbuf length:len];
+    }
+	
+    BIO_free_all(context);
+    [data self]; // extend GC lifetime of data to here
+	
+    return outputData;
+}
+
 +(NSString*) timeStrFor:(NSDate*) date
 {
 	NSString *ret = nil;

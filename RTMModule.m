@@ -244,6 +244,7 @@
 		notificationName = @"Task Alert";
 		notificationTitle = @"Task Msg";
 		category = CATEGORY_TASKS;
+		summaryTitle = @"Current Tasks";
 		refreshInterval = 15 * 60;
 		[refreshText setIntValue:refreshInterval / 60];	
 	}
@@ -504,8 +505,9 @@
 - (void) markComplete:(NSDictionary *)ctx completeHandler: (NSObject*) callback
 {
 	CompleteProcessHandler *cph = [[CompleteProcessHandler alloc]initWithContext: ctx 
-																			token: tokenStr 
-																	  andDelegate: callback];
+																		   token: tokenStr 
+																	 andDelegate: callback];
 	[cph start];
 }
+
 @end

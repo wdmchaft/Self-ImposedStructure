@@ -7,13 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "BaseInstance.h"
+#import "BaseReporter.h"
 #import "RulesTableData.h"
 #import "GMailRequestHandler.h"
-#import "Reporter.h"
 
 #define MAX_FAIL 3
-@interface GmailModule : BaseInstance <Reporter>{
+@interface GmailModule : BaseReporter{
 	NSTextField *userField;
 	NSSecureTextField *passwordField;
 	NSTextField *frequencyField;

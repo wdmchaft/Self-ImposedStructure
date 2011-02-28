@@ -59,6 +59,7 @@
 		notificationName = @"Mail Alert";
 		notificationTitle = @"Gmail Msg";
 		category = CATEGORY_EMAIL;
+		summaryTitle = @"Gmail Messages";
 		minTagValue = [[NSNumber alloc]initWithInteger: 0];		
 	}
 	return self;

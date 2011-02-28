@@ -15,4 +15,5 @@
 - (void) refreshTasks;
 - (NSString*) projectForTask: (NSString*) task;
 - (void) markComplete:(NSDictionary *)ctx completeHandler:(NSObject*) callback;
+- (void) initDeadlineView: (NSTableView*) view;
 @end

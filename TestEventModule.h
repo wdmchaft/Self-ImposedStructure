@@ -7,11 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "BaseInstance.h"
+#import "BaseReporter.h"
 #import "Reporter.h"
 
 #define MAX_FAIL 3
-@interface TestEventModule : BaseInstance <Reporter> {
+@interface TestEventModule : BaseReporter <Reporter> {
 
 	NSTextField *frequencyField;
 	NSStepper *stepper;

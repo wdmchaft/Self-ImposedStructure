@@ -9,10 +9,10 @@
 #import <Cocoa/Cocoa.h>
 #import "BaseInstance.h"
 #import "RulesTableData.h"
-#import "Reporter.h"
+#import "BaseReporter.h"
 
 #define MAX_FAIL 3
-@interface TestMailModule : BaseInstance <Reporter> {
+@interface TestMailModule : BaseReporter {
 
 	NSTextField *frequencyField;
 

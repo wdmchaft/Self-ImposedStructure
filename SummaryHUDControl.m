@@ -13,114 +13,39 @@
 #import "Instance.h"
 #import "Reporter.h"
 #import <BGHUDAppKit/BGHUDAppKit.h>
+#import "SummaryViewController.h"
 
 @implementation SummaryHUDControl
-@synthesize finishedCount;
-@synthesize doneCount;
-@synthesize mailsData;
-@synthesize eventsData;
-@synthesize tasksData;
-@synthesize deadlinesData;
-@synthesize tasksTable;
-@synthesize deadlinesTable;
-@synthesize eventsTable;
-@synthesize mailTable;
+@synthesize modules;
+@synthesize heights;
+@synthesize views;
+
 @synthesize mainControl;
-@synthesize progInd;
-@synthesize currentTable;
-@synthesize currentList;
 
-- (void) processSummary
+@synthesize view;
+
+- (id) initWithWindowNibName: (NSString*) nibNameOrNil  
 {
-	[(SummaryTaskData*)tasksTable.dataSource clear];
-	[(SummaryEventData*)eventsTable.dataSource clear];
-	[(SummaryDeadlineData*)deadlinesTable.dataSource clear];
-	[(SummaryMailData*)mailTable.dataSource clear];
-//	WPADelegate *del = (WPADelegate*)[NSApplication sharedApplication].delegate;
-	Context	*ctx = [Context sharedContext];
-	// tell all of the modules that *I* am their master until further notice
-	// and tell them to start gathering summary data for me
-	NSDictionary *modules = [ctx instancesMap];
-	<Instance> module = nil;
-	NSString *modName = nil;
-	NSMutableArray *runMods = [NSMutableArray new];
-	for (modName in modules){
-		module = [modules objectForKey:modName];
-		if (module.enabled && [(id)module conformsToProtocol:@protocol(Reporter) ] ){
-			[runMods addObject:module];
+	self = [super initWithWindowNibName:nibNameOrNil];
+	if (self)
+	{
+		NSMutableArray *tHeights = [NSMutableArray new];
+		NSMutableArray *runMods = [NSMutableArray new];
+		for (NSString *modName in [Context sharedContext].instancesMap){
+			<Reporter> module = [[Context sharedContext].instancesMap objectForKey:modName];
+			if (module.enabled && [(id)module conformsToProtocol:@protocol(Reporter) ] ){
+				[runMods addObject:module];
+				[tHeights addObject: [NSNumber numberWithInt:100]];
+			}
 		}
+		modules = runMods;
+		heights = [NSArray arrayWithArray:tHeights];
 	}
-	finishedCount = [runMods count];
-	for (<Reporter> reporter in runMods){
-		[reporter refresh:self];
-	}
+	return self;
 }
 
--(void) handleAlert:(Note*) alert 
-{
-	Context *ctx = [Context sharedContext];
 
-	if (alert.lastAlert){
-		doneCount++;
-		
-	//	NSLog(@"received done from %@",alert.moduleName);
-//		if (doneCount == finishedCount){
-			[self allSummaryDataReceived];
-//		}
-	}	
-	else {
-	//	NSLog(@"received %@",alert.message);
-		<Instance> modForAlert = [ctx.instancesMap objectForKey:alert.moduleName];
-		NSDate *due = nil;
-		switch (modForAlert.category) {
-			case CATEGORY_EMAIL:
-				
-				if (![mailsData.data containsObject:alert.params])
-					[mailsData.data addObject:alert.params];
-				break;
-			case CATEGORY_TASKS:
-				
-				due = [alert.params objectForKey:@"due_time"];
-				if (due){
-					if (![deadlinesData.data containsObject:alert.params])
-						[deadlinesData.data addObject:alert.params];
-				}
-				else {
-					if (![tasksData.data containsObject:alert.params])
-						[tasksData.data addObject:alert.params];
-				}
-				break;
-			case CATEGORY_EVENTS:
-				
-				if (![eventsData.data containsObject:alert.params])
-					[eventsData.data addObject:alert.params];
-				break;
-			default:
-				break;
-		}
-	
-	 }
-}
 
--(void) handleError: (Note*) error{
-	doneCount++;
-	[self allSummaryDataReceived];
-	
-}
-
-- (void) allSummaryDataReceived
-{
-	[self showWindow: nil];
-	[(SummaryTaskData*)tasksTable.dataSource sort];
-	[(SummaryEventData*)eventsTable.dataSource sort];
-	[(SummaryDeadlineData*)deadlinesTable.dataSource sort];
-	[(SummaryMailData*)mailTable.dataSource sort];
-
-	[tasksTable noteNumberOfRowsChanged];
-	[eventsTable noteNumberOfRowsChanged];
-	[deadlinesTable noteNumberOfRowsChanged];
-	[mailTable noteNumberOfRowsChanged];
-}
 
 - (void) showWindow:(id)sender
 {
@@ -132,99 +57,99 @@
 	mainControl = sender; 
 	[super.window makeKeyAndOrderFront:nil];
 	[super.window center];
+	[self buildDisplay];
 }
 
 - (void) windowDidLoad
 {
-	NSLog(@"in windowDidLoad tasksData = %@", tasksData);
-	tasksTable.dataSource = tasksData;
-	eventsTable.dataSource = eventsData;
-	deadlinesTable.dataSource = deadlinesData;
-	mailTable.dataSource = mailsData;
 	[super.window makeKeyAndOrderFront:nil];
-}
-
--(void) initTaskTable: (NSTableView*) modulesTable
-{
-	NSArray *allCols = modulesTable.tableColumns;
-	NSTableColumn *col1 = [allCols objectAtIndex:0];
 	
-    BGHUDButtonCell *cell;
-    cell = [[NSButtonCell alloc] init];
-    [cell setButtonType:NSSwitchButton];
-    [cell setTitle:@""];
-    [cell setAction:@selector(checkTask:)];
-    [cell setTarget:self];
-	
-	[col1 setDataCell:cell];
-	[cell release];
 }
 
-- (IBAction) checkTask: (id) sender
+#define PADDING 10
+- (void) buildDisplay
 {
-	int row = [sender selectedRow];
-	SummaryData *sumData = ((NSTableView*)sender).dataSource;
-	
-	NSDictionary *params = [sumData.data objectAtIndex:row];
-	NSString *modName = [params objectForKey:@"module"];
-	Context *ctx = [Context sharedContext];
-	<TaskList> callMod = [ctx.instancesMap objectForKey:modName];
-	currentList = callMod;
-	currentTable = sender;
-	[progInd setHidden:NO];
-	[progInd startAnimation:self];
-	[NSTimer scheduledTimerWithTimeInterval:0
-												  target:self
-												selector:@selector(processComplete:) 
-												userInfo: params
-												 repeats:NO];
+	int modulesHeight = 0;
+	for (NSNumber *n in heights){
+		modulesHeight += n.intValue;
+	}
+	NSMutableArray *tabTemp = [[NSMutableArray alloc]initWithCapacity:[modules count]];
+	NSRect currRect = [[super window] frame];
+	currRect.size.height = modulesHeight + (([modules count]) * PADDING)+ 15 ; // 15 for top of frame	
+	[[super window] setFrame: currRect display:YES];
+	int count = 0;
+	int totalHeight = PADDING;
+	NSEnumerator *modEnum = [modules reverseObjectEnumerator];
+	for (<Reporter> rpt in modEnum){
+		NSRect tableFrame;
+		int currHeight = ((NSNumber*)[heights objectAtIndex:count]).intValue;
+		tableFrame.origin.y = PADDING/2 + totalHeight;
+		tableFrame.origin.x = 5;
+		tableFrame.size.width = currRect.size.width - 10;
+		tableFrame.size.height = currHeight-20;
+		NSRect busyFrame;
+		busyFrame.origin.y = tableFrame.origin.y + (tableFrame.size.height / 2) - 16;
+		busyFrame.origin.x = tableFrame.origin.x + (tableFrame.size.width / 2) - 16;
+		NSProgressIndicator *progInd = [[NSProgressIndicator alloc] initWithFrame:busyFrame];
+		[progInd setStyle:NSProgressIndicatorSpinningStyle];
+		[progInd sizeToFit];
+		[progInd setHidden:YES];
+		NSBox *box = [[NSBox alloc] initWithFrame:tableFrame];
+		[view addSubview:box];
+		[view addSubview:progInd];
+		[box setTitle: rpt.summaryTitle];
+		NSSize margins; margins.height = 0; margins.width = 0;
+		[box setContentViewMargins:margins];
+		[box setBorderType:NSNoBorder];
+		box.titlePosition = NSAboveTop;
+		SummaryViewController *svc = [self getViewForInstance:rpt view: box.contentView];
+		svc.prog = progInd;
+		[svc.view setFrame:[box.contentView bounds]];	
+		[box setContentView: svc.view];
+		[box setFrameFromContentFrame:tableFrame];
+		//[box sizeToFit];
+		totalHeight += currHeight + PADDING/2;
+		[NSTimer scheduledTimerWithTimeInterval:0 target:svc selector:@selector(refresh) userInfo: nil repeats:NO];
+
+		[tabTemp addObject: box];
+	}
+	views = [[NSArray alloc] initWithArray:tabTemp];
 }
 
-- (void) processComplete: (NSTimer*)timer
-{	
-	NSDictionary* params = timer.userInfo;
-
-	[currentList markComplete:params completeHandler:self];
-}
-
-- (void) handleComplete: (NSString*) error
+- (SummaryViewController*) getViewForInstance: (<Reporter>) inst view: (NSView*) box
 {
-	[progInd stopAnimation:self];
-	[progInd setHidden:YES];
-	SummaryData *sumData = currentTable.dataSource;
-	[sumData.data removeAllObjects];
-	[((<Reporter>)currentList) refresh:self];
-	[currentTable deselectAll:self];
+	NSString *rptNib;
+	NSRect sbounds = box.bounds;
+	NSRect sframe = box.frame;
+	NSLog(@"bounds = h:%d w:%d", sbounds.size.height, sbounds.size.width);
+	NSLog(@"frame = h:%d w:%d", sframe.size.height, sframe.size.width);
+	switch (inst.category) {
+		case CATEGORY_EMAIL:
+			rptNib = @"MailTableView";
+			return [[SummaryMailViewController alloc] initWithNibName: rptNib 
+															   bundle:[NSBundle mainBundle] 
+															   module:inst
+																size: sbounds.size];
+			break;
+		case CATEGORY_TASKS:
+			rptNib = @"TaskTableView";
+			return [[SummaryTaskViewController alloc] initWithNibName: rptNib 
+																   bundle:[NSBundle mainBundle] 
+																   module:inst
+																	 size:sbounds.size];
+			break;
+		case CATEGORY_EVENTS:
+			rptNib = @"EventTableView";
+			return [[SummaryEventViewController alloc] initWithNibName: rptNib 
+																bundle:[NSBundle mainBundle] 
+																module:inst
+																  size:sbounds.size];
+			break;
+		default:
+			break;	
+	}
+	return nil;
 }
 
--(void) awakeFromNib
-{					
-	mailsData = [SummaryMailData new];
-	tasksData = [SummaryTaskData new];
-	deadlinesData = [SummaryDeadlineData new];
-	eventsData = [SummaryEventData new];
-	[self initTaskTable: deadlinesTable];
-	[self initTaskTable: tasksTable];
-	[deadlinesTable setDoubleAction:@selector(handleDouble:)];
-	[tasksTable setDoubleAction:@selector(handleDouble:)];
-	[eventsTable setDoubleAction:@selector(handleDouble:)];
-	[mailTable setDoubleAction:@selector(handleDouble:)];
 
-}
-- (void) handleDouble: (id) sender;
-{
-	int row = [sender selectedRow];
-	SummaryData *sumData = ((NSTableView*)sender).dataSource;
-	
-	NSDictionary *ctx = [sumData.data objectAtIndex:row];
-	<Reporter> callMod = [[Context sharedContext].instancesMap objectForKey:[ctx objectForKey: @"module"]];
-	
-	[callMod handleClick:ctx];
-}
-
-- (void) windowWillClose: (NSNotification *) event
-{
-	NSLog(@"windowWillClose");
-	[mainControl changeState:[Context sharedContext].previousState];
-}
 @end

@@ -16,6 +16,8 @@
 //@property (nonatomic) void* bytes;
 //@property (nonatomic) int length;
 +(NSString *)base64EncodedString:(char*) bytes withLength: (int) length;
++ (NSData *)dataByBase64DecodingString:(NSString *)decode;
+
 +(NSString*) timeStrFor:(NSDate*) date;
 +(NSString*) shortTimeStrFor:(NSDate*) date;
 +(NSString*) MdStrFor:(NSDate*) date;

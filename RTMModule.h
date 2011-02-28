@@ -7,12 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "BaseInstance.h"
 #import "RTMCallback.h"
-#import "Reporter.h"
+#import "BaseReporter.h"
 #import "TaskList.h"
 
-@interface RTMModule : BaseInstance <Reporter, TaskList, RTMCallback>{
+@interface RTMModule : BaseReporter <TaskList, RTMCallback>{
 	NSString *tokenStr;
 	NSString *userStr;
 	NSString *passwordStr;

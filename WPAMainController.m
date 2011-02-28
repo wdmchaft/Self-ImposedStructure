@@ -418,16 +418,15 @@
 	Context *ctx = [Context sharedContext];
 	SummaryHUDControl *shc = [[SummaryHUDControl alloc]initWithWindowNibName:@"SummaryHUD"];
 	hudWindow = shc.window;
-	[hudWindow orderOut:self];
+	[shc showWindow:self];
+	[[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
 	[[NSNotificationCenter defaultCenter] addObserver:self 
 											 selector:@selector(summaryClosed:) 
 												 name:NSWindowWillCloseNotification 
 											   object:shc.window];
 
 	ctx.currentState = WPASTATE_SUMMARY;
-	[self buildStatusMenu];
-	[shc processSummary];
-	
+	[self buildStatusMenu];	
 }
 
 - (void) summaryClosed:(NSNotification*) notification{
@@ -626,6 +625,7 @@
 	[prefsWindow showWindow:self];
 	[[prefsWindow window] makeKeyAndOrderFront:self];
 	[[statsWindow window] setOrderedIndex:0];
+	[[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
 }
 
 
@@ -637,6 +637,7 @@
 	[statsWindow showWindow:self];
 	[[statsWindow window] makeKeyAndOrderFront:self];
 	[[statsWindow window] setOrderedIndex:0];
+	[[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
 }
 
 

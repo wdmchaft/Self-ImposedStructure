@@ -8,9 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 #import "Reporter.h"
-#import "BaseInstance.h"
+#import "BaseReporter.h"
 
-@interface AppleMailModule : BaseInstance <Reporter> {
+@interface AppleMailModule : BaseReporter {
 	NSString *accountName;
 	NSString *mailMailboxName;
 	NSMutableArray *unreadMail;
@@ -24,6 +24,7 @@
 	NSButton *useDisplayWindowButton;
 	BOOL useDisplayWindow;
 	NSTimeInterval displayWindow;
+	NSDate *lastCheck;
 }
 @property (nonatomic,retain) NSString *accountName;
 @property (nonatomic,retain) NSString *mailMailboxName;
@@ -38,8 +39,13 @@
 @property (nonatomic,retain) IBOutlet NSButton *useDisplayWindowButton;
 @property (nonatomic)  NSTimeInterval displayWindow;
 @property (nonatomic)  BOOL useDisplayWindow;
+@property (nonatomic,retain) NSDate *lastCheck;
 
 - (void) getUnread: (NSObject*) param;
 - (void) fetchDone: (NSNotification*) msg;
+- (IBAction) clickUseDisplayWindow: (id) sender;
+- (void) validateDone: (NSNotification*) note;
+- (void) doValidate: (NSObject*) params;
+
 
 @end

@@ -7,12 +7,16 @@
 //
 
 #import "MimeHandler.h"
+#import "Utility.h"
+/* 
+ ugly inefficient code to try to niggle a plain-text synopsis out of MIME messages
+ */
 
 @implementation MimeHandler
 + (NSString*)synopsis: (NSString*) data
 {
 	NSRange range; range.location = NSNotFound;
-	range = [data rangeOfString:@"Content-type: multipart"];
+	range = [data rangeOfString:@"Content-type: multipart" options:NSCaseInsensitiveSearch];
 	if (range.location == NSNotFound){
 		return [MimeHandler synopsisFromSimple: data];
 	} else {
@@ -39,7 +43,7 @@
 	NSArray *boundaries = [MimeHandler getBoundaries: data];
 	
 	// now look for a plain text part of the message
-	NSRange start = [data rangeOfString:@"\nContent-type: text/plain"];
+	NSRange start = [data rangeOfString:@"\nContent-type: text/plain" options:NSCaseInsensitiveSearch];
 	if (start.location == NSNotFound) {
 		return @"";
 	}
@@ -48,7 +52,9 @@
 	NSString *srchStr = [partStart substringToIndex:endLoc];
 	NSRange sstart = [srchStr rangeOfString:@"\n\n"];
 	NSString *ret = [srchStr substringFromIndex:sstart.location +sstart.length];
-	return ret = [ret stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	ret = [ret stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	NSUInteger maxLen = [ret length] > 100 ? 100 : [ret length];
+	return [ret substringToIndex:maxLen];
 }
 
 // find all the "Content-type: multipart" headers and associated boundary strings
@@ -58,53 +64,71 @@
 	NSMutableArray *ret = [NSMutableArray new];
 	NSRange range;
 	range.location = NSNotFound;
-	range = [sData rangeOfString:@"\nContent-type: multipart/"];
+	range = [sData rangeOfString:@"\nContent-type: multipart/" options:NSCaseInsensitiveSearch];
 	while (range.location != NSNotFound) {
 		// find boundary
 		NSInteger pt1 = range.location + range.length;
 		NSString *srchStr = [sData substringFromIndex:range.location + range.length];
-		NSRange bRange = [srchStr rangeOfString:@"Boundary=\""];
-		NSRange eRange = [srchStr rangeOfString:@"\"\n"];
-		NSRange tRange; 
-		tRange.location = bRange.location + bRange.length;
-		tRange.length = eRange.location - tRange.location;
-		NSString *boundary = [srchStr substringWithRange:tRange];
+		NSString *boundary = nil;
+		NSUInteger endBoundary = [MimeHandler getBoundaryFrom:srchStr ret:&boundary];
+
+		NSLog(@"boundary=%@",boundary);
 		[ret addObject:boundary];
-		NSInteger pt2 = pt1 + eRange.location + eRange.length;
+//		NSInteger pt2 = pt1 + eRange.location + eRange.length;
+		NSInteger pt2 = pt1 + endBoundary;
 		sData = [sData substringFromIndex:pt2];
-		range = [sData rangeOfString: @"\nContent-type: multipart/"];
+		range = [sData rangeOfString: @"\nContent-type: multipart/" options:NSCaseInsensitiveSearch];
+		if (range.location != NSNotFound){
+			NSLog(@"looping...");
+		}
 	}
 	return [ret count] == 0 ? nil : ret;	
 }
 
-+ (NSString*)synopsisFromMultiPartA: (NSString*) data
++ (NSUInteger) getBoundaryFrom:(NSString*) srchStr ret:(NSString**) retString
 {
-	NSString *BOUNDARY=@"boundary=";
-	NSScanner *scan = [NSScanner localizedScannerWithString:data];
-	NSString *ignore;
-	[scan scanUpToString:@"Content-Type:" intoString:&ignore];
-	[scan scanUpToString:BOUNDARY intoString:&ignore];
-	NSString *boundary = nil;
-	[scan scanUpToString:@"\n" intoString:&boundary];
-	if (!boundary) {
-		NSLog(@"no boundary");
-	}
-	boundary = [boundary substringFromIndex:[BOUNDARY length]];
-	NSString *target2 = [NSString stringWithFormat:@"--%@\n",boundary];
-	NSString *target1 = [NSString stringWithFormat:@"%@Content-Type: text/plain",target2];
-	[scan scanUpToString:target1 intoString:&ignore];
-	[scan scanUpToString:@"\n\n" intoString:&ignore];
-	NSString *synopsis;
-	[scan scanUpToString:target2 intoString:&synopsis];
-	return [synopsis substringToIndex:100];
+	NSRange srchRange, bRange, eRange, tRange;
+	
+	BOOL quoted = [MimeHandler isQuotedBoundary: srchStr];
+	NSString *eTarget = quoted ? @"\"\n" : @"\n";
+	NSString *bTarget = quoted ? @"Boundary=\"" : @"Boundary=";
+	bRange = [srchStr rangeOfString:bTarget options:NSCaseInsensitiveSearch];
+	srchRange.location=bRange.location+bRange.length;
+	srchRange.length = [srchStr length] - srchRange.location;
+	eRange = [srchStr rangeOfString:eTarget options:0 range:srchRange]; 
+	tRange.location = bRange.location + bRange.length;
+	tRange.length = eRange.location - tRange.location;
+	NSString *boundary = [NSString	stringWithString:[srchStr substringWithRange:tRange]];
+	*retString = boundary;
+	return eRange.location + eRange.length;
+}
+
++ (BOOL) isQuotedBoundary: (NSString*) srchStr
+{
+	// if its quoted we will find both of these in the same place --
+	// only return false if rangeN is less than rangeQ
+	NSRange bRangeQ = [srchStr rangeOfString:@"Boundary=\"" options:NSCaseInsensitiveSearch];
+	NSRange bRangeN = [srchStr rangeOfString:@"Boundary=" options:NSCaseInsensitiveSearch];
+	return (bRangeN.location >= bRangeQ.location) ;
 }
 
 + (NSString*)synopsisFromSimple: (NSString*) data
 {
+	NSLog(@"data = %@",data);
+	NSString* encodeStr = @"Content-Transfer-Encoding: base64";
+	NSRange encodeRange = [data rangeOfString:encodeStr options:NSCaseInsensitiveSearch];
+	BOOL decodeIt = encodeRange.location != NSNotFound;
 	
 	NSRange boundaryRange = [data rangeOfString:@"\n\n"];
+	NSLog(@"location = %d length = %d", boundaryRange.location,boundaryRange.length);
 	NSString *synopsis = [data substringFromIndex:boundaryRange.location + boundaryRange.length];
-	return [synopsis substringToIndex:100];
+	if (decodeIt) {
+		NSData *data = [Utility dataByBase64DecodingString:synopsis];
+		synopsis = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	}
+	synopsis = [synopsis stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	NSUInteger maxLen = [synopsis length] > 100 ? 100 : [synopsis length];
+	return [synopsis substringToIndex:maxLen];
 }
 
 @end

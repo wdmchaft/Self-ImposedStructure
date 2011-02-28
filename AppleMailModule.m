@@ -15,6 +15,7 @@
 #define REFRESH  @"refreshInterval"
 #define DISPLAYWIN  @"displayWindow"
 #define USEDISPWIN  @"useDisplayWindow"
+#define LASTCHECK  @"lastCheck"
 
 @implementation AppleMailModule
 
@@ -31,6 +32,7 @@
 @synthesize displayWindowStepper;
 @synthesize useDisplayWindow;
 @synthesize useDisplayWindowButton;
+@synthesize lastCheck;
 
 @dynamic refreshInterval;
 @dynamic notificationName;
@@ -38,6 +40,7 @@
 @dynamic enabled;
 @dynamic category;
 @dynamic name;
+@dynamic summaryTitle;
 
 
 
@@ -50,6 +53,7 @@
 		notificationName = @"Mail Alert";
 		notificationTitle = @"Mail Msg";
 		category = CATEGORY_EMAIL;
+		summaryTitle = @"Apple Mail";
 		//	minTagValue = [[NSNumber alloc]initWithInteger: 0];	
 
 	}
@@ -58,7 +62,20 @@
 
 -(void) getUnread: (NSObject*) param
 {
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	unreadMail = [NSMutableArray new];
+	NSDate *minTime = [NSDate distantPast];
+	if (useDisplayWindow){
+		NSLog(@"Now = %@", [NSDate date]);
+		minTime = [[NSDate date] dateByAddingTimeInterval:-(displayWindow * 60 * 60)];
+		NSLog(@"Disp window = %@", minTime);
+	}
+	// the window may be longer than the default window if we haven't checked the inbox in a while
+	if (lastCheck){
+		minTime = [lastCheck earlierDate:minTime];
+		NSLog(@"Adjusted Disp window = %@", minTime);
+}
+	NSLog(@"will get all email later than %@", minTime);
 	MailApplication *mailApp = [SBApplication applicationWithBundleIdentifier:@"com.apple.mail"];
 	if (mailApp) {
 		for (MailAccount *mAcc in mailApp.accounts){
@@ -66,13 +83,13 @@
 				for(MailMailbox *box in mAcc.mailboxes){
 					if ([box.name isEqualToString: mailMailboxName]) {
 						for (MailMessage *msg in box.messages){
-							if (msg.readStatus == NO){
+							NSLog(@"from = %@ subj = %@",[mailApp extractAddressFrom:msg.sender], msg.subject);
+							NSComparisonResult res = [msg.dateReceived compare:minTime];
+							if (!(res == NSOrderedAscending)) {
+								
 								NSString *temp = msg.source;
 								NSString *synopsis = [MimeHandler synopsis:temp];
-								NSRange sRange = [synopsis rangeOfString:@"--"];
-								if (sRange.location != NSNotFound){
-									NSLog(@"break");
-								}
+					
 								NSDictionary *params = 
 								[NSDictionary dictionaryWithObjectsAndKeys:
 								 name, REPORTER_MODULE,
@@ -84,18 +101,23 @@
 								 [msg.dateSent copy], MAIL_SENT_TIME,
 								 [msg.messageId copy], @"id",
 								 nil ];
-								NSLog(@"id = %@ subj = %@",msg.messageId, msg.subject);
+								NSLog(@"from = %@ subj = %@",[mailApp extractAddressFrom:msg.sender], msg.subject);
 								[unreadMail addObject:params];
+							}else {
+								break;
 							}
+
 						}
 					}
 				}
 			}
 		}
 	}
+	[[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:LASTCHECK];
+	[[NSUserDefaults standardUserDefaults] synchronize];
 	NSNotification *msg = [NSNotification notificationWithName:@"com.workplayaway.fetchDone" object:nil];
 	[[NSNotificationCenter defaultCenter] postNotification:msg];
-	
+	[pool drain];	
 }
 
 -(void) refresh: (<AlertHandler>) handler
@@ -110,7 +132,7 @@
 						   withObject:nil];
 }
 
-- (void) fetchDone: (NSNotification*) msg
+- (void) fetchDone: (NSNotification*) note
 {
 	for (NSDictionary *msg in unreadMail){
 		Note *alert = [Note new];
@@ -132,8 +154,58 @@
 	[super startValidation:callback];
 	accountName = [accountField stringValue];
 	mailMailboxName = [mailboxField stringValue];
+	useDisplayWindow = [useDisplayWindowButton intValue];
+	displayWindow = [displayWindowField doubleValue];
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+											 selector:@selector(validateDone:)
+												 name:@"com.workplayaway.validateDone" 
+											   object:nil];
+	[NSThread detachNewThreadSelector: @selector(doValidate:)
+							 toTarget:self
+						   withObject:nil];	
+
+}
+
+- (void) doValidate: (NSObject*) params
+{
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	MailAccount *foundAcc = nil;
+	BOOL foundBox = NO;
+	NSString *err = nil;
+	MailApplication *mailApp = [SBApplication applicationWithBundleIdentifier:@"com.apple.mail"];
+	if (mailApp) {
+		for (MailAccount *mAcc in mailApp.accounts){
+			if ([mAcc.name isEqualToString:accountName]){
+				foundAcc = mAcc;
+			}
+		}
+		if (foundAcc) {
+			for(MailMailbox *box in foundAcc.mailboxes){
+				if ([box.name isEqualToString: mailMailboxName]) {
+					foundBox = YES;
+				}
+			}
+			if (!foundBox) {
+				err = [NSString stringWithFormat:@"No mailbox named: '%@'",mailMailboxName];
+			}
+		}
+		else {
+			err = [NSString stringWithFormat:@"No account named: '%@'",accountName];
+		}
+
+	}
+	else {
+		err = @"Apple Mail not running: can not validate.";
+	}
+	NSNotification *msg = [NSNotification notificationWithName:@"com.workplayaway.validateDone" object:err];
+	[[NSNotificationCenter defaultCenter] postNotification:msg];
+	[pool drain];
+}
+
+- (void) validateDone: (NSNotification*) note
+{
 	[validationHandler performSelector:@selector(validationComplete:) 
-						withObject:nil];
+								withObject:note.object];
 }
 
 -(void) saveDefaults{
@@ -157,6 +229,16 @@
 	[displayWindowField setDoubleValue:displayWindow];
 	[displayWindowStepper setDoubleValue:displayWindow];
 	[useDisplayWindowButton setIntValue:useDisplayWindow];
+	[displayWindowField setEnabled:useDisplayWindow];
+	[displayWindowStepper setEnabled:useDisplayWindow];
+	
+}
+
+- (IBAction) clickUseDisplayWindow: (id) sender
+{
+	useDisplayWindow = useDisplayWindowButton.intValue;
+	[displayWindowField setEnabled:useDisplayWindow];
+	[displayWindowStepper setEnabled:useDisplayWindow];	
 }
 
 -(void) loadDefaults
@@ -167,6 +249,7 @@
 	refreshInterval = ((NSNumber*)[super loadDefaultForKey:REFRESH]).doubleValue/60;
 	displayWindow = ((NSNumber*)[super loadDefaultForKey:DISPLAYWIN]).doubleValue/ (60 * 60);
 	useDisplayWindow = ((NSNumber*)[super loadDefaultForKey:USEDISPWIN	]).intValue;
+	lastCheck = (NSDate*)[super loadDefaultForKey:LASTCHECK];
 }
 
 -(void) clearDefaults{
@@ -178,5 +261,6 @@
 	[super clearDefaultValue:nil forKey:USEDISPWIN];
 	[[NSUserDefaults standardUserDefaults] synchronize];	
 }
+
 
 @end

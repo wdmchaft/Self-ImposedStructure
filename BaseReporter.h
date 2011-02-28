@@ -8,10 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 #import "Reporter.h"
+#import "BaseInstance.h"
 
 
-@interface BaseReporter : NSObject <Reporter>{
-
+@interface BaseReporter : BaseInstance <Reporter>{
+	NSString *summaryTitle;
 }
-
+@property (nonatomic,retain) NSString *summaryTitle;
 @end

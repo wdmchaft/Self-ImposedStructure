@@ -31,6 +31,7 @@
 		notificationName = @"Mail Alert";
 		notificationTitle = @"Test Email Msg";
 		category = CATEGORY_TASKS;
+		summaryTitle = @"Test Tasks";
 
 		NSDictionary *dict1 = [NSDictionary dictionaryWithObjectsAndKeys:
 							   [self name], @"module",
@@ -47,6 +48,7 @@
 							   @"Go For a Walk",@"name",
 							   @"taskseries_id",@"taskseries_id",
 							   @"id",@"id",
+							   [NSDate distantFuture],@"due_time",
 							   [NSNumber numberWithInt:NO], @"done",
 							   nil];
 		NSDate *past = [NSDate dateWithTimeIntervalSinceNow:-60*60];

@@ -71,6 +71,8 @@ didStartElement:(NSString *)elementName
 			[inputFormatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
 			NSDate *dueDate = [inputFormatter dateFromString:dueTimeStr];
 			[currentDict setObject:dueDate forKey:TASK_DUE];
+		} else {
+			[currentDict setObject:[NSDate distantFuture] forKey:TASK_DUE];
 		}
     }
 	if ( [elementName isEqualToString:@"list"]) {

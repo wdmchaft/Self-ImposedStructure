@@ -7,11 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "BaseInstance.h"
-#import "Reporter.h"
+#import "BaseReporter.h"
 #import "TaskList.h"
 
-@interface TestTaskModule : BaseInstance <Reporter, TaskList> {
+@interface TestTaskModule : BaseReporter <TaskList> {
 
 	NSTextField *frequencyField;
 

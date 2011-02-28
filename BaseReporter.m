@@ -10,5 +10,5 @@
 
 
 @implementation BaseReporter
-
+@synthesize summaryTitle;
 @end
