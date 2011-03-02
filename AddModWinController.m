@@ -8,10 +8,11 @@
 
 #import "AddModWinController.h"
 #import "Context.h"
+#import "Reporter.h"
 
 @implementation AddModWinController
 @synthesize okButton, cancelButton, typeButton, configBox, nothingView, currCtrl, indicator, nameText,tableData,
-tableView, modNames, originalName;
+tableView, modNames, originalName, hudView;
 
 
 - (void) clickOk: (id) sender
@@ -46,6 +47,7 @@ tableView, modNames, originalName;
 
 -(void) validationComplete: (NSString*) msg
 {
+	Context *ctx = [Context sharedContext];
 	[indicator stopAnimation:self];
 	[indicator setHidden:YES];
 	if (msg){
@@ -63,15 +65,20 @@ tableView, modNames, originalName;
 	NSMutableDictionary *modsMap = [Context sharedContext].instancesMap;
 	if (originalName == nil || [originalName isEqualToString: mod.name]){
 		[modsMap setObject: mod forKey: mod.name];
+		if ([mod conformsToProtocol:@protocol(Reporter)]){
+			[ctx.hudSettings addInstance:(<Reporter>) mod ];
+			[ctx.hudSettings saveToDefaults];
+		}	
 	} 
 	else {
 		[modsMap removeObjectForKey:originalName];
-		[[Context sharedContext] removeDefaultsForKey:originalName];
+		[ctx removeDefaultsForKey:originalName];
+	
 		[modsMap setObject: mod forKey: mod.name];
 	}
 	[mod clearValidation];
 	tableData.instances = modsMap;
-	[[Context sharedContext] saveModules];
+	[ctx saveModules];
 	[tableView noteNumberOfRowsChanged];
 	[super.window close];
 }

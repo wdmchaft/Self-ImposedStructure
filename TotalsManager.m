@@ -55,7 +55,7 @@
 	NSLog(@"rolling over @ %@", todayStr);
 	NSTimeInterval next = 24 * 60 * 60;
 	// if we are called the first time then set up the loop for every 24 hours
-	if (timer.userInfo){
+	if (timer.userInfo == nil){
 		dailyRolloverTimer = [NSTimer scheduledTimerWithTimeInterval:next
 															  target:self
 															selector: @selector(dailyRollover:) 
@@ -108,15 +108,12 @@
 	if (self)
 	{
 		NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-		NSNumber *temp = [ud objectForKey:@"DailyRolloverHour"]; // defaults to zero (aka midnight)
-		rolloverHour = temp ? [temp intValue] : 0;
+		rolloverHour = ((NSNumber*)[ud objectForKey:@"dailyRolloverHour"]).intValue; // defaults to zero (aka midnight)
 		NSLog(@"rollover hour: %d", rolloverHour);
-		temp = [ud objectForKey:@"WeeklyRolloverDay"];
-		rolloverDay = temp ? [temp intValue] + 1 : 1; //  defaults to 1 (aka sunday using NSCalendar)
-		temp = [ud objectForKey:@"StatusInterval"]; 
-		interval = temp ? [temp intValue] : 10;
+		rolloverDay =  ((NSNumber*)[ud objectForKey:@"weeklyRolloverDay"]).intValue;
+		interval = ((NSNumber*)[ud objectForKey:@"statusInterval"]).doubleValue; 
+		
 		dailyRolloverTimer = [self getTimerForRollHour: rolloverHour];
-	//	[self initFromRecord];
 	}
 	return self;
 }
@@ -148,5 +145,17 @@
 			break;
 	}
 	[self saveCurrent];
+}
++ (void) initialize
+{
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *appDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
+								 [NSNumber numberWithInt:0],	@"dailyRolloverHour", //midnight
+								 [NSNumber numberWithInt:1],	@"weeklyRolloverDay", //sunday
+								 [NSNumber numberWithInt:10],	@"statusInterval",    //every 10 sec
+								 nil];
+	
+    [defaults registerDefaults:appDefaults];
+	
 }
 @end

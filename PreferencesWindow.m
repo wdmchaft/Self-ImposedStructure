@@ -14,7 +14,8 @@
 
 @implementation PreferencesWindow
 @synthesize modulesTable, amwControl,addButton, removeButton, newModuleView, tableData, 
-launchOnBootButton, editButton;
+launchOnBootButton, editButton, hudTable, 
+summaryField, summaryStepper, summaryLabel, summaryLabel2, summaryButton;
 
 - (void)awakeFromNib
 {
@@ -53,13 +54,16 @@ launchOnBootButton, editButton;
 	[cell release];
 	
 	workView = modulesTable;
-
+	hudTable.dataSource = [Context sharedContext].hudSettings;
+	[hudTable registerForDraggedTypes:
+	 [NSArray arrayWithObject:[[HUDSettings class] description] ]];
+	
+	
 }
 
 - (void) showWindow:(id)sender
 {
 	[super showWindow:sender];
-	Context *ctx = [Context sharedContext];
 	LaunchAtLoginController *lALCtrl = [LaunchAtLoginController new];
 	[launchOnBootButton setIntValue: [lALCtrl launchAtLogin]];
 	
@@ -87,6 +91,7 @@ launchOnBootButton, editButton;
 	amwControl = [[AddModWinController alloc] initWithWindowNibName:@"AddMod"];
 	amwControl.tableData = tableData;
 	amwControl.tableView = modulesTable;
+	amwControl.hudView = hudTable;
 	[amwControl setCurrCtrl: nil];
 	
 	[self runModal];
@@ -104,6 +109,7 @@ launchOnBootButton, editButton;
 		amwControl.currCtrl = mod;
 		amwControl.tableData = tableData;
 		amwControl.tableView = modulesTable;
+		amwControl.hudView = hudTable;
 		[self runModal];
 	}
 }
@@ -114,11 +120,16 @@ launchOnBootButton, editButton;
 		//objectValueForTableColumn:row:
 		NSTableColumn *col = [[modulesTable tableColumns] objectAtIndex:0];
 		NSString *instName = [tableData objValueForTableColumn:col row:rowNum];
-		
-		<Instance> mod = [[Context sharedContext].instancesMap objectForKey:instName];
+		Context *ctx = [Context sharedContext];
+		<Instance> mod = [ctx.instancesMap objectForKey:instName];
 		[mod clearDefaults];
-		[[Context sharedContext].instancesMap removeObjectForKey:instName];
-		[[Context sharedContext] saveModules];
+		[ctx.instancesMap removeObjectForKey:instName];
+		[ctx saveModules];
+		if ([mod conformsToProtocol:@protocol(Reporter)]){
+			[ctx.hudSettings removeInstance:(<Reporter>)mod];
+			[ctx.hudSettings saveToDefaults];
+			[hudTable noteNumberOfRowsChanged];
+		}
 		[modulesTable noteNumberOfRowsChanged];
 	}
 }
@@ -134,6 +145,9 @@ launchOnBootButton, editButton;
 	<Instance> mod = [ctx.instancesMap objectForKey: key];
 	
 	mod.enabled = !mod.enabled;
+	if (mod.enabled == NO && [mod conformsToProtocol:@protocol(Reporter)]){
+		[ctx.hudSettings disableInstance:(<Reporter>)mod]; // disabled module can not be enabled for summary
+	}
 	if ([((NSObject*)mod) respondsToSelector:@selector(changeState:)])
 	{
 		<Stateful> sc = (<Stateful>) mod;
@@ -189,6 +203,13 @@ launchOnBootButton, editButton;
 						 informativeTextWithFormat:@"This change will not take effect until you quit and restart."];
 	[alert runModal];	
 	
+}
+- (IBAction) clickSummary: (id) sender {
+	BOOL enabled = summaryButton.intValue;
+	[summaryLabel setEnabled:enabled];
+	[summaryLabel2 setEnabled:enabled];
+	[summaryStepper setEnabled:enabled];
+	[summaryField setEnabled:enabled];
 }
 
 @end

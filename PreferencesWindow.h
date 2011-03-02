@@ -22,18 +22,29 @@
 	AddModWinController *amwControl;
 	
 	NSModalSession editModuleSession;
+	NSTableView *hudTable;
+	NSStepper *summaryStepper;
+	NSTextField *summaryField;
+	NSTextField *summaryLabel;
+	NSTextField *summaryLabel2;
+	NSButton *summaryButton;
 }
 
 @property (retain, nonatomic) IBOutlet NSTableView *modulesTable;
+@property (retain, nonatomic) IBOutlet NSTableView *hudTable;
 @property (retain, nonatomic) IBOutlet NSButton *addButton;
 @property (retain, nonatomic) IBOutlet NSButton *removeButton;
 @property (retain, nonatomic) IBOutlet NSButton *editButton;
 @property (retain, nonatomic) IBOutlet NSButton *launchOnBootButton;
-@property (retain, nonatomic) IBOutlet NSButton *enableHotKeyButton;
 @property (retain, nonatomic) IBOutlet NSView *newModuleView;
-@property (retain, nonatomic) IBOutlet AddModWinController *amwControl;
+@property (retain, nonatomic) AddModWinController *amwControl;
 @property (retain, nonatomic)  ModulesTableData *tableData;
 @property ( nonatomic) NSModalSession editModuleSession;
+@property (retain, nonatomic) IBOutlet NSStepper *summaryStepper;
+@property (retain, nonatomic) IBOutlet NSTextField *summaryField;
+@property (retain, nonatomic) IBOutlet NSTextField *summaryLabel;
+@property (retain, nonatomic) IBOutlet NSTextField *summaryLabel2;
+@property (retain, nonatomic) IBOutlet NSButton *summaryButton;
 
 - (IBAction) clickAdd: (id) sender;
 - (IBAction) clickRemove: (id) sender;
@@ -45,5 +56,7 @@
 
 - (void) addClosed: (NSNotification*) notification;
 - (IBAction) clickUseHotKey: (id) sender;
+
+- (IBAction) clickSummary: (id) sender;
 
 @end

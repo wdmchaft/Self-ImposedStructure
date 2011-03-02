@@ -17,8 +17,6 @@
 #import "SummaryViewController.h"
 
 @interface SummaryHUDControl : NSWindowController {
-	NSArray *modules;
-	NSArray *heights;
 	NSArray *views;
 	NSView *view;
 	NSTextField *label1;
@@ -30,9 +28,6 @@
 	WPAMainController *mainControl;
 }
 
-
-@property (nonatomic, retain)  NSArray *modules;
-@property (nonatomic, retain)  NSArray *heights;
 @property (nonatomic, retain)  NSArray *views;
 @property (nonatomic, retain) IBOutlet NSView *view;
 

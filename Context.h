@@ -10,6 +10,7 @@
 #import "State.h"
 #import "TaskInfo.h"
 #import "GrowlManager.h"
+#import "HUDSettings.h"
 
 @interface Context : NSObject {
 	NSMutableDictionary *instancesMap; // maps module name to instance of module
@@ -25,6 +26,7 @@
 	NSDate *lastStateChange;
 	WPAStateType previousState;
 	GrowlManager *growlManager;
+	HUDSettings *hudSettings;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *instancesMap;
@@ -40,6 +42,7 @@
 @property (nonatomic) WPAStateType currentState;
 @property (nonatomic, readonly) WPAStateType previousState;
 @property (nonatomic,retain) GrowlManager *growlManager;
+@property (nonatomic,retain) HUDSettings *hudSettings;
 
 + (Context*)sharedContext;
 - (void) loadBundles;

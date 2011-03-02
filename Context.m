@@ -16,6 +16,7 @@
 #import "Reporter.h"
 #import "Stateful.h"
 #import "GrowlManager.h"
+#import "HUDSettings.h"
 
 @interface Context : NSObject {
 	NSMutableDictionary *instancesMap; // maps module name to instance of module
@@ -30,6 +31,7 @@
 	WPAStateType previousState;
 	WPAStateType currentState;
 	GrowlManager *growlManager;
+	HUDSettings *hudSettings;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *instancesMap;
@@ -46,6 +48,7 @@
 @property (nonatomic, retain) NSArray *tasksList;
 @property (nonatomic, retain) NSDate *lastStateChange;
 @property (nonatomic, retain) GrowlManager *growlManager;
+@property (nonatomic, retain) HUDSettings *hudSettings;
 @property (nonatomic) WPAStateType previousState;
 + (Context*)sharedContext;
 - (void) loadBundles;
@@ -75,6 +78,7 @@
 @synthesize lastStateChange;
 @synthesize previousState;
 @synthesize growlManager;
+@synthesize hudSettings;
 
 
 
@@ -87,6 +91,8 @@ static Context* sharedContext = nil;
 	//	[sharedContext clearModules];
 		[sharedContext loadBundles];
 		[sharedContext initFromDefaults];
+		sharedContext.hudSettings = [[HUDSettings alloc]init];
+		[sharedContext.hudSettings readFromDefaults];
 
 	}
     return sharedContext;
@@ -248,6 +254,7 @@ static Context* sharedContext = nil;
 	[ud setObject: lastStateChange forKey: @"lastStateChange"];
 	[self saveModules];
 	[self saveTask];
+	[hudSettings saveToDefaults];
 	
 	[ud synchronize];
 	
@@ -279,7 +286,10 @@ static Context* sharedContext = nil;
 	}
 	[[NSUserDefaults standardUserDefaults] setObject: modsString forKey:@"ModulesList"];
 }
-
+- (void) saveHUDSettings
+{
+	
+}
 -(void) clearModules
 {
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"ModulesList"];

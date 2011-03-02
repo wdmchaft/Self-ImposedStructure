@@ -21,6 +21,7 @@
 	NSProgressIndicator *indicator;
 	ModulesTableData *tableData;
 	NSTableView *tableView;
+	NSTableView *hudView;
 	NSMutableArray *modNames;
 }
 @property (nonatomic, retain) IBOutlet	NSButton *okButton;
@@ -32,7 +33,8 @@
 @property (nonatomic, retain) IBOutlet	NSProgressIndicator *indicator;
 @property (nonatomic, retain) ModulesTableData *tableData;
 @property (nonatomic, retain) NSViewController *currCtrl;
-@property (nonatomic,retain) 	NSTableView *tableView;
+@property (nonatomic,retain) NSTableView *tableView;
+@property (nonatomic,retain) NSTableView *hudView;
 @property (nonatomic,retain) NSMutableArray *modNames;
 @property (nonatomic, retain) NSString * originalName;
 
