@@ -12,7 +12,6 @@
 #import "SummaryTable.h"
 #import "WorkTable.h"
 #import "PieData.h"
-#import "GraphData2.h"
 
 @interface StatsWindow : NSWindowController {
 	NSButton *resetButton;
@@ -27,7 +26,6 @@
 	SMPieChartView *pieChart;
 	SM2DGraphView *barChart;
 	PieData *pieData;
-	GraphData2 *graphData;
 	NSButton *genButton;
 }
 @property (nonatomic,retain) IBOutlet NSButton *resetButton;
@@ -43,7 +41,6 @@
 @property (nonatomic,retain) StatsTable *statsData;
 @property (nonatomic,retain) WorkTable *workData;
 @property (nonatomic, retain) PieData *pieData;
-@property (nonatomic, retain) GraphData2 *graphData;
 -(IBAction) clickClear: (id) sender;
 -(IBAction) clickGen: (id) sender;
 -(void) setContents;

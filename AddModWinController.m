@@ -65,9 +65,8 @@ tableView, modNames, originalName, hudView;
 	NSMutableDictionary *modsMap = [Context sharedContext].instancesMap;
 	if (originalName == nil || [originalName isEqualToString: mod.name]){
 		[modsMap setObject: mod forKey: mod.name];
-		if ([mod conformsToProtocol:@protocol(Reporter)]){
+		if ([mod conformsToProtocol:@protocol(Reporter)] && originalName == nil){
 			[ctx.hudSettings addInstance:(<Reporter>) mod ];
-			[ctx.hudSettings saveToDefaults];
 		}	
 	} 
 	else {
@@ -79,6 +78,9 @@ tableView, modNames, originalName, hudView;
 	[mod clearValidation];
 	tableData.instances = modsMap;
 	[ctx saveModules];
+	if ([mod conformsToProtocol:@protocol(Reporter)]){
+		[ctx.hudSettings saveToDefaults];
+	}
 	[tableView noteNumberOfRowsChanged];
 	[super.window close];
 }

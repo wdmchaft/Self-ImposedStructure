@@ -81,7 +81,7 @@
 	[instances insertObject: inst  atIndex:idx];
 	[heights insertObject: [NSNumber numberWithInt:hgt] atIndex:idx];
 	[enables insertObject:[NSNumber numberWithBool:on] atIndex:idx];
-	[labels insertObject:lbl atIndex:idx];
+	[labels insertObject:[lbl copy] atIndex:idx];
 }
 
 - (HUDSetting*) settingAtIndex: (int) index
@@ -175,10 +175,11 @@
 objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
 	id theValue;
+	NSParameterAssert(instances != nil);
 	NSParameterAssert(row >= 0 && row < [instances count]);
 	
 	NSString *colName = [tableColumn identifier];
-	
+
 	if ([colName isEqualToString:@"RPT"]){
 		<Reporter> rpt  = [instances objectAtIndex:row];
 		theValue = rpt.name;
@@ -229,7 +230,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 	return NSDragOperationEvery;
 }
 
-- (NSArray*) moveItemsInArrayAbove:(NSMutableArray*) array 
+- (NSMutableArray*) moveItemsInArrayAbove:(NSMutableArray*) array 
 						   indexes:(NSIndexSet*) indexes
 							target: (NSUInteger) row	
 {
@@ -254,7 +255,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 	return temp;
 }
 
-- (NSArray*) moveItemsInArrayAt:(NSMutableArray*) array 
+- (NSMutableArray*) moveItemsInArrayAt:(NSMutableArray*) array 
 						indexes:(NSIndexSet*) indexes
 					   target: (NSUInteger) row	
 {
@@ -279,7 +280,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 	return temp;
 }
 
-- (NSArray*) moveItemsInArray: (NSMutableArray*) array 
+- (NSMutableArray*) moveItemsInArray: (NSMutableArray*) array 
 					   moveOp: (NSTableViewDropOperation) op 
 					  indexes:(NSIndexSet*) indexes
 					 location: (NSUInteger) row		
@@ -305,28 +306,40 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 	dropOperation:(NSTableViewDropOperation)op
 {
 	if (info.draggingSource == aTableView){
-		
+	
 		NSPasteboard* pboard = [info draggingPasteboard];
 		NSData* rowData = [pboard dataForType:[[HUDSettings class] description]];
 		NSIndexSet* rowIndexes = [NSKeyedUnarchiver unarchiveObjectWithData:rowData];
 		
 		// Move the specified row to its new location...
-		instances = [self moveItemsInArray: instances 
+		NSArray *temp = [self moveItemsInArray: instances 
 									moveOp:  op 
 								   indexes: rowIndexes
 								  location:  row];
-		labels = [self moveItemsInArray: labels 
+		for(int i = 0;i < [temp count];i++){
+			[instances replaceObjectAtIndex:i withObject:[temp objectAtIndex:i]];
+		}
+		temp = [self moveItemsInArray: labels 
 								 moveOp:  op 
 								indexes: rowIndexes
 							   location:  row];
-		enables = [self moveItemsInArray: enables 
+		for(int i = 0;i < [temp count];i++){
+			[labels replaceObjectAtIndex:i withObject:[temp objectAtIndex:i]];
+		}	
+		temp = [self moveItemsInArray: enables 
 								  moveOp:  op 
 								 indexes:  rowIndexes
 								location:  row];
-		heights = [self moveItemsInArray: heights 
+		for(int i = 0;i < [temp count];i++){
+			[enables replaceObjectAtIndex:i withObject:[temp objectAtIndex:i]];
+		}
+		temp = [self moveItemsInArray: heights 
 								  moveOp:  op 
 								 indexes:  rowIndexes
 								location:  row];
+		for(int i = 0;i < [temp count];i++){
+			[heights replaceObjectAtIndex:i withObject:[temp objectAtIndex:i]];
+		}	
 		return YES;
 	}
 	return NO;

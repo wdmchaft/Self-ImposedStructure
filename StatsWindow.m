@@ -26,7 +26,6 @@
 @synthesize pieChart;
 @synthesize barChart;
 @synthesize pieData;
-@synthesize graphData;
 @synthesize genButton;
 @synthesize tabView;
 
@@ -94,7 +93,6 @@
 	pieData = [PieData new];
 	pieChart.dataSource = pieData;
 	[pieChart reloadData];
-	graphData = [GraphData2 new];
 	GoalChart *goalChart = [[GoalChart alloc]init];
 	goalChart.chart = barChart;
 	barChart.delegate = goalChart;
