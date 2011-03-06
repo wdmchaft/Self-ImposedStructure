@@ -9,7 +9,7 @@
 #import "TotalsManager.h"
 #import "Context.h"
 #import "WPADelegate.h"
-
+#import "WriteHandler.h"
 //
 // Keeps track of (approximate) weekly and daily totals of away, work and free time
 // the values are incremented using addInterval ( called frequently )
@@ -36,15 +36,16 @@
 		workToday += work;
 	}
 }
+
 - (void)saveCurrent
 {
 	WPADelegate *del = (WPADelegate*)[NSApplication sharedApplication].delegate;
 	NSTimeInterval rollAdjust = - (60 * 60 * rolloverHour);
 	NSDate *effectiveRollDate = [[dailyRolloverTimer fireDate] dateByAddingTimeInterval:rollAdjust];
-	[del saveSummaryForDate:effectiveRollDate 
-					   goal:[[NSUserDefaults standardUserDefaults]doubleForKey:@"dailyGoal"] 
-					  work:workToday 
-					  free:freeToday];
+	[WriteHandler sendSummaryForDate:effectiveRollDate 
+							 goal:[[NSUserDefaults standardUserDefaults]doubleForKey:@"dailyGoal"] 
+							 work:workToday 
+							 free:freeToday];
 }
 
 - (void) dailyRollover: (NSTimer*) timer

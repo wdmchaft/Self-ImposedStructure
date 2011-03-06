@@ -1,33 +1,23 @@
 //
-//  WPADelegate.m
-//  Nudge
+//  IOHandler.m
+//  WorkPlayAway
 //
-//  Created by Charles on 11/17/10.
-//  Copyright 2010 workplayaway.com. All rights reserved.
+//  Created by Charles on 3/3/11.
+//  Copyright 2011 WorkPlayAway. All rights reserved.
 //
 
-#import "WPADelegate.h"
-#import "Context.h"
-#import "Instance.h"
-#import "Note.h"
-#import "Growl.h"
-#import "IconsFile.h"
-#import "TaskInfo.h"
-#import "WPAMainController.h"
+#import "WriteHandler.h"
 #import "State.h"
-#import "IOHandler.h"
+#import "Context.h"
 
-
-@implementation WPADelegate
-@synthesize window;
-@synthesize prefsWindow;
-@synthesize statsWindow;
+@implementation WriteHandler
+@synthesize stopMe;
 @synthesize persistentStoreCoordinator;
 @synthesize managedObjectModel;
 @synthesize managedObjectContext;
 @synthesize currentSummary;
-@synthesize ioThread;
-@synthesize ioHandler;
+@synthesize error;
+@synthesize reply;
 
 + (void) initialize
 {
@@ -37,43 +27,9 @@
     [defaults registerDefaults:appDefaults];
 }
 
-- (void) saveData: (NSTimer*) timer
-{
-
-	[NSThread detachNewThreadSelector: @selector(doSaveThread:)
-							 toTarget:self
-						   withObject:nil];
-	
-	NSTimeInterval saveInt = [[NSUserDefaults standardUserDefaults] doubleForKey:@"diskFlushInterval"];
-	[NSTimer scheduledTimerWithTimeInterval:saveInt target:self selector:@selector(saveData:) userInfo:nil repeats:NO ];
-}
-
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-
-	WPAMainController *wpam = (WPAMainController*)[window delegate];
-	NSLog(@"app launched");
-	if ([[NSUserDefaults standardUserDefaults]boolForKey:@"startOnLoad"]){
-		[wpam clickStart:self];
-	}
-	[window setTitle:__APPNAME__];
-	ioHandler = [IOHandler new];
-	
-	ioThread = [[NSThread alloc] initWithTarget:ioHandler selector:@selector(ioLoop:) object:nil];
-	[ioThread start];
-
-	//[self saveData: nil];
-}
-
-- (WPAMainController*) mainCtrl
-{
-	return (WPAMainController*)[window delegate];
-
-}
-
-
 /*****************************************************************************************
  Support for saving data follows:
-*****************************************************************************************/
+ *****************************************************************************************/
 
 /**
  Returns the support directory for the application, used to store the Core Data
@@ -201,15 +157,23 @@
     
     NSURL *url = [NSURL fileURLWithPath: [applicationSupportDirectory stringByAppendingPathComponent: @"storedata"]];
 	[fileManager removeItemAtURL:url error:&error];
-//	NSArray *stores = [persistentStoreCoordinator persistentStores];
-////	for (NSPersistentStore *store in stores){
-//		NSError *error = [NSError new];
-//		[persistentStoreCoordinator removePersistentStore:store error: &error];
-//	}
+	//	NSArray *stores = [persistentStoreCoordinator persistentStores];
+	////	for (NSPersistentStore *store in stores){
+	//		NSError *error = [NSError new];
+	//		[persistentStoreCoordinator removePersistentStore:store error: &error];
+	//	}
 	[self.managedObjectContext reset];
 	self.managedObjectContext = nil;
 	self.persistentStoreCoordinator = nil;
 	self.managedObjectModel = nil;
+}
+
+- (BOOL) hasTask: (NSManagedObject*) mobj
+{
+	NSEntityDescription *desc = [mobj entity];
+	NSDictionary *dict = [desc propertiesByName];
+	BOOL answer = [dict objectForKey:@"task"] != nil;
+	return answer;
 }
 
 - (NSString*) dumpMObj: (NSManagedObject*) obj
@@ -224,13 +188,6 @@
 	return [NSString stringWithFormat:@"%@ [%@]",eName, tName];
 }
 
-- (BOOL) hasTask: (NSManagedObject*) mobj
-{
-	NSEntityDescription *desc = [mobj entity];
-	NSDictionary *dict = [desc propertiesByName];
-	BOOL answer = [dict objectForKey:@"task"] != nil;
-	return answer;
-}
 
 - (NSManagedObject*) findSummaryForDate:(NSDate *)dateIn
 {
@@ -258,7 +215,7 @@
 {
 	NSTimeInterval retWork = 0.0;
 	NSTimeInterval retFree = 0.0;
-
+	
 	NSManagedObject *mob = [self findSummaryForDate:dateIn];
 	if (mob){
 		NSNumber *temp = [mob valueForKey:@"timeWork"];
@@ -271,8 +228,14 @@
 	*freeInt = retFree;
 }
 
-- (void) saveSummaryForDate: (NSDate*) date goal: (int) goalTime work: (int) workTime free: (int) freeTime
+- (void) saveSummaryForDate: (NSNotification*) msg
+//(NSDate*) date goal: (int) goalTime work: (int) workTime free: (int) freeTime
 {
+	NSDictionary *d = msg.userInfo;
+	NSDate *date = (NSDate*)[d objectForKey:@"date"];
+	int goalTime = ((NSNumber*)[d objectForKey:@"goal"]).intValue;
+	int workTime = ((NSNumber*)[d objectForKey:@"work"]).intValue;
+	int freeTime = ((NSNumber*)[d objectForKey:@"free"]).intValue;
 	// new work record
 	NSManagedObjectContext *moc = [self managedObjectContext];
 	BOOL needsNewRec = NO;
@@ -292,26 +255,28 @@
 		}
 	}
 	if (needsNewRec){
-	
+		
 		currentSummary = [NSEntityDescription
-							insertNewObjectForEntityForName:@"DailySummary"
-							inManagedObjectContext:moc];
+						  insertNewObjectForEntityForName:@"DailySummary"
+						  inManagedObjectContext:moc];
 		[currentSummary setValue: date forKey: @"recordDate"];
 		
 	}
-
+	
 	[currentSummary setValue:[NSNumber numberWithInt:workTime] forKey:@"timeWork"];
 	[currentSummary setValue:[NSNumber numberWithInt:freeTime] forKey:@"timeFree"];
 	[currentSummary setValue:[NSNumber numberWithInt:goalTime] forKey:@"timeGoal"];
-
+	
 }
 
-- (void) newRecord: (int) state
+- (void) newRecord:(NSNotification*) msg
 {
+	NSLog(@"newRecord: %@",msg);
+	NSDictionary *dict = [msg userInfo];
 	Context *ctx = [Context sharedContext];
 	if (ctx.currentActivity != nil){
 		NSDate *start = [ctx.currentActivity valueForKey:@"startTime"];
-		NSDate *now = [NSDate date];
+		NSDate *now = [dict objectForKey:@"date"];
 		NSTimeInterval interval = [now timeIntervalSinceDate:start];
 		[ctx.currentActivity setValue:[NSNumber numberWithInt:interval] forKey:@"interval"];
 		[ctx.currentActivity setValue: now forKey:@"endTime"];
@@ -325,13 +290,13 @@
 	NSManagedObject *source = nil;
 	NSString *newTask = ctx.currentTask == nil ? @"[No Task]" : ctx.currentTask.name;		
 	NSString *newSource = ctx.currentTask == nil || ctx.currentTask.source == nil ? @"[Adhoc]" : [ctx.currentTask.source description];		
-
+	WPAStateType state = ((NSNumber*)[dict objectForKey:@"state"]).intValue;
 	if (state == WPASTATE_THINKING || state == WPASTATE_THINKTIME){
 		source = [self findSource: newSource inContext: moc];
 		if (source == nil){
 			source = [NSEntityDescription
-					insertNewObjectForEntityForName:@"Source"
-					inManagedObjectContext:moc];
+					  insertNewObjectForEntityForName:@"Source"
+					  inManagedObjectContext:moc];
 			[source setValue:[NSDate date] forKey: @"createTime"];
 			[source setValue:[newSource description] forKey:@"name"];
 		}
@@ -465,86 +430,108 @@
     }
 }
 
-- (NSApplicationTerminateReply) handleSaveError: (NSError*) error application: (NSApplication *)sender
+- (void) doWrapUp: (NSObject*) ignore	
 {
-	
-	// This error handling simply presents error information in a panel with an 
-	// "Ok" button, which does not include any attempt at error recovery (meaning, 
-	// attempting to fix the error.)  As a result, this implementation will 
-	// present the information to the user and then follow up with a panel asking 
-	// if the user wishes to "Quit Anyway", without saving the changes.
-	
-	// Typically, this process should be altered to include application-specific 
-	// recovery steps.  
-	
-	BOOL result = [sender presentError:error];
-	if (result) return NSTerminateCancel;
-	
-	NSString *question = NSLocalizedString(@"Could not save changes while quitting.  Quit anyway?", @"Quit without saves error question message");
-	NSString *info = NSLocalizedString(@"Quitting now will lose any changes you have made since the last successful save", @"Quit without saves error question info");
-	NSString *quitButton = NSLocalizedString(@"Quit anyway", @"Quit anyway button title");
-	NSString *cancelButton = NSLocalizedString(@"Cancel", @"Cancel button title");
-	NSAlert *alert = [[NSAlert alloc] init];
-	[alert setMessageText:question];
-	[alert setInformativeText:info];
-	[alert addButtonWithTitle:quitButton];
-	[alert addButtonWithTitle:cancelButton];
-	
-	NSInteger answer = [alert runModal];
-	[alert release];
-	alert = nil;
-	
-	if (answer == NSAlertAlternateReturn) 
-		return NSTerminateCancel;
-	return NSTerminateNow;
-}
-
-/**
- Implementation of the applicationShouldTerminate: method, used here to
- handle the saving of changes in the application managed object context
- before the application terminates.
- */
-
-- (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
-	NSLog(@"applicationShouldTerminate");
-	WPAMainController *wpam = (WPAMainController*)[window delegate];
-	[wpam changeState:WPASTATE_OFF];
-	
-
-    if (managedObjectContext && ![managedObjectContext commitEditing]) {
+	NSLog(@"doWrapUp");
+    error = nil;
+	if (!managedObjectContext) {
+		NSLog(@"no managedObjectContext");
+		reply = NSTerminateNow;
+		return;
+	}
+    if (![managedObjectContext commitEditing]) {
         NSLog(@"%@:%s unable to commit editing to terminate", [self class], _cmd);
-		return NSTerminateCancel;
+        reply = NSTerminateCancel;
+		return;
     }
-
-	if ([managedObjectContext hasChanges]){
-		NSError *error = nil;
-		if (![managedObjectContext save:&error]) {
-			return [self handleSaveError:error application:sender];
-		}
+	
+    if (![managedObjectContext hasChanges]){
+		NSLog(@"no managedObjectContext changes");
+		reply = NSTerminateNow;
+		return;
 	}
-	NSLog(@"calling doWrapUp...");
-	[ioHandler performSelector:@selector(doWrapUp:) onThread:ioThread withObject:nil waitUntilDone:YES];
-	if (ioHandler.error){
-		return [self handleSaveError:ioHandler.error application:sender];
+	NSLog(@"starting save...");
+    if (![managedObjectContext save:&error]) {
+		NSLog(@"save error: %@",error);
+		reply = NSTerminateCancel;
+		return;
 	}
-    return ioHandler.reply;
+ 	NSLog(@"....saved");
+   reply = NSTerminateNow;
 }
 
-
--(IBAction)handleNewMainWindowMenu:(NSMenuItem *)sender
+-(void) doFlush: (NSTimer*) timer
 {
-	[window makeKeyAndOrderFront:self];
-}
-
--(void) doSaveThread: (NSObject*) param
-{
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	NSError *err = nil;
 	[[self managedObjectContext] save: &err];
 	if (err){
 		[[NSApplication sharedApplication] presentError:err];
 	}
-	[pool drain];	
 }
 
++ (void) sendNewRecord: (WPAStateType) state
+{
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"newrecord" 
+														object:self 
+													  userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
+																[NSDate date],@"date",
+																[NSNumber numberWithInt:state], @"state",
+																nil]]; 
+}
+
++ (void) sendSummaryForDate: (NSDate*) date goal: (int) goalTime work: (int) workTime free: (int) freeTime
+
+{
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"summary" 
+														object:self 
+													  userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
+																[NSDate date],@"date",
+																[NSNumber numberWithInt:workTime], @"work",
+																[NSNumber numberWithInt:freeTime], @"free",
+																[NSNumber numberWithInt:goalTime], @"goal",
+																nil]]; 
+}
+
+- (void) ioLoop: (NSObject*) param
+{
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	NSRunLoop* runLoop = [NSRunLoop currentRunLoop];
+	
+	// Create and schedule the first timer.
+	NSTimeInterval saveInt = [[NSUserDefaults standardUserDefaults] doubleForKey:@"diskFlushInterval"];
+	NSDate* futureDate = [NSDate dateWithTimeIntervalSinceNow:saveInt];
+	NSTimer* myTimer = [[NSTimer alloc] initWithFireDate:futureDate
+												interval:saveInt
+												  target:self
+												selector:@selector(doFlush:)
+												userInfo:nil
+												 repeats:YES];
+	[runLoop addTimer:myTimer forMode:NSDefaultRunLoopMode];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+											 selector:@selector(newRecord:) 
+												 name:@"newrecord" 
+											   object:nil];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+											 selector:@selector(saveSummaryForDate:) 
+												 name:@"summary" 
+											   object:nil];
+	
+//	while (!stopMe && [runLoop runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]]);
+	double resolution = 300.0;
+	BOOL isRunning;
+	do {
+		// run the loop!
+		NSLog(@"in run loop");
+		NSDate* theNextDate = [NSDate dateWithTimeIntervalSinceNow:resolution]; 
+		isRunning = [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:theNextDate]; 
+		// occasionally re-create the autorelease pool whilst program is running
+		[pool drain];
+		pool = [[NSAutoreleasePool alloc] init];            
+	} while(isRunning==YES && stopMe==NO);
+	
+	[pool drain];
+}
 @end
+

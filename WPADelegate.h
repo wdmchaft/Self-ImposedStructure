@@ -14,6 +14,7 @@
 #import "Context.h"
 #import "PreferencesWindow.h"
 #import "StatsWindow.h"
+#import "IOHandler.h"
 
 @interface WPADelegate : NSObject <NSApplicationDelegate, NSWindowDelegate> {
     NSWindow *window;
@@ -23,6 +24,8 @@
 	PreferencesWindow *prefsWindow;
 	StatsWindow *statsWindow;
 	NSManagedObject *currentSummary;
+	NSThread *ioThread;
+	IOHandler *ioHandler;
 }
 
 @property (assign) IBOutlet NSWindow *window;
@@ -32,6 +35,8 @@
 @property (nonatomic, retain) PreferencesWindow *prefsWindow;
 @property (nonatomic, retain) NSManagedObject *currentSummary;
 @property (retain, nonatomic) IBOutlet StatsWindow *statsWindow;
+@property (retain, nonatomic) NSThread *ioThread;
+@property (retain, nonatomic) IOHandler *ioHandler;
 //-(void) start;
 //-(void) stop;
 
@@ -49,5 +54,6 @@
 - (IBAction)handleNewMainWindowMenu:(NSMenuItem *)sender;
 - (void) findSummaryForDate: (NSDate*) date work: (NSTimeInterval*) workInt free: (NSTimeInterval*) freeInt;
 - (void) saveData: (NSTimer*) timer;
+- (void) doSaveThread: (NSObject*) param;
 
 @end

@@ -66,16 +66,16 @@
 	unreadMail = [NSMutableArray new];
 	NSDate *minTime = [NSDate distantPast];
 	if (useDisplayWindow){
-		NSLog(@"Now = %@", [NSDate date]);
+	//	NSLog(@"Now = %@", [NSDate date]);
 		minTime = [[NSDate date] dateByAddingTimeInterval:-(displayWindow * 60 * 60)];
-		NSLog(@"Disp window = %@", minTime);
+	//	NSLog(@"Disp window = %@", minTime);
 	}
 	// the window may be longer than the default window if we haven't checked the inbox in a while
 	if (lastCheck){
 		minTime = [lastCheck earlierDate:minTime];
-		NSLog(@"Adjusted Disp window = %@", minTime);
+	//	NSLog(@"Adjusted Disp window = %@", minTime);
 }
-	NSLog(@"will get all email later than %@", minTime);
+//	NSLog(@"will get all email later than %@", minTime);
 	MailApplication *mailApp = [SBApplication applicationWithBundleIdentifier:@"com.apple.mail"];
 	if (mailApp) {
 		for (MailAccount *mAcc in mailApp.accounts){
@@ -101,7 +101,7 @@
 								 [msg.dateSent copy], MAIL_SENT_TIME,
 								 [msg.messageId copy], @"id",
 								 nil ];
-								NSLog(@"from = %@ subj = %@",[mailApp extractAddressFrom:msg.sender], msg.subject);
+						//		NSLog(@"from = %@ subj = %@",[mailApp extractAddressFrom:msg.sender], msg.subject);
 								[unreadMail addObject:params];
 							}else {
 								break;

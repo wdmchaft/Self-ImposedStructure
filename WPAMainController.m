@@ -8,7 +8,6 @@
 
 #import "WPAMainController.h"
 #import "WPADelegate.h"
-#include "ModulesTableData.h"
 #include "Context.h"
 #include "Columns.h"
 #import "TimerDialogController.h"
@@ -18,6 +17,7 @@
 #import "Menu.h"
 #import "MinsToSecsTransformer.h"
 #import "SecsToMinsTransformer.h"
+#import "WriteHandler.h"
 
 @implementation WPAMainController
 @synthesize  startButton, controls, taskComboBox, refreshButton, statusItem, statusMenu, statusTimer, myWindow;
@@ -248,7 +248,7 @@
 	
 	// we changed jobs so write a new tracking record
 	if (ctx.currentState == WPASTATE_THINKING || ctx.currentState == WPASTATE_THINKTIME){
-		[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:ctx.currentState];
+		[IOHandler sendNewRecord:ctx.currentState];
 	}
 	[ctx.growlManager growlThis:[NSString stringWithFormat: @"New Activity: %@",ctx.currentTask.name]];
 	[self buildStatusMenu];
@@ -479,7 +479,7 @@
 												selector:@selector(timerAlarm:) 
 												userInfo:[NSNumber numberWithDouble:ctx.thinkTime] 
 												 repeats:NO];
-	[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:WPASTATE_THINKING];
+	[IOHandler sendNewRecord:WPASTATE_THINKING];
 	[ctx busyModules];
 	[controls setSelectedSegment: WPASTATE_THINKTIME];
 	[self buildStatusMenu];   
@@ -533,7 +533,7 @@
 		[ctx stopModules];
 	}
 	ctx.currentState = newState == WPASTATE_THINKTIME ? WPASTATE_THINKING : newState;
-	[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:newState];
+	[IOHandler sendNewRecord:newState];
 	[ctx saveDefaults];
 	[self buildStatusMenu];
 	[self enableUI:(newState != WPASTATE_OFF)];
@@ -577,7 +577,7 @@
 	
 	// we changed jobs so write a new tracking record
 	if (ctx.currentState == WPASTATE_THINKING || ctx.currentState == WPASTATE_THINKTIME){
-		[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:ctx.currentState];
+		[IOHandler sendNewRecord:ctx.currentState];
 	}
 	[ctx.growlManager growlThis:[NSString stringWithFormat: @"New Activity: %@",ctx.currentTask.name]];
 

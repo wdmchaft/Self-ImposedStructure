@@ -10,6 +10,7 @@
 #import "TaskInfo.h"
 #import "Context.h"
 #import "WPADelegate.h"
+#import "WriteHandler.h"
 
 @implementation AddActivityDialogController
 @synthesize okButton;
@@ -62,7 +63,7 @@
 	
 	// we changed jobs so write a new tracking record
 	if (ctx.currentState == WPASTATE_THINKING || ctx.currentState == WPASTATE_THINKTIME){
-		[(WPADelegate*)[[NSApplication sharedApplication] delegate] newRecord:ctx.currentState];
+		[WriteHandler sendNewRecord:ctx.currentState];
 	}
 	[ctx.growlManager growlThis:[NSString stringWithFormat: @"New Activity: %@",ctx.currentTask.name]];
 
