@@ -324,6 +324,11 @@ static Context* sharedContext = nil;
 		NSData *iconData = nil;
 		if ([path hasSuffix: @"ico"]) {
 			iconData = data;
+			if (iconData == nil){
+				NSLog(@"Can not load icon file: [%@]", path);
+				NSString *path = [NSString stringWithFormat:@"%@/wpa.ico",[[NSBundle mainBundle] resourcePath]];
+				return [NSData dataWithContentsOfFile:path];
+			}
 		}
 		else {
 			IconsFile *iFile = [[IconsFile alloc]init];
