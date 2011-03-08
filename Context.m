@@ -27,7 +27,6 @@
 	NSManagedObject *currentActivity;
 	BOOL running;
 	NSArray *tasksList;
-	NSDate *lastStateChange;
 	WPAStateType previousState;
 	WPAStateType currentState;
 	GrowlManager *growlManager;
@@ -46,7 +45,6 @@
 //@property (nonatomic, retain) NSString *currentSource;
 @property (nonatomic, retain) NSManagedObject *currentActivity;
 @property (nonatomic, retain) NSArray *tasksList;
-@property (nonatomic, retain) NSDate *lastStateChange;
 @property (nonatomic, retain) GrowlManager *growlManager;
 @property (nonatomic, retain) HUDSettings *hudSettings;
 @property (nonatomic) WPAStateType previousState;
@@ -75,7 +73,6 @@
 @synthesize currentActivity;
 @synthesize currentTask;
 @synthesize tasksList;
-@synthesize lastStateChange;
 @synthesize previousState;
 @synthesize growlManager;
 @synthesize hudSettings;
@@ -197,9 +194,7 @@ static Context* sharedContext = nil;
 	previousState = [ud integerForKey:@"previousState"];
 			 
 	thinkTime =[ud doubleForKey:@"thinkTime"];
-
-	lastStateChange = [ud objectForKey:@"lastStateChange"];
-
+		
 	
 	// ModulesList : <modName1>, <pluginNameY>, <modName2>, <pluginNameX>, <modName3>, <pluginNameZ>, etc...
 	
@@ -251,7 +246,6 @@ static Context* sharedContext = nil;
 	[ud setObject: [NSNumber numberWithInt:currentState] forKey: @"currentState"];
 	[ud setObject: [NSNumber numberWithInt:thinkTime] forKey: @"thinkTime"];
 	[ud setObject: [NSNumber numberWithInt:previousState] forKey: @"previousState"];
-	[ud setObject: lastStateChange forKey: @"lastStateChange"];
 	[self saveModules];
 	[self saveTask];
 	[hudSettings saveToDefaults];
@@ -345,7 +339,7 @@ static Context* sharedContext = nil;
 {
 	previousState = currentState;
 	currentState = newState;
-	lastStateChange = [NSDate new];
+	[[NSUserDefaults standardUserDefaults] setObject: [NSDate new] forKey:@"lastStateChange"];
 }
 
 - (void) busyModules {

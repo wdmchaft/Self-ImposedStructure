@@ -373,10 +373,11 @@
 	Context *ctx = [Context sharedContext];
 	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
 	BOOL showSummary = [ud boolForKey:@"showSummary"];
+	NSDate *now = [[NSDate alloc]init];
 	if (showSummary == YES){
 		if (ctx.currentState!= WPASTATE_FREE && ctx.currentState != WPASTATE_SUMMARY) {
-			NSDate *lastChange = ctx.lastStateChange;
-			NSTimeInterval timeAway = [[NSDate date] timeIntervalSinceDate:lastChange];
+			NSDate *lastChange = [[NSUserDefaults standardUserDefaults]objectForKey:@"lastStateChange"];
+			NSTimeInterval timeAway = [now timeIntervalSinceDate:lastChange];
 			NSTimeInterval taInt =[ud doubleForKey:@"timeAwayThreshold"];
 			if (timeAway > taInt){
 				return YES;
@@ -398,7 +399,7 @@
 	BOOL autoBackToWork = [ud boolForKey:@"autoBackToWork"];
 	if (autoBackToWork && (ctx.currentState == WPASTATE_THINKTIME || ctx.previousState == WPASTATE_THINKING)){
 		if (ctx.previousState == WPASTATE_AWAY || ctx.currentState == WPASTATE_OFF) {
-			NSDate *lastChange = ctx.lastStateChange;
+			NSDate *lastChange = [ud objectForKey:@"lastStateChange"];
 			NSTimeInterval timeAway = [[NSDate date] timeIntervalSinceDate:lastChange];
 			NSTimeInterval brbInt= [ud doubleForKey:@"backToWorkThreshold"];
 			if (timeAway < brbInt)

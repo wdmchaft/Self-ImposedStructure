@@ -134,7 +134,7 @@
 		NSLog(@"rollover hour: %d", rolloverHour);
 		rolloverDay =  ((NSNumber*)[ud objectForKey:@"weeklyRolloverDay"]).intValue;
 		interval = ((NSNumber*)[ud objectForKey:@"statusInterval"]).doubleValue; 
-		timeStampDate = [self getTimeStampDate: rolloverHour];
+		timeStampDate = [[self getTimeStampDate: rolloverHour] copy];
 		dailyRolloverTimer = [self getTimerForRollHour: rolloverHour];
 	}
 	return self;

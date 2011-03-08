@@ -422,7 +422,7 @@
 
 - (IBAction) saveAction:(id)sender {
 	
-    NSError *error = nil;
+     error = nil;
     
     if (![[self managedObjectContext] commitEditing]) {
         NSLog(@"%@:%s unable to commit editing before saving", [self class], _cmd);

@@ -23,7 +23,6 @@
 	NSManagedObject *currentActivity;
 	BOOL running;
 	NSArray *tasksList;
-	NSDate *lastStateChange;
 	WPAStateType previousState;
 	GrowlManager *growlManager;
 	HUDSettings *hudSettings;
@@ -38,7 +37,6 @@
 //@property (nonatomic, retain) NSString *currentSource;
 @property (nonatomic, retain) NSManagedObject *currentActivity;
 @property (nonatomic, retain) NSArray *tasksList;
-@property (nonatomic, retain) NSDate *lastStateChange;
 @property (nonatomic) WPAStateType currentState;
 @property (nonatomic, readonly) WPAStateType previousState;
 @property (nonatomic,retain) GrowlManager *growlManager;
