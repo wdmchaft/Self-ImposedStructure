@@ -68,7 +68,7 @@
 				inManagedObjectContext:moc];
 	[request setEntity:entity];
 	
-	NSError *error = nil;
+	error = nil;
 	NSArray *array = [moc executeFetchRequest:request error:&error];
 	for (NSManagedObject *obj in array)
 	{
@@ -93,7 +93,7 @@
     [NSPredicate predicateWithFormat:@"self == %@", name];
 	[request setPredicate:predicate];
 	
-	NSError *error = nil;
+	error = nil;
 	NSArray *array = [moc executeFetchRequest:request error:&error];
 	if (array != nil && [array count] == 1) {
 		return (NSManagedObject*)[array objectAtIndex:0];
@@ -115,7 +115,7 @@
     [NSPredicate predicateWithFormat:@"self == %@", name];
 	[request setPredicate:predicate];
 	
-	NSError *error = nil;
+	error = nil;
 	NSArray *array = [moc executeFetchRequest:request error:&error];
 	if (array != nil && [array count] == 1) {
 		return (NSManagedObject*)[array objectAtIndex:0];
@@ -153,8 +153,8 @@
 	[alert runModal];   
 	NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *applicationSupportDirectory = [self applicationSupportDirectory];
-    NSError *error = nil;
-    
+	error = nil;
+	
     NSURL *url = [NSURL fileURLWithPath: [applicationSupportDirectory stringByAppendingPathComponent: @"storedata"]];
 	[fileManager removeItemAtURL:url error:&error];
 	//	NSArray *stores = [persistentStoreCoordinator persistentStores];
@@ -202,7 +202,7 @@
 		[NSPredicate predicateWithFormat:@"recordDate == %@", dateIn];
 		[request setPredicate:predicate];
 		
-		NSError *error = nil;
+		error = nil;
 		NSArray *array = [managedObjectContext executeFetchRequest:request error:&error];
 		if (array != nil && [array count] == 1) {
 			return [array objectAtIndex:0];
@@ -232,7 +232,7 @@
 //(NSDate*) date goal: (int) goalTime work: (int) workTime free: (int) freeTime
 {
 	NSDictionary *d = msg.userInfo;
-	NSDate *date = (NSDate*)[d objectForKey:@"date"];
+	NSDate *inDate = (NSDate*)[d objectForKey:@"date"];
 	int goalTime = ((NSNumber*)[d objectForKey:@"goal"]).intValue;
 	int workTime = ((NSNumber*)[d objectForKey:@"work"]).intValue;
 	int freeTime = ((NSNumber*)[d objectForKey:@"free"]).intValue;
@@ -242,7 +242,7 @@
 	// if the currentSummary does not exist we are starting up so look for one for today (because we restarted)
 	// and if there is nothing for today then create a new one
 	if (currentSummary == nil){
-		currentSummary = [self findSummaryForDate: date];
+		currentSummary = [self findSummaryForDate: inDate];
 		if (!currentSummary){
 			needsNewRec = YES;
 		}
@@ -250,16 +250,19 @@
 	// or we are here and there is already a summary -- so check to see if the date has changed
 	else {
 		NSDate *recDate = (NSDate*)[currentSummary valueForKey:@"recordDate"];
-		if (![recDate isEqualToDate:date]){
+		NSTimeInterval int1 = [recDate timeIntervalSince1970];
+		NSTimeInterval int2 = [inDate timeIntervalSince1970];
+		if ((NSUInteger)int1 != (NSUInteger)int2){
 			needsNewRec = YES;
 		}
 	}
 	if (needsNewRec){
+		NSLog(@"writing new summary for %@", inDate);
 		
 		currentSummary = [NSEntityDescription
 						  insertNewObjectForEntityForName:@"DailySummary"
 						  inManagedObjectContext:moc];
-		[currentSummary setValue: date forKey: @"recordDate"];
+		[currentSummary setValue: inDate forKey: @"recordDate"];
 		
 	}
 	
@@ -271,7 +274,7 @@
 
 - (void) newRecord:(NSNotification*) msg
 {
-	NSLog(@"newRecord: %@",msg);
+
 	NSDictionary *dict = [msg userInfo];
 	Context *ctx = [Context sharedContext];
 	if (ctx.currentActivity != nil){
@@ -485,7 +488,7 @@
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"summary" 
 														object:self 
 													  userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
-																[NSDate date],@"date",
+																date,@"date",
 																[NSNumber numberWithInt:workTime], @"work",
 																[NSNumber numberWithInt:freeTime], @"free",
 																[NSNumber numberWithInt:goalTime], @"goal",

@@ -14,7 +14,7 @@
 #import "Context.h"
 #import "PreferencesWindow.h"
 #import "StatsWindow.h"
-#import "IOHandler.h"
+#import "WriteHandler.h"
 
 @interface WPADelegate : NSObject <NSApplicationDelegate, NSWindowDelegate> {
     NSWindow *window;
@@ -25,7 +25,7 @@
 	StatsWindow *statsWindow;
 	NSManagedObject *currentSummary;
 	NSThread *ioThread;
-	IOHandler *ioHandler;
+	WriteHandler *ioHandler;
 }
 
 @property (assign) IBOutlet NSWindow *window;
@@ -36,7 +36,7 @@
 @property (nonatomic, retain) NSManagedObject *currentSummary;
 @property (retain, nonatomic) IBOutlet StatsWindow *statsWindow;
 @property (retain, nonatomic) NSThread *ioThread;
-@property (retain, nonatomic) IOHandler *ioHandler;
+@property (retain, nonatomic) WriteHandler *ioHandler;
 //-(void) start;
 //-(void) stop;
 

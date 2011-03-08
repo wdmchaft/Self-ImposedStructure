@@ -248,7 +248,7 @@
 	
 	// we changed jobs so write a new tracking record
 	if (ctx.currentState == WPASTATE_THINKING || ctx.currentState == WPASTATE_THINKTIME){
-		[IOHandler sendNewRecord:ctx.currentState];
+		[WriteHandler sendNewRecord:ctx.currentState];
 	}
 	[ctx.growlManager growlThis:[NSString stringWithFormat: @"New Activity: %@",ctx.currentTask.name]];
 	[self buildStatusMenu];
@@ -479,7 +479,7 @@
 												selector:@selector(timerAlarm:) 
 												userInfo:[NSNumber numberWithDouble:ctx.thinkTime] 
 												 repeats:NO];
-	[IOHandler sendNewRecord:WPASTATE_THINKING];
+	[WriteHandler sendNewRecord:WPASTATE_THINKING];
 	[ctx busyModules];
 	[controls setSelectedSegment: WPASTATE_THINKTIME];
 	[self buildStatusMenu];   
@@ -533,7 +533,7 @@
 		[ctx stopModules];
 	}
 	ctx.currentState = newState == WPASTATE_THINKTIME ? WPASTATE_THINKING : newState;
-	[IOHandler sendNewRecord:newState];
+	[WriteHandler sendNewRecord:newState];
 	[ctx saveDefaults];
 	[self buildStatusMenu];
 	[self enableUI:(newState != WPASTATE_OFF)];
@@ -577,7 +577,7 @@
 	
 	// we changed jobs so write a new tracking record
 	if (ctx.currentState == WPASTATE_THINKING || ctx.currentState == WPASTATE_THINKTIME){
-		[IOHandler sendNewRecord:ctx.currentState];
+		[WriteHandler sendNewRecord:ctx.currentState];
 	}
 	[ctx.growlManager growlThis:[NSString stringWithFormat: @"New Activity: %@",ctx.currentTask.name]];
 

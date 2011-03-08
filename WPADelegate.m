@@ -15,7 +15,7 @@
 #import "TaskInfo.h"
 #import "WPAMainController.h"
 #import "State.h"
-#import "IOHandler.h"
+#import "WriteHandler.h"
 
 
 @implementation WPADelegate
@@ -56,7 +56,7 @@
 		[wpam clickStart:self];
 	}
 	[window setTitle:__APPNAME__];
-	ioHandler = [IOHandler new];
+	ioHandler = [WriteHandler new];
 	
 	ioThread = [[NSThread alloc] initWithTarget:ioHandler selector:@selector(ioLoop:) object:nil];
 	[ioThread start];

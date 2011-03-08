@@ -12,8 +12,9 @@
 #import "SummaryTable.h"
 #import "WorkTable.h"
 #import "PieData.h"
+#import "GoalChart.h"
 
-@interface StatsWindow : NSWindowController {
+@interface StatsWindow : NSWindowController <NSTabViewDelegate> {
 	NSButton *resetButton;
 	NSTabView *tabView;
 	NSTableView *summaryTable;
@@ -27,6 +28,9 @@
 	SM2DGraphView *barChart;
 	PieData *pieData;
 	NSButton *genButton;
+	NSProgressIndicator *busyInd;
+	NSTabViewItem *goalsItem;
+	GoalChart *goalChart;
 }
 @property (nonatomic,retain) IBOutlet NSButton *resetButton;
 @property (nonatomic,retain) IBOutlet NSTableView *summaryTable;
@@ -35,12 +39,15 @@
 @property (nonatomic,retain) IBOutlet SM2DGraphView *barChart;
 @property (nonatomic,retain) IBOutlet NSButton *genButton;
 @property (nonatomic,retain) IBOutlet NSTabView *tabView;
+@property (nonatomic,retain) IBOutlet NSProgressIndicator *busyInd;
+@property (nonatomic,retain) IBOutlet NSTabViewItem *goalsItem;
 
 @property (nonatomic,retain) NSArray *statsArray;
 @property (nonatomic,retain) NSArray *workArray;
 @property (nonatomic,retain) StatsTable *statsData;
 @property (nonatomic,retain) WorkTable *workData;
 @property (nonatomic, retain) PieData *pieData;
+@property (nonatomic, retain) GoalChart *goalChart;
 -(IBAction) clickClear: (id) sender;
 -(IBAction) clickGen: (id) sender;
 -(void) setContents;

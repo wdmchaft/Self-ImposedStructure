@@ -340,6 +340,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 		for(int i = 0;i < [temp count];i++){
 			[heights replaceObjectAtIndex:i withObject:[temp objectAtIndex:i]];
 		}	
+		[aTableView reloadData];
 		return YES;
 	}
 	return NO;

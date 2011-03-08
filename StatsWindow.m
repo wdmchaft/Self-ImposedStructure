@@ -28,6 +28,9 @@
 @synthesize pieData;
 @synthesize genButton;
 @synthesize tabView;
+@synthesize busyInd;
+@synthesize goalsItem;
+@synthesize goalChart;
 
 - (void) clickClear: (id) sender
 {
@@ -81,7 +84,7 @@
 
 	WPADelegate *nad = (WPADelegate*) [NSApplication sharedApplication].delegate;
 	[nad newRecord:[Context sharedContext].currentState];
-
+	[busyInd setHidden:YES];
 	statsArray = [Schema statsReportForDate:[NSDate date] inContext:nad.managedObjectContext];
 	statsData = [[SummaryTable alloc]initWithRows: statsArray];
 	summaryTable.dataSource = statsData;
@@ -93,8 +96,9 @@
 	pieData = [PieData new];
 	pieChart.dataSource = pieData;
 	[pieChart reloadData];
-	GoalChart *goalChart = [[GoalChart alloc]init];
+	goalChart = [[GoalChart alloc]init];
 	goalChart.chart = barChart;
+	goalChart.busy = busyInd;
 	barChart.delegate = goalChart;
 	[goalChart runQueryStarting:[NSDate dateWithTimeIntervalSinceNow:-(14*24*60*60)] 
 						 ending:[NSDate date] 
@@ -145,5 +149,27 @@
 		[[NSApplication sharedApplication] presentError:err];
 	}
 }
+- (void)tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem
+{
+	NSLog(@"didselect");
+	if (tabViewItem == goalsItem){
+		WPADelegate *nad = (WPADelegate*) [NSApplication sharedApplication].delegate;
+		[busyInd startAnimation:self];
+		[goalChart runQueryStarting:[NSDate dateWithTimeIntervalSinceNow:-(14*24*60*60)] 
+								 ending:[NSDate date] 
+							withContext:nad.managedObjectContext];
+		
+	}
+}
 
+- (BOOL)tabView:(NSTabView *)tabView shouldSelectTabViewItem:(NSTabViewItem *)tabViewItem
+{
+	NSLog(@"shouldselect");
+	return YES;
+}
+
+- (void)tabView:(NSTabView *)tabView willSelectTabViewItem:(NSTabViewItem *)tabViewItem
+{
+	NSLog(@"willSelect");
+}
 @end

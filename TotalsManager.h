@@ -11,7 +11,8 @@
 //
 
 @interface TotalsManager : NSObject {
-	NSTimer *dailyRolloverTimer;
+	NSTimer *dailyRolloverTimer; // when the "roll over" to a new day occurs -- defaults to midnight but could be later
+	NSDate *timeStampDate;  // the date recorded at rollover. 
 	int rolloverDay;
 	int rolloverHour;
 	NSTimeInterval awayToday;
@@ -34,6 +35,7 @@
 @property (nonatomic) int rolloverDay;
 @property (nonatomic) int rolloverHour;
 @property (nonatomic,retain) NSTimer *dailyRolloverTimer;
+@property (nonatomic,retain) NSDate *timeStampDate;
 @property (nonatomic) BOOL recordChecked;
 
 //- (void) dailyRollover: (NSTimer*) timer;

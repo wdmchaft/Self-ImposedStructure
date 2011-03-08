@@ -34,6 +34,7 @@
 @synthesize chart;
 @synthesize maxAxis;
 @synthesize minAxis;
+@synthesize busy;
 
 -(void) awakeFromNib
 {
@@ -58,7 +59,8 @@
 
 - (void) runQueryStarting: (NSDate*) start ending: (NSDate*) end withContext: (NSManagedObjectContext *) moc
 {
-	
+	[busy setHidden:NO];
+	[busy startAnimation:self];
 	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
 	NSEntityDescription *entity =
     [NSEntityDescription entityForName:@"DailySummary"
@@ -98,7 +100,10 @@
 	minAxis = floor(minVal);
 	int yTicks = ((maxAxis - minAxis) * 2) + 1;
 	[ chart setNumberOfTickMarks:[seriesData count] forAxis:kSM2DGraph_Axis_X];
-	[ chart setNumberOfTickMarks:yTicks forAxis:kSM2DGraph_Axis_Y];}
+	[ chart setNumberOfTickMarks:yTicks forAxis:kSM2DGraph_Axis_Y];
+	[busy stopAnimation:self];
+	[busy setHidden:YES];
+}
 
 
 #pragma mark -

@@ -21,7 +21,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="17"/>
+			<integer value="23"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -61,7 +61,7 @@
 							<object class="BGHUDTableView" id="59557946">
 								<reference key="NSNextResponder" ref="675047519"/>
 								<int key="NSvFlags">4352</int>
-								<string key="NSFrameSize">{238, 133}</string>
+								<string key="NSFrameSize">{634, 138}</string>
 								<reference key="NSSuperview" ref="675047519"/>
 								<bool key="NSEnabled">YES</bool>
 								<object class="BGHUDTableCornerView" key="NSCornerView">
@@ -126,7 +126,7 @@
 									</object>
 									<object class="NSTableColumn" id="545355051">
 										<string key="NSIdentifier">COL1</string>
-										<double key="NSWidth">131</double>
+										<double key="NSWidth">610</double>
 										<double key="NSMinWidth">40</double>
 										<double key="NSMaxWidth">1000</double>
 										<object class="BGHUDTableViewHeaderCell" key="NSHeaderCell">
@@ -178,7 +178,7 @@
 								<string key="themeKey">gradientTheme</string>
 							</object>
 						</object>
-						<string key="NSFrame">{{1, 1}, {238, 133}}</string>
+						<string key="NSFrame">{{1, 1}, {634, 138}}</string>
 						<reference key="NSSuperview" ref="175172511"/>
 						<reference key="NSNextKeyView" ref="59557946"/>
 						<reference key="NSDocView" ref="59557946"/>
@@ -205,7 +205,7 @@
 						<string key="themeKey">gradientTheme</string>
 					</object>
 				</object>
-				<string key="NSFrameSize">{240, 135}</string>
+				<string key="NSFrameSize">{636, 140}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="675047519"/>
 				<int key="NSsFlags">530</int>
@@ -346,7 +346,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{334, 699}, {240, 135}}</string>
+					<string>{{349, 43}, {636, 140}}</string>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>

@@ -16,7 +16,7 @@
 // the values are reset nightly and weekly and this class manages the necessary timers
 //
 @implementation TotalsManager
-@synthesize dailyRolloverTimer, rolloverDay, rolloverHour;
+@synthesize dailyRolloverTimer, rolloverDay, rolloverHour, timeStampDate;
 @synthesize awayToday, workToday, freeToday;
 @synthesize awayWeek, workWeek, freeWeek;
 @synthesize interval, recordChecked;
@@ -39,10 +39,7 @@
 
 - (void)saveCurrent
 {
-	WPADelegate *del = (WPADelegate*)[NSApplication sharedApplication].delegate;
-	NSTimeInterval rollAdjust = - (60 * 60 * rolloverHour);
-	NSDate *effectiveRollDate = [[dailyRolloverTimer fireDate] dateByAddingTimeInterval:rollAdjust];
-	[WriteHandler sendSummaryForDate:effectiveRollDate 
+	[WriteHandler sendSummaryForDate:timeStampDate 
 							 goal:[[NSUserDefaults standardUserDefaults]doubleForKey:@"dailyGoal"] 
 							 work:workToday 
 							 free:freeToday];
@@ -65,6 +62,7 @@
 	}
 	// write a record
 	[self saveCurrent];
+	timeStampDate = [timeStampDate dateByAddingTimeInterval:24 * 60 * 60];
 	
 	// Get the weekday component of the current date
 	// and if its the rollover day.... then rollover for the week
@@ -78,6 +76,16 @@
 	}
 }
 
+- (void) dumpRollDate: (NSDate*) rollDate andInterval: (NSTimeInterval) rollInterval
+{
+	NSDateFormatter *compDate = [NSDateFormatter new];
+	[compDate  setDateFormat:@"yyyy-MM-dd hh:mm" ];
+	NSString *rollStr = [compDate stringFromDate:rollDate];
+	int hour = rollInterval / 3600; 
+	int min = (((int)rollInterval) % 3600) / 60;
+	NSLog(@"First Rollover is at %@, %f seconds (%d:%d) from now", rollStr, rollInterval, hour, min);
+}
+
 - (NSTimer*) getTimerForRollHour: (int) rollHour
 {
 	NSDate *today = [[NSDate alloc] init];
@@ -89,19 +97,32 @@
 		rollComps.day += 1;
 	}
 	rollComps.hour = rollHour;
+
 	NSDate *rollDate = [gregorian dateFromComponents:rollComps];
 	NSTimeInterval rollInterval = [rollDate timeIntervalSinceNow];
-	NSDateFormatter *compDate = [NSDateFormatter new];
-	[compDate  setDateFormat:@"yyyy-MM-dd hh:mm" ];
-	NSString *rollStr = [compDate stringFromDate:rollDate];
-	int hour = rollInterval / 3600; 
-	int min = (((int)rollInterval) % 3600) / 60;
-	NSLog(@"First Rollover is at %@, %f seconds (%d:%d) from now", rollStr, rollInterval, hour, min);
+	
+	[self dumpRollDate: rollDate andInterval: rollInterval];
+
 	return [NSTimer scheduledTimerWithTimeInterval:rollInterval
 											target:self
 										  selector: @selector(dailyRollover:) 
 										  userInfo:nil
 										   repeats:NO];
+}
+- (NSDate*) getTimeStampDate: (int) rollHour
+{
+	NSDate *today = [[NSDate alloc] init];
+	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+	int ALLCOMPS = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+	// Get the weekday component of the current date
+	NSDateComponents *rollComps = [gregorian components:ALLCOMPS fromDate:today];
+	if (rollHour > rollComps.hour){
+		rollComps.day -= 1;
+	}
+	rollComps.hour = rollHour;
+	
+	NSDate *stamp = [gregorian dateFromComponents:rollComps];
+	return stamp;
 }
 
 - (id) init
@@ -113,7 +134,7 @@
 		NSLog(@"rollover hour: %d", rolloverHour);
 		rolloverDay =  ((NSNumber*)[ud objectForKey:@"weeklyRolloverDay"]).intValue;
 		interval = ((NSNumber*)[ud objectForKey:@"statusInterval"]).doubleValue; 
-		
+		timeStampDate = [self getTimeStampDate: rolloverHour];
 		dailyRolloverTimer = [self getTimerForRollHour: rolloverHour];
 	}
 	return self;

@@ -15,9 +15,11 @@
 	NSMutableArray *seriesData;
 	double maxAxis;
 	double minAxis;
+	NSProgressIndicator *busy;
 }
 
 @property (nonatomic,retain) IBOutlet SM2DGraphView *chart;
+@property (nonatomic,retain) IBOutlet NSProgressIndicator *busy;
 @property (nonatomic,retain)  NSMutableArray *seriesData;
 @property (nonatomic)  double maxAxis;
 @property (nonatomic)  double minAxis;

@@ -64,7 +64,7 @@
 						   @"Mark Ratner",@"name",
 						   @"ratner@fasttimes.com",@"email",
 						   @"http://fasttimes.com",@"href",
-						   now, @"issued",
+						   now, @"received",
 						   nil];
 	NSDictionary *dict2 = [NSDictionary dictionaryWithObjectsAndKeys:
 						   [self name], @"module",
@@ -73,7 +73,7 @@
 						   @"Jeff Spicolli",@"name",
 						   @"spicolli@fasttimes.com",@"email",
 						   @"http://fasttimes.com",@"href",
-						   [NSDate dateWithTimeIntervalSinceNow:-660.0], @"issued",
+						   [NSDate dateWithTimeIntervalSinceNow:-660.0], @"received",
    nil];
 	NSDictionary *dict3 = [NSDictionary dictionaryWithObjectsAndKeys:
 						   [self name], @"module",
@@ -82,7 +82,7 @@
 						   @"That Guy",@"name",
 						   @"that.guy@wheresmycar.com",@"email",
 						   @"http://wheresmycar.com",@"href",
-						   [NSDate dateWithTimeIntervalSinceNow:-120.0], @"issued",
+						   [NSDate dateWithTimeIntervalSinceNow:-120.0], @"received",
 						   nil];
 	NSDictionary *dict4 = [NSDictionary dictionaryWithObjectsAndKeys:
 						   [self name], @"module",
@@ -91,7 +91,7 @@
 						   @"Quicken",@"name",
 						   @"alert@quicken.com", @"email",
 						   @"http://quicken.com",@"href",
-						   [NSDate dateWithTimeIntervalSinceNow:-360.0], @"issued",
+						   [NSDate dateWithTimeIntervalSinceNow:-360.0], @"received",
 						   nil];
 	NSDictionary *dict5 = [NSDictionary dictionaryWithObjectsAndKeys:
 						   [self name], @"module",
@@ -100,7 +100,7 @@
 						   @"That Boring Guy",@"name",
 						   @"that.unimportant.guy@wheresmycar.org",@"email",
 						   @"http://unimportant.com", @"href",
-						   [NSDate dateWithTimeIntervalSinceNow:-480.0], @"issued",
+						   [NSDate dateWithTimeIntervalSinceNow:-480.0], @"received",
 						   nil];
 	NSArray *msgs = [NSArray arrayWithObjects: dict1,dict2,dict3,dict4,dict5,nil];
 	NSMutableArray *sendItems = [NSMutableArray new];
