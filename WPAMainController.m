@@ -415,6 +415,8 @@
 //
 - (void) showSummaryScreen: (id) sender
 {
+	ctx.currentState = WPASTATE_SUMMARY;
+	[[Context sharedContext].growlManager clearQueues];
 	[self enableStatusMenu:NO];
 	Context *ctx = [Context sharedContext];
 	SummaryHUDControl *shc = [[SummaryHUDControl alloc]initWithWindowNibName:@"SummaryHUD"];
@@ -426,7 +428,6 @@
 												 name:NSWindowWillCloseNotification 
 											   object:shc.window];
 
-	ctx.currentState = WPASTATE_SUMMARY;
 	[self buildStatusMenu];	
 }
 
@@ -440,7 +441,6 @@
 	if (refreshManager == nil) {
 		refreshManager = [[RefreshManager alloc]initWithHandler:[Context sharedContext].growlManager];
 	}
-	[[Context sharedContext].growlManager clearQueues];
 	[refreshManager startWithRefresh:NO];
 
 	[controls setSelectedSegment: WPASTATE_FREE];

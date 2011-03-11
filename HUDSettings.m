@@ -16,7 +16,7 @@
 @synthesize label;
 
 
-- (id) initWithReporter:(<Reporter>) rpt height: (NSNumber*) hgt enabled: (NSNumber*) on label: (NSString*) lbl
+- (id) initWithReporter:(id<Reporter>) rpt height: (NSNumber*) hgt enabled: (NSNumber*) on label: (NSString*) lbl
 {
 	if (self)
 	{
@@ -104,7 +104,7 @@
 	return ret;
 }
 
--(void) removeInstance: (<Reporter>) inst 
+-(void) removeInstance: (id<Reporter>) inst 
 {
 	int idx = [instances indexOfObject:inst];
 	[instances removeObjectAtIndex:idx];
@@ -113,7 +113,7 @@
 	[heights removeObjectAtIndex:idx];
 }
 
--(void) disableInstance: (<Reporter>) inst  
+-(void) disableInstance: (id<Reporter>) inst  
 {
 	int idx = [instances indexOfObject:inst];
 	[enables replaceObjectAtIndex:idx withObject:[NSNumber numberWithBool:NO]];
@@ -136,7 +136,7 @@
 		return; // don't step on empty settings 
 	}
 	for (NSString *name in names){
-		<Reporter> inst = [ctx.instancesMap objectForKey:name];
+		id<Reporter> inst = [ctx.instancesMap objectForKey:name];
 		[instances addObject:inst];
 	}
 	labels = [ud objectForKey:@"hudLabels"];
@@ -154,7 +154,7 @@
 		[ud removeObjectForKey:@"hudEnables"];
 	}
 	NSMutableArray *names = [[NSMutableArray alloc] initWithCapacity:[instances count]];
-	for (<Reporter> inst in instances){
+	for (id<Reporter> inst in instances){
 		[names addObject:inst.name];
 	}
 	[ud setObject: names forKey:@"hudInstances"];
@@ -181,7 +181,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 	NSString *colName = [tableColumn identifier];
 
 	if ([colName isEqualToString:@"RPT"]){
-		<Reporter> rpt  = [instances objectAtIndex:row];
+		id<Reporter> rpt  = [instances objectAtIndex:row];
 		theValue = rpt.name;
 	} else if ([colName isEqualToString:@"HGT"]){
 		NSNumber *hgt  = [heights objectAtIndex:row];
@@ -207,7 +207,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 	if ([colName isEqualToString:@"HGT"]){
 		[heights replaceObjectAtIndex:row withObject:anObject];
 	} else if ([colName isEqualToString:@"SHOW"]){
-		<Reporter> rpt = [instances objectAtIndex:row];
+		id<Reporter> rpt = [instances objectAtIndex:row];
 		if (rpt.enabled == NO){
 			NSAlert *alert = [NSAlert alertWithMessageText:@"Apologies" 
 											 defaultButton:nil alternateButton:nil 
@@ -356,4 +356,10 @@ writeRowsWithIndexes:(NSIndexSet *)rowIndexes
     [pboard setData:data forType:[[HUDSettings class] description]];
     return YES;
 }
+
+- (NSString*) labelForInstance: (id<Instance>) inst{
+    int idx = [instances indexOfObject:inst];
+    return [labels objectAtIndex:idx];
+}
+
 @end

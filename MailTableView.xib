@@ -97,7 +97,7 @@
 											<reference key="NSTextColor" ref="886726377"/>
 										</object>
 										<object class="NSTextFieldCell" key="NSDataCell" id="142248342">
-											<int key="NSCellFlags">337772096</int>
+											<int key="NSCellFlags">67239488</int>
 											<int key="NSCellFlags2">133120</int>
 											<string key="NSContents">Text Cell</string>
 											<reference key="NSSupport" ref="26"/>
@@ -139,7 +139,7 @@
 											<reference key="NSTextColor" ref="886726377"/>
 										</object>
 										<object class="NSTextFieldCell" key="NSDataCell" id="922286096">
-											<int key="NSCellFlags">337772096</int>
+											<int key="NSCellFlags">67239488</int>
 											<int key="NSCellFlags2">133120</int>
 											<string key="NSContents">Text Cell</string>
 											<reference key="NSSupport" ref="26"/>
@@ -165,7 +165,7 @@
 											<reference key="NSTextColor" ref="886726377"/>
 										</object>
 										<object class="NSTextFieldCell" key="NSDataCell" id="500316908">
-											<int key="NSCellFlags">337772096</int>
+											<int key="NSCellFlags">67239488</int>
 											<int key="NSCellFlags2">133120</int>
 											<string key="NSContents">Text Cell</string>
 											<reference key="NSSupport" ref="26"/>
@@ -391,7 +391,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{622, 121}, {475, 124}}</string>
+					<string>{{588, 121}, {475, 124}}</string>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
 					<string>com.binarymethod.BGHUDAppKitPlugin</string>
@@ -441,6 +441,17 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">SummaryViewController</string>
 					<string key="superclassName">NSViewController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">handleDouble:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">handleDouble:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">handleDouble:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">

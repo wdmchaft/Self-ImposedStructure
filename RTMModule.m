@@ -403,7 +403,7 @@
 							 nil]];
 		NSLog(@"auth url:%@",urlStr);
 		NSURL *url = [NSURL URLWithString:urlStr];
-		[[NSWorkspace sharedWorkspace] openURL:url];
+	//	[[NSWorkspace sharedWorkspace] openURL:url];
 		authButton.title =@"Authorized";
 	}
 }

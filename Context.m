@@ -17,6 +17,7 @@
 #import "Stateful.h"
 #import "GrowlManager.h"
 #import "HUDSettings.h"
+#import "HeatMap.h"
 
 @interface Context : NSObject {
 	NSMutableDictionary *instancesMap; // maps module name to instance of module
@@ -31,6 +32,7 @@
 	WPAStateType currentState;
 	GrowlManager *growlManager;
 	HUDSettings *hudSettings;
+	HeatMap *heatMapSettings;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *instancesMap;
@@ -47,6 +49,7 @@
 @property (nonatomic, retain) NSArray *tasksList;
 @property (nonatomic, retain) GrowlManager *growlManager;
 @property (nonatomic, retain) HUDSettings *hudSettings;
+@property (nonatomic, retain) HeatMap *heatMapSettings;
 @property (nonatomic) WPAStateType previousState;
 + (Context*)sharedContext;
 - (void) loadBundles;
@@ -76,7 +79,7 @@
 @synthesize previousState;
 @synthesize growlManager;
 @synthesize hudSettings;
-
+@synthesize heatMapSettings;
 
 
 static Context* sharedContext = nil;
@@ -90,6 +93,7 @@ static Context* sharedContext = nil;
 		[sharedContext initFromDefaults];
 		sharedContext.hudSettings = [[HUDSettings alloc]init];
 		[sharedContext.hudSettings readFromDefaults];
+		sharedContext.heatMapSettings = [[HeatMap alloc] init];
 
 	}
     return sharedContext;

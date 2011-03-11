@@ -95,6 +95,7 @@
 								 name, REPORTER_MODULE,
 								 synopsis, MAIL_SUMMARY,
 								 [msg.subject copy], MAIL_SUBJECT,
+								 [NSNumber numberWithBool:msg.readStatus], @"readStatus" , 
 								 [mailApp extractNameFrom:msg.sender], MAIL_NAME,
 								 [mailApp extractAddressFrom:msg.sender], MAIL_EMAIL,
 								 [msg.dateReceived copy], MAIL_ARRIVAL_TIME,
@@ -225,10 +226,10 @@
 	
 	[accountField setStringValue:accountName == nil ? @"" : accountName];
 	[mailboxField setStringValue:mailMailboxName == nil ? @"" : mailMailboxName];
-	[refreshIntervalField setDoubleValue:refreshInterval];
-	[refreshIntervalStepper setDoubleValue:refreshInterval];
-	[displayWindowField setDoubleValue:displayWindow];
-	[displayWindowStepper setDoubleValue:displayWindow];
+	[refreshIntervalField setDoubleValue:refreshInterval/ 60];
+	[refreshIntervalStepper setDoubleValue:refreshInterval / 60];
+	[displayWindowField setDoubleValue:displayWindow / 60 / 60];
+	[displayWindowStepper setDoubleValue:displayWindow / 60 / 60];
 	[useDisplayWindowButton setIntValue:useDisplayWindow];
 	[displayWindowField setEnabled:useDisplayWindow];
 	[displayWindowStepper setEnabled:useDisplayWindow];
@@ -261,6 +262,60 @@
 	[super clearDefaultValue:nil forKey:REFRESH ];
 	[super clearDefaultValue:nil forKey:USEDISPWIN];
 	[[NSUserDefaults standardUserDefaults] synchronize];	
+}
+
+-(void) openMessage: (NSObject*) param
+{
+	NSDictionary *dict = (NSDictionary*) param;
+	NSString *msgId = [dict objectForKey:@"id"];
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	unreadMail = [NSMutableArray new];
+	NSDate *minTime = [NSDate distantPast];
+	if (useDisplayWindow){
+		//	NSLog(@"Now = %@", [NSDate date]);
+		minTime = [[NSDate date] dateByAddingTimeInterval:-(displayWindow * 60 * 60)];
+		//	NSLog(@"Disp window = %@", minTime);
+	}
+	// the window may be longer than the default window if we haven't checked the inbox in a while
+	if (lastCheck){
+		minTime = [lastCheck earlierDate:minTime];
+		//	NSLog(@"Adjusted Disp window = %@", minTime);
+	}
+	//	NSLog(@"will get all email later than %@", minTime);
+	MailApplication *mailApp = [SBApplication applicationWithBundleIdentifier:@"com.apple.mail"];
+	if (mailApp) {
+
+		for (MailAccount *mAcc in mailApp.accounts){
+			if ([mAcc.name isEqualToString:accountName]){
+				for(MailMailbox *box in mAcc.mailboxes){
+					if ([box.name isEqualToString: mailMailboxName]) {
+						for (MailMessage *msg in box.messages){
+							if ([msg.messageId isEqualToString: msgId]){
+								
+								[msg open];
+								BOOL res = [[NSWorkspace sharedWorkspace] launchApplication:@"Mail"];
+								NSLog(@"launched = %d", res);
+							}
+														
+						}
+					}
+				}
+			}
+		}
+	}
+	[[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:LASTCHECK];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+	NSNotification *msg = [NSNotification notificationWithName:@"com.workplayaway.fetchDone" object:nil];
+	[[NSNotificationCenter defaultCenter] postNotification:msg];
+	[pool drain];	
+}
+-(void) handleClick: (NSDictionary*) ctx
+{
+	NSDictionary *task = [NSDictionary dictionaryWithDictionary:(NSDictionary*) ctx];
+	[NSThread detachNewThreadSelector: @selector(openMessage:)
+							 toTarget:self
+						   withObject:task];
+
 }
 
 

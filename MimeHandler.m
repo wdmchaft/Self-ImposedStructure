@@ -90,7 +90,7 @@
 	NSRange srchRange, bRange, eRange, tRange;
 	
 	BOOL quoted = [MimeHandler isQuotedBoundary: srchStr];
-	NSString *eTarget = quoted ? @"\"\n" : @"\n";
+	NSString *eTarget = quoted ? @"\"" : @"\n";
 	NSString *bTarget = quoted ? @"Boundary=\"" : @"Boundary=";
 	bRange = [srchStr rangeOfString:bTarget options:NSCaseInsensitiveSearch];
 	srchRange.location=bRange.location+bRange.length;

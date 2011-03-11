@@ -33,6 +33,7 @@
 		category = CATEGORY_TASKS;
 		summaryTitle = @"Test Tasks";
 
+		NSDate *plus2Day = [NSDate dateWithTimeIntervalSinceNow:(2 * 24*60*60) -1];
 		NSDictionary *dict1 = [NSDictionary dictionaryWithObjectsAndKeys:
 							   [self name], @"module",
 							   @"list_id",@"list_id",
@@ -61,7 +62,7 @@
 							   past ,@"due_time",
 							   [NSNumber numberWithInt:NO], @"done",
 							   nil];
-		NSDate *plusOneDay = [NSDate dateWithTimeIntervalSinceNow:24*60*60*60];
+		NSDate *plusOneDay = [NSDate dateWithTimeIntervalSinceNow:(24*60*60) -1];
 		NSDictionary *dict4 = [NSDictionary dictionaryWithObjectsAndKeys:
 							   [self name], @"module",
 							   @"list_id",@"list_id",
@@ -71,7 +72,7 @@
 							   plusOneDay,@"due_time",
 							   [NSNumber numberWithInt:NO], @"done",
 							   nil];	
-		NSDate *plus3Day = [NSDate dateWithTimeIntervalSinceNow:3*24*60*60*60];
+		NSDate *plus3Day = [NSDate dateWithTimeIntervalSinceNow:(3*24*60*60) - 1];
 		
 		NSDictionary *dict5 = [NSDictionary dictionaryWithObjectsAndKeys:
 							   [self name], @"module",
@@ -82,16 +83,51 @@
 							   plus3Day,@"due_time",
 							   [NSNumber numberWithInt:NO], @"done",
 							   nil];	
+		NSDate *plus5Day = [NSDate dateWithTimeIntervalSinceNow:(5*24*60*60) - 1];
 		NSDictionary *dict6 = [NSDictionary dictionaryWithObjectsAndKeys:
 							   [self name], @"module",
 							   @"list_id",@"list_id",
 							   @"get pvr to record Glee",@"name",
 							   @"taskseries_id",@"taskseries_id",
 							   @"id",@"id",
-							   [NSDate date],@"due_time",
+							   plus5Day,@"due_time",
 							   [NSNumber numberWithInt:NO], @"done",
 							   nil];
-		allTasks = [NSMutableArray arrayWithObjects: dict1,dict2,dict3,dict4,dict5,dict6, nil];
+		NSDate *reallysoon = [NSDate dateWithTimeIntervalSinceNow:30*60];
+
+		NSDictionary *dict7 = [NSDictionary dictionaryWithObjectsAndKeys:
+							   [self name], @"module",
+							   @"list_id",@"list_id",
+							   @"WorkPlayAway Screencast",@"name",
+							   @"taskseries_id",@"taskseries_id",
+							   @"id",@"id",
+							   reallysoon,@"due_time",
+							   [NSNumber numberWithInt:NO], @"done",
+							   nil];
+		NSDate *sortasoon = [NSDate dateWithTimeIntervalSinceNow:3 * 60 *60];
+	
+		NSDictionary *dict8 = [NSDictionary dictionaryWithObjectsAndKeys:
+							   [self name], @"module",
+							   @"list_id",@"list_id",
+							   @"WorkPlayAway bug fixing",@"name",
+							   @"taskseries_id",@"taskseries_id",
+							   @"id",@"id",
+							   sortasoon,@"due_time",
+							   [NSNumber numberWithInt:NO], @"done",
+							   nil];
+		NSDate *sooner = [NSDate dateWithTimeIntervalSinceNow:1.5 * 60 *60];
+		
+		NSDictionary *dict9 = [NSDictionary dictionaryWithObjectsAndKeys:
+							   [self name], @"module",
+							   @"list_id",@"list_id",
+							   @"Seriously, get a snack.",@"name",
+							   @"taskseries_id",@"taskseries_id",
+							   @"id",@"id",
+							   sooner,@"due_time",
+							   [NSNumber numberWithInt:NO], @"done",
+							   nil];	
+		allTasks = [NSMutableArray arrayWithObjects:
+													dict1, dict2, dict3, dict4, dict5, dict6, dict7, dict8, dict9, nil];
 	}
 	return self;
 }
