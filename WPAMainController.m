@@ -415,10 +415,10 @@
 //
 - (void) showSummaryScreen: (id) sender
 {
+	Context *ctx = [Context sharedContext];
 	ctx.currentState = WPASTATE_SUMMARY;
 	[[Context sharedContext].growlManager clearQueues];
 	[self enableStatusMenu:NO];
-	Context *ctx = [Context sharedContext];
 	SummaryHUDControl *shc = [[SummaryHUDControl alloc]initWithWindowNibName:@"SummaryHUD"];
 	hudWindow = shc.window;
 	[shc showWindow:self];
