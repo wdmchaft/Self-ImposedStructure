@@ -139,6 +139,8 @@
 		8C7729B612D46AC600F71FE7 /* TimerDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77295B12D46AC600F71FE7 /* TimerDialog.xib */; };
 		8C7729BD12D46AC600F71FE7 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C77296912D46AC600F71FE7 /* Info.plist */; };
 		8C7729C212D46AC600F71FE7 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C77297C12D46AC600F71FE7 /* Growl.framework */; };
+		8C78507113294FA20008CF2B /* HeatMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C785014132916510008CF2B /* HeatMap.m */; };
+		8C78508113294FF10008CF2B /* HeatMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C785014132916510008CF2B /* HeatMap.m */; };
 		8C82AECF12EB98A300830486 /* RefreshManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C82AECE12EB98A300830486 /* RefreshManager.m */; };
 		8C82AED012EB98A300830486 /* RefreshManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C82AECE12EB98A300830486 /* RefreshManager.m */; };
 		8C82AF6B12ED239500830486 /* BaseInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C82AF6012ECF25D00830486 /* BaseInstance.m */; };
@@ -737,6 +739,8 @@
 		8C77297D12D46AC600F71FE7 /* XMLParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParse.h; sourceTree = "<group>"; };
 		8C77297E12D46AC600F71FE7 /* RequestREST.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestREST.h; sourceTree = "<group>"; };
 		8C77297F12D46AC600F71FE7 /* SkypeBlue.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = SkypeBlue.icns; sourceTree = "<group>"; };
+		8C785013132916510008CF2B /* HeatMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeatMap.h; sourceTree = "<group>"; };
+		8C785014132916510008CF2B /* HeatMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeatMap.m; sourceTree = "<group>"; };
 		8C82AECD12EB98A300830486 /* RefreshManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshManager.h; sourceTree = "<group>"; };
 		8C82AECE12EB98A300830486 /* RefreshManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshManager.m; sourceTree = "<group>"; };
 		8C82AF1C12EBEDB100830486 /* Refreshable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Refreshable.h; sourceTree = "<group>"; };
@@ -1064,7 +1068,6 @@
 		29B97314FDCFA39411CA2CEA /* WorkPlayAway */ = {
 			isa = PBXGroup;
 			children = (
-				8CEE6A8513268A7C00E45829 /* AppleMailModule.ico */,
 				8C82CFDF12F3D0BE00830486 /* Design.txt */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -1105,6 +1108,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8CEE6A8513268A7C00E45829 /* AppleMailModule.ico */,
 				8C82C85112F1E82500830486 /* wpa.icns */,
 				8C82C79312F17BB200830486 /* wpa.ico */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
@@ -1478,6 +1482,8 @@
 		8CDC1084130CA5D900BA478C /* AppleMailModule */ = {
 			isa = PBXGroup;
 			children = (
+				8C785013132916510008CF2B /* HeatMap.h */,
+				8C785014132916510008CF2B /* HeatMap.m */,
 				8C77296712D46AC600F71FE7 /* MimeHandler.h */,
 				8C77296512D46AC600F71FE7 /* MimeHandler.m */,
 				8CDC11C6130DC10A00BA478C /* AppleMailModule.icns */,
@@ -2118,6 +2124,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C78507113294FA20008CF2B /* HeatMap.m in Sources */,
 				8C9E3D6E1320B35E007632E5 /* WriteHandler.m in Sources */,
 				8C01DD8F131D67EB00398AD8 /* HUDSettings.m in Sources */,
 				8C0D93F912D63DBD009F3280 /* IconData.m in Sources */,
@@ -2311,6 +2318,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C78508113294FF10008CF2B /* HeatMap.m in Sources */,
 				8C9E3D6B1320B337007632E5 /* WriteHandler.m in Sources */,
 				8C01DD91131D680100398AD8 /* HUDSettings.m in Sources */,
 				8C1C92A212EA3EC00077D343 /* SummaryData.m in Sources */,

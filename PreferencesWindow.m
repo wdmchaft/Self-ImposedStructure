@@ -14,7 +14,7 @@
 
 @implementation PreferencesWindow
 @synthesize modulesTable, amwControl,addButton, removeButton, newModuleView, tableData, 
-launchOnBootButton, editButton, hudTable, 
+launchOnBootButton, editButton, hudTable, heatTable, 
 summaryField, summaryStepper, summaryLabel, summaryLabel2, summaryButton;
 
 - (void)awakeFromNib
@@ -38,7 +38,7 @@ summaryField, summaryStepper, summaryLabel, summaryLabel2, summaryButton;
 	
 	Context *ctx = [Context sharedContext];
 	NSDictionary *instances = ctx.instancesMap;
-	NSLog(@"instances size: %d", [instances count]);
+	NSLog(@"instances size: %lu", [instances count]);
 	tableData = [[ModulesTableData alloc] initWithDictionary:instances];
 	modulesTable.dataSource = tableData;
 	[modulesTable noteNumberOfRowsChanged];
@@ -58,7 +58,7 @@ summaryField, summaryStepper, summaryLabel, summaryLabel2, summaryButton;
 	[hudTable registerForDraggedTypes:
 	 [NSArray arrayWithObject:[[HUDSettings class] description] ]];
 	
-	
+	heatTable.dataSource = [Context sharedContext].heatMapSettings;
 }
 
 - (void) showWindow:(id)sender
@@ -105,7 +105,7 @@ summaryField, summaryStepper, summaryLabel, summaryLabel2, summaryButton;
 		NSTableColumn *col = [[modulesTable tableColumns] objectAtIndex:0];
 		NSString *instName = [tableData objValueForTableColumn:col row:rowNum];
 		amwControl = [[AddModWinController alloc] initWithWindowNibName:@"AddMod"];
-		<Instance> mod = [[Context sharedContext].instancesMap objectForKey:instName];
+		id<Instance> mod = [[Context sharedContext].instancesMap objectForKey:instName];
 		amwControl.currCtrl = mod;
 		amwControl.tableData = tableData;
 		amwControl.tableView = modulesTable;
@@ -121,12 +121,12 @@ summaryField, summaryStepper, summaryLabel, summaryLabel2, summaryButton;
 		NSTableColumn *col = [[modulesTable tableColumns] objectAtIndex:0];
 		NSString *instName = [tableData objValueForTableColumn:col row:rowNum];
 		Context *ctx = [Context sharedContext];
-		<Instance> mod = [ctx.instancesMap objectForKey:instName];
+		id<Instance> mod = [ctx.instancesMap objectForKey:instName];
 		[mod clearDefaults];
 		[ctx.instancesMap removeObjectForKey:instName];
 		[ctx saveModules];
 		if ([mod conformsToProtocol:@protocol(Reporter)]){
-			[ctx.hudSettings removeInstance:(<Reporter>)mod];
+			[ctx.hudSettings removeInstance:(id<Reporter>)mod];
 			[ctx.hudSettings saveToDefaults];
 			[hudTable noteNumberOfRowsChanged];
 		}
@@ -142,15 +142,15 @@ summaryField, summaryStepper, summaryLabel, summaryLabel2, summaryButton;
 	Context *ctx = [Context sharedContext];
 	NSArray *keys = [ctx.instancesMap allKeys];
 	NSString *key = [keys objectAtIndex:row];
-	<Instance> mod = [ctx.instancesMap objectForKey: key];
+	id<Instance> mod = [ctx.instancesMap objectForKey: key];
 	
 	mod.enabled = !mod.enabled;
 	if (mod.enabled == NO && [mod conformsToProtocol:@protocol(Reporter)]){
-		[ctx.hudSettings disableInstance:(<Reporter>)mod]; // disabled module can not be enabled for summary
+		[ctx.hudSettings disableInstance:(id<Reporter>)mod]; // disabled module can not be enabled for summary
 	}
 	if ([((NSObject*)mod) respondsToSelector:@selector(changeState:)])
 	{
-		<Stateful> sc = (<Stateful>) mod;
+		id<Stateful> sc = (id<Stateful>) mod;
 		if (mod.enabled){
 			[sc changeState:ctx.currentState];
 		}

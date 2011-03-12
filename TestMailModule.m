@@ -102,7 +102,8 @@
 						   @"http://unimportant.com", @"href",
 						   [NSDate dateWithTimeIntervalSinceNow:-480.0], @"received",
 						   nil];
-	NSArray *msgs = [NSArray arrayWithObjects: dict1,dict2,dict3,dict4,dict5,nil];
+    //	NSArray *msgs = [NSArray arrayWithObjects: dict1,dict2,dict3,dict4,dict5,nil];
+    NSArray *msgs = [NSArray arrayWithObjects:nil];
 	NSMutableArray *sendItems = [NSMutableArray new];
 	for (NSDictionary *item in msgs){
 		FilterResult res = [FilterRule processFilters:rules forMessage: item];

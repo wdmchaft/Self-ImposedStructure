@@ -13,25 +13,38 @@
 @interface SummaryViewController : NSViewController <NSTableViewDataSource, AlertHandler> {
 	BGHUDTableView *table;
 	BGHUDProgressIndicator *prog;
-	<Reporter> reporter;
+	id<Reporter> reporter;
 	NSMutableArray *data;
 	NSSize size;
+	NSFont *boldFont;
+	int actualLines;
+	int maxLines;
+	NSObject *caller;
 }
 
 @property (nonatomic,retain) IBOutlet BGHUDTableView *table; 
 @property (nonatomic,retain) IBOutlet BGHUDProgressIndicator *prog; 
-@property (nonatomic,retain) <Reporter> reporter; 
+@property (nonatomic,retain) id<Reporter> reporter; 
 @property (nonatomic,retain) NSMutableArray *data; 
-@property (nonatomic ) NSSize size; 
+@property (nonatomic,retain) NSFont *boldFont; 
+@property (nonatomic,retain) NSObject *caller; 
+@property (nonatomic) NSSize size; 
+@property (nonatomic) int actualLines; 
+@property (nonatomic) int maxLines;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil 
 			   bundle:(NSBundle *)nibBundleOrNil 
-			   module: (<Reporter>) report
-				 size:(NSSize) pt ;
+			   module: (id<Reporter>) report 
+				 rows: (int) maxRows
+				width:(int) width
+			   caller: (NSObject*) callback ;
 
 - (void) initTable;
 
 - (void) refresh;
+- (void) handleDouble:(id)sender;
+- (void) handleAction:(id)sender;
+- (int) actualHeight;
 
 @end
 

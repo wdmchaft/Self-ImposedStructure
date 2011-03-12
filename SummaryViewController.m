@@ -10,13 +10,20 @@
 #import "Utility.h"
 #import <BGHUDAppKit/BGHUDAppKit.h> 
 #import "TaskList.h"
+#import "HeatMap.h"
+#import "Context.h"
 
 @implementation SummaryViewController
 @synthesize table;
 @synthesize prog;
 @synthesize reporter;
 @synthesize data;
+@synthesize maxLines;
+@synthesize boldFont;
+@synthesize actualLines;
 @synthesize size;
+@synthesize caller;
+
 -(void) awakeFromNib
 {
 	table.dataSource=self;
@@ -29,9 +36,11 @@
 	table.dataSource=self;
 	NSLog(@"table = %@", table);
 	[table setDoubleAction:@selector(handleDouble:)];
+	[table setAction:@selector(handleAction:)];
+	[table setTarget:self];
 
 	NSRect frame;
-	size.height -= 10;
+//	size.height -= 10;
 	frame.size = size;
 	frame.origin.x = 0; frame.origin.y = 0;
 	[table setFrame:frame];
@@ -42,13 +51,18 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil 
 			   bundle:(NSBundle *)nibBundleOrNil 
-			   module: (<Reporter>) report 
-				 size: (NSSize) pt
+			   module: (id<Reporter>) report 
+				 rows: (int) maxRows
+				width:(int) width
+			   caller: (NSObject*) callback 
 {
 	self = [super initWithNibName:nibNameOrNil bundle: nibBundleOrNil];
     if (self) {
 		reporter = report;
-		size = pt;
+		size.height = maxRows * ([table rowHeight] + 3);
+		size.width = width;
+		caller = callback;
+		maxLines = maxRows;
     }
     return self;
 }
@@ -68,11 +82,15 @@
 	[prog setHidden:YES];
 	[prog stopAnimation:self];
 }	
+
 - (void) handleAlert: (Note*) alert
 {
 	if (alert.lastAlert){
 		[prog setHidden:YES];
 		[prog stopAnimation:self];
+		actualLines = [data count];
+		[caller viewSized: self];
+		
 	}
 	else {
 		if (!data){
@@ -83,13 +101,9 @@
 	}
 }
 
-
-- (void) handleDouble: (id) sender;
+- (void) handleAction: (id) sender
 {
-	int row = [sender selectedRow];
-	
-	NSDictionary *ctx = [data objectAtIndex:row];	
-	[reporter handleClick:ctx];
+	NSLog(@"handleAction");
 }
 
 - (IBAction) checkTask: (id) sender
@@ -108,7 +122,7 @@
 - (void) processComplete: (NSTimer*)timer
 {	
 	NSDictionary* params = timer.userInfo;
-	[((<TaskList>)reporter) markComplete:params completeHandler:self];
+	[((id<TaskList>)reporter) markComplete:params completeHandler:self];
 }
 
 - (void) handleComplete: (NSString*) error
@@ -130,6 +144,34 @@
 
 - (void) initTable{}
 
+- (void) handleDouble: (id) sender{}
+
+- (NSDictionary*) readAttributes
+{
+	if (!boldFont){
+		float fontSize = [NSFont systemFontSizeForControlSize:NSSmallControlSize]; 
+		NSFont *font = [NSFont controlContentFontOfSize:fontSize];
+		NSFontManager *fontManager = [NSFontManager sharedFontManager];
+		boldFont =[fontManager convertFont:font toHaveTrait:NSBoldFontMask];
+	}
+	return [NSDictionary dictionaryWithObjectsAndKeys:boldFont, NSFontAttributeName,[NSColor redColor], NSForegroundColorAttributeName, nil];
+}
+
+- (NSDictionary*) attributesForInterval: (NSTimeInterval) interval
+{
+//	float fontSize = [NSFont systemFontSizeForControlSize:NSSmallControlSize]; 
+//	NSFont *font = [NSFont controlContentFontOfSize:fontSize];
+	HeatMap *map = [Context sharedContext].heatMapSettings;
+	return [NSDictionary dictionaryWithObjectsAndKeys:
+			[map colorForInterval:interval], NSForegroundColorAttributeName, nil];
+}
+
+- (int) actualHeight
+{
+	int lines = (actualLines > maxLines) ? maxLines :actualLines;
+	return lines * ([table rowHeight] + 3);
+}
+
 @end
 
 @implementation SummaryEventViewController
@@ -145,17 +187,28 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 	}
     NSDictionary *params  = [data objectAtIndex:row];
 	NSString *colName = [tableColumn identifier];
+	NSDate *starts = [params objectForKey:@"start"];
+	NSTimeInterval intv = [starts timeIntervalSinceNow];
+	NSDictionary *attrs = [self attributesForInterval: intv];
 	if ([colName isEqualToString:@"COL1"]){
-		NSDate *starts = [params objectForKey:@"start"];
 		theValue = [Utility shortTimeStrFor:starts];
 	} else {
 		theValue = [params objectForKey:EVENT_SUMMARY];
 	}
-	
-	
+	theValue = [[NSAttributedString alloc]initWithString:(NSString*)theValue attributes: attrs];
     return theValue;
 }
+
 - (void) initTable{}
+
+
+- (void) handleDouble: (id) sender;
+{
+	int row = [sender selectedRow];
+	
+	NSDictionary *ctx = [data objectAtIndex:row];	
+	[reporter handleClick:ctx];
+}
 @end
 
 @implementation SummaryTaskViewController
@@ -171,9 +224,9 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 	}
 	NSDictionary *params  = [data objectAtIndex:row];
 	NSString *colId = [tableColumn identifier];
+	NSDate *due = (NSDate*) [params objectForKey:@"due_time"];
 	if ([colId isEqualToString:@"COL1"]){
 		NSString *val;
-		NSDate *due = (NSDate*) [params objectForKey:@"due_time"];
 		val = (NSString*)[params objectForKey:TASK_NAME];
 		if (![due isEqualToDate:[NSDate distantFuture]]){
 			NSLog(@"got val = %@", val);
@@ -182,6 +235,12 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 		theValue = val;
 	} else {
 		theValue = [NSNumber numberWithInt: 0];
+	}
+	if ([theValue isKindOfClass:[NSString class]] && due){
+		NSTimeInterval intv = [due timeIntervalSinceNow];
+		NSDictionary *attrs = [self attributesForInterval: intv];
+		NSLog(@"val = %@",(NSString*)[params objectForKey:TASK_NAME]);
+		theValue = [[NSAttributedString alloc]initWithString:(NSString*)theValue attributes: attrs];
 	}
     return theValue;
 }
@@ -204,6 +263,13 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 }
 
 
+- (void) handleDouble: (id) sender;
+{
+	int row = [sender selectedRow];
+	
+	NSDictionary *ctx = [data objectAtIndex:row];	
+	[reporter handleClick:ctx];
+}
 @end
 
 @implementation SummaryMailViewController
@@ -218,6 +284,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 		[data sortUsingDescriptors:[NSArray arrayWithObject:desc]];
 	}
     NSDictionary *params  = [data objectAtIndex:row];
+	BOOL readStatus = [((NSNumber*)[params objectForKey:@"readStatus"]) boolValue];
 	NSString *colName = [tableColumn identifier];
 	if ([colName isEqualToString:@"COL1"])
 	{
@@ -229,9 +296,26 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 	} else {
 		theValue = [params objectForKey:MAIL_SUBJECT];
 	}
+	if (!readStatus){
+		theValue = [[NSAttributedString alloc]initWithString:theValue attributes:[self readAttributes]];
+	}
     return theValue;
 }
 - (void) initTable{}
+
+- (void) handleDouble: (id) sender;
+{
+	int row = [sender selectedRow];
+	
+	NSDictionary *ctx = [data objectAtIndex:row];	
+	[reporter handleClick:ctx];
+}
+
+- (void) handleAction: (id) sender
+{
+	NSLog(@"handleAction - mail");
+}
+
 @end
 
 @implementation SummaryDeadlineViewController
@@ -263,7 +347,6 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 
 - (void) initTable
 {
-	
 	NSArray *allCols = table.tableColumns;
 	NSTableColumn *col1 = [allCols objectAtIndex:0];
 	
@@ -277,4 +360,6 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 	[col1 setDataCell:cell];
 	[cell release];
 }
+
+
 @end

@@ -9,9 +9,9 @@
 #import <Cocoa/Cocoa.h>
 #import <Foundation/Foundation.h>
 #define COLORS @"heatMapColors"
-#define WINDOWS @"heatMapWindows"
+#define MINVALS @"heatMapMinValues"
 
-@interface HeatMap : NSObject {
+@interface HeatMap : NSObject <NSTableViewDataSource> {
 	NSArray *colors;
 	NSArray *windows;
 }

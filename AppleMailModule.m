@@ -121,7 +121,7 @@
 	[pool drain];	
 }
 
--(void) refresh: (<AlertHandler>) handler
+-(void) refresh: (id<AlertHandler>) handler
 {
 	alertHandler = handler;
 	[[NSNotificationCenter defaultCenter] addObserver:self 
@@ -141,9 +141,10 @@
 		alert.moduleName = name;
 		alert.title = [NSString stringWithFormat:@"From: %@",[msg objectForKey:MAIL_EMAIL]];;
 		alert.message=[msg objectForKey:MAIL_SUMMARY];
-		alert.sticky = YES;
-		alert.urgent = YES;
+		alert.sticky = NO;
+		alert.urgent = NO;
 		alert.params = msg;
+        alert.clickable = YES;
 			
 		[alertHandler handleAlert:alert];
 	}

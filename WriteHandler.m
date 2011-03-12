@@ -9,6 +9,7 @@
 #import "WriteHandler.h"
 #import "State.h"
 #import "Context.h"
+#import "WPADelegate.h"
 
 @implementation WriteHandler
 @synthesize stopMe;
@@ -474,8 +475,9 @@
 
 + (void) sendNewRecord: (WPAStateType) state
 {
+    WPADelegate *del = (WPADelegate*)[[NSApplication sharedApplication] delegate];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"newrecord" 
-														object:self 
+														object:del.ioHandler 
 													  userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
 																[NSDate date],@"date",
 																[NSNumber numberWithInt:state], @"state",
@@ -485,8 +487,9 @@
 + (void) sendSummaryForDate: (NSDate*) date goal: (int) goalTime work: (int) workTime free: (int) freeTime
 
 {
+    WPADelegate *del = (WPADelegate*)[[NSApplication sharedApplication] delegate];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"summary" 
-														object:self 
+														object: del.ioHandler
 													  userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
 																date,@"date",
 																[NSNumber numberWithInt:workTime], @"work",

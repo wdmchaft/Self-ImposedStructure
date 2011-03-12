@@ -23,6 +23,7 @@
 	
 	NSModalSession editModuleSession;
 	NSTableView *hudTable;
+	NSTableView *heatTable;
 	NSStepper *summaryStepper;
 	NSTextField *summaryField;
 	NSTextField *summaryLabel;
@@ -32,6 +33,7 @@
 
 @property (retain, nonatomic) IBOutlet NSTableView *modulesTable;
 @property (retain, nonatomic) IBOutlet NSTableView *hudTable;
+@property (retain, nonatomic) IBOutlet NSTableView *heatTable;
 @property (retain, nonatomic) IBOutlet NSButton *addButton;
 @property (retain, nonatomic) IBOutlet NSButton *removeButton;
 @property (retain, nonatomic) IBOutlet NSButton *editButton;

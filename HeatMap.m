@@ -29,7 +29,7 @@
 		[temp addObject:[NSArchiver archivedDataWithRootObject:color]];
 	}
 	[ud setObject: temp forKey:COLORS];
-	[ud setObject: colors forKey:WINDOWS];
+	[ud setObject: colors forKey:MINVALS];
 }
 
 
@@ -60,7 +60,7 @@
 		[temp addObject:[HeatMap colorFromArch:data]];
 	}
 	colors = temp;
-	windows = [ud objectForKey:WINDOWS];
+	windows = [ud objectForKey:MINVALS];
 }
 /****
  #FA0000 30 min
@@ -86,6 +86,7 @@
 	
 	NSTimeInterval future = [[NSDate distantFuture]timeIntervalSinceNow];
 	NSArray *defaultWindows = [NSArray arrayWithObjects:
+							   [NSNumber numberWithDouble:-INFINITY],
 							   [NSNumber numberWithDouble:0],
 							   [NSNumber numberWithDouble:30 * 60],
 							   [NSNumber numberWithDouble:2 * 60 * 60],
@@ -96,7 +97,7 @@
 	
     NSDictionary *appDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
 								 defaultColors,							COLORS,
-								 defaultWindows,						WINDOWS,
+								 defaultWindows,						MINVALS,
 								 nil];
 	
     [defaults registerDefaults:appDefaults];
@@ -111,4 +112,55 @@
 	}
 	return [colors objectAtIndex:[colors count] - 1];
 }
+
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
+{
+	NSInteger ret = [colors count];
+	return ret;
+}
+
+- (id)tableView:(NSTableView *)tableView 
+objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+{
+	id theValue;
+	NSParameterAssert(colors != nil);
+	NSParameterAssert(row >= 0 && row < [colors count]);
+	
+	NSString *colName = [tableColumn identifier];
+    
+	if ([colName isEqualToString:@"FROM"]){
+        theValue = [windows objectAtIndex:row];
+        theValue = [NSNumber numberWithDouble:[theValue doubleValue] / 60];
+	} else if ([colName isEqualToString:@"STYLE"]){
+        NSDictionary *attrs = [NSDictionary dictionaryWithObject:[colors objectAtIndex:row] forKey:NSForegroundColorAttributeName];
+		NSAttributedString *str  = [[NSAttributedString alloc]initWithString:@"test" attributes:attrs];
+		theValue = str;
+	}
+    return theValue;
+}
+
+- (void)tableView:(NSTableView *)aTableView setObjectValue:(id)anObject 
+   forTableColumn:(NSTableColumn *)col 
+			  row:(NSInteger)row
+{
+	NSParameterAssert(row >= 0 && row < [windows count]);
+	
+	NSString *colName = [col identifier];
+	
+	if ([colName isEqualToString:@"FROM"]){
+        if (row == 0)
+            return; // can't change - INFINITY
+        double val = [(NSNumber*)anObject doubleValue];
+        if (row < [windows count] - 1){
+            double max = [(NSNumber*)[windows objectAtIndex: row + 1] doubleValue];
+            if (val >= max){
+                return [windows objectAtIndex:row]; 
+            }
+        }
+		[windows replaceObjectAtIndex:row withObject:anObject];
+    }
+}
+
+
+
 @end

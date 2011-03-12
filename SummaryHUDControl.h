@@ -18,6 +18,7 @@
 
 @interface SummaryHUDControl : NSWindowController {
 	NSArray *views;
+	NSArray *controls;
 	NSView *view;
 	NSTextField *label1;
 	NSTextField *label2;
@@ -26,9 +27,12 @@
 	NSTextField *label5;
 	NSTextField *label6;
 	WPAMainController *mainControl;
+	int viewsBuilt;
+	int visibleCount;
 }
 
 @property (nonatomic, retain)  NSArray *views;
+@property (nonatomic, retain)  NSArray *controls;
 @property (nonatomic, retain) IBOutlet NSView *view;
 
 @property (nonatomic, retain) WPAMainController *mainControl;
@@ -38,9 +42,11 @@
 @property (nonatomic, retain) IBOutlet 	NSTextField *label4;
 @property (nonatomic, retain) IBOutlet 	NSTextField *label5;
 @property (nonatomic, retain) IBOutlet 	NSTextField *label6;
+@property (nonatomic) int viewsBuilt;
+@property (nonatomic) int visibleCount;
 
 - (void) buildDisplay;
-- (SummaryViewController*) getViewForInstance: (<Reporter>) inst view: (NSView*) box;
+- (SummaryViewController*) getViewForInstance: (<Reporter>) inst view: (NSView*) box rows: (int) nRows;
 
 
 @end
