@@ -15,9 +15,9 @@
 @synthesize tempList;
 @synthesize tempDictionary;;
 
-- (ListHandler*) initWithContext: (RTMModule*) ctx andDelegate: (<RTMCallback>) delegate
+- (ListHandler*) initWithContext: (RTMModule*) ctx andDelegate: (id<RTMCallback>) delegate
 {
-	if (self = (ListHandler*)[super initWithContext:ctx andDelegate:delegate])
+	if ((self = (ListHandler*)[super initWithContext:ctx andDelegate:delegate])!= nil)
 	{
 		tempList = [NSMutableArray new];
 		tempDictionary = [NSMutableDictionary new];

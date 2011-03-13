@@ -23,6 +23,7 @@
 @dynamic name;
 @dynamic enabled;
 @dynamic category;
+@dynamic summaryTitle;
 
 -(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

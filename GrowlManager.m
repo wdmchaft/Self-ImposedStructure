@@ -54,13 +54,13 @@
 
 -(void) handleError: (Note*) error
 {
-	<Reporter> sender = [[[Context sharedContext] instancesMap] objectForKey:error.moduleName];
+	id<Reporter> sender = [[[Context sharedContext] instancesMap] objectForKey:error.moduleName];
 	
 	[GrowlApplicationBridge
 	 notifyWithTitle:@"Error!"
 	 description:error.message
 	 notificationName:@"Error Alert"
-	 iconData:[[Context sharedContext]iconForModule:((<Instance>)sender)]
+	 iconData:[[Context sharedContext]iconForModule:((id<Instance>)sender)]
 	 priority:0
 	 isSticky:YES
 	 clickContext:nil];
@@ -102,14 +102,14 @@
 -(void) growlAlert: (Note*) alert
 {
 //	NSLog(@"showing alert %@", alert.message);
-	<Reporter> sender = [[[Context sharedContext] instancesMap] objectForKey:alert.moduleName];
+	id<Reporter> sender = [[[Context sharedContext] instancesMap] objectForKey:alert.moduleName];
 	
 	
 	[GrowlApplicationBridge
 	 notifyWithTitle: alert.title == nil ? sender.notificationTitle : alert.title
 	 description:alert.message
 	 notificationName:sender.notificationName
-	 iconData:[[Context sharedContext]iconForModule:((<Instance>)sender)]
+	 iconData:[[Context sharedContext]iconForModule:((id<Instance>)sender)]
 	 priority:0
 	 isSticky:alert.sticky
 	 clickContext: alert.clickable ? alert.params : nil];
@@ -117,7 +117,7 @@
 
 - (void) growlNotificationWasClicked:(id)ctx 
 {
-	<Reporter> callMod = [[Context sharedContext].instancesMap objectForKey:[ctx objectForKey: @"module"]];
+	id <Reporter> callMod = [[Context sharedContext].instancesMap objectForKey:[ctx objectForKey: @"module"]];
 	
 	[callMod handleClick:ctx];
 	

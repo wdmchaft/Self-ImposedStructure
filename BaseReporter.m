@@ -11,4 +11,11 @@
 
 @implementation BaseReporter
 @synthesize summaryTitle;
+@dynamic refreshInterval;
+@dynamic notificationName;
+@dynamic notificationTitle;
+@dynamic enabled;
+@dynamic name;
+@dynamic category;
+
 @end
