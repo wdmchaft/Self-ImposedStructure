@@ -15,38 +15,34 @@
 #import "WPAMainController.h"
 #import "Reporter.h"
 #import "SummaryViewController.h"
+#import "SummaryHUDCallback.h"
 
-@interface SummaryHUDControl : NSWindowController {
+@interface SummaryHUDControl :  NSWindowController <SummaryHUDCallback> {
 	NSArray *views;
 	NSArray *controls;
+	NSArray *boxes;
+	NSArray *progs;
 	NSView *view;
-	NSTextField *label1;
-	NSTextField *label2;
-	NSTextField *label3;
-	NSTextField *label4;
-	NSTextField *label5;
-	NSTextField *label6;
-	WPAMainController *mainControl;
-	int viewsBuilt;
-	int visibleCount;
-}
 
+	WPAMainController *mainControl;
+ 
+    NSArray *hudList;
+    CGFloat lineHeight;
+}
+@property (nonatomic,retain) NSArray *hudList;
 @property (nonatomic, retain)  NSArray *views;
 @property (nonatomic, retain)  NSArray *controls;
+@property (nonatomic, retain)  NSArray *boxes;
+@property (nonatomic, retain)  NSArray *progs;
 @property (nonatomic, retain) IBOutlet NSView *view;
 
 @property (nonatomic, retain) WPAMainController *mainControl;
-@property (nonatomic, retain) IBOutlet 	NSTextField *label1;
-@property (nonatomic, retain) IBOutlet 	NSTextField *label2;
-@property (nonatomic, retain) IBOutlet 	NSTextField *label3;
-@property (nonatomic, retain) IBOutlet 	NSTextField *label4;
-@property (nonatomic, retain) IBOutlet 	NSTextField *label5;
-@property (nonatomic, retain) IBOutlet 	NSTextField *label6;
-@property (nonatomic) int viewsBuilt;
-@property (nonatomic) int visibleCount;
+@property (nonatomic) CGFloat lineHeight;
+
+
+- (SummaryViewController*) getViewForInstance: (id<Reporter>) inst width: (CGFloat) vWidth rows: (int) nRows;
 
 - (void) buildDisplay;
-- (SummaryViewController*) getViewForInstance: (<Reporter>) inst view: (NSView*) box rows: (int) nRows;
 
 
 @end

@@ -40,7 +40,7 @@
 							   @"Get Some Milk!",@"name",
 							   @"taskseries_id",@"taskseries_id",
 							   @"id",@"id",
-							   [NSDate date],@"due_time",
+							   plus2Day,@"due_time",
 							   [NSNumber numberWithInt:NO], @"done",
 							   nil];
 		NSDictionary *dict2 = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -137,7 +137,7 @@
 	
 }
 
--(void) refreshData: (<AlertHandler>) handler
+-(void) refreshData: (id<AlertHandler>) handler
 {
 	NSMutableArray *incomp = [NSMutableArray new];
 	for (NSDictionary *item in allTasks){
@@ -162,7 +162,7 @@
 	[BaseInstance sendDone:handler module: name];
 }
 
--(void) refresh: (<AlertHandler>) handler
+-(void) refresh: (id<AlertHandler>) handler
 {
 	[self refreshData:handler];
 }

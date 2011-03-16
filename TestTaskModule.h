@@ -23,7 +23,7 @@
 @property (nonatomic,retain) NSMutableArray *allTasks;
 
 -(IBAction) clickStepper: (id) sender;
-- (void) refreshData:(<AlertHandler>)timer;
+- (void) refreshData:(id<AlertHandler>)timer;
 
-- (void) markComplete:(NSDictionary *)ctx;
+- (void) markComplete:(NSDictionary *)ctx completeHandler:(NSObject*) callback;
 @end

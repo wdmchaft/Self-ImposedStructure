@@ -53,7 +53,7 @@
 	return [instances count];
 }
 
--(void) addInstance: (<Reporter>) inst 
+-(void) addInstance: (id<Reporter>) inst 
 {
 	[instances addObject: inst ];
 	[heights addObject: [NSNumber numberWithInt:0]];
@@ -61,7 +61,7 @@
 	[labels addObject:inst.summaryTitle];
 }
 
--(void) addInstance: (<Reporter>) inst 
+-(void) addInstance: (id<Reporter>) inst 
 			 height: (int) hgt
 			  label: (NSString*) lbl
 			enabled: (BOOL) on
@@ -72,7 +72,7 @@
 	[labels addObject:lbl];
 }
 
--(void) addInstance: (<Reporter>) inst 
+-(void) addInstance: (id<Reporter>) inst 
 			 height: (int) hgt
 			  label: (NSString*) lbl
 			enabled: (BOOL) on

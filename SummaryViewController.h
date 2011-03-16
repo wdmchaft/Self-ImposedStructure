@@ -9,35 +9,37 @@
 #import <Cocoa/Cocoa.h>
 #import "Reporter.h"
 #import <BGHUDAppKit/BGHUDAppKit.h>
+#import "SummaryHUDCallback.h"
 
 @interface SummaryViewController : NSViewController <NSTableViewDataSource, AlertHandler> {
 	BGHUDTableView *table;
-	BGHUDProgressIndicator *prog;
+	NSProgressIndicator *prog;
 	id<Reporter> reporter;
 	NSMutableArray *data;
-	NSSize size;
 	NSFont *boldFont;
 	int actualLines;
-	int maxLines;
-	NSObject *caller;
+	int maxLines; 
+	int width;
+	id<SummaryHUDCallback> caller;
 }
 
 @property (nonatomic,retain) IBOutlet BGHUDTableView *table; 
-@property (nonatomic,retain) IBOutlet BGHUDProgressIndicator *prog; 
+@property (nonatomic,retain) IBOutlet NSProgressIndicator *prog; 
 @property (nonatomic,retain) id<Reporter> reporter; 
 @property (nonatomic,retain) NSMutableArray *data; 
 @property (nonatomic,retain) NSFont *boldFont; 
-@property (nonatomic,retain) NSObject *caller; 
-@property (nonatomic) NSSize size; 
+@property (nonatomic,retain)id<SummaryHUDCallback> caller; 
 @property (nonatomic) int actualLines; 
 @property (nonatomic) int maxLines;
+@property (nonatomic) int width;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil 
 			   bundle:(NSBundle *)nibBundleOrNil 
 			   module: (id<Reporter>) report 
 				 rows: (int) maxRows
+             waitRows: (int) waitRows
 				width:(int) width
-			   caller: (NSObject*) callback ;
+			   caller: (id<SummaryHUDCallback>) callback ;
 
 - (void) initTable;
 

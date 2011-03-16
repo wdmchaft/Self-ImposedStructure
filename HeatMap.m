@@ -82,7 +82,8 @@
 							  [HeatMap archColorWithHue:0.211 saturation:1.0 brightness:0.98],// green
 							  [HeatMap archColorWithHue:0.397 saturation:1.0 brightness:0.98],// green
 							  [HeatMap archColorWithHue:0.5 saturation:1.0 brightness:0.98],// blue
-							  nil];
+                              [HeatMap archColorWithHue:0 saturation:0 brightness:1],// white
+                              nil];
 	
 	NSTimeInterval future = [[NSDate distantFuture]timeIntervalSinceNow];
 	NSArray *defaultWindows = [NSArray arrayWithObjects:

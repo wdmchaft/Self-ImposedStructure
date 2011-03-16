@@ -20,9 +20,9 @@
 @synthesize data;
 @synthesize maxLines;
 @synthesize boldFont;
-@synthesize actualLines;
-@synthesize size;
+@synthesize actualLines; 
 @synthesize caller;
+@synthesize width;
 
 -(void) awakeFromNib
 {
@@ -40,10 +40,10 @@
 	[table setTarget:self];
 
 	NSRect frame;
-//	size.height -= 10;
-	frame.size = size;
-	frame.origin.x = 0; frame.origin.y = 0;
-	[table setFrame:frame];
+    frame.size.height = [self actualHeight];
+    frame.size.width = width;
+    frame.origin.x = 0; frame.origin.y = 0;
+    [table setFrame:frame];
 	[table display];
 	[self initTable];	
 }
@@ -53,16 +53,17 @@
 			   bundle:(NSBundle *)nibBundleOrNil 
 			   module: (id<Reporter>) report 
 				 rows: (int) maxRows
-				width:(int) width
-			   caller: (NSObject*) callback 
+             waitRows: (int) waitRows
+                width:(int) widthIn
+			   caller: (id<SummaryHUDCallback>) callback 
 {
 	self = [super initWithNibName:nibNameOrNil bundle: nibBundleOrNil];
     if (self) {
 		reporter = report;
-		size.height = maxRows * ([table rowHeight] + 3);
-		size.width = width;
 		caller = callback;
 		maxLines = maxRows;
+		actualLines = waitRows;
+        width = widthIn;
     }
     return self;
 }
@@ -89,7 +90,7 @@
 		[prog setHidden:YES];
 		[prog stopAnimation:self];
 		actualLines = [data count];
-		[caller viewSized: self];
+		[caller viewSized];
 		
 	}
 	else {
@@ -169,6 +170,7 @@
 - (int) actualHeight
 {
 	int lines = (actualLines > maxLines) ? maxLines :actualLines;
+    int rowHeight = [table rowHeight];
 	return lines * ([table rowHeight] + 3);
 }
 
