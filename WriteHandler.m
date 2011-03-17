@@ -250,7 +250,8 @@
 	}
 	// or we are here and there is already a summary -- so check to see if the date has changed
 	else {
-		NSDate *recDate = (NSDate*)[currentSummary valueForKey:@"recordDate"];
+ //       NSLog(@"%@ using existing summary for %@",[NSThread currentThread], inDate);
+ //       NSDate *recDate = (NSDate*)[currentSummary valueForKey:@"recordDate"];
 		NSTimeInterval int1 = [recDate timeIntervalSince1970];
 		NSTimeInterval int2 = [inDate timeIntervalSince1970];
 		if ((NSUInteger)int1 != (NSUInteger)int2){
@@ -258,7 +259,7 @@
 		}
 	}
 	if (needsNewRec){
-		NSLog(@"writing new summary for %@", inDate);
+//		NSLog(@"%@ writing new summary for %@",[NSThread currentThread], inDate);
 		
 		currentSummary = [NSEntityDescription
 						  insertNewObjectForEntityForName:@"DailySummary"
@@ -356,7 +357,6 @@
 	
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *applicationSupportDirectory = [self applicationSupportDirectory];
-    NSError *error = nil;
     
     if ( ![fileManager fileExistsAtPath:applicationSupportDirectory isDirectory:NULL] ) {
 		if (![fileManager createDirectoryAtPath:applicationSupportDirectory withIntermediateDirectories:NO attributes:nil error:&error]) {

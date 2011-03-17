@@ -122,6 +122,7 @@
 {
 	Context *ctx = [Context sharedContext];
 	[self buildStatusMenu];
+    [statusTimer invalidate];
 	statusTimer = [NSTimer scheduledTimerWithTimeInterval:totalsManager.interval 
 												   target: self 
 												 selector:@selector(updateStatus:) 

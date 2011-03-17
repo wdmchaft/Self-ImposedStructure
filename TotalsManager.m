@@ -26,8 +26,8 @@
 	WPADelegate *del = (WPADelegate*)[NSApplication sharedApplication].delegate;
 	NSTimeInterval rollAdjust = - (60 * 60 * rolloverHour);
 	NSDate *effectiveDate = [[dailyRolloverTimer fireDate] dateByAddingTimeInterval:rollAdjust];
-	NSTimeInterval work;
-	NSTimeInterval free;
+	NSTimeInterval work = 0;
+	NSTimeInterval free = 0;
 	[del findSummaryForDate:effectiveDate work:&work free:&free];
 	if (free > 0){
 		freeToday += free;
@@ -122,6 +122,10 @@
 	rollComps.hour = rollHour;
 	
 	NSDate *stamp = [gregorian dateFromComponents:rollComps];
+    [stamp timeIntervalSinceNow];
+ //   NSDateFormatter *fmt = [NSDateFormatter new];
+ //   [fmt setDateFormat:@"MM/dd HH:mm:SSSSS"];
+ //   NSLog(@"stamp = %@", [fmt stringFromDate:stamp]);
 	return stamp;
 }
 

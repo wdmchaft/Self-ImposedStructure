@@ -88,6 +88,10 @@
 		8C1C92A212EA3EC00077D343 /* SummaryData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F3D612E790B60056FAFF /* SummaryData.m */; };
 		8C1C92E512EB593C0077D343 /* GrowlManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1C92E412EB593C0077D343 /* GrowlManager.m */; };
 		8C1C92E612EB593C0077D343 /* GrowlManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1C92E412EB593C0077D343 /* GrowlManager.m */; };
+		8C241E6D132D0D82000E2FC9 /* HUDProgress.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C9D92A9132C28D9003AFDB9 /* HUDProgress.xib */; };
+		8C241E6E132D0D87000E2FC9 /* HUDProgress.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C9D92A9132C28D9003AFDB9 /* HUDProgress.xib */; };
+		8C241E6F132D0D98000E2FC9 /* HUDBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C9D92A4132C289B003AFDB9 /* HUDBox.xib */; };
+		8C241E70132D0DA1000E2FC9 /* HUDBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C9D92A4132C289B003AFDB9 /* HUDBox.xib */; };
 		8C3AB4AC12E2CEBF00A19AA4 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C3AB4AB12E2CEBF00A19AA4 /* README.txt */; };
 		8C3AB4AD12E2CEBF00A19AA4 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C3AB4AB12E2CEBF00A19AA4 /* README.txt */; };
 		8C5DEC0012E8BFAE00EE93F1 /* RulesTableData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77291912D46AC600F71FE7 /* RulesTableData.m */; };
@@ -171,10 +175,6 @@
 		8C9CE85D12E2683800017A02 /* BlockerModule.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CE85C12E2683800017A02 /* BlockerModule.icns */; };
 		8C9CE86212E2698300017A02 /* BlockerModule.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CE86112E2698300017A02 /* BlockerModule.ico */; };
 		8C9CE88812E2700900017A02 /* Skype.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C9CE77812E2465B00017A02 /* Skype.framework */; };
-		8C9D92A5132C289D003AFDB9 /* HUDBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D92A3132C2898003AFDB9 /* HUDBox.m */; };
-		8C9D92A6132C289D003AFDB9 /* HUDBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C9D92A4132C289B003AFDB9 /* HUDBox.xib */; };
-		8C9D92AA132C28DC003AFDB9 /* HUDProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D92A8132C28D7003AFDB9 /* HUDProgress.m */; };
-		8C9D92AB132C28DC003AFDB9 /* HUDProgress.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C9D92A9132C28D9003AFDB9 /* HUDProgress.xib */; };
 		8C9E3D5213206F8E007632E5 /* WriteHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C9E3D5013206F8E007632E5 /* WriteHandler.h */; };
 		8C9E3D6B1320B337007632E5 /* WriteHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E3D5113206F8E007632E5 /* WriteHandler.m */; };
 		8C9E3D6E1320B35E007632E5 /* WriteHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E3D5113206F8E007632E5 /* WriteHandler.m */; };
@@ -595,6 +595,7 @@
 		8C1C92E312EB593C0077D343 /* GrowlManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrowlManager.h; sourceTree = "<group>"; };
 		8C1C92E412EB593C0077D343 /* GrowlManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrowlManager.m; sourceTree = "<group>"; };
 		8C3AB4AB12E2CEBF00A19AA4 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		8C4BD2F4132FAA4C00765A57 /* SummaryHUDCallback.h */ = {isa = PBXFileReference; path = SummaryHUDCallback.h; sourceTree = "<group>"; };
 		8C5DEC4912E8C4A600EE93F1 /* TestTaskModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestTaskModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C5DEC4A12E8C4A600EE93F1 /* TestTaskModule-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TestTaskModule-Info.plist"; sourceTree = "<group>"; };
 		8C5DEC5512E8C4D000EE93F1 /* TestEventModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestEventModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1074,12 +1075,7 @@
 		29B97314FDCFA39411CA2CEA /* WorkPlayAway */ = {
 			isa = PBXGroup;
 			children = (
-				8C9D92A7132C28D7003AFDB9 /* HUDProgress.h */,
-				8C9D92A8132C28D7003AFDB9 /* HUDProgress.m */,
-				8C9D92A9132C28D9003AFDB9 /* HUDProgress.xib */,
-				8C9D92A2132C2896003AFDB9 /* HUDBox.h */,
-				8C9D92A3132C2898003AFDB9 /* HUDBox.m */,
-				8C9D92A4132C289B003AFDB9 /* HUDBox.xib */,
+				8C4BD2F4132FAA4C00765A57 /* SummaryHUDCallback.h */,
 				8C82CFDF12F3D0BE00830486 /* Design.txt */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -1410,6 +1406,12 @@
 		8CD1978912D4C89D00C69AC9 /* WPAMain */ = {
 			isa = PBXGroup;
 			children = (
+				8C9D92A7132C28D7003AFDB9 /* HUDProgress.h */,
+				8C9D92A8132C28D7003AFDB9 /* HUDProgress.m */,
+				8C9D92A9132C28D9003AFDB9 /* HUDProgress.xib */,
+				8C9D92A2132C2896003AFDB9 /* HUDBox.h */,
+				8C9D92A3132C2898003AFDB9 /* HUDBox.m */,
+				8C9D92A4132C289B003AFDB9 /* HUDBox.xib */,
 				8C9E3D5013206F8E007632E5 /* WriteHandler.h */,
 				8C9E3D5113206F8E007632E5 /* WriteHandler.m */,
 				8CDC0BB81307CD1400BA478C /* MinsToSecsTransformer.h */,
@@ -1914,9 +1916,11 @@
 				8C0D944812D6408D009F3280 /* StatsWindow.xib in Resources */,
 				8C0D94D212D64A1B009F3280 /* INSTALL_PLUGINS.sh in Resources */,
 				8C0D944912D6408D009F3280 /* Growl Registration Ticket.growlRegDict in Resources */,
+				8C241E6D132D0D82000E2FC9 /* HUDProgress.xib in Resources */,
 				8C0D944A12D6408D009F3280 /* TimerDialog.xib in Resources */,
 				8C0D944B12D6408D009F3280 /* Info.plist in Resources */,
 				8C3AB4AC12E2CEBF00A19AA4 /* README.txt in Resources */,
+				8C241E70132D0DA1000E2FC9 /* HUDBox.xib in Resources */,
 				8C73F08F12E5E49E0056FAFF /* SummaryHUD.xib in Resources */,
 				8C82C79412F17BB200830486 /* wpa.ico in Resources */,
 				8C82C85212F1E82500830486 /* wpa.icns in Resources */,
@@ -2044,8 +2048,6 @@
 			files = (
 				8CDC10BB130CA72B00BA478C /* AppleMailModule.xib in Resources */,
 				8CEE6A8613268A7C00E45829 /* AppleMailModule.ico in Resources */,
-				8C9D92A6132C289D003AFDB9 /* HUDBox.xib in Resources */,
-				8C9D92AB132C28DC003AFDB9 /* HUDProgress.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2074,7 +2076,9 @@
 				8C3AB4AD12E2CEBF00A19AA4 /* README.txt in Resources */,
 				8C73F09012E5E49E0056FAFF /* SummaryHUD.xib in Resources */,
 				8C82C79512F17BB200830486 /* wpa.ico in Resources */,
+				8C241E6E132D0D87000E2FC9 /* HUDProgress.xib in Resources */,
 				8C82C85312F1E82500830486 /* wpa.icns in Resources */,
+				8C241E6F132D0D98000E2FC9 /* HUDBox.xib in Resources */,
 				8C1800FA12F4B7990061FDE6 /* marketing.rtf in Resources */,
 				8C18042B12F777E50061FDE6 /* AddActivityDialog.xib in Resources */,
 				8CDC0B3913069BA600BA478C /* Credits.rtf in Resources */,
@@ -2311,8 +2315,6 @@
 			files = (
 				8CDC11FA130E37F800BA478C /* MimeHandler.m in Sources */,
 				8CDC10AD130CA70800BA478C /* AppleMailModule.m in Sources */,
-				8C9D92A5132C289D003AFDB9 /* HUDBox.m in Sources */,
-				8C9D92AA132C28DC003AFDB9 /* HUDProgress.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
