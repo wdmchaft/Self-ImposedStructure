@@ -251,7 +251,7 @@
 	// or we are here and there is already a summary -- so check to see if the date has changed
 	else {
  //       NSLog(@"%@ using existing summary for %@",[NSThread currentThread], inDate);
- //       NSDate *recDate = (NSDate*)[currentSummary valueForKey:@"recordDate"];
+        NSDate *recDate = (NSDate*)[currentSummary valueForKey:@"recordDate"];
 		NSTimeInterval int1 = [recDate timeIntervalSince1970];
 		NSTimeInterval int2 = [inDate timeIntervalSince1970];
 		if ((NSUInteger)int1 != (NSUInteger)int2){

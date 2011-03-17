@@ -121,7 +121,6 @@
 		8C73F3DC12E793190056FAFF /* SummaryEventData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F3DB12E793190056FAFF /* SummaryEventData.m */; };
 		8C73F3DF12E793340056FAFF /* SummaryMailData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F3DE12E793340056FAFF /* SummaryMailData.m */; };
 		8C73F3E012E793340056FAFF /* SummaryMailData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F3DE12E793340056FAFF /* SummaryMailData.m */; };
-		8C73F4A012E7FA0B0056FAFF /* BWToolkitFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C73F46D12E7F9DC0056FAFF /* BWToolkitFramework.framework */; };
 		8C73F89812E891D80056FAFF /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
 		8C73F8B512E893CC0056FAFF /* TestMailModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F8B412E893CC0056FAFF /* TestMailModule.m */; };
 		8C73F8B812E893EC0056FAFF /* TestMailModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C73F8B712E893EC0056FAFF /* TestMailModule.xib */; };
@@ -564,7 +563,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8C73F4A012E7FA0B0056FAFF /* BWToolkitFramework.framework in CopyFiles */,
 				8CDCC11012E2BAE200CEAAD3 /* Skype.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -595,7 +593,7 @@
 		8C1C92E312EB593C0077D343 /* GrowlManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrowlManager.h; sourceTree = "<group>"; };
 		8C1C92E412EB593C0077D343 /* GrowlManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrowlManager.m; sourceTree = "<group>"; };
 		8C3AB4AB12E2CEBF00A19AA4 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
-		8C4BD2F4132FAA4C00765A57 /* SummaryHUDCallback.h */ = {isa = PBXFileReference; path = SummaryHUDCallback.h; sourceTree = "<group>"; };
+		8C4BD2F4132FAA4C00765A57 /* SummaryHUDCallback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SummaryHUDCallback.h; sourceTree = "<group>"; };
 		8C5DEC4912E8C4A600EE93F1 /* TestTaskModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestTaskModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C5DEC4A12E8C4A600EE93F1 /* TestTaskModule-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TestTaskModule-Info.plist"; sourceTree = "<group>"; };
 		8C5DEC5512E8C4D000EE93F1 /* TestEventModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestEventModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };

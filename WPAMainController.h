@@ -87,7 +87,6 @@
 - (void) setupHotKey;
 - (IBAction) showSummaryScreen: (id) sender;
 
-- (void) prefsClosed: (NSNotification*) notify;
 - (void) statsClosed: (NSNotification*) notify;
 - (void) clickPreferences: (id) sender;
 - (void) clickStatsWindow: (id) sender;

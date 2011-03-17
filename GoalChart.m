@@ -82,7 +82,7 @@
 		NSNumber *goalNum = (NSNumber*)[rec valueForKey:@"timeGoal"];
 		gRec.work = [actNum doubleValue]/3600.0;
 		gRec.goal = [goalNum doubleValue]/3600.0;
-		maxVal = (gRec.work > maxVal) ?gRec.work : maxVal;
+		maxVal = (gRec.work > maxVal)  ?gRec.work : maxVal;
 		maxVal = (gRec.goal> maxVal) ?gRec.goal : maxVal;
 		minVal = (gRec.work < minVal) ? gRec.work : minVal;
 		minVal = (gRec.goal < minVal) ?gRec.goal : minVal;
