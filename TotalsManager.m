@@ -44,7 +44,12 @@
 							 work:workToday 
 							 free:freeToday];
 }
-
+- (void) saveActivity 
+{
+    [WriteHandler sendActivity: timeStampDate
+                      activity:[Context sharedContext].currentTask
+                     increment:interval];
+}
 - (void) dailyRollover: (NSTimer*) timer
 {
 	NSDateFormatter *compDate = [NSDateFormatter new];
@@ -171,6 +176,9 @@
 			break;
 	}
 	[self saveCurrent];
+    if (state == WPASTATE_THINKING){
+        [self saveActivity];
+    }
 }
 + (void) initialize
 {

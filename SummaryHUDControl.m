@@ -50,10 +50,7 @@
  rows it could be smaller. and if the table is empty then it will not display nor will its surrounding box.
  buildDisplay will launch the summaryviewcontrollers for each table.  Each time the controllers either get an initial response or are complete the refreshDisplay method is called.
  ***/
-- (NSArray*) makeHUDList
-{
 
-}
 - (void) buildDisplay 
 {
 	NSRect currRect = [[super window] frame];

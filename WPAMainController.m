@@ -201,6 +201,21 @@
 	}
 }
 
+- (NSArray*) getTasklists {
+    NSDictionary *instancesMap = [Context sharedContext].instancesMap;
+	NSMutableArray *insts = [NSMutableArray new];
+	NSString *name = nil;
+	for (name in instancesMap){
+		id thing = [instancesMap objectForKey: name];
+		id<TaskList> list  = (id<TaskList>) thing;
+		id<Instance> inst  = (id<Instance>) thing;
+		if (inst.enabled && [thing conformsToProtocol:@protocol(TaskList)]){
+            [insts addObject:list];
+        }
+	}
+	return insts;
+}
+
 - (void) fillActivities: (NSMenu*) menu
 {
 	[menu setAutoenablesItems:NO];
@@ -213,12 +228,32 @@
 		NSMenuItem *mi = [menu itemAtIndex:2];
 		[menu removeItem:mi];
 	}
+    NSArray *lists = [self getTasklists];
+    NSMutableDictionary *menuForList= [NSMutableDictionary dictionaryWithCapacity:[lists count]];
+    for (id<Instance> tasklist in  lists){
+        
+        NSMenuItem *mi = [[NSMenuItem alloc]initWithTitle:[NSString stringWithFormat:@"%@:",tasklist.name]
+												   action:@selector(newActivity:)
+											keyEquivalent:@""];
+        [mi setRepresentedObject:tasklist];
+        [menu addItem:mi];
+        [menuForList setObject:mi forKey:tasklist.name];
+  //      NSMenuItem *sep = [NSMenuItem separatorItem];
+   //     [menu addItem:sep];
+    }
 	for(TaskInfo *info in ctx.tasksList){
+        
 		NSMenuItem *mi = [[NSMenuItem alloc]initWithTitle:info.description 
 												   action:@selector(newActivity:)
 											keyEquivalent:@""];
 		[mi setTarget:self];
-		[menu addItem:mi]; 
+        NSDictionary *attrs = [NSDictionary dictionaryWithObject:[NSFont messageFontOfSize:12.0] forKey:NSFontAttributeName];
+        NSString *desc = [NSString stringWithFormat:@"   %@", info.description];
+        NSAttributedString *attrTitle = [[NSAttributedString alloc]initWithString:desc attributes:attrs];
+        [mi setAttributedTitle:attrTitle];
+        NSMenuItem *myItem = [menuForList objectForKey:info.source.name];
+        int idx = [menu indexOfItem:myItem];
+		[menu insertItem:mi atIndex:idx+1]; 
 		mi.state = NSOffState;
 		[mi setEnabled:YES];
 		[mi setRepresentedObject:info];
@@ -248,9 +283,9 @@
 	[ctx saveTask];
 	
 	// we changed jobs so write a new tracking record
-	if (ctx.currentState == WPASTATE_THINKING || ctx.currentState == WPASTATE_THINKTIME){
-		[WriteHandler sendNewRecord:ctx.currentState];
-	}
+//	if (ctx.currentState == WPASTATE_THINKING || ctx.currentState == WPASTATE_THINKTIME){
+	//	[WriteHandler sendNewRecord:ctx.currentState];
+//	}
 	[ctx.growlManager growlThis:[NSString stringWithFormat: @"New Activity: %@",ctx.currentTask.name]];
 	[self buildStatusMenu];
 }
@@ -481,7 +516,7 @@
 												selector:@selector(timerAlarm:) 
 												userInfo:[NSNumber numberWithDouble:ctx.thinkTime] 
 												 repeats:NO];
-	[WriteHandler sendNewRecord:WPASTATE_THINKING];
+	//[WriteHandler sendNewRecord:WPASTATE_THINKING];
 	[ctx busyModules];
 	[controls setSelectedSegment: WPASTATE_THINKTIME];
 	[self buildStatusMenu];   
@@ -535,7 +570,7 @@
 		[ctx stopModules];
 	}
 	ctx.currentState = newState == WPASTATE_THINKTIME ? WPASTATE_THINKING : newState;
-	[WriteHandler sendNewRecord:newState];
+	//[WriteHandler sendNewRecord:newState];
 	[ctx saveDefaults];
 	[self buildStatusMenu];
 	[self enableUI:(newState != WPASTATE_OFF)];
@@ -578,9 +613,9 @@
 	[ctx saveTask];
 	
 	// we changed jobs so write a new tracking record
-	if (ctx.currentState == WPASTATE_THINKING || ctx.currentState == WPASTATE_THINKTIME){
-		[WriteHandler sendNewRecord:ctx.currentState];
-	}
+	//if (ctx.currentState == WPASTATE_THINKING || ctx.currentState == WPASTATE_THINKTIME){
+	//	[WriteHandler sendNewRecord:ctx.currentState];
+	//}
 	[ctx.growlManager growlThis:[NSString stringWithFormat: @"New Activity: %@",ctx.currentTask.name]];
 
 }

@@ -162,7 +162,7 @@ static Context* sharedContext = nil;
 		TaskInfo *info = [[TaskInfo alloc] init];
 		info.name = (NSString*)task;
 		if (source){
-			info.source = (<TaskList>)[instancesMap objectForKey:(NSString*) source];
+			info.source = (id<TaskList>)[instancesMap objectForKey:(NSString*) source];
 		}
 		return info;
 	}
@@ -178,7 +178,7 @@ static Context* sharedContext = nil;
 	if (currentTask){
 		[ud setObject:currentTask.name forKey:@"currentTask"];
 		if (currentTask.source){
-			<TaskList> src = currentTask.source;
+			id<TaskList> src = currentTask.source;
 			NSString *srcName = ((NSObject*)src).description;
 			[ud setObject:srcName forKey:@"currentSource"];
 		} 
@@ -395,9 +395,9 @@ static Context* sharedContext = nil;
 	NSMutableArray *ret = [NSMutableArray new];
 	for (NSString *name in instancesMap){
 		id thing = [instancesMap objectForKey: name];
-		<Instance> inst = (<Instance>) thing;
+		id<Instance> inst = (id<Instance>) thing;
 		if ( inst.enabled && [thing conformsToProtocol:@protocol(Reporter)]){
-			if (((<Reporter>)thing).refreshInterval) { // only add it if the refresh interval is sane
+			if (((id<Reporter>)thing).refreshInterval) { // only add it if the refresh interval is sane
 				[ret addObject:thing];
 			}
 		}
@@ -410,31 +410,32 @@ static Context* sharedContext = nil;
 {
 	NSDictionary *modules = [[Context sharedContext] instancesMap];
 
-	<Instance> module = nil;
+	id<Instance> module = nil;
 	NSString *modName = nil;
 	for (modName in modules){
 		module = [modules objectForKey:modName];
 		if (module.enabled && [module conformsToProtocol:@protocol(TaskList)]){
-			[ ( (<TaskList>) module) refreshTasks];
+			[ ( (id<TaskList>) module) refreshTasks];
 		}
 	}
 }
 
 - (NSArray*) getTasks {
 	NSMutableDictionary *gather = [NSMutableDictionary new];
-	<TaskList> module = nil;
 	NSString *name = nil;
 	for (name in instancesMap){
 		id thing = [instancesMap objectForKey: name];
-		<TaskList> list  = (<TaskList>) thing;
-		<Instance> inst  = (<Instance>) thing;
+		id<TaskList> list  = (id<TaskList>) thing;
+		id<Instance> inst  = (id<Instance>) thing;
 		if (inst.enabled && [thing conformsToProtocol:@protocol(TaskList)]){
 			NSArray *items = [list getTasks];
 			if (items){
 				for(NSString *item in items){
 					TaskInfo *info = [[TaskInfo alloc] initWithName:item 
-															source : module 
-															project:[module projectForTask:item]];
+															source : list 
+															project:[list projectForTask:item]];
+                    // check for pre-existing task w/ identical name
+                    // fix up if necessary
 					TaskInfo *fo = [gather objectForKey:info.name];
 					if (fo){
 						fo.description = [NSString stringWithFormat:@"%@ [%@]",

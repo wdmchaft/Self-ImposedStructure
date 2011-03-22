@@ -19,10 +19,7 @@
 //@synthesize playText;
 //@synthesize workText;
 //@synthesize awayText;
-@synthesize statsData;
-@synthesize workData;
-@synthesize statsArray;
-@synthesize workArray;
+
 @synthesize pieChart;
 @synthesize barChart;
 @synthesize pieData;
@@ -31,6 +28,8 @@
 @synthesize busyInd;
 @synthesize goalsItem;
 @synthesize goalChart;
+@synthesize activityChart;
+@synthesize activityItem;
 
 - (void) clickClear: (id) sender
 {
@@ -64,13 +63,13 @@
 }
 - (void) awakeFromNib
 {
-	NSArray *tabItems = tabView.tabViewItems;
-	[tabView removeTabViewItem:(NSTabViewItem*)[tabItems objectAtIndex:3]];
-	[tabView removeTabViewItem:(NSTabViewItem*)[tabItems objectAtIndex:2]];
+//	NSArray *tabItems = tabView.tabViewItems;
+//	[tabView removeTabViewItem:(NSTabViewItem*)[tabItems objectAtIndex:3]];
+//	[tabView removeTabViewItem:(NSTabViewItem*)[tabItems objectAtIndex:2]];
 }
 -(void) showWindow:(id)sender
 {
-	
+	[super showWindow:sender];
 	[self setContents];
 }
 
@@ -83,32 +82,69 @@
 {
 
 	WPADelegate *nad = (WPADelegate*) [NSApplication sharedApplication].delegate;
-	[nad newRecord:[Context sharedContext].currentState];
+//	[nad newRecord:[Context sharedContext].currentState];
 	[busyInd setHidden:YES];
-	statsArray = [Schema statsReportForDate:[NSDate date] inContext:nad.managedObjectContext];
-	statsData = [[SummaryTable alloc]initWithRows: statsArray];
-	summaryTable.dataSource = statsData;
 	[summaryTable noteNumberOfRowsChanged];
-	workArray = [Schema fetchWorkReportForMonth:[NSDate date] inContext:nad.managedObjectContext];
-	workData = [[WorkTable alloc]initWithRows: workArray];
-	workTable.dataSource = workData;
 	[workTable noteNumberOfRowsChanged];
-	pieData = [PieData new];
-	pieChart.dataSource = pieData;
-	[pieChart reloadData];
+//	pieData = [PieData new];
+//	pieChart.dataSource = pieData;
+	//[pieChart reloadData];
 	goalChart = [[GoalChart alloc]init];
 	goalChart.chart = barChart;
 	goalChart.busy = busyInd;
 	barChart.delegate = goalChart;
-	[goalChart runQueryStarting:[NSDate dateWithTimeIntervalSinceNow:-(14*24*60*60)] 
-						 ending:[NSDate date] 
-					withContext:nad.managedObjectContext];
+//	[goalChart runQueryStarting:[NSDate dateWithTimeIntervalSinceNow:-(14*24*60*60)] 
+//						 ending:[NSDate date] 
+//					withContext:nad.managedObjectContext];
 	barChart.dataSource = goalChart;
 	[ barChart setAxisInset:[ SM2DGraphView barWidth ] forAxis:kSM2DGraph_Axis_X ];
 	//	[ chart setDrawsLineAtZero:YES forAxis:kSM2DGraph_Axis_Y ];
 	[ barChart setLiveRefresh:YES ];
 	[ barChart refreshDisplay:self ];
 	[barChart reloadData];
+    activityChart = [[ActivityChart alloc]init];
+    activityChart.chart = pieChart;
+    [pieChart setDelegate:activityChart];
+    [pieChart setDataSource:activityChart];
+    activityChart.busy =busyInd;
+    [activityChart runQueryStarting:[NSDate dateWithTimeIntervalSinceNow:-(14*24*60*60)] 
+						 ending:[NSDate date] 
+					withContext:nad.managedObjectContext];
+    [pieChart reloadData];
+}
+
+- (void) clickGen2: (id) sender
+{
+    WriteHandler *wh = [WriteHandler new];
+	double work;
+	double free;
+	double rand1;
+	double rand2;   
+	for (int i = 0; i < 14; i++){
+		NSDate *date = [NSDate dateWithTimeIntervalSinceNow:(24.0 * 60.0 * 60.0) * -i];
+		double r1 = rand();
+		double r2 = rand();
+		rand1 = fmod(r1, 2.0 * 60.0 * 60.0);
+		rand2 = fmod(r2, 2.0 * 60.0 * 60.0);
+		work = rand1 + 4.0 * 60.0 * 60.0;
+		free = rand2 + 2.0 * 60.0 * 60.0;        
+		[wh saveActivityForDate:date desc:@"foo" source:nil project:nil addVal:free];
+        [wh saveActivityForDate:date desc:@"goo" source:@"source1" project:nil addVal:work];
+        [wh saveActivityForDate:date desc:@"hoo" source:nil project:@"project1" addVal:free+work/2];
+        [wh saveActivityForDate:date desc:@"joo" source:@"source1" project:@"project1" addVal:free+(work*1.5)];
+        [wh saveActivityForDate:date desc:@"koo" source:@"source2" project:@"project2" addVal:(free * 1.5)+(work)];
+    }
+    [wh saveAction:self];
+    NSAlert *alert = [NSAlert alertWithMessageText:@"Yay!" 
+                                     defaultButton:nil alternateButton:nil 
+                                       otherButton:nil 
+                         informativeTextWithFormat:@"All Done!"];
+    [alert runModal];	
+//    NSError *err = nil;
+//    [wh save:&err];
+//    if (err){
+//		[[NSApplication sharedApplication] presentError:err];
+//	}
 }
 
 - (void) clickGen: (id) sender
@@ -149,6 +185,7 @@
 		[[NSApplication sharedApplication] presentError:err];
 	}
 }
+   
 - (void)tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem
 {
 	NSLog(@"didselect");
@@ -158,6 +195,14 @@
 		[goalChart runQueryStarting:[NSDate dateWithTimeIntervalSinceNow:-(14*24*60*60)] 
 								 ending:[NSDate date] 
 							withContext:nad.managedObjectContext];
+		
+	}
+   else {
+		WPADelegate *nad = (WPADelegate*) [NSApplication sharedApplication].delegate;
+		[busyInd startAnimation:self];
+		[activityChart runQueryStarting:[NSDate dateWithTimeIntervalSinceNow:-(14*24*60*60)] 
+                             ending:[NSDate date] 
+                        withContext:nad.managedObjectContext];
 		
 	}
 }

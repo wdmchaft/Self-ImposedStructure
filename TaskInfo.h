@@ -11,16 +11,16 @@
 #import "TaskList.h"
 
 @interface TaskInfo : NSObject {
-	<TaskList> source;
+	id<TaskList> source;
 	NSString *name;
 	NSString *project;
 	NSString *description;
 }
 
-@property (nonatomic, retain) <TaskList> source;
+@property (nonatomic, retain) id<TaskList> source;
 @property (nonatomic,retain) NSString *name;
 @property (nonatomic,retain) NSString *project;
 @property (nonatomic,retain) NSString *description;
 
--(id) initWithName: (NSString*) item source: (<TaskList>) mod  project: (NSString*) proj;
+-(id) initWithName: (NSString*) item source: (id<TaskList>) mod  project: (NSString*) proj;
 @end
