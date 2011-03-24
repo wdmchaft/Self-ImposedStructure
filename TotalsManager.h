@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "State.h"
+#import "SummaryRecord.h"
 //
 
 @interface TotalsManager : NSObject {
@@ -22,9 +23,12 @@
 	NSTimeInterval freeWeek;
 	NSTimeInterval workWeek;
 	NSTimeInterval interval;
+    SummaryRecord  *summary;
 	BOOL recordChecked;
 }
 
+@property (nonatomic) int rolloverDay;
+@property (nonatomic) int rolloverHour;
 @property (nonatomic) NSTimeInterval interval;
 @property (nonatomic) NSTimeInterval awayToday;
 @property (nonatomic) NSTimeInterval freeToday;
@@ -32,8 +36,7 @@
 @property (nonatomic) NSTimeInterval awayWeek;
 @property (nonatomic) NSTimeInterval freeWeek;
 @property (nonatomic) NSTimeInterval workWeek;
-@property (nonatomic) int rolloverDay;
-@property (nonatomic) int rolloverHour;
+@property (nonatomic,retain) SummaryRecord *summary;
 @property (nonatomic,retain) NSTimer *dailyRolloverTimer;
 @property (nonatomic,retain) NSDate *timeStampDate;
 @property (nonatomic) BOOL recordChecked;

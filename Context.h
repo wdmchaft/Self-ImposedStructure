@@ -12,6 +12,7 @@
 #import "GrowlManager.h"
 #import "HUDSettings.h"
 #import "HeatMap.h"
+#import "TotalsManager.h"
 
 @interface Context : NSObject {
 	NSMutableDictionary *instancesMap; // maps module name to instance of module
@@ -28,6 +29,7 @@
 	GrowlManager *growlManager;
 	HUDSettings *hudSettings;
 	HeatMap *heatMapSettings;
+    TotalsManager *totalsManager;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *instancesMap;
@@ -44,6 +46,7 @@
 @property (nonatomic,retain) GrowlManager *growlManager;
 @property (nonatomic,retain) HUDSettings *hudSettings;
 @property (nonatomic,retain) HeatMap *heatMapSettings;
+@property (nonatomic,retain) TotalsManager *totalsManager;
 
 + (Context*)sharedContext;
 - (void) loadBundles;

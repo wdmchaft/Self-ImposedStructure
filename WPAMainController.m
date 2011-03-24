@@ -104,6 +104,7 @@
 	[taskComboBox setDelegate:self];
 	[self enableUI: ctx.running];
 	totalsManager = [TotalsManager new];
+    ctx.totalsManager = totalsManager;
 	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
 	statusItem.menu = statusMenu;
 	//[statusItem setTitle:@"X"];

@@ -38,7 +38,7 @@ tableView, modNames, originalName, hudView;
 			return;
 		}
 	}
-	<Instance> mod = (<Instance>) currCtrl;
+	id<Instance> mod = (id<Instance>) currCtrl;
 	mod.name = nameText.stringValue.copy;
 	[indicator setHidden:NO];
 	[indicator startAnimation:self];
@@ -56,7 +56,7 @@ tableView, modNames, originalName, hudView;
 		[alert runModal];
 		return;
 	}
-	 <Instance> mod = (<Instance>) currCtrl;
+	 id<Instance> mod = (id<Instance>) currCtrl;
 	// if there is no original name we are adding a module - otherwise modifying existing module
 	if (originalName == nil){
 		mod.enabled = YES;  // enable it if new
@@ -66,7 +66,7 @@ tableView, modNames, originalName, hudView;
 	if (originalName == nil || [originalName isEqualToString: mod.name]){
 		[modsMap setObject: mod forKey: mod.name];
 		if ([mod conformsToProtocol:@protocol(Reporter)] && originalName == nil){
-			[ctx.hudSettings addInstance:(<Reporter>) mod ];
+			[ctx.hudSettings addInstance:(id<Reporter>) mod ];
 		}	
 	} 
 	else {
@@ -100,7 +100,7 @@ tableView, modNames, originalName, hudView;
 	else {
 		[[super window] setTitle: @"Edit Module"];
 
-		<Instance> mod = (<Instance>) currCtrl;
+		id<Instance> mod = (id<Instance>) currCtrl;
 		originalName = mod.name.copy;
 		NSString *modDesc = [[Context sharedContext] descriptionForModule: mod];
 		[typeButton selectItemWithTitle: modDesc];
@@ -167,10 +167,10 @@ tableView, modNames, originalName, hudView;
 		NSViewController *temp = [modClass alloc];
 		temp = [temp initWithNibName:pluginName bundle:modBundle];
 		currCtrl = temp;
-		NSString *dispName = [[Context sharedContext] descriptionForModule:((<Instance>)currCtrl)];
+		NSString *dispName = [[Context sharedContext] descriptionForModule:((id<Instance>)currCtrl)];
 		modView= currCtrl.view;
 		dispName = dispName == nil ? [modClass description] : dispName;
-		((<Instance>)currCtrl).name = dispName.copy;
+		((id<Instance>)currCtrl).name = dispName.copy;
 		nameText.stringValue = dispName.copy;
 		configBox.title = [NSString stringWithFormat:@"%@ Specific Settings:",dispName];
 //		currCtrl = [modClass alloc];	

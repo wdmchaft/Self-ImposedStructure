@@ -11,6 +11,7 @@
 #import "Schema.h"
 #import "math.h"
 #import "GoalChart.h"
+#import "SummaryStatusViewController.h"
 
 @implementation StatsWindow
 @synthesize resetButton;
@@ -30,6 +31,9 @@
 @synthesize goalChart;
 @synthesize activityChart;
 @synthesize activityItem;
+@synthesize summaryItem;
+@synthesize wh;
+
 
 - (void) clickClear: (id) sender
 {
@@ -66,6 +70,8 @@
 //	NSArray *tabItems = tabView.tabViewItems;
 //	[tabView removeTabViewItem:(NSTabViewItem*)[tabItems objectAtIndex:3]];
 //	[tabView removeTabViewItem:(NSTabViewItem*)[tabItems objectAtIndex:2]];
+    //SummaryStatusViewController *ssvc = [[SummaryStatusViewController alloc]initWithNibName:@"//SummaryStatusViewController" bundle:nil];
+  //  [summaryItem setView:ssvc.view];
 }
 -(void) showWindow:(id)sender
 {
@@ -76,32 +82,27 @@
 -(void) windowDidLoad
 {
 	[self setContents];
+    SummaryStatusViewController *ssvc = [[SummaryStatusViewController alloc]initWithNibName:@"SummaryStatusViewController" bundle:nil]; 
+    [summaryItem setView:ssvc.view];
 }
 
 - (void) setContents
 {
 
 	WPADelegate *nad = (WPADelegate*) [NSApplication sharedApplication].delegate;
-//	[nad newRecord:[Context sharedContext].currentState];
 	[busyInd setHidden:YES];
 	[summaryTable noteNumberOfRowsChanged];
 	[workTable noteNumberOfRowsChanged];
-//	pieData = [PieData new];
-//	pieChart.dataSource = pieData;
-	//[pieChart reloadData];
+
 	goalChart = [[GoalChart alloc]init];
 	goalChart.chart = barChart;
 	goalChart.busy = busyInd;
 	barChart.delegate = goalChart;
-//	[goalChart runQueryStarting:[NSDate dateWithTimeIntervalSinceNow:-(14*24*60*60)] 
-//						 ending:[NSDate date] 
-//					withContext:nad.managedObjectContext];
 	barChart.dataSource = goalChart;
 	[ barChart setAxisInset:[ SM2DGraphView barWidth ] forAxis:kSM2DGraph_Axis_X ];
-	//	[ chart setDrawsLineAtZero:YES forAxis:kSM2DGraph_Axis_Y ];
 	[ barChart setLiveRefresh:YES ];
 	[ barChart refreshDisplay:self ];
-	[barChart reloadData];
+//	[barChart reloadData];
     activityChart = [[ActivityChart alloc]init];
     activityChart.chart = pieChart;
     [pieChart setDelegate:activityChart];
@@ -111,11 +112,14 @@
 						 ending:[NSDate date] 
 					withContext:nad.managedObjectContext];
     [pieChart reloadData];
+    [pieChart refreshDisplay:self];
 }
 
 - (void) clickGen2: (id) sender
 {
-    WriteHandler *wh = [WriteHandler new];
+    if (!wh){
+        wh = ((WPADelegate*)[NSApplication sharedApplication].delegate).ioHandler;
+    }
 	double work;
 	double free;
 	double rand1;
@@ -140,17 +144,16 @@
                                        otherButton:nil 
                          informativeTextWithFormat:@"All Done!"];
     [alert runModal];	
-//    NSError *err = nil;
-//    [wh save:&err];
-//    if (err){
-//		[[NSApplication sharedApplication] presentError:err];
-//	}
+
 }
 
 - (void) clickGen: (id) sender
 {
-	NSManagedObjectContext *moc = 
-		((WPADelegate*)[NSApplication sharedApplication].delegate).managedObjectContext;
+    if (!wh){
+        wh = ((WPADelegate*)[NSApplication sharedApplication].delegate).ioHandler;
+    }
+	NSManagedObjectContext *moc = wh.managedObjectContext;
+	//	((WPADelegate*)[NSApplication sharedApplication].delegate).managedObjectContext;
 	double goal = 18000.0;
 	double work;
 	double free;
@@ -184,17 +187,61 @@
 	if (err){
 		[[NSApplication sharedApplication] presentError:err];
 	}
+    [wh saveAction:self];
+
 }
-   
+- (void) clickGen0: (id) sender
+{
+    if (!wh){
+        wh = ((WPADelegate*)[NSApplication sharedApplication].delegate).ioHandler;
+    }
+	NSManagedObjectContext *moc = wh.managedObjectContext;
+	//	((WPADelegate*)[NSApplication sharedApplication].delegate).managedObjectContext;
+    
+    
+    NSManagedObject *newRecord = [NSEntityDescription
+                                   insertNewObjectForEntityForName:@"AllTimeData"
+                                   inManagedObjectContext:moc];
+    
+    NSDate *start = [NSDate dateWithTimeIntervalSinceNow:-24 * 14 * 60 * 60];
+    [newRecord setValue:start forKey:@"dateStart"];
+    [newRecord setValue:start forKey:@"dateWrite"];
+    
+    
+    [newRecord setValue:[NSNumber numberWithInt:14] forKey:@"daysTotal"];		
+    [newRecord setValue:[NSNumber numberWithInt:10] forKey:@"daysWorked"];		
+    [newRecord setValue:[NSNumber numberWithInt:9] forKey:@"daysGoalAchieved"];		
+    [newRecord setValue:[NSNumber numberWithDouble:24*14*60*60] forKey:@"timeTotal"];		
+    [newRecord setValue:[NSNumber numberWithDouble:4*10*60*60] forKey:@"timeGoal"];		
+    [newRecord setValue:[NSNumber numberWithDouble:4*10*60*60 - 68] forKey:@"timeWorked"];		
+    [newRecord setValue:[NSDate distantPast] forKey:@"lastGoalAchieved"];		
+    [newRecord setValue:[NSDate distantPast] forKey:@"lastWorked"];		
+    [newRecord setValue:[NSDate distantPast] forKey:@"lastDay"];		
+    
+	
+    NSError *err =nil;
+    [newRecord validateForInsert:&err];
+    if (err){
+        [NSApp presentError:err];
+        return;
+    }
+    [moc save:&err];
+    [wh saveAction:self];
+	
+}
+
 - (void)tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem
 {
 	NSLog(@"didselect");
 	if (tabViewItem == goalsItem){
 		WPADelegate *nad = (WPADelegate*) [NSApplication sharedApplication].delegate;
 		[busyInd startAnimation:self];
+        [barChart setDataSource:goalChart];
 		[goalChart runQueryStarting:[NSDate dateWithTimeIntervalSinceNow:-(14*24*60*60)] 
 								 ending:[NSDate date] 
 							withContext:nad.managedObjectContext];
+        [barChart reloadData];
+        [barChart reloadAttributes];
 		
 	}
    else {
@@ -203,6 +250,8 @@
 		[activityChart runQueryStarting:[NSDate dateWithTimeIntervalSinceNow:-(14*24*60*60)] 
                              ending:[NSDate date] 
                         withContext:nad.managedObjectContext];
+       [pieChart reloadData];
+       [pieChart reloadAttributes];
 		
 	}
 }

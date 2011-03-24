@@ -47,7 +47,7 @@
 }
 
 
--(void) refreshData: (<AlertHandler>) handler
+-(void) refreshData: (id<AlertHandler>) handler
 {
 	NSDictionary *dict1 = [NSDictionary dictionaryWithObjectsAndKeys:
 						  @"in the drawing room",	@"location",
@@ -90,7 +90,7 @@
 	[BaseInstance sendDone: handler module: name];
 }
 
-- (void) refresh: (<AlertHandler>) handler;
+- (void) refresh: (id<AlertHandler>) handler;
 {
 	[self refreshData: handler];
 }

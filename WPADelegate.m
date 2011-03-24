@@ -37,6 +37,19 @@
     [defaults registerDefaults:appDefaults];
 }
 
+- (NSError*)application:(NSApplication*)application
+       willPresentError:(NSError*)error
+{
+    if (error)
+    {
+        NSDictionary* userInfo = [error userInfo];
+        NSLog (@"encountered the following error: %@", userInfo);
+        Debugger();
+    }
+    
+    return error;
+}
+
 - (void) saveData: (NSTimer*) timer
 {
 
@@ -121,6 +134,7 @@
 	}
 	return cum;
 }
+
 
 - (NSManagedObject*) findSource: (NSString*) name inContext: (NSManagedObjectContext*) moc
 {

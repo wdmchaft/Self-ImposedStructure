@@ -1,5 +1,5 @@
 //
-//  GoalManager.m
+//  TotalsManager.m
 //  WorkPlayAway
 //
 //  Created by Charles on 1/28/11.
@@ -19,7 +19,7 @@
 @synthesize dailyRolloverTimer, rolloverDay, rolloverHour, timeStampDate;
 @synthesize awayToday, workToday, freeToday;
 @synthesize awayWeek, workWeek, freeWeek;
-@synthesize interval, recordChecked;
+@synthesize interval, recordChecked, summary;
 
 - (void) initFromRecord
 {
@@ -35,21 +35,85 @@
 	if (work > 0) {
 		workToday += work;
 	}
+    summary = [del.ioHandler getSummaryRecord];
 }
 
 - (void)saveCurrent
 {
-	[WriteHandler sendSummaryForDate:timeStampDate 
+	[WriteHandler sendTotalsForDate:timeStampDate 
 							 goal:[[NSUserDefaults standardUserDefaults]doubleForKey:@"dailyGoal"] 
 							 work:workToday 
 							 free:freeToday];
+    [WriteHandler sendSummary:summary]; 
 }
+
 - (void) saveActivity 
 {
     [WriteHandler sendActivity: timeStampDate
                       activity:[Context sharedContext].currentTask
                      increment:interval];
 }
+- (BOOL) isFromToday:(NSDate*) dateIn
+{
+	NSDate *today = [[NSDate alloc] init];
+	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+	int DAYCOMPS = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+	// Get the weekday component of the current date
+	NSDateComponents *todayComps = [gregorian components:DAYCOMPS fromDate:today];
+	NSDateComponents *inComps = [gregorian components:DAYCOMPS fromDate:dateIn];
+    
+    if (todayComps.day != inComps.day)
+        return NO;
+    if (todayComps.month != inComps.month)
+        return NO;
+    if (todayComps.year != inComps.year)
+        return NO;
+
+    return YES;
+}
+
+- (void) updateSummaryWithWork: (NSTimeInterval) workTime 
+                          free: (NSTimeInterval) freeTime 
+                          away: (NSTimeInterval) awayTime 
+{
+    NSUInteger oldTotal = summary.daysTotal.intValue;
+    [summary setDaysTotal:[NSNumber numberWithInt:++oldTotal]];
+    double goalTime = [[NSUserDefaults standardUserDefaults]doubleForKey:@"dailyGoal"] ;
+
+    /*
+     updating the days counters should only happen once per day.
+     */
+    if (workToday > 0.0){
+        if (![self isFromToday:summary.lastDay]) {
+            NSUInteger oldWorkDays = summary.daysWorked.intValue;
+            [summary setDaysWorked:[NSNumber numberWithInt:++oldWorkDays]]; 
+            [summary setLastDay:[NSDate date]];
+        }
+      
+        if (![self isFromToday:summary.lastWorked]) {   
+            NSTimeInterval oldTimeWorked = summary.timeWorked.doubleValue;
+            [summary setTimeWorked:[NSNumber numberWithDouble:(oldTimeWorked + workTime)]];
+            [summary setLastWorked:[NSDate date]];
+        }
+        
+        if (![self isFromToday:summary.lastGoalAchieved]) {   
+            NSTimeInterval oldGoal = summary.timeGoal.doubleValue;
+            [summary setTimeGoal:[NSNumber numberWithDouble:(oldGoal + goalTime)]];
+            [summary setLastGoalAchieved:[NSDate date]];
+        }
+
+    }
+    
+    if (workToday > goalTime){
+        NSUInteger oldGoalHit = summary.daysGoalAchieved.intValue;
+        [summary setDaysGoalAchieved:[NSNumber numberWithInt:++oldGoalHit]];         
+    }
+    /** wnat to do about total time for real? **/
+    NSTimeInterval oldTimeTotal = summary.timeTotal.doubleValue;
+    [summary setTimeTotal:[NSNumber numberWithDouble:(oldTimeTotal + freeTime + freeTime + awayTime)]];
+
+}
+
 - (void) dailyRollover: (NSTimer*) timer
 {
 	NSDateFormatter *compDate = [NSDateFormatter new];
@@ -65,6 +129,9 @@
 															userInfo:[[NSDate alloc]initWithTimeIntervalSinceNow:0]
 															 repeats:YES];
 	}
+    
+    [self updateSummaryWithWork:workToday free:freeToday away:awayToday];
+    
 	// write a record
 	[self saveCurrent];
 	timeStampDate = [timeStampDate dateByAddingTimeInterval:24 * 60 * 60];

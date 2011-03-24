@@ -15,6 +15,7 @@
 #import "PreferencesWindow.h"
 #import "StatsWindow.h"
 #import "WriteHandler.h"
+#import "SummaryRecord.h"
 
 @interface WPADelegate : NSObject <NSApplicationDelegate, NSWindowDelegate> {
     NSWindow *window;
@@ -55,5 +56,5 @@
 - (void) findSummaryForDate: (NSDate*) date work: (NSTimeInterval*) workInt free: (NSTimeInterval*) freeInt;
 - (void) saveData: (NSTimer*) timer;
 - (void) doSaveThread: (NSObject*) param;
-
+//- (SummaryRecord*) getSummaryRecord;
 @end

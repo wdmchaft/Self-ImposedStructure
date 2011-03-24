@@ -21,6 +21,7 @@
 @synthesize reply;
 @synthesize activities, activityDate;
 @synthesize gregorianCal;
+@synthesize summary;
 
 + (void) initialize
 {
@@ -266,7 +267,7 @@
     
 }
 
-- (void) saveSummaryForDate: (NSNotification*) msg
+- (void) saveTotalsForDate: (NSNotification*) msg
 //(NSDate*) date goal: (int) goalTime work: (int) workTime free: (int) freeTime
 {
 	NSDictionary *d = msg.userInfo;
@@ -717,10 +718,10 @@
 																nil]]; 
 }
 
-+ (void) sendSummaryForDate: (NSDate*) date goal: (int) goalTime work: (int) workTime free: (int) freeTime
++ (void) sendTotalsForDate: (NSDate*) date goal: (int) goalTime work: (int) workTime free: (int) freeTime
 {
     WPADelegate *del = (WPADelegate*)[[NSApplication sharedApplication] delegate];
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"summary" 
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"totals" 
 														object: del.ioHandler
 													  userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
 																date,@"date",
@@ -746,6 +747,46 @@
 																nil]]; 
 }
 
+- (void) saveSummary: (SummaryRecord*) rec
+{
+	if (!summary){
+        summary = [NSEntityDescription insertNewObjectForEntityForName: @"AllTimeData"
+                                                inManagedObjectContext: [self managedObjectContext]]; 
+    }
+    [summary setValue:rec.dateStart forKey:@"dateStart"];
+    [summary setValue:rec.timeWorked forKey:@"timeWorked"];
+    
+    [summary setValue:rec.timeGoal forKey:@"timeGoal"];
+    [summary setValue:rec.timeTotal forKey:@"timeTotal"];
+    [summary setValue:rec.daysGoalAchieved forKey:@"daysGoalAchieved"];
+    
+    [summary setValue:rec.daysTotal forKey:@"daysTotal"];
+    [summary setValue:rec.daysWorked forKey:@"daysWorked"];
+    [summary setValue:rec.lastGoalAchieved forKey:@"lastGoalAchieved"];
+    
+    [summary setValue:rec.lastWorked forKey:@"lastWorked"];
+    [summary setValue:rec.lastDay forKey:@"lastDay"];
+    [summary setValue:rec.dateWrite forKey:@"dateWrite"];
+}
+
+- (void) saveSummaryRecord: (NSNotification*) msg
+{
+	NSDictionary *d = msg.userInfo;
+	SummaryRecord *rec = (SummaryRecord*)[d objectForKey:@"record"];
+    [self saveSummary:rec];
+}
+
+
++ (void) sendSummary: (SummaryRecord*) rec
+{
+    WPADelegate *del = (WPADelegate*)[[NSApplication sharedApplication] delegate];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"summary" 
+														object: del.ioHandler
+													  userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
+																rec,@"record",
+																nil]]; 
+}
+
 - (void) ioLoop: (NSObject*) param
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
@@ -768,15 +809,18 @@
 											   object:nil];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self 
-											 selector:@selector(saveSummaryForDate:) 
-												 name:@"summary" 
+											 selector:@selector(saveTotalsForDate:) 
+												 name:@"totals" 
 											   object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self 
 											 selector:@selector(saveActivity:) 
 												 name:@"activity" 
 											   object:nil];
-	
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+											 selector:@selector(saveSummaryRecord:) 
+												 name:@"summary" 
+											   object:nil];	
     //	while (!stopMe && [runLoop runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]]);
 	double resolution = 300.0;
 	BOOL isRunning;
@@ -793,21 +837,32 @@
 	[pool drain];
 }
 
-//- (id) init {
-//    if (self)
-//    {
-//        gregorianCal = [[NSCalendar alloc]
-//                        initWithCalendarIdentifier:NSGregorianCalendar];
-//    }
-//    return self;
-//}
-//- (id) initWithTarget: (NSObject*) target selector:(SEL)selector object:(id)argument{
-//    self = [super initWithTarget: target selector:selector object:argument];
-//    if (self){
-//        gregorianCal = [[NSCalendar alloc]
-//                        initWithCalendarIdentifier:NSGregorianCalendar];     
-//    }
-//    return self;
-//}
+- (SummaryRecord*) getSummaryRecord
+{
+    SummaryRecord *rec = [SummaryRecord new];
+    // if summary not loaded then try to read it
+    if (!summary){
+        NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+        NSEntityDescription *entity =
+        [NSEntityDescription entityForName:@"AllTimeData"
+                    inManagedObjectContext:[self managedObjectContext]];
+        [request setEntity:entity];
+        
+        NSArray *array = [[self managedObjectContext] executeFetchRequest:request error:&error];
+        if (array != nil && [array count] == 1) {
+            summary = (NSManagedObject*)[array objectAtIndex:0];
+            rec = [rec initWithEntity:summary];
+        }
+    }
+    // couldn't read summary so create empty summary and save it
+	if (!summary){
+        [self saveSummary: rec];
+	}
+    
+    return rec;
+}
+
+
+
 @end
 

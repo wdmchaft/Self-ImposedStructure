@@ -14,7 +14,7 @@
 	NSString *accountName;
 	NSString *mailMailboxName;
 	NSMutableArray *unreadMail;
-	<AlertHandler> alertHandler;
+	id<AlertHandler> alertHandler;
 	NSTextField *accountField;
 	NSTextField *mailboxField;
 	NSTextField *refreshIntervalField;
@@ -23,13 +23,14 @@
 	NSStepper *displayWindowStepper;
 	NSButton *useDisplayWindowButton;
 	BOOL useDisplayWindow;
+	BOOL onlyUnread;
 	NSTimeInterval displayWindow;
 	NSDate *lastCheck;
 }
 @property (nonatomic,retain) NSString *accountName;
 @property (nonatomic,retain) NSString *mailMailboxName;
 @property (nonatomic,retain) NSMutableArray *unreadMail;
-@property (nonatomic,retain) <AlertHandler> alertHandler;
+@property (nonatomic,retain) id<AlertHandler> alertHandler;
 @property (nonatomic,retain) IBOutlet NSTextField *accountField;
 @property (nonatomic,retain) IBOutlet NSTextField *mailboxField;
 @property (nonatomic,retain) IBOutlet NSTextField *refreshIntervalField;
@@ -39,6 +40,7 @@
 @property (nonatomic,retain) IBOutlet NSButton *useDisplayWindowButton;
 @property (nonatomic)  NSTimeInterval displayWindow;
 @property (nonatomic)  BOOL useDisplayWindow;
+@property (nonatomic)  BOOL onlyUnread;
 @property (nonatomic,retain) NSDate *lastCheck;
 
 - (void) getUnread: (NSObject*) param;

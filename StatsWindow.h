@@ -14,6 +14,7 @@
 #import "PieData.h"
 #import "GoalChart.h"
 #import "ActivityChart.h"
+#import "WriteHandler.h"
 
 @interface StatsWindow : NSWindowController <NSTabViewDelegate> {
 	NSButton *resetButton;
@@ -30,8 +31,10 @@
 	NSProgressIndicator *busyInd;
 	NSTabViewItem *goalsItem;
 	NSTabViewItem *activityItem;
+	NSTabViewItem *summaryItem;
 	GoalChart *goalChart;
 	ActivityChart *activityChart;
+    WriteHandler *wh;
 }
 @property (nonatomic,retain) IBOutlet NSButton *resetButton;
 @property (nonatomic,retain) IBOutlet NSTableView *summaryTable;
@@ -42,6 +45,7 @@
 @property (nonatomic,retain) IBOutlet NSTabView *tabView;
 @property (nonatomic,retain) IBOutlet NSProgressIndicator *busyInd;
 @property (nonatomic,retain) IBOutlet NSTabViewItem *goalsItem;
+@property (nonatomic,retain) IBOutlet NSTabViewItem *summaryItem;
 @property (nonatomic,retain) IBOutlet NSTabViewItem *activityItem;
 
 @property (nonatomic,retain) NSArray *workArray;
@@ -49,8 +53,10 @@
 @property (nonatomic, retain) PieData *pieData;
 @property (nonatomic, retain) GoalChart *goalChart;
 @property (nonatomic, retain) ActivityChart *activityChart;
+@property (nonatomic, retain) WriteHandler *wh;
 -(IBAction) clickClear: (id) sender;
 -(IBAction) clickGen: (id) sender;
+-(IBAction) clickGen0: (id) sender;
 -(IBAction) clickGen2: (id) sender;
 -(void) setContents;
 @end

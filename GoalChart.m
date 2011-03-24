@@ -24,7 +24,7 @@
 @synthesize date;
 - (double) ptValForIdx:(unsigned int)inLineIndex
 {
-	return inLineIndex == 0 ? goal : work;
+	return inLineIndex == 0 ? work : goal;
 }
 @end
 
@@ -86,7 +86,7 @@
 		maxVal = (gRec.goal> maxVal) ?gRec.goal : maxVal;
 		minVal = (gRec.work < minVal) ? gRec.work : minVal;
 		minVal = (gRec.goal < minVal) ?gRec.goal : minVal;
-		gRec.date = (NSDate*) [rec valueForKey:@"recordDate"];
+		gRec.date = [(NSDate*) [rec valueForKey:@"recordDate"] copy];
 
 		[seriesData addObject:gRec];
 	}
@@ -161,12 +161,13 @@
 	
 	// Make this a bar graph.
 	// We could make it blue here if every bar was blue.
-	// However, we use the delegate method below to make one of the bars orange, one brown, and the rest blue.
-	result = inLineIndex == 1 ? [ NSDictionary dictionaryWithObjectsAndKeys:
+    NSColor *blueColor = [NSColor colorWithDeviceHue:0.66 saturation:1.0 brightness:.80 alpha:1.0];
+    NSColor *redColor = [NSColor colorWithDeviceHue:0.0 saturation:1.0 brightness:.80 alpha:1.0];
+	result = inLineIndex == 0 ? [ NSDictionary dictionaryWithObjectsAndKeys:
 								 [ NSNumber numberWithBool:YES ], SM2DGraphBarStyleAttributeName,
-								 //                    [ NSColor blueColor ], NSForegroundColorAttributeName,
+								                    blueColor, NSBackgroundColorAttributeName,
 								 nil ]: [ NSDictionary dictionaryWithObjectsAndKeys:
-										 [ NSColor redColor ], NSForegroundColorAttributeName,
+										 redColor, NSForegroundColorAttributeName,
 										 [ NSNumber numberWithBool:YES ], SM2DGraphDontAntialiasAttributeName,
 										 [ NSNumber numberWithInt:kSM2DGraph_Dash_None ], SM2DGraphLineDashAttributeName,
 										 nil ];
@@ -175,9 +176,30 @@
     return result;
 }
 
+// show three ticks max
+- (BOOL) showTickForIndex:(unsigned int) idx
+{
+    int count = [seriesData count];
+    unsigned int middle = (int)(floor((float)[seriesData count] / 2.0) - 1.0);
+    if (count < 9)
+        return idx == 0 || idx == ([seriesData count]-1);
+    else {
+        BOOL ret;
+        if (idx == 0)
+            ret = YES;
+        else if (idx == middle)
+            ret = YES;
+        else if (idx == ([seriesData count] - 1))
+            ret = YES;
+        else
+            ret = NO;
+        NSLog(@"ret = %d for idx = %d", ret, idx);
+        return ret;
+    }
+    
+}
 #pragma mark -
 #pragma mark • SM2DGRAPHVIEW DELEGATE METHODS
-//                respondsToSelector:@selector(twoDGraphView:labelForTickMarkIndex:forAxis:defaultLabel:) ];
 
 - (NSString *)twoDGraphView:(SM2DGraphView *)inGraphView 
 	  labelForTickMarkIndex:(unsigned int)inTickMarkIndex
@@ -188,10 +210,8 @@
 	
 	if (inAxis == kSM2DGraph_Axis_X){
 		GoalRecord *gRec = (GoalRecord*) [seriesData objectAtIndex:inTickMarkIndex];
-		result = [Utility dStrFor:gRec.date];
-		if (inTickMarkIndex == 0 || [result isEqualToString:@"1"]){
-			result = [Utility MdStrFor:gRec.date];
-		}
+        result = [self showTickForIndex:inTickMarkIndex] ? [Utility MdStrFor:gRec.date] : nil;
+        if (result) NSLog(@"tick %@ on idx = %d", [self showTickForIndex:inTickMarkIndex] ? @"YES" : @"NO",inTickMarkIndex);
 	}
 	else {
 		result = [NSString stringWithFormat:@"%@ hr",inDefault];

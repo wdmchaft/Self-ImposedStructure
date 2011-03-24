@@ -171,14 +171,26 @@
 		8C82CF8C12F3BEAC00830486 /* StatusIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */; };
 		8C82D01C12F3DC7000830486 /* TotalsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C82D01B12F3DC7000830486 /* TotalsManager.m */; };
 		8C82D01D12F3DC7000830486 /* TotalsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C82D01B12F3DC7000830486 /* TotalsManager.m */; };
+		8C844AAD133AEA5700998D1C /* PercentOfDaysXForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C844AAC133AEA5700998D1C /* PercentOfDaysXForm.m */; };
+		8C844AAE133AEA5700998D1C /* PercentOfDaysXForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C844AAC133AEA5700998D1C /* PercentOfDaysXForm.m */; };
+		8C844AB2133AF9C800998D1C /* WorkHoursToAverageXForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C844AB1133AF9C700998D1C /* WorkHoursToAverageXForm.m */; };
+		8C844AB3133AF9C800998D1C /* WorkHoursToAverageXForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C844AB1133AF9C700998D1C /* WorkHoursToAverageXForm.m */; };
 		8C9CE85D12E2683800017A02 /* BlockerModule.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CE85C12E2683800017A02 /* BlockerModule.icns */; };
 		8C9CE86212E2698300017A02 /* BlockerModule.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CE86112E2698300017A02 /* BlockerModule.ico */; };
 		8C9CE88812E2700900017A02 /* Skype.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C9CE77812E2465B00017A02 /* Skype.framework */; };
 		8C9E3D5213206F8E007632E5 /* WriteHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C9E3D5013206F8E007632E5 /* WriteHandler.h */; };
 		8C9E3D6B1320B337007632E5 /* WriteHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E3D5113206F8E007632E5 /* WriteHandler.m */; };
 		8C9E3D6E1320B35E007632E5 /* WriteHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E3D5113206F8E007632E5 /* WriteHandler.m */; };
+		8C9FB5BE13356DB70034FE85 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9FB5BD13356DB70034FE85 /* CoreData.framework */; };
+		8C9FB5C213356DD20034FE85 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9FB5BD13356DB70034FE85 /* CoreData.framework */; };
 		8CA668A412FF86C5004FD7EE /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA668A312FF86C5004FD7EE /* LaunchAtLoginController.m */; };
 		8CA668A512FF86C5004FD7EE /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA668A312FF86C5004FD7EE /* LaunchAtLoginController.m */; };
+		8CBEAB47133AAA3E00277FEA /* SummaryRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBEAB46133AAA3D00277FEA /* SummaryRecord.m */; };
+		8CBEAB48133AAA3E00277FEA /* SummaryRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBEAB46133AAA3D00277FEA /* SummaryRecord.m */; };
+		8CBFEDBF133A1BB1009D19D4 /* SummaryStatusViewControllerX.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CBFEDBE133A1BB1009D19D4 /* SummaryStatusViewControllerX.xib */; };
+		8CBFEDC0133A1BB1009D19D4 /* SummaryStatusViewControllerX.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CBFEDBE133A1BB1009D19D4 /* SummaryStatusViewControllerX.xib */; };
+		8CC7543F1335524E007FE425 /* ActivityChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC7543E1335524C007FE425 /* ActivityChart.m */; };
+		8CC754401335524E007FE425 /* ActivityChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC7543E1335524C007FE425 /* ActivityChart.m */; };
 		8CD1974D12D4C5D900C69AC9 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77293D12D46AC600F71FE7 /* Note.m */; };
 		8CD1975012D4C5D900C69AC9 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77296D12D46AC600F71FE7 /* Utility.m */; };
 		8CD1975212D4C5D900C69AC9 /* XMLParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77295812D46AC600F71FE7 /* XMLParse.m */; };
@@ -263,6 +275,12 @@
 		8CDCC11B12E2BD2000CEAAD3 /* SkypeState.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9CE76312E2449900017A02 /* SkypeState.m */; };
 		8CDCC12C12E2BD6D00CEAAD3 /* skmain.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDCC12B12E2BD6D00CEAAD3 /* skmain.m */; };
 		8CEE6A8613268A7C00E45829 /* AppleMailModule.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8CEE6A8513268A7C00E45829 /* AppleMailModule.ico */; };
+		8CEF4DF613393AED000F5E3A /* SummaryStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CEF4DF413393AE7000F5E3A /* SummaryStatusViewController.m */; };
+		8CEF4DF713393AED000F5E3A /* SummaryStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CEF4DF413393AE7000F5E3A /* SummaryStatusViewController.m */; };
+		8CEF4E0D13394FBF000F5E3A /* SummaryStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CEF4E0C13394FBF000F5E3A /* SummaryStatusViewController.xib */; };
+		8CEF4E0E13394FBF000F5E3A /* SummaryStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CEF4E0C13394FBF000F5E3A /* SummaryStatusViewController.xib */; };
+		8CEF4E1A1339B2D8000F5E3A /* GoalHoursToAverageXForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CEF4E191339B2D8000F5E3A /* GoalHoursToAverageXForm.m */; };
+		8CEF4E1B1339B2D8000F5E3A /* GoalHoursToAverageXForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CEF4E191339B2D8000F5E3A /* GoalHoursToAverageXForm.m */; };
 		8CF8B60312D821B5009C7E3D /* StatsTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8B5FB12D821B5009C7E3D /* StatsTable.m */; };
 		8CF8B60412D821B5009C7E3D /* Schema.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8B5FD12D821B5009C7E3D /* Schema.m */; };
 		8CF8B60512D821B5009C7E3D /* StatsRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8B5FF12D821B5009C7E3D /* StatsRecord.m */; };
@@ -628,7 +646,6 @@
 		8C73F3DB12E793190056FAFF /* SummaryEventData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummaryEventData.m; sourceTree = "<group>"; };
 		8C73F3DD12E793340056FAFF /* SummaryMailData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummaryMailData.h; sourceTree = "<group>"; };
 		8C73F3DE12E793340056FAFF /* SummaryMailData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummaryMailData.m; sourceTree = "<group>"; };
-		8C73F46D12E7F9DC0056FAFF /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BWToolkitFramework.framework; sourceTree = "<group>"; };
 		8C73F89312E891D00056FAFF /* TestMailModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestMailModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C73F89412E891D00056FAFF /* TestMailModule-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TestMailModule-Info.plist"; sourceTree = "<group>"; };
 		8C73F8B412E893CC0056FAFF /* TestMailModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestMailModule.m; sourceTree = "<group>"; };
@@ -766,6 +783,10 @@
 		8C82CFDF12F3D0BE00830486 /* Design.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Design.txt; sourceTree = "<group>"; };
 		8C82D01A12F3DC7000830486 /* TotalsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TotalsManager.h; sourceTree = "<group>"; };
 		8C82D01B12F3DC7000830486 /* TotalsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TotalsManager.m; sourceTree = "<group>"; };
+		8C844AAB133AEA5700998D1C /* PercentOfDaysXForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PercentOfDaysXForm.h; sourceTree = "<group>"; };
+		8C844AAC133AEA5700998D1C /* PercentOfDaysXForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PercentOfDaysXForm.m; sourceTree = "<group>"; };
+		8C844AB0133AF9C700998D1C /* WorkHoursToAverageXForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WorkHoursToAverageXForm.h; path = WorkPlayAway.xcodeproj/WorkHoursToAverageXForm.h; sourceTree = "<group>"; };
+		8C844AB1133AF9C700998D1C /* WorkHoursToAverageXForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WorkHoursToAverageXForm.m; path = WorkPlayAway.xcodeproj/WorkHoursToAverageXForm.m; sourceTree = "<group>"; };
 		8C9CE76312E2449900017A02 /* SkypeState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkypeState.m; sourceTree = "<group>"; };
 		8C9CE77412E2463700017A02 /* SkypeAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SkypeAPI.h; path = Skype.framework/Versions/A/Headers/SkypeAPI.h; sourceTree = "<group>"; };
 		8C9CE77512E2463700017A02 /* SkypeAPI-Carbon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SkypeAPI-Carbon.h"; path = "Skype.framework/Versions/A/Headers/SkypeAPI-Carbon.h"; sourceTree = "<group>"; };
@@ -781,8 +802,15 @@
 		8C9D92A9132C28D9003AFDB9 /* HUDProgress.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HUDProgress.xib; sourceTree = "<group>"; };
 		8C9E3D5013206F8E007632E5 /* WriteHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteHandler.h; sourceTree = "<group>"; };
 		8C9E3D5113206F8E007632E5 /* WriteHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteHandler.m; sourceTree = "<group>"; };
+		8C9FB5BD13356DB70034FE85 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		8CA668A212FF86C5004FD7EE /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchAtLoginController.h; sourceTree = "<group>"; };
 		8CA668A312FF86C5004FD7EE /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchAtLoginController.m; sourceTree = "<group>"; };
+		8CBEAB43133AA13400277FEA /* GoalHoursToAverageXForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoalHoursToAverageXForm.h; sourceTree = "<group>"; };
+		8CBEAB45133AAA3C00277FEA /* SummaryRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummaryRecord.h; sourceTree = "<group>"; };
+		8CBEAB46133AAA3D00277FEA /* SummaryRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummaryRecord.m; sourceTree = "<group>"; };
+		8CBFEDBE133A1BB1009D19D4 /* SummaryStatusViewControllerX.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummaryStatusViewControllerX.xib; sourceTree = "<group>"; };
+		8CC7543D1335524C007FE425 /* ActivityChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityChart.h; sourceTree = "<group>"; };
+		8CC7543E1335524C007FE425 /* ActivityChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityChart.m; sourceTree = "<group>"; };
 		8CD1974412D4C59600C69AC9 /* WPACommon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WPACommon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD1974512D4C59600C69AC9 /* WPACommon-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WPACommon-Info.plist"; sourceTree = "<group>"; };
 		8CD1978F12D4D0F400C69AC9 /* Growl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Growl.h; path = Growl.framework/Versions/A/Headers/Growl.h; sourceTree = "<group>"; };
@@ -834,6 +862,10 @@
 		8CDCC10A12E2B86E00CEAAD3 /* SkypeManager.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SkypeManager.xib; sourceTree = "<group>"; };
 		8CDCC12B12E2BD6D00CEAAD3 /* skmain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = skmain.m; sourceTree = "<group>"; };
 		8CEE6A8513268A7C00E45829 /* AppleMailModule.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = AppleMailModule.ico; sourceTree = "<group>"; };
+		8CEF4DF313393AE6000F5E3A /* SummaryStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummaryStatusViewController.h; sourceTree = "<group>"; };
+		8CEF4DF413393AE7000F5E3A /* SummaryStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummaryStatusViewController.m; sourceTree = "<group>"; };
+		8CEF4E0C13394FBF000F5E3A /* SummaryStatusViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummaryStatusViewController.xib; sourceTree = "<group>"; };
+		8CEF4E191339B2D8000F5E3A /* GoalHoursToAverageXForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoalHoursToAverageXForm.m; sourceTree = "<group>"; };
 		8CF8B5FA12D821B5009C7E3D /* Schema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Schema.h; sourceTree = "<group>"; };
 		8CF8B5FB12D821B5009C7E3D /* StatsTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsTable.m; sourceTree = "<group>"; };
 		8CF8B5FC12D821B5009C7E3D /* StatsTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsTable.h; sourceTree = "<group>"; };
@@ -867,6 +899,7 @@
 				8C82BAB912EF93F900830486 /* Carbon.framework in Frameworks */,
 				8C82CE4912F2A84C00830486 /* SM2DGraphView.framework in Frameworks */,
 				8CDC08EC1304576C00BA478C /* AppKit.framework in Frameworks */,
+				8C9FB5BE13356DB70034FE85 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1002,6 +1035,7 @@
 				8C82B80312EF4ADF00830486 /* BGHUDAppKit.framework in Frameworks */,
 				8C82BABD12EF941400830486 /* Carbon.framework in Frameworks */,
 				8CDC08F01304578E00BA478C /* AppKit.framework in Frameworks */,
+				8C9FB5C213356DD20034FE85 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1029,7 +1063,6 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8C73F46D12E7F9DC0056FAFF /* BWToolkitFramework.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 				8C82CE4412F2A82A00830486 /* SM2DGraphView.framework */,
 			);
@@ -1073,7 +1106,6 @@
 		29B97314FDCFA39411CA2CEA /* WorkPlayAway */ = {
 			isa = PBXGroup;
 			children = (
-				8C4BD2F4132FAA4C00765A57 /* SummaryHUDCallback.h */,
 				8C82CFDF12F3D0BE00830486 /* Design.txt */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -1096,6 +1128,7 @@
 				8CDC133D13107C1B00BA478C /* EventTableView.xib */,
 				8CDC134013107C9600BA478C /* MailTableView.xib */,
 				8CDC134313107DE500BA478C /* TaskTableView.xib */,
+				8C9FB5BD13356DB70034FE85 /* CoreData.framework */,
 			);
 			name = WorkPlayAway;
 			sourceTree = "<group>";
@@ -1175,6 +1208,7 @@
 		8C73F08D12E5E4460056FAFF /* SummaryHUD */ = {
 			isa = PBXGroup;
 			children = (
+				8C4BD2F4132FAA4C00765A57 /* SummaryHUDCallback.h */,
 				8C01DD75131D5C7F00398AD8 /* HUDSettings.h */,
 				8C01DD76131D5C7F00398AD8 /* HUDSettings.m */,
 				8C5DEF3912E9F3A900EE93F1 /* SummaryDeadlineData.h */,
@@ -1404,6 +1438,8 @@
 		8CD1978912D4C89D00C69AC9 /* WPAMain */ = {
 			isa = PBXGroup;
 			children = (
+				8CBEAB45133AAA3C00277FEA /* SummaryRecord.h */,
+				8CBEAB46133AAA3D00277FEA /* SummaryRecord.m */,
 				8C9D92A7132C28D7003AFDB9 /* HUDProgress.h */,
 				8C9D92A8132C28D7003AFDB9 /* HUDProgress.m */,
 				8C9D92A9132C28D9003AFDB9 /* HUDProgress.xib */,
@@ -1508,6 +1544,18 @@
 		8CF8C14012DC2B71009C7E3D /* Reporting */ = {
 			isa = PBXGroup;
 			children = (
+				8C844AB0133AF9C700998D1C /* WorkHoursToAverageXForm.h */,
+				8C844AB1133AF9C700998D1C /* WorkHoursToAverageXForm.m */,
+				8C844AAB133AEA5700998D1C /* PercentOfDaysXForm.h */,
+				8C844AAC133AEA5700998D1C /* PercentOfDaysXForm.m */,
+				8CBEAB43133AA13400277FEA /* GoalHoursToAverageXForm.h */,
+				8CEF4E191339B2D8000F5E3A /* GoalHoursToAverageXForm.m */,
+				8CEF4E0C13394FBF000F5E3A /* SummaryStatusViewController.xib */,
+				8CBFEDBE133A1BB1009D19D4 /* SummaryStatusViewControllerX.xib */,
+				8CEF4DF313393AE6000F5E3A /* SummaryStatusViewController.h */,
+				8CEF4DF413393AE7000F5E3A /* SummaryStatusViewController.m */,
+				8CC7543D1335524C007FE425 /* ActivityChart.h */,
+				8CC7543E1335524C007FE425 /* ActivityChart.m */,
 				8C77292D12D46AC600F71FE7 /* PreferencesWindow.h */,
 				8CF8C14112DC2CB7009C7E3D /* SummaryTable.h */,
 				8CF8C14212DC2CB7009C7E3D /* SummaryTable.m */,
@@ -1929,6 +1977,8 @@
 				8CDC133F13107C1B00BA478C /* EventTableView.xib in Resources */,
 				8CDC134113107C9600BA478C /* MailTableView.xib in Resources */,
 				8CDC134413107DE500BA478C /* TaskTableView.xib in Resources */,
+				8CEF4E0D13394FBF000F5E3A /* SummaryStatusViewController.xib in Resources */,
+				8CBFEDBF133A1BB1009D19D4 /* SummaryStatusViewControllerX.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2085,6 +2135,8 @@
 				8CDC133E13107C1B00BA478C /* EventTableView.xib in Resources */,
 				8CDC134213107C9600BA478C /* MailTableView.xib in Resources */,
 				8CDC134513107DE500BA478C /* TaskTableView.xib in Resources */,
+				8CEF4E0E13394FBF000F5E3A /* SummaryStatusViewController.xib in Resources */,
+				8CBFEDC0133A1BB1009D19D4 /* SummaryStatusViewControllerX.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2176,6 +2228,12 @@
 				8CDC046D13010DCB00BA478C /* GoalChart.m in Sources */,
 				8CDC0BA31307C58000BA478C /* SecsToMinsTransformer.m in Sources */,
 				8CDC0BBA1307CD1400BA478C /* MinsToSecsTransformer.m in Sources */,
+				8CC7543F1335524E007FE425 /* ActivityChart.m in Sources */,
+				8CEF4DF613393AED000F5E3A /* SummaryStatusViewController.m in Sources */,
+				8CEF4E1A1339B2D8000F5E3A /* GoalHoursToAverageXForm.m in Sources */,
+				8CBEAB47133AAA3E00277FEA /* SummaryRecord.m in Sources */,
+				8C844AAD133AEA5700998D1C /* PercentOfDaysXForm.m in Sources */,
+				8C844AB2133AF9C800998D1C /* WorkHoursToAverageXForm.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2369,6 +2427,12 @@
 				8CDC046E13010DCB00BA478C /* GoalChart.m in Sources */,
 				8CDC0BA41307C58000BA478C /* SecsToMinsTransformer.m in Sources */,
 				8CDC0BBB1307CD1400BA478C /* MinsToSecsTransformer.m in Sources */,
+				8CC754401335524E007FE425 /* ActivityChart.m in Sources */,
+				8CEF4DF713393AED000F5E3A /* SummaryStatusViewController.m in Sources */,
+				8CEF4E1B1339B2D8000F5E3A /* GoalHoursToAverageXForm.m in Sources */,
+				8CBEAB48133AAA3E00277FEA /* SummaryRecord.m in Sources */,
+				8C844AAE133AEA5700998D1C /* PercentOfDaysXForm.m in Sources */,
+				8C844AB3133AF9C800998D1C /* WorkHoursToAverageXForm.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

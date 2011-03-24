@@ -33,6 +33,7 @@
 @synthesize useDisplayWindow;
 @synthesize useDisplayWindowButton;
 @synthesize lastCheck;
+@synthesize onlyUnread;
 
 @dynamic refreshInterval;
 @dynamic notificationName;
@@ -60,6 +61,14 @@
 	return self;
 }
 
+- (BOOL) checkReadStatus:(MailMessage *)msg
+{
+    if (onlyUnread){
+        return msg.readStatus;
+    }
+    return NO;
+}
+
 -(void) getUnread: (NSObject*) param
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
@@ -85,7 +94,7 @@
 						for (MailMessage *msg in box.messages){
 							NSLog(@"from = %@ subj = %@",[mailApp extractAddressFrom:msg.sender], msg.subject);
 							NSComparisonResult res = [msg.dateReceived compare:minTime];
-							if (!(res == NSOrderedAscending)) {
+							if ((res != NSOrderedAscending) && ([self checkReadStatus:msg] == NO)) {
 								
 								NSString *temp = msg.source;
 								NSString *synopsis = [MimeHandler synopsis:temp];

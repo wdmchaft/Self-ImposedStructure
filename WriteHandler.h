@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "State.h"
 #import "TaskInfo.h"
+#import "SummaryRecord.h"
 
 @interface WriteHandler : NSObject {
 	NSPersistentStoreCoordinator *persistentStoreCoordinator;
@@ -21,6 +22,7 @@
     NSArray *activities;
     NSDate *activityDate;
     NSCalendar *gregorianCal;
+    NSManagedObject *summary;
 }
 
 @property (nonatomic, retain) NSPersistentStoreCoordinator *persistentStoreCoordinator;
@@ -33,15 +35,24 @@
 @property (nonatomic, retain) NSArray *activities;
 @property (nonatomic, retain) NSDate *activityDate;
 @property (nonatomic, retain) NSCalendar *gregorianCal;
+@property (nonatomic, retain) NSManagedObject *summary;
 
 - (void) ioLoop: (NSObject*) param;
 - (void) doWrapUp: (NSObject*) ignore;
 + (void) sendNewRecord: (WPAStateType) state;
-+ (void) sendSummaryForDate: (NSDate*) date goal: (int) goalTime work: (int) workTime free: (int) freeTime;
-+ (void) sendActivity: (NSDate*) date goal: (int) goalTime work: (int) workTime free: (int) freeTime;
++ (void) sendTotalsForDate: (NSDate*) date goal: (int) goalTime work: (int) workTime free: (int) freeTime;
++ (void) sendActivity: (NSDate*)date
+             activity:(TaskInfo*)taskInfo
+            increment:(int) incr;
++ (void) sendSummary: (SummaryRecord*) rec;
+
 - (void) saveActivity:(NSNotification*) msg;
 - (void) saveActivityForDate:(NSDate*) inDate desc: (NSString*) activityName source: (NSString*) sourceName project: (NSString*) projectName addVal: (int) increment;
 + (void) sendActivity: (NSDate*)date
              activity:(TaskInfo*)taskInfo
             increment:(int) incr;
+- (void) saveSummary: (SummaryRecord*) rec;
+
+- (SummaryRecord*) getSummaryRecord;
+
 @end
