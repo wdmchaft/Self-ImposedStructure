@@ -14,14 +14,14 @@
 @synthesize parseDelegate;
 @synthesize data;
 
-- (XMLParse*) initWithData: (NSData*) xmlData andDelegate: (<NSXMLParserDelegate>) xmlDelegate
+- (XMLParse*) initWithData: (NSData*) xmlData andDelegate: (id<NSXMLParserDelegate>) xmlDelegate
 {
 	if (self) 
 	{
 		data = xmlData;
 		parseDelegate = xmlDelegate;
 		parser = [[NSXMLParser alloc] initWithData:xmlData];
-		[parser setDelegate:(<NSXMLParserDelegate>)parseDelegate];
+		[parser setDelegate:(id<NSXMLParserDelegate>)parseDelegate];
 		[parser setShouldResolveExternalEntities:YES];
 	}
 	return self;

@@ -156,7 +156,7 @@ highestTagValue,minTagValue,hrefStr,rules, alertHandler, validationHandler, time
 		if (!validationHandler){
 			[BaseInstance sendErrorToHandler:alertHandler 
 									   error:errStr
-									  module:[((<Instance>)callback) name]];
+									  module:[((id<Instance>)callback) name]];
 			return;
 		} else {
 			[validationHandler performSelector:@selector(validationComplete:) 
@@ -179,10 +179,11 @@ highestTagValue,minTagValue,hrefStr,rules, alertHandler, validationHandler, time
 	NSDictionary *item = nil;
 	for (key in msgDict){
 		item = [msgDict objectForKey: key];	
-		FilterResult res = [FilterRule processFilters:rules forMessage: msgDict];
+        NSColor *color;
+		FilterResult res = [FilterRule processFilters:rules forMessage: msgDict color:&color];
 		if (res != RESULT_IGNORE) {
 			Note *alert = [[Note alloc]init];
-			alert.moduleName = ((<Instance>)callback).name;
+			alert.moduleName = ((id<Instance>)callback).name;
 			alert.title =key;
 			alert.message=[item objectForKey:@"summary"];
 			alert.sticky = (res == RESULT_IMPORTANT);
@@ -198,7 +199,7 @@ highestTagValue,minTagValue,hrefStr,rules, alertHandler, validationHandler, time
 		[[NSUserDefaults standardUserDefaults] synchronize];
 	}
 	[BaseInstance sendDone: alertHandler module: callback.description];
-	[((<CallBack>)callback) didFinishRequest: self];
+	[((id<CallBack>)callback) didFinishRequest: self];
 }
  
  - (void)parser:(NSXMLParser *)parser 

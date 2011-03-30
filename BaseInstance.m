@@ -51,23 +51,28 @@
 
 -(void) saveDefaultValue: (NSObject*) val forKey: (NSString*) key
 {
-	NSString *myKey = [[NSString alloc]initWithFormat:@"%@.%@",[Utility encode:name],key];
+	NSString *myKey = [self myKeyForKey:key];
 	[[NSUserDefaults standardUserDefaults] setObject:val forKey:myKey];
+}
+
+- (NSString*) myKeyForKey: (NSString*) key 
+{
+       return [[NSString alloc]initWithFormat:@"%@.%@",[Utility encode:name],key];
 }
 
 -(void) clearDefaultValue: (NSObject*) val forKey: (NSString*) key
 {
-	NSString *myKey = [[NSString alloc]initWithFormat:@"%@.%@",[Utility encode:name],key];
+	NSString *myKey = [self myKeyForKey:key];
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:myKey];
 }
 
 -(id) loadDefaultForKey: (NSString*) key
 {
-	NSString *myKey = [[NSString alloc]initWithFormat:@"%@.%@",[Utility encode:name],key];
+	NSString *myKey = [self myKeyForKey:key];
 	return [[NSUserDefaults standardUserDefaults] objectForKey:myKey];
 }
 
-+ (void) sendErrorToHandler:(<AlertHandler>) handler error:(NSString*) err module:(NSString*) modName
++ (void) sendErrorToHandler:(id<AlertHandler>) handler error:(NSString*) err module:(NSString*) modName
 {
 	Note *alert = [[Note alloc]init];
 	alert.moduleName = modName;
@@ -77,7 +82,7 @@
 	[handler handleError: alert];
 }
 
-+ (void) sendDone: (<AlertHandler>) handler module: (NSString*) modName
++ (void) sendDone: (id<AlertHandler>) handler module: (NSString*) modName
 {
 	Note *alert = [[Note alloc]init];
 	alert.moduleName = modName;

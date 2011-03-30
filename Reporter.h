@@ -21,11 +21,12 @@
 #define MAIL_NAME @"name"
 #define MAIL_ARRIVAL_TIME @"received"
 #define MAIL_SENT_TIME @"issued"
+#define MAIL_COLOR @"color"
 
 @protocol Reporter <Instance>
 @required
 // implement these two to provide status information (email/events/tasks)
-- (void) refresh: (<AlertHandler>) handler;
+- (void) refresh: (id<AlertHandler>) handler isSummary: (BOOL) summary;
 - (void) handleClick: (NSDictionary*) params;
 - (void) initSummaryTable: (NSTableView*) view;
 

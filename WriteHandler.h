@@ -46,7 +46,7 @@
             increment:(int) incr;
 + (void) sendSummary: (SummaryRecord*) rec;
 
-- (void) saveActivity:(NSNotification*) msg;
+- (void) saveActivityForDate:(NSNotification*) msg;
 - (void) saveActivityForDate:(NSDate*) inDate desc: (NSString*) activityName source: (NSString*) sourceName project: (NSString*) projectName addVal: (int) increment;
 + (void) sendActivity: (NSDate*)date
              activity:(TaskInfo*)taskInfo

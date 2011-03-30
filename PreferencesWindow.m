@@ -11,11 +11,12 @@
 #import "WPADelegate.h"
 #import "Instance.h"
 #import "LaunchAtLoginController.h"
+#import "ColorWellCell.h"
 
 @implementation PreferencesWindow
 @synthesize modulesTable, amwControl,addButton, removeButton, newModuleView, tableData, 
 launchOnBootButton, editButton, hudTable, heatTable, 
-summaryField, summaryStepper, summaryLabel, summaryLabel2, summaryButton;
+summaryField, summaryStepper, summaryLabel, summaryLabel2, summaryButton, editModuleSession;
 
 - (void)awakeFromNib
 {
@@ -58,7 +59,10 @@ summaryField, summaryStepper, summaryLabel, summaryLabel2, summaryButton;
 	[hudTable registerForDraggedTypes:
 	 [NSArray arrayWithObject:[[HUDSettings class] description] ]];
 	
-	heatTable.dataSource = [Context sharedContext].heatMapSettings;
+    HeatMap *settings = [Context sharedContext].heatMapSettings;
+	heatTable.dataSource = settings;
+    NSTableColumn *col = [heatTable.tableColumns objectAtIndex:1];
+    [col setDataCell:[ColorWellCell new]];
 }
 
 - (void) showWindow:(id)sender
@@ -211,5 +215,8 @@ summaryField, summaryStepper, summaryLabel, summaryLabel2, summaryButton;
 	[summaryStepper setEnabled:enabled];
 	[summaryField setEnabled:enabled];
 }
-
+- (void) close
+{
+	[[Context sharedContext]saveDefaults];
+}
 @end

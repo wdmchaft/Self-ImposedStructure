@@ -156,5 +156,45 @@
 	return out;
 }
 
++ (void) saveColors: (NSArray*) colors forKey: (NSString*)key
+{
+	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+	NSMutableArray *temp = [NSMutableArray arrayWithCapacity:[colors count]];
+	for (NSColor *color in colors){
+		[temp addObject:[NSArchiver archivedDataWithRootObject:color]];
+	}
+	[ud setObject: temp forKey:key];
+}
+
+
++ (NSData*) archColorWithRed: (double) rd green: (double) gr blue: (double) bl
+{
+	NSColor *clr = [NSColor colorWithDeviceRed:rd green:gr blue:bl alpha:1.0];
+	return [NSArchiver archivedDataWithRootObject:clr];
+}
++ (NSData*) archColorWithHue: (double) hue saturation : (double) saturation brightness: (double) brightness
+{
+	NSColor *clr = [NSColor colorWithDeviceHue:hue saturation:saturation brightness:brightness alpha:1.0];
+	return [NSArchiver archivedDataWithRootObject:clr];
+}
++ (NSColor*) colorFromArch: (NSData*) data
+{
+	NSColor * aColor =nil;
+	if (data != nil)
+		aColor =(NSColor *)[NSUnarchiver unarchiveObjectWithData:data];
+	return aColor;
+}
+
++ (NSArray*) loadColorsForKey: (NSString*) key
+{
+	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+	NSArray *ary = [ud objectForKey:key];
+	NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:[ary count]];
+	for (NSData *data in ary){
+		[temp addObject:[Utility colorFromArch:data]];
+	}
+	return temp;
+}
+
 
 @end

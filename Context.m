@@ -257,7 +257,7 @@ static Context* sharedContext = nil;
 	[self saveModules];
 	[self saveTask];
 	[hudSettings saveToDefaults];
-	
+	[heatMapSettings save];
 	[ud synchronize];
 	
 }

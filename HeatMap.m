@@ -7,7 +7,7 @@
 //
 
 #import "HeatMap.h"
-
+#import "Utility.h"
 
 @implementation HeatMap
 @synthesize colors;
@@ -23,13 +23,9 @@
 
 - (void) save
 {
+	[Utility saveColors:colors forKey:COLORS];
 	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-	NSMutableArray *temp = [NSMutableArray arrayWithCapacity:[colors count]];
-	for (NSColor *color in colors){
-		[temp addObject:[NSArchiver archivedDataWithRootObject:color]];
-	}
-	[ud setObject: temp forKey:COLORS];
-	[ud setObject: colors forKey:MINVALS];
+	[ud setObject: windows forKey:MINVALS];
 }
 
 
@@ -53,14 +49,13 @@
 
 - (void) load
 {
-	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-	NSArray *ary = [ud objectForKey:COLORS];
-	NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:[ary count]];
-	for (NSData *data in ary){
-		[temp addObject:[HeatMap colorFromArch:data]];
-	}
-	colors = temp;
-	windows = [ud objectForKey:MINVALS];
+	NSLog(@"I am this: %@", self);
+
+	colors = [Utility loadColorsForKey:COLORS];
+    NSArray *defaultVals = [[NSUserDefaults standardUserDefaults] objectForKey:MINVALS];
+    NSLog(@"defaultWindows length = %d", [defaultVals count]);
+	windows = [[NSMutableArray alloc]initWithArray:defaultVals];
+    NSLog(@"windows = %@", windows);
 }
 /****
  #FA0000 30 min
@@ -117,6 +112,7 @@
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
 {
 	NSInteger ret = [colors count];
+
 	return ret;
 }
 
@@ -133,9 +129,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
         theValue = [windows objectAtIndex:row];
         theValue = [NSNumber numberWithDouble:[theValue doubleValue] / 60];
 	} else if ([colName isEqualToString:@"STYLE"]){
-        NSDictionary *attrs = [NSDictionary dictionaryWithObject:[colors objectAtIndex:row] forKey:NSForegroundColorAttributeName];
-		NSAttributedString *str  = [[NSAttributedString alloc]initWithString:@"test" attributes:attrs];
-		theValue = str;
+		theValue = [colors objectAtIndex:row];
 	}
     return theValue;
 }
@@ -152,13 +146,17 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
         if (row == 0)
             return; // can't change - INFINITY
         double val = [(NSNumber*)anObject doubleValue];
+        val *= 60;
         if (row < [windows count] - 1){
             double max = [(NSNumber*)[windows objectAtIndex: row + 1] doubleValue];
-            if (val >= max){
-                return [windows objectAtIndex:row]; 
+            if (val < max){
+                [windows replaceObjectAtIndex:row withObject:[NSNumber numberWithDouble:val]];
             }
         }
-		[windows replaceObjectAtIndex:row withObject:anObject];
+    }
+    else if ([colName isEqualToString:@"STYLE"]){
+ 		[colors replaceObjectAtIndex:row withObject:anObject];
+       
     }
 }
 

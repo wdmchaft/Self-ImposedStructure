@@ -25,5 +25,12 @@
 
 + (NSString*) encode: (NSString*) inStr;
 + (NSString*) decode: (NSString*) inStr;
++ (void) saveColors: (NSArray*) colors forKey: (NSString*)key;
++ (NSData*) archColorWithRed: (double) rd green: (double) gr blue: (double) bl;
++ (NSData*) archColorWithHue : (double) hue 
+                  saturation : (double) saturation 
+                  brightness : (double) brightness;
++ (NSColor*) colorFromArch: (NSData*) data;
 
++ (NSArray*) loadColorsForKey: (NSString*) key;
 @end

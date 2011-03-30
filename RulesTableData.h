@@ -12,14 +12,19 @@
 #define FIELD_COL @"Field"
 #define COMPARE_COL @"Compare"
 #define VALUE_COL @"Value"
+#define COLOR_COL @"Clr"
 
 
 @interface RulesTableData : NSObject <NSTableViewDataSource> {
 	NSMutableArray *allRules;
+    NSButtonCell *boolCell;
+    NSTableColumn *predCol;
 }
 - (id) initWithRules: (NSArray*) data;
 - (id) objValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger) row;
 
 @property (nonatomic, retain) NSMutableArray* allRules;
+@property (nonatomic, retain) NSButtonCell* boolCell;
+@property (nonatomic, retain) NSTableColumn* predCol;
 @end
 

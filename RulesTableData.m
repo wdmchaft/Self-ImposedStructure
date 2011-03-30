@@ -11,6 +11,8 @@
 
 @implementation RulesTableData
 @synthesize allRules;
+@synthesize predCol,boolCell;
+
 - (id) initWithRules: (NSMutableArray*) data
 {
 	if (self)
@@ -24,6 +26,7 @@
 {
 	return [allRules count];
 }
+
 - (id) objValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
 	id theValue;
@@ -41,6 +44,9 @@
 	}
 	if ([colName isEqualToString:VALUE_COL]){
 		theValue = rule.predicate;
+	}
+    if ([colName isEqualToString:COLOR_COL]){
+		theValue = rule.color;
 	}
     return theValue;
 }
@@ -64,6 +70,9 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 	}
 	if ([colName isEqualToString:VALUE_COL]){
 		theValue = rule.predicate;
+	}
+    if ([colName isEqualToString:COLOR_COL]){
+		theValue = rule.color;
 	}
     return theValue;	
 }
@@ -89,7 +98,9 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 	if ([colName isEqualToString:VALUE_COL]){
 		rule.predicate = anObject;
 	}
-	
+	if ([colName isEqualToString:COLOR_COL]){
+		rule.color = anObject;
+	}
     return;
 }
 @end

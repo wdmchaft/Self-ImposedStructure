@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "Reporter.h"
 #import "BaseReporter.h"
-
+#import "RulesTableData.h"
 @interface AppleMailModule : BaseReporter {
 	NSString *accountName;
 	NSString *mailMailboxName;
@@ -23,9 +23,14 @@
 	NSStepper *displayWindowStepper;
 	NSButton *useDisplayWindowButton;
 	BOOL useDisplayWindow;
-	BOOL onlyUnread;
 	NSTimeInterval displayWindow;
 	NSDate *lastCheck;
+    NSMutableArray *rules;
+	NSTableView *rulesTable;
+	NSButton *addRuleButton;
+	NSButton *removeRuleButton;
+	RulesTableData *rulesData;
+    BOOL summaryMode;
 }
 @property (nonatomic,retain) NSString *accountName;
 @property (nonatomic,retain) NSString *mailMailboxName;
@@ -40,14 +45,16 @@
 @property (nonatomic,retain) IBOutlet NSButton *useDisplayWindowButton;
 @property (nonatomic)  NSTimeInterval displayWindow;
 @property (nonatomic)  BOOL useDisplayWindow;
-@property (nonatomic)  BOOL onlyUnread;
 @property (nonatomic,retain) NSDate *lastCheck;
+@property (nonatomic, retain) IBOutlet NSTableView* rulesTable;
+@property (nonatomic, retain) IBOutlet NSButton* addRuleButton;
+@property (nonatomic, retain) IBOutlet NSButton* removeRuleButton;
+@property (nonatomic, retain) RulesTableData *rulesData;
+@property (nonatomic) BOOL summaryMode;
 
 - (void) getUnread: (NSObject*) param;
 - (void) fetchDone: (NSNotification*) msg;
 - (IBAction) clickUseDisplayWindow: (id) sender;
 - (void) validateDone: (NSNotification*) note;
 - (void) doValidate: (NSObject*) params;
-
-
 @end

@@ -7,7 +7,8 @@
 //
 
 #import "WorkHoursToAverageXForm.h"
-
+#import "Context.h"
+#import "TotalsManager.h"
 
 @implementation WorkHoursToAverageXForm
 
@@ -25,5 +26,29 @@
 {
     [super dealloc];
 }
++ (Class)transformedValueClass {
+    return [NSNumber class];
+}
+
++ (BOOL)allowsReverseTransformation {
+    return NO;
+}
+
+- (id)transformedValue:(id)value {
+    NSLog(@"value = %@", value);
+    NSNumber *workTime = value;
+    Context *ctx = [Context sharedContext];
+    
+    TotalsManager *totalsMgr = ctx.totalsManager;
+    SummaryRecord *summary = totalsMgr.summary;
+    NSUInteger daysWorked = summary.daysWorked.intValue;
+    if (workTime.intValue == 0)
+        return nil;
+    double ret;
+    ret = workTime.doubleValue /  daysWorked / 60 / 60;
+    return [NSNumber numberWithDouble:ret];
+    
+}
+
 
 @end

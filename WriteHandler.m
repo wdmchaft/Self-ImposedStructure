@@ -814,7 +814,7 @@
 											   object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self 
-											 selector:@selector(saveActivity:) 
+											 selector:@selector(saveActivityForDate:) 
 												 name:@"activity" 
 											   object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self 

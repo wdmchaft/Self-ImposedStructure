@@ -110,7 +110,7 @@
 	[super saveDefaultValue:minTagValue forKey:MINTAGVALUE];
 }
 
-- (void) refresh: (<AlertHandler>) AlertHandler{
+- (void) refresh: (id<AlertHandler>) AlertHandler{
 	
 	GMailRequestHandler *refreshHandler = 
 		[[GMailRequestHandler alloc] initWithTagValue: minTagValue 

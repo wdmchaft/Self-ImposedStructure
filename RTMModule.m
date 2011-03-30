@@ -188,7 +188,7 @@
 	[handler handleAlert:alert];
 }
 
-- (void) refresh: (<AlertHandler>) alertHandler
+- (void) refresh: (id<AlertHandler>) alertHandler isSummary: (BOOL) summary
 {
 	self.handler = alertHandler;
 	[self startRefresh: nil];
@@ -403,7 +403,7 @@
 							 nil]];
 		NSLog(@"auth url:%@",urlStr);
 		NSURL *url = [NSURL URLWithString:urlStr];
-	//	[[NSWorkspace sharedWorkspace] openURL:url];
+		[[NSWorkspace sharedWorkspace] openURL:url];
 		authButton.title =@"Authorized";
 	}
 }

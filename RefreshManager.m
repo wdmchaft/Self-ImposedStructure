@@ -14,7 +14,7 @@
 @interface TimerInfo : NSObject
 {
 	NSTimer *timer;
-	<Reporter> module;
+	id<Reporter> module;
 }
 @property (nonatomic,retain) NSTimer *timer;
 @property (nonatomic,retain) id module;
@@ -32,7 +32,7 @@
 @synthesize alertHandler;
 @synthesize running;
 
-- (id) initWithHandler:(<AlertHandler>) handler;
+- (id) initWithHandler:(id<AlertHandler>) handler;
 {
 	NSLog(@"RefreshManager initWithHandler");
 	if (self){ 
@@ -41,7 +41,7 @@
 		NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:[refreshable count]];
 		for (id obj in refreshable){
 			TimerInfo *info = [TimerInfo new];
-			info.module = (<Reporter>)obj;
+			info.module = (id<Reporter>)obj;
 			[temp addObject: info];
 		}
 		timers = [[NSArray alloc]initWithArray:temp];
@@ -76,7 +76,7 @@
 	info.timer = nil;
 	NSLog(@"%@ doRefresh for %@ at " , self,[info.module name], [Utility shortTimeStrFor:[NSDate date]]);
 	if (running){
-		[info.module refresh:alertHandler];
+		[info.module refresh:alertHandler isSummary:NO];
 	}
 	if (running){
 		NSLog(@"next refresh for %@ in %f secs at %@", 

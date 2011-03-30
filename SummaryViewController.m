@@ -71,10 +71,11 @@
 - (void) refresh
 {
 	NSLog(@"refresh!");
-	data = nil;
+	[data removeAllObjects];
+    [table noteNumberOfRowsChanged];
 	[prog setHidden:NO];
 	[prog startAnimation:self];
-	[reporter refresh: self];
+	[reporter refresh: self isSummary:YES];
 }
 
 
@@ -131,9 +132,10 @@
 	[prog stopAnimation:self];
 	[prog setHidden:YES];
 	
-	[data removeAllObjects];
-	[reporter refresh:self];
+	//[data removeAllObjects];
+	//[reporter refresh:self isSummary:YES];
 	[table deselectAll:self];
+    [self performSelector:@selector(refresh) withObject:nil afterDelay:0.1]; 
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
@@ -147,7 +149,7 @@
 
 - (void) handleDouble: (id) sender{}
 
-- (NSDictionary*) readAttributes
+- (NSDictionary*) attributesForColor:(NSColor*) color
 {
 	if (!boldFont){
 		float fontSize = [NSFont systemFontSizeForControlSize:NSSmallControlSize]; 
@@ -155,7 +157,7 @@
 		NSFontManager *fontManager = [NSFontManager sharedFontManager];
 		boldFont =[fontManager convertFont:font toHaveTrait:NSBoldFontMask];
 	}
-	return [NSDictionary dictionaryWithObjectsAndKeys:boldFont, NSFontAttributeName,[NSColor redColor], NSForegroundColorAttributeName, nil];
+	return [NSDictionary dictionaryWithObjectsAndKeys:boldFont, NSFontAttributeName, color, NSForegroundColorAttributeName, nil];
 }
 
 - (NSDictionary*) attributesForInterval: (NSTimeInterval) interval
@@ -286,7 +288,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 		[data sortUsingDescriptors:[NSArray arrayWithObject:desc]];
 	}
     NSDictionary *params  = [data objectAtIndex:row];
-	BOOL readStatus = [((NSNumber*)[params objectForKey:@"readStatus"]) boolValue];
+    NSColor *color = [params objectForKey:MAIL_COLOR];
 	NSString *colName = [tableColumn identifier];
 	if ([colName isEqualToString:@"COL1"])
 	{
@@ -298,8 +300,9 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 	} else {
 		theValue = [params objectForKey:MAIL_SUBJECT];
 	}
-	if (!readStatus){
-		theValue = [[NSAttributedString alloc]initWithString:theValue attributes:[self readAttributes]];
+	if (color){
+		theValue = [[NSAttributedString alloc]initWithString:theValue 
+                                                  attributes:[self attributesForColor:color]];
 	}
     return theValue;
 }

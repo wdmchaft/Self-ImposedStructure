@@ -12,11 +12,11 @@
 #define MINVALS @"heatMapMinValues"
 
 @interface HeatMap : NSObject <NSTableViewDataSource> {
-	NSArray *colors;
-	NSArray *windows;
+	NSMutableArray *colors;
+	NSMutableArray *windows;
 }
-@property (nonatomic, retain) NSArray *colors;
-@property (nonatomic, retain) NSArray *windows;
+@property (nonatomic, retain) NSMutableArray *colors;
+@property (nonatomic, retain) NSMutableArray *windows;
 
 - (void) save;
 - (void) load;

@@ -12,12 +12,12 @@
 @interface XMLParse : NSObject  {
 	NSXMLParser* parser;
 	NSData* data;
-	<NSXMLParserDelegate> parseDelegate;
+	id<NSXMLParserDelegate> parseDelegate;
 }
 @property (nonatomic, retain)  NSXMLParser* parser;
 @property (nonatomic, retain)  NSData* data;
-@property (nonatomic, retain)  <NSXMLParserDelegate> parseDelegate;
-- (XMLParse*) initWithData: (NSData*) xmlData andDelegate: (<NSXMLParserDelegate>) xmlDelegate;
+@property (nonatomic, retain)  id<NSXMLParserDelegate> parseDelegate;
+- (XMLParse*) initWithData: (NSData*) xmlData andDelegate: (id<NSXMLParserDelegate>) xmlDelegate;
 - (void)parseData;
 
 @end

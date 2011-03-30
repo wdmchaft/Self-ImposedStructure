@@ -9,6 +9,9 @@
 #import "AppleMailModule.h"
 #import "Mail.h"
 #import "MimeHandler.h"
+#import "Utility.h"
+#import "ColorWellCell.h"
+#import "VariableTableColumn.h"
 
 #define MAILBOX @"mailMailbox"
 #define ACCOUNT @"account"
@@ -16,6 +19,13 @@
 #define DISPLAYWIN  @"displayWindow"
 #define USEDISPWIN  @"useDisplayWindow"
 #define LASTCHECK  @"lastCheck"
+#define RULECOUNT @"RuleCount"
+#define RULE @"Rule"
+#define RULE_COLORS @"RuleColors"
+#define RULE_PREDS @"RulePredicates"
+#define RULE_TYPES @"RuleTypes"
+#define RULE_COMPARES @"RuleCompares"
+#define RULE_FIELDS @"RuleFields"
 
 @implementation AppleMailModule
 
@@ -33,8 +43,6 @@
 @synthesize useDisplayWindow;
 @synthesize useDisplayWindowButton;
 @synthesize lastCheck;
-@synthesize onlyUnread;
-
 @dynamic refreshInterval;
 @dynamic notificationName;
 @dynamic notificationTitle;
@@ -42,8 +50,16 @@
 @dynamic category;
 @dynamic name;
 @dynamic summaryTitle;
+@synthesize rulesData, rulesTable, removeRuleButton, addRuleButton, summaryMode;
 
-
+- (void)awakeFromNib
+{
+    
+	rulesData = [[RulesTableData alloc] initWithRules:rules];
+	rulesTable.dataSource = rulesData;
+	[rulesTable noteNumberOfRowsChanged];
+	
+}
 
 -(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -55,18 +71,20 @@
 		notificationTitle = @"Mail Msg";
 		category = CATEGORY_EMAIL;
 		summaryTitle = @"Apple Mail";
-		//	minTagValue = [[NSNumber alloc]initWithInteger: 0];	
-
 	}
 	return self;
 }
 
-- (BOOL) checkReadStatus:(MailMessage *)msg
-{
-    if (onlyUnread){
-        return msg.readStatus;
+- (NSDate*) lastCheck{
+    if (lastCheck){
+        return lastCheck;
     }
-    return NO;
+    lastCheck = [[NSUserDefaults standardUserDefaults] objectForKey:[super myKeyForKey:LASTCHECK]];
+    if (lastCheck){
+        return lastCheck;
+    }  
+    lastCheck =  [[NSDate date] dateByAddingTimeInterval:-(24 * 60 * 60)]; // nothing set - get the last day of msgs
+    return lastCheck;
 }
 
 -(void) getUnread: (NSObject*) param
@@ -74,16 +92,16 @@
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	unreadMail = [NSMutableArray new];
 	NSDate *minTime = [NSDate distantPast];
-	if (useDisplayWindow){
-	//	NSLog(@"Now = %@", [NSDate date]);
+    
+	if (summaryMode && useDisplayWindow){
 		minTime = [[NSDate date] dateByAddingTimeInterval:-(displayWindow * 60 * 60)];
-	//	NSLog(@"Disp window = %@", minTime);
-	}
-	// the window may be longer than the default window if we haven't checked the inbox in a while
-	if (lastCheck){
-		minTime = [lastCheck earlierDate:minTime];
-	//	NSLog(@"Adjusted Disp window = %@", minTime);
-}
+        // the window may be longer than the default window if we haven't checked the inbox in a while
+        minTime = [[self lastCheck] earlierDate:minTime];
+	} else if (!summaryMode){
+        minTime = [self lastCheck];
+    }
+
+
 //	NSLog(@"will get all email later than %@", minTime);
 	MailApplication *mailApp = [SBApplication applicationWithBundleIdentifier:@"com.apple.mail"];
 	if (mailApp) {
@@ -94,13 +112,13 @@
 						for (MailMessage *msg in box.messages){
 							NSLog(@"from = %@ subj = %@",[mailApp extractAddressFrom:msg.sender], msg.subject);
 							NSComparisonResult res = [msg.dateReceived compare:minTime];
-							if ((res != NSOrderedAscending) && ([self checkReadStatus:msg] == NO)) {
+							if (res != NSOrderedAscending) {
 								
 								NSString *temp = msg.source;
 								NSString *synopsis = [MimeHandler synopsis:temp];
 					
-								NSDictionary *params = 
-								[NSDictionary dictionaryWithObjectsAndKeys:
+								NSMutableDictionary *params = 
+								[NSMutableDictionary dictionaryWithObjectsAndKeys:
 								 name, REPORTER_MODULE,
 								 synopsis, MAIL_SUMMARY,
 								 [msg.subject copy], MAIL_SUBJECT,
@@ -111,8 +129,19 @@
 								 [msg.dateSent copy], MAIL_SENT_TIME,
 								 [msg.messageId copy], @"id",
 								 nil ];
-						//		NSLog(@"from = %@ subj = %@",[mailApp extractAddressFrom:msg.sender], msg.subject);
-								[unreadMail addObject:params];
+                                NSColor *ruleColor = nil;
+                                FilterResult res = [FilterRule processFilters:rules 
+                                                                   forMessage: params
+                                                                        color: &ruleColor];
+                                if (ruleColor){
+                                    [params setValue:ruleColor forKey:MAIL_COLOR];
+                                }
+                                if (res == RESULT_SUMMARYONLY){
+                                    if (summaryMode)
+                                        [unreadMail addObject:params];
+                                } else if (res != RESULT_IGNORE) {
+                                    [unreadMail addObject:params];
+                                }
 							}else {
 								break;
 							}
@@ -123,16 +152,17 @@
 			}
 		}
 	}
-	[[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:LASTCHECK];
+	[[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:[super myKeyForKey:LASTCHECK]];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 	NSNotification *msg = [NSNotification notificationWithName:@"com.workplayaway.fetchDone" object:nil];
 	[[NSNotificationCenter defaultCenter] postNotification:msg];
 	[pool drain];	
 }
 
--(void) refresh: (id<AlertHandler>) handler
+-(void) refresh: (id<AlertHandler>) handler isSummary: (BOOL) summary
 {
 	alertHandler = handler;
+    summaryMode = summary;
 	[[NSNotificationCenter defaultCenter] addObserver:self 
 											 selector:@selector(fetchDone:)
 												 name:@"com.workplayaway.fetchDone" 
@@ -228,6 +258,21 @@
 	[super saveDefaultValue:[NSNumber numberWithDouble:displayWindow*60*60] forKey:DISPLAYWIN ];
 	[super saveDefaultValue:[NSNumber numberWithInt:useDisplayWindow] forKey:USEDISPWIN];
 	[[NSUserDefaults standardUserDefaults] synchronize];
+    [self saveRules];
+}
+
+
+- (IBAction) colorPicked: (id) sender
+{
+    NSLog(@"color picked"); 
+}
+
+- (IBAction) colorEdit: (id) sender
+{
+    NSColorPanel *cp = [NSColorPanel sharedColorPanel];
+    [cp setAction:@selector(colorPicked:)];
+    [cp setTarget:self];
+    [cp makeKeyAndOrderFront:self];
 }
 
 -(void) loadView
@@ -243,7 +288,20 @@
 	[useDisplayWindowButton setIntValue:useDisplayWindow];
 	[displayWindowField setEnabled:useDisplayWindow];
 	[displayWindowStepper setEnabled:useDisplayWindow];
-	
+    NSTableColumn *col = [rulesTable.tableColumns objectAtIndex:0];
+    ColorWellCell *cw = [ColorWellCell new];
+    [cw setAction: @selector(colorEdit:)];
+    [cw setTarget:self];
+    [cw setEnabled:YES];
+    [col setDataCell:[ColorWellCell new]];
+    NSTableColumn *orig = [rulesTable.tableColumns objectAtIndex:4];
+    VariableTableColumn *vtc = [[VariableTableColumn alloc]initWithColumn:orig];
+    [vtc setTable:rulesTable];
+    [vtc setKeyColumn:[rulesTable.tableColumns objectAtIndex:2]];
+    [vtc setDataSource:rulesData];
+    [vtc setWidth:159.0];
+    [rulesTable removeTableColumn:orig];
+    [rulesTable addTableColumn:vtc];
 }
 
 - (IBAction) clickUseDisplayWindow: (id) sender
@@ -251,6 +309,20 @@
 	useDisplayWindow = useDisplayWindowButton.intValue;
 	[displayWindowField setEnabled:useDisplayWindow];
 	[displayWindowStepper setEnabled:useDisplayWindow];	
+}
+
+- (void) loadRules
+{
+    NSArray *colors = [Utility loadColorsForKey:[super myKeyForKey:RULE_COLORS]];
+    NSArray *predicates = [super loadDefaultForKey:RULE_PREDS];
+    NSArray *types = [super loadDefaultForKey:RULE_TYPES];
+    NSArray *compares = [super loadDefaultForKey:RULE_COMPARES];
+    NSArray *fields = [super loadDefaultForKey:RULE_FIELDS];
+    
+    rules = [[NSMutableArray alloc] initWithArray: [FilterRule loadFiltersWithTypes:types fields:fields compares:compares predicates:predicates colors:colors]];
+
+	//[NSMutableArray arrayWithArray: 
+	// [FilterRule loadFiltersWithTypes:types fields:fields compares:compares predicates:predicates colors:colors]];
 }
 
 -(void) loadDefaults
@@ -261,7 +333,7 @@
 	refreshInterval = ((NSNumber*)[super loadDefaultForKey:REFRESH]).doubleValue/60;
 	displayWindow = ((NSNumber*)[super loadDefaultForKey:DISPLAYWIN]).doubleValue/ (60 * 60);
 	useDisplayWindow = ((NSNumber*)[super loadDefaultForKey:USEDISPWIN	]).intValue;
-	lastCheck = (NSDate*)[super loadDefaultForKey:LASTCHECK];
+    [self loadRules];
 }
 
 -(void) clearDefaults{
@@ -271,6 +343,12 @@
 	[super clearDefaultValue:nil forKey:DISPLAYWIN];
 	[super clearDefaultValue:nil forKey:REFRESH ];
 	[super clearDefaultValue:nil forKey:USEDISPWIN];
+	[super clearDefaultValue:nil forKey:LASTCHECK];
+	[super clearDefaultValue:nil forKey:RULE_PREDS];
+	[super clearDefaultValue:nil forKey:RULE_COLORS];
+	[super clearDefaultValue:nil forKey:RULE_COMPARES];
+	[super clearDefaultValue:nil forKey:RULE_TYPES];
+	[super clearDefaultValue:nil forKey:RULE_FIELDS];
 	[[NSUserDefaults standardUserDefaults] synchronize];	
 }
 
@@ -279,18 +357,7 @@
 	NSDictionary *dict = (NSDictionary*) param;
 	NSString *msgId = [dict objectForKey:@"id"];
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	unreadMail = [NSMutableArray new];
-	NSDate *minTime = [NSDate distantPast];
-	if (useDisplayWindow){
-		//	NSLog(@"Now = %@", [NSDate date]);
-		minTime = [[NSDate date] dateByAddingTimeInterval:-(displayWindow * 60 * 60)];
-		//	NSLog(@"Disp window = %@", minTime);
-	}
-	// the window may be longer than the default window if we haven't checked the inbox in a while
-	if (lastCheck){
-		minTime = [lastCheck earlierDate:minTime];
-		//	NSLog(@"Adjusted Disp window = %@", minTime);
-	}
+
 	//	NSLog(@"will get all email later than %@", minTime);
 	MailApplication *mailApp = [SBApplication applicationWithBundleIdentifier:@"com.apple.mail"];
 	if (mailApp) {
@@ -313,10 +380,7 @@
 			}
 		}
 	}
-	[[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:LASTCHECK];
-	[[NSUserDefaults standardUserDefaults] synchronize];
-	NSNotification *msg = [NSNotification notificationWithName:@"com.workplayaway.fetchDone" object:nil];
-	[[NSNotificationCenter defaultCenter] postNotification:msg];
+
 	[pool drain];	
 }
 -(void) handleClick: (NSDictionary*) ctx
@@ -328,5 +392,98 @@
 
 }
 
+- (void) saveRules
+{
+    NSMutableArray *aryFields = [NSMutableArray arrayWithCapacity:[rules count]];
+    NSMutableArray *aryTypes = [NSMutableArray arrayWithCapacity:[rules count]];
+    NSMutableArray *aryColors = [NSMutableArray arrayWithCapacity:[rules count]];
+    NSMutableArray *aryPredicates = [NSMutableArray arrayWithCapacity:[rules count]];
+    NSMutableArray *aryCompares = [NSMutableArray arrayWithCapacity:[rules count]];
+    for (FilterRule *rule in rules){
+        [aryFields addObject:[NSNumber numberWithInt:rule.fieldType]];
+        [aryCompares addObject:[NSNumber numberWithInt:rule.compareType]];
+        [aryTypes addObject:[NSNumber numberWithInt:rule.ruleType]];
+        [aryPredicates addObject:rule.predicate];
+        NSLog(@"predicate = %@", rule.predicate);
+        [aryColors addObject:[NSArchiver archivedDataWithRootObject:rule.color]];
+    }
+    NSLog(@"saving %d rules", [rules count]);
+    [super saveDefaultValue:aryFields forKey:RULE_FIELDS];
+    [super saveDefaultValue:aryColors forKey:RULE_COLORS];
+    [super saveDefaultValue:aryCompares forKey:RULE_COMPARES];
+    [super saveDefaultValue:aryPredicates forKey:RULE_PREDS];
+    [super saveDefaultValue:aryTypes forKey:RULE_TYPES];
+}
 
+- (void) clearRules
+{
+
+    [super clearDefaultValue:nil forKey:RULE_COLORS];
+    [super clearDefaultValue:nil forKey:RULE_TYPES];
+    [super clearDefaultValue:nil forKey:RULE_COMPARES];
+    [super clearDefaultValue:nil forKey:RULE_PREDS];
+    [super clearDefaultValue:nil forKey:RULE_FIELDS];
+}
+
+- (IBAction) clickAddRule: (id) sender
+{
+	FilterRule *rule = [FilterRule new];
+	rule.predicate = @"";
+	if (!rules){
+		rules = [NSMutableArray new];
+		rulesData.allRules = rules;
+	}
+	[rules addObject:rule];
+	[rulesTable noteNumberOfRowsChanged];
+}
+
+- (IBAction) clickRemoveRule: (id) sender
+{
+	NSInteger idx = [rulesTable selectedRow];
+	if (idx < 0){
+		return;
+	}
+	[rules removeObjectAtIndex:idx];
+	[rulesTable noteNumberOfRowsChanged];
+}
+
+- (IBAction) typeChanged: (id) sender
+{
+    NSTableView* tView = (NSTableView*)sender;
+    NSInteger rowIdx = [tView selectedRow];
+    NSPopUpButtonCell *pop = [tView selectedCell];
+    int idx = [pop indexOfSelectedItem];
+    FilterRule *rule = [rules objectAtIndex:rowIdx];
+    rule.ruleType = idx;
+    
+	//   NSLog(@"cell idx  = %d", idx);
+	//   NSLog(@"cell title = %@", [pop titleOfSelectedItem]);
+}
+- (IBAction) fieldChanged: (id) sender
+{
+	NSTableView* tView = (NSTableView*)sender;
+	NSInteger rowIdx = [tView selectedRow];
+	NSPopUpButtonCell *pop = [tView selectedCell];
+	int idx = [pop indexOfSelectedItem];
+	FilterRule *rule = [rules objectAtIndex:rowIdx];
+	rule.fieldType = idx;
+}
+- (IBAction) compareChanged: (id) sender
+{
+	NSTableView* tView = (NSTableView*)sender;
+	NSInteger rowIdx = [tView selectedRow];
+	NSPopUpButtonCell *pop = [tView selectedCell];
+	int idx = [pop indexOfSelectedItem];
+	FilterRule *rule = [rules objectAtIndex:rowIdx];
+	rule.compareType = idx;
+}
+
+-(IBAction) predicateChanged: (id) sender
+{
+	NSTableView* tView = (NSTableView*)sender;
+	NSInteger rowIdx = [tView selectedRow];
+	NSTextFieldCell *cell = [tView selectedCell];
+	FilterRule *rule = [rules objectAtIndex:rowIdx];
+	rule.predicate = [cell stringValue];
+}
 @end

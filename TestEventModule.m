@@ -47,7 +47,7 @@
 }
 
 
--(void) refreshData: (id<AlertHandler>) handler
+-(void) refresh: (id<AlertHandler>) handler isSummary: (BOOL) summary
 {
 	NSDictionary *dict1 = [NSDictionary dictionaryWithObjectsAndKeys:
 						  @"in the drawing room",	@"location",
@@ -89,12 +89,6 @@
 	}
 	[BaseInstance sendDone: handler module: name];
 }
-
-- (void) refresh: (id<AlertHandler>) handler;
-{
-	[self refreshData: handler];
-}
-
 
 - (void) handleClick:(NSDictionary *)ctx
 {

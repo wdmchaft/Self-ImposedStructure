@@ -54,7 +54,7 @@
 }
 
 
--(void) refreshData: (<AlertHandler>) handler
+-(void) refreshData: (id<AlertHandler>) handler 
 {
 	NSDate *now = [NSDate date];
 	NSDictionary *dict1 = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -106,7 +106,8 @@
     NSArray *msgs = [NSArray arrayWithObjects:nil];
 	NSMutableArray *sendItems = [NSMutableArray new];
 	for (NSDictionary *item in msgs){
-		FilterResult res = [FilterRule processFilters:rules forMessage: item];
+        NSColor *color;
+		FilterResult res = [FilterRule processFilters:rules forMessage: item color: &color];
 		if (res != RESULT_IGNORE) {
 			[sendItems addObject:item];
 		}
@@ -115,7 +116,8 @@
 	for (int i = 0; i < [sendItems count];i++){
 		NSDictionary *item = [sendItems objectAtIndex:i];
 		Note *alert = [[Note alloc]init];
-		FilterResult res = [FilterRule processFilters:rules forMessage: item];
+        NSColor *color;
+		FilterResult res = [FilterRule processFilters:rules forMessage: item color:&color];
 		alert.moduleName = name;
 		alert.title =[item objectForKey:@"title"];
 		alert.message=[item objectForKey:@"summary"];
@@ -128,7 +130,7 @@
 	[BaseInstance sendDone: handler module: name];	
 }
 
--(void) refresh: (<AlertHandler>) handler
+-(void) refresh: (id<AlertHandler>) handler isSummary: (BOOL) summary
 {
 	[self refreshData:handler];
 }
