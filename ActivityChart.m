@@ -116,7 +116,7 @@
 
 - (unsigned int)numberOfSlicesInPieChartView:(SMPieChartView *)inPieChartView
 {
-    NSLog(@"%lu slices", [seriesData count]);
+    NSLog(@"%u slices", [seriesData count]);
     return [seriesData count];
 }
 

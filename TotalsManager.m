@@ -24,11 +24,9 @@
 - (void) initFromRecord
 {
 	WPADelegate *del = (WPADelegate*)[NSApplication sharedApplication].delegate;
-	NSTimeInterval rollAdjust = - (60 * 60 * rolloverHour);
-	NSDate *effectiveDate = [[dailyRolloverTimer fireDate] dateByAddingTimeInterval:rollAdjust];
 	NSTimeInterval work = 0;
 	NSTimeInterval free = 0;
-	[del findSummaryForDate:effectiveDate work:&work free:&free];
+	[del findSummaryForDate:timeStampDate work:&work free:&free];
 	if (free > 0){
 		freeToday += free;
 	}

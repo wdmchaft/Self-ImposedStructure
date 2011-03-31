@@ -306,7 +306,8 @@
 		currentSummary = [NSEntityDescription
 						  insertNewObjectForEntityForName:@"DailySummary"
 						  inManagedObjectContext:moc];
-		[currentSummary setValue: inDate forKey: @"recordDate"];
+	    NSLog(@"savingSummary for Date: %f",[inDate timeIntervalSince1970]);
+        [currentSummary setValue: inDate forKey: @"recordDate"];
 		
 	}
 	

@@ -248,6 +248,7 @@
 
 - (NSManagedObject*) findSummaryForDate:(NSDate *)dateIn
 {
+    NSLog(@"findingSummary for Date: %f",[dateIn timeIntervalSince1970]);
 	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
 	NSEntityDescription *entity =
     [NSEntityDescription entityForName:@"DailySummary"
@@ -287,6 +288,8 @@
 
 - (void) saveSummaryForDate: (NSDate*) date goal: (int) goalTime work: (int) workTime free: (int) freeTime
 {
+    NSLog(@"savingSummary for Date: %f",[date timeIntervalSince1970]);
+
 	// new work record
 	NSManagedObjectContext *moc = [self managedObjectContext];
 	BOOL needsNewRec = NO;
