@@ -54,5 +54,5 @@
 - (void) saveSummary: (SummaryRecord*) rec;
 
 - (SummaryRecord*) getSummaryRecord;
-
+- (void) doFlush;
 @end

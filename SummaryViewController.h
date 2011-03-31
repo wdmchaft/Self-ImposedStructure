@@ -10,8 +10,10 @@
 #import "Reporter.h"
 #import <BGHUDAppKit/BGHUDAppKit.h>
 #import "SummaryHUDCallback.h"
+#import "SVRefHandler.h"
 
-@interface SummaryViewController : NSViewController <NSTableViewDataSource, AlertHandler> {
+
+@interface SummaryViewController : NSViewController <NSTableViewDataSource, AlertHandler, SVRefCtrl> {
 	BGHUDTableView *table;
 	NSProgressIndicator *prog;
 	id<Reporter> reporter;
@@ -21,9 +23,11 @@
 	int maxLines; 
 	int width;
 	id<SummaryHUDCallback> caller;
+    SVRefHandler *refreshHandler;
 }
 
 @property (nonatomic,retain) IBOutlet BGHUDTableView *table; 
+@property (nonatomic,retain) SVRefHandler *refreshHandler; 
 @property (nonatomic,retain) IBOutlet NSProgressIndicator *prog; 
 @property (nonatomic,retain) id<Reporter> reporter; 
 @property (nonatomic,retain) NSMutableArray *data; 

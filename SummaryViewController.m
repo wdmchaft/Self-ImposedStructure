@@ -23,6 +23,7 @@
 @synthesize actualLines; 
 @synthesize caller;
 @synthesize width;
+@synthesize refreshHandler;
 
 -(void) awakeFromNib
 {
@@ -71,8 +72,8 @@
 - (void) refresh
 {
 	NSLog(@"refresh!");
-	[data removeAllObjects];
-    [table noteNumberOfRowsChanged];
+//	[data removeAllObjects];
+//    [table noteNumberOfRowsChanged];
 	[prog setHidden:NO];
 	[prog startAnimation:self];
 	[reporter refresh: self isSummary:YES];
@@ -91,6 +92,7 @@
 		[prog setHidden:YES];
 		[prog stopAnimation:self];
 		actualLines = [data count];
+        [table reloadData];
 		[caller viewSized];
 		
 	}
@@ -99,7 +101,7 @@
 			data = [NSMutableArray new];
 		}
 		[data addObject: alert.params];
-		[table noteNumberOfRowsChanged];
+	//	[table noteNumberOfRowsChanged];
 	}
 }
 
@@ -112,6 +114,7 @@
 {
 	int row = [sender selectedRow];	
 	NSDictionary *params = [data objectAtIndex:row];
+  //  [data removeAllObjects];
 	[prog setHidden:NO];
 	[prog startAnimation:self];
 	[NSTimer scheduledTimerWithTimeInterval:0
@@ -132,10 +135,14 @@
 	[prog stopAnimation:self];
 	[prog setHidden:YES];
 	
-	//[data removeAllObjects];
 	//[reporter refresh:self isSummary:YES];
-	[table deselectAll:self];
-    [self performSelector:@selector(refresh) withObject:nil afterDelay:0.1]; 
+//	[table deselectAll:self];
+    if (!refreshHandler){
+        refreshHandler = [SVRefHandler new];
+        refreshHandler.ref = self;
+    }
+    [reporter refresh:refreshHandler isSummary:YES];
+ //   [self performSelector:@selector(refresh) withObject:nil afterDelay:0.1]; 
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
@@ -174,6 +181,8 @@
 	int lines = (actualLines > maxLines) ? maxLines :actualLines;
     int rowHeight = [table rowHeight];
 	return lines * ([table rowHeight] + 3);
+}
+- (void) endRefresh {
 }
 
 @end
@@ -274,6 +283,11 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 	NSDictionary *ctx = [data objectAtIndex:row];	
 	[reporter handleClick:ctx];
 }
+
+- (void) endRefresh {
+    data = refreshHandler.data;
+    [table reloadData];
+}
 @end
 
 @implementation SummaryMailViewController
@@ -365,6 +379,5 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 	[col1 setDataCell:cell];
 	[cell release];
 }
-
 
 @end

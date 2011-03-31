@@ -7,6 +7,8 @@
 //
 #import "Utility.h"
 #import "GoalChart.h"
+#import "WPADelegate.h"
+
 @interface GoalRecord : NSObject
 {
 	double work;
@@ -61,7 +63,8 @@
 {
 	[busy setHidden:NO];
 	[busy startAnimation:self];
-	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+    WPADelegate *del = (WPADelegate*)[[NSApplication sharedApplication]delegate];
+    [del.ioHandler performSelector:@selector(doFlush) onThread:del.ioThread withObject:nil waitUntilDone:YES];	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
 	NSEntityDescription *entity =
     [NSEntityDescription entityForName:@"DailySummary"
 				inManagedObjectContext:moc];

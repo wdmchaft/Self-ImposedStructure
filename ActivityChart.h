@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <SM2DGraphView/SMPieChartView.h>
 
-@interface ActivityChart : NSObject {
+@interface ActivityChart : NSObject <NSTableViewDataSource> {
     @private
     NSMutableArray *seriesData;
     SMPieChartView *chart;

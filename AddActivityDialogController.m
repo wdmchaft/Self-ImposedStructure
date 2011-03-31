@@ -61,10 +61,7 @@
 	}
 	[ctx saveTask];
 	
-	// we changed jobs so write a new tracking record
-	if (ctx.currentState == WPASTATE_THINKING || ctx.currentState == WPASTATE_THINKTIME){
-		[WriteHandler sendNewRecord:ctx.currentState];
-	}
+
 	[ctx.growlManager growlThis:[NSString stringWithFormat: @"New Activity: %@",ctx.currentTask.name]];
 
 	[super.window close];

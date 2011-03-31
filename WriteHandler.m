@@ -31,6 +31,10 @@
     [defaults registerDefaults:appDefaults];
 }
 
+- (id) initWithCoordinator: (NSPersistentStoreCoordinator*) coordinator
+{
+    persistentStoreCoordinator = coordinator;
+}
 /*****************************************************************************************
  Support for saving data follows:
  *****************************************************************************************/
@@ -383,6 +387,10 @@
 
 - (void) saveActivityForDate:(NSDate*) inDate desc: (NSString*) taskName source: (NSString*) sourceName project: (NSString*) projectName addVal: (int) increment
 {
+    if (!taskName){
+        NSLog(@"not saving task data");
+        return;
+    };
     NSError *err = nil;
     NSManagedObject *projObj = nil;
     NSManagedObject *srcObj = nil;
@@ -502,74 +510,11 @@
 	NSDictionary *d = msg.userInfo;
 	NSDate *inDate = (NSDate*)[d objectForKey:@"date"];
 	int increment = ((NSNumber*)[d objectForKey:@"increment"]).intValue;
-	NSString *sourceName = ((NSString*)[d objectForKey:@"source"]);
-	NSString *activityName = ((NSString*)[d objectForKey:@"activity"]);
-	NSString *projectName = ((NSString*)[d objectForKey:@"project"]);
-    [self saveActivityForDate:inDate desc: activityName source:sourceName project:projectName addVal:increment];
+    TaskInfo *info = (TaskInfo*)[d objectForKey:@"taskInfo"];
+
+    [self saveActivityForDate:inDate desc: info.name source:info.source.name project:info.project addVal:increment];
 }
 
-- (void) newRecord:(NSNotification*) msg
-{
-    
-	NSDictionary *dict = [msg userInfo];
-	Context *ctx = [Context sharedContext];
-	if (ctx.currentActivity != nil){
-		NSDate *start = [ctx.currentActivity valueForKey:@"startTime"];
-		NSDate *now = [dict objectForKey:@"date"];
-		NSTimeInterval interval = [now timeIntervalSinceDate:start];
-		[ctx.currentActivity setValue:[NSNumber numberWithInt:interval] forKey:@"interval"];
-		[ctx.currentActivity setValue: now forKey:@"endTime"];
-		NSLog(@"Done with %@ interval: %f", [self dumpMObj:ctx.currentActivity], interval);
-	} else {
-		NSLog(@"No Current Activity");
-	}
-	// new work record
-	NSManagedObjectContext *moc = [self managedObjectContext];
-	NSManagedObject *task = nil;
-	NSManagedObject *source = nil;
-	NSString *newTask = ctx.currentTask == nil ? @"[No Task]" : ctx.currentTask.name;		
-	NSString *newSource = ctx.currentTask == nil || ctx.currentTask.source == nil ? @"[Adhoc]" : [ctx.currentTask.source description];		
-	WPAStateType state = ((NSNumber*)[dict objectForKey:@"state"]).intValue;
-	if (state == WPASTATE_THINKING || state == WPASTATE_THINKTIME){
-		source = [self findSource: newSource inContext: moc];
-		if (source == nil){
-			source = [NSEntityDescription
-					  insertNewObjectForEntityForName:@"Source"
-					  inManagedObjectContext:moc];
-			[source setValue:[NSDate date] forKey: @"createTime"];
-			[source setValue:[newSource description] forKey:@"name"];
-		}
-		
-		task = [self findTask: newTask inContext: moc];
-		if (task == nil){
-			task = [NSEntityDescription
-					insertNewObjectForEntityForName:@"Task"
-					inManagedObjectContext:moc];
-			[task setValue:[NSDate date] forKey: @"createTime"];
-			[task setValue:newTask forKey: @"name"];
-			if (source != nil) {
-				[task setValue:source forKey:@"source"];
-			}
-			
-		}
-	}
-	NSString *entityName = [self entityNameForState:state];
-	if (entityName != nil) {
-		NSManagedObject *newActivity = [NSEntityDescription
-										insertNewObjectForEntityForName:entityName
-										inManagedObjectContext:moc];
-		if ([self hasTask:newActivity] && task != nil){
-			[newActivity setValue:task forKey:@"task"];
-		}
-		[newActivity setValue: [NSDate date] forKey:@"startTime"];	
-		[newActivity setValue: @"" forKey:@"notes"];
-		ctx.currentActivity = newActivity;
-		NSLog(@"Starting %@", [self dumpMObj:ctx.currentActivity]);
-	}
-	else {
-		ctx.currentActivity = nil;
-	}
-}
 
 /**
  Returns the persistent store coordinator for the application.  This 
@@ -582,38 +527,41 @@
 	
     if (persistentStoreCoordinator) return persistentStoreCoordinator;
 	
-    NSManagedObjectModel *mom = [self managedObjectModel];
-    if (!mom) {
-        NSAssert(NO, @"Managed object model is nil");
-        NSLog(@"%@:%s No model to generate a store from", [self class], _cmd);
-        return nil;
-    }
-	
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *applicationSupportDirectory = [self applicationSupportDirectory];
-    
-    if ( ![fileManager fileExistsAtPath:applicationSupportDirectory isDirectory:NULL] ) {
-		if (![fileManager createDirectoryAtPath:applicationSupportDirectory withIntermediateDirectories:NO attributes:nil error:&error]) {
-            NSAssert(NO, ([NSString stringWithFormat:@"Failed to create App Support directory %@ : %@", applicationSupportDirectory,error]));
-            NSLog(@"Error creating application support directory at %@ : %@",applicationSupportDirectory,error);
-            return nil;
-		}
-    }
-    
-    NSURL *url = [NSURL fileURLWithPath: [applicationSupportDirectory stringByAppendingPathComponent: @"storedata"]];
-    persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: mom];
-    if (![persistentStoreCoordinator addPersistentStoreWithType:NSXMLStoreType 
-												  configuration:nil 
-															URL:url 
-														options:nil 
-														  error:&error]){
-        [[NSApplication sharedApplication] presentError:error];
-        [persistentStoreCoordinator release], persistentStoreCoordinator = nil;
-        return nil;
-    }    
-	
+    persistentStoreCoordinator =
+    [((WPADelegate*)[[NSApplication sharedApplication] delegate]) persistentStoreCoordinator];
     return persistentStoreCoordinator;
 }
+//    NSManagedObjectModel *mom = [self managedObjectModel];
+//    if (!mom) {
+//        NSAssert(NO, @"Managed object model is nil");
+//        NSLog(@"%@:%s No model to generate a store from", [self class], _cmd);
+//        return nil;
+//    }
+//	
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+//    NSString *applicationSupportDirectory = [self applicationSupportDirectory];
+//    
+//    if ( ![fileManager fileExistsAtPath:applicationSupportDirectory isDirectory:NULL] ) {
+//		if (![fileManager createDirectoryAtPath:applicationSupportDirectory withIntermediateDirectories:NO attributes:nil error:&error]) {
+//            NSAssert(NO, ([NSString stringWithFormat:@"Failed to create App Support directory %@ : %@", applicationSupportDirectory,error]));
+//            NSLog(@"Error creating application support directory at %@ : %@",applicationSupportDirectory,error);
+//            return nil;
+//		}
+//    }
+//    
+//    NSURL *url = [NSURL fileURLWithPath: [applicationSupportDirectory stringByAppendingPathComponent: @"storedata"]];
+//    persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: mom];
+//    if (![persistentStoreCoordinator addPersistentStoreWithType:NSXMLStoreType 
+//												  configuration:nil 
+//															URL:url 
+//														options:nil 
+//														  error:&error]){
+//        [[NSApplication sharedApplication] presentError:error];
+//        [persistentStoreCoordinator release], persistentStoreCoordinator = nil;
+//        return nil;
+//    }    
+//	
+//    return persistentStoreCoordinator;
 
 /**
  Returns the managed object context for the application (which is already
@@ -698,7 +646,7 @@
     reply = NSTerminateNow;
 }
 
--(void) doFlush: (NSTimer*) timer
+- (void) doFlush
 {
 	NSError *err = nil;
 	[[self managedObjectContext] save: &err];
@@ -707,16 +655,11 @@
 	}
 }
 
-+ (void) sendNewRecord: (WPAStateType) state
+-(void) doFlush: (NSTimer*) timer
 {
-    WPADelegate *del = (WPADelegate*)[[NSApplication sharedApplication] delegate];
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"newrecord" 
-														object:del.ioHandler 
-													  userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
-																[NSDate date],@"date",
-																[NSNumber numberWithInt:state], @"state",
-																nil]]; 
+	[self doFlush];
 }
+
 
 + (void) sendTotalsForDate: (NSDate*) date goal: (int) goalTime work: (int) workTime free: (int) freeTime
 {
@@ -740,9 +683,8 @@
 														object: del.ioHandler
 													  userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
 																date,@"date",
-																taskInfo.project, @"project",
-																taskInfo.name, @"activity",
-																taskInfo.source.name,  @"source",
+																taskInfo, @"taskInfo",
+                                
 																[NSNumber numberWithInt:incr], @"increment",
 																nil]]; 
 }
@@ -804,11 +746,6 @@
 	[runLoop addTimer:myTimer forMode:NSDefaultRunLoopMode];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self 
-											 selector:@selector(newRecord:) 
-												 name:@"newrecord" 
-											   object:nil];
-	
-	[[NSNotificationCenter defaultCenter] addObserver:self 
 											 selector:@selector(saveTotalsForDate:) 
 												 name:@"totals" 
 											   object:nil];
@@ -817,6 +754,7 @@
 											 selector:@selector(saveActivityForDate:) 
 												 name:@"activity" 
 											   object:nil];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self 
 											 selector:@selector(saveSummaryRecord:) 
 												 name:@"summary" 

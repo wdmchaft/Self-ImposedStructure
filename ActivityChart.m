@@ -7,6 +7,8 @@
 //
 
 #import "ActivityChart.h"
+#import "WriteHandler.h"
+#import "WPADelegate.h"
 
 @interface SliceData : NSObject {
 @private
@@ -58,8 +60,11 @@
 
 - (void) runQueryStarting: (NSDate*) start ending: (NSDate*) end withContext: (NSManagedObjectContext *) moc
 {
+    
 	[busy setHidden:NO];
 	[busy startAnimation:self];
+    WPADelegate *del = (WPADelegate*)[[NSApplication sharedApplication]delegate];
+    [del.ioHandler performSelector:@selector(doFlush) onThread:del.ioThread withObject:nil waitUntilDone:YES];
 	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
 	NSEntityDescription *entity =
     [NSEntityDescription entityForName:@"DailyActivity"
@@ -149,7 +154,7 @@
     CGFloat ratio = ((CGFloat)inSliceIndex / [seriesData count]);
     
     CGFloat hue = [self calcHueForRatio: ratio];
-       tempColor = [NSColor colorWithDeviceHue:hue saturation:0.66 brightness:0.80 alpha:1];
+    tempColor = [NSColor colorWithDeviceHue:hue saturation:0.66 brightness:0.80 alpha:1];
 	
     // Make it transparent.
 //    tempColor = [ tempColor colorWithAlphaComponent:0.4 ];
@@ -179,6 +184,7 @@
 
 - (void)pieChartView:(SMPieChartView *)inPieChartView didClickPoint:(NSPoint)inPoint
 {
+    int slice = [inPieChartView convertToSliceFromPoint:inPoint fromView:inPieChartView];
     
 }
 
@@ -196,6 +202,38 @@
 	//    if ( inPieChartView == _sm_hardDrive )
 	//        NSLog( @"We're done drawing the hard drive usage chart." );
 }
+
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
+{
+	NSInteger ret = [seriesData count];
+    NSLog(@"rows = %d", ret);
+    
+	return ret;
+}
+
+- (id)tableView:(NSTableView *)tableView 
+objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+{
+	id theValue;
+	NSParameterAssert(seriesData != nil);
+	NSParameterAssert(row >= 0 && row < [seriesData count]);
+	
+	NSString *colName = [tableColumn identifier];
+    
+	if ([colName isEqualToString:@"SWATCH"]){
+        CGFloat ratio = ((CGFloat)row / [seriesData count]);
+        CGFloat hue = [self calcHueForRatio: ratio];
+        theValue = [NSColor colorWithDeviceHue:hue saturation:0.66 brightness:0.80 alpha:1];
+
+	} else if ([colName isEqualToString:@"INFO"]){
+        SliceData *data = (SliceData*)[seriesData objectAtIndex: row ];
+        NSLog(@"slice %d name: %@",row,[data.keys objectForKey:@"task"]);
+        theValue = [data.keys objectForKey:@"task"];	
+    }
+    NSLog(@"returning %@", theValue);
+    return theValue;
+}
+
 
 
 @end

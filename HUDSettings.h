@@ -21,12 +21,12 @@
 @end
 
 @interface HUDSettings : NSObject <NSTableViewDataSource> {
-	NSMutableArray *heights;
+	NSMutableArray *lines;
 	NSMutableArray *enables;
 	NSMutableArray *labels;
 	NSMutableArray *instances;
 }
-@property (nonatomic, retain) NSMutableArray *heights;
+@property (nonatomic, retain) NSMutableArray *lines;
 @property (nonatomic, retain) NSMutableArray *enables;
 @property (nonatomic, retain) NSMutableArray *labels;
 @property (nonatomic, retain) NSMutableArray *instances;

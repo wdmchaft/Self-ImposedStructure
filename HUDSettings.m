@@ -31,7 +31,7 @@
 
 
 @implementation HUDSettings
-@synthesize heights;
+@synthesize lines;
 @synthesize enables;
 @synthesize labels;
 @synthesize instances;
@@ -44,7 +44,7 @@
 		instances = [NSMutableArray new];
 		labels =	[NSMutableArray new];
 		enables =	[NSMutableArray new];
-		heights =	[NSMutableArray new];
+		lines =	[NSMutableArray new];
 	}
 	return self;
 }
@@ -56,8 +56,8 @@
 -(void) addInstance: (id<Reporter>) inst 
 {
 	[instances addObject: inst ];
-	[heights addObject: [NSNumber numberWithInt:0]];
-	[enables addObject:[NSNumber numberWithBool:NO]];
+	[lines addObject: [NSNumber numberWithInt:3]];
+	[enables addObject:[NSNumber numberWithBool:YES]];
 	[labels addObject:inst.summaryTitle];
 }
 
@@ -67,7 +67,7 @@
 			enabled: (BOOL) on
 {
 	[instances addObject: inst ];
-	[heights addObject: [NSNumber numberWithInt:hgt]];
+	[lines addObject: [NSNumber numberWithInt:hgt]];
 	[enables addObject:[NSNumber numberWithBool:on]];
 	[labels addObject:lbl];
 }
@@ -79,7 +79,7 @@
 			  index: (int) idx
 {
 	[instances insertObject: inst  atIndex:idx];
-	[heights insertObject: [NSNumber numberWithInt:hgt] atIndex:idx];
+	[lines insertObject: [NSNumber numberWithInt:hgt] atIndex:idx];
 	[enables insertObject:[NSNumber numberWithBool:on] atIndex:idx];
 	[labels insertObject:[lbl copy] atIndex:idx];
 }
@@ -87,7 +87,7 @@
 - (HUDSetting*) settingAtIndex: (int) index
 {
 	HUDSetting* ret = [[HUDSetting alloc] initWithReporter:[instances objectAtIndex:index]
-													height:[heights objectAtIndex:index]
+													height:[lines objectAtIndex:index]
 												   enabled:[enables objectAtIndex:index]
 													 label:[labels objectAtIndex:index]];
 	return ret;
@@ -110,7 +110,7 @@
 	[instances removeObjectAtIndex:idx];
 	[labels removeObjectAtIndex:idx];
 	[enables removeObjectAtIndex:idx];
-	[heights removeObjectAtIndex:idx];
+	[lines removeObjectAtIndex:idx];
 }
 
 -(void) disableInstance: (id<Reporter>) inst  
@@ -123,7 +123,7 @@
 {
 	[instances removeAllObjects];
 	[labels removeAllObjects];
-	[heights removeAllObjects];
+	[lines removeAllObjects];
 	[enables removeAllObjects];
 }
 
@@ -141,7 +141,7 @@
 	}
 	labels = [ud objectForKey:@"hudLabels"];
 	enables = [ud objectForKey:@"hudEnables"];
-	heights = [ud objectForKey:@"hudHeights"];
+	lines = [ud objectForKey:@"hudHeights"];
 }
 
 - (void) saveToDefaults
@@ -159,7 +159,7 @@
 	}
 	[ud setObject: names forKey:@"hudInstances"];
 	[ud setObject:labels forKey:@"hudLabels"];
-	[ud setObject:heights forKey:@"hudHeights"];
+	[ud setObject:lines forKey:@"hudHeights"];
 	[ud setObject:enables forKey:@"hudEnables"];
 }
 /*****
@@ -184,7 +184,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 		id<Reporter> rpt  = [instances objectAtIndex:row];
 		theValue = rpt.name;
 	} else if ([colName isEqualToString:@"HGT"]){
-		NSNumber *hgt  = [heights objectAtIndex:row];
+		NSNumber *hgt  = [lines objectAtIndex:row];
 		theValue = hgt;
 	} else if ([colName isEqualToString:@"SHOW"]){
 		NSNumber *on  = [enables objectAtIndex:row];
@@ -205,7 +205,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 	NSString *colName = [col identifier];
 	
 	if ([colName isEqualToString:@"HGT"]){
-		[heights replaceObjectAtIndex:row withObject:anObject];
+		[lines replaceObjectAtIndex:row withObject:anObject];
 	} else if ([colName isEqualToString:@"SHOW"]){
 		id<Reporter> rpt = [instances objectAtIndex:row];
 		if (rpt.enabled == NO){
@@ -333,12 +333,12 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 		for(int i = 0;i < [temp count];i++){
 			[enables replaceObjectAtIndex:i withObject:[temp objectAtIndex:i]];
 		}
-		temp = [self moveItemsInArray: heights 
+		temp = [self moveItemsInArray: lines 
 								  moveOp:  op 
 								 indexes:  rowIndexes
 								location:  row];
 		for(int i = 0;i < [temp count];i++){
-			[heights replaceObjectAtIndex:i withObject:[temp objectAtIndex:i]];
+			[lines replaceObjectAtIndex:i withObject:[temp objectAtIndex:i]];
 		}	
 		[aTableView reloadData];
 		return YES;

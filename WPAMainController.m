@@ -18,14 +18,20 @@
 #import "MinsToSecsTransformer.h"
 #import "SecsToMinsTransformer.h"
 #import "WriteHandler.h"
+#import "GoalHoursToAverageXForm.h"
 
 @implementation WPAMainController
 @synthesize  startButton, controls, taskComboBox, refreshButton, statusItem, statusMenu, statusTimer, myWindow;
 @synthesize hudWindow, refreshManager, thinkTimer, siView, totalsManager, prefsWindow, statsWindow, addActivityWindow;
 
 + (void)initialize{
+	GoalHoursToAverageXForm *ghtav;
+    ghtav = [GoalHoursToAverageXForm new];
+	// register it with the name that we refer to it with
+	[NSValueTransformer setValueTransformer:ghtav
+									forName:@"GoalHoursToAverageXForm"];	
 	
-	MinsToSecsTransformer *mToSTransformer;
+    MinsToSecsTransformer *mToSTransformer;
 	
 	// create an autoreleased instance of our value transformer
 	mToSTransformer = [[[MinsToSecsTransformer alloc] init]
