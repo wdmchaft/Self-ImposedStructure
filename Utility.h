@@ -33,4 +33,5 @@
 + (NSColor*) colorFromArch: (NSData*) data;
 
 + (NSArray*) loadColorsForKey: (NSString*) key;
++(NSString*) formatInterval: (NSTimeInterval) timeInt;
 @end

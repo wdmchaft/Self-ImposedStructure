@@ -196,5 +196,12 @@
 	return temp;
 }
 
++ (NSString*) formatInterval: (NSTimeInterval) timeInt
+{
+    int sec = fmod(timeInt, 60.0);
+    int min = timeInt / 60;
+    int hrs = min / 60;
+    return [NSString stringWithFormat:@"%.2d:%.2d:%.2d", hrs,min,sec];
+}
 
 @end

@@ -12,6 +12,8 @@
 #import "math.h"
 #import "GoalChart.h"
 #import "SummaryStatusViewController.h"
+#import "ColorWellCell.h"
+#import "Utility.h"
 
 @implementation StatsWindow
 @synthesize resetButton;
@@ -33,6 +35,8 @@
 @synthesize activityItem;
 @synthesize summaryItem;
 @synthesize wh;
+@synthesize actTable;
+@synthesize actTitle;
 
 
 - (void) clickClear: (id) sender
@@ -108,11 +112,15 @@
     [pieChart setDelegate:activityChart];
     [pieChart setDataSource:activityChart];
     activityChart.busy =busyInd;
+    activityChart.title = actTitle;
     [activityChart runQueryStarting:[NSDate dateWithTimeIntervalSinceNow:-(14*24*60*60)] 
 						 ending:[NSDate date] 
 					withContext:nad.managedObjectContext];
     [pieChart reloadData];
     [pieChart refreshDisplay:self];
+    NSTableColumn *col = [[actTable tableColumns] objectAtIndex:0];
+    [col setDataCell:[ColorWellCell new]];
+    [actTable setDataSource:activityChart];
 }
 
 - (void) clickGen2: (id) sender

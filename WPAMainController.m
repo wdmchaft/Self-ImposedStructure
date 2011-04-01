@@ -158,7 +158,8 @@
 		siView.statusMenu = statusMenu;
 	}
 	siView.timer = thinkTimer;
-	siView.goal = [[NSUserDefaults standardUserDefaults]doubleForKey:@"dailyGoal"];
+    double goal = [[NSUserDefaults standardUserDefaults]doubleForKey:@"dailyGoal"];
+	siView.goal = goal;
 	siView.work = totalsManager.workToday;
 	siView.free = totalsManager.freeToday;
 	siView.state = ctx.currentState;

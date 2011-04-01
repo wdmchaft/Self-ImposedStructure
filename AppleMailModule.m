@@ -101,7 +101,7 @@
         minTime = [self lastCheck];
     }
 
-
+    NSLog(@"starting getUnread w/ received later than %@", minTime);
 //	NSLog(@"will get all email later than %@", minTime);
 	MailApplication *mailApp = [SBApplication applicationWithBundleIdentifier:@"com.apple.mail"];
 	if (mailApp) {
@@ -110,7 +110,8 @@
 				for(MailMailbox *box in mAcc.mailboxes){
 					if ([box.name isEqualToString: mailMailboxName]) {
 						for (MailMessage *msg in box.messages){
-							NSLog(@"from = %@ subj = %@",[mailApp extractAddressFrom:msg.sender], msg.subject);
+							NSLog(@"from = %@ subj = %@ received = %@",[mailApp extractAddressFrom:msg.sender], msg.subject, msg.dateReceived);
+                            
 							NSComparisonResult res = [msg.dateReceived compare:minTime];
 							if (res != NSOrderedAscending) {
 								
@@ -256,7 +257,6 @@
 	[super saveDefaultValue:accountName forKey:ACCOUNT];
 	[super saveDefaultValue:[NSNumber numberWithDouble:refreshInterval *60] forKey:REFRESH];
 	[super saveDefaultValue:[NSNumber numberWithDouble:displayWindow*60*60] forKey:DISPLAYWIN ];
-	[super saveDefaultValue:[NSNumber numberWithInt:useDisplayWindow] forKey:USEDISPWIN];
 	[[NSUserDefaults standardUserDefaults] synchronize];
     [self saveRules];
 }
@@ -281,10 +281,10 @@
 	
 	[accountField setStringValue:accountName == nil ? @"" : accountName];
 	[mailboxField setStringValue:mailMailboxName == nil ? @"" : mailMailboxName];
-	[refreshIntervalField setDoubleValue:refreshInterval/ 60];
-	[refreshIntervalStepper setDoubleValue:refreshInterval / 60];
-	[displayWindowField setDoubleValue:displayWindow / 60 / 60];
-	[displayWindowStepper setDoubleValue:displayWindow / 60 / 60];
+	[refreshIntervalField setDoubleValue:refreshInterval];
+	[refreshIntervalStepper setDoubleValue:refreshInterval];
+	[displayWindowField setDoubleValue:displayWindow];
+	[displayWindowStepper setDoubleValue:displayWindow];
 	[useDisplayWindowButton setIntValue:useDisplayWindow];
 	[displayWindowField setEnabled:useDisplayWindow];
 	[displayWindowStepper setEnabled:useDisplayWindow];

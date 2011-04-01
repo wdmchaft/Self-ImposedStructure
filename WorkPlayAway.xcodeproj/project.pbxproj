@@ -79,6 +79,15 @@
 		8C0D95A512D65326009F3280 /* WPACommon.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
 		8C0D95B112D6535A009F3280 /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
 		8C0D969112D67AFC009F3280 /* TaskDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77297812D46AC600F71FE7 /* TaskDialog.xib */; };
+		8C1151291343EAAD00273D0A /* SVRefHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1151281343EAAD00273D0A /* SVRefHandler.m */; };
+		8C11512A1343EAAD00273D0A /* SVRefHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1151281343EAAD00273D0A /* SVRefHandler.m */; };
+		8C11513D1344EFAA00273D0A /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C11513B1344EFA000273D0A /* ActivityViewController.m */; };
+		8C11513E1344EFAA00273D0A /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C11513B1344EFA000273D0A /* ActivityViewController.m */; };
+		8C1151421344F40500273D0A /* ActivityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C1151411344F40400273D0A /* ActivityView.xib */; };
+		8C1151431344F40500273D0A /* ActivityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C1151411344F40400273D0A /* ActivityView.xib */; };
+		8C1151441345170900273D0A /* GoalHoursToAverageXForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CEF4E191339B2D8000F5E3A /* GoalHoursToAverageXForm.m */; };
+		8C115147134534EE00273D0A /* ActivityRptWin.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C115146134534D800273D0A /* ActivityRptWin.m */; };
+		8C115148134534EE00273D0A /* ActivityRptWin.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C115146134534D800273D0A /* ActivityRptWin.m */; };
 		8C1800FA12F4B7990061FDE6 /* marketing.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 8C1800F912F4B7990061FDE6 /* marketing.rtf */; };
 		8C18041712F770DB0061FDE6 /* AddActivityDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C18041612F770DB0061FDE6 /* AddActivityDialogController.m */; };
 		8C18041812F770DB0061FDE6 /* AddActivityDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C18041612F770DB0061FDE6 /* AddActivityDialogController.m */; };
@@ -595,6 +604,13 @@
 		8C0D93F212D63D3D009F3280 /* WPADev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WPADev-Info.plist"; sourceTree = "<group>"; };
 		8C0D943A12D64018009F3280 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		8C0D948912D64486009F3280 /* INSTALL_PLUGINS.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = INSTALL_PLUGINS.sh; sourceTree = "<group>"; };
+		8C1151271343EAAD00273D0A /* SVRefHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRefHandler.h; sourceTree = "<group>"; };
+		8C1151281343EAAD00273D0A /* SVRefHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRefHandler.m; sourceTree = "<group>"; };
+		8C11513A1344EF9D00273D0A /* ActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityViewController.h; sourceTree = "<group>"; };
+		8C11513B1344EFA000273D0A /* ActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityViewController.m; sourceTree = "<group>"; };
+		8C1151411344F40400273D0A /* ActivityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityView.xib; sourceTree = "<group>"; };
+		8C115145134534CC00273D0A /* ActivityRptWin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityRptWin.h; sourceTree = "<group>"; };
+		8C115146134534D800273D0A /* ActivityRptWin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityRptWin.m; sourceTree = "<group>"; };
 		8C1800F812F4A5D00061FDE6 /* marketing.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = marketing.txt; sourceTree = "<group>"; };
 		8C1800F912F4B7990061FDE6 /* marketing.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = marketing.rtf; sourceTree = "<group>"; };
 		8C18041512F770DB0061FDE6 /* AddActivityDialogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddActivityDialogController.h; sourceTree = "<group>"; };
@@ -799,7 +815,6 @@
 		8CBEAB43133AA13400277FEA /* GoalHoursToAverageXForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoalHoursToAverageXForm.h; sourceTree = "<group>"; };
 		8CBEAB45133AAA3C00277FEA /* SummaryRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummaryRecord.h; sourceTree = "<group>"; };
 		8CBEAB46133AAA3D00277FEA /* SummaryRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummaryRecord.m; sourceTree = "<group>"; };
-		8CBFEDBE133A1BB1009D19D4 /* SummaryStatusViewControllerX.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummaryStatusViewControllerX.xib; sourceTree = "<group>"; };
 		8CC7543D1335524C007FE425 /* ActivityChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityChart.h; sourceTree = "<group>"; };
 		8CC7543E1335524C007FE425 /* ActivityChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityChart.m; sourceTree = "<group>"; };
 		8CD1974412D4C59600C69AC9 /* WPACommon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WPACommon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1097,6 +1112,8 @@
 		29B97314FDCFA39411CA2CEA /* WorkPlayAway */ = {
 			isa = PBXGroup;
 			children = (
+				8C115145134534CC00273D0A /* ActivityRptWin.h */,
+				8C115146134534D800273D0A /* ActivityRptWin.m */,
 				8C82CFDF12F3D0BE00830486 /* Design.txt */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -1433,6 +1450,9 @@
 		8CD1978912D4C89D00C69AC9 /* WPAMain */ = {
 			isa = PBXGroup;
 			children = (
+				8C77292D12D46AC600F71FE7 /* PreferencesWindow.h */,
+				8C1151271343EAAD00273D0A /* SVRefHandler.h */,
+				8C1151281343EAAD00273D0A /* SVRefHandler.m */,
 				8CBEAB45133AAA3C00277FEA /* SummaryRecord.h */,
 				8CBEAB46133AAA3D00277FEA /* SummaryRecord.m */,
 				8C9E3D5013206F8E007632E5 /* WriteHandler.h */,
@@ -1533,6 +1553,9 @@
 		8CF8C14012DC2B71009C7E3D /* Reporting */ = {
 			isa = PBXGroup;
 			children = (
+				8C1151411344F40400273D0A /* ActivityView.xib */,
+				8C11513A1344EF9D00273D0A /* ActivityViewController.h */,
+				8C11513B1344EFA000273D0A /* ActivityViewController.m */,
 				8C844AB0133AF9C700998D1C /* WorkHoursToAverageXForm.h */,
 				8C844AB1133AF9C700998D1C /* WorkHoursToAverageXForm.m */,
 				8C844AAB133AEA5700998D1C /* PercentOfDaysXForm.h */,
@@ -1540,12 +1563,10 @@
 				8CBEAB43133AA13400277FEA /* GoalHoursToAverageXForm.h */,
 				8CEF4E191339B2D8000F5E3A /* GoalHoursToAverageXForm.m */,
 				8CEF4E0C13394FBF000F5E3A /* SummaryStatusViewController.xib */,
-				8CBFEDBE133A1BB1009D19D4 /* SummaryStatusViewControllerX.xib */,
 				8CEF4DF313393AE6000F5E3A /* SummaryStatusViewController.h */,
 				8CEF4DF413393AE7000F5E3A /* SummaryStatusViewController.m */,
 				8CC7543D1335524C007FE425 /* ActivityChart.h */,
 				8CC7543E1335524C007FE425 /* ActivityChart.m */,
-				8C77292D12D46AC600F71FE7 /* PreferencesWindow.h */,
 				8CF8C14112DC2CB7009C7E3D /* SummaryTable.h */,
 				8CF8C14212DC2CB7009C7E3D /* SummaryTable.m */,
 				8CF8B5FA12D821B5009C7E3D /* Schema.h */,
@@ -1965,6 +1986,7 @@
 				8CDC134113107C9600BA478C /* MailTableView.xib in Resources */,
 				8CDC134413107DE500BA478C /* TaskTableView.xib in Resources */,
 				8CEF4E0D13394FBF000F5E3A /* SummaryStatusViewController.xib in Resources */,
+				8C1151421344F40500273D0A /* ActivityView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2120,6 +2142,7 @@
 				8CDC134213107C9600BA478C /* MailTableView.xib in Resources */,
 				8CDC134513107DE500BA478C /* TaskTableView.xib in Resources */,
 				8CEF4E0E13394FBF000F5E3A /* SummaryStatusViewController.xib in Resources */,
+				8C1151431344F40500273D0A /* ActivityView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2180,6 +2203,7 @@
 				8C0D93FC12D63DBD009F3280 /* AddModWinController.m in Sources */,
 				8C0D93FD12D63DBD009F3280 /* PreferencesWindow.m in Sources */,
 				8C0D93FE12D63DBD009F3280 /* WPAMainController.m in Sources */,
+				8C1151441345170900273D0A /* GoalHoursToAverageXForm.m in Sources */,
 				8C0D93FF12D63DBD009F3280 /* StatsWindow.m in Sources */,
 				8C0D940012D63DBD009F3280 /* WPADelegate.m in Sources */,
 				8C0D940112D63DBD009F3280 /* Context.m in Sources */,
@@ -2216,6 +2240,9 @@
 				8CBEAB47133AAA3E00277FEA /* SummaryRecord.m in Sources */,
 				8C844AAD133AEA5700998D1C /* PercentOfDaysXForm.m in Sources */,
 				8C844AB2133AF9C800998D1C /* WorkHoursToAverageXForm.m in Sources */,
+				8C1151291343EAAD00273D0A /* SVRefHandler.m in Sources */,
+				8C11513D1344EFAA00273D0A /* ActivityViewController.m in Sources */,
+				8C115147134534EE00273D0A /* ActivityRptWin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2415,6 +2442,9 @@
 				8CBEAB48133AAA3E00277FEA /* SummaryRecord.m in Sources */,
 				8C844AAE133AEA5700998D1C /* PercentOfDaysXForm.m in Sources */,
 				8C844AB3133AF9C800998D1C /* WorkHoursToAverageXForm.m in Sources */,
+				8C11512A1343EAAD00273D0A /* SVRefHandler.m in Sources */,
+				8C11513E1344EFAA00273D0A /* ActivityViewController.m in Sources */,
+				8C115148134534EE00273D0A /* ActivityRptWin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,11 +14,15 @@
     NSMutableArray *seriesData;
     SMPieChartView *chart;
     NSProgressIndicator *busy;
-
+    NSTimeInterval total;
+    NSTextField *title;
 }
 @property (nonatomic,retain) IBOutlet SMPieChartView *chart;
 @property (nonatomic,retain) IBOutlet NSProgressIndicator *busy;
 @property (nonatomic, retain) NSMutableArray *seriesData;
+@property (nonatomic, retain) NSTextField *title;
+@property (nonatomic) NSTimeInterval total;
+
 - (void) runQueryStarting: (NSDate*) start ending: (NSDate*) end withContext: (NSManagedObjectContext *) moc;
 
 - (unsigned int)numberOfSlicesInPieChartView:(SMPieChartView *)inPieChartView;

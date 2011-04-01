@@ -35,6 +35,8 @@
 	GoalChart *goalChart;
 	ActivityChart *activityChart;
     WriteHandler *wh;
+    NSTableView *actTable;
+    NSTextField *actTitle;
 }
 @property (nonatomic,retain) IBOutlet NSButton *resetButton;
 @property (nonatomic,retain) IBOutlet NSTableView *summaryTable;
@@ -47,6 +49,8 @@
 @property (nonatomic,retain) IBOutlet NSTabViewItem *goalsItem;
 @property (nonatomic,retain) IBOutlet NSTabViewItem *summaryItem;
 @property (nonatomic,retain) IBOutlet NSTabViewItem *activityItem;
+@property (nonatomic,retain) IBOutlet NSTableView *actTable;
+@property (nonatomic,retain) IBOutlet NSTextField   *actTitle;
 
 @property (nonatomic,retain) NSArray *workArray;
 @property (nonatomic,retain) WorkTable *workData;

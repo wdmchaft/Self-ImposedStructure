@@ -9,6 +9,7 @@
 #import "ActivityChart.h"
 #import "WriteHandler.h"
 #import "WPADelegate.h"
+#import "Utility.h"
 
 @interface SliceData : NSObject {
 @private
@@ -35,7 +36,8 @@
 @synthesize chart;
 @synthesize busy;
 @synthesize seriesData;
-
+@synthesize total;
+@synthesize title;
 - (id)init
 {
     self = [super init];
@@ -79,9 +81,11 @@
 	
 	NSError *error = nil;
 	NSArray *array = [moc executeFetchRequest:request error:&error];
+    total = 0.0;
 	for (NSManagedObject *rec in array){
 		SliceData *slice = [SliceData new];
 		slice.total = (NSNumber*)[rec valueForKey:@"total"];
+        total += [slice.total doubleValue];
         
         NSManagedObject *task = [rec valueForKey: @"task"];
         [slice.keys setValue:[task valueForKey: @"name"] forKey:@"task"];
@@ -102,11 +106,14 @@
         }
     
 	}
+    NSString *totalStr = [Utility formatInterval:total];
+   [title setStringValue:[NSString stringWithFormat:@"Total: Work %@",totalStr]];
+
 	seriesData = [NSMutableArray arrayWithArray:[allSlices allValues]];
 
 	//sort the data
 	NSSortDescriptor *goalSort = [[NSSortDescriptor alloc] initWithKey:@"total"
-															 ascending:YES
+															 ascending:NO
 															  selector:@selector(compare:)];
 	NSArray *descArray = [[NSArray alloc] initWithObjects:goalSort,nil];
 	[seriesData sortUsingDescriptors:descArray];
@@ -228,7 +235,10 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 	} else if ([colName isEqualToString:@"INFO"]){
         SliceData *data = (SliceData*)[seriesData objectAtIndex: row ];
         NSLog(@"slice %d name: %@",row,[data.keys objectForKey:@"task"]);
-        theValue = [data.keys objectForKey:@"task"];	
+        NSString *task = [data.keys objectForKey:@"task"];
+        NSTimeInterval totalInt = [data.total doubleValue];
+        NSString *timeStr = [Utility formatInterval:totalInt];
+        theValue = [NSString stringWithFormat:@"%@ %@",timeStr,task];	
     }
     NSLog(@"returning %@", theValue);
     return theValue;
