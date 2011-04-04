@@ -53,7 +53,7 @@
 - (BOOL) hasTask: (NSManagedObject*) mobj;
 
 - (IBAction)handleNewMainWindowMenu:(NSMenuItem *)sender;
-- (void) findSummaryForDate: (NSDate*) date work: (NSTimeInterval*) workInt free: (NSTimeInterval*) freeInt;
+- (BOOL) findSummaryForDate: (NSDate*) date work: (NSTimeInterval*) workInt free: (NSTimeInterval*) freeInt;
 - (void) saveData: (NSTimer*) timer;
 - (void) doSaveThread: (NSObject*) param;
 //- (SummaryRecord*) getSummaryRecord;

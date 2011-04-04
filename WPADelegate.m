@@ -269,7 +269,7 @@
 	return nil;
 }
 
-- (void) findSummaryForDate: (NSDate*) dateIn work: (NSTimeInterval*) workInt free: (NSTimeInterval*) freeInt
+- (BOOL) findSummaryForDate: (NSDate*) dateIn work: (NSTimeInterval*) workInt free: (NSTimeInterval*) freeInt
 {
 	NSTimeInterval retWork = 0.0;
 	NSTimeInterval retFree = 0.0;
@@ -284,6 +284,7 @@
 	
 	*workInt = retWork;
 	*freeInt = retFree;
+    return (mob != nil);
 }
 
 - (void) saveSummaryForDate: (NSDate*) date goal: (int) goalTime work: (int) workTime free: (int) freeTime

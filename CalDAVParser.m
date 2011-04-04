@@ -30,7 +30,7 @@
 	[handler location:loc];
 }
 
-- (void)parse: (<CalDAVParserDelegate>) handler
+- (void)parse: (id<CalDAVParserDelegate>) handler
 
 {
 	NSScanner *scan = [NSScanner localizedScannerWithString:data];

@@ -23,7 +23,8 @@
 @property (nonatomic,retain) NSTimer *timer;
 
 -(void) growlAlert: (Note*) alert;
-- (void) growlThis: (NSString*) this;
+- (void) growlThis: (NSString*) this isSticky: (BOOL) sticky withTitle: (NSString*) title;
+- (void) growlFYI: (NSString*) this;
 - (void) growlNotificationWasClicked:(id)ctx;
 - (void) growlLoop:(NSTimer *)timeIn;
 - (void) stop;

@@ -40,6 +40,7 @@
 {
 	[self initCombo];
 	[[super window] setLevel:NSFloatingWindowLevel];
+    [[super window] setFrameAutosaveName:@"AddActivity"];
 	[super showWindow:sender];
 }
 
@@ -62,7 +63,7 @@
 	[ctx saveTask];
 	
 
-	[ctx.growlManager growlThis:[NSString stringWithFormat: @"New Activity: %@",ctx.currentTask.name]];
+	[[ctx growlManager] growlFYI:[NSString stringWithFormat: @"New Activity: %@",ctx.currentTask.name]];
 
 	[super.window close];
 }

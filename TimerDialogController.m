@@ -17,9 +17,9 @@
 
 -(void) windowDidLoad
 {
-	Context *ctx = [Context sharedContext];
 //	[minutesField setIntValue:(ctx.thinkTime / 60)];
 	[self loadSoundNames];
+    [[super window] setFrameAutosaveName:@"Timer"];
 }
 
 -(void) showWindow:(id)sender

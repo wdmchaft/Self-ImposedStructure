@@ -13,9 +13,15 @@
 @interface ListHandler : ResponseRESTHandler <NSXMLParserDelegate> {
 	NSMutableDictionary *tempDictionary;
 	NSMutableArray *tempList;
+    NSMutableString *temp;
+    NSDateFormatter *inputFormatter; 
+
 }
 @property (nonatomic,retain) NSMutableDictionary *tempDictionary;
 @property (nonatomic,retain) NSMutableArray *tempList;
-- (ListHandler*) initWithContext: (RTMModule*) ctx andDelegate: (<RTMCallback>) delegate;
+@property (nonatomic,retain) NSMutableString *temp;
+@property (nonatomic,retain) NSDateFormatter *inputFormatter;
+
+- (ListHandler*) initWithContext: (RTMModule*) ctx andDelegate: (id<RTMCallback>) delegate;
 - (void) addItem;
  @end

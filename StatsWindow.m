@@ -85,6 +85,7 @@
 
 -(void) windowDidLoad
 {
+    [[super window] setFrameAutosaveName:@"History"];
 	[self setContents];
     SummaryStatusViewController *ssvc = [[SummaryStatusViewController alloc]initWithNibName:@"SummaryStatusViewController" bundle:nil]; 
     [summaryItem setView:ssvc.view];

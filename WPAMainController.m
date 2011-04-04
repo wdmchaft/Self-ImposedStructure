@@ -294,7 +294,7 @@
 //	if (ctx.currentState == WPASTATE_THINKING || ctx.currentState == WPASTATE_THINKTIME){
 	//	[WriteHandler sendNewRecord:ctx.currentState];
 //	}
-	[ctx.growlManager growlThis:[NSString stringWithFormat: @"New Activity: %@",ctx.currentTask.name]];
+	[[ctx growlManager] growlFYI:[NSString stringWithFormat: @"New Activity: %@",ctx.currentTask.name]];
 	[self buildStatusMenu];
 }
 
@@ -353,7 +353,7 @@
 //		[(WPADelegate*)[[NSApplication sharedApplication] delegate] stop];
 		startButton.title = @"Start";
 		[startButton setAction: @selector(clickStart:)];
-		[ctx.growlManager stop];
+		[[ctx growlManager] stop];
 		newState = WPASTATE_OFF;
 		[statusTimer invalidate];
 		[center removeObserver:self name:@"com.workplayaway.wpa" object:nil];
@@ -365,7 +365,7 @@
 													 selector:@selector(updateStatus:) 
 													 userInfo:nil 
 													  repeats:NO];
-		ctx.growlManager = [GrowlManager new];
+		//ctx.growlManager = [GrowlManager new];
 		newState = WPASTATE_FREE;
 		// start listening for pause commands
 		[center addObserver:self selector:@selector(remoteNotify:) name:@"com.workplayaway.wpa" object:nil];
@@ -461,7 +461,7 @@
 {
 	Context *ctx = [Context sharedContext];
 	ctx.currentState = WPASTATE_SUMMARY;
-	[[Context sharedContext].growlManager clearQueues];
+	[[[Context sharedContext] growlManager] clearQueues];
 	[self enableStatusMenu:NO];
 	SummaryHUDControl *shc = [[SummaryHUDControl alloc]initWithWindowNibName:@"SummaryHUD"];
 	hudWindow = shc.window;
@@ -477,13 +477,19 @@
 
 - (void) summaryClosed:(NSNotification*) notification{
 	NSLog(@"summaryClosed");
+    NSRect hudFrame = [hudWindow frame];
+    CGFloat newX = hudFrame.origin.x + (hudFrame.size.width / 2);
+    CGFloat newY = hudFrame.origin.y + (hudFrame.size.height / 2);
+    [[NSUserDefaults standardUserDefaults] setDouble:newX forKey:@"hudCenterX"];
+    [[NSUserDefaults standardUserDefaults] setDouble:newY forKey:@"hudCenterY"];
+    
 	[[NSNotificationCenter defaultCenter] removeObserver:self  
 												 name:NSWindowWillCloseNotification 
 											   object:nil];
 	
 	// after a summary is displayed then turn off the refresh cycle
 	if (refreshManager == nil) {
-		refreshManager = [[RefreshManager alloc]initWithHandler:[Context sharedContext].growlManager];
+		refreshManager = [[RefreshManager alloc]initWithHandler:[[Context sharedContext] growlManager]];
 	}
 	[refreshManager startWithRefresh:NO];
 
@@ -583,7 +589,7 @@
 	[self buildStatusMenu];
 	[self enableUI:(newState != WPASTATE_OFF)];
 	if (refreshManager == nil && newState != WPASTATE_OFF){
-		refreshManager = [[RefreshManager alloc]initWithHandler:ctx.growlManager];
+		refreshManager = [[RefreshManager alloc]initWithHandler:[ctx growlManager]];
 		[refreshManager startWithRefresh:YES];
 	}
 	if (newState == WPASTATE_OFF){
@@ -624,7 +630,7 @@
 	//if (ctx.currentState == WPASTATE_THINKING || ctx.currentState == WPASTATE_THINKTIME){
 	//	[WriteHandler sendNewRecord:ctx.currentState];
 	//}
-	[ctx.growlManager growlThis:[NSString stringWithFormat: @"New Activity: %@",ctx.currentTask.name]];
+	[[ctx growlManager] growlFYI:[NSString stringWithFormat: @"New Activity: %@",ctx.currentTask.name]];
 
 }
 

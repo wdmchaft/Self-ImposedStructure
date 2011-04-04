@@ -13,7 +13,9 @@
 
 @implementation ListHandler
 @synthesize tempList;
-@synthesize tempDictionary;;
+@synthesize tempDictionary;
+@synthesize temp;
+@synthesize inputFormatter;
 
 - (ListHandler*) initWithContext: (RTMModule*) ctx andDelegate: (id<RTMCallback>) delegate
 {
@@ -21,8 +23,9 @@
 	{
 		tempList = [NSMutableArray new];
 		tempDictionary = [NSMutableDictionary new];
-		//context.tasksList = [NSMutableArray new];
-		//context.tasksDict = [NSMutableDictionary new];
+        inputFormatter = [NSDateFormatter new];
+     	[inputFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+        [inputFormatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];   
 	}
 	return self;
 }
@@ -53,7 +56,13 @@ didStartElement:(NSString *)elementName
 		self.currentDict = [NSMutableDictionary new];
 		[currentDict setObject:[[[NSString alloc] initWithString:listId]retain] forKey:@"list_id"]; 
 		[currentDict setObject:[[[NSString alloc] initWithString:id]retain] forKey:@"taskseries_id"]; 
-		[currentDict setObject:[[[NSString alloc] initWithString:name]retain] forKey:TASK_NAME]; 
+		[currentDict setObject:[[[NSString alloc] initWithString:name]retain] forKey:TASK_NAME];
+        NSString *modStr = [attributeDict objectForKey:@"modified"];
+        if (modStr){
+			NSDate *modDate = [inputFormatter dateFromString:modStr];
+            [currentDict setObject:modDate forKey:@"modified"]; 
+        }
+        
 		[currentDict setObject:context.name forKey:REPORTER_MODULE];
     }
 	//
@@ -64,16 +73,13 @@ didStartElement:(NSString *)elementName
 		NSString *id = [attributeDict objectForKey:@"id"];
 		NSString *hasDueTimeStr = [attributeDict objectForKey:@"has_due_time"];
 		[currentDict setObject:[[[NSString alloc] initWithString:id]retain] forKey:@"task_id"]; 
-		if ([hasDueTimeStr isEqualToString:@"1"]){
-			NSString *dueTimeStr = [attributeDict objectForKey:@"due"];
-			NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
-			[inputFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
-			[inputFormatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
-			NSDate *dueDate = [inputFormatter dateFromString:dueTimeStr];
-			[currentDict setObject:dueDate forKey:TASK_DUE];
-		} else {
-			[currentDict setObject:[NSDate distantFuture] forKey:TASK_DUE];
-		}
+        NSString *dueTimeStr = [attributeDict objectForKey:@"due"];
+        if ([dueTimeStr length]==0) {
+            [currentDict setObject:[NSDate distantFuture] forKey:TASK_DUE];
+        } else {
+            NSDate *dueDate = [inputFormatter dateFromString:dueTimeStr];
+            [currentDict setObject:dueDate forKey:TASK_DUE];
+		} 
     }
 	if ( [elementName isEqualToString:@"list"]) {
 		NSString *id = [attributeDict objectForKey:@"id"];
@@ -84,8 +90,13 @@ didStartElement:(NSString *)elementName
 		NSString* msg = [attributeDict objectForKey:@"msg"];
 		[BaseInstance sendErrorToHandler:context.handler error:msg module:[context name]];
 	}
-	
+	if ( [elementName isEqualToString:@"rrule"]){
+        NSNumber *everyVal = [attributeDict objectForKey:@"every"];
+        [currentDict setObject:everyVal forKey:@"every"];
+        temp = [NSMutableString new];
+    }
 }
+
 - (void)parser:(NSXMLParser *)parser 
 didEndElement:(NSString *)elementName 
   namespaceURI:(NSString *)namespaceURI 
@@ -101,10 +112,22 @@ didEndElement:(NSString *)elementName
 		NSString *name = [self.currentDict objectForKey:@"name"];
 		[tempDictionary setObject:self.currentDict forKey:name];
     }
+    if ( [elementName isEqualToString:@"rrule"]){
+        [currentDict setObject:[temp copy] forKey:@"rrule"];
+        temp = nil;
+    }
 }
+
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
+    
+    if (temp) {
+        [temp appendString:string];
+    }
+}
+
 - (void) doParse: (NSData*) respData
 {
-//	NSLog(@"%@", [[NSString alloc] initWithData: respData encoding:NSUTF8StringEncoding]);
+	NSLog(@"%@", [[NSString alloc] initWithData: respData encoding:NSUTF8StringEncoding]);
 	XMLParse *parser = [[XMLParse alloc]initWithData: respData andDelegate: self];
 	[parser parseData];
 	if (self.currentDict != nil && [self.currentDict count] > 0){

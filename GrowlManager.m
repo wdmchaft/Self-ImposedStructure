@@ -86,16 +86,20 @@
 	}
 	
 }
+- (void) growlFYI:(NSString *)this
+{
+    [self growlThis:this isSticky:NO withTitle: @"FYI"];
+}
 
-- (void) growlThis: (NSString*) this
+- (void) growlThis: (NSString*) this isSticky: (BOOL) sticky withTitle:(NSString*) title
 {
 	[GrowlApplicationBridge
-	 notifyWithTitle: @"FYI"
+	 notifyWithTitle: title
 	 description:this
 	 notificationName:@"WPA Alert"
 	 iconData:[[Context sharedContext]iconForModule:nil]
 	 priority:0
-	 isSticky:NO
+	 isSticky:sticky
 	 clickContext: nil];
 }
 

@@ -144,6 +144,7 @@ tableView, modNames, originalName, hudView;
 	}
 	[self initFields];
 	[indicator setHidden:YES];
+    [[super window] setFrameAutosaveName:@"AddModule"];
 }
 
 -(void) clickType :(id) sender

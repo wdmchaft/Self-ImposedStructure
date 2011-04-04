@@ -68,6 +68,7 @@ summaryField, summaryStepper, summaryLabel, summaryLabel2, summaryButton, editMo
 - (void) showWindow:(id)sender
 {
 	[super showWindow:sender];
+    [[super window] setFrameAutosaveName:@"Preferences"];
 	LaunchAtLoginController *lALCtrl = [LaunchAtLoginController new];
 	[launchOnBootButton setIntValue: [lALCtrl launchAtLogin]];
 	

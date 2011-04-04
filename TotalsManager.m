@@ -26,14 +26,17 @@
 	WPADelegate *del = (WPADelegate*)[NSApplication sharedApplication].delegate;
 	NSTimeInterval work = 0;
 	NSTimeInterval free = 0;
-	[del findSummaryForDate:timeStampDate work:&work free:&free];
-	if (free > 0){
-		freeToday += free;
-	}
-	if (work > 0) {
-		workToday += work;
-	}
+	if ([del findSummaryForDate:timeStampDate work:&work free:&free]){
+        freeToday += free;
+        workToday += work;
+        Context *ctx = [Context sharedContext];
+        [[ctx growlManager] growlThis:@"Welcome back (I hope we didn't crash)!" isSticky:YES withTitle:@"Hey Again"];
+    } else {
+        Context *ctx = [Context sharedContext];
+        [[ctx growlManager] growlThis:@"Welcome to a new day!" isSticky:YES withTitle:@"Hey There"];
+    }
     summary = [del.ioHandler getSummaryRecord];
+    
 }
 
 - (void)saveCurrent
@@ -98,6 +101,8 @@
             NSTimeInterval oldGoal = summary.timeGoal.doubleValue;
             [summary setTimeGoal:[NSNumber numberWithDouble:(oldGoal + goalTime)]];
             [summary setLastGoalAchieved:[NSDate date]];
+            Context *ctx = [Context sharedContext];
+            [[ctx growlManager] growlThis:@"Work day is done!" isSticky:YES withTitle:"Whew!"];
         }
 
     }
@@ -144,6 +149,8 @@
 	if (comps.weekday == rolloverDay){
 		awayWeek = workWeek = freeWeek = 0;
 	}
+    Context *ctx = [Context sharedContext];
+    [[ctx growlManager] growlThis:@"Starting a new day!" isSticky:YES withTitle:@"Hey There!"];
 }
 
 - (void) dumpRollDate: (NSDate*) rollDate andInterval: (NSTimeInterval) rollInterval

@@ -24,6 +24,20 @@
 @synthesize view;
 @synthesize hudList;
 
++ (void) initialize
+{
+    NSRect mRect = [NSScreen mainScreen].frame;
+    CGFloat centerX = (mRect.size.width / 2);
+    CGFloat centerY = (mRect.size.height / 2);
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *appDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
+                                 [NSNumber numberWithDouble:centerX],		@"hudCenterX",
+								[NSNumber numberWithDouble:centerY],		@"hudCenterY",
+								 nil];
+	
+    [defaults registerDefaults:appDefaults];
+}
+
 - (void) showWindow:(id)sender
 {
 	[super showWindow:sender];
@@ -62,7 +76,7 @@
         NSMutableArray *temp = [NSMutableArray arrayWithCapacity:[settings count]];
         NSMutableArray *tempP = [NSMutableArray arrayWithCapacity:[settings count]];
         NSMutableArray *tempB = [NSMutableArray arrayWithCapacity:[settings count]];
-        for (int i = [settings count] - 1;i >= 0;i--){
+        for (int i = 0;i < [settings count];i++){
             HUDSetting *setting = [settings objectAtIndex:i];
             id<Reporter> rpt = setting.reporter; 
             SummaryViewController *svc = [self getViewForInstance:rpt width:viewWidth rows:setting.height];
@@ -87,7 +101,7 @@
             [view addSubview:progInd];
             // lastly -- start the view controller
             [NSTimer scheduledTimerWithTimeInterval:0 target:svc selector:@selector(refresh) userInfo: nil repeats:NO];
-      }   
+        }   
         controls = [[NSArray alloc]initWithArray:temp];
         progs = [[NSArray alloc] initWithArray:tempP];
         boxes = [[NSArray alloc] initWithArray:tempB];
@@ -136,9 +150,9 @@
 	[[super window] setContentSize: currRect.size];
 //	currRect.size.height += 15; // for titlebar height	
 	[[super window] setFrame: currRect display:YES];
-    NSRect mRect = [NSScreen mainScreen].frame;
-    CGFloat oX = (mRect.size.width / 2) - (currRect.size.width / 2);
-    CGFloat oY = (mRect.size.height / 2) - (currRect.size.height / 2);
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    CGFloat oX = [ud doubleForKey:@"hudCenterX"] - (currRect.size.width / 2);
+    CGFloat oY = [ud doubleForKey:@"hudCenterY"] - (currRect.size.height / 2);
     [[super window] setFrameOrigin:NSMakePoint(oX, oY)];
 }
 

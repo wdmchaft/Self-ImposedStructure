@@ -43,7 +43,7 @@
 @property (nonatomic, retain) NSArray *tasksList;
 @property (nonatomic) WPAStateType currentState;
 @property (nonatomic, readonly) WPAStateType previousState;
-@property (nonatomic,retain) GrowlManager *growlManager;
+//@property (nonatomic,retain) GrowlManager *growlManager;
 @property (nonatomic,retain) HUDSettings *hudSettings;
 @property (nonatomic,retain) HeatMap *heatMapSettings;
 @property (nonatomic,retain) TotalsManager *totalsManager;
@@ -68,6 +68,6 @@
 - (void) refreshTasks;
 - (NSArray*) refreshableModules;
 - (NSArray*) getTasks ;
-
+- (GrowlManager*) growlManager;
 
 @end

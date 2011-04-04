@@ -456,6 +456,15 @@ static Context* sharedContext = nil;
 	}
 	return [gather allValues];
 }
+
+- (GrowlManager*) growlManager 
+{
+    if (!growlManager){
+        growlManager = [GrowlManager new];
+    }
+    return growlManager;
+}
+
 @end
 
 
