@@ -83,8 +83,6 @@
 		8C11512A1343EAAD00273D0A /* SVRefHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1151281343EAAD00273D0A /* SVRefHandler.m */; };
 		8C11513D1344EFAA00273D0A /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C11513B1344EFA000273D0A /* ActivityViewController.m */; };
 		8C11513E1344EFAA00273D0A /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C11513B1344EFA000273D0A /* ActivityViewController.m */; };
-		8C1151421344F40500273D0A /* ActivityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C1151411344F40400273D0A /* ActivityView.xib */; };
-		8C1151431344F40500273D0A /* ActivityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C1151411344F40400273D0A /* ActivityView.xib */; };
 		8C1151441345170900273D0A /* GoalHoursToAverageXForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CEF4E191339B2D8000F5E3A /* GoalHoursToAverageXForm.m */; };
 		8C1800FA12F4B7990061FDE6 /* marketing.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 8C1800F912F4B7990061FDE6 /* marketing.rtf */; };
 		8C18041712F770DB0061FDE6 /* AddActivityDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C18041612F770DB0061FDE6 /* AddActivityDialogController.m */; };
@@ -1985,7 +1983,6 @@
 				8CDC134113107C9600BA478C /* MailTableView.xib in Resources */,
 				8CDC134413107DE500BA478C /* TaskTableView.xib in Resources */,
 				8CEF4E0D13394FBF000F5E3A /* SummaryStatusViewController.xib in Resources */,
-				8C1151421344F40500273D0A /* ActivityView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2141,7 +2138,6 @@
 				8CDC134213107C9600BA478C /* MailTableView.xib in Resources */,
 				8CDC134513107DE500BA478C /* TaskTableView.xib in Resources */,
 				8CEF4E0E13394FBF000F5E3A /* SummaryStatusViewController.xib in Resources */,
-				8C1151431344F40500273D0A /* ActivityView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
