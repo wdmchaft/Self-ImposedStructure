@@ -37,7 +37,7 @@
 	table.dataSource=self;
 	NSLog(@"table = %@", table);
 	[table setDoubleAction:@selector(handleDouble:)];
-	[table setAction:@selector(handleAction:)];
+	//[table setAction:@selector(handleAction:)];
 	[table setTarget:self];
 
 	NSRect frame;
@@ -105,18 +105,14 @@
 	}
 }
 
-- (void) handleAction: (id) sender
-{
-	NSLog(@"handleAction");
-}
 
 - (IBAction) checkTask: (id) sender
 {
 	int row = [sender selectedRow];	
 	NSDictionary *params = [data objectAtIndex:row];
   //  [data removeAllObjects];
-	[prog setHidden:NO];
-	[prog startAnimation:self];
+	NSTableColumn *checkCol = [[table tableColumns] objectAtIndex:0];
+    [[checkCol dataCell]setEnabled:NO];
 	[NSTimer scheduledTimerWithTimeInterval:0
 									 target:self
 								   selector:@selector(processComplete:) 
@@ -126,8 +122,10 @@
 
 - (void) processComplete: (NSTimer*)timer
 {	
-	NSDictionary* params = timer.userInfo;
-	[((id<TaskList>)reporter) markComplete:params completeHandler:self];
+//    [prog setHidden:NO];
+//	[prog startAnimation:self];
+//	NSDictionary* params = timer.userInfo;
+//	[((id<TaskList>)reporter) markComplete:params completeHandler:self];
 }
 
 - (void) handleComplete: (NSString*) error
@@ -141,6 +139,7 @@
         refreshHandler = [SVRefHandler new];
         refreshHandler.ref = self;
     }
+    [[refreshHandler data] removeAllObjects];
     [reporter refresh:refreshHandler isSummary:YES];
  //   [self performSelector:@selector(refresh) withObject:nil afterDelay:0.1]; 
 }
@@ -179,9 +178,9 @@
 - (int) actualHeight
 {
 	int lines = (actualLines > maxLines) ? maxLines :actualLines;
-    int rowHeight = [table rowHeight];
 	return lines * ([table rowHeight] + 3);
 }
+
 - (void) endRefresh {
 }
 
@@ -225,6 +224,21 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 @end
 
 @implementation SummaryTaskViewController
+@synthesize inRefresh;
+
+- (void) processComplete: (NSTimer*)timer
+{	
+    if (inRefresh){
+        NSLog(@"ignoring complete click");
+        return;
+    }
+    inRefresh = YES;
+    [prog setHidden:NO];
+	[prog startAnimation:self];
+    [table setEnabled:NO];
+	NSDictionary* params = timer.userInfo;
+	[((id<TaskList>)reporter) markComplete:params completeHandler:self];
+}
 
 - (id)tableView:(NSTableView *)tableView 
 objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
@@ -287,97 +301,86 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 - (void) endRefresh {
     data = refreshHandler.data;
     [table reloadData];
+    NSTableColumn *checkCol = [[table tableColumns] objectAtIndex:0];
+    [[checkCol dataCell]setEnabled:YES];
+    [table setEnabled:YES];
+    inRefresh = NO;
 }
 @end
 
 @implementation SummaryMailViewController
 
-- (id)tableView:(NSTableView *)tableView 
-objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
-{
-	id theValue;
-    NSParameterAssert(row >= 0 && row < [data count]);
-	if (row == 0){
-		NSSortDescriptor *desc = [[NSSortDescriptor alloc] initWithKey:MAIL_ARRIVAL_TIME ascending:NO];
-		[data sortUsingDescriptors:[NSArray arrayWithObject:desc]];
-	}
-    NSDictionary *params  = [data objectAtIndex:row];
-    NSColor *color = [params objectForKey:MAIL_COLOR];
-	NSString *colName = [tableColumn identifier];
-	if ([colName isEqualToString:@"COL1"])
-	{
-		theValue = [params objectForKey:MAIL_EMAIL];
-	}
-	else if  ([colName isEqualToString:@"COL2"]){
-		NSDate *due = (NSDate*) [params objectForKey:MAIL_ARRIVAL_TIME];
-		theValue = [Utility shortTimeStrFor:due];
-	} else {
-		theValue = [params objectForKey:MAIL_SUBJECT];
-	}
-	if (color){
-		theValue = [[NSAttributedString alloc]initWithString:theValue 
-                                                  attributes:[self attributesForColor:color]];
-	}
-    return theValue;
-}
 - (void) initTable{}
 
 - (void) handleDouble: (id) sender;
 {
 	int row = [sender selectedRow];
+    NSOutlineView *ov = (NSOutlineView*)table;
 	
-	NSDictionary *ctx = [data objectAtIndex:row];	
+	NSDictionary *ctx = [ov itemAtRow:row];	
 	[reporter handleClick:ctx];
 }
 
-- (void) handleAction: (id) sender
+
+
+- (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
 {
-	NSLog(@"handleAction - mail");
+    if (item == nil){
+        return [data objectAtIndex:index];
+    }
+    NSAssert([item isKindOfClass: [NSDictionary class]], @"item not dictionary");
+    NSDictionary* dataItem = item;
+    NSArray *thread = [dataItem objectForKey:@"THREAD"];
+    
+    return (thread == nil) ? nil : [thread objectAtIndex:index];
 }
 
+- (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item
+{
+    if (item == nil){
+        return YES;
+    }
+    NSAssert([item isKindOfClass: [NSDictionary class]], @"item not dictionary");
+    NSDictionary* dataItem = item;
+    NSArray *thread = [dataItem objectForKey:@"THREAD"];
+    return (thread != nil);
+    
+}
+- (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
+{
+    if (item == nil){
+        return [data count];
+    }
+    NSAssert([item isKindOfClass: [NSDictionary class]], @"item not dictionary");
+    NSDictionary* dataItem = item;
+    NSArray *thread = [dataItem objectForKey:@"THREAD"];
+    
+    return (thread == nil) ? 0 : [thread count];
+}
+
+- (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
+{
+    id theValue;
+    NSAssert([item isKindOfClass: [NSDictionary class]], @"item not dictionary");
+    NSDictionary* params = item;
+ 
+        NSColor *color = [params objectForKey:MAIL_COLOR];
+    	NSString *colName = [tableColumn identifier];
+    	if ([colName isEqualToString:@"COL1"])
+    	{
+    		theValue = [params objectForKey:MAIL_EMAIL];
+    	}
+    	else if  ([colName isEqualToString:@"COL2"]){
+    		NSDate *due = (NSDate*) [params objectForKey:MAIL_ARRIVAL_TIME];
+    		theValue = [Utility shortTimeStrFor:due];
+    	} else {
+    		theValue = [params objectForKey:MAIL_SUBJECT];
+    	}
+    	if (color){
+    		theValue = [[NSAttributedString alloc]initWithString:theValue 
+                                                      attributes:[self attributesForColor:color]];
+    	}
+        return theValue;
+}
 @end
 
-@implementation SummaryDeadlineViewController
-
-- (id)tableView:(NSTableView *)tableView 
-objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
-{
-	id theValue;
-    NSParameterAssert(row >= 0 && row < [data count]);
-	if (row == 0){
-		NSSortDescriptor *desc = [[NSSortDescriptor alloc] initWithKey:@"due_time" ascending:NO];
-		[data sortUsingDescriptors:[NSArray arrayWithObject:desc]];
-	}
-    NSDictionary *params  = [data objectAtIndex:row];
-	NSString *colName = [tableColumn identifier];
-	if ([colName isEqualToString:@"COL1"])
-	{
-		theValue = [NSNumber numberWithInt:0];
-	}
-	else if  ([colName isEqualToString:@"COL2"]){
-		NSDate *due = (NSDate*) [params objectForKey:@"due_time"];
-		theValue = [Utility shortTimeStrFor:due];
-	} else {
-		theValue = [params objectForKey:@"name"];
-	}
-	
-	return theValue;
-}
-
-- (void) initTable
-{
-	NSArray *allCols = table.tableColumns;
-	NSTableColumn *col1 = [allCols objectAtIndex:0];
-	
-    BGHUDButtonCell *cell;
-	cell = [[NSButtonCell alloc] init];
-	[cell setButtonType:NSSwitchButton];
-	[cell setTitle:@""];
-	[cell setAction:@selector(checkTask:)];
-	[cell setTarget:self];
-	
-	[col1 setDataCell:cell];
-	[cell release];
-}
-
-@end

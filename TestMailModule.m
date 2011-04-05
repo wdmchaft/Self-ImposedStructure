@@ -57,7 +57,7 @@
 -(void) refreshData: (id<AlertHandler>) handler 
 {
 	NSDate *now = [NSDate date];
-	NSDictionary *dict1 = [NSDictionary dictionaryWithObjectsAndKeys:
+	NSMutableDictionary *dict1 = [NSMutableDictionary dictionaryWithObjectsAndKeys:
 						   [self name], @"module",
 						   @"this is a summary",@"summary",
 						   @"title for summary",@"title",
@@ -66,7 +66,7 @@
 						   @"http://fasttimes.com",@"href",
 						   now, @"received",
 						   nil];
-	NSDictionary *dict2 = [NSDictionary dictionaryWithObjectsAndKeys:
+	NSMutableDictionary *dict2 = [NSMutableDictionary dictionaryWithObjectsAndKeys:
 						   [self name], @"module",
 						   @"We still on for Pizza?",@"summary",
 						   @"Hey Mr. Hand!",@"title",
@@ -75,7 +75,7 @@
 						   @"http://fasttimes.com",@"href",
 						   [NSDate dateWithTimeIntervalSinceNow:-660.0], @"received",
    nil];
-	NSDictionary *dict3 = [NSDictionary dictionaryWithObjectsAndKeys:
+	NSMutableDictionary *dict3 = [NSMutableDictionary dictionaryWithObjectsAndKeys:
 						   [self name], @"module",
 						   @"Dude where's my car?",@"summary",
 						   @"more stoner humor",@"title",
@@ -84,7 +84,7 @@
 						   @"http://wheresmycar.com",@"href",
 						   [NSDate dateWithTimeIntervalSinceNow:-120.0], @"received",
 						   nil];
-	NSDictionary *dict4 = [NSDictionary dictionaryWithObjectsAndKeys:
+	NSMutableDictionary *dict4 = [NSMutableDictionary dictionaryWithObjectsAndKeys:
 						   [self name], @"module",
 						   @"User Id Enclosed",@"summary",
 						   @"Get Fast Refund From Turbo Tax",@"title",
@@ -93,7 +93,16 @@
 						   @"http://quicken.com",@"href",
 						   [NSDate dateWithTimeIntervalSinceNow:-360.0], @"received",
 						   nil];
-	NSDictionary *dict5 = [NSDictionary dictionaryWithObjectsAndKeys:
+	NSMutableDictionary *dict5a = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+						   [self name], @"module",
+						   @"RE: Unimportant Message",@"summary",
+						   @"ignorance is bliss",@"title",
+						   @"That Boring Guy",@"name",
+						   @"that.unimportant.guy@wheresmycar.org",@"email",
+						   @"http://unimportant.com", @"href",
+						   [NSDate dateWithTimeIntervalSinceNow:-480.0], @"received",
+						   nil];
+    NSMutableDictionary *dict5 = [NSMutableDictionary dictionaryWithObjectsAndKeys:
 						   [self name], @"module",
 						   @"Unimportant Message",@"summary",
 						   @"ignorance is bliss",@"title",
@@ -101,9 +110,11 @@
 						   @"that.unimportant.guy@wheresmycar.org",@"email",
 						   @"http://unimportant.com", @"href",
 						   [NSDate dateWithTimeIntervalSinceNow:-480.0], @"received",
+                           [NSArray arrayWithObject:dict5a], @"THREAD",
 						   nil];
-    //	NSArray *msgs = [NSArray arrayWithObjects: dict1,dict2,dict3,dict4,dict5,nil];
-    NSArray *msgs = [NSArray arrayWithObjects:nil];
+
+    NSArray *msgs = [NSArray arrayWithObjects: dict1,dict2,dict3,dict4,dict5,nil];
+    //NSArray *msgs = [NSArray arrayWithObjects:nil];
 	NSMutableArray *sendItems = [NSMutableArray new];
 	for (NSDictionary *item in msgs){
         NSColor *color;

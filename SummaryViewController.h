@@ -14,7 +14,7 @@
 
 
 @interface SummaryViewController : NSViewController <NSTableViewDataSource, AlertHandler, SVRefCtrl> {
-	BGHUDTableView *table;
+	NSTableView *table;
 	NSProgressIndicator *prog;
 	id<Reporter> reporter;
 	NSMutableArray *data;
@@ -26,7 +26,7 @@
     SVRefHandler *refreshHandler;
 }
 
-@property (nonatomic,retain) IBOutlet BGHUDTableView *table; 
+@property (nonatomic,retain) IBOutlet NSTableView *table; 
 @property (nonatomic,retain) SVRefHandler *refreshHandler; 
 @property (nonatomic,retain) IBOutlet NSProgressIndicator *prog; 
 @property (nonatomic,retain) id<Reporter> reporter; 
@@ -49,7 +49,6 @@
 
 - (void) refresh;
 - (void) handleDouble:(id)sender;
-- (void) handleAction:(id)sender;
 - (int) actualHeight;
 
 @end
@@ -59,13 +58,12 @@
 @end
 
 @interface SummaryTaskViewController : SummaryViewController {
+    BOOL inRefresh;
 }
+@property (nonatomic) BOOL inRefresh;
 @end
 
-@interface SummaryDeadlineViewController : SummaryViewController {
-}
-@end
-
-@interface SummaryMailViewController : SummaryViewController {
+@interface SummaryMailViewController : SummaryViewController <NSOutlineViewDelegate, NSOutlineViewDataSource> 
+{
 }
 @end

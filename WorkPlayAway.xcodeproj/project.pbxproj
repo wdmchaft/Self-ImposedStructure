@@ -86,8 +86,6 @@
 		8C1151421344F40500273D0A /* ActivityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C1151411344F40400273D0A /* ActivityView.xib */; };
 		8C1151431344F40500273D0A /* ActivityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C1151411344F40400273D0A /* ActivityView.xib */; };
 		8C1151441345170900273D0A /* GoalHoursToAverageXForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CEF4E191339B2D8000F5E3A /* GoalHoursToAverageXForm.m */; };
-		8C115147134534EE00273D0A /* ActivityRptWin.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C115146134534D800273D0A /* ActivityRptWin.m */; };
-		8C115148134534EE00273D0A /* ActivityRptWin.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C115146134534D800273D0A /* ActivityRptWin.m */; };
 		8C1800FA12F4B7990061FDE6 /* marketing.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 8C1800F912F4B7990061FDE6 /* marketing.rtf */; };
 		8C18041712F770DB0061FDE6 /* AddActivityDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C18041612F770DB0061FDE6 /* AddActivityDialogController.m */; };
 		8C18041812F770DB0061FDE6 /* AddActivityDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C18041612F770DB0061FDE6 /* AddActivityDialogController.m */; };
@@ -185,6 +183,7 @@
 		8C9CE85D12E2683800017A02 /* BlockerModule.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CE85C12E2683800017A02 /* BlockerModule.icns */; };
 		8C9CE86212E2698300017A02 /* BlockerModule.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CE86112E2698300017A02 /* BlockerModule.ico */; };
 		8C9CE88812E2700900017A02 /* Skype.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C9CE77812E2465B00017A02 /* Skype.framework */; };
+		8C9E3BCA1347778000D8BDCC /* RepeatRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E3BC81347775400D8BDCC /* RepeatRule.m */; };
 		8C9E3D5213206F8E007632E5 /* WriteHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C9E3D5013206F8E007632E5 /* WriteHandler.h */; };
 		8C9E3D6B1320B337007632E5 /* WriteHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E3D5113206F8E007632E5 /* WriteHandler.m */; };
 		8C9E3D6E1320B35E007632E5 /* WriteHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E3D5113206F8E007632E5 /* WriteHandler.m */; };
@@ -609,8 +608,6 @@
 		8C11513A1344EF9D00273D0A /* ActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityViewController.h; sourceTree = "<group>"; };
 		8C11513B1344EFA000273D0A /* ActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityViewController.m; sourceTree = "<group>"; };
 		8C1151411344F40400273D0A /* ActivityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityView.xib; sourceTree = "<group>"; };
-		8C115145134534CC00273D0A /* ActivityRptWin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityRptWin.h; sourceTree = "<group>"; };
-		8C115146134534D800273D0A /* ActivityRptWin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityRptWin.m; sourceTree = "<group>"; };
 		8C1800F812F4A5D00061FDE6 /* marketing.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = marketing.txt; sourceTree = "<group>"; };
 		8C1800F912F4B7990061FDE6 /* marketing.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = marketing.rtf; sourceTree = "<group>"; };
 		8C18041512F770DB0061FDE6 /* AddActivityDialogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddActivityDialogController.h; sourceTree = "<group>"; };
@@ -807,6 +804,8 @@
 		8C9CE77812E2465B00017A02 /* Skype.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Skype.framework; sourceTree = "<group>"; };
 		8C9CE85C12E2683800017A02 /* BlockerModule.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = BlockerModule.icns; sourceTree = "<group>"; };
 		8C9CE86112E2698300017A02 /* BlockerModule.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = BlockerModule.ico; sourceTree = "<group>"; };
+		8C9E3BC71347775400D8BDCC /* RepeatRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatRule.h; sourceTree = "<group>"; };
+		8C9E3BC81347775400D8BDCC /* RepeatRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatRule.m; sourceTree = "<group>"; };
 		8C9E3D5013206F8E007632E5 /* WriteHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteHandler.h; sourceTree = "<group>"; };
 		8C9E3D5113206F8E007632E5 /* WriteHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteHandler.m; sourceTree = "<group>"; };
 		8C9FB5BD13356DB70034FE85 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -1112,8 +1111,7 @@
 		29B97314FDCFA39411CA2CEA /* WorkPlayAway */ = {
 			isa = PBXGroup;
 			children = (
-				8C115145134534CC00273D0A /* ActivityRptWin.h */,
-				8C115146134534D800273D0A /* ActivityRptWin.m */,
+				8C73F10512E624080056FAFF /* Design.rtf */,
 				8C82CFDF12F3D0BE00830486 /* Design.txt */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -1378,11 +1376,12 @@
 		8CD1967212D46CF400C69AC9 /* RTMModule */ = {
 			isa = PBXGroup;
 			children = (
-				8C73F10512E624080056FAFF /* Design.rtf */,
 				8C77295612D46AC600F71FE7 /* TaskDialogController.h */,
 				8C77296212D46AC600F71FE7 /* Secret.h */,
 				8C77295412D46AC600F71FE7 /* rtm.ico */,
 				8C77297E12D46AC600F71FE7 /* RequestREST.h */,
+				8C9E3BC71347775400D8BDCC /* RepeatRule.h */,
+				8C9E3BC81347775400D8BDCC /* RepeatRule.m */,
 				8C77297312D46AC600F71FE7 /* ListsHandler.h */,
 				8C77297412D46AC600F71FE7 /* TokenHandler.h */,
 				8C77297512D46AC600F71FE7 /* FrobHandler.h */,
@@ -2242,7 +2241,6 @@
 				8C844AB2133AF9C800998D1C /* WorkHoursToAverageXForm.m in Sources */,
 				8C1151291343EAAD00273D0A /* SVRefHandler.m in Sources */,
 				8C11513D1344EFAA00273D0A /* ActivityViewController.m in Sources */,
-				8C115147134534EE00273D0A /* ActivityRptWin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2305,6 +2303,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C9E3BCA1347778000D8BDCC /* RepeatRule.m in Sources */,
 				8CF8BB7212D9FBA6009C7E3D /* RefreshListHandler.m in Sources */,
 				8CD197E212D4FED200C69AC9 /* RefreshHandler.m in Sources */,
 				8CD197E812D4FED200C69AC9 /* CompleteRespHandler.m in Sources */,
@@ -2444,7 +2443,6 @@
 				8C844AB3133AF9C800998D1C /* WorkHoursToAverageXForm.m in Sources */,
 				8C11512A1343EAAD00273D0A /* SVRefHandler.m in Sources */,
 				8C11513E1344EFAA00273D0A /* ActivityViewController.m in Sources */,
-				8C115148134534EE00273D0A /* ActivityRptWin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

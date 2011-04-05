@@ -11,7 +11,7 @@
 
 @implementation RefreshListHandler
 
-- (id) initWithContext: (RTMModule*) ctx andDelegate: (<RTMCallback>) delegate 
+- (id) initWithContext: (RTMModule*) ctx andDelegate: (id<RTMCallback>) delegate 
 {
 	self = (RefreshListHandler*)[super initWithContext:ctx andDelegate: delegate];
 	

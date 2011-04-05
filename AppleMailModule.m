@@ -87,6 +87,56 @@
     return lastCheck;
 }
 
+- (NSString*) stripWhite: (NSString*) inStr
+{
+    NSRange range = [inStr rangeOfCharacterFromSet:[NSCharacterSet whitespaceCharacterSet]];
+    if (range.location == 0){
+        return [inStr substringFromIndex:range.length];
+    }
+    return inStr;
+}
+
+- (NSString*) stripRe: (NSString*) inStr
+{
+    NSString *test = [self stripWhite:[inStr uppercaseString]];
+    while ([test hasPrefix:@"RE:"]){
+        test = [test substringFromIndex:3];
+        test = [self stripWhite:test];
+    }
+    return test;
+}
+
+/**
+ * make threads for messages with equivalent subject headers
+ */
+- (void) processThreads
+{
+    NSMutableArray *newUnread = [NSMutableArray arrayWithCapacity:[unreadMail count]];
+    NSMutableDictionary *threadDict = [NSMutableDictionary dictionaryWithCapacity:[unreadMail count]];
+    // now run through the mail and look for threads 
+    for (NSMutableDictionary *msg in unreadMail){
+        NSString *subj = [self stripRe:[msg objectForKey:MAIL_SUBJECT]];
+        
+        NSMutableDictionary *match = [threadDict objectForKey:subj];
+        if (match){
+            NSMutableArray *thread = [match objectForKey:@"THREAD"];
+            if (!thread){
+                thread = [NSMutableArray new];
+                [match setObject:thread forKey:@"THREAD"];
+                [match setObject:[NSNumber numberWithBool:NO] forKey:@"EXPANDED"];
+            }
+            [thread addObject:msg];
+        }
+        else {
+            [threadDict setObject:msg forKey:subj];
+            [newUnread addObject:msg];
+        }
+    }
+    /** replace unreadMail with threadedUnreadMail **/
+    unreadMail = newUnread;
+     
+}
+
 -(void) getUnread: (NSObject*) param
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
@@ -153,6 +203,10 @@
 			}
 		}
 	}
+    if (summaryMode){
+        [self processThreads];
+    }
+
 	[[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:[super myKeyForKey:LASTCHECK]];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 	NSNotification *msg = [NSNotification notificationWithName:@"com.workplayaway.fetchDone" object:nil];
@@ -251,12 +305,36 @@
 								withObject:note.object];
 }
 
+- (void) saveRules
+{
+    NSMutableArray *aryFields = [NSMutableArray arrayWithCapacity:[rules count]];
+    NSMutableArray *aryTypes = [NSMutableArray arrayWithCapacity:[rules count]];
+    NSMutableArray *aryColors = [NSMutableArray arrayWithCapacity:[rules count]];
+    NSMutableArray *aryPredicates = [NSMutableArray arrayWithCapacity:[rules count]];
+    NSMutableArray *aryCompares = [NSMutableArray arrayWithCapacity:[rules count]];
+    for (FilterRule *rule in rules){
+        [aryFields addObject:[NSNumber numberWithInt:rule.fieldType]];
+        [aryCompares addObject:[NSNumber numberWithInt:rule.compareType]];
+        [aryTypes addObject:[NSNumber numberWithInt:rule.ruleType]];
+        [aryPredicates addObject:rule.predicate];
+        NSLog(@"predicate = %@", rule.predicate);
+        [aryColors addObject:[NSArchiver archivedDataWithRootObject:rule.color]];
+    }
+    NSLog(@"saving %d rules", [rules count]);
+    [super saveDefaultValue:aryFields forKey:RULE_FIELDS];
+    [super saveDefaultValue:aryColors forKey:RULE_COLORS];
+    [super saveDefaultValue:aryCompares forKey:RULE_COMPARES];
+    [super saveDefaultValue:aryPredicates forKey:RULE_PREDS];
+    [super saveDefaultValue:aryTypes forKey:RULE_TYPES];
+}
+
 -(void) saveDefaults{
 	[super saveDefaults];
 	[super saveDefaultValue:mailMailboxName forKey:MAILBOX];
 	[super saveDefaultValue:accountName forKey:ACCOUNT];
 	[super saveDefaultValue:[NSNumber numberWithDouble:refreshInterval *60] forKey:REFRESH];
 	[super saveDefaultValue:[NSNumber numberWithDouble:displayWindow*60*60] forKey:DISPLAYWIN ];
+	[super saveDefaultValue:[NSNumber numberWithBool:useDisplayWindow] forKey:USEDISPWIN ];
 	[[NSUserDefaults standardUserDefaults] synchronize];
     [self saveRules];
 }
@@ -390,29 +468,6 @@
 							 toTarget:self
 						   withObject:task];
 
-}
-
-- (void) saveRules
-{
-    NSMutableArray *aryFields = [NSMutableArray arrayWithCapacity:[rules count]];
-    NSMutableArray *aryTypes = [NSMutableArray arrayWithCapacity:[rules count]];
-    NSMutableArray *aryColors = [NSMutableArray arrayWithCapacity:[rules count]];
-    NSMutableArray *aryPredicates = [NSMutableArray arrayWithCapacity:[rules count]];
-    NSMutableArray *aryCompares = [NSMutableArray arrayWithCapacity:[rules count]];
-    for (FilterRule *rule in rules){
-        [aryFields addObject:[NSNumber numberWithInt:rule.fieldType]];
-        [aryCompares addObject:[NSNumber numberWithInt:rule.compareType]];
-        [aryTypes addObject:[NSNumber numberWithInt:rule.ruleType]];
-        [aryPredicates addObject:rule.predicate];
-        NSLog(@"predicate = %@", rule.predicate);
-        [aryColors addObject:[NSArchiver archivedDataWithRootObject:rule.color]];
-    }
-    NSLog(@"saving %d rules", [rules count]);
-    [super saveDefaultValue:aryFields forKey:RULE_FIELDS];
-    [super saveDefaultValue:aryColors forKey:RULE_COLORS];
-    [super saveDefaultValue:aryCompares forKey:RULE_COMPARES];
-    [super saveDefaultValue:aryPredicates forKey:RULE_PREDS];
-    [super saveDefaultValue:aryTypes forKey:RULE_TYPES];
 }
 
 - (void) clearRules
