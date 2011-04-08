@@ -1,0 +1,7 @@
+tell application "iCal"
+set findId to "<idParam>"
+tell calendar "<calName>"
+set theEvent to first event whose uid = findId
+show theEvent
+end tell
+end tell

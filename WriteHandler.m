@@ -532,37 +532,7 @@
     [((WPADelegate*)[[NSApplication sharedApplication] delegate]) persistentStoreCoordinator];
     return persistentStoreCoordinator;
 }
-//    NSManagedObjectModel *mom = [self managedObjectModel];
-//    if (!mom) {
-//        NSAssert(NO, @"Managed object model is nil");
-//        NSLog(@"%@:%s No model to generate a store from", [self class], _cmd);
-//        return nil;
-//    }
-//	
-//    NSFileManager *fileManager = [NSFileManager defaultManager];
-//    NSString *applicationSupportDirectory = [self applicationSupportDirectory];
-//    
-//    if ( ![fileManager fileExistsAtPath:applicationSupportDirectory isDirectory:NULL] ) {
-//		if (![fileManager createDirectoryAtPath:applicationSupportDirectory withIntermediateDirectories:NO attributes:nil error:&error]) {
-//            NSAssert(NO, ([NSString stringWithFormat:@"Failed to create App Support directory %@ : %@", applicationSupportDirectory,error]));
-//            NSLog(@"Error creating application support directory at %@ : %@",applicationSupportDirectory,error);
-//            return nil;
-//		}
-//    }
-//    
-//    NSURL *url = [NSURL fileURLWithPath: [applicationSupportDirectory stringByAppendingPathComponent: @"storedata"]];
-//    persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: mom];
-//    if (![persistentStoreCoordinator addPersistentStoreWithType:NSXMLStoreType 
-//												  configuration:nil 
-//															URL:url 
-//														options:nil 
-//														  error:&error]){
-//        [[NSApplication sharedApplication] presentError:error];
-//        [persistentStoreCoordinator release], persistentStoreCoordinator = nil;
-//        return nil;
-//    }    
-//	
-//    return persistentStoreCoordinator;
+
 
 /**
  Returns the managed object context for the application (which is already

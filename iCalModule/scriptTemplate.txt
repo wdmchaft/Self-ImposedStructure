@@ -1,0 +1,20 @@
+tell application "iCal"
+set startDate to date "<sDate>"
+set endDate to date "<eDate>"
+tell calendar "<calName>"
+set theEventList to every event whose start date >= startDate and start date < endDate
+end tell
+set recList to {}
+repeat with evt in theEventList
+set idStr to uid of evt
+set sDate to start date of evt
+set startDay to date string of sDate
+set startTime to time string of sDate
+set startDate to {startDay," ", startTime} as text
+set summTxt to summary of evt
+set descTxt to description of evt
+set myRecord to {sdate:startDate, summ:summTxt, desc:descTxt, unique:idStr}
+copy myRecord to the end of recList
+end repeat
+return recList
+end tell

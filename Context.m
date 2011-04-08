@@ -306,7 +306,7 @@ static Context* sharedContext = nil;
 	return dispName;
 }
 
-- (NSData*) iconForModule: (<Instance>) mod 
+- (NSData*) iconForModule: (id<Instance>) mod 
 {
 	NSString *name = [[((NSObject*)mod) class]description];
 	if (iconsMap == nil){
@@ -353,8 +353,8 @@ static Context* sharedContext = nil;
 - (void) busyModules {
 	for (NSString *name in instancesMap){
 		NSObject* thing = [instancesMap objectForKey: name];
-		<Stateful> inst = (<Stateful>) thing;
-		if ( ((<Instance>)inst).enabled && [thing conformsToProtocol:@protocol(Stateful)]){
+		id<Stateful> inst = (id<Stateful>) thing;
+		if ( ((id<Instance>)inst).enabled && [thing conformsToProtocol:@protocol(Stateful)]){
 			[inst changeState: WPASTATE_THINKING];
 		}
 	}
@@ -364,8 +364,8 @@ static Context* sharedContext = nil;
 - (void) freeModules {
 	for (NSString *name in instancesMap){
 		NSObject* thing = [instancesMap objectForKey: name];
-		<Stateful> inst = (<Stateful>) thing;
-		if ( ((<Instance>)inst).enabled && [thing conformsToProtocol:@protocol(Stateful)]){
+		id<Stateful> inst = (id<Stateful>) thing;
+		if ( ((id<Instance>)inst).enabled && [thing conformsToProtocol:@protocol(Stateful)]){
 			[inst changeState: WPASTATE_FREE];
 		}
 	}
@@ -375,8 +375,8 @@ static Context* sharedContext = nil;
 - (void) awayModules {
 	for (NSString *name in instancesMap){
 		NSObject* thing = [instancesMap objectForKey: name];
-		<Stateful> inst = (<Stateful>) thing;
-		if ( ((<Instance>)inst).enabled && [thing conformsToProtocol:@protocol(Stateful)]){
+		id<Stateful> inst = (id<Stateful>) thing;
+		if ( ((id<Instance>)inst).enabled && [thing conformsToProtocol:@protocol(Stateful)]){
 			[inst changeState: WPASTATE_AWAY];
 		}		
 	}
@@ -386,8 +386,8 @@ static Context* sharedContext = nil;
 - (void) stopModules {
 	for (NSString *name in instancesMap){
 		NSObject* thing = [instancesMap objectForKey: name];
-		<Stateful> inst = (<Stateful>) thing;
-		if ( ((<Instance>)inst).enabled && [thing conformsToProtocol:@protocol(Stateful)]){
+		id<Stateful> inst = (id<Stateful>) thing;
+		if ( ((id<Instance>)inst).enabled && [thing conformsToProtocol:@protocol(Stateful)]){
 			[inst changeState: WPASTATE_OFF];
 		}		
 	}

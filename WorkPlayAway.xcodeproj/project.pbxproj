@@ -37,6 +37,7 @@
 				8CDC10FA130CB40D00BA478C /* PBXTargetDependency */,
 				8CDC10F8130CB40D00BA478C /* PBXTargetDependency */,
 				8CDC10F6130CB40D00BA478C /* PBXTargetDependency */,
+				8C3982BA134D45C1008C5670 /* PBXTargetDependency */,
 				8CDC10F4130CB40D00BA478C /* PBXTargetDependency */,
 				8CDC10F2130CB40D00BA478C /* PBXTargetDependency */,
 			);
@@ -94,6 +95,14 @@
 		8C1C92A212EA3EC00077D343 /* SummaryData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F3D612E790B60056FAFF /* SummaryData.m */; };
 		8C1C92E512EB593C0077D343 /* GrowlManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1C92E412EB593C0077D343 /* GrowlManager.m */; };
 		8C1C92E612EB593C0077D343 /* GrowlManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1C92E412EB593C0077D343 /* GrowlManager.m */; };
+		8C34BC5C134D245300A9BCFE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C34BC5B134D245300A9BCFE /* Cocoa.framework */; };
+		8C34BC62134D245300A9BCFE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C34BC60134D245300A9BCFE /* InfoPlist.strings */; };
+		8C34BC77134D262A00A9BCFE /* iCalModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C34BC74134D262A00A9BCFE /* iCalModule.xib */; };
+		8C34BC78134D262A00A9BCFE /* iCalModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */; };
+		8C3982BF134D4686008C5670 /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
+		8C3982C1134D48DE008C5670 /* openEvent.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C3982C0134D48DE008C5670 /* openEvent.txt */; };
+		8C3982C6134D4E8C008C5670 /* allEvents.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C3982C5134D4E8C008C5670 /* allEvents.txt */; };
+		8C3982C8134D4F4A008C5670 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C3982C7134D4F4A008C5670 /* ScriptingBridge.framework */; };
 		8C3AB4AC12E2CEBF00A19AA4 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C3AB4AB12E2CEBF00A19AA4 /* README.txt */; };
 		8C3AB4AD12E2CEBF00A19AA4 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C3AB4AB12E2CEBF00A19AA4 /* README.txt */; };
 		8C4019E9133FFE1D00EB414F /* VariableTableColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C4019E8133FFE1B00EB414F /* VariableTableColumn.m */; };
@@ -280,6 +289,7 @@
 		8CEF4E0D13394FBF000F5E3A /* SummaryStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CEF4E0C13394FBF000F5E3A /* SummaryStatusViewController.xib */; };
 		8CEF4E0E13394FBF000F5E3A /* SummaryStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CEF4E0C13394FBF000F5E3A /* SummaryStatusViewController.xib */; };
 		8CEF4E1B1339B2D8000F5E3A /* GoalHoursToAverageXForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CEF4E191339B2D8000F5E3A /* GoalHoursToAverageXForm.m */; };
+		8CF6DFEA134E4669005346CE /* iCalMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF6DFE9134E4669005346CE /* iCalMonitor.m */; };
 		8CF8B60312D821B5009C7E3D /* StatsTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8B5FB12D821B5009C7E3D /* StatsTable.m */; };
 		8CF8B60412D821B5009C7E3D /* Schema.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8B5FD12D821B5009C7E3D /* Schema.m */; };
 		8CF8B60512D821B5009C7E3D /* StatsRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8B5FF12D821B5009C7E3D /* StatsRecord.m */; };
@@ -302,6 +312,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		8C3982B9134D45C1008C5670 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C34BC59134D245300A9BCFE;
+			remoteInfo = iCalModule;
+		};
+		8C3982BD134D464B008C5670 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CD1974312D4C59600C69AC9;
+			remoteInfo = WPACommon;
+		};
 		8C5DEC4E12E8C4B300EE93F1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -605,7 +629,6 @@
 		8C1151281343EAAD00273D0A /* SVRefHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRefHandler.m; sourceTree = "<group>"; };
 		8C11513A1344EF9D00273D0A /* ActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityViewController.h; sourceTree = "<group>"; };
 		8C11513B1344EFA000273D0A /* ActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityViewController.m; sourceTree = "<group>"; };
-		8C1151411344F40400273D0A /* ActivityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityView.xib; sourceTree = "<group>"; };
 		8C1800F812F4A5D00061FDE6 /* marketing.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = marketing.txt; sourceTree = "<group>"; };
 		8C1800F912F4B7990061FDE6 /* marketing.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = marketing.rtf; sourceTree = "<group>"; };
 		8C18041512F770DB0061FDE6 /* AddActivityDialogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddActivityDialogController.h; sourceTree = "<group>"; };
@@ -614,6 +637,17 @@
 		8C1C92DE12EB504A0077D343 /* Instance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Instance.h; sourceTree = "<group>"; };
 		8C1C92E312EB593C0077D343 /* GrowlManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrowlManager.h; sourceTree = "<group>"; };
 		8C1C92E412EB593C0077D343 /* GrowlManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrowlManager.m; sourceTree = "<group>"; };
+		8C34BC5A134D245300A9BCFE /* iCalModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iCalModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C34BC5B134D245300A9BCFE /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		8C34BC5F134D245300A9BCFE /* iCalModule-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iCalModule-Info.plist"; sourceTree = "<group>"; };
+		8C34BC61134D245300A9BCFE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8C34BC63134D245300A9BCFE /* iCalModule-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iCalModule-Prefix.pch"; sourceTree = "<group>"; };
+		8C34BC74134D262A00A9BCFE /* iCalModule.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iCalModule.xib; sourceTree = SOURCE_ROOT; };
+		8C34BC75134D262A00A9BCFE /* iCalModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCalModule.m; sourceTree = SOURCE_ROOT; };
+		8C34BC76134D262A00A9BCFE /* iCalModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCalModule.h; sourceTree = SOURCE_ROOT; };
+		8C3982C0134D48DE008C5670 /* openEvent.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = openEvent.txt; sourceTree = "<group>"; };
+		8C3982C5134D4E8C008C5670 /* allEvents.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = allEvents.txt; sourceTree = "<group>"; };
+		8C3982C7134D4F4A008C5670 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 		8C3AB4AB12E2CEBF00A19AA4 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		8C4019E7133FFE1A00EB414F /* VariableTableColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableTableColumn.h; sourceTree = "<group>"; };
 		8C4019E8133FFE1B00EB414F /* VariableTableColumn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableTableColumn.m; sourceTree = "<group>"; };
@@ -869,6 +903,8 @@
 		8CEF4DF413393AE7000F5E3A /* SummaryStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummaryStatusViewController.m; sourceTree = "<group>"; };
 		8CEF4E0C13394FBF000F5E3A /* SummaryStatusViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummaryStatusViewController.xib; sourceTree = "<group>"; };
 		8CEF4E191339B2D8000F5E3A /* GoalHoursToAverageXForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoalHoursToAverageXForm.m; sourceTree = "<group>"; };
+		8CF6DFE8134E4669005346CE /* iCalMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCalMonitor.h; sourceTree = "<group>"; };
+		8CF6DFE9134E4669005346CE /* iCalMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCalMonitor.m; sourceTree = "<group>"; };
 		8CF8B5FA12D821B5009C7E3D /* Schema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Schema.h; sourceTree = "<group>"; };
 		8CF8B5FB12D821B5009C7E3D /* StatsTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsTable.m; sourceTree = "<group>"; };
 		8CF8B5FC12D821B5009C7E3D /* StatsTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsTable.h; sourceTree = "<group>"; };
@@ -903,6 +939,16 @@
 				8C82CE4912F2A84C00830486 /* SM2DGraphView.framework in Frameworks */,
 				8CDC08EC1304576C00BA478C /* AppKit.framework in Frameworks */,
 				8C9FB5BE13356DB70034FE85 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C34BC57134D245300A9BCFE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C3982C8134D4F4A008C5670 /* ScriptingBridge.framework in Frameworks */,
+				8C34BC5C134D245300A9BCFE /* Cocoa.framework in Frameworks */,
+				8C3982BF134D4686008C5670 /* WPACommon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1102,6 +1148,7 @@
 				8C5DEC5512E8C4D000EE93F1 /* TestEventModule.bundle */,
 				8CDC0D6A1309D68B00BA478C /* WorkModule.bundle */,
 				8CDC10A7130CA6CA00BA478C /* AppleMailModule.bundle */,
+				8C34BC5A134D245300A9BCFE /* iCalModule.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1109,6 +1156,7 @@
 		29B97314FDCFA39411CA2CEA /* WorkPlayAway */ = {
 			isa = PBXGroup;
 			children = (
+				8C3982C7134D4F4A008C5670 /* ScriptingBridge.framework */,
 				8C73F10512E624080056FAFF /* Design.rtf */,
 				8C82CFDF12F3D0BE00830486 /* Design.txt */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -1162,9 +1210,43 @@
 			isa = PBXGroup;
 			children = (
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				8C34BC5B134D245300A9BCFE /* Cocoa.framework */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8C34BC5D134D245300A9BCFE /* iCalModule */ = {
+			isa = PBXGroup;
+			children = (
+				8C34BC67134D24B600A9BCFE /* Resources */,
+				8C34BC74134D262A00A9BCFE /* iCalModule.xib */,
+				8C34BC75134D262A00A9BCFE /* iCalModule.m */,
+				8C34BC76134D262A00A9BCFE /* iCalModule.h */,
+				8C34BC5E134D245300A9BCFE /* Supporting Files */,
+				8CF6DFE8134E4669005346CE /* iCalMonitor.h */,
+				8CF6DFE9134E4669005346CE /* iCalMonitor.m */,
+			);
+			path = iCalModule;
+			sourceTree = "<group>";
+		};
+		8C34BC5E134D245300A9BCFE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8C34BC5F134D245300A9BCFE /* iCalModule-Info.plist */,
+				8C34BC60134D245300A9BCFE /* InfoPlist.strings */,
+				8C34BC63134D245300A9BCFE /* iCalModule-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8C34BC67134D24B600A9BCFE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8C3982C0134D48DE008C5670 /* openEvent.txt */,
+				8C3982C5134D4E8C008C5670 /* allEvents.txt */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		8C5DEC4212E8C46700EE93F1 /* TestTaskModule */ = {
@@ -1257,6 +1339,7 @@
 		8C73F8B212E8933B0056FAFF /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				8C34BC5D134D245300A9BCFE /* iCalModule */,
 				8CDC1084130CA5D900BA478C /* AppleMailModule */,
 				8CDC0D601309D47000BA478C /* WorkModule */,
 				8CD1966F12D46CA000C69AC9 /* iChatModule */,
@@ -1550,7 +1633,6 @@
 		8CF8C14012DC2B71009C7E3D /* Reporting */ = {
 			isa = PBXGroup;
 			children = (
-				8C1151411344F40400273D0A /* ActivityView.xib */,
 				8C11513A1344EF9D00273D0A /* ActivityViewController.h */,
 				8C11513B1344EFA000273D0A /* ActivityViewController.m */,
 				8C844AB0133AF9C700998D1C /* WorkHoursToAverageXForm.h */,
@@ -1620,6 +1702,24 @@
 			productName = WPADev;
 			productReference = 8C0D93F012D63D3D009F3280 /* WPADev.app */;
 			productType = "com.apple.product-type.application";
+		};
+		8C34BC59134D245300A9BCFE /* iCalModule */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C34BC66134D245300A9BCFE /* Build configuration list for PBXNativeTarget "iCalModule" */;
+			buildPhases = (
+				8C34BC56134D245300A9BCFE /* Sources */,
+				8C34BC57134D245300A9BCFE /* Frameworks */,
+				8C34BC58134D245300A9BCFE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8C3982BE134D464B008C5670 /* PBXTargetDependency */,
+			);
+			name = iCalModule;
+			productName = iCalModule;
+			productReference = 8C34BC5A134D245300A9BCFE /* iCalModule.bundle */;
+			productType = "com.apple.product-type.bundle";
 		};
 		8C5DEC4812E8C4A600EE93F1 /* TestTaskModule */ = {
 			isa = PBXNativeTarget;
@@ -1929,6 +2029,7 @@
 				Japanese,
 				French,
 				German,
+				en,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* WorkPlayAway */;
 			projectDirPath = "";
@@ -1953,6 +2054,7 @@
 				8C5DEC5412E8C4D000EE93F1 /* TestEventModule */,
 				8CDC0D691309D68B00BA478C /* WorkModule */,
 				8CDC10A6130CA6CA00BA478C /* AppleMailModule */,
+				8C34BC59134D245300A9BCFE /* iCalModule */,
 			);
 		};
 /* End PBXProject section */
@@ -1983,6 +2085,17 @@
 				8CDC134113107C9600BA478C /* MailTableView.xib in Resources */,
 				8CDC134413107DE500BA478C /* TaskTableView.xib in Resources */,
 				8CEF4E0D13394FBF000F5E3A /* SummaryStatusViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C34BC58134D245300A9BCFE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C34BC62134D245300A9BCFE /* InfoPlist.strings in Resources */,
+				8C34BC77134D262A00A9BCFE /* iCalModule.xib in Resources */,
+				8C3982C1134D48DE008C5670 /* openEvent.txt in Resources */,
+				8C3982C6134D4E8C008C5670 /* allEvents.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2240,6 +2353,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8C34BC56134D245300A9BCFE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C34BC78134D262A00A9BCFE /* iCalModule.m in Sources */,
+				8CF6DFEA134E4669005346CE /* iCalMonitor.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8C5DEC4612E8C4A600EE93F1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2445,6 +2567,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		8C3982BA134D45C1008C5670 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C34BC59134D245300A9BCFE /* iCalModule */;
+			targetProxy = 8C3982B9134D45C1008C5670 /* PBXContainerItemProxy */;
+		};
+		8C3982BE134D464B008C5670 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CD1974312D4C59600C69AC9 /* WPACommon */;
+			targetProxy = 8C3982BD134D464B008C5670 /* PBXContainerItemProxy */;
+		};
 		8C5DEC4F12E8C4B300EE93F1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8CD1974312D4C59600C69AC9 /* WPACommon */;
@@ -2624,6 +2756,14 @@
 			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
+		8C34BC60134D245300A9BCFE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8C34BC61134D245300A9BCFE /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		8C77292512D46AC600F71FE7 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2702,6 +2842,50 @@
 				PRODUCT_NAME = WPADev;
 				VALID_ARCHS = "i386 x86_64";
 				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		8C34BC64134D245300A9BCFE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iCalModule/iCalModule-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "iCalModule/iCalModule-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		8C34BC65134D245300A9BCFE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iCalModule/iCalModule-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "iCalModule/iCalModule-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
 		};
@@ -3622,6 +3806,15 @@
 			buildConfigurations = (
 				8C0D93F312D63D3D009F3280 /* Debug */,
 				8C0D93F412D63D3D009F3280 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C34BC66134D245300A9BCFE /* Build configuration list for PBXNativeTarget "iCalModule" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C34BC64134D245300A9BCFE /* Debug */,
+				8C34BC65134D245300A9BCFE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

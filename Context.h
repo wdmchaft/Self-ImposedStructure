@@ -56,11 +56,11 @@
 - (void) saveTask;
 - (TaskInfo*) readTask:(NSUserDefaults*) defaults;
 - (NSString*) descriptionForModule: (NSObject*) mod;
-- (NSData*) iconForModule: (<Instance>) mod;
+- (NSData*) iconForModule: (id<Instance>) mod;
 - (void) removeDefaultsForKey: (NSString*) keyPrefix;
 
-- (void) refreshModules: (<AlertHandler>) handler withLoop: (BOOL) loopingOn;
-- (void) scheduleModules: (<AlertHandler>) handler withLoop: (BOOL) loopingOn;
+- (void) refreshModules: (id<AlertHandler>) handler withLoop: (BOOL) loopingOn;
+- (void) scheduleModules: (id<AlertHandler>) handler withLoop: (BOOL) loopingOn;
 - (void) busyModules ;
 - (void) freeModules ;
 - (void) awayModules ;

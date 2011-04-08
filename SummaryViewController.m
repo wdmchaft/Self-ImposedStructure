@@ -194,7 +194,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 	id theValue;
 	NSParameterAssert(row >= 0 && row < [data count]);
 	if (row == 0){
-		NSSortDescriptor *desc = [[NSSortDescriptor alloc] initWithKey:@"start" ascending:NO];
+		NSSortDescriptor *desc = [[NSSortDescriptor alloc] initWithKey:@"start" ascending:YES];
 		[data sortUsingDescriptors:[NSArray arrayWithObject:desc]];
 	}
     NSDictionary *params  = [data objectAtIndex:row];

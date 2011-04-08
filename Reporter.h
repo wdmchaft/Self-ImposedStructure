@@ -12,6 +12,7 @@
 #define EVENT_END @"end"
 #define EVENT_DESC @"desc"
 #define EVENT_SUMMARY @"summary"
+#define EVENT_ID @"id"
 #define TASK_DUE @"due_time"
 #define TASK_NAME @"name"
 #define REPORTER_MODULE @"module"

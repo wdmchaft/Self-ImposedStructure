@@ -320,7 +320,7 @@
         NSLog(@"predicate = %@", rule.predicate);
         [aryColors addObject:[NSArchiver archivedDataWithRootObject:rule.color]];
     }
-    NSLog(@"saving %d rules", [rules count]);
+    NSLog(@"saving %ld rules", [rules count]);
     [super saveDefaultValue:aryFields forKey:RULE_FIELDS];
     [super saveDefaultValue:aryColors forKey:RULE_COLORS];
     [super saveDefaultValue:aryCompares forKey:RULE_COMPARES];
