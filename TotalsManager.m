@@ -16,10 +16,11 @@
 // the values are reset nightly and weekly and this class manages the necessary timers
 //
 @implementation TotalsManager
-@synthesize dailyRolloverTimer, rolloverDay, rolloverHour, timeStampDate;
+@synthesize dailyRolloverTimer, rolloverDay, rolloverTime, timeStampDate;
 @synthesize awayToday, workToday, freeToday;
 @synthesize awayWeek, workWeek, freeWeek;
 @synthesize interval, recordChecked, summary;
+@synthesize rollDelegate;
 
 - (void) initFromRecord
 {
@@ -39,12 +40,37 @@
     
 }
 
+- (void) setVacationEnd: (NSDate*) date
+{
+	[[NSUserDefaults standardUserDefaults] setObject:date forKey:@"vacationEndDate"];
+}
+
+- (BOOL) isVacationToday
+{
+	NSDate *vacationEnd = [[NSUserDefaults standardUserDefaults] objectForKey:@"vacationEndDate"];
+	// if now is before the end of vacation?
+	// the timestamp date is "now"
+	return ([timeStampDate compare: vacationEnd] == NSOrderedAscending);
+}
+
+- (double) calcGoal
+{
+    if ([self isVacationToday])
+        return 0;
+    
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDateComponents *comps = [cal components:NSWeekdayCalendarUnit fromDate:timeStampDate];
+    NSUInteger day = [comps weekday];
+    NSString *defaultKey = [NSString stringWithFormat:@"day%dGoal",day - 1]; //gregorian day ordinals 1-7
+    return [[NSUserDefaults standardUserDefaults] doubleForKey:defaultKey];
+}
+
 - (void)saveCurrent
 {
 	[WriteHandler sendTotalsForDate:timeStampDate 
-							 goal:[[NSUserDefaults standardUserDefaults]doubleForKey:@"dailyGoal"] 
-							 work:workToday 
-							 free:freeToday];
+                               goal:[self calcGoal]
+                               work:workToday 
+                               free:freeToday];
     [WriteHandler sendSummary:summary]; 
 }
 
@@ -54,9 +80,10 @@
                       activity:[Context sharedContext].currentTask
                      increment:interval];
 }
+
 - (BOOL) isFromToday:(NSDate*) dateIn
 {
-	NSDate *today = [[NSDate alloc] init];
+	NSDate *today = timeStampDate;
 	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
 	int DAYCOMPS = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
 	// Get the weekday component of the current date
@@ -73,13 +100,14 @@
     return YES;
 }
 
+
 - (void) updateSummaryWithWork: (NSTimeInterval) workTime 
                           free: (NSTimeInterval) freeTime 
                           away: (NSTimeInterval) awayTime 
 {
     NSUInteger oldTotal = summary.daysTotal.intValue;
     [summary setDaysTotal:[NSNumber numberWithInt:++oldTotal]];
-    double goalTime = [[NSUserDefaults standardUserDefaults]doubleForKey:@"dailyGoal"] ;
+    double goalTime = [self calcGoal];
 
     /*
      updating the days counters should only happen once per day.
@@ -88,21 +116,21 @@
         if (![self isFromToday:summary.lastDay]) {
             NSUInteger oldWorkDays = summary.daysWorked.intValue;
             [summary setDaysWorked:[NSNumber numberWithInt:++oldWorkDays]]; 
-            [summary setLastDay:[NSDate date]];
+            [summary setLastDay:timeStampDate];
         }
       
         if (![self isFromToday:summary.lastWorked]) {   
             NSTimeInterval oldTimeWorked = summary.timeWorked.doubleValue;
             [summary setTimeWorked:[NSNumber numberWithDouble:(oldTimeWorked + workTime)]];
-            [summary setLastWorked:[NSDate date]];
+            [summary setLastWorked:timeStampDate];
         }
         
         if (![self isFromToday:summary.lastGoalAchieved]) {   
             NSTimeInterval oldGoal = summary.timeGoal.doubleValue;
             [summary setTimeGoal:[NSNumber numberWithDouble:(oldGoal + goalTime)]];
-            [summary setLastGoalAchieved:[NSDate date]];
+            [summary setLastGoalAchieved:timeStampDate];
             Context *ctx = [Context sharedContext];
-            [[ctx growlManager] growlThis:@"Work day is done!" isSticky:YES withTitle:"Whew!"];
+            [[ctx growlManager] growlThis: @"Work day is done!" isSticky:YES withTitle:@"Whew!"];  
         }
 
     }
@@ -141,7 +169,7 @@
 	
 	// Get the weekday component of the current date
 	// and if its the rollover day.... then rollover for the week
-	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+	NSCalendar *gregorian = [NSCalendar currentCalendar];
 	
 	awayToday = workToday = freeToday = 0;
 
@@ -151,34 +179,59 @@
 	}
     Context *ctx = [Context sharedContext];
     [[ctx growlManager] growlThis:@"Starting a new day!" isSticky:YES withTitle:@"Hey There!"];
+	[rollDelegate gotRollover];
 }
 
 - (void) dumpRollDate: (NSDate*) rollDate andInterval: (NSTimeInterval) rollInterval
 {
 	NSDateFormatter *compDate = [NSDateFormatter new];
-	[compDate  setDateFormat:@"yyyy-MM-dd hh:mm" ];
+	[compDate  setDateFormat:@"yyyy-MM-dd HH:mm" ];
 	NSString *rollStr = [compDate stringFromDate:rollDate];
 	int hour = rollInterval / 3600; 
-	int min = (((int)rollInterval) % 3600) / 60;
-	NSLog(@"First Rollover is at %@, %f seconds (%d:%d) from now", rollStr, rollInterval, hour, min);
+	int min = (((int)rollInterval % 3600) / 60);
+	int sec = (((int)rollInterval) % 60);
+	NSLog(@"First Rollover is at %@, %f seconds (%02d:%02d:%02d) from now", rollStr, rollInterval, hour, min, sec);
 }
 
-- (NSTimer*) getTimerForRollHour: (int) rollHour
+- (NSTimer*) getTimerAndStampForRollover: (NSDate*) rollDate
 {
-	NSDate *today = [[NSDate alloc] init];
-	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-	int ALLCOMPS = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit;
-	// Get the weekday component of the current date
-	NSDateComponents *rollComps = [gregorian components:ALLCOMPS fromDate:today];
-	if (rollHour <= rollComps.hour){
-		rollComps.day += 1;
-	}
-	rollComps.hour = rollHour;
-
-	NSDate *rollDate = [gregorian dateFromComponents:rollComps];
-	NSTimeInterval rollInterval = [rollDate timeIntervalSinceNow];
+	NSDate *now = [NSDate date];
+	int TIMECOMPS = NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+	int ALLCOMPS = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | TIMECOMPS;
+	NSCalendar *gregorian = [NSCalendar currentCalendar];
 	
-	[self dumpRollDate: rollDate andInterval: rollInterval];
+	NSDateComponents *nowComps = [gregorian components:ALLCOMPS fromDate:now];
+	
+	NSDateComponents *rollComps = [gregorian components:ALLCOMPS fromDate:rollDate];
+	
+	nowComps.hour = rollComps.hour;
+	nowComps.minute = rollComps.minute;
+	nowComps.second = rollComps.second;
+	NSDate *rollToday = [gregorian dateFromComponents:nowComps];
+	
+	NSTimeInterval rollInterval = [rollToday timeIntervalSinceNow];
+	BOOL afterRolltime = (rollInterval < 0);
+	if (afterRolltime){ // the roll time is earlier than now
+		nowComps.day += 1;
+		rollToday = [gregorian dateFromComponents:nowComps];
+	}
+	rollInterval = [rollToday timeIntervalSinceNow];
+	[self dumpRollDate: rollToday andInterval: rollInterval];
+	// now calc the timestamp date
+	
+	NSDateComponents *timeStampComps = [gregorian components:ALLCOMPS fromDate:now];
+	timeStampComps.hour = 0;
+	timeStampComps.minute = 0;
+	timeStampComps.second = 0;
+	if (afterRolltime == NO){
+		timeStampComps.day -= 1;
+	}
+	timeStampDate = [gregorian dateFromComponents:timeStampComps];
+	
+	// now remove milliseconds from the timestamp date
+	NSTimeInterval temp = [timeStampDate timeIntervalSinceReferenceDate];
+	temp = floor(temp);
+	timeStampDate = [NSDate dateWithTimeIntervalSinceReferenceDate:temp];
 
 	return [NSTimer scheduledTimerWithTimeInterval:rollInterval
 											target:self
@@ -186,20 +239,24 @@
 										  userInfo:nil
 										   repeats:NO];
 }
-- (NSDate*) getTimeStampDate: (int) rollHour
+
+- (NSDate*) getTimeStampDate: (double) rollTimeSecs
 {
-	NSDate *today = [[NSDate alloc] init];
-	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-	int ALLCOMPS = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+	NSDate *today = [NSDate date];
+
+	NSCalendar *gregorian = [NSCalendar currentCalendar];
+	int ALLCOMPS = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit |
+				   NSMinuteCalendarUnit | NSSecondCalendarUnit;
 	// Get the weekday component of the current date
 	NSDateComponents *rollComps = [gregorian components:ALLCOMPS fromDate:today];
-	if (rollHour > rollComps.hour){
+	int nowSecs = rollComps.second + (rollComps.minute * 60) + (rollComps.hour * 3600);
+	if (rollTimeSecs > nowSecs){
 		rollComps.day -= 1;
 	}
-	rollComps.hour = rollHour;
+
 	
 	NSDate *stamp = [gregorian dateFromComponents:rollComps];
-    [stamp timeIntervalSinceNow];
+ //   [stamp timeIntervalSinceNow];
  //   NSDateFormatter *fmt = [NSDateFormatter new];
  //   [fmt setDateFormat:@"MM/dd HH:mm:SSSSS"];
  //   NSLog(@"stamp = %@", [fmt stringFromDate:stamp]);
@@ -211,12 +268,11 @@
 	if (self)
 	{
 		NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-		rolloverHour = ((NSNumber*)[ud objectForKey:@"dailyRolloverHour"]).intValue; // defaults to zero (aka midnight)
-		NSLog(@"rollover hour: %d", rolloverHour);
+		rolloverTime = [ud objectForKey:@"dailyRolloverTime"]; // defaults to zero (aka midnight)
+		NSLog(@"rollover time: %@", rolloverTime);
 		rolloverDay =  ((NSNumber*)[ud objectForKey:@"weeklyRolloverDay"]).intValue;
 		interval = ((NSNumber*)[ud objectForKey:@"statusInterval"]).doubleValue; 
-		timeStampDate = [[self getTimeStampDate: rolloverHour] copy];
-		dailyRolloverTimer = [self getTimerForRollHour: rolloverHour];
+		dailyRolloverTimer = [self getTimerAndStampForRollover: rolloverTime];
 	}
 	return self;
 }
@@ -252,11 +308,27 @@
         [self saveActivity];
     }
 }
+
 + (void) initialize
 {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	NSDate *rollDate = [NSDate date];
+	NSCalendar *cal = [NSCalendar currentCalendar];
+	int TIMECOMPS = NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+	NSDateComponents *dateComps = [cal components:TIMECOMPS fromDate:rollDate];
+	dateComps.hour = 0;
+	dateComps.minute = 0;
+	dateComps.second = 0;
+	rollDate = [cal dateFromComponents:dateComps];
     NSDictionary *appDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
-								 [NSNumber numberWithInt:0],	@"dailyRolloverHour", //midnight
+								 [NSNumber numberWithInt:0],	@"day0Goal", //sunday
+								 [NSNumber numberWithInt:8 * 60 * 60],	@"day1Goal", //monday
+								 [NSNumber numberWithInt:8 * 60 * 60],	@"day2Goal", //tues
+								 [NSNumber numberWithInt:8 * 60 * 60],	@"day3Goal", //wed
+								 [NSNumber numberWithInt:8 * 60 * 60],	@"day4Goal", //thu
+								 [NSNumber numberWithInt:8 * 60 * 60],	@"day5Goal", //fri
+								 [NSNumber numberWithInt:0],	@"day6Goal", //sat
+								 rollDate, @"dailyRolloverTime", //midnight
 								 [NSNumber numberWithInt:1],	@"weeklyRolloverDay", //sunday
 								 [NSNumber numberWithInt:10],	@"statusInterval",    //every 10 sec
 								 nil];

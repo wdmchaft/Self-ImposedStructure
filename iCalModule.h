@@ -31,6 +31,7 @@
 	NSMutableArray *eventsList;
 	id<AlertHandler> alertHandler;
     NSDateFormatter *iCalDateFmt;
+    NSString *msgName;
 }
 @property (nonatomic, retain) NSDate *refreshDate;
 @property (nonatomic,retain) NSMutableData *respBuffer;
@@ -51,6 +52,7 @@
 @property (nonatomic,retain) id<AlertHandler> alertHandler;
 @property (nonatomic,retain) NSString *calendarName;
 @property (nonatomic,retain) NSDateFormatter *iCalDateFmt;
+@property (nonatomic,retain) NSString *msgName;
 
 //-(void) saveDefaultValue: (NSObject*) val forKey: (NSString*) key;
 //-(void) clearDefaultValue: (NSObject*) val forKey: (NSString*) key;

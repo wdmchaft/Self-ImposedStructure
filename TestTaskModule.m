@@ -229,11 +229,7 @@
 
 -(NSArray*) getTasks
 {
-	NSMutableArray *ret = [[NSMutableArray alloc]initWithCapacity:[allTasks count]];
-	for (NSDictionary *item in allTasks){
-		[ret addObject: [item objectForKey:@"name"] ];
-	}
-	return ret;
+	return allTasks;
 }
 
 -(void) refreshTasks

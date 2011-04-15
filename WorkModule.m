@@ -103,6 +103,8 @@
 		if ([wa.idString isEqualToString:newApp.bundleIdentifier]){
 			//com.workplayaway.wpa
 			NSDictionary *dict = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:wa.state] forKey:@"state"];
+            NSString *stateStr = (wa.state == WPASTATE_FREE)? @"play" : @"work";
+            NSLog(@"for app [%@] going to %@", newApp.bundleIdentifier, stateStr);
 			[notificationCenter postNotificationName:@"com.workplayaway.wpa" object: nil userInfo:dict];
 		}
 	}

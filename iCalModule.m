@@ -10,6 +10,7 @@
 #import "Note.h"
 #import "Utility.h"
 #import "iCal.h"
+#import "iCalMonitor.h"
 
 #define MAILBOX @"MailBox"
 #define REFRESH @"Refresh"
@@ -37,6 +38,8 @@
 @synthesize eventsList;
 @synthesize alertHandler;
 @synthesize iCalDateFmt;
+@synthesize msgName;
+
 @dynamic refreshInterval;
 @dynamic notificationName;
 @dynamic notificationTitle;
@@ -75,7 +78,6 @@
 
 - (void) handleEventDescriptor:(NSAppleEventDescriptor*) descN
 {
-    NSLog(@"descN count = %ld", [descN numberOfItems]);
     NSMutableDictionary *eDict = [NSMutableDictionary dictionaryWithCapacity:4];
 
     for(unsigned int j = 1; j <= [descN numberOfItems]; j+=2){
@@ -110,63 +112,44 @@
 #define NILSCRIPT '    '
 - (void) handleDescriptor: (NSAppleEventDescriptor*) aDescriptor
 {
-    
-    UInt32 val;
     char *c = nil;
-    NSLog (@"count = %ld", [aDescriptor numberOfItems]);
     DescType type = [aDescriptor descriptorType];
-    NSAssert(type == typeAEList, @"not a list!");
-    for(unsigned int i = 1; i <= [aDescriptor numberOfItems]; i++){
-        NSAppleEventDescriptor *descN = [aDescriptor descriptorAtIndex:i];
-        DescType typeN = [descN descriptorType];
-        NSAssert(typeN == typeAERecord, @"not a record");
-        c = (char*)&type;
-        NSLog(@"descN[%d] = %c%c%c%c (%@)",i, c[3],c[2],c[1],c[0], [descN description]);
-        for(unsigned int j = 1; j <= [descN numberOfItems]; j++){
-            AEKeyword kw = [descN keywordForDescriptorAtIndex:j];
-            NSAppleEventDescriptor *fdesc0 = [descN descriptorForKeyword:kw];
-          //  DescType fldDesc = [fdesc0 descriptorType];
-            [self handleEventDescriptor:fdesc0];
-// 
-//            switch (fldDesc) {
-//                case typeUnicodeText:
-//                    NSLog(@"text = %@", [fdesc0 stringValue]);
-//                    break;
-//                case typeType:
-//                    val =[fdesc0 int32Value];
-//                    if (val == NILSCRIPT){
-//                        NSLog(@"type = nil");
-//                    }
-//                    c = (char*)&val;
-//                    NSLog(@"type = %c%c%c%c",c[3],c[2],c[1],c[0]);
-//                    break;
-//                case typeAEList:
-//                    val = fldDesc;
-//                    c = (char*)&val;
-//                    NSLog(@"list length %ld",[fdesc0 numberOfItems]);
-//                    [self handleEventDescriptor:fdesc0];
-//                    break;
-//                default:
-//                    val = fldDesc;
-//                    c = (char*)&val;
-//                    NSLog(@"unrecognized = %c%c%c%c",c[3],c[2],c[1],c[0]);
-//            }
+    if (type == typeAERecord) {
+        [self handleEventDescriptor:aDescriptor];
+    }
+    else if (type == typeAEList) {
+        NSAssert(type == typeAEList, @"not a list!");
+        for(unsigned int i = 1; i <= [aDescriptor numberOfItems]; i++){
+            NSAppleEventDescriptor *descN = [aDescriptor descriptorAtIndex:i];
+            DescType typeN = [descN descriptorType];
+            NSAssert(typeN == typeAERecord, @"not a record");
+            c = (char*)&type;
+            NSLog(@"descN[%d] = %c%c%c%c (%@)",i, c[3],c[2],c[1],c[0], [descN description]);
+            for(unsigned int j = 1; j <= [descN numberOfItems]; j++){
+                AEKeyword kw = [descN keywordForDescriptorAtIndex:j];
+                NSAppleEventDescriptor *fdesc0 = [descN descriptorForKeyword:kw];
+                //  DescType fldDesc = [fdesc0 descriptorType];
+                [self handleEventDescriptor:fdesc0];
+                
+            }
         }
+    }
+    else {
+        c = (char*)&type;
+        NSLog(@"unexpected event descriptor: %c%c%c%c (%@)",c[3],c[2],c[1],c[0], [aDescriptor description]);
     }
     
 }
 #define ONEDAYSECS (60 * 60 * 24)	
 
--(void) getEvents: (NSObject*) param
+-(void) getEvents
 {
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    if (!iCalDateFmt){
+    NSDate *today = [NSDate date];
+    NSDate *window = [today dateByAddingTimeInterval:ONEDAYSECS * lookAhead]; 
+    if (iCalDateFmt == nil){
         iCalDateFmt = [NSDateFormatter new];
-        [iCalDateFmt  setDateFormat:@"EEEE, MMMM d, yyyy hh:mm:ss a" ];
-        // should look like 'Tuesday, April 12, 2011 10:00:00 AM'
+        [iCalDateFmt setDateFormat:@"EEEE, MMMM dd, yyyy hh:mm:ss a"];
     }
-	NSDate *today = [NSDate date];
-	NSDate *window = [today dateByAddingTimeInterval:ONEDAYSECS * lookAhead];   
     NSString *nowStr = [iCalDateFmt stringFromDate:today];
     NSString *thenStr = [iCalDateFmt stringFromDate:window];
     NSBundle *myBundle = [NSBundle bundleForClass:[self class]];
@@ -177,20 +160,9 @@
     script = [script stringByReplacingOccurrencesOfString:@"<calName>" withString:calendarName];
     script = [script stringByReplacingOccurrencesOfString:@"<sDate>" withString:nowStr];
     script = [script stringByReplacingOccurrencesOfString:@"<eDate>" withString:thenStr];
-    NSDictionary *anError = nil;
-    NSAppleScript *aScript = [[NSAppleScript alloc] initWithSource:script];
-    NSAppleEventDescriptor *aDescriptor = [aScript executeAndReturnError:&anError];
-    NSLog(@"%@",aDescriptor);
-    if (anError){
-        NSLog(@"got error %@", anError);
-    }
-    [self handleDescriptor:aDescriptor];
-    
-    
-     
-	NSNotification *msg = [NSNotification notificationWithName:@"com.workplayaway.calFetchDone" object:nil];
-	[[NSNotificationCenter defaultCenter] postNotification:msg];
-	[pool drain];	
+    iCalMonitor *mon = [iCalMonitor iCalShared];
+    NSLog(@"script = %@",script);
+    [mon sendScript:script withCallback:[self msgName]];
 }
 
 -(void) refreshData
@@ -207,6 +179,19 @@
 	refreshDate = [NSDate new];
 }
 
+//
+// the message name is used to name a private notification back from the scripting monitor
+// so just use a timestamp to keep the name unique
+//
+- (NSString*) msgName
+{
+    if (!msgName){
+        NSTimeInterval ti = [[NSDate date] timeIntervalSince1970];
+        msgName = [@"com.workplayaway.iCalDone" stringByAppendingString:[[NSNumber numberWithDouble:ti] stringValue]];
+    }
+    return msgName;
+}
+
 -(void) refresh: (id<AlertHandler>) handler isSummary: (BOOL) summary
 {
 	alertHandler = handler;
@@ -215,44 +200,52 @@
         eventsList = [NSMutableArray new];
     }
     [eventsList removeAllObjects];
+    NSLog(@"msg = %@",[self msgName]);
 	[[NSNotificationCenter defaultCenter] addObserver:self 
 											 selector:@selector(fetchDone:)
-												 name:@"com.workplayaway.calFetchDone" 
+												 name:[self msgName] 
 											   object:nil];
-	[NSThread detachNewThreadSelector: @selector(getEvents:)
-							 toTarget:self
-						   withObject:nil];
+    
+	[self getEvents];
 }
 
 - (void) fetchDone: (NSNotification*) note
 {
-	for (NSDictionary *event in eventsList){
-		Note *note = [[Note alloc]init];
-		note.moduleName = name;
-		NSDate *eventDate = [event objectForKey:EVENT_START];
-		note.title = [self timeStrFor:eventDate];
-		note.message = [event objectForKey:EVENT_SUMMARY];
-		note.params = event;
-		
-		[alertHandler handleAlert:note];
-		
-		if (!summaryMode){
+    NSAppleEventDescriptor *eventRes = [[[iCalMonitor iCalShared] eventRes] copy];
+    NSDictionary *eventErr = [[[iCalMonitor iCalShared] errorRes] copy];
+    [[iCalMonitor iCalShared] sendDone];
+    if (eventErr){
+        NSLog(@"got Error! %@", eventErr);
+    }
+    else {
+        [self handleDescriptor:eventRes];
+        for (NSDictionary *event in eventsList){
+            Note *note = [[Note alloc]init];
+            note.moduleName = name;
+            NSDate *eventDate = [event objectForKey:EVENT_START];
+            note.title = [self timeStrFor:eventDate];
+            note.message = [event objectForKey:EVENT_SUMMARY];
+            note.params = event;
+            
+			if (summaryMode){
+				[alertHandler handleAlert:note];
+            }
 			NSTimeInterval fireTime = [eventDate timeIntervalSinceNow];
 			fireTime -= warningWindow;
 			NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:fireTime 
 															  target:self 
 															selector:@selector(handleWarningAlarm:) 
 															userInfo:note
-															 repeats:NO];
+																repeats:NO];
 			if (alarmsList == nil){
 				alarmsList = [NSMutableArray new];
 			}
 			[alarmsList addObject: timer];
-		}
-	}
+        }
+    }
 	[BaseInstance sendDone: alertHandler module: name];
 	[BaseInstance sendDone:alertHandler module: name];	
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"com.workplayaway.calFetchDone" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:[self msgName] object:nil];
 }
 
 -(void) openEvent: (NSObject*) param

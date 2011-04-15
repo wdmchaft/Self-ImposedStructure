@@ -9,15 +9,17 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface AddActivityDialogController : NSWindowController {
+@interface AddActivityDialogController : NSWindowController <NSComboBoxDataSource>{
 	NSComboBox  *activityCombo;
 	NSButton	*okButton;
 	NSButton	*cancelButton;
+	NSArray *allActivities;
 }
 
 @property (nonatomic, retain) IBOutlet NSComboBox	*activityCombo;
 @property (nonatomic, retain) IBOutlet NSButton		*okButton;
 @property (nonatomic, retain) IBOutlet NSButton		*cancelButton;
+@property (nonatomic, retain)		   NSArray		*allActivities;
 
 - (IBAction) clickOK: (id) sender;
 - (IBAction) clickCancel: (id) sender;

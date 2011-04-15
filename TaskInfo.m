@@ -39,7 +39,7 @@
 	return YES;
 }
 
--(id) initWithName: (NSString*) item source: (<TaskList>) mod  project: (NSString*) proj
+-(id) initWithName: (NSString*) item source: (id<TaskList>) mod  project: (NSString*) proj
 {
 	if (self)
 	{

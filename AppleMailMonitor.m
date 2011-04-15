@@ -6,17 +6,17 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "iCalMonitor.h"
+#import "AppleMailMonitor.h"
 
 
-@implementation iCalMonitor
+@implementation AppleMailMonitor
 
 - (id)init
 {
     self = [super init];
     if (self) {
         // Initialization code here.
-        [self setPrefix:@"iCal"];
+        [self setPrefix:@"mail"];
     }
     
     return self;
@@ -27,12 +27,12 @@
     [super dealloc];
 }
 
-+(iCalMonitor*) iCalShared
++(AppleMailMonitor*) appleMailShared
 {
-    if (!iCalShared){
-        iCalShared = [iCalMonitor new];
-        [iCalShared startLoop];
+    if (!appleMailShared){
+        appleMailShared = [AppleMailMonitor new];
+        [appleMailShared startLoop];
     }
-    return iCalShared;
+    return appleMailShared;
 }
 @end

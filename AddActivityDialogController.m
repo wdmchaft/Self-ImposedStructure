@@ -7,28 +7,34 @@
 //
 
 #import "AddActivityDialogController.h"
-#import "TaskInfo.h"
 #import "Context.h"
 #import "WPADelegate.h"
 #import "WriteHandler.h"
+
+
 
 @implementation AddActivityDialogController
 @synthesize okButton;
 @synthesize cancelButton;
 @synthesize activityCombo;
+@synthesize allActivities;
 
 - (void) initCombo
 {
 	Context *ctx = [Context sharedContext];
-	
-	[activityCombo removeAllItems];
+	[activityCombo setDataSource:nil];
 	NSArray *allTasks = [ctx getTasks];
-	for(TaskInfo *info in allTasks){
-		[activityCombo addItemWithObjectValue:info]; 
+	allActivities = allTasks;
+	for(NSDictionary *info in allTasks){
+		[activityCombo addItemWithObjectValue:[info objectForKey:@"name"]];
 	}
 	if (ctx.currentTask){
-		[activityCombo setStringValue:[ctx.currentTask description]];
-	}	
+		[activityCombo setObjectValue:[ctx.currentTask objectForKey:@"name"]];
+	} else {
+		[activityCombo setObjectValue:@"No current task"];
+	}
+	[activityCombo noteNumberOfItemsChanged];
+	[activityCombo setCompletes:YES];
 }
 
 - (void) windowDidLoad
@@ -49,22 +55,30 @@
 	Context *ctx = [Context sharedContext];
 	NSComboBox *cb = activityCombo;
 	
-	ctx.currentTask = [cb objectValueOfSelectedItem];
+	ctx.currentTask = nil;
+	NSString *str = [cb objectValueOfSelectedItem];
+	
+	for (NSDictionary *info in allActivities){
+		if ([[info objectForKey:@"name"] isEqualToString:str]){
+			ctx.currentTask = info;
+			break;
+		}
+	}
 	
 	// if we get don't get the default or empty then it is "adhoc" task  (with no source)
 	
 	if (ctx.currentTask == nil){
-		if (![cb.stringValue isEqualToString:@"No Current Task"] && [cb.stringValue length] > 0) {
-			TaskInfo *newTI = [TaskInfo	new];
-			newTI.name = cb.stringValue;
+		if (![cb.stringValue isEqualToString:@"No current task"] && [cb.stringValue length] > 0) {
+			NSDictionary *newTI = [NSDictionary	dictionaryWithObject:cb.stringValue forKey:@"name"];
 			ctx.currentTask = newTI;
 		}
 	}
 	[ctx saveTask];
-	
-
-	[[ctx growlManager] growlFYI:[NSString stringWithFormat: @"New Activity: %@",ctx.currentTask.name]];
-
+	if (ctx.currentTask != nil){
+		[[ctx growlManager] growlFYI:[NSString stringWithFormat: @"Current activity: %@",[ctx.currentTask objectForKey:@"name"]]];
+	} else {
+		[[ctx growlManager] growlFYI:[NSString stringWithFormat: @"Current activity not set"]];
+	}
 	[super.window close];
 }
 
@@ -73,4 +87,45 @@
 	[super.window close];
 
 }
+
+//- (NSString *)comboBox:(NSComboBox *)aComboBox completedString:(NSString *)uncompletedString
+//{
+//	int index = [uncompletedString length]-1;
+//	for (AAMenuObj *amo in allActivities){
+//		NSDictionary *dict = amo.dict;
+//		NSString *name = [dict objectForKey:@"name"];
+//		if ([[name substringToIndex:index] isEqualToString:uncompletedString] ){
+//			return name;
+//		}
+//	}
+//	return nil;
+//}
+//
+//- (NSInteger)numberOfItemsInComboBox:(NSComboBox *)aComboBox
+//{
+//	return [allActivities count];
+//}
+//
+////- (NSUInteger)comboBox:(NSComboBox *)aComboBox indexOfItemWithStringValue:(NSString *)aString
+//
+//- (NSUInteger) comboBox: (NSComboBox *) acb indexOfItemWithStringValue: (NSString*) aString
+//{
+//	NSUInteger ret = 0;
+//	for (AAMenuObj *amo in allActivities){
+//		NSString *name = [amo.dict objectForKey:@"name"];
+//		if ([name isEqualToString:aString] ){
+//			return ret;
+//		}
+//		ret++;
+//	}
+//	return NSNotFound;
+//}
+//
+////- (id)comboBox:(NSComboBox *)aComboBox objectValueForItemAtIndex:(NSInteger)index
+//- (id) comboBox: (NSComboBox *) aComboBox objectValueForItemAtIndex: (NSInteger) index
+//{
+//	AAMenuObj *amo = [allActivities objectAtIndex:index];
+//
+//	return amo.dict;
+//}
 @end

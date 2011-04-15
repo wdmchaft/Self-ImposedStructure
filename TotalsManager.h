@@ -9,13 +9,14 @@
 #import <Cocoa/Cocoa.h>
 #import "State.h"
 #import "SummaryRecord.h"
+#import "RolloverDelegate.h"
 //
 
 @interface TotalsManager : NSObject {
 	NSTimer *dailyRolloverTimer; // when the "roll over" to a new day occurs -- defaults to midnight but could be later
 	NSDate *timeStampDate;  // the date recorded at rollover. 
 	int rolloverDay;
-	int rolloverHour;
+	NSDate *rolloverTime;
 	NSTimeInterval awayToday;
 	NSTimeInterval freeToday;
 	NSTimeInterval workToday;
@@ -25,10 +26,11 @@
 	NSTimeInterval interval;
     SummaryRecord  *summary;
 	BOOL recordChecked;
+	id<RolloverDelegate> rollDelegate;
 }
 
 @property (nonatomic) int rolloverDay;
-@property (nonatomic) int rolloverHour;
+@property (nonatomic,retain) NSDate* rolloverTime;
 @property (nonatomic) NSTimeInterval interval;
 @property (nonatomic) NSTimeInterval awayToday;
 @property (nonatomic) NSTimeInterval freeToday;
@@ -39,6 +41,7 @@
 @property (nonatomic,retain) SummaryRecord *summary;
 @property (nonatomic,retain) NSTimer *dailyRolloverTimer;
 @property (nonatomic,retain) NSDate *timeStampDate;
+@property (nonatomic,retain) id<RolloverDelegate> rollDelegate;
 @property (nonatomic) BOOL recordChecked;
 
 //- (void) dailyRollover: (NSTimer*) timer;
@@ -46,5 +49,7 @@
 - (void) addInterval:(WPAStateType) state;
 - (void) saveCurrent;
 - (void) initFromRecord;
+- (double) calcGoal;
+- (BOOL) isVacationToday;
 
 @end

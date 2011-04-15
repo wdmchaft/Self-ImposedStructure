@@ -16,6 +16,7 @@
 #import "StatsWindow.h"
 #import "WriteHandler.h"
 #import "SummaryRecord.h"
+#import "WPAMDelegate.h"
 
 @interface WPADelegate : NSObject <NSApplicationDelegate, NSWindowDelegate> {
     NSWindow *window;
@@ -27,6 +28,8 @@
 	NSManagedObject *currentSummary;
 	NSThread *ioThread;
 	WriteHandler *ioHandler;
+	NSMenu *statusMenu;
+	id<WPAMDelegate> wpam;
 }
 
 @property (assign) IBOutlet NSWindow *window;
@@ -36,6 +39,7 @@
 @property (nonatomic, retain) PreferencesWindow *prefsWindow;
 @property (nonatomic, retain) NSManagedObject *currentSummary;
 @property (retain, nonatomic) IBOutlet StatsWindow *statsWindow;
+@property (retain, nonatomic) IBOutlet id<WPAMDelegate> wpam;
 @property (retain, nonatomic) NSThread *ioThread;
 @property (retain, nonatomic) WriteHandler *ioHandler;
 //-(void) start;

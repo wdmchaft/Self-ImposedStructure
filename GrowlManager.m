@@ -74,7 +74,7 @@
 		NSLog(@"cycle ended for %@", alert.moduleName);
 		return;
 	}
-	if (ctx.currentState == WPASTATE_FREE) {
+	if (ctx.currentState == WPASTATE_FREE && ctx.nagDelayTimer == nil) {
 		[self queueAlert:alert];
 	}
 	else {

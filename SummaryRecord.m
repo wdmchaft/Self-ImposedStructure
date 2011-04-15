@@ -25,11 +25,11 @@
     self = [super init];
     if (self) {
         [self setDateStart:[NSDate date]];
-        [self setDateWrite:[NSDate distantPast]];
+        [self setDateWrite:[[NSDate distantPast]copy]];
         
-        [self setLastDay:[NSDate distantPast]];
-        [self setLastWorked:[NSDate distantPast]];
-        [self setLastGoalAchieved:[NSDate distantPast]];
+        [self setLastDay:[[NSDate distantPast]copy]];
+        [self setLastWorked:[[NSDate distantPast]copy]];
+        [self setLastGoalAchieved:[[NSDate distantPast]copy]];
         
         [self setDaysGoalAchieved:[NSNumber numberWithInt:0]];
         [self setDaysTotal:[NSNumber numberWithInt:0]];

@@ -63,7 +63,7 @@
  */
 - (void) taskRefreshDone
 {
-	NSNotification *notice = [NSNotification notificationWithName:@"org.ottoject.tasks" object:nil];
+	NSNotification *notice = [NSNotification notificationWithName:@"com.workplayaway.tasks" object:self];
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	[nc postNotification:notice];
 }
@@ -123,10 +123,7 @@
 - (void) processAlertsWithAlarms: (BOOL) setAlarms
 {
 
-	for(int i = 0; i < [tasksList count]; i++){
-		NSString *key = [tasksList objectAtIndex:i];
-		NSDictionary *item = nil;
-		item = [tasksDict objectForKey: key];		
+	for(NSDictionary *item in tasksList){
 		NSDate *date = [item objectForKey:@"due_time"];
 		NSComparisonResult cr = NSOrderedSame; // this will *stay* if there is no date
 		if (date){
@@ -499,7 +496,7 @@
 
 -(NSString*) projectForTask: (NSString *) task
 {
-	return [super description];
+	return name;
 }
 
 - (void) markComplete:(NSDictionary *)ctx completeHandler: (NSObject*) callback

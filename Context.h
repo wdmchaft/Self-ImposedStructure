@@ -8,7 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 #import "State.h"
-#import "TaskInfo.h"
 #import "GrowlManager.h"
 #import "HUDSettings.h"
 #import "HeatMap.h"
@@ -21,7 +20,7 @@
 	BOOL startOnLoad;
 	WPAStateType currentState;
 	int thinkTime;
-	TaskInfo *currentTask;
+	NSDictionary *currentTask;
 	NSManagedObject *currentActivity;
 	BOOL running;
 	NSArray *tasksList;
@@ -30,6 +29,7 @@
 	HUDSettings *hudSettings;
 	HeatMap *heatMapSettings;
     TotalsManager *totalsManager;
+	NSTimer *nagDelayTimer;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *instancesMap;
@@ -37,7 +37,8 @@
 @property (nonatomic, retain) NSMutableDictionary *iconsMap;
 @property (nonatomic) BOOL running;
 @property (nonatomic) int thinkTime;
-@property (nonatomic, retain) TaskInfo *currentTask;
+@property (nonatomic,retain) NSTimer *nagDelayTimer;
+@property (nonatomic, retain) NSDictionary *currentTask;
 //@property (nonatomic, retain) NSString *currentSource;
 @property (nonatomic, retain) NSManagedObject *currentActivity;
 @property (nonatomic, retain) NSArray *tasksList;
@@ -54,7 +55,7 @@
 - (void) saveModules;
 - (void) saveDefaults;
 - (void) saveTask;
-- (TaskInfo*) readTask:(NSUserDefaults*) defaults;
+- (NSDictionary*) readTask:(NSUserDefaults*) defaults;
 - (NSString*) descriptionForModule: (NSObject*) mod;
 - (NSData*) iconForModule: (id<Instance>) mod;
 - (void) removeDefaultsForKey: (NSString*) keyPrefix;
@@ -65,9 +66,12 @@
 - (void) freeModules ;
 - (void) awayModules ;
 - (void) stopModules ;
+- (void) vacationModules ;
 - (void) refreshTasks;
+- (BOOL) isWorkingState;
 - (NSArray*) refreshableModules;
 - (NSArray*) getTasks ;
 - (GrowlManager*) growlManager;
-
+- (void) endNagDelay: (NSTimer*) timer;
+- (void) startNagDelay;
 @end

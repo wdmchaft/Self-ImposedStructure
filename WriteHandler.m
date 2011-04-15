@@ -35,6 +35,7 @@
 {
     persistentStoreCoordinator = coordinator;
 }
+
 /*****************************************************************************************
  Support for saving data follows:
  *****************************************************************************************/
@@ -306,7 +307,7 @@
 		currentSummary = [NSEntityDescription
 						  insertNewObjectForEntityForName:@"DailySummary"
 						  inManagedObjectContext:moc];
-	    NSLog(@"savingSummary for Date: %f",[inDate timeIntervalSince1970]);
+	    NSLog(@"saving Summary for Date: %f (%@)",[inDate timeIntervalSince1970],inDate);
         [currentSummary setValue: inDate forKey: @"recordDate"];
 		
 	}
@@ -511,9 +512,11 @@
 	NSDictionary *d = msg.userInfo;
 	NSDate *inDate = (NSDate*)[d objectForKey:@"date"];
 	int increment = ((NSNumber*)[d objectForKey:@"increment"]).intValue;
-    TaskInfo *info = (TaskInfo*)[d objectForKey:@"taskInfo"];
-
-    [self saveActivityForDate:inDate desc: info.name source:info.source.name project:info.project addVal:increment];
+    NSDictionary *info = (NSDictionary*)[d objectForKey:@"taskInfo"];
+	NSString *name = [info objectForKey:@"name"];
+	NSString *project = [info objectForKey:@"project"];
+	NSString *source = [info objectForKey:@"source"];
+    [self saveActivityForDate:inDate desc: name source:source project:project addVal:increment];
 }
 
 
@@ -548,7 +551,7 @@
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         [dict setValue:@"Failed to initialize the store" forKey:NSLocalizedDescriptionKey];
         [dict setValue:@"There was an error building up the data file." forKey:NSLocalizedFailureReasonErrorKey];
-        NSError *error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN" code:9999 userInfo:dict];
+        error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN" code:9999 userInfo:dict];
         [[NSApplication sharedApplication] presentError:error];
         return nil;
     }
@@ -646,7 +649,7 @@
 }
 
 + (void) sendActivity: (NSDate*)date
-             activity:(TaskInfo*)taskInfo
+             activity:(NSDictionary*)taskInfo
             increment:(int) incr
 {
     WPADelegate *del = (WPADelegate*)[[NSApplication sharedApplication] delegate];
@@ -675,9 +678,17 @@
     
     [summary setValue:rec.daysTotal forKey:@"daysTotal"];
     [summary setValue:rec.daysWorked forKey:@"daysWorked"];
+	if (rec.lastGoalAchieved == nil) {
+		rec.lastGoalAchieved = [NSDate distantPast];
+	}
     [summary setValue:rec.lastGoalAchieved forKey:@"lastGoalAchieved"];
     
+ 	if (rec.lastWorked == nil){
+		rec.lastWorked = [NSDate distantPast];
+	}
     [summary setValue:rec.lastWorked forKey:@"lastWorked"];
+	
+	if (rec.lastDay == nil) rec.lastDay = [NSDate distantPast];
     [summary setValue:rec.lastDay forKey:@"lastDay"];
     [summary setValue:rec.dateWrite forKey:@"dateWrite"];
 }

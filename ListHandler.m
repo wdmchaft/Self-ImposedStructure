@@ -54,6 +54,8 @@ didStartElement:(NSString *)elementName
 			[self addItem];
 		}
 		self.currentDict = [NSMutableDictionary new];
+		[currentDict setObject:[context name] forKey:@"source"]; 
+		[currentDict setObject:[context name] forKey:@"project"]; 
 		[currentDict setObject:[[[NSString alloc] initWithString:listId]retain] forKey:@"list_id"]; 
 		[currentDict setObject:[[[NSString alloc] initWithString:id]retain] forKey:@"taskseries_id"]; 
 		[currentDict setObject:[[[NSString alloc] initWithString:name]retain] forKey:TASK_NAME];
@@ -71,7 +73,6 @@ didStartElement:(NSString *)elementName
 	//
 	if ( [elementName isEqualToString:@"task"]) {
 		NSString *id = [attributeDict objectForKey:@"id"];
-		NSString *hasDueTimeStr = [attributeDict objectForKey:@"has_due_time"];
 		[currentDict setObject:[[[NSString alloc] initWithString:id]retain] forKey:@"task_id"]; 
         NSString *dueTimeStr = [attributeDict objectForKey:@"due"];
         if ([dueTimeStr length]==0) {
@@ -134,7 +135,7 @@ didEndElement:(NSString *)elementName
 		[self addItem];
 	}
 	context.tasksDict = tempDictionary;
-	context.tasksList = tempList;
+	context.tasksList = [tempDictionary allValues];
 }
 
 - (void) doCallback

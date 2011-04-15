@@ -11,7 +11,6 @@
 #include "Context.h"
 #include "Columns.h"
 #import "TimerDialogController.h"
-#import "TaskInfo.h"
 #import "SummaryHUDControl.h"
 #import "AddActivityDialogController.h"
 #import "Menu.h"
@@ -19,9 +18,10 @@
 #import "SecsToMinsTransformer.h"
 #import "WriteHandler.h"
 #import "GoalHoursToAverageXForm.h"
+#import "VacationDialog.h"
 
 @implementation WPAMainController
-@synthesize  startButton, controls, taskComboBox, refreshButton, statusItem, statusMenu, statusTimer, myWindow;
+@synthesize  startButton, refreshButton, statusItem, statusMenu, statusTimer, myWindow, menuForTaskList;
 @synthesize hudWindow, refreshManager, thinkTimer, siView, totalsManager, prefsWindow, statsWindow, addActivityWindow;
 
 + (void)initialize{
@@ -58,6 +58,7 @@
 								 @"NO",								@"useHotKey",
 								 @"NO",								@"startOnLoad",
 								 @"NO",								@"ignoreScreenSaver",
+								 [NSNumber numberWithDouble:600],	@"nagDelayTime",
 								 [NSNumber numberWithDouble:3600],	@"timeAwayThreshold",
 								 [NSNumber numberWithDouble:600],	@"backToWorkThreshold",
 								 [NSNumber numberWithDouble:20.0 * 60 * 60], @"weeklyGoal",
@@ -74,7 +75,7 @@
 
 
 }
-	
+
 - (void)awakeFromNib
 {
 	[myWindow setDelegate: self];
@@ -89,27 +90,22 @@
 	
 	NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
 	[center addObserver: self selector:@selector(statusHandler:)
-				   name:@"org.ottoject.alarm" object:nil];
+				   name:@"com.workplayaway.alarm" object:nil];
 	[center addObserver: self selector:@selector(tasksChanged:)
-				   name:@"org.ottoject.tasks" object:nil];
+				   name:@"com.workplayaway.tasks" object:nil];
 	
-	[taskComboBox removeAllItems];
-	NSArray *allTasks = [ctx getTasks];
-	for(TaskInfo *info in allTasks){
-		[taskComboBox addItemWithObjectValue:info]; 
-	}
-	if (ctx.currentTask){
-		[taskComboBox setStringValue:[ctx.currentTask description]];
-	}
-	//[(WPADelegate*)[[NSApplication sharedApplication] delegate] registerTasksHandler:self];
 	// start listening for commands
 	NSDistributedNotificationCenter *dCenter = [NSDistributedNotificationCenter defaultCenter];
 	// for the screensaver
 	[dCenter addObserver:self selector:@selector(handleScreenSaverStart:) name:@"com.apple.screensaver.didlaunch" object:nil];
 	[dCenter addObserver:self selector:@selector(handleScreenSaverStop:) name:@"com.apple.screensaver.didstop" object:nil];
-	[taskComboBox setDelegate:self];
 	[self enableUI: ctx.running];
+		
 	totalsManager = [TotalsManager new];
+	[totalsManager setRollDelegate:self];
+	if (ctx.currentState == WPASTATE_VACATION && [totalsManager isVacationToday] == NO){
+		[ctx setCurrentState: WPASTATE_FREE];
+	}
     ctx.totalsManager = totalsManager;
 	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
 	statusItem.menu = statusMenu;
@@ -148,9 +144,32 @@
 	}
 }
 
+- (void) askForVacation
+{
+	[[NSApplication sharedApplication] activateIgnoringOtherApps:YES];	
+	VacationDialog *vacaDialog = [[VacationDialog alloc] initWithWindowNibName:@"VacationDialog"];
+	[NSApp runModalForWindow: [vacaDialog window]];
+	if ([vacaDialog onVacation] == YES){
+		[self clickVacation: self];
+	}
+}
+
+- (void) unVacation
+{
+	[[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
+	NSAlert *alert = [NSAlert alertWithMessageText:@"Tsk. Tsk." 
+									 defaultButton:@"I guess not." alternateButton:@"Yes please." 
+									   otherButton:nil 
+						 informativeTextWithFormat:@"Your vacation time is important.  You sure you wanna do this?"];	
+	NSUInteger ans = [alert runModal];
+	if (ans != NSAlertDefaultReturn){
+		[self clickPlay:self];
+	}
+}
 -(void) buildStatusMenu
 {
 	Context *ctx = [Context sharedContext];
+	WPAStateType currState = ctx.currentState;
 	NSRect rect = {{0,0},{22.0,22.0}};
 	if (siView == nil) {
 		siView = [[StatusIconView alloc]initWithFrame:rect];
@@ -158,7 +177,7 @@
 		siView.statusMenu = statusMenu;
 	}
 	siView.timer = thinkTimer;
-    double goal = [[NSUserDefaults standardUserDefaults]doubleForKey:@"dailyGoal"];
+    double goal = [totalsManager calcGoal];
 	siView.goal = goal;
 	siView.work = totalsManager.workToday;
 	siView.free = totalsManager.freeToday;
@@ -169,25 +188,22 @@
 	[[statusMenu itemWithTag:MENU_AWAY] setState:NSOffState];
 	[[statusMenu itemWithTag:MENU_FREE] setState:NSOffState];
 	[[statusMenu itemWithTag:MENU_TIMED] setState:NSOffState];
-	[[statusMenu itemWithTag:MENU_STOPSTART] setTitle:@"Start"];
-	[[statusMenu itemWithTag:MENU_STOPSTART] setAction:@selector(clickStart:)];
-	if (!ctx.running || ctx.currentState == WPASTATE_SUMMARY) {
-		//[statusItem setTitle:@"?"];
-		[[statusMenu itemWithTag:MENU_WORK] setEnabled:NO];
-		[[statusMenu itemWithTag:MENU_AWAY] setEnabled:NO];
-		[[statusMenu itemWithTag:MENU_FREE] setEnabled:NO];
-		[[statusMenu itemWithTag:MENU_TIMED] setEnabled:NO];
-	} else {
+	[[statusMenu itemWithTag:MENU_VACA] setState:NSOffState];
+	[[statusMenu itemWithTag:MENU_STOPSTART] setTitle:(currState == WPASTATE_OFF) ? @"Start" 
+																					: @"Stop"];
+	[[statusMenu itemWithTag:MENU_STOPSTART] setAction:(currState == WPASTATE_OFF) ? @selector(clickStart:) 
+																					: @selector(clickStop:)];
+
+	if ([ctx isWorkingState]){
 		[[statusMenu itemWithTag:MENU_WORK] setEnabled:YES];
 		[[statusMenu itemWithTag:MENU_AWAY] setEnabled:YES];
 		[[statusMenu itemWithTag:MENU_FREE] setEnabled:YES];
 		[[statusMenu itemWithTag:MENU_TIMED] setEnabled:YES];
-		if (ctx.currentState == WPASTATE_FREE) {
-	//		[statusItem setTitle:@"P"];
+		[[statusMenu itemWithTag:MENU_ACTIVITIES] setHidden:NO];
+		if (currState == WPASTATE_FREE) {
 			[[statusMenu itemWithTag:MENU_FREE] setState:NSOnState];
 		}
-		if (ctx.currentState == WPASTATE_AWAY) {
-	//		[statusItem setTitle:@"A"];
+		if (currState == WPASTATE_AWAY) {
 			[[statusMenu itemWithTag:MENU_AWAY] setState:NSOnState];
 		}
 		if (thinkTimer){
@@ -199,14 +215,26 @@
 			}
 			[[statusMenu itemWithTag:MENU_TIMED] setState:NSOnState];
 		} 
-		else if (ctx.currentState == WPASTATE_THINKING) {
+		else if (currState == WPASTATE_THINKING) {
 			[[statusMenu itemWithTag:MENU_WORK] setState:NSOnState];
 		}
-		NSMenuItem *aMenuItem = [statusMenu itemWithTag:5];
+		NSMenuItem *aMenuItem = [statusMenu itemWithTag:MENU_ACTIVITIES];
 		[self fillActivities:aMenuItem.submenu];
 		[[statusMenu itemWithTag:MENU_STOPSTART] setTitle:@"Stop"];
 		[[statusMenu itemWithTag:MENU_STOPSTART] setAction:@selector(clickStop:)];
 	}
+	else {
+		[[statusMenu itemWithTag:MENU_WORK] setEnabled:NO];
+		[[statusMenu itemWithTag:MENU_AWAY] setEnabled:NO];
+		[[statusMenu itemWithTag:MENU_FREE] setEnabled:NO];
+		[[statusMenu itemWithTag:MENU_TIMED] setEnabled:NO];
+		[[statusMenu itemWithTag:MENU_ACTIVITIES] setHidden:YES];
+	} 
+	[[statusMenu itemWithTag:MENU_SUMMARY] setEnabled: currState != WPASTATE_SUMMARY];
+	NSString *vacaTitle = (currState == WPASTATE_VACATION ? @"Just Kidding..." : @"Vacation...");
+	SEL vacaAction = (currState == WPASTATE_VACATION) ? @selector(unVacation) : @selector(askForVacation);
+	[[statusMenu itemWithTag:MENU_VACA] setTitle: vacaTitle];
+	[[statusMenu itemWithTag:MENU_VACA] setAction:vacaAction];
 }
 
 - (NSArray*) getTasklists {
@@ -224,11 +252,40 @@
 	return insts;
 }
 
+- (void) fillListActivities: (id<TaskList>) list
+{
+	Context *ctx = [Context sharedContext];	
+	NSMenuItem *aMenuItem = [statusMenu itemWithTag:MENU_ACTIVITIES];
+	NSMenu *fillMenu = aMenuItem.submenu;
+	for(NSDictionary *info in [list getTasks]){
+        NSString *description = [info objectForKey:@"name"];
+		NSMenuItem *mi = [[NSMenuItem alloc]initWithTitle:description 
+												   action:@selector(newActivity:)
+											keyEquivalent:@""];
+		[mi setTarget:self];
+        NSDictionary *attrs = [NSDictionary dictionaryWithObject:[NSFont messageFontOfSize:12.0] forKey:NSFontAttributeName];
+        NSString *desc = [NSString stringWithFormat:@"   %@", description];
+        NSAttributedString *attrTitle = [[NSAttributedString alloc]initWithString:desc attributes:attrs];
+        [mi setAttributedTitle:attrTitle];
+        NSMenuItem *myItem = [menuForTaskList objectForKey:list.name];
+        int idx = [fillMenu indexOfItem:myItem];
+		mi.state = NSOffState;
+		[mi setEnabled:YES];
+		[mi setRepresentedObject:info];
+		if (ctx.currentTask && [ctx.currentTask isEqual:info]){
+			NSString *name = [info objectForKey:@"name"];
+			NSLog(@"currentTask in menu = %@",name);
+			mi.state = NSOnState;
+        }
+		[fillMenu insertItem:mi atIndex:idx+1]; 
+	}
+}
+
 - (void) fillActivities: (NSMenu*) menu
 {
 	[menu setAutoenablesItems:NO];
 	Context *ctx = [Context sharedContext];
-	if (ctx.tasksList == nil){
+	if (ctx.tasksList == nil || [ctx.tasksList count] == 0){
 		ctx.tasksList = [ctx getTasks];
 	}
 	// clear anything out first
@@ -237,7 +294,7 @@
 		[menu removeItem:mi];
 	}
     NSArray *lists = [self getTasklists];
-    NSMutableDictionary *menuForList= [NSMutableDictionary dictionaryWithCapacity:[lists count]];
+	menuForTaskList= [NSMutableDictionary dictionaryWithCapacity:[lists count]];
     for (id<Instance> tasklist in  lists){
         
         NSMenuItem *mi = [[NSMenuItem alloc]initWithTitle:[NSString stringWithFormat:@"%@:",tasklist.name]
@@ -245,30 +302,19 @@
 											keyEquivalent:@""];
         [mi setRepresentedObject:tasklist];
         [menu addItem:mi];
-        [menuForList setObject:mi forKey:tasklist.name];
+        [menuForTaskList setObject:mi forKey:tasklist.name];
   //      NSMenuItem *sep = [NSMenuItem separatorItem];
    //     [menu addItem:sep];
     }
-	for(TaskInfo *info in ctx.tasksList){
-        
-		NSMenuItem *mi = [[NSMenuItem alloc]initWithTitle:info.description 
-												   action:@selector(newActivity:)
-											keyEquivalent:@""];
-		[mi setTarget:self];
-        NSDictionary *attrs = [NSDictionary dictionaryWithObject:[NSFont messageFontOfSize:12.0] forKey:NSFontAttributeName];
-        NSString *desc = [NSString stringWithFormat:@"   %@", info.description];
-        NSAttributedString *attrTitle = [[NSAttributedString alloc]initWithString:desc attributes:attrs];
-        [mi setAttributedTitle:attrTitle];
-        NSMenuItem *myItem = [menuForList objectForKey:info.source.name];
-        int idx = [menu indexOfItem:myItem];
-		[menu insertItem:mi atIndex:idx+1]; 
-		mi.state = NSOffState;
-		[mi setEnabled:YES];
-		[mi setRepresentedObject:info];
-		if (ctx.currentTask && [ctx.currentTask isEqual:info]){
-			mi.state = NSOnState;
+	for(id<TaskList> tasklist in lists){
+        [self fillListActivities:tasklist];
 	}
-	}
+}
+
+- (void) tasksChanged:(NSNotification *)notification
+{
+	id<TaskList> list = [notification object];
+	[self fillListActivities:list];
 }
 
 - (void) newActivity: (id) sender
@@ -283,9 +329,7 @@
 	
 	if (ctx.currentTask == nil){
 		if (![mi.title isEqualToString:@"No Current Task"] && [mi.title length] > 0) {
-			TaskInfo *newTI = [TaskInfo	new];
-			newTI.name = mi.title;
-			ctx.currentTask = newTI;
+			ctx.currentTask = [[NSDictionary dictionaryWithObject:mi.title forKey:@"name"] copy];
 		}
 	}
 	[ctx saveTask];
@@ -294,7 +338,7 @@
 //	if (ctx.currentState == WPASTATE_THINKING || ctx.currentState == WPASTATE_THINKTIME){
 	//	[WriteHandler sendNewRecord:ctx.currentState];
 //	}
-	[[ctx growlManager] growlFYI:[NSString stringWithFormat: @"New Activity: %@",ctx.currentTask.name]];
+	[[ctx growlManager] growlFYI:[NSString stringWithFormat: @"New Activity: %@",[ctx.currentTask objectForKey:@"name"]]];
 	[self buildStatusMenu];
 }
 
@@ -307,6 +351,7 @@
 											   object:addActivityWindow.window];
 	[addActivityWindow.window makeKeyAndOrderFront:self];
 	[addActivityWindow.window setOrderedIndex:0];
+	[[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
 	[NSApp runModalForWindow:addActivityWindow.window];
 }
 
@@ -319,20 +364,10 @@
 													name:NSWindowWillCloseNotification 
 												  object:addActivityWindow];
 }
-- (void) tasksChanged: (NSNotification*) notification
-{
-	[taskComboBox removeAllItems];
-	Context *ctx = [Context sharedContext];
-	ctx.tasksList = [ctx getTasks];
-	for(TaskInfo *info in ctx.tasksList){
-		[taskComboBox addItemWithObjectValue:info]; 
-	}
-}
+
 
 - (void) enableUI: (BOOL) onOff
 {
-	[controls setEnabled:onOff];
-	[taskComboBox setEnabled:onOff];
 	[refreshButton setEnabled:onOff];
 }
 
@@ -360,7 +395,7 @@
 	} else {
 		startButton.title = @"Stop";
 		[startButton setAction: @selector(clickStop:)];
-		statusTimer = [NSTimer scheduledTimerWithTimeInterval:totalsManager.interval 
+		statusTimer = [NSTimer scheduledTimerWithTimeInterval:0 
 													   target: self 
 													 selector:@selector(updateStatus:) 
 													 userInfo:nil 
@@ -379,32 +414,28 @@
 - (IBAction) clickTimed: (id) sender
 {
 	[self changeState: WPASTATE_THINKTIME];
-	[controls setSelectedSegment: WPASTATE_THINKTIME];	
 }
 
 - (IBAction) clickWork: (id) sender
 {
 	[self changeState: WPASTATE_THINKING];
-	[controls setSelectedSegment: WPASTATE_THINKING];	
-
 }
 
 - (IBAction) clickPlay: (id) sender
 {
 	[self changeState: WPASTATE_FREE];
-	[controls setSelectedSegment: WPASTATE_FREE];	
 }
 
 - (IBAction) clickAway: (id) sender
 {
 	[self changeState: WPASTATE_AWAY];
-	[controls setSelectedSegment: WPASTATE_AWAY];
 }
 
-- (IBAction) clickControls: (id) sender
+- (IBAction) clickVacation: (id) sender
 {
-	int newState = controls.selectedSegment;
-	[self changeState:newState];
+	[self changeState: WPASTATE_VACATION];
+    [totalsManager setVacationToday:YES];
+    [[[Context sharedContext] growlManager] growlThis:@"Enjoy your day off!" isSticky:YES withTitle:@"Bon Voyage!"];
 }
 
 // decide if we need to display a summary screen - this should be shown if 
@@ -460,7 +491,7 @@
 - (void) showSummaryScreen: (id) sender
 {
 	Context *ctx = [Context sharedContext];
-	ctx.currentState = WPASTATE_SUMMARY;
+	[ctx setCurrentState: WPASTATE_SUMMARY];
 	[[[Context sharedContext] growlManager] clearQueues];
 	[self enableStatusMenu:NO];
 	SummaryHUDControl *shc = [[SummaryHUDControl alloc]initWithWindowNibName:@"SummaryHUD"];
@@ -493,8 +524,12 @@
 	}
 	[refreshManager startWithRefresh:NO];
 
-	[controls setSelectedSegment: WPASTATE_FREE];
-	[self changeState:WPASTATE_FREE];
+	if ([[Context sharedContext] previousState] == WPASTATE_VACATION){
+		[self changeState:WPASTATE_VACATION];
+	}
+	else {
+		[self changeState:WPASTATE_FREE];
+	}
 }
 
 - (void) remoteNotify: (NSNotification*) notification
@@ -530,9 +565,7 @@
 												selector:@selector(timerAlarm:) 
 												userInfo:[NSNumber numberWithDouble:ctx.thinkTime] 
 												 repeats:NO];
-	//[WriteHandler sendNewRecord:WPASTATE_THINKING];
 	[ctx busyModules];
-	[controls setSelectedSegment: WPASTATE_THINKTIME];
 	[self buildStatusMenu];   
 }
 
@@ -551,8 +584,11 @@
 			newState = WPASTATE_THINKING;
 		} else {
 			[ctx freeModules];
+			[ctx startNagDelay];
 		}
-
+	}  
+	if (newState != WPASTATE_FREE) {
+		[ctx endNagDelay:nil];
 	}
 	if (newState == WPASTATE_THINKTIME){
 		TimerDialogController *tdc = [[TimerDialogController alloc] initWithWindowNibName:@"TimerDialog"];
@@ -580,10 +616,17 @@
 	if (newState == WPASTATE_AWAY){
 		[ctx awayModules];
 	}
+    if (newState == WPASTATE_VACATION){
+		[ctx vacationModules];
+	}
 	if (newState == WPASTATE_OFF){
 		[ctx stopModules];
 	}
-	ctx.currentState = newState == WPASTATE_THINKTIME ? WPASTATE_THINKING : newState;
+    if (newState  == WPASTATE_THINKTIME){
+        newState = WPASTATE_THINKING;
+    }
+	[ctx setCurrentState: newState];
+    
 	//[WriteHandler sendNewRecord:newState];
 	[ctx saveDefaults];
 	[self buildStatusMenu];
@@ -608,36 +651,11 @@
 	thinkTimer  = nil;
 }
 					  
--(IBAction) changeCombo: (id) sender {
-	NSLog(@"changeCombo");
-	Context *ctx = [Context sharedContext];
-	NSComboBox *cb = (NSComboBox*) sender;
-	
-	ctx.currentTask = [cb objectValueOfSelectedItem];
-	
-	// if we get don't get the default or empty then it is "adhoc" task  (with no source)
-	
-	if (ctx.currentTask == nil){
-		if (![cb.stringValue isEqualToString:@"No Current Task"] && [cb.stringValue length] > 0) {
-			TaskInfo *newTI = [TaskInfo	new];
-			newTI.name = cb.stringValue;
-			ctx.currentTask = newTI;
-		}
-	}
-	[ctx saveTask];
-	
-	// we changed jobs so write a new tracking record
-	//if (ctx.currentState == WPASTATE_THINKING || ctx.currentState == WPASTATE_THINKTIME){
-	//	[WriteHandler sendNewRecord:ctx.currentState];
-	//}
-	[[ctx growlManager] growlFYI:[NSString stringWithFormat: @"New Activity: %@",ctx.currentTask.name]];
-
-}
 
 
 -(void) statusHandler: (NSNotification*) notification
 {
-	controls.selectedSegment = WPASTATE_FREE; 
+	[self changeState:WPASTATE_FREE];
 }
 
 - (void) clickRefresh:(id)sender
@@ -650,7 +668,6 @@
 	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
 	if (![ud boolForKey:@"ignoreScreenSaver"]){
 		[self changeState:WPASTATE_AWAY]; 
-		[controls setSelectedSegment: WPASTATE_AWAY];
 	}
 }
 
@@ -659,7 +676,6 @@
 	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
 	if (![ud boolForKey:@"ignoreScreenSaver"]){
 		[self changeState:WPASTATE_FREE]; 
-		[controls setSelectedSegment: WPASTATE_FREE];
 	}
 }
 
@@ -678,8 +694,6 @@
 	[[statsWindow window] setOrderedIndex:0];
 	[[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
 }
-
-
 
 -(IBAction) clickStatsWindow: (id) sender
 {
@@ -725,4 +739,11 @@ OSStatus hotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 	RegisterEventHotKey(24, cmdKey+optionKey, gMyHotKeyID, GetApplicationEventTarget(), 0, &gMyHotKeyRef);
 }
 
+- (void) gotRollover
+{
+	Context *ctx = [Context sharedContext];
+	if (ctx.currentState == WPASTATE_VACATION) {
+		[ctx setCurrentState:WPASTATE_FREE];
+	}
+}
 @end

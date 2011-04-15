@@ -8,7 +8,6 @@
 
 //#import "BaseModule.h"
 #import "IconsFile.h"
-#import "TaskInfo.h"
 #import "State.h"
 #import "Utility.h"
 #import "BaseInstance.h"
@@ -25,7 +24,7 @@
 	NSMutableDictionary *bundlesMap; // maps plugin name to its bundle
 	NSMutableDictionary *iconsMap; // maps module name to its icon;
 	int thinkTime;
-	TaskInfo *currentTask;
+	NSDictionary *currentTask;
 	NSManagedObject *currentActivity;
 	BOOL running;
 	NSArray *tasksList;
@@ -35,6 +34,7 @@
 	HUDSettings *hudSettings;
 	HeatMap *heatMapSettings;
     TotalsManager *totalsManager;
+	NSTimer *nagDelayTimer;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *instancesMap;
@@ -45,7 +45,7 @@
 @property (nonatomic) BOOL running;
 @property (nonatomic) WPAStateType currentState;
 @property (nonatomic) int thinkTime;
-@property (nonatomic, retain) TaskInfo *currentTask;
+@property (nonatomic, retain) NSDictionary *currentTask;
 //@property (nonatomic, retain) NSString *currentSource;
 @property (nonatomic, retain) NSManagedObject *currentActivity;
 @property (nonatomic, retain) NSArray *tasksList;
@@ -53,6 +53,7 @@
 @property (nonatomic, retain) HUDSettings *hudSettings;
 @property (nonatomic, retain) HeatMap *heatMapSettings;
 @property (nonatomic) WPAStateType previousState;
+@property (nonatomic, retain) NSTimer *nagDelayTimer;
 @property (nonatomic,retain) TotalsManager *totalsManager;
 
 + (Context*)sharedContext;
@@ -61,10 +62,11 @@
 - (void) saveModules;
 - (void) saveDefaults;
 - (void) saveTask;
-- (TaskInfo*) readTask:(NSUserDefaults*) defaults;
+- (NSDictionary*) readTask:(NSUserDefaults*) defaults;
 - (NSString*) descriptionForModule: (NSObject*) mod;
 - (NSData*) iconForModule: (id<Instance>) mod;
 - (void) removeDefaultsForKey: (NSString*) keyPrefix;
+- (BOOL) isWorkingState;
 
 @end
 
@@ -85,6 +87,7 @@
 @synthesize hudSettings;
 @synthesize heatMapSettings;
 @synthesize totalsManager;
+@synthesize nagDelayTimer;
 
 static Context* sharedContext = nil;
 
@@ -158,34 +161,22 @@ static Context* sharedContext = nil;
 	}
 }
 
-- (TaskInfo*) readTask:(NSUserDefaults*) ud
+- (NSDictionary*) readTask:(NSUserDefaults*) ud
 {
-	NSObject *task = [ud objectForKey:@"currentTask"];
-	NSObject *source = [ud objectForKey:@"currentSource"];
-	if (task){
-		TaskInfo *info = [[TaskInfo alloc] init];
-		info.name = (NSString*)task;
-		if (source){
-			info.source = (id<TaskList>)[instancesMap objectForKey:(NSString*) source];
-		}
-		return info;
-	}
-	return nil;
+	NSDictionary *task = [ud objectForKey:@"currentTask"];
+	return task;
 }
 
 - (void) saveTask
 {
 	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-	[ud removeObjectForKey:@"currentTask"];
-	[ud removeObjectForKey:@"currentSource"];
+	NSObject *temp = [ud objectForKey:@"currentTask"];
+	if (temp){
+		[ud removeObjectForKey:@"currentTask"];
+	}
 
 	if (currentTask){
-		[ud setObject:currentTask.name forKey:@"currentTask"];
-		if (currentTask.source){
-			id<TaskList> src = currentTask.source;
-			NSString *srcName = ((NSObject*)src).description;
-			[ud setObject:srcName forKey:@"currentSource"];
-		} 
+		[ud setObject:currentTask forKey:@"currentTask"];
 	}
 }
 
@@ -350,6 +341,17 @@ static Context* sharedContext = nil;
 	[[NSUserDefaults standardUserDefaults] setObject: [NSDate new] forKey:@"lastStateChange"];
 }
 
+- (void) vacationModules {
+	for (NSString *name in instancesMap){
+		NSObject* thing = [instancesMap objectForKey: name];
+		id<Stateful> inst = (id<Stateful>) thing;
+		if ( ((id<Instance>)inst).enabled && [thing conformsToProtocol:@protocol(Stateful)]){
+			[inst changeState: WPASTATE_VACATION];
+		}
+	}
+	[growlManager changeState: WPASTATE_VACATION];
+}
+
 - (void) busyModules {
 	for (NSString *name in instancesMap){
 		NSObject* thing = [instancesMap objectForKey: name];
@@ -425,36 +427,23 @@ static Context* sharedContext = nil;
 }
 
 - (NSArray*) getTasks {
-	NSMutableDictionary *gather = [NSMutableDictionary new];
+	NSMutableArray *gather = [NSMutableArray new];
 	NSString *name = nil;
 	for (name in instancesMap){
 		id thing = [instancesMap objectForKey: name];
 		id<TaskList> list  = (id<TaskList>) thing;
 		id<Instance> inst  = (id<Instance>) thing;
+		NSString *proj = nil;
 		if (inst.enabled && [thing conformsToProtocol:@protocol(TaskList)]){
 			NSArray *items = [list getTasks];
 			if (items){
-				for(NSString *item in items){
-					TaskInfo *info = [[TaskInfo alloc] initWithName:item 
-															source : list 
-															project:[list projectForTask:item]];
-                    // check for pre-existing task w/ identical name
-                    // fix up if necessary
-					TaskInfo *fo = [gather objectForKey:info.name];
-					if (fo){
-						fo.description = [NSString stringWithFormat:@"%@ [%@]",
-										  fo.name,
-										  [((NSObject*)fo.source) description] ];
-						info.description = [NSString stringWithFormat:@"%@ [%@]",
-											info.name,
-											[((NSObject*)info.source) description] ];
-					}
-					[gather setObject:info forKey:info.description];
+				for(NSDictionary *item in items){
+					[gather addObject:item ];
 				}
 			}
 		}
 	}
-	return [gather allValues];
+	return gather;
 }
 
 - (GrowlManager*) growlManager 
@@ -464,7 +453,27 @@ static Context* sharedContext = nil;
     }
     return growlManager;
 }
+- (BOOL) isWorkingState
+{
+	return currentState == WPASTATE_AWAY || currentState == WPASTATE_THINKING
+		|| currentState == WPASTATE_THINKTIME || currentState == WPASTATE_FREE;
+}
 
+- (void) endNagDelay: (NSTimer*) timer
+{
+	[nagDelayTimer invalidate];
+	nagDelayTimer = nil;
+}
+
+- (void) startNagDelay
+{
+	double delay = [[NSUserDefaults standardUserDefaults] doubleForKey:@"nagDelayTime"];
+	nagDelayTimer = [NSTimer scheduledTimerWithTimeInterval:delay 
+														 target:self 
+													   selector:@selector(endNagDelay:) 
+													   userInfo:nil 
+														repeats:NO];
+}
 @end
 
 

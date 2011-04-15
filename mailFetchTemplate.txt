@@ -1,0 +1,40 @@
+tell application "Mail"
+set startDate to date "<sDate>"
+tell account "<actName>"
+set boxes to every mailbox whose name is equal to "<boxName>"
+
+end tell
+set myBox to the first item in boxes
+tell myBox
+set allNew to every message whose date received > startDate
+end tell
+set retList to {}
+repeat with msg in allNew
+set receivedDate to date received of msg
+set rDate to date string of receivedDate
+set rTime to time string of receivedDate
+set rcvDate to {rDate, " ", rTime} as text
+set sendDate to date sent of msg
+set sDate to date string of sendDate
+set sTime to time string of sendDate
+set sndDate to {sDate, " ", sTime} as text
+
+set subjTxt to subject of msg
+set contA to content of msg
+set contQ to quoted form of contA
+set len to length of contQ
+if len < 200 then
+set extTxt to text 1 thru len of contQ
+else
+set extTxt to text 1 thru 100 of contQ
+end if
+
+set senderName to extract name from sender of msg
+set email to extract address from sender of msg
+set idStr to id of msg
+set rStat to read status of msg
+set myRecord to {rDate:rcvDate, sDate:sndDate, subj:subjTxt, cont:extTxt, unique:idStr, sendr:senderName, mailr:email, stat:rStat}
+copy myRecord to end of retList
+end repeat
+return retList
+end tell

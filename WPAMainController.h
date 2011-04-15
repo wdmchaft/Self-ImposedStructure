@@ -12,17 +12,17 @@
 #import "State.h"
 #import "StatsWindow.h"
 #import "RefreshManager.h"
-#import "GrowlManager.h"
 #import "StatusIconView.h"
 #import "TotalsManager.h"
 #import "PreferencesWindow.h"
 #import "AddActivityDialogController.h"
+#import "RolloverDelegate.h"
+#import "WPAMDelegate.h"
+#import "TaskList.h"
 
-@interface WPAMainController :NSObject <NSComboBoxDelegate,NSWindowDelegate> {
+@interface WPAMainController :NSObject <NSWindowDelegate, RolloverDelegate, WPAMDelegate> {
 	NSWindow *myWindow;
 	NSButton *startButton;
-	NSSegmentedControl *controls;
-	NSComboBox *taskComboBox;
 	NSButton *refreshButton;
 	StatsWindow *statsWindow;
 	PreferencesWindow	*prefsWindow;
@@ -37,13 +37,13 @@
 	NSTimeInterval weeklyWorkTotal;
 	TotalsManager *totalsManager;
 	AddActivityDialogController *addActivityWindow;
+	NSMutableDictionary *menuForTaskList;
+
 }
 
 @property (retain, nonatomic) IBOutlet NSWindow	*myWindow;
 @property (retain, nonatomic) IBOutlet NSButton *startButton;
 @property (retain, nonatomic) IBOutlet NSButton *refreshButton;
-@property (retain, nonatomic) IBOutlet NSSegmentedControl *controls;
-@property (retain, nonatomic) IBOutlet NSComboBox *taskComboBox;
 @property (retain, nonatomic) IBOutlet NSStatusItem *statusItem;
 @property (retain, nonatomic) IBOutlet NSMenu *statusMenu;
 @property (retain, nonatomic)  NSTimer *statusTimer;
@@ -55,20 +55,21 @@
 @property (retain, nonatomic) PreferencesWindow *prefsWindow;
 @property (retain, nonatomic) StatsWindow *statsWindow;
 @property (retain, nonatomic) AddActivityDialogController *addActivityWindow;
+@property (retain, nonatomic) NSMutableDictionary *menuForTaskList;
 
 - (IBAction) clickStart: (id) sender;
-- (IBAction) clickControls: (id) sender;
--(IBAction) changeCombo: (id)sender;
--(IBAction) clickRefresh: (id) sender;
--(IBAction) clickAway: (id) sender;
--(IBAction) clickPlay: (id) sender;
--(IBAction) clickWork: (id) sender;
--(IBAction) clickTimed: (id) sender;
+- (IBAction) changeCombo: (id)sender;
+- (IBAction) clickRefresh: (id) sender;
+- (IBAction) clickAway: (id) sender;
+- (IBAction) clickPlay: (id) sender;
+- (IBAction) clickWork: (id) sender;
+- (IBAction) clickTimed: (id) sender;
+- (IBAction) clickVacation: (id) sender;
 - (void) changeState: (WPAStateType) state;
 - (void) tasksChanged: (NSNotification*) notification;
 
-- (void)handleScreenSaverStart:(NSNotification*) notification;
--(void)handleScreenSaverStop:(NSNotification*) notification;
+- (void) handleScreenSaverStart:(NSNotification*) notification;
+- (void) handleScreenSaverStop:(NSNotification*) notification;
 - (void) enableUI: (BOOL) onOff;
 - (void) buildStatusMenu;
 - (void) enableStatusMenu: (BOOL) onOff;

@@ -224,7 +224,9 @@
 	if (state == WPASTATE_OFF) {
 		[self drawOff];
 		return;
-	}
+	} else if (state == WPASTATE_VACATION) {
+        goalRatio = 1;
+    }
 	[self drawDoneness:goalRatio];
 
 	switch (state) {
@@ -245,18 +247,24 @@
 		case WPASTATE_AWAY:
 			[self drawLetter:@"A" center:center];
 			break;
-		case WPASTATE_SUMMARY:
+		case WPASTATE_VACATION:
+			[self drawLetter:@"V" center:center];
+            break;
+        case WPASTATE_SUMMARY:
 			[self drawLetter:@"?" center:center];
 			break;
 
 		default:
 			break;
 	}
-	NSString *tipStr = [NSString stringWithFormat: 
+	NSDate *endVaca = [[NSUserDefaults standardUserDefaults] objectForKey:@"vacationEndDate"];
+	NSString *tipStr = state == WPASTATE_VACATION ?
+	[NSString stringWithFormat:@"On Vacation until %@", endVaca]
+	:[NSString stringWithFormat: 
 						@"Work: %@ Free: %@\nTask: %@", 
 						[self formatTime:work],
 						[self formatTime:free],
-						[Context sharedContext].currentTask];
+	  ([Context sharedContext].currentTask == nil ? @"[no task]" : [[Context sharedContext].currentTask objectForKey:@"name"])];
 	[self setToolTip:tipStr];
 }
 	 

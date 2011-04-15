@@ -47,6 +47,10 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		8C00DC09135799B70037C1A3 /* ScriptingMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C00DC07135799B70037C1A3 /* ScriptingMonitor.h */; };
+		8C00DC0A135799B70037C1A3 /* ScriptingMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C00DC08135799B70037C1A3 /* ScriptingMonitor.m */; };
+		8C00DC0D13579E9C0037C1A3 /* AppleMailMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C00DC0C13579E9C0037C1A3 /* AppleMailMonitor.m */; };
+		8C00DC171357ACD10037C1A3 /* mailFetchTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C00DC161357ACD10037C1A3 /* mailFetchTemplate.txt */; };
 		8C01DD77131D5C7F00398AD8 /* HUDSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C01DD75131D5C7F00398AD8 /* HUDSettings.h */; };
 		8C01DD8F131D67EB00398AD8 /* HUDSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C01DD76131D5C7F00398AD8 /* HUDSettings.m */; };
 		8C01DD91131D680100398AD8 /* HUDSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C01DD76131D5C7F00398AD8 /* HUDSettings.m */; };
@@ -156,6 +160,11 @@
 		8C7729C212D46AC600F71FE7 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C77297C12D46AC600F71FE7 /* Growl.framework */; };
 		8C78507113294FA20008CF2B /* HeatMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C785014132916510008CF2B /* HeatMap.m */; };
 		8C78508113294FF10008CF2B /* HeatMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C785014132916510008CF2B /* HeatMap.m */; };
+		8C801CF2135373C500E5C109 /* VacationDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C801CF1135373C500E5C109 /* VacationDialog.xib */; };
+		8C801CF3135373C500E5C109 /* VacationDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C801CF1135373C500E5C109 /* VacationDialog.xib */; };
+		8C801CF4135373C500E5C109 /* VacationDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C801CF1135373C500E5C109 /* VacationDialog.xib */; };
+		8C801CF8135373EC00E5C109 /* VacationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C801CF7135373EC00E5C109 /* VacationDialog.m */; };
+		8C801CF9135373EC00E5C109 /* VacationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C801CF7135373EC00E5C109 /* VacationDialog.m */; };
 		8C82AECF12EB98A300830486 /* RefreshManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C82AECE12EB98A300830486 /* RefreshManager.m */; };
 		8C82AED012EB98A300830486 /* RefreshManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C82AECE12EB98A300830486 /* RefreshManager.m */; };
 		8C82AF6B12ED239500830486 /* BaseInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C82AF6012ECF25D00830486 /* BaseInstance.m */; };
@@ -300,8 +309,6 @@
 		8CF8B60A12D821B5009C7E3D /* StatsReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8B60112D821B5009C7E3D /* StatsReport.m */; };
 		8CF8BB5C12D9F961009C7E3D /* RefreshListHandler.m in Resources */ = {isa = PBXBuildFile; fileRef = 8CF8BB5B12D9F961009C7E3D /* RefreshListHandler.m */; };
 		8CF8BB7212D9FBA6009C7E3D /* RefreshListHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8BB5B12D9F961009C7E3D /* RefreshListHandler.m */; };
-		8CF8BCB712DA112B009C7E3D /* TaskInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8BCB612DA112B009C7E3D /* TaskInfo.m */; };
-		8CF8BCB812DA112B009C7E3D /* TaskInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8BCB612DA112B009C7E3D /* TaskInfo.m */; };
 		8CF8C13D12DC2B59009C7E3D /* WorkTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8C13C12DC2B59009C7E3D /* WorkTable.m */; };
 		8CF8C13E12DC2B59009C7E3D /* WorkTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8C13C12DC2B59009C7E3D /* WorkTable.m */; };
 		8CF8C14312DC2CB7009C7E3D /* SummaryTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8C14212DC2CB7009C7E3D /* SummaryTable.m */; };
@@ -619,6 +626,11 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		8C00DC07135799B70037C1A3 /* ScriptingMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptingMonitor.h; sourceTree = "<group>"; };
+		8C00DC08135799B70037C1A3 /* ScriptingMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptingMonitor.m; sourceTree = "<group>"; };
+		8C00DC0B13579E9C0037C1A3 /* AppleMailMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleMailMonitor.h; sourceTree = "<group>"; };
+		8C00DC0C13579E9C0037C1A3 /* AppleMailMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleMailMonitor.m; sourceTree = "<group>"; };
+		8C00DC161357ACD10037C1A3 /* mailFetchTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mailFetchTemplate.txt; sourceTree = "<group>"; };
 		8C01DD75131D5C7F00398AD8 /* HUDSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDSettings.h; sourceTree = "<group>"; };
 		8C01DD76131D5C7F00398AD8 /* HUDSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDSettings.m; sourceTree = "<group>"; };
 		8C0D93F012D63D3D009F3280 /* WPADev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WPADev.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -801,6 +813,11 @@
 		8C77297F12D46AC600F71FE7 /* SkypeBlue.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = SkypeBlue.icns; sourceTree = "<group>"; };
 		8C785013132916510008CF2B /* HeatMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeatMap.h; sourceTree = "<group>"; };
 		8C785014132916510008CF2B /* HeatMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeatMap.m; sourceTree = "<group>"; };
+		8C801CF1135373C500E5C109 /* VacationDialog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VacationDialog.xib; sourceTree = "<group>"; };
+		8C801CF6135373EC00E5C109 /* VacationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VacationDialog.h; sourceTree = "<group>"; };
+		8C801CF7135373EC00E5C109 /* VacationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VacationDialog.m; sourceTree = "<group>"; };
+		8C801E9213550B6400E5C109 /* RolloverDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RolloverDelegate.h; sourceTree = "<group>"; };
+		8C8020031355677D00E5C109 /* WPAMDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPAMDelegate.h; sourceTree = "<group>"; };
 		8C82AECD12EB98A300830486 /* RefreshManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshManager.h; sourceTree = "<group>"; };
 		8C82AECE12EB98A300830486 /* RefreshManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshManager.m; sourceTree = "<group>"; };
 		8C82AF1C12EBEDB100830486 /* Refreshable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Refreshable.h; sourceTree = "<group>"; };
@@ -916,8 +933,6 @@
 		8CF8B60212D821B5009C7E3D /* StatsReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsReport.h; sourceTree = "<group>"; };
 		8CF8BB5A12D9F961009C7E3D /* RefreshListHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshListHandler.h; sourceTree = "<group>"; };
 		8CF8BB5B12D9F961009C7E3D /* RefreshListHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshListHandler.m; sourceTree = "<group>"; };
-		8CF8BCB512DA112B009C7E3D /* TaskInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskInfo.h; sourceTree = "<group>"; };
-		8CF8BCB612DA112B009C7E3D /* TaskInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskInfo.m; sourceTree = "<group>"; };
 		8CF8C13B12DC2B59009C7E3D /* WorkTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkTable.h; sourceTree = "<group>"; };
 		8CF8C13C12DC2B59009C7E3D /* WorkTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkTable.m; sourceTree = "<group>"; };
 		8CF8C14112DC2CB7009C7E3D /* SummaryTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummaryTable.h; sourceTree = "<group>"; };
@@ -1156,6 +1171,8 @@
 		29B97314FDCFA39411CA2CEA /* WorkPlayAway */ = {
 			isa = PBXGroup;
 			children = (
+				8C00DC07135799B70037C1A3 /* ScriptingMonitor.h */,
+				8C00DC08135799B70037C1A3 /* ScriptingMonitor.m */,
 				8C3982C7134D4F4A008C5670 /* ScriptingBridge.framework */,
 				8C73F10512E624080056FAFF /* Design.rtf */,
 				8C82CFDF12F3D0BE00830486 /* Design.txt */,
@@ -1181,6 +1198,7 @@
 				8CDC134013107C9600BA478C /* MailTableView.xib */,
 				8CDC134313107DE500BA478C /* TaskTableView.xib */,
 				8C9FB5BD13356DB70034FE85 /* CoreData.framework */,
+				8C8020031355677D00E5C109 /* WPAMDelegate.h */,
 			);
 			name = WorkPlayAway;
 			sourceTree = "<group>";
@@ -1530,6 +1548,10 @@
 		8CD1978912D4C89D00C69AC9 /* WPAMain */ = {
 			isa = PBXGroup;
 			children = (
+				8C801E9213550B6400E5C109 /* RolloverDelegate.h */,
+				8C801CF6135373EC00E5C109 /* VacationDialog.h */,
+				8C801CF7135373EC00E5C109 /* VacationDialog.m */,
+				8C801CF1135373C500E5C109 /* VacationDialog.xib */,
 				8C77292D12D46AC600F71FE7 /* PreferencesWindow.h */,
 				8C1151271343EAAD00273D0A /* SVRefHandler.h */,
 				8C1151281343EAAD00273D0A /* SVRefHandler.m */,
@@ -1553,8 +1575,6 @@
 				8C82AECD12EB98A300830486 /* RefreshManager.h */,
 				8C82AECE12EB98A300830486 /* RefreshManager.m */,
 				8D1107310486CEB800E47090 /* WorkPlayAway-Info.plist */,
-				8CF8BCB512DA112B009C7E3D /* TaskInfo.h */,
-				8CF8BCB612DA112B009C7E3D /* TaskInfo.m */,
 				8CF8BB5A12D9F961009C7E3D /* RefreshListHandler.h */,
 				8CF8BB5B12D9F961009C7E3D /* RefreshListHandler.m */,
 				8CF8B60012D821B5009C7E3D /* TimeDefines.h */,
@@ -1626,6 +1646,9 @@
 				8CDC10BA130CA72B00BA478C /* AppleMailModule.xib */,
 				8CDC1086130CA60D00BA478C /* AppleMailModule.h */,
 				8CDC1087130CA60D00BA478C /* AppleMailModule.m */,
+				8C00DC0B13579E9C0037C1A3 /* AppleMailMonitor.h */,
+				8C00DC0C13579E9C0037C1A3 /* AppleMailMonitor.m */,
+				8C00DC161357ACD10037C1A3 /* mailFetchTemplate.txt */,
 			);
 			name = AppleMailModule;
 			sourceTree = "<group>";
@@ -1677,6 +1700,7 @@
 				8CDC14531311B26B00BA478C /* BaseReporter.h in Headers */,
 				8C01DD77131D5C7F00398AD8 /* HUDSettings.h in Headers */,
 				8C9E3D5213206F8E007632E5 /* WriteHandler.h in Headers */,
+				8C00DC09135799B70037C1A3 /* ScriptingMonitor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2085,6 +2109,7 @@
 				8CDC134113107C9600BA478C /* MailTableView.xib in Resources */,
 				8CDC134413107DE500BA478C /* TaskTableView.xib in Resources */,
 				8CEF4E0D13394FBF000F5E3A /* SummaryStatusViewController.xib in Resources */,
+				8C801CF3135373C500E5C109 /* VacationDialog.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2213,6 +2238,8 @@
 			files = (
 				8CDC10BB130CA72B00BA478C /* AppleMailModule.xib in Resources */,
 				8CEE6A8613268A7C00E45829 /* AppleMailModule.ico in Resources */,
+				8C801CF2135373C500E5C109 /* VacationDialog.xib in Resources */,
+				8C00DC171357ACD10037C1A3 /* mailFetchTemplate.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2251,6 +2278,7 @@
 				8CDC134213107C9600BA478C /* MailTableView.xib in Resources */,
 				8CDC134513107DE500BA478C /* TaskTableView.xib in Resources */,
 				8CEF4E0E13394FBF000F5E3A /* SummaryStatusViewController.xib in Resources */,
+				8C801CF4135373C500E5C109 /* VacationDialog.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2323,7 +2351,6 @@
 				8CF8B60812D821B5009C7E3D /* Schema.m in Sources */,
 				8CF8B60912D821B5009C7E3D /* StatsRecord.m in Sources */,
 				8CF8B60A12D821B5009C7E3D /* StatsReport.m in Sources */,
-				8CF8BCB712DA112B009C7E3D /* TaskInfo.m in Sources */,
 				8CF8C13E12DC2B59009C7E3D /* WorkTable.m in Sources */,
 				8CF8C14412DC2CB7009C7E3D /* SummaryTable.m in Sources */,
 				8C73F09B12E5F6590056FAFF /* SummaryHUDControl.m in Sources */,
@@ -2350,6 +2377,7 @@
 				8C844AB2133AF9C800998D1C /* WorkHoursToAverageXForm.m in Sources */,
 				8C1151291343EAAD00273D0A /* SVRefHandler.m in Sources */,
 				8C11513D1344EFAA00273D0A /* ActivityViewController.m in Sources */,
+				8C801CF8135373EC00E5C109 /* VacationDialog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2414,6 +2442,7 @@
 				8CD1975212D4C5D900C69AC9 /* XMLParse.m in Sources */,
 				8C5EAC57133C073600E5F404 /* FilterRule.m in Sources */,
 				8CDC14521311B26B00BA478C /* BaseReporter.m in Sources */,
+				8C00DC0A135799B70037C1A3 /* ScriptingMonitor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2497,6 +2526,7 @@
 				8CDC11FA130E37F800BA478C /* MimeHandler.m in Sources */,
 				8CDC10AD130CA70800BA478C /* AppleMailModule.m in Sources */,
 				8C4019E9133FFE1D00EB414F /* VariableTableColumn.m in Sources */,
+				8C00DC0D13579E9C0037C1A3 /* AppleMailMonitor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2537,7 +2567,6 @@
 				8CF8B60412D821B5009C7E3D /* Schema.m in Sources */,
 				8CF8B60512D821B5009C7E3D /* StatsRecord.m in Sources */,
 				8CF8B60612D821B5009C7E3D /* StatsReport.m in Sources */,
-				8CF8BCB812DA112B009C7E3D /* TaskInfo.m in Sources */,
 				8CF8C13D12DC2B59009C7E3D /* WorkTable.m in Sources */,
 				8CF8C14312DC2CB7009C7E3D /* SummaryTable.m in Sources */,
 				8C73F09C12E5F6590056FAFF /* SummaryHUDControl.m in Sources */,
@@ -2561,6 +2590,7 @@
 				8C844AB3133AF9C800998D1C /* WorkHoursToAverageXForm.m in Sources */,
 				8C11512A1343EAAD00273D0A /* SVRefHandler.m in Sources */,
 				8C11513E1344EFAA00273D0A /* ActivityViewController.m in Sources */,
+				8C801CF9135373EC00E5C109 /* VacationDialog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2863,7 +2893,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
+				SDKROOT = "";
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
@@ -2884,7 +2914,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
+				SDKROOT = "";
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;

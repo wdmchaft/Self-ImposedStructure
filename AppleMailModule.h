@@ -10,6 +10,8 @@
 #import "Reporter.h"
 #import "BaseReporter.h"
 #import "RulesTableData.h"
+#import "AppleMailMonitor.h"
+
 @interface AppleMailModule : BaseReporter {
 	NSString *accountName;
 	NSString *mailMailboxName;
@@ -31,6 +33,9 @@
 	NSButton *removeRuleButton;
 	RulesTableData *rulesData;
     BOOL summaryMode;
+    NSDateFormatter *mailDateFmt;
+    AppleMailMonitor *mailMonitor;
+    NSString* msgName;
 }
 @property (nonatomic,retain) NSString *accountName;
 @property (nonatomic,retain) NSString *mailMailboxName;
@@ -50,6 +55,9 @@
 @property (nonatomic, retain) IBOutlet NSButton* addRuleButton;
 @property (nonatomic, retain) IBOutlet NSButton* removeRuleButton;
 @property (nonatomic, retain) RulesTableData *rulesData;
+@property (nonatomic, retain) NSDateFormatter *mailDateFmt;
+@property (nonatomic, retain) AppleMailMonitor *mailMonitor;
+@property (nonatomic, retain) NSString *msgName;
 @property (nonatomic) BOOL summaryMode;
 
 - (void) getUnread: (NSObject*) param;

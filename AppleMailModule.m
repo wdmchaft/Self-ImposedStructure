@@ -51,6 +51,8 @@
 @dynamic name;
 @dynamic summaryTitle;
 @synthesize rulesData, rulesTable, removeRuleButton, addRuleButton, summaryMode;
+@synthesize mailDateFmt;
+@synthesize msgName;
 
 - (void)awakeFromNib
 {
@@ -106,6 +108,15 @@
     return test;
 }
 
+- (NSString*) msgName
+{
+    if (!msgName){
+        NSTimeInterval ti = [[NSDate date] timeIntervalSince1970];
+        msgName = [@"com.workplayaway.iCalDone" stringByAppendingString:[[NSNumber numberWithDouble:ti] stringValue]];
+    }
+    return msgName;
+}
+
 /**
  * make threads for messages with equivalent subject headers
  */
@@ -136,11 +147,8 @@
     unreadMail = newUnread;
      
 }
-
--(void) getUnread: (NSObject*) param
+-(void) getUnread
 {
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	unreadMail = [NSMutableArray new];
 	NSDate *minTime = [NSDate distantPast];
     
 	if (summaryMode && useDisplayWindow){
@@ -150,100 +158,148 @@
 	} else if (!summaryMode){
         minTime = [self lastCheck];
     }
-
-    NSLog(@"starting getUnread w/ received later than %@", minTime);
-//	NSLog(@"will get all email later than %@", minTime);
-	MailApplication *mailApp = [SBApplication applicationWithBundleIdentifier:@"com.apple.mail"];
-	if (mailApp) {
-		for (MailAccount *mAcc in mailApp.accounts){
-			if ([mAcc.name isEqualToString:accountName]){
-				for(MailMailbox *box in mAcc.mailboxes){
-					if ([box.name isEqualToString: mailMailboxName]) {
-						for (MailMessage *msg in box.messages){
-							NSLog(@"from = %@ subj = %@ received = %@",[mailApp extractAddressFrom:msg.sender], msg.subject, msg.dateReceived);
-                            
-							NSComparisonResult res = [msg.dateReceived compare:minTime];
-							if (res != NSOrderedAscending) {
-								
-								NSString *temp = msg.source;
-								NSString *synopsis = [MimeHandler synopsis:temp];
-					
-								NSMutableDictionary *params = 
-								[NSMutableDictionary dictionaryWithObjectsAndKeys:
-								 name, REPORTER_MODULE,
-								 synopsis, MAIL_SUMMARY,
-								 [msg.subject copy], MAIL_SUBJECT,
-								 [NSNumber numberWithBool:msg.readStatus], @"readStatus" , 
-								 [mailApp extractNameFrom:msg.sender], MAIL_NAME,
-								 [mailApp extractAddressFrom:msg.sender], MAIL_EMAIL,
-								 [msg.dateReceived copy], MAIL_ARRIVAL_TIME,
-								 [msg.dateSent copy], MAIL_SENT_TIME,
-								 [msg.messageId copy], @"id",
-								 nil ];
-                                NSColor *ruleColor = nil;
-                                FilterResult res = [FilterRule processFilters:rules 
-                                                                   forMessage: params
-                                                                        color: &ruleColor];
-                                if (ruleColor){
-                                    [params setValue:ruleColor forKey:MAIL_COLOR];
-                                }
-                                if (res == RESULT_SUMMARYONLY){
-                                    if (summaryMode)
-                                        [unreadMail addObject:params];
-                                } else if (res != RESULT_IGNORE) {
-                                    [unreadMail addObject:params];
-                                }
-							}else {
-								break;
-							}
-
-						}
-					}
-				}
-			}
-		}
-	}
-    if (summaryMode){
-        [self processThreads];
+    
+    NSLog(@"starting getUnread w/ received later than %@", minTime);    
+    NSDate *today = [NSDate date];
+    if (mailDateFmt == nil){
+        mailDateFmt = [NSDateFormatter new];
+        [mailDateFmt setDateFormat:@"EEEE, MMMM dd, yyyy hh:mm:ss a"];
     }
-
-	[[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:[super myKeyForKey:LASTCHECK]];
-	[[NSUserDefaults standardUserDefaults] synchronize];
-	NSNotification *msg = [NSNotification notificationWithName:@"com.workplayaway.fetchDone" object:nil];
-	[[NSNotificationCenter defaultCenter] postNotification:msg];
-	[pool drain];	
+    NSString *nowStr = [mailDateFmt stringFromDate:today];
+    NSString *thenStr = [mailDateFmt stringFromDate:minTime];
+    NSBundle *myBundle = [NSBundle bundleForClass:[self class]];
+    NSString *path = [myBundle resourcePath];
+    path = [path stringByAppendingFormat:@"/%@",@"mailFetchTemplate.txt"];
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    NSString *script = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    script = [script stringByReplacingOccurrencesOfString:@"<actName>" withString:accountName];
+    script = [script stringByReplacingOccurrencesOfString:@"<boxName>" withString:mailMailboxName];
+    script = [script stringByReplacingOccurrencesOfString:@"<sDate>" withString:thenStr];
+    mailMonitor = [AppleMailMonitor appleMailShared];
+    NSLog(@"script = %@",script);
+    [mailMonitor sendScript:script withCallback:[self msgName]];
 }
 
 -(void) refresh: (id<AlertHandler>) handler isSummary: (BOOL) summary
 {
 	alertHandler = handler;
     summaryMode = summary;
+    if (!unreadMail) {
+        unreadMail = [NSMutableArray new];
+    }
+    [unreadMail removeAllObjects];
+    NSLog(@"msg = %@",[self msgName]);
 	[[NSNotificationCenter defaultCenter] addObserver:self 
 											 selector:@selector(fetchDone:)
-												 name:@"com.workplayaway.fetchDone" 
+												 name:[self msgName] 
 											   object:nil];
-	[NSThread detachNewThreadSelector: @selector(getUnread:)
-							 toTarget:self
-						   withObject:nil];
+    
+	[self getUnread];
+}
+
+- (void) handleMessageDescriptor:(NSAppleEventDescriptor*) descN
+{
+    NSMutableDictionary *eDict = [NSMutableDictionary dictionaryWithCapacity:4];
+    
+    for(unsigned int j = 1; j <= [descN numberOfItems]; j+=2){
+        NSLog(@"descN[%d]", j);
+        NSAppleEventDescriptor *fieldNameDesc = [descN descriptorAtIndex:j];
+        NSAppleEventDescriptor *fieldValDesc = [descN descriptorAtIndex:j+1];
+        
+        // typeType (aka '    ') means the result is an empty string (which means nil in this case)
+        if ([fieldValDesc descriptorType] != typeType) {
+
+            NSString *fieldName = [fieldNameDesc stringValue];
+            if ([fieldName isEqualToString:@"rDate"]){
+                NSString *dateTemp = [fieldValDesc stringValue];
+                NSDate *date = [mailDateFmt dateFromString:dateTemp];
+                [eDict setValue:date forKey:MAIL_ARRIVAL_TIME];
+            }   
+            if ([fieldName isEqualToString:@"sDate"]){
+                NSString *dateTemp = [fieldValDesc stringValue];
+                NSDate *date = [mailDateFmt dateFromString:dateTemp];
+                [eDict setValue:date forKey:MAIL_SENT_TIME];
+            }  
+            if ([fieldName isEqualToString:@"subj"]){
+                [eDict setValue:[fieldValDesc stringValue] forKey:MAIL_SUBJECT];
+            } 
+            if ([fieldName isEqualToString:@"cont"]){
+                [eDict setValue:[fieldValDesc stringValue] forKey:MAIL_SUMMARY];
+            } 
+            if ([fieldName isEqualToString:@"unique"]){
+                [eDict setValue:[fieldValDesc stringValue] forKey:@"id"];
+            } 
+            if ([fieldName isEqualToString:@"sendr"]){
+                [eDict setValue:[fieldValDesc stringValue] forKey:MAIL_NAME];
+            } 
+            if ([fieldName isEqualToString:@"mailr"]){
+                [eDict setValue:[fieldValDesc stringValue] forKey:MAIL_EMAIL];
+            } 
+            if ([fieldName isEqualToString:@"stat"]){
+                [eDict setValue:[NSNumber numberWithBool:[fieldValDesc booleanValue]] forKey:@"readStatus"];
+            } 
+        }
+    }
+    [unreadMail addObject:eDict];                 
+}
+
+- (void) handleDescriptor: (NSAppleEventDescriptor*) aDescriptor
+{
+    char *c = nil;
+    DescType type = [aDescriptor descriptorType];
+    if (type == typeAERecord) {
+        [self handleMessageDescriptor:aDescriptor];
+    }
+    else if (type == typeAEList) {
+        NSAssert(type == typeAEList, @"not a list!");
+        for(unsigned int i = 1; i <= [aDescriptor numberOfItems]; i++){
+            NSAppleEventDescriptor *descN = [aDescriptor descriptorAtIndex:i];
+            DescType typeN = [descN descriptorType];
+            NSAssert(typeN == typeAERecord, @"not a record");
+            c = (char*)&type;
+            NSLog(@"descN[%d] = %c%c%c%c (%@)",i, c[3],c[2],c[1],c[0], [descN description]);
+            for(unsigned int j = 1; j <= [descN numberOfItems]; j++){
+                AEKeyword kw = [descN keywordForDescriptorAtIndex:j];
+                NSAppleEventDescriptor *fdesc0 = [descN descriptorForKeyword:kw];
+                //  DescType fldDesc = [fdesc0 descriptorType];
+                [self handleMessageDescriptor:fdesc0];
+                
+            }
+        }
+    }
+    else {
+        c = (char*)&type;
+        NSLog(@"unexpected event descriptor: %c%c%c%c (%@)",c[3],c[2],c[1],c[0], [aDescriptor description]);
+    }
 }
 
 - (void) fetchDone: (NSNotification*) note
 {
-	for (NSDictionary *msg in unreadMail){
-		Note *alert = [Note new];
-
-		alert.moduleName = name;
-		alert.title = [NSString stringWithFormat:@"From: %@",[msg objectForKey:MAIL_EMAIL]];;
-		alert.message=[msg objectForKey:MAIL_SUMMARY];
-		alert.sticky = NO;
-		alert.urgent = NO;
-		alert.params = msg;
-        alert.clickable = YES;
+    NSAppleEventDescriptor *eventRes = [[[AppleMailMonitor appleMailShared] eventRes] copy];
+    NSDictionary *eventErr = [[[AppleMailMonitor appleMailShared] errorRes] copy];
+    [[AppleMailMonitor appleMailShared] sendDone];
+    if (eventErr){
+        NSLog(@"got Error! %@", eventErr);
+    }
+    else {
+        [self handleDescriptor:eventRes];
+        for (NSDictionary *msg in unreadMail){
+            Note *alert = [Note new];
+            
+            alert.moduleName = name;
+            alert.title = [NSString stringWithFormat:@"From: %@",[msg objectForKey:MAIL_EMAIL]];;
+            alert.message=[msg objectForKey:MAIL_SUMMARY];
+            alert.sticky = NO;
+            alert.urgent = NO;
+            alert.params = msg;
+            alert.clickable = YES;
 			
-		[alertHandler handleAlert:alert];
-	}
+            [alertHandler handleAlert:alert];
+        }
+    }
+	[BaseInstance sendDone: alertHandler module: name];
 	[BaseInstance sendDone:alertHandler module: name];	
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"com.workplayaway.fetchDone" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:[self msgName] object:nil];
 }
 
 - (void) startValidation: (NSObject*) callback
@@ -359,7 +415,7 @@
 	
 	[accountField setStringValue:accountName == nil ? @"" : accountName];
 	[mailboxField setStringValue:mailMailboxName == nil ? @"" : mailMailboxName];
-	[refreshIntervalField setDoubleValue:refreshInterval];
+	[refreshIntervalField setDoubleValue:refreshInterval/60];
 	[refreshIntervalStepper setDoubleValue:refreshInterval];
 	[displayWindowField setDoubleValue:displayWindow];
 	[displayWindowStepper setDoubleValue:displayWindow];

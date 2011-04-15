@@ -12,8 +12,6 @@
 #import "Note.h"
 #import "Growl.h"
 #import "IconsFile.h"
-#import "TaskInfo.h"
-#import "WPAMainController.h"
 #import "State.h"
 #import "WriteHandler.h"
 
@@ -63,7 +61,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 
-	WPAMainController *wpam = (WPAMainController*)[window delegate];
+	//WPAMainController *wpam = (WPAMainController*)[window delegate];
 	NSLog(@"app launched");
 	if ([[NSUserDefaults standardUserDefaults]boolForKey:@"startOnLoad"]){
 		[wpam clickStart:self];
@@ -77,11 +75,11 @@
 	//[self saveData: nil];
 }
 
-- (WPAMainController*) mainCtrl
-{
-	return (WPAMainController*)[window delegate];
-
-}
+//- (WPAMainController*) mainCtrl
+//{
+//	return (WPAMainController*)[window delegate];
+//
+//}
 
 
 /*****************************************************************************************
@@ -324,67 +322,6 @@
 
 }
 
-- (void) newRecord: (int) state
-{
-	Context *ctx = [Context sharedContext];
-	if (ctx.currentActivity != nil){
-		NSDate *start = [ctx.currentActivity valueForKey:@"startTime"];
-		NSDate *now = [NSDate date];
-		NSTimeInterval interval = [now timeIntervalSinceDate:start];
-		[ctx.currentActivity setValue:[NSNumber numberWithInt:interval] forKey:@"interval"];
-		[ctx.currentActivity setValue: now forKey:@"endTime"];
-		NSLog(@"Done with %@% interval: %f", [self dumpMObj:ctx.currentActivity], interval);
-	} else {
-		NSLog(@"No Current Activity");
-	}
-	// new work record
-	NSManagedObjectContext *moc = [self managedObjectContext];
-	NSManagedObject *task = nil;
-	NSManagedObject *source = nil;
-	NSString *newTask = ctx.currentTask == nil ? @"[No Task]" : ctx.currentTask.name;		
-	NSString *newSource = ctx.currentTask == nil || ctx.currentTask.source == nil ? @"[Adhoc]" : [ctx.currentTask.source description];		
-
-	if (state == WPASTATE_THINKING || state == WPASTATE_THINKTIME){
-		source = [self findSource: newSource inContext: moc];
-		if (source == nil){
-			source = [NSEntityDescription
-					insertNewObjectForEntityForName:@"Source"
-					inManagedObjectContext:moc];
-			[source setValue:[NSDate date] forKey: @"createTime"];
-			[source setValue:[newSource description] forKey:@"name"];
-		}
-		
-		task = [self findTask: newTask inContext: moc];
-		if (task == nil){
-			task = [NSEntityDescription
-					insertNewObjectForEntityForName:@"Task"
-					inManagedObjectContext:moc];
-			[task setValue:[NSDate date] forKey: @"createTime"];
-			[task setValue:newTask forKey: @"name"];
-			if (source != nil) {
-				[task setValue:source forKey:@"source"];
-			}
-			
-		}
-	}
-	NSString *entityName = [self entityNameForState:state];
-	if (entityName != nil) {
-		NSManagedObject *newActivity = [NSEntityDescription
-										insertNewObjectForEntityForName:entityName
-										inManagedObjectContext:moc];
-		if ([self hasTask:newActivity] && task != nil){
-			[newActivity setValue:task forKey:@"task"];
-		}
-		[newActivity setValue: [NSDate date] forKey:@"startTime"];	
-		[newActivity setValue: @"" forKey:@"notes"];
-		ctx.currentActivity = newActivity;
-		NSLog(@"Starting %@", [self dumpMObj:ctx.currentActivity]);
-	}
-	else {
-		ctx.currentActivity = nil;
-	}
-}
-
 /**
  Returns the persistent store coordinator for the application.  This 
  implementation will create and return a coordinator, having added the 
@@ -525,7 +462,7 @@
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
 	NSLog(@"applicationShouldTerminate");
-	WPAMainController *wpam = (WPAMainController*)[window delegate];
+	//WPAMainController *wpam = (WPAMainController*)[window delegate];
 	[wpam changeState:WPASTATE_OFF];
 	
 

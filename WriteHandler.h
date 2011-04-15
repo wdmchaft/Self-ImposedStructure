@@ -8,7 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 #import "State.h"
-#import "TaskInfo.h"
 #import "SummaryRecord.h"
 
 @interface WriteHandler : NSObject {
@@ -42,15 +41,15 @@
 + (void) sendNewRecord: (WPAStateType) state;
 + (void) sendTotalsForDate: (NSDate*) date goal: (int) goalTime work: (int) workTime free: (int) freeTime;
 + (void) sendActivity: (NSDate*)date
-             activity:(TaskInfo*)taskInfo
+             activity:(NSDictionary*)taskInfo
             increment:(int) incr;
 + (void) sendSummary: (SummaryRecord*) rec;
 
 - (void) saveActivityForDate:(NSNotification*) msg;
 - (void) saveActivityForDate:(NSDate*) inDate desc: (NSString*) activityName source: (NSString*) sourceName project: (NSString*) projectName addVal: (int) increment;
-+ (void) sendActivity: (NSDate*)date
-             activity:(TaskInfo*)taskInfo
-            increment:(int) incr;
+//+ (void) sendActivity: (NSDate*)date
+//             activity:(TaskInfo*)taskInfo
+//            increment:(int) incr;
 - (void) saveSummary: (SummaryRecord*) rec;
 
 - (SummaryRecord*) getSummaryRecord;

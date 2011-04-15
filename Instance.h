@@ -13,7 +13,7 @@
 typedef enum {
 	CATEGORY_OTHER, CATEGORY_EVENTS, CATEGORY_EMAIL, CATEGORY_CHAT_CONTROL, CATEGORY_TASKS
 } WPAModuleCategory;
-@protocol Instance <NSObject>
+@protocol Instance <NSObject, NSCopying>
 /** basic required */
 @required
 - (void) startValidation:(NSObject*) handler;

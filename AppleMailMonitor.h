@@ -1,5 +1,5 @@
 //
-//  iCalMonitor.h
+//  AppleMailMonitor.h
 //  WorkPlayAway
 //
 //  Created by Charles on 4/14/11.
@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "ScriptingMonitor.h"
 
-@interface iCalMonitor : ScriptingMonitor {
+@interface AppleMailMonitor : ScriptingMonitor {
 @private
     
 }
 
 @end
-static iCalMonitor* iCalShared;
+static AppleMailMonitor* appleMailShared;
