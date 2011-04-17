@@ -7,7 +7,7 @@
 //
 
 #import "TestMailModule.h"
-#import "Note.h"
+#import "WPAAlert.h"
 
 
 #define REFRESH @"Refresh"
@@ -126,7 +126,7 @@
 	
 	for (int i = 0; i < [sendItems count];i++){
 		NSDictionary *item = [sendItems objectAtIndex:i];
-		Note *alert = [[Note alloc]init];
+		WPAAlert *alert = [[WPAAlert alloc]init];
         NSColor *color;
 		FilterResult res = [FilterRule processFilters:rules forMessage: item color:&color];
 		alert.moduleName = name;

@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface Note : NSObject {
+@interface WPAAlert : NSObject {
 	NSString* moduleName;
 	BOOL urgent;
 	NSString *title;
@@ -17,6 +17,7 @@
 	NSDictionary *params;
 	BOOL sticky;
 	BOOL clickable;
+	BOOL isWork;
 	BOOL lastAlert;
 }
 @property (nonatomic, retain) NSString* moduleName;
@@ -24,6 +25,7 @@
 @property (nonatomic)BOOL sticky;
 @property (nonatomic)BOOL clickable;
 @property (nonatomic)BOOL lastAlert;
+@property (nonatomic)BOOL isWork;
 @property (nonatomic ,retain)NSString *title;
 @property (nonatomic ,retain)NSString *message;
 @property (nonatomic ,retain)NSDictionary *params;

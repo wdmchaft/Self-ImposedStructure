@@ -7,7 +7,7 @@
 //
 
 #import "GmailModule.h"
-#import "Note.h"
+#import "WPAAlert.h"
 #import "Utility.h"
 #import "XMLParse.h"
 #import "FilterRule.h"

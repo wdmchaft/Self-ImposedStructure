@@ -180,7 +180,6 @@
 	BOOL isRunning;
 	do {
 		// run the loop!
-		NSLog(@"in run loop");
 		NSDate* theNextDate = [NSDate dateWithTimeIntervalSinceNow:resolution]; 
 		isRunning = [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:theNextDate]; 
 		// occasionally re-create the autorelease pool whilst program is running

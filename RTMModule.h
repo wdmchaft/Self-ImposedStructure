@@ -37,6 +37,8 @@
 	NSMutableDictionary *alarmSet;
 	id<AlertHandler> handler;
 	NSString *lastError;
+    BOOL isWorkRelated;
+    NSButton *isWorkButton;
 }
 
 @property (nonatomic, retain) NSString *tokenStr;
@@ -62,7 +64,9 @@
 @property (nonatomic, retain) NSMutableDictionary *alarmSet;
 @property (nonatomic, retain) id<AlertHandler> handler;
 @property (nonatomic, retain) NSString *lastError;
+@property (nonatomic, retain) NSButton *isWorkButton;
 @property(nonatomic) BOOL firstClick;
+@property (nonatomic) BOOL isWorkRelated;
 
 - (IBAction) clickRefreshStepper: (id) sender;
 - (IBAction) clickAuthButton: (id) sender;

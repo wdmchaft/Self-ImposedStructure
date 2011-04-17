@@ -182,7 +182,7 @@ highestTagValue,minTagValue,hrefStr,rules, alertHandler, validationHandler, time
         NSColor *color;
 		FilterResult res = [FilterRule processFilters:rules forMessage: msgDict color:&color];
 		if (res != RESULT_IGNORE) {
-			Note *alert = [[Note alloc]init];
+			WPAAlert *alert = [[WPAAlert alloc]init];
 			alert.moduleName = ((id<Instance>)callback).name;
 			alert.title =key;
 			alert.message=[item objectForKey:@"summary"];

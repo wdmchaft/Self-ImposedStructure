@@ -72,9 +72,15 @@
 	return [[NSUserDefaults standardUserDefaults] objectForKey:myKey];
 }
 
+- (BOOL) loadBoolDefaultForKey: (NSString*) key
+{
+	NSString *myKey = [self myKeyForKey:key];
+	return [[NSUserDefaults standardUserDefaults] boolForKey:myKey];
+}
+
 + (void) sendErrorToHandler:(id<AlertHandler>) handler error:(NSString*) err module:(NSString*) modName
 {
-	Note *alert = [[Note alloc]init];
+	WPAAlert *alert = [[WPAAlert alloc]init];
 	alert.moduleName = modName;
 	alert.title =nil;
 	alert.message=err;
@@ -84,7 +90,7 @@
 
 + (void) sendDone: (id<AlertHandler>) handler module: (NSString*) modName
 {
-	Note *alert = [[Note alloc]init];
+	WPAAlert *alert = [[WPAAlert alloc]init];
 	alert.moduleName = modName;
 	alert.lastAlert = YES;
 	[handler handleAlert: alert];

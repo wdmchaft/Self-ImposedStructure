@@ -80,13 +80,13 @@
 }
 
 
--(void) handleError: (Note*) error
+-(void) handleError: (WPAAlert*) error
 {
 	[prog setHidden:YES];
 	[prog stopAnimation:self];
 }	
 
-- (void) handleAlert: (Note*) alert
+- (void) handleAlert: (WPAAlert*) alert
 {
 	if (alert.lastAlert){
 		[prog setHidden:YES];

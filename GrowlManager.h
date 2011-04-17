@@ -22,7 +22,7 @@
 @property (nonatomic,retain) NSMutableArray *alertQ;
 @property (nonatomic,retain) NSTimer *timer;
 
--(void) growlAlert: (Note*) alert;
+-(void) growlAlert: (WPAAlert*) alert;
 - (void) growlThis: (NSString*) this isSticky: (BOOL) sticky withTitle: (NSString*) title;
 - (void) growlFYI: (NSString*) this;
 - (void) growlNotificationWasClicked:(id)ctx;

@@ -211,7 +211,7 @@
 		8CBEAB48133AAA3E00277FEA /* SummaryRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBEAB46133AAA3D00277FEA /* SummaryRecord.m */; };
 		8CC7543F1335524E007FE425 /* ActivityChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC7543E1335524C007FE425 /* ActivityChart.m */; };
 		8CC754401335524E007FE425 /* ActivityChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC7543E1335524C007FE425 /* ActivityChart.m */; };
-		8CD1974D12D4C5D900C69AC9 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77293D12D46AC600F71FE7 /* Note.m */; };
+		8CD1974D12D4C5D900C69AC9 /* WPAAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77293D12D46AC600F71FE7 /* WPAAlert.m */; };
 		8CD1975012D4C5D900C69AC9 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77296D12D46AC600F71FE7 /* Utility.m */; };
 		8CD1975212D4C5D900C69AC9 /* XMLParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77295812D46AC600F71FE7 /* XMLParse.m */; };
 		8CD1975512D4C62500C69AC9 /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
@@ -749,8 +749,8 @@
 		8C77293A12D46AC600F71FE7 /* State.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = State.h; sourceTree = "<group>"; };
 		8C77293B12D46AC600F71FE7 /* IconData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconData.h; sourceTree = "<group>"; };
 		8C77293C12D46AC600F71FE7 /* IconData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconData.m; sourceTree = "<group>"; };
-		8C77293D12D46AC600F71FE7 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
-		8C77293E12D46AC600F71FE7 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
+		8C77293D12D46AC600F71FE7 /* WPAAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPAAlert.m; sourceTree = "<group>"; };
+		8C77293E12D46AC600F71FE7 /* WPAAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; path = WPAAlert.h; sourceTree = "<group>"; };
 		8C77293F12D46AC600F71FE7 /* ModulesTableData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModulesTableData.h; sourceTree = "<group>"; };
 		8C77294012D46AC600F71FE7 /* ModulesTableData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModulesTableData.m; sourceTree = "<group>"; };
 		8C77294112D46AC600F71FE7 /* GCalModule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GCalModule.xib; sourceTree = "<group>"; };
@@ -1523,8 +1523,8 @@
 				8CDC14501311B26B00BA478C /* BaseReporter.m */,
 				8CDC14511311B26B00BA478C /* BaseReporter.h */,
 				8C77296312D46AC600F71FE7 /* WPAFramework-info.plist */,
-				8C77293E12D46AC600F71FE7 /* Note.h */,
-				8C77293D12D46AC600F71FE7 /* Note.m */,
+				8C77293E12D46AC600F71FE7 /* WPAAlert.h */,
+				8C77293D12D46AC600F71FE7 /* WPAAlert.m */,
 				8C77296C12D46AC600F71FE7 /* Utility.h */,
 				8C77296D12D46AC600F71FE7 /* Utility.m */,
 				8C77297D12D46AC600F71FE7 /* XMLParse.h */,
@@ -2435,7 +2435,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C82AF6B12ED239500830486 /* BaseInstance.m in Sources */,
-				8CD1974D12D4C5D900C69AC9 /* Note.m in Sources */,
+				8CD1974D12D4C5D900C69AC9 /* WPAAlert.m in Sources */,
 				8CD1975012D4C5D900C69AC9 /* Utility.m in Sources */,
 				8C02E5FC133FC61E0077F27B /* ColorWellCell.m in Sources */,
 				8C5EAC58133C075800E5F404 /* RulesTableData.m in Sources */,

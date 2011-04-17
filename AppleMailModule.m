@@ -284,8 +284,26 @@
     }
     else {
         [self handleDescriptor:eventRes];
-        for (NSDictionary *msg in unreadMail){
-            Note *alert = [Note new];
+        NSMutableArray *mailToSend = [NSMutableArray arrayWithCapacity:[unreadMail count]];
+        for (NSMutableDictionary *msg in unreadMail){
+            NSColor *ruleColor = nil;
+            FilterResult res = [FilterRule processFilters:rules 
+                                               forMessage: msg
+                                                    color: &ruleColor];
+            if (ruleColor){
+                [msg setValue:ruleColor forKey:MAIL_COLOR];
+            }
+            if (res == RESULT_SUMMARYONLY){
+                if (!summaryMode)
+                    [mailToSend addObject:msg];
+            } else if (res != RESULT_IGNORE) {
+                [mailToSend addObject:msg];
+            }
+        }
+        
+        for (NSDictionary *msg in mailToSend)
+        {
+            WPAAlert *alert = [WPAAlert new];
             
             alert.moduleName = name;
             alert.title = [NSString stringWithFormat:@"From: %@",[msg objectForKey:MAIL_EMAIL]];;
@@ -298,7 +316,7 @@
             [alertHandler handleAlert:alert];
         }
     }
-	[BaseInstance sendDone: alertHandler module: name];
+
 	[BaseInstance sendDone:alertHandler module: name];	
     [[NSNotificationCenter defaultCenter] removeObserver:self name:[self msgName] object:nil];
 }
@@ -377,7 +395,7 @@
         NSLog(@"predicate = %@", rule.predicate);
         [aryColors addObject:[NSArchiver archivedDataWithRootObject:rule.color]];
     }
-    NSLog(@"saving %ld rules", [rules count]);
+    NSLog(@"saving %u rules", [rules count]);
     [super saveDefaultValue:aryFields forKey:RULE_FIELDS];
     [super saveDefaultValue:aryColors forKey:RULE_COLORS];
     [super saveDefaultValue:aryCompares forKey:RULE_COMPARES];

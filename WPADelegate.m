@@ -9,7 +9,7 @@
 #import "WPADelegate.h"
 #import "Context.h"
 #import "Instance.h"
-#import "Note.h"
+#import "WPAAlert.h"
 #import "Growl.h"
 #import "IconsFile.h"
 #import "State.h"

@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "Note.h"
+#import "WPAAlert.h"
 #import "AlertHandler.h"
 
 #import "Growl.h"

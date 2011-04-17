@@ -7,13 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "Note.h"
+#import "WPAAlert.h"
 
 
 @protocol AlertHandler
 
--(void) handleAlert: (Note*) alert;
+-(void) handleAlert: (WPAAlert*) alert;
 
--(void) handleError: (Note*) error;
+-(void) handleError: (WPAAlert*) error;
 
 @end

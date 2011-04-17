@@ -27,12 +27,12 @@
     [super dealloc];
 }
 
--(void) handleError: (Note*) error
+-(void) handleError: (WPAAlert*) error
 {
     [ref endRefresh];
 }	
 
-- (void) handleAlert: (Note*) alert
+- (void) handleAlert: (WPAAlert*) alert
 {
 	if (alert.lastAlert){
         [ref endRefresh];

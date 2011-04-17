@@ -12,10 +12,11 @@
 #define TOKEN  @"Token"
 #define LISTID @"ListId"
 #define TASKLIST @"taskList"
+#define ISWORK @"isWork"
 
 #import "Secret.h"
 #import "RTMModule.h"
-#import "Note.h"
+#import "WPAAlert.h"
 #import "RequestREST.h"
 #import "ListHandler.h"
 #import "ListsHandler.h"
@@ -52,6 +53,8 @@
 @synthesize alarmSet;
 @synthesize handler;
 @synthesize lastError;
+@synthesize isWorkRelated;
+@synthesize isWorkButton;
 @dynamic refreshInterval;
 @dynamic notificationName;
 @dynamic notificationTitle;
@@ -77,7 +80,7 @@
 	for (NSString *taskName in tasksList){
 		NSDictionary *tc = [[NSDictionary alloc]initWithDictionary:
 							[tasksDict objectForKey:taskName] copyItems:YES];
-		Note *alert = [[Note alloc]init];
+		WPAAlert *alert = [[WPAAlert alloc]init];
 		alert.moduleName = name;
 		alert.title =name;
 		alert.message=taskName;
@@ -99,7 +102,9 @@
 									listIdStr,@"list_id",
 									@"xml", @"format",
 									@"status:incomplete:", @"filter",
-									APIKEY, @"api_key", nil];
+									APIKEY, @"api_key", 
+                                    [NSNumber numberWithBool:isWorkRelated],@"isWork",
+                                    nil];
 	
 	[progInd startAnimation:self];
 	[rr sendRequestWithURL:[rr createURLWithFamily:@"rest" 
@@ -131,7 +136,7 @@
 		if (date){
 			cr = [date compare:[NSDate date]];
 		}
-		Note *alert = [[Note alloc]init];
+		WPAAlert *alert = [[WPAAlert alloc]init];
 		alert.moduleName = name;
 		NSString *dateStr = date ? [Utility timeStrFor:date] : @"";
 		NSString *alertTitle = [listNameStr copy];
@@ -152,7 +157,7 @@
 			if (alarmSet == nil){
 				alarmSet = [NSMutableDictionary new];
 			}
-			Note *alarm = [alert copy];
+			WPAAlert *alarm = [alert copy];
 			alarm.title =[listNameStr stringByAppendingString:@" [Task Due Now]"];
 			alarm.urgent = YES;
 			alarm.sticky = YES;
@@ -183,7 +188,7 @@
 
 - (void) handleWarningAlarm: (NSTimer*) theTimer
 {
-	Note *alert = (Note*)[theTimer userInfo];
+	WPAAlert *alert = (WPAAlert*)[theTimer userInfo];
 	[handler handleAlert:alert];
 }
 
@@ -291,9 +296,9 @@
 	if (temp) {
 		refreshInterval = [temp intValue];
 	}
-    tasksList = [super loadDefaultForKey:TASKLIST];
+    isWorkRelated = [super loadBoolDefaultForKey:ISWORK];
+  tasksList = [super loadDefaultForKey:TASKLIST];
 }
-
 
 -(void) clearDefaults
 {
@@ -303,6 +308,7 @@
 	[super clearDefaultValue:[NSNumber numberWithInt:refreshInterval] forKey:REFRESH];
 	[super clearDefaultValue:listNameStr forKey:LISTNAME];
 	[super clearDefaultValue: listIdStr forKey:LISTID];
+	[super clearDefaultValue: listIdStr forKey:ISWORK];
 	[[NSUserDefaults standardUserDefaults] synchronize];	
 }
 
@@ -315,6 +321,7 @@
 	[super saveDefaultValue:[NSNumber numberWithInt:refreshInterval] forKey:REFRESH];
 	[super saveDefaultValue:listNameStr forKey:LISTNAME];
 	[super saveDefaultValue: listIdStr forKey:LISTID];
+    [super saveDefaultValue:[NSNumber numberWithBool:isWorkRelated] forKey:ISWORK];
 	[[NSUserDefaults standardUserDefaults] synchronize];		
 }
 

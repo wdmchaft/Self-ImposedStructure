@@ -224,7 +224,7 @@
 	if (state == WPASTATE_OFF) {
 		[self drawOff];
 		return;
-	} else if (state == WPASTATE_VACATION) {
+	} else if (state == WPASTATE_VACATION || state == WPASTATE_DONE) {
         goalRatio = 1;
     }
 	[self drawDoneness:goalRatio];
@@ -253,7 +253,9 @@
         case WPASTATE_SUMMARY:
 			[self drawLetter:@"?" center:center];
 			break;
-
+        case WPASTATE_DONE:
+			[self drawLetter:@"D" center:center];
+			break;
 		default:
 			break;
 	}

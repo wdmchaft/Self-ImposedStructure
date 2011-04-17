@@ -7,7 +7,7 @@
 //
 
 #import "TestEventModule.h"
-#import "Note.h"
+#import "WPAAlert.h"
 
 
 #define REFRESH @"Refresh"
@@ -79,7 +79,7 @@
 	NSArray *msgs = [NSArray arrayWithObjects: dict1,dict2,dict3, nil];
 	for (int i = 0; i < [msgs count];i++){
 		NSDictionary *item = [msgs objectAtIndex:i];
-		Note *alert = [[Note alloc]init];
+		WPAAlert *alert = [[WPAAlert alloc]init];
 		alert.moduleName = name;
 		alert.title =[item objectForKey:@"desc"];
 		alert.message=[item objectForKey:@"summary"];

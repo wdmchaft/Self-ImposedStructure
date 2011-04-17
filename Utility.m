@@ -189,11 +189,19 @@
 {
 	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
 	NSArray *ary = [ud objectForKey:key];
-	NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:[ary count]];
-	for (NSData *data in ary){
-		[temp addObject:[Utility colorFromArch:data]];
-	}
-	return temp;
+    if (ary) {
+        NSLog(@"ary count = %d", [ary count]);
+        NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:[ary count]];
+        for (NSData *data in ary){
+            if (data){
+                [temp addObject:[Utility colorFromArch:data]];
+            } else {
+                [temp addObject:[NSColor whiteColor]];
+            }
+        }
+        return temp;
+    }
+    return [NSArray new];
 }
 
 + (NSString*) formatInterval: (NSTimeInterval) timeInt

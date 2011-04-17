@@ -11,5 +11,6 @@
 
 @protocol RolloverDelegate
 - (void) gotRollover;
+- (void) gotDone;
 
 @end

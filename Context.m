@@ -453,6 +453,7 @@ static Context* sharedContext = nil;
     }
     return growlManager;
 }
+
 - (BOOL) isWorkingState
 {
 	return currentState == WPASTATE_AWAY || currentState == WPASTATE_THINKING

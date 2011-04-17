@@ -7,7 +7,7 @@
 //
 
 #import "iCalModule.h"
-#import "Note.h"
+#import "WPAAlert.h"
 #import "Utility.h"
 #import "iCal.h"
 #import "iCalMonitor.h"
@@ -220,7 +220,7 @@
     else {
         [self handleDescriptor:eventRes];
         for (NSDictionary *event in eventsList){
-            Note *note = [[Note alloc]init];
+            WPAAlert *note = [[WPAAlert alloc]init];
             note.moduleName = name;
             NSDate *eventDate = [event objectForKey:EVENT_START];
             note.title = [self timeStrFor:eventDate];
@@ -308,7 +308,7 @@
 
 - (void) handleWarningAlarm: (NSTimer*) theTimer
 {
-	Note *alert = (Note*)[theTimer userInfo];
+	WPAAlert *alert = (WPAAlert*)[theTimer userInfo];
 	[alertHandler handleAlert:alert];
 }
 

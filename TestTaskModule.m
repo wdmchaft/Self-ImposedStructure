@@ -7,7 +7,7 @@
 //
 
 #import "TestTaskModule.h"
-#import "Note.h"
+#import "WPAAlert.h"
 
 #define REFRESH @"Refresh"
 
@@ -149,7 +149,7 @@
 	for (int i = 0; i < [incomp count];i++){
 		NSDictionary *item = [incomp objectAtIndex:i];
 	
-			Note *alert = [[Note alloc]init];
+			WPAAlert *alert = [[WPAAlert alloc]init];
 			alert.moduleName = name;
 			alert.title =[item objectForKey:@"name"];
 			alert.message=[item objectForKey:@"name"];

@@ -67,7 +67,6 @@ typedef enum {
 + (FilterResult) processFilters: (NSArray*) filters 
                      forMessage: (NSDictionary*) msgAttrs 
                           color: (NSColor**) clr;
-- (id) initFromString: (NSString*) str;
 - (BOOL) match: (NSDictionary*) msgAttrs;
 + (NSArray*) loadFiltersWithTypes: (NSArray*) aryTypes
                            fields: (NSArray*) aryfields

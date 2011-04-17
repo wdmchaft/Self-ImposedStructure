@@ -126,19 +126,21 @@
         }
         
         if (![self isFromToday:summary.lastGoalAchieved]) {   
-            NSTimeInterval oldGoal = summary.timeGoal.doubleValue;
-            [summary setTimeGoal:[NSNumber numberWithDouble:(oldGoal + goalTime)]];
-            [summary setLastGoalAchieved:timeStampDate];
-            Context *ctx = [Context sharedContext];
-            [[ctx growlManager] growlThis: @"Work day is done!" isSticky:YES withTitle:@"Whew!"];  
+            if (workToday > goalTime){
+                NSUInteger oldGoalHit = summary.daysGoalAchieved.intValue;
+                [summary setDaysGoalAchieved:[NSNumber numberWithInt:++oldGoalHit]];         
+                NSTimeInterval oldGoal = summary.timeGoal.doubleValue;
+                [summary setTimeGoal:[NSNumber numberWithDouble:(oldGoal + goalTime)]];
+                [summary setLastGoalAchieved:timeStampDate];
+                Context *ctx = [Context sharedContext];
+                [[ctx growlManager] growlThis: @"Work day is done!" isSticky:YES withTitle:@"Whew!"];
+                [rollDelegate gotDone];
+            }
         }
 
     }
     
-    if (workToday > goalTime){
-        NSUInteger oldGoalHit = summary.daysGoalAchieved.intValue;
-        [summary setDaysGoalAchieved:[NSNumber numberWithInt:++oldGoalHit]];         
-    }
+
     /** wnat to do about total time for real? **/
     NSTimeInterval oldTimeTotal = summary.timeTotal.doubleValue;
     [summary setTimeTotal:[NSNumber numberWithDouble:(oldTimeTotal + freeTime + freeTime + awayTime)]];

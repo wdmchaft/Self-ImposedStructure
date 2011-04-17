@@ -34,7 +34,7 @@
 	savedQ = [NSMutableArray new];
 }
 
--(void) saveAlert: (Note*) alert
+-(void) saveAlert: (WPAAlert*) alert
 {
 	if ([savedQ containsObject: alert]){
 	//	NSLog(@"skipping duplicate alert %@", alert.message);
@@ -43,7 +43,7 @@
 	[savedQ addObject:alert];
 }
 
--(void) queueAlert: (Note*) alert
+-(void) queueAlert: (WPAAlert*) alert
 {
 	if ([alertQ containsObject: alert]){
 	//	NSLog(@"skipping duplicate alert %@", alert.message);
@@ -52,7 +52,7 @@
 	[alertQ addObject:alert];
 }
 
--(void) handleError: (Note*) error
+-(void) handleError: (WPAAlert*) error
 {
 	id<Reporter> sender = [[[Context sharedContext] instancesMap] objectForKey:error.moduleName];
 	
@@ -66,7 +66,7 @@
 	 clickContext:nil];
 }
 
--(void) handleAlert:(Note*) alert 
+-(void) handleAlert:(WPAAlert*) alert 
 {
 	Context *ctx = [Context sharedContext];
 	// ignore when flagged as lastAlert -- means a refresh cycle is complete
@@ -74,9 +74,12 @@
 		NSLog(@"cycle ended for %@", alert.moduleName);
 		return;
 	}
-	if (ctx.currentState == WPASTATE_FREE && ctx.nagDelayTimer == nil) {
-		[self queueAlert:alert];
-	}
+    if (ctx.currentState == WPASTATE_FREE && ctx.nagDelayTimer == nil) {
+        [self queueAlert:alert];
+    }
+    else if (ctx.currentState == WPASTATE_VACATION && [alert isWork] == NO){
+        [self queueAlert:alert];
+    }
 	else {
 		if ([alert urgent] == YES ){
 			[self queueAlert:alert];
@@ -103,7 +106,7 @@
 	 clickContext: nil];
 }
 
--(void) growlAlert: (Note*) alert
+-(void) growlAlert: (WPAAlert*) alert
 {
 //	NSLog(@"showing alert %@", alert.message);
 	id<Reporter> sender = [[[Context sharedContext] instancesMap] objectForKey:alert.moduleName];
@@ -151,7 +154,10 @@
 - (void) changeState:(WPAStateType)newState
 {
 	switch (newState) {
-		case WPASTATE_FREE:
+		case WPASTATE_VACATION:
+			[self vacationState];
+			break;
+        case WPASTATE_FREE:
 			[self freeState];
 			break;
 		case WPASTATE_AWAY:
@@ -169,7 +175,7 @@
 {	
 	// first dump everything saved into the growl queue...
 	while ([savedQ count] > 0) {
-		Note *moveAlert = [savedQ objectAtIndex:0];
+		WPAAlert *moveAlert = [savedQ objectAtIndex:0];
 		[alertQ insertObject: moveAlert atIndex:0];
 		[savedQ removeObjectAtIndex:0];
 	} 
@@ -180,17 +186,36 @@
 	// dump everything (EVERYTHING) in the growl queue into save queue...
 	
 	while ([alertQ count] > 0) {
-		Note *moveAlert = [alertQ objectAtIndex:0];
+		WPAAlert *moveAlert = [alertQ objectAtIndex:0];
 		[savedQ addObject: moveAlert];
 		[alertQ removeObjectAtIndex:0];
 	} 
+}
+
+- (void) vacationState
+{
+	NSMutableArray	*replaceQ = [[NSMutableArray alloc] initWithCapacity:10];
+	while ([alertQ count] > 0) {
+		WPAAlert *moveAlert = [alertQ objectAtIndex:0];
+		if (moveAlert.urgent) {
+			[replaceQ addObject: moveAlert];
+        } 
+        else if (!moveAlert.isWork){
+            [replaceQ addObject: moveAlert];	
+        } 
+        else {
+			[savedQ addObject:moveAlert];
+		}
+		[alertQ removeObjectAtIndex:0];
+	} 
+	alertQ = replaceQ;
 }
 
 - (void) workState
 {
 	NSMutableArray	*replaceQ = [[NSMutableArray alloc] initWithCapacity:10];
 	while ([alertQ count] > 0) {
-		Note *moveAlert = [alertQ objectAtIndex:0];
+		WPAAlert *moveAlert = [alertQ objectAtIndex:0];
 		if (moveAlert.urgent) {
 			[replaceQ addObject: moveAlert];
 		} else {

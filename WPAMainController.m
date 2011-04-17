@@ -106,6 +106,9 @@
 	if (ctx.currentState == WPASTATE_VACATION && [totalsManager isVacationToday] == NO){
 		[ctx setCurrentState: WPASTATE_FREE];
 	}
+    if (ctx.currentState != WPASTATE_VACATION && totalsManager.workToday >= [totalsManager calcGoal]){
+        [ctx setCurrentState:WPASTATE_DONE]; 
+    }
     ctx.totalsManager = totalsManager;
 	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
 	statusItem.menu = statusMenu;
@@ -274,7 +277,6 @@
 		[mi setRepresentedObject:info];
 		if (ctx.currentTask && [ctx.currentTask isEqual:info]){
 			NSString *name = [info objectForKey:@"name"];
-			NSLog(@"currentTask in menu = %@",name);
 			mi.state = NSOnState;
         }
 		[fillMenu insertItem:mi atIndex:idx+1]; 
@@ -720,6 +722,7 @@ OSStatus hotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"useHotKey"])
 		[self setupHotKey];
 }
+
 - (void) setupHotKey
 {
 	//Register the Hotkeys
@@ -741,8 +744,16 @@ OSStatus hotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 - (void) gotRollover
 {
 	Context *ctx = [Context sharedContext];
-	if (ctx.currentState == WPASTATE_VACATION) {
+	if (ctx.currentState == WPASTATE_VACATION || ctx.currentState == WPASTATE_DONE) {
 		[ctx setCurrentState:WPASTATE_FREE];
-	}
+        [self buildStatusMenu];
+    }
+}
+
+- (void) gotDone
+{
+	Context *ctx = [Context sharedContext];
+    [ctx setCurrentState:WPASTATE_DONE];
+    [self buildStatusMenu];
 }
 @end

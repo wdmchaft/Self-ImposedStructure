@@ -6,10 +6,10 @@
 //  Copyright 2010 workplayaway.com. All rights reserved.
 //
 
-#import "Note.h"
+#import "WPAAlert.h"
 
 
-@implementation Note
+@implementation WPAAlert
 @synthesize moduleName;
 @synthesize urgent;
 @synthesize title;
@@ -18,14 +18,16 @@
 @synthesize sticky;
 @synthesize clickable;
 @synthesize lastAlert;
+@synthesize isWork;
 
 -(id) copyWithZone: (NSZone *) zone
 {
-	Note *copy = [[[self class] allocWithZone: zone] init];
+	WPAAlert *copy = [[[self class] allocWithZone: zone] init];
 					
     [copy setModuleName:[self moduleName]];
     [copy setUrgent:[self urgent]];
     [copy setSticky:[self sticky]];
+    [copy setIsWork:[self isWork]];
     [copy setTitle:[self title]];
     [copy setMessage:[self message]];
     [copy setParams:[self params]];
@@ -38,7 +40,7 @@
 {
 	if (![[object class] isEqual:[self class]])
 		return NO;
-	Note *other = (Note*) object;
+	WPAAlert *other = (WPAAlert*) object;
 	if (![moduleName isEqualToString:other.moduleName]){
 	//	NSLog(@"moduleName %@ != %@", moduleName, other.moduleName);
 		return NO;

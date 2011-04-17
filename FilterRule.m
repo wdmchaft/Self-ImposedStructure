@@ -16,19 +16,13 @@
 @synthesize fieldType;
 @synthesize color;
 
-- (id) initFromString: (NSString*) str
+- (id) init
 {
 	if (self)
 	{
-		NSArray *array = [str componentsSeparatedByString:@"_"];
-		NSString *val1 = [array objectAtIndex:0];
-		NSString *val2 = [array objectAtIndex:1];
-		NSString *val3 = [array objectAtIndex:2];
-		NSString *val4 = [array objectAtIndex:3];
-		self.ruleType = [val1 intValue];
-		self.fieldType = [val2 intValue];
-		self.compareType = [val3 intValue];
-		self.predicate = val4;
+        color = [NSColor whiteColor];
+        predicate = @"";
+        
 	}
 	return self;
 }

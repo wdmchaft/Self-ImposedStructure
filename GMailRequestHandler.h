@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "RulesTableData.h"
-#import "Note.h"
+#import "WPAAlert.h"
 #import "AlertHandler.h"
 #import "BaseInstance.h"
 
