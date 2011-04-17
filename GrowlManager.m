@@ -220,4 +220,9 @@
 - (void) startValidation:(NSObject*) handler{}
 -(void)clearValidation{}
 -(void) saveDefaults{}
+
+-(id)copyWithZone: (NSZone*)zone {
+    return [[[self class] allocWithZone:zone] init];
+}
+
 @end

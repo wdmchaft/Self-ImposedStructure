@@ -281,4 +281,9 @@
 	}
 	return self;
 }
+- (void) frobDone{}
+- (void) listDone{}
+- (void) tokenDone{}
+- (void) taskRefreshDone{}
+
 @end

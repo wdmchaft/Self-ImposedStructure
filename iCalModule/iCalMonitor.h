@@ -13,6 +13,6 @@
 @private
     
 }
++(iCalMonitor*) iCalShared;
 
 @end
-static iCalMonitor* iCalShared;

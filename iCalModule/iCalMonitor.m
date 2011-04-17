@@ -10,6 +10,7 @@
 
 
 @implementation iCalMonitor
+static iCalMonitor* _iCalShared;
 
 - (id)init
 {
@@ -29,10 +30,10 @@
 
 +(iCalMonitor*) iCalShared
 {
-    if (!iCalShared){
-        iCalShared = [iCalMonitor new];
-        [iCalShared startLoop];
+    if (!_iCalShared){
+        _iCalShared = [iCalMonitor new];
+        [_iCalShared startLoop];
     }
-    return iCalShared;
+    return _iCalShared;
 }
 @end

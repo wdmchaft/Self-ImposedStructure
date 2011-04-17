@@ -10,7 +10,7 @@
 #import "State.h"
 
 @protocol WPAMDelegate
--(void) changeState:WPAStateType;
+-(void) changeState: (WPAStateType) type;
 -(void) clickStart: (id) caller;
 
 

@@ -11,12 +11,10 @@
 
 
 @implementation CompleteRespHandler
-- (CompleteRespHandler*) initWithHandler:(<RTMCallback>) delegate 
+- (id) initWithHandler:(id<RTMCallback>) delegate 
 {
-	if (self =(CompleteRespHandler*)[super initWithContext:nil andDelegate:delegate])
-	{
-	}
-	return self;
+	return [super initWithContext:nil andDelegate:delegate];
+
 }
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName 

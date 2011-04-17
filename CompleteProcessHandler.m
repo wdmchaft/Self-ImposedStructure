@@ -13,9 +13,10 @@
 #import "CompleteRespHandler.h"
 
 @implementation CompleteProcessHandler
-@synthesize context;
+@synthesize dictionary;
 @synthesize tlHandler;
 @synthesize token;
+@dynamic context;
 
 - (void) timelineRequest
 {
@@ -61,9 +62,9 @@
 	NSMutableDictionary *params =  [NSMutableDictionary dictionaryWithObjectsAndKeys:
 									token, @"auth_token",
 									@"rtm.tasks.complete", @"method",
-									[context objectForKey:@"task_id"], @"task_id",
-									[context objectForKey:@"taskseries_id"], @"taskseries_id",
-									[context objectForKey:@"list_id"], @"list_id",
+									[dictionary objectForKey:@"task_id"], @"task_id",
+									[dictionary objectForKey:@"taskseries_id"], @"taskseries_id",
+									[dictionary objectForKey:@"list_id"], @"list_id",
 									[tlHandler timeLine], @"timeline",
 									@"xml", @"format",
 									APIKEY, @"api_key", nil];
@@ -90,14 +91,21 @@
 	[self timelineRequest];
 }
 
-- (id) initWithContext:(NSDictionary*) ctx token: tokenStr andDelegate: (NSObject*) delegate{
+- (id) initWithDictionary:(NSDictionary*) dict token: tokenStr andDelegate: (id<RTMCallback>) delegate{
 	if (self)
 	{
 		token = tokenStr;
 		callback = delegate;
-		context = ctx;
+		dictionary = dict;
 	}
 	return self;
 }
 
+- (void) frobDone{}
+- (void) listDone{}
+- (void) tokenDone{}
+- (void) taskRefreshDone{}
+- (void) refreshDone{}
+- (void) listsDone{}
+- (void) handleComplete{}
 @end

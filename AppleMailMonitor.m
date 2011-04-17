@@ -10,6 +10,7 @@
 
 
 @implementation AppleMailMonitor
+static AppleMailMonitor* _appleMailShared;
 
 - (id)init
 {
@@ -29,10 +30,10 @@
 
 +(AppleMailMonitor*) appleMailShared
 {
-    if (!appleMailShared){
-        appleMailShared = [AppleMailMonitor new];
-        [appleMailShared startLoop];
+    if (!_appleMailShared){
+        _appleMailShared = [AppleMailMonitor new];
+        [_appleMailShared startLoop];
     }
-    return appleMailShared;
+    return _appleMailShared;
 }
 @end

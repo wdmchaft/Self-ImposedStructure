@@ -49,8 +49,6 @@
 -(NSString*) entityNameForState: (int) state;
 - (NSManagedObject*) findTask: (NSString*) name inContext: (NSManagedObjectContext*) moc;
 - (NSManagedObject*) findSource: (NSString*) name inContext: (NSManagedObjectContext*) moc;
-- (void) newRecord:(int)state;
-- (void) saveSummaryForDate: (NSDate*) date goal: (int) goalTime work: (int) workTime free: (int) freeTime;
 - (IBAction) removeStore: (id) sender;
 - (double) countEntity: (NSString*) eName inContext: (NSManagedObjectContext*) moc;
 - (NSString*) dumpMObj: (NSManagedObject*) obj;

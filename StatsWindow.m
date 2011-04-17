@@ -37,7 +37,8 @@
 @synthesize wh;
 @synthesize actTable;
 @synthesize actTitle;
-
+@synthesize workArray;
+@synthesize workData;
 
 - (void) clickClear: (id) sender
 {

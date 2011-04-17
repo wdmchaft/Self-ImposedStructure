@@ -60,7 +60,7 @@
 @property (nonatomic, retain) NSString *msgName;
 @property (nonatomic) BOOL summaryMode;
 
-- (void) getUnread: (NSObject*) param;
+- (void) getUnread;
 - (void) fetchDone: (NSNotification*) msg;
 - (IBAction) clickUseDisplayWindow: (id) sender;
 - (void) validateDone: (NSNotification*) note;

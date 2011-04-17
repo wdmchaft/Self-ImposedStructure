@@ -35,7 +35,7 @@
 	BOOL firstClick;
 	NSProgressIndicator *progInd;	
 	NSMutableDictionary *alarmSet;
-	<AlertHandler> handler;
+	id<AlertHandler> handler;
 	NSString *lastError;
 }
 
@@ -60,7 +60,7 @@
 @property (nonatomic, retain) IBOutlet NSButton *authButton;
 @property (nonatomic, retain) IBOutlet NSProgressIndicator *progInd;
 @property (nonatomic, retain) NSMutableDictionary *alarmSet;
-@property (nonatomic, retain) <AlertHandler> handler;
+@property (nonatomic, retain) id<AlertHandler> handler;
 @property (nonatomic, retain) NSString *lastError;
 @property(nonatomic) BOOL firstClick;
 
@@ -72,4 +72,5 @@
 - (void) startRefresh: (NSTimer*) theTimer;
 - (void) handleWarningAlarm: (NSTimer*) theTimer;
 - (void) stop;
+- (void) handleRTMError:(NSDictionary*) errInfo;
 @end

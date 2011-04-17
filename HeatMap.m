@@ -51,7 +51,7 @@
 {
 	NSLog(@"I am this: %@", self);
 
-	colors = [Utility loadColorsForKey:COLORS];
+	colors = [NSMutableArray arrayWithArray:[Utility loadColorsForKey:COLORS]];
     NSArray *defaultVals = [[NSUserDefaults standardUserDefaults] objectForKey:MINVALS];
     NSLog(@"defaultWindows length = %d", [defaultVals count]);
 	windows = [[NSMutableArray alloc]initWithArray:defaultVals];

@@ -89,4 +89,9 @@
 	alert.lastAlert = YES;
 	[handler handleAlert: alert];
 }
+
+-(id)copyWithZone: (NSZone*)zone {
+    return [[[self class] allocWithZone:zone] init];
+}
+
 @end

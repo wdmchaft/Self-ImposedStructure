@@ -433,7 +433,7 @@ static Context* sharedContext = nil;
 		id thing = [instancesMap objectForKey: name];
 		id<TaskList> list  = (id<TaskList>) thing;
 		id<Instance> inst  = (id<Instance>) thing;
-		NSString *proj = nil;
+//		NSString *proj = nil;
 		if (inst.enabled && [thing conformsToProtocol:@protocol(TaskList)]){
 			NSArray *items = [list getTasks];
 			if (items){

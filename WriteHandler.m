@@ -31,11 +31,6 @@
     [defaults registerDefaults:appDefaults];
 }
 
-- (id) initWithCoordinator: (NSPersistentStoreCoordinator*) coordinator
-{
-    persistentStoreCoordinator = coordinator;
-}
-
 /*****************************************************************************************
  Support for saving data follows:
  *****************************************************************************************/

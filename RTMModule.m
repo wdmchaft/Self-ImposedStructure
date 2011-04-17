@@ -11,6 +11,7 @@
 #define LISTNAME @"ListName"
 #define TOKEN  @"Token"
 #define LISTID @"ListId"
+#define TASKLIST @"taskList"
 
 #import "Secret.h"
 #import "RTMModule.h"
@@ -70,6 +71,7 @@
 
 - (void) listDone 
 {
+	[super saveDefaultValue:tasksList forKey:TASKLIST];
 	int taskCount = [tasksList count];
 	int count = 0;
 	for (NSString *taskName in tasksList){
@@ -217,15 +219,15 @@
 -(void) handleClick: (NSDictionary*) ctx
 {
 	NSDictionary *task = [NSDictionary dictionaryWithDictionary:(NSDictionary*) ctx];
-	NSString *name = [task objectForKey:@"name"];
+	NSString *clickName = [task objectForKey:@"name"];
 	TaskDialogController *dialogCtrl= [[TaskDialogController alloc] 
 									   initWithWindowNibName:@"TaskDialog" 
-									   andContext:self
-														andParams:ctx ];
+                                                andContext:self
+                                                andParams:ctx ];
 	dialogCtrl.context = self;
 	[dialogCtrl showWindow:self];
 	
-	NSLog(@"name: %@",name, nil);
+	NSLog(@"name: %@",clickName, nil);
 }
 
 - (IBAction) clickRefreshStepper: (id) sender
@@ -289,6 +291,7 @@
 	if (temp) {
 		refreshInterval = [temp intValue];
 	}
+    tasksList = [super loadDefaultForKey:TASKLIST];
 }
 
 
@@ -501,10 +504,22 @@
 
 - (void) markComplete:(NSDictionary *)ctx completeHandler: (NSObject*) callback
 {
-	CompleteProcessHandler *cph = [[CompleteProcessHandler alloc]initWithContext: ctx 
+	CompleteProcessHandler *cph = [[CompleteProcessHandler alloc]initWithDictionary: ctx 
 																		   token: tokenStr 
 																	 andDelegate: callback];
 	[cph start];
+}
+//
+// if there is an error then put out an error message saying results may be out of date 
+// but return the last copy of the list
+- (void) handleRTMError:(NSDictionary*) errInfo
+{
+    NSString *msg = [errInfo objectForKey:@"msg"];
+    NSLog(@"Error communicating with Remember The Milk [%@]", msg);
+    [BaseInstance sendErrorToHandler:handler
+                               error:@"Could not contact Remember the Milk at this time. Using last known task list."
+                              module:name];
+    [self listDone];
 }
 
 @end

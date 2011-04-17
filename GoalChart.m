@@ -112,13 +112,13 @@
 #pragma mark -
 #pragma mark • SM2DGRAPHVIEW DATASOURCE METHODS
 
-- (unsigned int)numberOfLinesInTwoDGraphView:(SM2DGraphView *)inGraphView
+- (NSUInteger)numberOfLinesInTwoDGraphView:(SM2DGraphView *)inGraphView
 {
 	return 2;
 }
 
 
-- (NSArray *)twoDGraphView:(SM2DGraphView *)inGraphView dataForLineIndex:(unsigned int)inLineIndex
+- (NSArray *)twoDGraphView:(SM2DGraphView *)inGraphView dataForLineIndex:(NSUInteger)inLineIndex
 {
     NSMutableArray	*result = [[NSMutableArray alloc]initWithCapacity:[seriesData count]];
 	int ptIdx = 1;
@@ -128,14 +128,14 @@
     return (NSArray*)result;
 }
 
-- (NSData *)twoDGraphView:(SM2DGraphView *)inGraphView dataObjectForLineIndex:(unsigned int)inLineIndex
+- (NSData *)twoDGraphView:(SM2DGraphView *)inGraphView dataObjectForLineIndex:(NSUInteger)inLineIndex
 {
     NSData	*result = nil;
 	
     return result;
 }
 
-- (double)twoDGraphView:(SM2DGraphView *)inGraphView maximumValueForLineIndex:(unsigned int)inLineIndex
+- (CGFloat)twoDGraphView:(SM2DGraphView *)inGraphView maximumValueForLineIndex:(NSUInteger)inLineIndex
 				forAxis:(SM2DGraphAxisEnum)inAxis
 {
 	double ret;
@@ -146,7 +146,7 @@
 	return ret;
 }
 
-- (double)twoDGraphView:(SM2DGraphView *)inGraphView minimumValueForLineIndex:(unsigned int)inLineIndex
+- (CGFloat)twoDGraphView:(SM2DGraphView *)inGraphView minimumValueForLineIndex:(NSUInteger)inLineIndex
 				forAxis:(SM2DGraphAxisEnum)inAxis
 {	
 	double ret;
@@ -157,7 +157,7 @@
 	return ret;
 }
 
-- (NSDictionary *)twoDGraphView:(SM2DGraphView *)inGraphView attributesForLineIndex:(unsigned int)inLineIndex
+- (NSDictionary *)twoDGraphView:(SM2DGraphView *)inGraphView attributesForLineIndex:(NSUInteger)inLineIndex
 {
     NSDictionary	*result = nil;
 	
@@ -205,7 +205,7 @@
 #pragma mark • SM2DGRAPHVIEW DELEGATE METHODS
 
 - (NSString *)twoDGraphView:(SM2DGraphView *)inGraphView 
-	  labelForTickMarkIndex:(unsigned int)inTickMarkIndex
+	  labelForTickMarkIndex:(NSUInteger)inTickMarkIndex
 					forAxis:(SM2DGraphAxisEnum)inAxis 
 			   defaultLabel:(NSString *)inDefault
 {
@@ -223,8 +223,8 @@
 }
 
 - (void)twoDGraphView:(SM2DGraphView *)inGraphView 
-  willDisplayBarIndex:(unsigned int)inBarIndex 
-		 forLineIndex:(unsigned int)inLineIndex 
+  willDisplayBarIndex:(NSUInteger)inBarIndex 
+		 forLineIndex:(NSUInteger)inLineIndex 
 	   withAttributes:(NSMutableDictionary *)attr
 {
     if ( inGraphView == chart )
@@ -244,7 +244,7 @@
 	
 }
 
-- (void)twoDGraphView:(SM2DGraphView *)inGraphView doneDrawingLineIndex:(unsigned int)inLineIndex
+- (void)twoDGraphView:(SM2DGraphView *)inGraphView doneDrawingLineIndex:(NSUInteger)inLineIndex
 {
     // This is just an example of what you could do...
 	//    if ( inGraphView == _sm_trigGraph )

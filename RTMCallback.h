@@ -20,5 +20,6 @@
 -(void) listDone;
 -(void) timelineDone;
 -(void) rmDone;
-
+-(void) taskRefreshDone;
+-(void) handleComplete;
 @end

@@ -21,7 +21,7 @@
 @property (nonatomic, retain) NSTableView* table;
 @property (nonatomic, retain) NSButtonCell* buttonCell;
 @property (nonatomic, retain) NSTextFieldCell* textCell;
-@property (nonatomic) NSTableColumn *keyColumn;
+@property (nonatomic, retain) NSTableColumn *keyColumn;
 - (id) initWithColumn: (NSTableColumn*) col;
 
 @end

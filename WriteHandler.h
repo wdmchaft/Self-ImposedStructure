@@ -38,7 +38,6 @@
 
 - (void) ioLoop: (NSObject*) param;
 - (void) doWrapUp: (NSObject*) ignore;
-+ (void) sendNewRecord: (WPAStateType) state;
 + (void) sendTotalsForDate: (NSDate*) date goal: (int) goalTime work: (int) workTime free: (int) freeTime;
 + (void) sendActivity: (NSDate*)date
              activity:(NSDictionary*)taskInfo
@@ -54,4 +53,5 @@
 
 - (SummaryRecord*) getSummaryRecord;
 - (void) doFlush;
+- (IBAction) saveAction:(id)sender;
 @end

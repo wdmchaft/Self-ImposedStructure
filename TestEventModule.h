@@ -23,6 +23,5 @@
 //@property (nonatomic) NSTimeInterval refreshInterval;
 
 -(IBAction) clickStepper: (id) sender;
-- (void) refreshData:(id<AlertHandler>)timer;
 
 @end

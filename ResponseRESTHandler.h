@@ -13,16 +13,16 @@
 @interface ResponseRESTHandler : NSObject {
 	NSMutableData *respBuffer;
 	RTMModule *context;
-	<RTMCallback> callback;
+	id<RTMCallback> callback;
 	NSMutableDictionary *currentDict;
 	NSString *listId;
 }
 @property (nonatomic, retain) RTMModule* context;
 @property (nonatomic, retain) NSMutableDictionary* currentDict;
-@property (nonatomic, retain) <RTMCallback> callback;
+@property (nonatomic, retain) id<RTMCallback> callback;
 @property (nonatomic, retain) NSMutableData * respBuffer;
 @property (nonatomic, retain) NSString * listId;
-- (ResponseRESTHandler*) initWithContext:(RTMModule*) ctx andDelegate: (NSObject*) delegate;
+- (ResponseRESTHandler*) initWithContext:(RTMModule*) ctx andDelegate: (id<NSObject>) delegate;
 
 - (void) doParse: (NSData*) respStr;
 -(void) handleResponse: (NSData*) respStr;

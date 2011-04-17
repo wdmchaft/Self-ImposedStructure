@@ -191,7 +191,7 @@
 
 - (void)pieChartView:(SMPieChartView *)inPieChartView didClickPoint:(NSPoint)inPoint
 {
-    int slice = [inPieChartView convertToSliceFromPoint:inPoint fromView:inPieChartView];
+ //   int slice = [inPieChartView convertToSliceFromPoint:inPoint fromView:inPieChartView];
     
 }
 

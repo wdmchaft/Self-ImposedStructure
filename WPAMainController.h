@@ -58,7 +58,6 @@
 @property (retain, nonatomic) NSMutableDictionary *menuForTaskList;
 
 - (IBAction) clickStart: (id) sender;
-- (IBAction) changeCombo: (id)sender;
 - (IBAction) clickRefresh: (id) sender;
 - (IBAction) clickAway: (id) sender;
 - (IBAction) clickPlay: (id) sender;
@@ -88,7 +87,6 @@
 - (void) setupHotKey;
 - (IBAction) showSummaryScreen: (id) sender;
 
-- (void) statsClosed: (NSNotification*) notify;
 - (void) clickPreferences: (id) sender;
 - (void) clickStatsWindow: (id) sender;
 - (void) addActClosed: (NSNotification*) notify;

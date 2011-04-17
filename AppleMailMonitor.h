@@ -13,6 +13,5 @@
 @private
     
 }
-
++(AppleMailMonitor*) appleMailShared;
 @end
-static AppleMailMonitor* appleMailShared;

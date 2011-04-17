@@ -10,20 +10,20 @@
 #import "RTMModule.h"
 #import "TimelineHandler.h"
 
-@interface CompleteProcessHandler : NSObject {
-	NSDictionary *context;
+@interface CompleteProcessHandler : TimelineHandler <RTMCallback> {
+    NSDictionary *dictionary;
 	TimelineHandler *tlHandler;
 	NSString *token;
-	NSObject *callback;
+//	id<RTMCallback> *callback;
 }
-@property (nonatomic,retain) NSDictionary *context;
+@property (nonatomic,retain) NSDictionary *dictionary;
 @property (nonatomic, retain) TimelineHandler *tlHandler;
 @property (nonatomic, retain) NSString *token;
-@property (nonatomic, retain) NSObject *callback;
+//@property (nonatomic, retain) id<RTMCallback> callback;
 
 - (void) timelineRequest;
 - (void) start;
 - (void) sendComplete;
-- (id) initWithContext:(NSDictionary*) ctx token: tokenStr andDelegate: (NSObject*) delegate;
+- (id) initWithDictionary:(NSDictionary*) ctx token: tokenStr andDelegate: (NSObject*) delegate;
 
 @end

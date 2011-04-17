@@ -14,6 +14,6 @@
 }
 
 @property (nonatomic, retain) NSMutableString *timeLine;
-- (TimelineHandler*) initWithHandler:(<RTMCallback>) delegate;
+- (TimelineHandler*) initWithHandler:(id<RTMCallback>) delegate;
 
 @end

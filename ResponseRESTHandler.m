@@ -17,7 +17,7 @@
 @synthesize listId;
 
 
-- (ResponseRESTHandler*) initWithContext:(RTMModule*) ctx andDelegate: (<RTMCallback>) delegate
+- (ResponseRESTHandler*) initWithContext:(RTMModule*) ctx andDelegate: (id<RTMCallback>) delegate
 {
 	if (self) 
 	{
@@ -61,7 +61,7 @@
 	}
 	if (context.validationHandler){
 		[context.validationHandler performSelector:@selector(validationComplete:) 
-									  withObject:[error localizedDescription]];
+                                        withObject:[error localizedDescription]];
 	}
 	context.lastError = [error localizedDescription];
 	[self doCallback];

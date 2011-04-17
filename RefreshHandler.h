@@ -12,5 +12,5 @@
 
 @interface RefreshHandler : ListHandler <NSXMLParserDelegate> {
 }
-- (RefreshHandler*) initWithContext: (RTMModule*) ctx andDelegate: (<RTMCallback>) delegate;
+- (RefreshHandler*) initWithContext: (RTMModule*) ctx andDelegate: (id<RTMCallback>) delegate;
 @end

@@ -12,7 +12,6 @@
 #import "Reporter.h"
 
 @implementation ListHandler
-@synthesize tempList;
 @synthesize tempDictionary;
 @synthesize temp;
 @synthesize inputFormatter;
@@ -21,7 +20,6 @@
 {
 	if ((self = (ListHandler*)[super initWithContext:ctx andDelegate:delegate])!= nil)
 	{
-		tempList = [NSMutableArray new];
 		tempDictionary = [NSMutableDictionary new];
         inputFormatter = [NSDateFormatter new];
      	[inputFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
@@ -29,6 +27,7 @@
 	}
 	return self;
 }
+
 - (void) addItem
 {
 	NSString *name = [[NSString alloc] initWithString:[currentDict objectForKey:@"name"]];
@@ -49,7 +48,6 @@ didStartElement:(NSString *)elementName
     if ( [elementName isEqualToString:@"taskseries"]) {
 		NSString *name = [attributeDict objectForKey:@"name"];
 		NSString *id = [attributeDict objectForKey:@"id"];
-		[tempList addObject:name];
 		if (self.currentDict){
 			[self addItem];
 		}
@@ -89,7 +87,8 @@ didStartElement:(NSString *)elementName
 	if ( [elementName isEqualToString:@"err"]){
 		//NSString* code = [attributeDict objectForKey:@"code"];
 		NSString* msg = [attributeDict objectForKey:@"msg"];
-		[BaseInstance sendErrorToHandler:context.handler error:msg module:[context name]];
+	//	[BaseInstance sendErrorToHandler:context.handler error:msg module:[context name]];
+        [context handleRTMError:[NSDictionary dictionaryWithObject:msg forKey:@"msg"]];
 	}
 	if ( [elementName isEqualToString:@"rrule"]){
         NSNumber *everyVal = [attributeDict objectForKey:@"every"];
@@ -135,7 +134,7 @@ didEndElement:(NSString *)elementName
 		[self addItem];
 	}
 	context.tasksDict = tempDictionary;
-	context.tasksList = [tempDictionary allValues];
+	context.tasksList = [NSMutableArray arrayWithArray:[tempDictionary allValues]];
 }
 
 - (void) doCallback

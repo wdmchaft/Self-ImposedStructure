@@ -53,6 +53,7 @@
 @synthesize rulesData, rulesTable, removeRuleButton, addRuleButton, summaryMode;
 @synthesize mailDateFmt;
 @synthesize msgName;
+@synthesize mailMonitor;
 
 - (void)awakeFromNib
 {
@@ -160,12 +161,12 @@
     }
     
     NSLog(@"starting getUnread w/ received later than %@", minTime);    
-    NSDate *today = [NSDate date];
+ //   NSDate *today = [NSDate date];
     if (mailDateFmt == nil){
         mailDateFmt = [NSDateFormatter new];
         [mailDateFmt setDateFormat:@"EEEE, MMMM dd, yyyy hh:mm:ss a"];
     }
-    NSString *nowStr = [mailDateFmt stringFromDate:today];
+//    NSString *nowStr = [mailDateFmt stringFromDate:today];
     NSString *thenStr = [mailDateFmt stringFromDate:minTime];
     NSBundle *myBundle = [NSBundle bundleForClass:[self class]];
     NSString *path = [myBundle resourcePath];

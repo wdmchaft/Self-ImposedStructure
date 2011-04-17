@@ -28,7 +28,7 @@
 	NSString *hoursStr = [[NSString alloc] initWithFormat:@"hrs"];
 	NSString *hourStr = [[NSString alloc] initWithFormat:@"hr"];
 	NSString *minsStr = [[NSString alloc] initWithFormat:@"min"];
-	NSString *minStr = [[NSString alloc] initWithFormat:@"min"];
+//	NSString *minStr = [[NSString alloc] initWithFormat:@"min"];
 	NSString *retStr = [NSString new];
 	if (wks > 1) {
 		retStr = [[NSString alloc] initWithFormat:@"%d %@, %d %@",wks, weeksStr,days, daysStr];

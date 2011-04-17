@@ -434,7 +434,6 @@
 - (IBAction) clickVacation: (id) sender
 {
 	[self changeState: WPASTATE_VACATION];
-    [totalsManager setVacationToday:YES];
     [[[Context sharedContext] growlManager] growlThis:@"Enjoy your day off!" isSticky:YES withTitle:@"Bon Voyage!"];
 }
 

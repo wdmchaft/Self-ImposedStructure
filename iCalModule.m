@@ -168,7 +168,7 @@
 -(void) refreshData
 {
 	if (alarmsList != nil && [alarmsList count] > 0){
-		UInt count = [alarmsList count];
+		NSUInteger count = [alarmsList count];
 		while (count > 0) {
 			NSTimer *timer = [alarmsList objectAtIndex:count - 1];
 			[timer invalidate];

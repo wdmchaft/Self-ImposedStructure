@@ -99,8 +99,10 @@
 {
 	NSDictionary *dict = [notification userInfo];
 	NSRunningApplication *newApp = [dict objectForKey:@"NSWorkspaceApplicationKey"];
+    NSDictionary *appInfo = [[NSWorkspace sharedWorkspace] activeApplication];
+    NSString *appBundle = [appInfo objectForKey:@"NSApplicationBundleIdentifier"];
 	for (WatchApp *wa in appsToWatch){
-		if ([wa.idString isEqualToString:newApp.bundleIdentifier]){
+		if ([wa.idString isEqualToString:appBundle]){
 			//com.workplayaway.wpa
 			NSDictionary *dict = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:wa.state] forKey:@"state"];
             NSString *stateStr = (wa.state == WPASTATE_FREE)? @"play" : @"work";

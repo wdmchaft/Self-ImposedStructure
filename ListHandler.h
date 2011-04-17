@@ -12,13 +12,11 @@
 
 @interface ListHandler : ResponseRESTHandler <NSXMLParserDelegate> {
 	NSMutableDictionary *tempDictionary;
-	NSMutableArray *tempList;
     NSMutableString *temp;
     NSDateFormatter *inputFormatter; 
 
 }
 @property (nonatomic,retain) NSMutableDictionary *tempDictionary;
-@property (nonatomic,retain) NSMutableArray *tempList;
 @property (nonatomic,retain) NSMutableString *temp;
 @property (nonatomic,retain) NSDateFormatter *inputFormatter;
 

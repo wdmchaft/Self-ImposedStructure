@@ -22,11 +22,11 @@
 				inManagedObjectContext:moc];
 	[request setEntity:entity];
 	NSTimeInterval THIRTYDAYS = SECSPERMIN * MINPERHR *HRPERDAY * 30;
-	NSDate *oneMonth = [date dateByAddingTimeInterval:(-THIRTYDAYS)];
+    NSDate *oneMonth = [date dateByAddingTimeInterval:(-THIRTYDAYS)];
 	
-//	NSPredicate *predicate =
-  //  [NSPredicate predicateWithFormat:@"endTime > %@", oneMonth];
-//	[request setPredicate:predicate];
+    NSPredicate *predicate =
+    [NSPredicate predicateWithFormat:@"endTime > %@", oneMonth];
+    [request setPredicate:predicate];
 	
 	NSError *error = nil;
 	return[moc executeFetchRequest:request error:&error];
