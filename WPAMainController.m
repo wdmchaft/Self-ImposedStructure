@@ -106,7 +106,9 @@
 	if (ctx.currentState == WPASTATE_VACATION && [totalsManager isVacationToday] == NO){
 		[ctx setCurrentState: WPASTATE_FREE];
 	}
-    if (ctx.currentState != WPASTATE_VACATION && totalsManager.workToday >= [totalsManager calcGoal]){
+    BOOL pastGoal = totalsManager.workToday >= [totalsManager calcGoal];
+    NSLog(@"starting with goal acheived? [%@]", pastGoal ? @"YES" : @"NO");
+    if (ctx.currentState != WPASTATE_VACATION && pastGoal){
         [ctx setCurrentState:WPASTATE_DONE]; 
     }
     ctx.totalsManager = totalsManager;
@@ -276,7 +278,6 @@
 		[mi setEnabled:YES];
 		[mi setRepresentedObject:info];
 		if (ctx.currentTask && [ctx.currentTask isEqual:info]){
-			NSString *name = [info objectForKey:@"name"];
 			mi.state = NSOnState;
         }
 		[fillMenu insertItem:mi atIndex:idx+1]; 
@@ -528,6 +529,9 @@
 	if ([[Context sharedContext] previousState] == WPASTATE_VACATION){
 		[self changeState:WPASTATE_VACATION];
 	}
+    else if ([[Context sharedContext] previousState] == WPASTATE_DONE){
+		[self changeState:WPASTATE_DONE];
+	}
 	else {
 		[self changeState:WPASTATE_FREE];
 	}
@@ -572,7 +576,13 @@
 
 - (void) changeState: (WPAStateType) newState
 {
+    
 	Context *ctx = [Context sharedContext];
+    BOOL pastGoal = totalsManager.workToday >= [totalsManager calcGoal];
+
+    if (ctx.currentState == WPASTATE_DONE && pastGoal){
+        return;
+    }
 	//
 	// were we just away for a (longish) while?
 	if (newState == WPASTATE_FREE)
