@@ -1,6 +1,6 @@
 //
 //  VacationDialog.m
-//  WorkPlayAway
+//  Self-Imposed Structure
 //
 //  Created by Charles on 4/11/11.
 //  Copyright 2011 zer0gravitas. All rights reserved.

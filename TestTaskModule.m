@@ -98,7 +98,7 @@
 		NSDictionary *dict7 = [NSDictionary dictionaryWithObjectsAndKeys:
 							   [self name], @"module",
 							   @"list_id",@"list_id",
-							   @"WorkPlayAway Screencast",@"name",
+							   @"selfstruct Screencast",@"name",
 							   @"taskseries_id",@"taskseries_id",
 							   @"id",@"id",
 							   reallysoon,@"due_time",
@@ -109,7 +109,7 @@
 		NSDictionary *dict8 = [NSDictionary dictionaryWithObjectsAndKeys:
 							   [self name], @"module",
 							   @"list_id",@"list_id",
-							   @"WorkPlayAway bug fixing",@"name",
+							   @"selfstruct bug fixing",@"name",
 							   @"taskseries_id",@"taskseries_id",
 							   @"id",@"id",
 							   sortasoon,@"due_time",

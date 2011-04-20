@@ -1,6 +1,6 @@
 //
 //  HeatMap.m
-//  WorkPlayAway
+//  Self-Imposed Structure
 //
 //  Created by Charles on 3/10/11.
 //  Copyright 2011 zer0gravitas. All rights reserved.

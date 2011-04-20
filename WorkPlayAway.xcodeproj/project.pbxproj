@@ -66,7 +66,7 @@
 		8C0D940512D63DBD009F3280 /* IconsFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77294C12D46AC600F71FE7 /* IconsFile.m */; };
 		8C0D940612D63DBD009F3280 /* TimerDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77295912D46AC600F71FE7 /* TimerDialogController.m */; };
 		8C0D941512D63E0D009F3280 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C77297C12D46AC600F71FE7 /* Growl.framework */; };
-		8C0D943912D64007009F3280 /* WPACommon.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
+		8C0D943912D64007009F3280 /* structcommon.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* structcommon.framework */; };
 		8C0D943B12D64018009F3280 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0D943A12D64018009F3280 /* Cocoa.framework */; };
 		8C0D944412D6408D009F3280 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8C0D944512D6408D009F3280 /* AddMod.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77291812D46AC600F71FE7 /* AddMod.xib */; };
@@ -79,8 +79,8 @@
 		8C0D944F12D640D1009F3280 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C77297C12D46AC600F71FE7 /* Growl.framework */; };
 		8C0D948A12D64486009F3280 /* INSTALL_PLUGINS.sh in Resources */ = {isa = PBXBuildFile; fileRef = 8C0D948912D64486009F3280 /* INSTALL_PLUGINS.sh */; };
 		8C0D94D212D64A1B009F3280 /* INSTALL_PLUGINS.sh in Resources */ = {isa = PBXBuildFile; fileRef = 8C0D948912D64486009F3280 /* INSTALL_PLUGINS.sh */; };
-		8C0D95A512D65326009F3280 /* WPACommon.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
-		8C0D95B112D6535A009F3280 /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
+		8C0D95A512D65326009F3280 /* structcommon.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* structcommon.framework */; };
+		8C0D95B112D6535A009F3280 /* structcommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* structcommon.framework */; };
 		8C0D969112D67AFC009F3280 /* TaskDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77297812D46AC600F71FE7 /* TaskDialog.xib */; };
 		8C1151291343EAAD00273D0A /* SVRefHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1151281343EAAD00273D0A /* SVRefHandler.m */; };
 		8C11512A1343EAAD00273D0A /* SVRefHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1151281343EAAD00273D0A /* SVRefHandler.m */; };
@@ -101,7 +101,7 @@
 		8C34BC62134D245300A9BCFE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C34BC60134D245300A9BCFE /* InfoPlist.strings */; };
 		8C34BC77134D262A00A9BCFE /* iCalModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C34BC74134D262A00A9BCFE /* iCalModule.xib */; };
 		8C34BC78134D262A00A9BCFE /* iCalModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */; };
-		8C3982BF134D4686008C5670 /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
+		8C3982BF134D4686008C5670 /* structcommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* structcommon.framework */; };
 		8C3982C1134D48DE008C5670 /* openEvent.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C3982C0134D48DE008C5670 /* openEvent.txt */; };
 		8C3982C6134D4E8C008C5670 /* allEvents.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C3982C5134D4E8C008C5670 /* allEvents.txt */; };
 		8C3982C8134D4F4A008C5670 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C3982C7134D4F4A008C5670 /* ScriptingBridge.framework */; };
@@ -109,8 +109,8 @@
 		8C3AB4AD12E2CEBF00A19AA4 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C3AB4AB12E2CEBF00A19AA4 /* README.txt */; };
 		8C4019E9133FFE1D00EB414F /* VariableTableColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C4019E8133FFE1B00EB414F /* VariableTableColumn.m */; };
 		8C5DEC2812E8C05E00EE93F1 /* gmail.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C77295212D46AC600F71FE7 /* gmail.ico */; };
-		8C5DEC5012E8C4B800EE93F1 /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
-		8C5DEC5C12E8C4DF00EE93F1 /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
+		8C5DEC5012E8C4B800EE93F1 /* structcommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* structcommon.framework */; };
+		8C5DEC5C12E8C4DF00EE93F1 /* structcommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* structcommon.framework */; };
 		8C5DEC7E12E8C62700EE93F1 /* TestEventModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5DEC7C12E8C62700EE93F1 /* TestEventModule.m */; };
 		8C5DEC7F12E8C62700EE93F1 /* TestEventModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C5DEC7D12E8C62700EE93F1 /* TestEventModule.xib */; };
 		8C5DEC8312E8C64200EE93F1 /* TestTaskModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5DEC8112E8C64200EE93F1 /* TestTaskModule.m */; };
@@ -120,7 +120,7 @@
 		8C5EAC57133C073600E5F404 /* FilterRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77290E12D46AC600F71FE7 /* FilterRule.m */; };
 		8C5EAC58133C075800E5F404 /* RulesTableData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77291912D46AC600F71FE7 /* RulesTableData.m */; };
 		8C66A74612DFCB58000644ED /* HostsFileSwitcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C66A72A12DFC598000644ED /* HostsFileSwitcher.m */; };
-		8C66A77F12DFCE4E000644ED /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
+		8C66A77F12DFCE4E000644ED /* structcommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* structcommon.framework */; };
 		8C66A7BC12DFEE8A000644ED /* BlockerModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C66A7BB12DFEE8A000644ED /* BlockerModule.xib */; };
 		8C66A85F12E0BAE6000644ED /* BlockerModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C66A76212DFCD23000644ED /* BlockerModule.m */; };
 		8C73EF9512E563220056FAFF /* SkypeManager-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CDCC0FD12E2B5F400CEAAD3 /* SkypeManager-Info.plist */; };
@@ -135,7 +135,7 @@
 		8C73F3DC12E793190056FAFF /* SummaryEventData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F3DB12E793190056FAFF /* SummaryEventData.m */; };
 		8C73F3DF12E793340056FAFF /* SummaryMailData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F3DE12E793340056FAFF /* SummaryMailData.m */; };
 		8C73F3E012E793340056FAFF /* SummaryMailData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F3DE12E793340056FAFF /* SummaryMailData.m */; };
-		8C73F89812E891D80056FAFF /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
+		8C73F89812E891D80056FAFF /* structcommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* structcommon.framework */; };
 		8C73F8B512E893CC0056FAFF /* TestMailModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F8B412E893CC0056FAFF /* TestMailModule.m */; };
 		8C73F8B812E893EC0056FAFF /* TestMailModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C73F8B712E893EC0056FAFF /* TestMailModule.xib */; };
 		8C77298B12D46AC600F71FE7 /* AddMod.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77291812D46AC600F71FE7 /* AddMod.xib */; };
@@ -191,8 +191,6 @@
 		8C82D01D12F3DC7000830486 /* TotalsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C82D01B12F3DC7000830486 /* TotalsManager.m */; };
 		8C844AAD133AEA5700998D1C /* PercentOfDaysXForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C844AAC133AEA5700998D1C /* PercentOfDaysXForm.m */; };
 		8C844AAE133AEA5700998D1C /* PercentOfDaysXForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C844AAC133AEA5700998D1C /* PercentOfDaysXForm.m */; };
-		8C844AB2133AF9C800998D1C /* WorkHoursToAverageXForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C844AB1133AF9C700998D1C /* WorkHoursToAverageXForm.m */; };
-		8C844AB3133AF9C800998D1C /* WorkHoursToAverageXForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C844AB1133AF9C700998D1C /* WorkHoursToAverageXForm.m */; };
 		8C9CE85D12E2683800017A02 /* BlockerModule.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CE85C12E2683800017A02 /* BlockerModule.icns */; };
 		8C9CE86212E2698300017A02 /* BlockerModule.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CE86112E2698300017A02 /* BlockerModule.ico */; };
 		8C9CE88812E2700900017A02 /* Skype.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C9CE77812E2465B00017A02 /* Skype.framework */; };
@@ -204,6 +202,8 @@
 		8C9FB5C213356DD20034FE85 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9FB5BD13356DB70034FE85 /* CoreData.framework */; };
 		8CA668A412FF86C5004FD7EE /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA668A312FF86C5004FD7EE /* LaunchAtLoginController.m */; };
 		8CA668A512FF86C5004FD7EE /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA668A312FF86C5004FD7EE /* LaunchAtLoginController.m */; };
+		8CB05117135E6FF8008FCE40 /* WorkHoursToAverageXForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB05116135E6FF8008FCE40 /* WorkHoursToAverageXForm.m */; };
+		8CB05118135E6FF8008FCE40 /* WorkHoursToAverageXForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB05116135E6FF8008FCE40 /* WorkHoursToAverageXForm.m */; };
 		8CBEAB47133AAA3E00277FEA /* SummaryRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBEAB46133AAA3D00277FEA /* SummaryRecord.m */; };
 		8CBEAB48133AAA3E00277FEA /* SummaryRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBEAB46133AAA3D00277FEA /* SummaryRecord.m */; };
 		8CC7543F1335524E007FE425 /* ActivityChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC7543E1335524C007FE425 /* ActivityChart.m */; };
@@ -211,9 +211,9 @@
 		8CD1974D12D4C5D900C69AC9 /* WPAAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77293D12D46AC600F71FE7 /* WPAAlert.m */; };
 		8CD1975012D4C5D900C69AC9 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77296D12D46AC600F71FE7 /* Utility.m */; };
 		8CD1975212D4C5D900C69AC9 /* XMLParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77295812D46AC600F71FE7 /* XMLParse.m */; };
-		8CD1975512D4C62500C69AC9 /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
+		8CD1975512D4C62500C69AC9 /* structcommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* structcommon.framework */; };
 		8CD1979712D4EACD00C69AC9 /* IconData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77293C12D46AC600F71FE7 /* IconData.m */; };
-		8CD197D612D4FDFD00C69AC9 /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
+		8CD197D612D4FDFD00C69AC9 /* structcommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* structcommon.framework */; };
 		8CD197E212D4FED200C69AC9 /* RefreshHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77296F12D46AC600F71FE7 /* RefreshHandler.m */; };
 		8CD197E812D4FED200C69AC9 /* CompleteRespHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77295E12D46AC600F71FE7 /* CompleteRespHandler.m */; };
 		8CD197E912D4FED200C69AC9 /* ListsHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77296112D46AC600F71FE7 /* ListsHandler.m */; };
@@ -225,10 +225,10 @@
 		8CD197F012D4FED200C69AC9 /* TimelineHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77294412D46AC600F71FE7 /* TimelineHandler.m */; };
 		8CD197F112D4FED200C69AC9 /* RequestREST.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77294512D46AC600F71FE7 /* RequestREST.m */; };
 		8CD197F212D4FED200C69AC9 /* FrobHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77294612D46AC600F71FE7 /* FrobHandler.m */; };
-		8CD1984412D505CB00C69AC9 /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
+		8CD1984412D505CB00C69AC9 /* structcommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* structcommon.framework */; };
 		8CD1984612D505FB00C69AC9 /* AdiumModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77294712D46AC600F71FE7 /* AdiumModule.m */; };
-		8CD1985712D5062000C69AC9 /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
-		8CD1986612D506E000C69AC9 /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
+		8CD1985712D5062000C69AC9 /* structcommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* structcommon.framework */; };
+		8CD1986612D506E000C69AC9 /* structcommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* structcommon.framework */; };
 		8CD1986F12D5072E00C69AC9 /* SkypeModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77292312D46AC600F71FE7 /* SkypeModule.m */; };
 		8CD1987012D5075300C69AC9 /* iChatModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77290812D46AC600F71FE7 /* iChatModule.m */; };
 		8CD1988212D5079F00C69AC9 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1988112D5079F00C69AC9 /* ScriptingBridge.framework */; };
@@ -252,14 +252,14 @@
 		8CDC0BBB1307CD1400BA478C /* MinsToSecsTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC0BB91307CD1400BA478C /* MinsToSecsTransformer.m */; };
 		8CDC0D781309D7C100BA478C /* WorkModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC0D621309D49400BA478C /* WorkModule.m */; };
 		8CDC0D7A1309D80000BA478C /* WorkModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CDC0D791309D80000BA478C /* WorkModule.xib */; };
-		8CDC0D841309E6C400BA478C /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
+		8CDC0D841309E6C400BA478C /* structcommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* structcommon.framework */; };
 		8CDC0E24130A46B000BA478C /* ChooseApp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CDC0E23130A46B000BA478C /* ChooseApp.xib */; };
 		8CDC0E25130A46B000BA478C /* ChooseApp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CDC0E23130A46B000BA478C /* ChooseApp.xib */; };
 		8CDC0E63130A5A4700BA478C /* ChooseApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC0E20130A465D00BA478C /* ChooseApp.m */; };
 		8CDC0E64130A5A5000BA478C /* ChooseApp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CDC0E23130A46B000BA478C /* ChooseApp.xib */; };
 		8CDC10AD130CA70800BA478C /* AppleMailModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC1087130CA60D00BA478C /* AppleMailModule.m */; };
 		8CDC10BB130CA72B00BA478C /* AppleMailModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CDC10BA130CA72B00BA478C /* AppleMailModule.xib */; };
-		8CDC10CA130CB2B800BA478C /* WPACommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */; };
+		8CDC10CA130CB2B800BA478C /* structcommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* structcommon.framework */; };
 		8CDC10CC130CB2F000BA478C /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1988112D5079F00C69AC9 /* ScriptingBridge.framework */; };
 		8CDC11FA130E37F800BA478C /* MimeHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77296512D46AC600F71FE7 /* MimeHandler.m */; };
 		8CDC13381310785C00BA478C /* DeadlineTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CDC13371310785B00BA478C /* DeadlineTableView.xib */; };
@@ -528,7 +528,7 @@
 			files = (
 				8C82CE8612F2BA6C00830486 /* SM2DGraphView.framework in CopyFiles */,
 				8C82B85912EF4B8900830486 /* BGHUDAppKit.framework in CopyFiles */,
-				8C0D943912D64007009F3280 /* WPACommon.framework in CopyFiles */,
+				8C0D943912D64007009F3280 /* structcommon.framework in CopyFiles */,
 				8C0D944F12D640D1009F3280 /* Growl.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -560,7 +560,7 @@
 			files = (
 				8C82CE4512F2A82A00830486 /* SM2DGraphView.framework in CopyFiles */,
 				8C82B85812EF4B7C00830486 /* BGHUDAppKit.framework in CopyFiles */,
-				8C0D95A512D65326009F3280 /* WPACommon.framework in CopyFiles */,
+				8C0D95A512D65326009F3280 /* structcommon.framework in CopyFiles */,
 				8CD198C612D511F500C69AC9 /* Growl.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -586,21 +586,21 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = main.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		8C00DC07135799B70037C1A3 /* ScriptingMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptingMonitor.h; sourceTree = "<group>"; };
-		8C00DC08135799B70037C1A3 /* ScriptingMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptingMonitor.m; sourceTree = "<group>"; };
-		8C00DC0B13579E9C0037C1A3 /* AppleMailMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleMailMonitor.h; sourceTree = "<group>"; };
-		8C00DC0C13579E9C0037C1A3 /* AppleMailMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleMailMonitor.m; sourceTree = "<group>"; };
+		8C00DC07135799B70037C1A3 /* ScriptingMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ScriptingMonitor.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8C00DC08135799B70037C1A3 /* ScriptingMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ScriptingMonitor.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		8C00DC0B13579E9C0037C1A3 /* AppleMailMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppleMailMonitor.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8C00DC0C13579E9C0037C1A3 /* AppleMailMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppleMailMonitor.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8C00DC161357ACD10037C1A3 /* mailFetchTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mailFetchTemplate.txt; sourceTree = "<group>"; };
 		8C01DD75131D5C7F00398AD8 /* HUDSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = HUDSettings.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8C01DD76131D5C7F00398AD8 /* HUDSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = HUDSettings.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		8C0D93F012D63D3D009F3280 /* devstruct.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = devstruct.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C0D93F012D63D3D009F3280 /* Dev Struct.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dev Struct.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C0D93F212D63D3D009F3280 /* WPADev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WPADev-Info.plist"; sourceTree = "<group>"; };
 		8C0D943A12D64018009F3280 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		8C0D948912D64486009F3280 /* INSTALL_PLUGINS.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; lineEnding = 0; path = INSTALL_PLUGINS.sh; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.sh; };
-		8C1151271343EAAD00273D0A /* SVRefHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRefHandler.h; sourceTree = "<group>"; };
-		8C1151281343EAAD00273D0A /* SVRefHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRefHandler.m; sourceTree = "<group>"; };
-		8C11513A1344EF9D00273D0A /* ActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityViewController.h; sourceTree = "<group>"; };
-		8C11513B1344EFA000273D0A /* ActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityViewController.m; sourceTree = "<group>"; };
+		8C1151271343EAAD00273D0A /* SVRefHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SVRefHandler.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8C1151281343EAAD00273D0A /* SVRefHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SVRefHandler.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		8C11513A1344EF9D00273D0A /* ActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ActivityViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8C11513B1344EFA000273D0A /* ActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ActivityViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8C1800F812F4A5D00061FDE6 /* marketing.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = marketing.txt; sourceTree = "<group>"; };
 		8C1800F912F4B7990061FDE6 /* marketing.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = marketing.rtf; sourceTree = "<group>"; };
 		8C18041512F770DB0061FDE6 /* AddActivityDialogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AddActivityDialogController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -621,9 +621,9 @@
 		8C3982C5134D4E8C008C5670 /* allEvents.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = allEvents.txt; sourceTree = "<group>"; };
 		8C3982C7134D4F4A008C5670 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 		8C3AB4AB12E2CEBF00A19AA4 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
-		8C4019E7133FFE1A00EB414F /* VariableTableColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableTableColumn.h; sourceTree = "<group>"; };
-		8C4019E8133FFE1B00EB414F /* VariableTableColumn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableTableColumn.m; sourceTree = "<group>"; };
-		8C4BD2F4132FAA4C00765A57 /* SummaryHUDCallback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SummaryHUDCallback.h; sourceTree = "<group>"; };
+		8C4019E7133FFE1A00EB414F /* VariableTableColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = VariableTableColumn.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8C4019E8133FFE1B00EB414F /* VariableTableColumn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = VariableTableColumn.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		8C4BD2F4132FAA4C00765A57 /* SummaryHUDCallback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SummaryHUDCallback.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8C5DEC4912E8C4A600EE93F1 /* TestTaskModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestTaskModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C5DEC4A12E8C4A600EE93F1 /* TestTaskModule-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TestTaskModule-Info.plist"; sourceTree = "<group>"; };
 		8C5DEC5512E8C4D000EE93F1 /* TestEventModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestEventModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -636,13 +636,13 @@
 		8C5DEC8212E8C64200EE93F1 /* TestTaskModule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestTaskModule.xib; sourceTree = "<group>"; };
 		8C5DEF3912E9F3A900EE93F1 /* SummaryDeadlineData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SummaryDeadlineData.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8C5DEF3A12E9F3A900EE93F1 /* SummaryDeadlineData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SummaryDeadlineData.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		8C5EAC61133D49B400E5F404 /* ColorWellCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorWellCell.h; sourceTree = "<group>"; };
-		8C5EAC62133D49C800E5F404 /* ColorWellCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorWellCell.m; sourceTree = "<group>"; };
-		8C66A72912DFC598000644ED /* HostsFileSwitcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HostsFileSwitcher.h; sourceTree = "<group>"; };
-		8C66A72A12DFC598000644ED /* HostsFileSwitcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HostsFileSwitcher.m; sourceTree = "<group>"; };
+		8C5EAC61133D49B400E5F404 /* ColorWellCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ColorWellCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8C5EAC62133D49C800E5F404 /* ColorWellCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ColorWellCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		8C66A72912DFC598000644ED /* HostsFileSwitcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = HostsFileSwitcher.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8C66A72A12DFC598000644ED /* HostsFileSwitcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = HostsFileSwitcher.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8C66A74112DFCB11000644ED /* Switcher */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Switcher; sourceTree = BUILT_PRODUCTS_DIR; };
-		8C66A76112DFCD23000644ED /* BlockerModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockerModule.h; sourceTree = "<group>"; };
-		8C66A76212DFCD23000644ED /* BlockerModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockerModule.m; sourceTree = "<group>"; };
+		8C66A76112DFCD23000644ED /* BlockerModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BlockerModule.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8C66A76212DFCD23000644ED /* BlockerModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BlockerModule.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8C66A77612DFCE20000644ED /* BlockerModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlockerModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C66A77712DFCE20000644ED /* BlockerModule-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BlockerModule-Info.plist"; sourceTree = "<group>"; };
 		8C66A7BB12DFEE8A000644ED /* BlockerModule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlockerModule.xib; sourceTree = "<group>"; };
@@ -802,30 +802,30 @@
 		8C82CFDF12F3D0BE00830486 /* Design.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Design.txt; sourceTree = "<group>"; };
 		8C82D01A12F3DC7000830486 /* TotalsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TotalsManager.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8C82D01B12F3DC7000830486 /* TotalsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TotalsManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		8C844AAB133AEA5700998D1C /* PercentOfDaysXForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PercentOfDaysXForm.h; sourceTree = "<group>"; };
+		8C844AAB133AEA5700998D1C /* PercentOfDaysXForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PercentOfDaysXForm.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8C844AAC133AEA5700998D1C /* PercentOfDaysXForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PercentOfDaysXForm.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		8C844AB0133AF9C700998D1C /* WorkHoursToAverageXForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WorkHoursToAverageXForm.h; path = WorkPlayAway.xcodeproj/WorkHoursToAverageXForm.h; sourceTree = "<group>"; };
-		8C844AB1133AF9C700998D1C /* WorkHoursToAverageXForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = WorkHoursToAverageXForm.m; path = WorkPlayAway.xcodeproj/WorkHoursToAverageXForm.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		8C9CE76312E2449900017A02 /* SkypeState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkypeState.m; sourceTree = "<group>"; };
+		8C9CE76312E2449900017A02 /* SkypeState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SkypeState.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8C9CE77412E2463700017A02 /* SkypeAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SkypeAPI.h; path = Skype.framework/Versions/A/Headers/SkypeAPI.h; sourceTree = "<group>"; };
 		8C9CE77512E2463700017A02 /* SkypeAPI-Carbon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SkypeAPI-Carbon.h"; path = "Skype.framework/Versions/A/Headers/SkypeAPI-Carbon.h"; sourceTree = "<group>"; };
 		8C9CE77612E2463700017A02 /* Skype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Skype.h; path = Skype.framework/Versions/A/Headers/Skype.h; sourceTree = "<group>"; };
 		8C9CE77812E2465B00017A02 /* Skype.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Skype.framework; sourceTree = "<group>"; };
 		8C9CE85C12E2683800017A02 /* BlockerModule.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = BlockerModule.icns; sourceTree = "<group>"; };
 		8C9CE86112E2698300017A02 /* BlockerModule.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = BlockerModule.ico; sourceTree = "<group>"; };
-		8C9E3BC71347775400D8BDCC /* RepeatRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatRule.h; sourceTree = "<group>"; };
-		8C9E3BC81347775400D8BDCC /* RepeatRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatRule.m; sourceTree = "<group>"; };
+		8C9E3BC71347775400D8BDCC /* RepeatRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = RepeatRule.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8C9E3BC81347775400D8BDCC /* RepeatRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = RepeatRule.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8C9E3D5013206F8E007632E5 /* WriteHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WriteHandler.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8C9E3D5113206F8E007632E5 /* WriteHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WriteHandler.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8C9FB5BD13356DB70034FE85 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		8CA668A212FF86C5004FD7EE /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchAtLoginController.h; sourceTree = "<group>"; };
 		8CA668A312FF86C5004FD7EE /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchAtLoginController.m; sourceTree = "<group>"; };
-		8CBEAB43133AA13400277FEA /* GoalHoursToAverageXForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoalHoursToAverageXForm.h; sourceTree = "<group>"; };
-		8CBEAB45133AAA3C00277FEA /* SummaryRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummaryRecord.h; sourceTree = "<group>"; };
-		8CBEAB46133AAA3D00277FEA /* SummaryRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummaryRecord.m; sourceTree = "<group>"; };
-		8CC7543D1335524C007FE425 /* ActivityChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityChart.h; sourceTree = "<group>"; };
-		8CC7543E1335524C007FE425 /* ActivityChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityChart.m; sourceTree = "<group>"; };
-		8CD1974412D4C59600C69AC9 /* WPACommon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WPACommon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CB05115135E6FF8008FCE40 /* WorkHoursToAverageXForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WorkHoursToAverageXForm.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8CB05116135E6FF8008FCE40 /* WorkHoursToAverageXForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WorkHoursToAverageXForm.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		8CBEAB43133AA13400277FEA /* GoalHoursToAverageXForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GoalHoursToAverageXForm.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8CBEAB45133AAA3C00277FEA /* SummaryRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SummaryRecord.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8CBEAB46133AAA3D00277FEA /* SummaryRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SummaryRecord.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		8CC7543D1335524C007FE425 /* ActivityChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ActivityChart.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8CC7543E1335524C007FE425 /* ActivityChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ActivityChart.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		8CD1974412D4C59600C69AC9 /* structcommon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = structcommon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD1974512D4C59600C69AC9 /* WPACommon-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WPACommon-Info.plist"; sourceTree = "<group>"; };
 		8CD1978F12D4D0F400C69AC9 /* Growl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Growl.h; path = Growl.framework/Versions/A/Headers/Growl.h; sourceTree = "<group>"; };
 		8CD197CF12D4FDC800C69AC9 /* RTMModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RTMModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -869,34 +869,34 @@
 		8CDC14511311B26B00BA478C /* BaseReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BaseReporter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8CDCC0FA12E2B5F400CEAAD3 /* SkypeManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkypeManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CDCC0FD12E2B5F400CEAAD3 /* SkypeManager-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SkypeManager-Info.plist"; sourceTree = "<group>"; };
-		8CDCC10512E2B7BA00CEAAD3 /* SkypeManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkypeManagerDelegate.h; sourceTree = "<group>"; };
+		8CDCC10512E2B7BA00CEAAD3 /* SkypeManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SkypeManagerDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8CDCC10612E2B7BA00CEAAD3 /* SkypeManagerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SkypeManagerDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8CDCC10A12E2B86E00CEAAD3 /* SkypeManager.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SkypeManager.xib; sourceTree = "<group>"; };
 		8CDCC12B12E2BD6D00CEAAD3 /* skmain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = skmain.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8CEE6A8513268A7C00E45829 /* AppleMailModule.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = AppleMailModule.ico; sourceTree = "<group>"; };
-		8CEF4DF313393AE6000F5E3A /* SummaryStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummaryStatusViewController.h; sourceTree = "<group>"; };
-		8CEF4DF413393AE7000F5E3A /* SummaryStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummaryStatusViewController.m; sourceTree = "<group>"; };
+		8CEF4DF313393AE6000F5E3A /* SummaryStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SummaryStatusViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8CEF4DF413393AE7000F5E3A /* SummaryStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SummaryStatusViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8CEF4E0C13394FBF000F5E3A /* SummaryStatusViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummaryStatusViewController.xib; sourceTree = "<group>"; };
 		8CEF4E191339B2D8000F5E3A /* GoalHoursToAverageXForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GoalHoursToAverageXForm.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		8CF6DFE8134E4669005346CE /* iCalMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCalMonitor.h; sourceTree = "<group>"; };
-		8CF6DFE9134E4669005346CE /* iCalMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCalMonitor.m; sourceTree = "<group>"; };
-		8CF8B5FA12D821B5009C7E3D /* Schema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Schema.h; sourceTree = "<group>"; };
-		8CF8B5FB12D821B5009C7E3D /* StatsTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsTable.m; sourceTree = "<group>"; };
-		8CF8B5FC12D821B5009C7E3D /* StatsTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsTable.h; sourceTree = "<group>"; };
-		8CF8B5FD12D821B5009C7E3D /* Schema.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Schema.m; sourceTree = "<group>"; };
-		8CF8B5FE12D821B5009C7E3D /* StatsRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsRecord.h; sourceTree = "<group>"; };
-		8CF8B5FF12D821B5009C7E3D /* StatsRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsRecord.m; sourceTree = "<group>"; };
-		8CF8B60012D821B5009C7E3D /* TimeDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeDefines.h; sourceTree = "<group>"; };
-		8CF8B60112D821B5009C7E3D /* StatsReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsReport.m; sourceTree = "<group>"; };
-		8CF8B60212D821B5009C7E3D /* StatsReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsReport.h; sourceTree = "<group>"; };
-		8CF8BB5A12D9F961009C7E3D /* RefreshListHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshListHandler.h; sourceTree = "<group>"; };
-		8CF8BB5B12D9F961009C7E3D /* RefreshListHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshListHandler.m; sourceTree = "<group>"; };
-		8CF8C13B12DC2B59009C7E3D /* WorkTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkTable.h; sourceTree = "<group>"; };
-		8CF8C13C12DC2B59009C7E3D /* WorkTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkTable.m; sourceTree = "<group>"; };
-		8CF8C14112DC2CB7009C7E3D /* SummaryTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummaryTable.h; sourceTree = "<group>"; };
-		8CF8C14212DC2CB7009C7E3D /* SummaryTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummaryTable.m; sourceTree = "<group>"; };
+		8CF6DFE8134E4669005346CE /* iCalMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = iCalMonitor.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8CF6DFE9134E4669005346CE /* iCalMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = iCalMonitor.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		8CF8B5FA12D821B5009C7E3D /* Schema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Schema.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8CF8B5FB12D821B5009C7E3D /* StatsTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = StatsTable.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		8CF8B5FC12D821B5009C7E3D /* StatsTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = StatsTable.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8CF8B5FD12D821B5009C7E3D /* Schema.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Schema.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		8CF8B5FE12D821B5009C7E3D /* StatsRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = StatsRecord.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8CF8B5FF12D821B5009C7E3D /* StatsRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = StatsRecord.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		8CF8B60012D821B5009C7E3D /* TimeDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TimeDefines.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8CF8B60112D821B5009C7E3D /* StatsReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = StatsReport.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		8CF8B60212D821B5009C7E3D /* StatsReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = StatsReport.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8CF8BB5A12D9F961009C7E3D /* RefreshListHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = RefreshListHandler.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8CF8BB5B12D9F961009C7E3D /* RefreshListHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = RefreshListHandler.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		8CF8C13B12DC2B59009C7E3D /* WorkTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WorkTable.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8CF8C13C12DC2B59009C7E3D /* WorkTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WorkTable.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		8CF8C14112DC2CB7009C7E3D /* SummaryTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SummaryTable.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8CF8C14212DC2CB7009C7E3D /* SummaryTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SummaryTable.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8D1107310486CEB800E47090 /* WorkPlayAway-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "WorkPlayAway-Info.plist"; sourceTree = "<group>"; };
-		8D1107320486CEB800E47090 /* WorkPlayAway.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkPlayAway.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D1107320486CEB800E47090 /* Self-Imposed Structure.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Self-Imposed Structure.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -904,7 +904,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C0D95B112D6535A009F3280 /* WPACommon.framework in Frameworks */,
+				8C0D95B112D6535A009F3280 /* structcommon.framework in Frameworks */,
 				8C0D941512D63E0D009F3280 /* Growl.framework in Frameworks */,
 				8C0D943B12D64018009F3280 /* Cocoa.framework in Frameworks */,
 				8C82B80212EF4ADF00830486 /* BGHUDAppKit.framework in Frameworks */,
@@ -921,7 +921,7 @@
 			files = (
 				8C3982C8134D4F4A008C5670 /* ScriptingBridge.framework in Frameworks */,
 				8C34BC5C134D245300A9BCFE /* Cocoa.framework in Frameworks */,
-				8C3982BF134D4686008C5670 /* WPACommon.framework in Frameworks */,
+				8C3982BF134D4686008C5670 /* structcommon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -929,7 +929,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C5DEC5012E8C4B800EE93F1 /* WPACommon.framework in Frameworks */,
+				8C5DEC5012E8C4B800EE93F1 /* structcommon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -937,7 +937,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C5DEC5C12E8C4DF00EE93F1 /* WPACommon.framework in Frameworks */,
+				8C5DEC5C12E8C4DF00EE93F1 /* structcommon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -952,7 +952,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C66A77F12DFCE4E000644ED /* WPACommon.framework in Frameworks */,
+				8C66A77F12DFCE4E000644ED /* structcommon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -960,7 +960,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C73F89812E891D80056FAFF /* WPACommon.framework in Frameworks */,
+				8C73F89812E891D80056FAFF /* structcommon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -975,7 +975,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CD197D612D4FDFD00C69AC9 /* WPACommon.framework in Frameworks */,
+				8CD197D612D4FDFD00C69AC9 /* structcommon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -983,7 +983,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CD1984412D505CB00C69AC9 /* WPACommon.framework in Frameworks */,
+				8CD1984412D505CB00C69AC9 /* structcommon.framework in Frameworks */,
 				8CD1988212D5079F00C69AC9 /* ScriptingBridge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -992,7 +992,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CD1985712D5062000C69AC9 /* WPACommon.framework in Frameworks */,
+				8CD1985712D5062000C69AC9 /* structcommon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1000,7 +1000,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CD1986612D506E000C69AC9 /* WPACommon.framework in Frameworks */,
+				8CD1986612D506E000C69AC9 /* structcommon.framework in Frameworks */,
 				8CD1989612D508EB00C69AC9 /* ScriptingBridge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1009,7 +1009,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CDC0D841309E6C400BA478C /* WPACommon.framework in Frameworks */,
+				8CDC0D841309E6C400BA478C /* structcommon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1017,7 +1017,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CDC10CA130CB2B800BA478C /* WPACommon.framework in Frameworks */,
+				8CDC10CA130CB2B800BA478C /* structcommon.framework in Frameworks */,
 				8CDC10CC130CB2F000BA478C /* ScriptingBridge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1035,7 +1035,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C82CE9012F2BA9200830486 /* SM2DGraphView.framework in Frameworks */,
-				8CD1975512D4C62500C69AC9 /* WPACommon.framework in Frameworks */,
+				8CD1975512D4C62500C69AC9 /* structcommon.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				8C7729C212D46AC600F71FE7 /* Growl.framework in Frameworks */,
 				8C82B80312EF4ADF00830486 /* BGHUDAppKit.framework in Frameworks */,
@@ -1088,13 +1088,13 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D1107320486CEB800E47090 /* WorkPlayAway.app */,
-				8CD1974412D4C59600C69AC9 /* WPACommon.framework */,
+				8D1107320486CEB800E47090 /* Self-Imposed Structure.app */,
+				8CD1974412D4C59600C69AC9 /* structcommon.framework */,
 				8CD197CF12D4FDC800C69AC9 /* RTMModule.bundle */,
 				8CD1983F12D505BB00C69AC9 /* AdiumModule.bundle */,
 				8CD1985112D5061300C69AC9 /* SkypeModule.bundle */,
 				8CD1986012D506B700C69AC9 /* iChatModule.bundle */,
-				8C0D93F012D63D3D009F3280 /* devstruct.app */,
+				8C0D93F012D63D3D009F3280 /* Dev Struct.app */,
 				8C66A74112DFCB11000644ED /* Switcher */,
 				8C66A77612DFCE20000644ED /* BlockerModule.bundle */,
 				8CDCC0FA12E2B5F400CEAAD3 /* SkypeManager.app */,
@@ -1596,10 +1596,10 @@
 		8CF8C14012DC2B71009C7E3D /* Reporting */ = {
 			isa = PBXGroup;
 			children = (
+				8CB05115135E6FF8008FCE40 /* WorkHoursToAverageXForm.h */,
+				8CB05116135E6FF8008FCE40 /* WorkHoursToAverageXForm.m */,
 				8C11513A1344EF9D00273D0A /* ActivityViewController.h */,
 				8C11513B1344EFA000273D0A /* ActivityViewController.m */,
-				8C844AB0133AF9C700998D1C /* WorkHoursToAverageXForm.h */,
-				8C844AB1133AF9C700998D1C /* WorkHoursToAverageXForm.m */,
 				8C844AAB133AEA5700998D1C /* PercentOfDaysXForm.h */,
 				8C844AAC133AEA5700998D1C /* PercentOfDaysXForm.m */,
 				8CBEAB43133AA13400277FEA /* GoalHoursToAverageXForm.h */,
@@ -1664,7 +1664,7 @@
 			);
 			name = devstruct;
 			productName = WPADev;
-			productReference = 8C0D93F012D63D3D009F3280 /* devstruct.app */;
+			productReference = 8C0D93F012D63D3D009F3280 /* Dev Struct.app */;
 			productType = "com.apple.product-type.application";
 		};
 		8C34BC59134D245300A9BCFE /* iCalModule */ = {
@@ -1790,7 +1790,7 @@
 			);
 			name = structcommon;
 			productName = WPACommon;
-			productReference = 8CD1974412D4C59600C69AC9 /* WPACommon.framework */;
+			productReference = 8CD1974412D4C59600C69AC9 /* structcommon.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		8CD197CE12D4FDC800C69AC9 /* RTMModule */ = {
@@ -1940,7 +1940,7 @@
 			name = selfstruct;
 			productInstallPath = "$(HOME)/Applications";
 			productName = WorkPlayAway;
-			productReference = 8D1107320486CEB800E47090 /* WorkPlayAway.app */;
+			productReference = 8D1107320486CEB800E47090 /* Self-Imposed Structure.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -2258,10 +2258,10 @@
 				8CEF4DF613393AED000F5E3A /* SummaryStatusViewController.m in Sources */,
 				8CBEAB47133AAA3E00277FEA /* SummaryRecord.m in Sources */,
 				8C844AAD133AEA5700998D1C /* PercentOfDaysXForm.m in Sources */,
-				8C844AB2133AF9C800998D1C /* WorkHoursToAverageXForm.m in Sources */,
 				8C1151291343EAAD00273D0A /* SVRefHandler.m in Sources */,
 				8C11513D1344EFAA00273D0A /* ActivityViewController.m in Sources */,
 				8C801CF8135373EC00E5C109 /* VacationDialog.m in Sources */,
+				8CB05117135E6FF8008FCE40 /* WorkHoursToAverageXForm.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2453,10 +2453,10 @@
 				8CEF4E1B1339B2D8000F5E3A /* GoalHoursToAverageXForm.m in Sources */,
 				8CBEAB48133AAA3E00277FEA /* SummaryRecord.m in Sources */,
 				8C844AAE133AEA5700998D1C /* PercentOfDaysXForm.m in Sources */,
-				8C844AB3133AF9C800998D1C /* WorkHoursToAverageXForm.m in Sources */,
 				8C11512A1343EAAD00273D0A /* SVRefHandler.m in Sources */,
 				8C11513E1344EFAA00273D0A /* ActivityViewController.m in Sources */,
 				8C801CF9135373EC00E5C109 /* VacationDialog.m in Sources */,
+				8CB05118135E6FF8008FCE40 /* WorkHoursToAverageXForm.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2685,7 +2685,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
-				PRODUCT_NAME = devstruct;
+				PRODUCT_NAME = "Dev Struct";
 				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Debug;
@@ -2715,7 +2715,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
-				PRODUCT_NAME = devstruct;
+				PRODUCT_NAME = "Dev Struct";
 				VALID_ARCHS = "i386 x86_64";
 				ZERO_LINK = NO;
 			};
@@ -3517,7 +3517,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "__APPNAME__=@\\\"WorkPlayAway\\\"";
 				INFOPLIST_FILE = "WorkPlayAway-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				PRODUCT_NAME = selfstruct;
+				PRODUCT_NAME = "Self-Imposed Structure";
 				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Debug;
@@ -3539,7 +3539,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "__APPNAME__=@\\\"WorkPlayAway\\\"";
 				INFOPLIST_FILE = "WorkPlayAway-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				PRODUCT_NAME = selfstruct;
+				PRODUCT_NAME = "Self-Imposed Structure";
 				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Release;

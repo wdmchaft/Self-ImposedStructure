@@ -1,6 +1,6 @@
 //
 //  SummaryViewController.m
-//  WorkPlayAway
+//  Self-Imposed Structure
 //
 //  Created by Charles on 2/19/11.
 //  Copyright 2011 zer0gravitas. All rights reserved.

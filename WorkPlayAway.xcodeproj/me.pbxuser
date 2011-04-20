@@ -11,10 +11,10 @@
 		activeArchitecturePreference = x86_64;
 		activeBuildConfigurationName = Debug;
 		activeExecutable = 8C77290012D469F900F71FE7 /* WorkPlayAway */;
-		activeTarget = 8D1107260486CEB800E47090 /* WorkPlayAway */;
+		activeTarget = 8D1107260486CEB800E47090 /* selfstruct */;
 		addToTargets = (
-			8C0D93EF12D63D3D009F3280 /* WPADev */,
-			8D1107260486CEB800E47090 /* WorkPlayAway */,
+			8C0D93EF12D63D3D009F3280 /* devstruct */,
+			8D1107260486CEB800E47090 /* selfstruct */,
 		);
 		breakpoints = (
 			8C80221F1356794900E5C109 /* WPAMainController.m:327 */,
@@ -181,8 +181,8 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 324600150;
-			PBXWorkspaceStateSaveDate = 324600150;
+			PBXPerProjectTemplateStateSaveDate = 324955135;
+			PBXWorkspaceStateSaveDate = 324955135;
 		};
 		perUserProjectItems = {
 			8C01DC08131BDE6100398AD8 /* PBXTextBookmark */ = 8C01DC08131BDE6100398AD8 /* PBXTextBookmark */;
@@ -208,6 +208,7 @@
 			8C18064E12F8A77E0061FDE6 /* PBXTextBookmark */ = 8C18064E12F8A77E0061FDE6 /* PBXTextBookmark */;
 			8C18066812F8B2490061FDE6 /* PBXTextBookmark */ = 8C18066812F8B2490061FDE6 /* PBXTextBookmark */;
 			8C1DBF61132DE591003FE422 /* PBXTextBookmark */ = 8C1DBF61132DE591003FE422 /* PBXTextBookmark */;
+			8C23EFF4135E6C6A006B7173 /* PBXTextBookmark */ = 8C23EFF4135E6C6A006B7173 /* PBXTextBookmark */;
 			8C3AB4B412E2DBBE00A19AA4 /* PBXTextBookmark */ = 8C3AB4B412E2DBBE00A19AA4 /* PBXTextBookmark */;
 			8C3AB4B512E2DBBE00A19AA4 /* PBXTextBookmark */ = 8C3AB4B512E2DBBE00A19AA4 /* PBXTextBookmark */;
 			8C5C4D9F132D18FF0034A5D3 /* PBXTextBookmark */ = 8C5C4D9F132D18FF0034A5D3 /* PBXTextBookmark */;
@@ -379,7 +380,6 @@
 			8CEE6AF213268E5C00E45829 /* PBXTextBookmark */ = 8CEE6AF213268E5C00E45829 /* PBXTextBookmark */;
 			8CF03F121358DDA000B4B6E4 /* PBXTextBookmark */ = 8CF03F121358DDA000B4B6E4 /* PBXTextBookmark */;
 			8CF040151358EB6A00B4B6E4 /* PBXTextBookmark */ = 8CF040151358EB6A00B4B6E4 /* PBXTextBookmark */;
-			8CF040441358EF4D00B4B6E4 /* PBXTextBookmark */ = 8CF040441358EF4D00B4B6E4 /* PBXTextBookmark */;
 			8CF8B72412D8F3AE009C7E3D /* PBXTextBookmark */ = 8CF8B72412D8F3AE009C7E3D /* PBXTextBookmark */;
 			8CF8BB7812D9FBC5009C7E3D /* PBXTextBookmark */ = 8CF8BB7812D9FBC5009C7E3D /* PBXTextBookmark */;
 			8CF8BFE212DAFD03009C7E3D /* PBXTextBookmark */ = 8CF8BFE212DAFD03009C7E3D /* PBXTextBookmark */;
@@ -507,7 +507,7 @@
 		vrLen = 1302;
 		vrLoc = 530;
 	};
-	8C0D93EF12D63D3D009F3280 /* WPADev */ = {
+	8C0D93EF12D63D3D009F3280 /* devstruct */ = {
 		activeExec = 0;
 		executables = (
 			8C0D93F112D63D3D009F3280 /* WPADev */,
@@ -793,6 +793,16 @@
 		rType = 0;
 		vrLen = 2031;
 		vrLoc = 1678;
+	};
+	8C23EFF4135E6C6A006B7173 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292B12D46AC600F71FE7 /* Context.m */;
+		name = "Context.m: 172";
+		rLen = 0;
+		rLoc = 4675;
+		rType = 0;
+		vrLen = 1043;
+		vrLoc = 4301;
 	};
 	8C34BC59134D245300A9BCFE /* iCalModule */ = {
 		activeExec = 0;
@@ -1584,9 +1594,9 @@
 	};
 	8C77292B12D46AC600F71FE7 /* Context.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {876, 6344}}";
+			sepNavIntBoundsRect = "{{0, 0}, {876, 6409}}";
 			sepNavSelRange = "{4675, 0}";
-			sepNavVisRange = "{4301, 1048}";
+			sepNavVisRange = "{4301, 1043}";
 			sepNavWindowFrame = "{{261, 38}, {907, 831}}";
 		};
 	};
@@ -1811,7 +1821,7 @@
 			sepNavVisRange = "{0, 732}";
 		};
 	};
-	8C77293D12D46AC600F71FE7 /* Note.m */ = {
+	8C77293D12D46AC600F71FE7 /* WPAAlert.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {876, 754}}";
 			sepNavSelRange = "{290, 345}";
@@ -1819,7 +1829,7 @@
 			sepNavWindowFrame = "{{15, 42}, {907, 831}}";
 		};
 	};
-	8C77293E12D46AC600F71FE7 /* Note.h */ = {
+	8C77293E12D46AC600F71FE7 /* WPAAlert.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {846, 694}}";
 			sepNavSelRange = "{0, 0}";
@@ -2998,7 +3008,7 @@
 		vrLen = 150;
 		vrLoc = 0;
 	};
-	8CD1974312D4C59600C69AC9 /* WPACommon */ = {
+	8CD1974312D4C59600C69AC9 /* structcommon */ = {
 		activeExec = 0;
 	};
 	8CD1975C12D4C63300C69AC9 /* PBXTextBookmark */ = {
@@ -3023,7 +3033,7 @@
 	};
 	8CD1977012D4C63300C69AC9 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 8C77293E12D46AC600F71FE7 /* Note.h */;
+		fRef = 8C77293E12D46AC600F71FE7 /* WPAAlert.h */;
 		name = "Note.h: 1";
 		rLen = 0;
 		rLoc = 0;
@@ -3054,9 +3064,6 @@
 	8CD197CE12D4FDC800C69AC9 /* RTMModule */ = {
 		activeExec = 0;
 	};
-	8CD1980E12D5041700C69AC9 /* GmailModule */ = {
-		activeExec = 0;
-	};
 	8CD1982C12D5055500C69AC9 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 8C77297E12D46AC600F71FE7 /* RequestREST.h */;
@@ -3084,9 +3091,6 @@
 		activeExec = 0;
 	};
 	8CD1985F12D506B700C69AC9 /* iChatModule */ = {
-		activeExec = 0;
-	};
-	8CD1989C12D5092F00C69AC9 /* GCalModule */ = {
 		activeExec = 0;
 	};
 	8CD198D212D512A300C69AC9 /* PlistBookmark */ = {
@@ -3867,7 +3871,7 @@
 	};
 	8CDC148A1311B29B00BA478C /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 8C77293D12D46AC600F71FE7 /* Note.m */;
+		fRef = 8C77293D12D46AC600F71FE7 /* WPAAlert.m */;
 		name = "Note.m: 19";
 		rLen = 345;
 		rLoc = 290;
@@ -4146,7 +4150,7 @@
 		ignoreCount = 0;
 		lineNumber = 127;
 		location = WPADev;
-		modificationTime = 324600262.148678;
+		modificationTime = 324600262.1486781;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -4228,7 +4232,7 @@
 		ignoreCount = 0;
 		lineNumber = 55;
 		location = WPADev;
-		modificationTime = 324600231.411071;
+		modificationTime = 324600231.4110709;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -4259,16 +4263,6 @@
 		modificationTime = 324600231.455986;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
-	};
-	8CF040441358EF4D00B4B6E4 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 8C77292B12D46AC600F71FE7 /* Context.m */;
-		name = "Context.m: 172";
-		rLen = 0;
-		rLoc = 4675;
-		rType = 0;
-		vrLen = 976;
-		vrLoc = 4371;
 	};
 	8CF6DFE8134E4669005346CE /* iCalMonitor.h */ = {
 		uiCtxt = {
@@ -4486,7 +4480,7 @@
 		vrLen = 1588;
 		vrLoc = 4594;
 	};
-	8D1107260486CEB800E47090 /* WorkPlayAway */ = {
+	8D1107260486CEB800E47090 /* selfstruct */ = {
 		activeExec = 0;
 		executables = (
 			8C77290012D469F900F71FE7 /* WorkPlayAway */,

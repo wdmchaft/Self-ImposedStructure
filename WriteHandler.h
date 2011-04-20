@@ -1,6 +1,6 @@
 //
 //  IOHandler.h
-//  WorkPlayAway
+//  Self-Imposed Structure
 //
 //  Created by Charles on 3/3/11.
 //  Copyright 2011 zer0gravitas. All rights reserved.

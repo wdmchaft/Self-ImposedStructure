@@ -1,6 +1,6 @@
 //
 //  AddActivityDialogController.h
-//  WorkPlayAway
+//  Self-Imposed Structure
 //
 //  Created by Charles on 1/31/11.
 //  Copyright 2011 zer0gravitas. All rights reserved.

@@ -1,9 +1,9 @@
 //
 //  MyClass.m
-//  WorkPlayAway
+//  Self-Imposed Structure
 //
 //  Created by Charles on 3/22/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 zer0gravitas. All rights reserved.
 //
 
 #import "GoalHoursToAverageXForm.h"

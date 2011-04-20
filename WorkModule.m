@@ -1,6 +1,6 @@
 //
 //  WorkModule.m
-//  WorkPlayAway
+//  Self-Imposed Structure
 //
 //  Created by Charles on 2/14/11.
 //  Copyright 2011 zer0gravitas. All rights reserved.
