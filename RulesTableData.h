@@ -3,7 +3,7 @@
 //  Nudge
 //
 //  Created by Charles on 1/3/11.
-//  Copyright 2011 workplayaway.com. All rights reserved.
+//  Copyright 2011 zer0gravitas.com. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>

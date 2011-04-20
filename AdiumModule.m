@@ -3,7 +3,7 @@
 //  AdiumModule
 //
 //  Created by Charles on 12/8/10.
-//  Copyright 2010 workplayaway.com. All rights reserved.
+//  Copyright 2010 zer0gravitas.com. All rights reserved.
 //
 
 #import "AdiumModule.h"

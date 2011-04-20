@@ -1,15 +1,15 @@
 //
 //  TaskDialogController.m
-//  RTGTest
+//  selfstruct
 //
 //  Created by Charles on 11/6/10.
-//  Copyright 2010 workplayaway.com. All rights reserved.
+//  Copyright 2010 zer0gravitas.com. All rights reserved.
 //
 #import "Secret.h"
 #import "Context.h"
 #import "TaskDialogController.h"
 #import "RequestREST.h"
-//#import "RTGTestAppDelegate.h"
+//#import "selfstructAppDelegate.h"
 #import "CompleteRespHandler.h"
 #import "ListsHandler.h"
 #import "BaseInstance.h"
@@ -84,7 +84,7 @@
 
 - (void) sendMoveTo: (NSString*) newList
 {
-	//	RTGTestAppDelegate *delegate = (<NSApplicationDelegate>)[NSApplication sharedApplication];
+	//	selfstructAppDelegate *delegate = (<NSApplicationDelegate>)[NSApplication sharedApplication];
 	//	context = [delegate context];
 	RequestREST *rr = [[RequestREST alloc]init];
 	NSMutableDictionary *params =  [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -142,7 +142,7 @@
 
 - (void) sendRm: (NSString*) method
 {
-//	RTGTestAppDelegate *delegate = (<NSApplicationDelegate>)[NSApplication sharedApplication];
+//	selfstructAppDelegate *delegate = (<NSApplicationDelegate>)[NSApplication sharedApplication];
 //	context = [delegate context];
 	RequestREST *rr = [[RequestREST alloc]init];
 	NSLog(@"auth %@\n task %@\n series %@\n list %@\n api %@",[tdc objectForKey:@"auth_token"],

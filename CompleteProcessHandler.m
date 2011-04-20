@@ -3,7 +3,7 @@
 //  WorkPlayAway
 //
 //  Created by Charles on 1/25/11.
-//  Copyright 2011 WorkPlayAway. All rights reserved.
+//  Copyright 2011 zer0gravitas. All rights reserved.
 //
 
 #import "CompleteProcessHandler.h"
@@ -55,8 +55,7 @@
 
 - (void) sendComplete
 {
-	//	RTGTestAppDelegate *delegate = (<NSApplicationDelegate>)[NSApplication sharedApplication];
-	//	context = [delegate context];
+
 	RequestREST *rr = [[RequestREST alloc]init];
 
 	NSMutableDictionary *params =  [NSMutableDictionary dictionaryWithObjectsAndKeys:

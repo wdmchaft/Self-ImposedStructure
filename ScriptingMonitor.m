@@ -57,7 +57,14 @@
 	NSString *callback = [callbackQueue objectAtIndex:0];
     NSAppleScript *aScript = [[NSAppleScript alloc] initWithSource:script];
     errorRes = nil;
-    eventRes = [aScript executeAndReturnError:&errorRes];
+    @try {
+        eventRes = [aScript executeAndReturnError:&errorRes];
+    }
+    @catch (NSException *exception) {
+        errorRes = [NSDictionary dictionaryWithObject:exception.reason forKey:@"error"];
+    }
+    @finally {
+    }
     NSNotification *msg = [NSNotification notificationWithName:callback object:nil];
     [[NSNotificationCenter defaultCenter] postNotification:msg];
 	[pool drain];	

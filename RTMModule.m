@@ -3,7 +3,7 @@
 //  Nudge
 //
 //  Created by Charles on 11/18/10.
-//  Copyright 2010 workplayaway.com. All rights reserved.
+//  Copyright 2010 zer0gravitas.com. All rights reserved.
 //
 #define EMAIL @"Email"
 #define PASSWORD @"Password"
@@ -67,7 +67,7 @@
  */
 - (void) taskRefreshDone
 {
-	NSNotification *notice = [NSNotification notificationWithName:@"com.workplayaway.tasks" object:self];
+	NSNotification *notice = [NSNotification notificationWithName:@"com.zer0gravitas.tasks" object:self];
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	[nc postNotification:notice];
 }

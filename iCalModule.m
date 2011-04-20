@@ -3,7 +3,7 @@
 //  Nudge
 //
 //  Created by Charles on 11/23/10.
-//  Copyright 2010 workplayaway.com. All rights reserved.
+//  Copyright 2010 zer0gravitas.com. All rights reserved.
 //
 
 #import "iCalModule.h"
@@ -187,7 +187,7 @@
 {
     if (!msgName){
         NSTimeInterval ti = [[NSDate date] timeIntervalSince1970];
-        msgName = [@"com.workplayaway.iCalDone" stringByAppendingString:[[NSNumber numberWithDouble:ti] stringValue]];
+        msgName = [@"com.zer0gravitas.iCalDone" stringByAppendingString:[[NSNumber numberWithDouble:ti] stringValue]];
     }
     return msgName;
 }

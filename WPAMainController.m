@@ -3,7 +3,7 @@
 //  Nudge
 //
 //  Created by Charles on 11/28/10.
-//  Copyright 2010 workplayaway.com. All rights reserved.
+//  Copyright 2010 zer0gravitas.com. All rights reserved.
 //
 
 #import "WPAMainController.h"
@@ -90,9 +90,9 @@
 	
 	NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
 	[center addObserver: self selector:@selector(statusHandler:)
-				   name:@"com.workplayaway.alarm" object:nil];
+				   name:@"com.zer0gravitas.alarm" object:nil];
 	[center addObserver: self selector:@selector(tasksChanged:)
-				   name:@"com.workplayaway.tasks" object:nil];
+				   name:@"com.zer0gravitas.tasks" object:nil];
 	
 	// start listening for commands
 	NSDistributedNotificationCenter *dCenter = [NSDistributedNotificationCenter defaultCenter];
@@ -394,7 +394,7 @@
 		[[ctx growlManager] stop];
 		newState = WPASTATE_OFF;
 		[statusTimer invalidate];
-		[center removeObserver:self name:@"com.workplayaway.wpa" object:nil];
+		[center removeObserver:self name:@"com.zer0gravitas.selfstruct" object:nil];
 	} else {
 		startButton.title = @"Stop";
 		[startButton setAction: @selector(clickStop:)];
@@ -406,7 +406,7 @@
 		//ctx.growlManager = [GrowlManager new];
 		newState = WPASTATE_FREE;
 		// start listening for pause commands
-		[center addObserver:self selector:@selector(remoteNotify:) name:@"com.workplayaway.wpa" object:nil];
+		[center addObserver:self selector:@selector(remoteNotify:) name:@"com.zer0gravitas.selfstruct" object:nil];
 	}
 	ctx.running = on;
 //	[self enableUI:ctx.running];

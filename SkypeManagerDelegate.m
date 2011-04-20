@@ -20,7 +20,7 @@
 	NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
 	[center addObserver:self 
 			   selector:@selector(handleNotification:) 
-				   name:@"com.workplayaway.skypemanager" 
+				   name:@"com.zer0gravitas.skypemanager" 
 				 object:nil];
 }
 

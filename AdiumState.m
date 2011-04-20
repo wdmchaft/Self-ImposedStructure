@@ -3,7 +3,7 @@
 //  WorkPlayAway
 //
 //  Created by Charles on 1/17/11.
-//  Copyright 2011 WorkPlayAway. All rights reserved.
+//  Copyright 2011 zer0gravitas. All rights reserved.
 //
 #import "AdiumState.h"
 #import "Adium.h"

@@ -3,7 +3,7 @@
 //  WorkPlayAway
 //
 //  Created by Charles on 2/16/11.
-//  Copyright 2011 WorkPlayAway. All rights reserved.
+//  Copyright 2011 zer0gravitas. All rights reserved.
 //
 
 #import "AppleMailModule.h"
@@ -113,7 +113,7 @@
 {
     if (!msgName){
         NSTimeInterval ti = [[NSDate date] timeIntervalSince1970];
-        msgName = [@"com.workplayaway.iCalDone" stringByAppendingString:[[NSNumber numberWithDouble:ti] stringValue]];
+        msgName = [@"com.zer0gravitas.iCalDone" stringByAppendingString:[[NSNumber numberWithDouble:ti] stringValue]];
     }
     return msgName;
 }
@@ -330,7 +330,7 @@
 	displayWindow = [displayWindowField doubleValue];
 	[[NSNotificationCenter defaultCenter] addObserver:self 
 											 selector:@selector(validateDone:)
-												 name:@"com.workplayaway.validateDone" 
+												 name:@"com.zer0gravitas.validateDone" 
 											   object:nil];
 	[NSThread detachNewThreadSelector: @selector(doValidate:)
 							 toTarget:self
@@ -369,7 +369,7 @@
 	else {
 		err = @"Apple Mail not running: can not validate.";
 	}
-	NSNotification *msg = [NSNotification notificationWithName:@"com.workplayaway.validateDone" object:err];
+	NSNotification *msg = [NSNotification notificationWithName:@"com.zer0gravitas.validateDone" object:err];
 	[[NSNotificationCenter defaultCenter] postNotification:msg];
 	[pool drain];
 }

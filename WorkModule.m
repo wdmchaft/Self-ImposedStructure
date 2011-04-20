@@ -3,7 +3,7 @@
 //  WorkPlayAway
 //
 //  Created by Charles on 2/14/11.
-//  Copyright 2011 WorkPlayAway. All rights reserved.
+//  Copyright 2011 zer0gravitas. All rights reserved.
 //
 
 #import "WorkModule.h"
@@ -103,11 +103,11 @@
     NSString *appBundle = [appInfo objectForKey:@"NSApplicationBundleIdentifier"];
 	for (WatchApp *wa in appsToWatch){
 		if ([wa.idString isEqualToString:appBundle]){
-			//com.workplayaway.wpa
+			//com.zer0gravitas.wpa
 			NSDictionary *dict = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:wa.state] forKey:@"state"];
             NSString *stateStr = (wa.state == WPASTATE_FREE)? @"play" : @"work";
             NSLog(@"for app [%@] going to %@", appBundle, stateStr);
-			[notificationCenter postNotificationName:@"com.workplayaway.wpa" object: nil userInfo:dict];
+			[notificationCenter postNotificationName:@"com.zer0gravitas.wpa" object: nil userInfo:dict];
 		}
 	}
 }

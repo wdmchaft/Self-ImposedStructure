@@ -3,7 +3,7 @@
 //  Nudge
 //
 //  Created by Charles on 12/19/10.
-//  Copyright 2010 workplayaway.com. All rights reserved.
+//  Copyright 2010 zer0gravitas.com. All rights reserved.
 //
 
 #import "SkypeModule.h"
@@ -72,7 +72,7 @@
 	}
 	SkypeStateType skypeState = (SkypeStateType)[self wpaStateToSkypeState:state];
 	NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:skypeState], @"state",nil ];
-	NSNotification *msg = [NSNotification notificationWithName:@"com.workplayaway.skypemanager" 
+	NSNotification *msg = [NSNotification notificationWithName:@"com.zer0gravitas.skypemanager" 
 														object:[[self class]description]
 													  userInfo:dict]; 
 	[center postNotification: msg];
