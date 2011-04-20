@@ -93,7 +93,16 @@
 				   name:@"com.zer0gravitas.alarm" object:nil];
 	[center addObserver: self selector:@selector(tasksChanged:)
 				   name:@"com.zer0gravitas.tasks" object:nil];
-	
+    
+    NSNotificationCenter *wsCenter = [[NSWorkspace sharedWorkspace] notificationCenter];
+	[wsCenter addObserver:self
+                 selector:@selector(handleWillSleep:)
+                     name:NSWorkspaceWillSleepNotification
+                   object:nil];
+     [wsCenter addObserver:self
+                  selector:@selector(handleWakeFromSleep:)
+                      name:NSWorkspaceDidWakeNotification
+                    object:nil];
 	// start listening for commands
 	NSDistributedNotificationCenter *dCenter = [NSDistributedNotificationCenter defaultCenter];
 	// for the screensaver
@@ -766,4 +775,19 @@ OSStatus hotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
     [ctx setCurrentState:WPASTATE_DONE];
     [self buildStatusMenu];
 }
+
+- (void) handleWakeFromSleep: (NSNotification*) msg
+{   
+    statusTimer = [NSTimer scheduledTimerWithTimeInterval:60.0
+												   target: self 
+												 selector:@selector(clickPlay:) 
+												 userInfo:self 
+												  repeats:NO];
+}
+
+- (void) handleWillSleep: (NSNotification*) msg
+{
+    [self changeState:WPASTATE_OFF];
+}
+
 @end
