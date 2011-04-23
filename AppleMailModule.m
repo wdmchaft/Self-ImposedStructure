@@ -17,7 +17,6 @@
 #define ACCOUNT @"account"
 #define REFRESH  @"refreshInterval"
 #define DISPLAYWIN  @"displayWindow"
-#define USEDISPWIN  @"useDisplayWindow"
 #define LASTCHECK  @"lastCheck"
 #define RULECOUNT @"RuleCount"
 #define RULE @"Rule"
@@ -26,6 +25,7 @@
 #define RULE_TYPES @"RuleTypes"
 #define RULE_COMPARES @"RuleCompares"
 #define RULE_FIELDS @"RuleFields"
+#define CACHED_MAIL @"cachedMail"
 
 @implementation AppleMailModule
 
@@ -33,15 +33,13 @@
 @synthesize accountField;
 @synthesize mailMailboxName;
 @synthesize mailboxField;
-@synthesize unreadMail;
+@synthesize cachedMail;
 @synthesize alertHandler;
 @synthesize refreshIntervalField;
 @synthesize refreshIntervalStepper;
 @synthesize displayWindow;
 @synthesize displayWindowField;
 @synthesize displayWindowStepper;
-@synthesize useDisplayWindow;
-@synthesize useDisplayWindowButton;
 @synthesize lastCheck;
 @dynamic refreshInterval;
 @dynamic notificationName;
@@ -54,7 +52,17 @@
 @synthesize mailDateFmt;
 @synthesize msgName;
 @synthesize mailMonitor;
+@synthesize displayWindowFmt;
 
++ (void) initialize
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *appDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
+                                 [NSNumber numberWithInt: 72],         @"cacheIntervalHours",
+								 nil];
+	
+    [defaults registerDefaults:appDefaults];
+}
 - (void)awakeFromNib
 {
     
@@ -74,6 +82,12 @@
 		notificationTitle = @"Mail Msg";
 		category = CATEGORY_EMAIL;
 		summaryTitle = @"Apple Mail";
+		displayWindow = ((NSNumber*)[super loadDefaultForKey:DISPLAYWIN]).doubleValue;
+		displayWindow = displayWindow / (60.0 * 60.0) ;
+		if (!displayWindow){
+			NSTimeInterval cacheHours = [[NSUserDefaults standardUserDefaults] doubleForKey:@"cacheIntervalHours"];
+			displayWindow = cacheHours;
+		}
 	}
 	return self;
 }
@@ -86,7 +100,9 @@
     if (lastCheck){
         return lastCheck;
     }  
-    lastCheck =  [[NSDate date] dateByAddingTimeInterval:-(24 * 60 * 60)]; // nothing set - get the last day of msgs
+    NSUInteger cacheHours = [[NSUserDefaults standardUserDefaults] integerForKey:@"cacheIntervalHours"];
+	NSTimeInterval cacheInterval = -1.0 * cacheHours * 60.0 * 60.0;
+    lastCheck =  [[NSDate date] dateByAddingTimeInterval: cacheInterval];// nothing set - get msgs for cache interval
     return lastCheck;
 }
 
@@ -123,10 +139,10 @@
  */
 - (void) processThreads
 {
-    NSMutableArray *newUnread = [NSMutableArray arrayWithCapacity:[unreadMail count]];
-    NSMutableDictionary *threadDict = [NSMutableDictionary dictionaryWithCapacity:[unreadMail count]];
+    NSMutableArray *newUnread = [NSMutableArray arrayWithCapacity:[cachedMail count]];
+    NSMutableDictionary *threadDict = [NSMutableDictionary dictionaryWithCapacity:[cachedMail count]];
     // now run through the mail and look for threads 
-    for (NSMutableDictionary *msg in unreadMail){
+    for (NSMutableDictionary *msg in cachedMail){
         NSString *subj = [self stripRe:[msg objectForKey:MAIL_SUBJECT]];
         
         NSMutableDictionary *match = [threadDict objectForKey:subj];
@@ -135,7 +151,6 @@
             if (!thread){
                 thread = [NSMutableArray new];
                 [match setObject:thread forKey:@"THREAD"];
-                [match setObject:[NSNumber numberWithBool:NO] forKey:@"EXPANDED"];
             }
             [thread addObject:msg];
         }
@@ -145,28 +160,22 @@
         }
     }
     /** replace unreadMail with threadedUnreadMail **/
-    unreadMail = newUnread;
+    cachedMail = newUnread;
      
 }
--(void) getUnread
+
+- (NSString *) getScript
 {
-	NSDate *minTime = [NSDate distantPast];
+
+    NSDate *minTime = [self lastCheck];
     
-	if (summaryMode && useDisplayWindow){
-		minTime = [[NSDate date] dateByAddingTimeInterval:-(displayWindow * 60 * 60)];
-        // the window may be longer than the default window if we haven't checked the inbox in a while
-        minTime = [[self lastCheck] earlierDate:minTime];
-	} else if (!summaryMode){
-        minTime = [self lastCheck];
-    }
-    
-    NSLog(@"starting getUnread w/ received later than %@", minTime);    
- //   NSDate *today = [NSDate date];
+    NSLog(@"starting getNewest w/ received later than %@", minTime);    
+    //   NSDate *today = [NSDate date];
     if (mailDateFmt == nil){
         mailDateFmt = [NSDateFormatter new];
         [mailDateFmt setDateFormat:@"EEEE, MMMM dd, yyyy hh:mm:ss a"];
     }
-//    NSString *nowStr = [mailDateFmt stringFromDate:today];
+    //    NSString *nowStr = [mailDateFmt stringFromDate:today];
     NSString *thenStr = [mailDateFmt stringFromDate:minTime];
     NSBundle *myBundle = [NSBundle bundleForClass:[self class]];
     NSString *path = [myBundle resourcePath];
@@ -176,8 +185,19 @@
     script = [script stringByReplacingOccurrencesOfString:@"<actName>" withString:accountName];
     script = [script stringByReplacingOccurrencesOfString:@"<boxName>" withString:mailMailboxName];
     script = [script stringByReplacingOccurrencesOfString:@"<sDate>" withString:thenStr];
+    return script;
+}
+
+-(void) getNewest
+{
+
+    NSString *script = [self getScript];
     mailMonitor = [AppleMailMonitor appleMailShared];
     NSLog(@"script = %@",script);
+	
+	// first try at last check time -- what time is it now -- later we pull the time from the newest msg
+	lastCheck = [NSDate date];
+	[super saveDefaultValue:lastCheck forKey:LASTCHECK];
     [mailMonitor sendScript:script withCallback:[self msgName]];
 }
 
@@ -185,17 +205,20 @@
 {
 	alertHandler = handler;
     summaryMode = summary;
-    if (!unreadMail) {
-        unreadMail = [NSMutableArray new];
+    if (!newestMail) {
+        newestMail = [NSMutableArray new];
     }
-    [unreadMail removeAllObjects];
+    if (!cachedMail){
+        cachedMail = [NSMutableArray new];
+    }
+    [newestMail removeAllObjects];
     NSLog(@"msg = %@",[self msgName]);
 	[[NSNotificationCenter defaultCenter] addObserver:self 
 											 selector:@selector(fetchDone:)
 												 name:[self msgName] 
 											   object:nil];
     
-	[self getUnread];
+	[self getNewest];
 }
 
 - (void) handleMessageDescriptor:(NSAppleEventDescriptor*) descN
@@ -241,7 +264,7 @@
             } 
         }
     }
-    [unreadMail addObject:eDict];                 
+    [newestMail addObject:eDict];                 
 }
 
 - (void) handleDescriptor: (NSAppleEventDescriptor*) aDescriptor
@@ -274,6 +297,62 @@
     }
 }
 
+- (void) mergeToCache
+{
+	if (!cachedMail){
+		cachedMail = [NSMutableArray arrayWithCapacity:[newestMail count]];
+	}
+    for (NSDictionary *dict in newestMail){
+        [cachedMail addObject:[dict copy]];
+    }
+    //sort the data
+	NSMutableArray *tempCache = [NSMutableArray arrayWithCapacity:[cachedMail count]];
+	NSSortDescriptor *dateSort = [[NSSortDescriptor alloc] initWithKey:MAIL_ARRIVAL_TIME
+															 ascending:NO
+															  selector:@selector(compare:)];
+	NSArray *descArray = [[NSArray alloc] initWithObjects:dateSort,nil];
+	[cachedMail sortUsingDescriptors:descArray];
+    NSUInteger cacheHrs = [[NSUserDefaults standardUserDefaults] integerForKey:@"cacheIntervalHours"];
+	NSTimeInterval windowInterval = cacheHrs * 60.0 * 60.0 * - 1;
+    NSDate *earliest = [[NSDate dateWithTimeIntervalSinceNow:windowInterval] copy];
+    for (NSMutableDictionary *msg in cachedMail){
+        NSDate *msgRecDate = [msg objectForKey:MAIL_ARRIVAL_TIME];
+        NSComparisonResult res = [msgRecDate compare:earliest];
+        if (res == NSOrderedDescending){
+            [tempCache addObject:msg];
+        }
+    }
+	cachedMail = tempCache;
+	// get a more acurate last check date from the newest message (if one exists)
+	if ([cachedMail count] > 0){
+		NSDate *latestMsgDate = [[cachedMail objectAtIndex:0] objectForKey:MAIL_ARRIVAL_TIME];
+		lastCheck = latestMsgDate;
+		[super saveDefaultValue:lastCheck forKey:LASTCHECK];
+	}
+}
+
+- (void)  cacheFetched: (NSNotification*) note
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self name: [self msgName] object:nil];
+												 
+    NSAppleEventDescriptor *eventRes = [[[AppleMailMonitor appleMailShared] eventRes] copy];
+    NSDictionary *eventErr = [[[AppleMailMonitor appleMailShared] errorRes] copy];
+    if (eventErr){
+        NSLog(@"got Error! %@", eventErr);
+    }
+    else {
+		newestMail = [NSMutableArray new];
+		[self handleDescriptor:eventRes];
+        [self mergeToCache];
+	}
+
+    [super saveDefaultValue:cachedMail forKey:CACHED_MAIL];
+	[[AppleMailMonitor appleMailShared] sendDone];
+	NSNotification *msg = [NSNotification notificationWithName:@"com.zer0gravitas.validateDone" object:eventErr];
+	[[NSNotificationCenter defaultCenter] postNotification:msg];
+	
+}
+
 - (void) fetchDone: (NSNotification*) note
 {
     NSAppleEventDescriptor *eventRes = [[[AppleMailMonitor appleMailShared] eventRes] copy];
@@ -283,10 +362,33 @@
         NSLog(@"got Error! %@", eventErr);
     }
     else {
-        [self handleDescriptor:eventRes];
-        NSMutableArray *mailToSend = [NSMutableArray arrayWithCapacity:[unreadMail count]];
-        for (NSMutableDictionary *msg in unreadMail){
+		[self handleDescriptor:eventRes];
+		[self mergeToCache];
+		[super saveDefaultValue:cachedMail forKey:CACHED_MAIL];
+		[self processThreads];
+        NSDate *minTime = [NSDate distantPast];
+        
+        if (summaryMode){
+			NSTimeInterval window = -1.0 * displayWindow * 60.0 * 60.0;
+            minTime = [[NSDate date] dateByAddingTimeInterval:window];
+            // the window may be longer than the default window if we haven't checked the inbox in a while
+            minTime = [[self lastCheck] earlierDate:minTime];
+        } else if (!summaryMode){
+            minTime = [self lastCheck];
+        }
+        
+        NSMutableArray *mailToSend = [NSMutableArray arrayWithCapacity:[cachedMail count]];
+        for (NSMutableDictionary *msg in cachedMail){
             NSColor *ruleColor = nil;
+            
+            NSDate *msgRecDate = [msg objectForKey:MAIL_ARRIVAL_TIME];
+            NSComparisonResult compRes = [msgRecDate compare:minTime];
+			NSString *subj = [msg objectForKey:MAIL_SUBJECT];
+			NSString *time = [msg objectForKey:MAIL_ARRIVAL_TIME];
+			if (compRes == NSOrderedAscending){
+                continue;
+            }
+            
             FilterResult res = [FilterRule processFilters:rules 
                                                forMessage: msg
                                                     color: &ruleColor];
@@ -326,7 +428,6 @@
 	[super startValidation:callback];
 	accountName = [accountField stringValue];
 	mailMailboxName = [mailboxField stringValue];
-	useDisplayWindow = [useDisplayWindowButton intValue];
 	displayWindow = [displayWindowField doubleValue];
 	[[NSNotificationCenter defaultCenter] addObserver:self 
 											 selector:@selector(validateDone:)
@@ -369,9 +470,18 @@
 	else {
 		err = @"Apple Mail not running: can not validate.";
 	}
-	NSNotification *msg = [NSNotification notificationWithName:@"com.zer0gravitas.validateDone" object:err];
-	[[NSNotificationCenter defaultCenter] postNotification:msg];
-	[pool drain];
+    if (err != nil) {
+        NSNotification *msg = [NSNotification notificationWithName:@"com.zer0gravitas.validateDone" object:err];
+        [[NSNotificationCenter defaultCenter] postNotification:msg];
+		return;
+    }
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+											 selector:@selector(cacheFetched:)
+												 name:[self msgName] 
+											   object:nil]; 
+	[self setSummaryMode:YES];
+    [self getNewest];
+    [pool drain];
 }
 
 - (void) validateDone: (NSNotification*) note
@@ -409,7 +519,6 @@
 	[super saveDefaultValue:accountName forKey:ACCOUNT];
 	[super saveDefaultValue:[NSNumber numberWithDouble:refreshInterval *60] forKey:REFRESH];
 	[super saveDefaultValue:[NSNumber numberWithDouble:displayWindow*60*60] forKey:DISPLAYWIN ];
-	[super saveDefaultValue:[NSNumber numberWithBool:useDisplayWindow] forKey:USEDISPWIN ];
 	[[NSUserDefaults standardUserDefaults] synchronize];
     [self saveRules];
 }
@@ -438,9 +547,9 @@
 	[refreshIntervalStepper setDoubleValue:refreshInterval];
 	[displayWindowField setDoubleValue:displayWindow];
 	[displayWindowStepper setDoubleValue:displayWindow];
-	[useDisplayWindowButton setIntValue:useDisplayWindow];
-	[displayWindowField setEnabled:useDisplayWindow];
-	[displayWindowStepper setEnabled:useDisplayWindow];
+    NSUInteger cacheHours = [[NSUserDefaults standardUserDefaults] integerForKey:@"cacheIntervalHours"];
+    [displayWindowStepper setMaxValue:cacheHours];
+    [displayWindowFmt setMaximum:[NSNumber numberWithInt:cacheHours]];
     NSTableColumn *col = [rulesTable.tableColumns objectAtIndex:0];
     ColorWellCell *cw = [ColorWellCell new];
     [cw setAction: @selector(colorEdit:)];
@@ -455,13 +564,6 @@
     [vtc setWidth:159.0];
     [rulesTable removeTableColumn:orig];
     [rulesTable addTableColumn:vtc];
-}
-
-- (IBAction) clickUseDisplayWindow: (id) sender
-{
-	useDisplayWindow = useDisplayWindowButton.intValue;
-	[displayWindowField setEnabled:useDisplayWindow];
-	[displayWindowStepper setEnabled:useDisplayWindow];	
 }
 
 - (void) loadRules
@@ -485,7 +587,21 @@
 	mailMailboxName = [super loadDefaultForKey:MAILBOX];
 	refreshInterval = ((NSNumber*)[super loadDefaultForKey:REFRESH]).doubleValue/60;
 	displayWindow = ((NSNumber*)[super loadDefaultForKey:DISPLAYWIN]).doubleValue/ (60 * 60);
-	useDisplayWindow = ((NSNumber*)[super loadDefaultForKey:USEDISPWIN	]).intValue;
+    if (!displayWindow){
+        NSTimeInterval cacheHours = [[NSUserDefaults standardUserDefaults] doubleForKey:@"cacheIntervalHours"];
+       displayWindow = cacheHours;
+    }
+	NSArray *temp = [super loadDefaultForKey:CACHED_MAIL];
+	cachedMail = [[NSMutableArray alloc]initWithCapacity:[temp count]];
+	for (NSDictionary *msg in temp){
+		NSMutableDictionary *msgM = [[NSMutableDictionary alloc]initWithDictionary:msg copyItems:YES];
+		id thread = [msgM objectForKey:@"THREAD"];
+		if (thread != nil){
+			NSAssert([msgM isKindOfClass:[NSMutableDictionary class]], @"oops!" );
+			NSLog(@"here");
+		}
+		[cachedMail addObject:msgM];
+	}
     [self loadRules];
 }
 
@@ -495,7 +611,6 @@
 	[super clearDefaultValue:mailMailboxName forKey:MAILBOX];
 	[super clearDefaultValue:nil forKey:DISPLAYWIN];
 	[super clearDefaultValue:nil forKey:REFRESH ];
-	[super clearDefaultValue:nil forKey:USEDISPWIN];
 	[super clearDefaultValue:nil forKey:LASTCHECK];
 	[super clearDefaultValue:nil forKey:RULE_PREDS];
 	[super clearDefaultValue:nil forKey:RULE_COLORS];
@@ -509,6 +624,7 @@
 {
 	NSDictionary *dict = (NSDictionary*) param;
 	NSString *msgId = [dict objectForKey:@"id"];
+	NSLog(@"msgId = %@", msgId);
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
 	//	NSLog(@"will get all email later than %@", minTime);

@@ -138,11 +138,11 @@ static Context* sharedContext = nil;
 
 - (void) loadBundles
 {
-	NSBundle *me = [NSBundle mainBundle];
-	NSString *bId = [me bundleIdentifier];
-	NSArray *ids = [bId componentsSeparatedByString:@"."];
-	NSString *appName = [ids objectAtIndex:[ids count] - 1];
-	NSLog(@"%@", appName);
+	//NSBundle *me = [NSBundle mainBundle];
+	//NSString *bId = [me bundleIdentifier];
+	//NSArray *ids = [bId componentsSeparatedByString:@"."];
+	NSString *appName =  __APPNAME__;
+	NSLog(@"%@", appName); 
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
 	bundlesMap = [[NSMutableDictionary alloc]initWithCapacity:6];
 	NSFileManager *dfm = [NSFileManager defaultManager];

@@ -15,7 +15,7 @@
 @interface AppleMailModule : BaseReporter {
 	NSString *accountName;
 	NSString *mailMailboxName;
-	NSMutableArray *unreadMail;
+	NSMutableArray *cachedMail;
 	id<AlertHandler> alertHandler;
 	NSTextField *accountField;
 	NSTextField *mailboxField;
@@ -23,8 +23,6 @@
 	NSStepper *refreshIntervalStepper;
 	NSTextField *displayWindowField;
 	NSStepper *displayWindowStepper;
-	NSButton *useDisplayWindowButton;
-	BOOL useDisplayWindow;
 	NSTimeInterval displayWindow;
 	NSDate *lastCheck;
     NSMutableArray *rules;
@@ -36,10 +34,12 @@
     NSDateFormatter *mailDateFmt;
     AppleMailMonitor *mailMonitor;
     NSString* msgName;
+    NSMutableArray *newestMail;
+    NSNumberFormatter* displayWindowFmt;
 }
 @property (nonatomic,retain) NSString *accountName;
 @property (nonatomic,retain) NSString *mailMailboxName;
-@property (nonatomic,retain) NSMutableArray *unreadMail;
+@property (nonatomic,retain) NSMutableArray *cachedMail;
 @property (nonatomic,retain) id<AlertHandler> alertHandler;
 @property (nonatomic,retain) IBOutlet NSTextField *accountField;
 @property (nonatomic,retain) IBOutlet NSTextField *mailboxField;
@@ -47,13 +47,12 @@
 @property (nonatomic,retain) IBOutlet NSTextField *displayWindowField;
 @property (nonatomic,retain) IBOutlet NSStepper *refreshIntervalStepper;
 @property (nonatomic,retain) IBOutlet NSStepper *displayWindowStepper;
-@property (nonatomic,retain) IBOutlet NSButton *useDisplayWindowButton;
 @property (nonatomic)  NSTimeInterval displayWindow;
-@property (nonatomic)  BOOL useDisplayWindow;
 @property (nonatomic,retain) NSDate *lastCheck;
 @property (nonatomic, retain) IBOutlet NSTableView* rulesTable;
 @property (nonatomic, retain) IBOutlet NSButton* addRuleButton;
 @property (nonatomic, retain) IBOutlet NSButton* removeRuleButton;
+@property (nonatomic, retain) IBOutlet NSNumberFormatter* displayWindowFmt;
 @property (nonatomic, retain) RulesTableData *rulesData;
 @property (nonatomic, retain) NSDateFormatter *mailDateFmt;
 @property (nonatomic, retain) AppleMailMonitor *mailMonitor;
@@ -62,7 +61,14 @@
 
 - (void) getUnread;
 - (void) fetchDone: (NSNotification*) msg;
-- (IBAction) clickUseDisplayWindow: (id) sender;
 - (void) validateDone: (NSNotification*) note;
 - (void) doValidate: (NSObject*) params;
+
+- (IBAction) clickAddRule: (id) sender;
+- (IBAction) clickRemoveRule: (id) sender;
+- (IBAction) typeChanged: (id) sender;
+- (IBAction) fieldChanged: (id) sender;
+- (IBAction) compareChanged: (id) sender;
+-(IBAction) predicateChanged: (id) sender;
+
 @end

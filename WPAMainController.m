@@ -69,6 +69,7 @@
 								 [NSNumber numberWithInt:WPASTATE_FREE], @"previousState",
 								 [NSDate distantPast],				@"lastStateChange",
 								 @"Beep",							@"alertName",
+                                 [NSNumber numberWithInt: 30],         @"wakeDelayInteval",
 								 nil];
 	
     [defaults registerDefaults:appDefaults];
@@ -778,11 +779,12 @@ OSStatus hotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 
 - (void) handleWakeFromSleep: (NSNotification*) msg
 {   
-    statusTimer = [NSTimer scheduledTimerWithTimeInterval:60.0
-												   target: self 
-												 selector:@selector(clickPlay:) 
-												 userInfo:self 
-												  repeats:NO];
+    // wait a minute to let the dust settle then start up
+    [NSTimer scheduledTimerWithTimeInterval:[[NSUserDefaults standardUserDefaults] doubleForKey:@"wakeDelayInterval"]
+                                     target: self 
+                                   selector:@selector(clickPlay:) 
+                                   userInfo:self 
+                                    repeats:NO];
 }
 
 - (void) handleWillSleep: (NSNotification*) msg

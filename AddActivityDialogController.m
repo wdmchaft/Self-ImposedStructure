@@ -88,44 +88,6 @@
 
 }
 
-//- (NSString *)comboBox:(NSComboBox *)aComboBox completedString:(NSString *)uncompletedString
-//{
-//	int index = [uncompletedString length]-1;
-//	for (AAMenuObj *amo in allActivities){
-//		NSDictionary *dict = amo.dict;
-//		NSString *name = [dict objectForKey:@"name"];
-//		if ([[name substringToIndex:index] isEqualToString:uncompletedString] ){
-//			return name;
-//		}
-//	}
-//	return nil;
-//}
-//
-//- (NSInteger)numberOfItemsInComboBox:(NSComboBox *)aComboBox
-//{
-//	return [allActivities count];
-//}
-//
-////- (NSUInteger)comboBox:(NSComboBox *)aComboBox indexOfItemWithStringValue:(NSString *)aString
-//
-//- (NSUInteger) comboBox: (NSComboBox *) acb indexOfItemWithStringValue: (NSString*) aString
-//{
-//	NSUInteger ret = 0;
-//	for (AAMenuObj *amo in allActivities){
-//		NSString *name = [amo.dict objectForKey:@"name"];
-//		if ([name isEqualToString:aString] ){
-//			return ret;
-//		}
-//		ret++;
-//	}
-//	return NSNotFound;
-//}
-//
-////- (id)comboBox:(NSComboBox *)aComboBox objectValueForItemAtIndex:(NSInteger)index
-//- (id) comboBox: (NSComboBox *) aComboBox objectValueForItemAtIndex: (NSInteger) index
-//{
-//	AAMenuObj *amo = [allActivities objectAtIndex:index];
-//
-//	return amo.dict;
+
 //}
 @end

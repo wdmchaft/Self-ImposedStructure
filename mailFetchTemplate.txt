@@ -31,7 +31,7 @@ end if
 
 set senderName to extract name from sender of msg
 set email to extract address from sender of msg
-set idStr to id of msg
+set idStr to message id of msg
 set rStat to read status of msg
 set myRecord to {rDate:rcvDate, sDate:sndDate, subj:subjTxt, cont:extTxt, unique:idStr, sendr:senderName, mailr:email, stat:rStat}
 copy myRecord to end of retList

@@ -15,7 +15,7 @@
 #import "State.h"
 #import "WriteHandler.h"
 
-
+#define APPNAMESTR __APPNAME__
 @implementation WPADelegate
 @synthesize window;
 @synthesize prefsWindow;
@@ -67,7 +67,7 @@
 	if ([[NSUserDefaults standardUserDefaults]boolForKey:@"startOnLoad"]){
 		[wpam clickStart:self];
 	}
-	[window setTitle:__APPNAME__];
+	[window setTitle: APPNAMESTR];
 	ioHandler = [WriteHandler new];
 	
 	ioThread = [[NSThread alloc] initWithTarget:ioHandler selector:@selector(ioLoop:) object:nil];
@@ -95,7 +95,7 @@
  */
 
 - (NSString *)applicationSupportDirectory {
-	
+	 
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
     NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : NSTemporaryDirectory();
     return [basePath stringByAppendingPathComponent:__APPNAME__];
@@ -203,10 +203,11 @@
 
 - (void) removeStore: (id) sender
 {
+    NSString *appName = __APPNAME__;
 	NSAlert *alert = [NSAlert alertWithMessageText:@"Warning" 
 									 defaultButton:@"No" alternateButton:@"Yes" 
 									   otherButton:nil 
-						 informativeTextWithFormat:@"To delete this data %@ must quit. Click yes to quit and delete the data",__APPNAME__];
+						 informativeTextWithFormat:@"To delete this data %@ must quit. Click yes to quit and delete the data",appName];
 	[alert runModal];   
 	NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *applicationSupportDirectory = [self applicationSupportDirectory];

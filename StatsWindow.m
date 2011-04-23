@@ -41,7 +41,7 @@
 @synthesize workData;
 
 - (void) clickClear: (id) sender
-{
+{ 
 	NSAlert *alert = [NSAlert alertWithMessageText:@"Warning" 
 									 defaultButton:@"No" alternateButton:@"Yes" 
 									   otherButton:nil 

@@ -2180,7 +2180,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -d ${HOME}/Library/Application\\ Support/${PRODUCT_NAME} ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME} exists'\nelse \n\tmkdir ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}\nfi\n\nif [ -d ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins exists'\nelse\n\tmkdir ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins\nfi\n\ncp -r ${TARGET_BUILD_DIR}/*.bundle ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins";
+			shellScript = "if [ -d \"${HOME}/Library/Application Support/${PRODUCT_NAME}\" ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME} exists'\nelse \n\tmkdir \"${HOME}/Library/Application Support/${PRODUCT_NAME}\"\nfi\n\nif [ -d \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\" ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins exists'\nelse\n\tmkdir \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"\nfi\n\ncp -r ${TARGET_BUILD_DIR}/*.bundle \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"";
 		};
 		8C73EE8312E454F50056FAFF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2206,7 +2206,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -d ${HOME}/Library/Application\\ Support/${PRODUCT_NAME} ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME} exists'\nelse \n\tmkdir ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}\nfi\n\nif [ -d ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins exists'\nelse\n\tmkdir ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins\nfi\n\ncp -r ${TARGET_BUILD_DIR}/*.bundle ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins";
+			shellScript = "if [ -d \"${HOME}/Library/Application Support/${PRODUCT_NAME}\" ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME} exists'\nelse \n\tmkdir \"${HOME}/Library/Application Support/${PRODUCT_NAME}\"\nfi\n\nif [ -d \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\" ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins exists'\nelse\n\tmkdir \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"\nfi\n\ncp -r ${TARGET_BUILD_DIR}/*.bundle \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2675,7 +2675,9 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				GCC_PREPROCESSOR_DEFINITIONS = "__APPNAME__=@\\\"WPADev\\\"";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"__APPNAME__=@\\\"Dev\\ Struct\\\"",
+				);
 				INFOPLIST_FILE = "WPADev-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (
@@ -2705,7 +2707,9 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				GCC_PREPROCESSOR_DEFINITIONS = "__APPNAME__=@\\\"WPADev\\\"";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"__APPNAME__=@\\\"Dev\\ Struct\\\"",
+				);
 				INFOPLIST_FILE = "WPADev-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (
@@ -3514,7 +3518,9 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = WorkPlayAway_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = "__APPNAME__=@\\\"WorkPlayAway\\\"";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"__APPNAME__=@\\\"Self-Imposed\\ Structure\\\"",
+				);
 				INFOPLIST_FILE = "WorkPlayAway-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = "Self-Imposed Structure";
@@ -3536,7 +3542,9 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = WorkPlayAway_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = "__APPNAME__=@\\\"WorkPlayAway\\\"";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"__APPNAME__=@\\\"Self-Imposed\\ Structure\\\"",
+				);
 				INFOPLIST_FILE = "WorkPlayAway-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = "Self-Imposed Structure";

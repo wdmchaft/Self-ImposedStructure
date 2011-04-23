@@ -67,8 +67,11 @@
 - (void) changeState: (WPAStateType) state;
 - (void) tasksChanged: (NSNotification*) notification;
 
+- (void) handleWakeFromSleep:(NSNotification*) notification;
+- (void) handleWillSleep:(NSNotification*) notification;
 - (void) handleScreenSaverStart:(NSNotification*) notification;
 - (void) handleScreenSaverStop:(NSNotification*) notification;
+
 - (void) enableUI: (BOOL) onOff;
 - (void) buildStatusMenu;
 - (void) enableStatusMenu: (BOOL) onOff;
