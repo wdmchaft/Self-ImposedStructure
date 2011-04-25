@@ -23,6 +23,8 @@
 
 @synthesize view;
 @synthesize hudList;
+@synthesize sizedCount;
+@synthesize framePos;
 
 + (void) initialize
 {
@@ -38,6 +40,15 @@
     [defaults registerDefaults:appDefaults];
 }
 
+- (id) initWithWindow:(NSWindow *)window
+{
+	self = [super initWithWindow:window];
+	if (self){
+		framePos = [window stringWithSavedFrame];
+	}
+	return self;
+}
+
 - (void) showWindow:(id)sender
 {
 	[super showWindow:sender];
@@ -46,9 +57,17 @@
 	[fmttr setTimeStyle:NSDateFormatterShortStyle];
 	[super.window setTitle:[fmttr stringForObjectValue:[NSDate date]]];
 	mainControl = sender; 
+	NSString *pos = [[NSUserDefaults standardUserDefaults] objectForKey: @"posHUD"];
+	NSLog(@"loading framePos: %@", pos);
+
+	[[super window] setFrameFromString:pos];
 	[super.window makeKeyAndOrderFront:nil];
-	[super.window center];
+	NSRect currRect = [[super window] frame];
+	CGFloat hgtTemp = [self calcHeight];
+	currRect.size.height = hgtTemp;	
+	[[super window] setContentSize: currRect.size];
 	[self buildDisplay];
+	[self setSizedCount:0];
 }
 
 - (void) windowDidLoad
@@ -57,8 +76,7 @@
 	
 }
 
-#define LINE_HGT 20
-#define PADDING 20
+
 /*** 
  the display is just a stack of nsboxes containing tables.  each table has a maximum size, but if there are fewer 
  rows it could be smaller. and if the table is empty then it will not display nor will its surrounding box.
@@ -134,8 +152,6 @@
             [progView setFrame:busyFrame];
             [progView sizeToFit];
                 
-   //         [boxView setFrame:boxFrame];
-
             NSRect contentFrame = boxFrame;
             contentFrame.size.height = [svc actualHeight];
             [boxView setFrameFromContentFrame:contentFrame];
@@ -149,17 +165,34 @@
 	currRect.size.height = totalHeight;	
 	[[super window] setContentSize: currRect.size];
 //	currRect.size.height += 15; // for titlebar height	
-	[[super window] setFrame: currRect display:YES];
-    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-    CGFloat oX = [ud doubleForKey:@"hudCenterX"] - (currRect.size.width / 2);
-    CGFloat oY = [ud doubleForKey:@"hudCenterY"] - (currRect.size.height / 2);
-    [[super window] setFrameOrigin:NSMakePoint(oX, oY)];
+	[[super window] setFrame: currRect display:NO];
 }
 
+#define LINE_HGT 14
+- (CGFloat) calcHeight{
+	NSArray *settings = [[Context sharedContext].hudSettings allEnabled];
+	CGFloat totalHeight = LINE_HGT;
+	for (int i = [settings count] - 1;i >= 0;i--){
+		HUDSetting *setting = [settings objectAtIndex:i];
+		totalHeight += ([setting height] + 2) * (LINE_HGT);
+	}
+    totalHeight += LINE_HGT;
+	return totalHeight;
+}
 
 - (void) viewSized
 {
-    [self buildDisplay];
+	sizedCount++;
+	if (sizedCount == [controls count]){
+		[self buildDisplay];
+	}
+}
+
+- (void)windowDidMove:(NSNotification *)aNotification
+{
+	framePos = [[self window] stringWithSavedFrame];
+	NSLog(@"setting framePos: %@", framePos);
+	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (SummaryViewController*) getViewForInstance: (id<Reporter>) inst width: (CGFloat) vWidth rows: (int) nRows

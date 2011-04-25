@@ -520,15 +520,14 @@
 
 - (void) summaryClosed:(NSNotification*) notification{
 	NSLog(@"summaryClosed");
-    NSRect hudFrame = [hudWindow frame];
-    CGFloat newX = hudFrame.origin.x + (hudFrame.size.width / 2);
-    CGFloat newY = hudFrame.origin.y + (hudFrame.size.height / 2);
-    [[NSUserDefaults standardUserDefaults] setDouble:newX forKey:@"hudCenterX"];
-    [[NSUserDefaults standardUserDefaults] setDouble:newY forKey:@"hudCenterY"];
-    
+
+    NSWindow *win = [notification object];
 	[[NSNotificationCenter defaultCenter] removeObserver:self  
 												 name:NSWindowWillCloseNotification 
 											   object:nil];
+	NSLog(@"save hud string: %@", [win stringWithSavedFrame]);
+	NSString *pos = [win stringWithSavedFrame];
+	[[NSUserDefaults standardUserDefaults] setObject:pos forKey: @"posHUD"];
 	
 	// after a summary is displayed then turn off the refresh cycle
 	if (refreshManager == nil) {

@@ -17,7 +17,7 @@
 #import "SummaryViewController.h"
 #import "SummaryHUDCallback.h"
 
-@interface SummaryHUDControl :  NSWindowController <SummaryHUDCallback> {
+@interface SummaryHUDControl :  NSWindowController <SummaryHUDCallback, NSWindowDelegate> {
 	NSArray *views;
 	NSArray *controls;
 	NSArray *boxes;
@@ -28,6 +28,8 @@
  
     NSArray *hudList;
     CGFloat lineHeight;
+	NSUInteger sizedCount;
+	NSString *framePos;
 }
 @property (nonatomic,retain) NSArray *hudList;
 @property (nonatomic, retain)  NSArray *views;
@@ -37,12 +39,14 @@
 @property (nonatomic, retain) IBOutlet NSView *view;
 
 @property (nonatomic, retain) WPAMainController *mainControl;
+@property (nonatomic, retain) NSString *framePos; // hack since auto frame save is buggy for mysterious reasons
 @property (nonatomic) CGFloat lineHeight;
+@property (nonatomic) NSUInteger sizedCount;
 
 
 - (SummaryViewController*) getViewForInstance: (id<Reporter>) inst width: (CGFloat) vWidth rows: (int) nRows;
 
 - (void) buildDisplay;
 
-
+- (CGFloat) calcHeight;
 @end

@@ -67,6 +67,7 @@
  */
 - (void) taskRefreshDone
 {
+	[super saveDefaultValue:tasksList forKey:TASKLIST];
 	NSNotification *notice = [NSNotification notificationWithName:@"com.zer0gravitas.tasks" object:self];
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	[nc postNotification:notice];
@@ -182,6 +183,7 @@
 
 - (void) refreshDone
 {
+	[super saveDefaultValue:tasksList forKey:TASKLIST];
 	[self taskRefreshDone];
 	[self processAlertsWithAlarms:YES];
 }
