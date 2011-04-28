@@ -1,6 +1,6 @@
 //
 //  PreferencesWindow.h
-//  Nudge
+//  Self-Imposed Structure
 //
 //  Created by Charles on 1/1/11.
 //  Copyright 2011 zer0gravitas.com. All rights reserved.

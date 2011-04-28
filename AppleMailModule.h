@@ -24,7 +24,6 @@
 	NSTextField *displayWindowField;
 	NSStepper *displayWindowStepper;
 	NSTimeInterval displayWindow;
-	NSDate *lastCheck;
     NSMutableArray *rules;
 	NSTableView *rulesTable;
 	NSButton *addRuleButton;
@@ -36,6 +35,8 @@
     NSString* msgName;
     NSMutableArray *newestMail;
     NSNumberFormatter* displayWindowFmt;
+	NSMutableDictionary *threadCache;
+	NSDate *lastRefresh;
 }
 @property (nonatomic,retain) NSString *accountName;
 @property (nonatomic,retain) NSString *mailMailboxName;
@@ -48,7 +49,6 @@
 @property (nonatomic,retain) IBOutlet NSStepper *refreshIntervalStepper;
 @property (nonatomic,retain) IBOutlet NSStepper *displayWindowStepper;
 @property (nonatomic)  NSTimeInterval displayWindow;
-@property (nonatomic,retain) NSDate *lastCheck;
 @property (nonatomic, retain) IBOutlet NSTableView* rulesTable;
 @property (nonatomic, retain) IBOutlet NSButton* addRuleButton;
 @property (nonatomic, retain) IBOutlet NSButton* removeRuleButton;
@@ -57,7 +57,9 @@
 @property (nonatomic, retain) NSDateFormatter *mailDateFmt;
 @property (nonatomic, retain) AppleMailMonitor *mailMonitor;
 @property (nonatomic, retain) NSString *msgName;
+@property (nonatomic, retain) NSMutableDictionary *threadCache;
 @property (nonatomic) BOOL summaryMode;
+@property (nonatomic, retain) NSDate *lastRefresh;
 
 - (void) getUnread;
 - (void) fetchDone: (NSNotification*) msg;

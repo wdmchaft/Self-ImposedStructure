@@ -78,6 +78,12 @@
 	return [[NSUserDefaults standardUserDefaults] boolForKey:myKey];
 }
 
+- (double) loadDoubleDefaultForKey: (NSString*) key
+{
+	NSString *myKey = [self myKeyForKey:key];
+	return [[NSUserDefaults standardUserDefaults] doubleForKey:myKey];
+}
+
 + (void) sendErrorToHandler:(id<AlertHandler>) handler error:(NSString*) err module:(NSString*) modName
 {
 	WPAAlert *alert = [[WPAAlert alloc]init];

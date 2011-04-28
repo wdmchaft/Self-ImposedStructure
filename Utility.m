@@ -1,6 +1,6 @@
 //
 //  Utility.m
-//  Nudge
+//  Self-Imposed Structure
 //
 //  Created by Charles on 11/22/10.
 //  Copyright 2010 zer0gravitas.com. All rights reserved.
@@ -112,6 +112,47 @@
 		ret = [NSString stringWithFormat:@"%@", [timeDate stringFromDate:date]];
 	}
 	else{
+		NSDateFormatter *timeDate = [NSDateFormatter new];
+		[timeDate setDateFormat: @"M/dd'-'hh:mm"];
+		ret = [timeDate stringFromDate:date];
+	}
+	return ret;
+}
+
++(NSString*) dueTimeStrFor:(NSDate*) date
+{
+	if (date == nil){
+		NSLog(@"nil date!");
+		return @"";
+	}
+	NSString *ret = nil;
+	NSDateFormatter *compDate = [NSDateFormatter new];;
+	[compDate  setDateFormat:@"yyyyMMdd" ];
+	NSString *todayStr = [compDate stringFromDate:[NSDate date]];
+	NSString *eDateStr = [compDate stringFromDate:date];
+	if ([todayStr isEqualToString:eDateStr]){
+		NSDateFormatter *timeDate = [NSDateFormatter new];
+		[timeDate setDateFormat: @"hh:mm"];
+		return [NSString stringWithFormat:@"%@", [timeDate stringFromDate:date]];
+	}
+	NSCalendar *cal = [NSCalendar currentCalendar];
+	NSUInteger calFlags = NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+	
+	// events that fall exactly @ midnight are just "day" events - today, tommorow... the future date
+	NSDateComponents *comps = [cal components:calFlags fromDate:date];
+	if (comps.hour == 0 && comps.minute == 0 && comps.second == 0) {
+		NSTimeInterval fromNow = [date timeIntervalSinceNow];
+		if (fromNow < 24 * 60 * 60) {
+			return @"Today";
+		} else if (fromNow < 48 * 60 * 60) {
+			return @"Tommorrow";
+		} else {
+			NSDateFormatter *timeDate = [NSDateFormatter new];
+			[timeDate setDateFormat: @"M/dd"];
+			return [timeDate stringFromDate:date];
+		}
+	}
+	else {
 		NSDateFormatter *timeDate = [NSDateFormatter new];
 		[timeDate setDateFormat: @"M/dd'-'hh:mm"];
 		ret = [timeDate stringFromDate:date];

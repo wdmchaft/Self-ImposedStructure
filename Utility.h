@@ -1,6 +1,6 @@
 //
 //  Utility.h
-//  Nudge
+//  Self-Imposed Structure
 //
 //  Created by Charles on 11/22/10.
 //  Copyright 2010 zer0gravitas.com. All rights reserved.
@@ -20,6 +20,7 @@
 
 +(NSString*) timeStrFor:(NSDate*) date;
 +(NSString*) shortTimeStrFor:(NSDate*) date;
++(NSString*) dueTimeStrFor:(NSDate*) date;
 +(NSString*) MdStrFor:(NSDate*) date;
 +(NSString*) dStrFor:(NSDate*) date;
 

@@ -1,6 +1,6 @@
 //
 //  RTMModule.h
-//  Nudge
+//  Self-Imposed Structure
 //
 //  Created by Charles on 11/18/10.
 //  Copyright 2010 zer0gravitas.com. All rights reserved.
@@ -39,6 +39,8 @@
 	NSString *lastError;
     BOOL isWorkRelated;
     NSButton *isWorkButton;
+	NSTimeInterval lookAheadWindow;
+	NSTextField *lookAheadText;
 }
 
 @property (nonatomic, retain) NSString *tokenStr;
@@ -53,6 +55,7 @@
 @property (nonatomic, retain) NSMutableArray *tasksList;
 @property (nonatomic, retain) IBOutlet NSTextField *userText;
 @property (nonatomic, retain) IBOutlet NSTextField *refreshText;
+@property (nonatomic, retain) IBOutlet NSTextField *lookAheadText;
 @property (nonatomic, retain) IBOutlet NSSecureTextField *passwordText;
 @property (nonatomic, retain) IBOutlet NSStepper *refreshStepper;
 @property (nonatomic, retain) IBOutlet NSPopUpButton *listsCombo;
@@ -67,6 +70,7 @@
 @property (nonatomic, retain) NSButton *isWorkButton;
 @property(nonatomic) BOOL firstClick;
 @property (nonatomic) BOOL isWorkRelated;
+@property (nonatomic) NSTimeInterval lookAheadWindow;
 
 - (IBAction) clickRefreshStepper: (id) sender;
 - (IBAction) clickAuthButton: (id) sender;

@@ -33,6 +33,6 @@
 - (void) sendScript: (NSString*) script withCallback: (NSString*) callback;
 - (void) sendDone;
 - (void) startLoop;
-
+- (void) reset;
 @end
 

@@ -17,7 +17,6 @@
 #define ACCOUNT @"account"
 #define REFRESH  @"refreshInterval"
 #define DISPLAYWIN  @"displayWindow"
-#define LASTCHECK  @"lastCheck"
 #define RULECOUNT @"RuleCount"
 #define RULE @"Rule"
 #define RULE_COLORS @"RuleColors"
@@ -40,7 +39,7 @@
 @synthesize displayWindow;
 @synthesize displayWindowField;
 @synthesize displayWindowStepper;
-@synthesize lastCheck;
+@synthesize threadCache;
 @dynamic refreshInterval;
 @dynamic notificationName;
 @dynamic notificationTitle;
@@ -53,6 +52,7 @@
 @synthesize msgName;
 @synthesize mailMonitor;
 @synthesize displayWindowFmt;
+@synthesize lastRefresh;
 
 + (void) initialize
 {
@@ -63,6 +63,7 @@
 	
     [defaults registerDefaults:appDefaults];
 }
+
 - (void)awakeFromNib
 {
     
@@ -93,17 +94,19 @@
 }
 
 - (NSDate*) lastCheck{
-    if (lastCheck){
-        return lastCheck;
-    }
-    lastCheck = [[NSUserDefaults standardUserDefaults] objectForKey:[super myKeyForKey:LASTCHECK]];
-    if (lastCheck){
-        return lastCheck;
-    }  
+	NSDate *latestMsgDate = nil;
+	if ([cachedMail count] > 0){
+		latestMsgDate = [[cachedMail objectAtIndex:0] objectForKey:MAIL_ARRIVAL_TIME];
+		NSLog(@"last message subj = %@", [[cachedMail objectAtIndex:0] objectForKey: MAIL_SUBJECT]);
+		NSLog(@"last message arrived = %@", [[cachedMail objectAtIndex:0] objectForKey: MAIL_ARRIVAL_TIME]);
+		latestMsgDate = [latestMsgDate dateByAddingTimeInterval:1.0]; // add one second
+		return latestMsgDate;
+	}
+  
     NSUInteger cacheHours = [[NSUserDefaults standardUserDefaults] integerForKey:@"cacheIntervalHours"];
 	NSTimeInterval cacheInterval = -1.0 * cacheHours * 60.0 * 60.0;
-    lastCheck =  [[NSDate date] dateByAddingTimeInterval: cacheInterval];// nothing set - get msgs for cache interval
-    return lastCheck;
+    latestMsgDate =  [[NSDate date] dateByAddingTimeInterval: cacheInterval];// nothing set - get msgs for cache interval
+    return latestMsgDate;
 }
 
 - (NSString*) stripWhite: (NSString*) inStr
@@ -118,7 +121,7 @@
 - (NSString*) stripRe: (NSString*) inStr
 {
     NSString *test = [self stripWhite:[inStr uppercaseString]];
-    while ([test hasPrefix:@"RE:"]){
+    while ([test hasPrefix:@"RE:"] || [test hasPrefix:@"FW:"]){
         test = [test substringFromIndex:3];
         test = [self stripWhite:test];
     }
@@ -134,35 +137,6 @@
     return msgName;
 }
 
-/**
- * make threads for messages with equivalent subject headers
- */
-- (void) processThreads
-{
-    NSMutableArray *newUnread = [NSMutableArray arrayWithCapacity:[cachedMail count]];
-    NSMutableDictionary *threadDict = [NSMutableDictionary dictionaryWithCapacity:[cachedMail count]];
-    // now run through the mail and look for threads 
-    for (NSMutableDictionary *msg in cachedMail){
-        NSString *subj = [self stripRe:[msg objectForKey:MAIL_SUBJECT]];
-        
-        NSMutableDictionary *match = [threadDict objectForKey:subj];
-        if (match){
-            NSMutableArray *thread = [match objectForKey:@"THREAD"];
-            if (!thread){
-                thread = [NSMutableArray new];
-                [match setObject:thread forKey:@"THREAD"];
-            }
-            [thread addObject:msg];
-        }
-        else {
-            [threadDict setObject:msg forKey:subj];
-            [newUnread addObject:msg];
-        }
-    }
-    /** replace unreadMail with threadedUnreadMail **/
-    cachedMail = newUnread;
-     
-}
 
 - (NSString *) getScript
 {
@@ -190,19 +164,21 @@
 
 -(void) getNewest
 {
-
+	lastRefresh = [NSDate date];
     NSString *script = [self getScript];
     mailMonitor = [AppleMailMonitor appleMailShared];
+	if (summaryMode){
+		[mailMonitor reset];
+	}
     NSLog(@"script = %@",script);
 	
 	// first try at last check time -- what time is it now -- later we pull the time from the newest msg
-	lastCheck = [NSDate date];
-	[super saveDefaultValue:lastCheck forKey:LASTCHECK];
     [mailMonitor sendScript:script withCallback:[self msgName]];
 }
 
 -(void) refresh: (id<AlertHandler>) handler isSummary: (BOOL) summary
 {
+
 	alertHandler = handler;
     summaryMode = summary;
     if (!newestMail) {
@@ -213,6 +189,10 @@
     }
     [newestMail removeAllObjects];
     NSLog(@"msg = %@",[self msgName]);
+//	if (lastRefresh && ([lastRefresh timeIntervalSinceNow] > -120.0)) {
+//		// just return the cache
+//		[self fetchDone:nil];
+//	}
 	[[NSNotificationCenter defaultCenter] addObserver:self 
 											 selector:@selector(fetchDone:)
 												 name:[self msgName] 
@@ -270,25 +250,35 @@
 - (void) handleDescriptor: (NSAppleEventDescriptor*) aDescriptor
 {
     char *c = nil;
-    DescType type = [aDescriptor descriptorType];
+    
+	DescType type = [aDescriptor descriptorType];
+	OSType osType = [aDescriptor enumCodeValue];
+	AEEventClass evClass = [aDescriptor eventClass];
+	c = (char*)&type;
+	NSLog(@"code = %d class = %d event descriptor: %c%c%c%c (%@)", osType, evClass, c[3],c[2],c[1],c[0], [aDescriptor description]);
+	
+	if (osType == 0){
+        NSLog(@"Script return enumCodeValue indicates error");
+		return;
+	}
     if (type == typeAERecord) {
         [self handleMessageDescriptor:aDescriptor];
     }
     else if (type == typeAEList) {
-        NSAssert(type == typeAEList, @"not a list!");
         for(unsigned int i = 1; i <= [aDescriptor numberOfItems]; i++){
             NSAppleEventDescriptor *descN = [aDescriptor descriptorAtIndex:i];
             DescType typeN = [descN descriptorType];
-            NSAssert(typeN == typeAERecord, @"not a record");
-            c = (char*)&type;
-            NSLog(@"descN[%d] = %c%c%c%c (%@)",i, c[3],c[2],c[1],c[0], [descN description]);
-            for(unsigned int j = 1; j <= [descN numberOfItems]; j++){
-                AEKeyword kw = [descN keywordForDescriptorAtIndex:j];
-                NSAppleEventDescriptor *fdesc0 = [descN descriptorForKeyword:kw];
-                //  DescType fldDesc = [fdesc0 descriptorType];
-                [self handleMessageDescriptor:fdesc0];
-                
-            }
+			if (typeN == typeAERecord) {
+				
+				for(unsigned int j = 1; j <= [descN numberOfItems]; j++){
+					AEKeyword kw = [descN keywordForDescriptorAtIndex:j];
+					NSAppleEventDescriptor *fdesc0 = [descN descriptorForKeyword:kw];
+					[self handleMessageDescriptor:fdesc0];
+				}
+			} else {
+				c = (char*)&typeN;
+				NSLog(@"Ignoring descN[%d] = %c%c%c%c (%@)",i, c[3],c[2],c[1],c[0], [descN description]);
+			}
         }
     }
     else {
@@ -297,56 +287,154 @@
     }
 }
 
+/**
+ * make threads for messages with equivalent subject headers
+ */
+- (void) processThreads
+{
+    NSMutableArray *newUnread = [NSMutableArray arrayWithCapacity:[cachedMail count]];
+    NSMutableDictionary *threadDict = [NSMutableDictionary dictionaryWithCapacity:[cachedMail count]];
+    // now run through the mail and look for threads 
+    for (NSMutableDictionary *msg in cachedMail){
+        NSString *subj = [self stripRe:[msg objectForKey:MAIL_SUBJECT]];
+        
+        NSMutableDictionary *match = [threadDict objectForKey:subj];
+        if (match){
+            NSMutableArray *thread = [match objectForKey:@"THREAD"];
+            if (!thread){
+                thread = [NSMutableArray new];
+                [match setObject:thread forKey:@"THREAD"];
+            }
+            [thread addObject:msg];
+        }
+        else {
+            [threadDict setObject:msg forKey:subj];
+            [newUnread addObject:msg];
+        }
+    }
+    /** replace unreadMail with threadedUnreadMail **/
+    cachedMail = newUnread;	
+}
+
+// there are two caches -- a sequential cache called "cachedMail"
+// and a cache by subject/thread called "threadCache"
 - (void) mergeToCache
 {
-	if (!cachedMail){
-		cachedMail = [NSMutableArray arrayWithCapacity:[newestMail count]];
-	}
-    for (NSDictionary *dict in newestMail){
-        [cachedMail addObject:[dict copy]];
-    }
-    //sort the data
-	NSMutableArray *tempCache = [NSMutableArray arrayWithCapacity:[cachedMail count]];
+	// process the new mail from oldest to newest
+	// for each message try to find a thread for it
+	// if you find a thread then put this item on top of it
+	
 	NSSortDescriptor *dateSort = [[NSSortDescriptor alloc] initWithKey:MAIL_ARRIVAL_TIME
 															 ascending:NO
 															  selector:@selector(compare:)];
 	NSArray *descArray = [[NSArray alloc] initWithObjects:dateSort,nil];
-	[cachedMail sortUsingDescriptors:descArray];
-    NSUInteger cacheHrs = [[NSUserDefaults standardUserDefaults] integerForKey:@"cacheIntervalHours"];
-	NSTimeInterval windowInterval = cacheHrs * 60.0 * 60.0 * - 1;
-    NSDate *earliest = [[NSDate dateWithTimeIntervalSinceNow:windowInterval] copy];
-    for (NSMutableDictionary *msg in cachedMail){
-        NSDate *msgRecDate = [msg objectForKey:MAIL_ARRIVAL_TIME];
-        NSComparisonResult res = [msgRecDate compare:earliest];
-        if (res == NSOrderedDescending){
-            [tempCache addObject:msg];
-        }
-    }
-	cachedMail = tempCache;
-	// get a more acurate last check date from the newest message (if one exists)
-	if ([cachedMail count] > 0){
-		NSDate *latestMsgDate = [[cachedMail objectAtIndex:0] objectForKey:MAIL_ARRIVAL_TIME];
-		lastCheck = latestMsgDate;
-		[super saveDefaultValue:lastCheck forKey:LASTCHECK];
+	[newestMail sortUsingDescriptors:descArray];
+	
+	for (int msgIdx = [newestMail count] - 1; msgIdx > -1; msgIdx--){
+		NSMutableDictionary *msg = [newestMail objectAtIndex:msgIdx];
+		NSString *subj = [self stripRe:[msg objectForKey:MAIL_SUBJECT]];
+
+		// look for a thread for this guy
+		NSMutableDictionary *match = [threadCache objectForKey:subj];
+        if (match){
+            NSMutableArray *thread = [match objectForKey:@"THREAD"];
+			// there is no thread yet so create one hanging from this guy
+            if (!thread){
+                thread = [[NSMutableArray alloc] init];
+                [msg setObject:thread forKey:@"THREAD"];
+				[thread addObject:match];
+            }
+			// there is already an existing thread hanging from a message
+			// move that thread to this message
+			// remove the reference to the thread from the message where we found it
+			// put that older message at the top of the thread
+			else {
+				[msg setObject:thread forKey:@"THREAD"];
+				[match removeObjectForKey:@"THREAD"];
+				[thread insertObject:match atIndex:0];
+			}
+			// there is an entry in the threadCache to be replaced
+			[threadCache removeObjectForKey:subj];
+			[cachedMail removeObject:match];
+  }
+		// with or without a new thread push this new message to the front of the sequential cache
+		// and add it to the thread cache
+		if (!cachedMail) {
+			cachedMail = [NSMutableArray new];
+		} 
+		if (!threadCache){
+			threadCache = [NSMutableDictionary new];
+		}
+		[cachedMail insertObject:msg atIndex:0];
+		[threadCache setObject:msg forKey:subj];
 	}
+}
+
+- (void) saveCache{
+	// yuck -- we can not save a color into defaults so just blow it off 
+	// also the threads don't seem to restore nicely so remove them
+	NSMutableArray *temp = [NSMutableArray arrayWithCapacity:[cachedMail count]];
+	
+	for (NSMutableDictionary *item in cachedMail){
+		NSLog(@"item subj = %@", [item objectForKey:MAIL_SUBJECT]);
+		NSArray *thread = [item objectForKey:@"THREAD"];
+		if (thread){
+			NSLog(@"has thread");
+			for (NSMutableDictionary *titem in thread){
+				NSLog(@"thread item subj = %@", [titem objectForKey:MAIL_SUBJECT]);
+				[titem removeObjectForKey:@"color"];
+				[temp addObject: titem];
+			}
+			NSMutableDictionary *tdict = [NSMutableDictionary dictionaryWithDictionary:item];
+			[tdict removeObjectForKey:@"color"];
+			[tdict	removeObjectForKey:@"THREAD"];
+			[temp addObject:tdict];
+		} else {
+			[item removeObjectForKey:@"color"];
+			[temp addObject:item];
+
+		}
+
+	}
+	NSMutableArray *temp2 = [NSMutableArray arrayWithCapacity:[temp count]];
+	for (NSMutableDictionary *item in temp){
+	id color = [item objectForKey:@"color"];
+		NSMutableDictionary *tdict = item;
+		if (color){
+			tdict = [NSMutableDictionary dictionaryWithDictionary:item];
+			[tdict removeObjectForKey:@"color"];
+		} 
+		[temp2 addObject:tdict];
+	}
+	[super saveDefaultValue:temp2 forKey:CACHED_MAIL];
 }
 
 - (void)  cacheFetched: (NSNotification*) note
 {
+	if (note.object != nil) {
+		NSAlert *alert = [NSAlert alertWithMessageText:@"Problem validating"
+										 defaultButton:nil 
+									   alternateButton:nil 
+										   otherButton:nil 
+							 informativeTextWithFormat:@"Cache fetch timed-out or was cancelled.  You can try again"];
+		[alert runModal];		
+		return;
+	}
+	
 	[[NSNotificationCenter defaultCenter] removeObserver:self name: [self msgName] object:nil];
 												 
     NSAppleEventDescriptor *eventRes = [[[AppleMailMonitor appleMailShared] eventRes] copy];
     NSDictionary *eventErr = [[[AppleMailMonitor appleMailShared] errorRes] copy];
     if (eventErr){
-        NSLog(@"got Error! %@", eventErr);
+        NSLog(@"%@ got Error! %@", name, eventErr);
     }
     else {
 		newestMail = [NSMutableArray new];
 		[self handleDescriptor:eventRes];
         [self mergeToCache];
 	}
-
-    [super saveDefaultValue:cachedMail forKey:CACHED_MAIL];
+	[self saveCache];
+   // [super saveDefaultValue:cachedMail forKey:CACHED_MAIL];
 	[[AppleMailMonitor appleMailShared] sendDone];
 	NSNotification *msg = [NSNotification notificationWithName:@"com.zer0gravitas.validateDone" object:eventErr];
 	[[NSNotificationCenter defaultCenter] postNotification:msg];
@@ -355,36 +443,48 @@
 
 - (void) fetchDone: (NSNotification*) note
 {
-    NSAppleEventDescriptor *eventRes = [[[AppleMailMonitor appleMailShared] eventRes] copy];
+ 	if (note.object != nil) {
+        NSLog(@"%@ fetch cancelled or timed out",name);
+		return;
+	}
+	NSAppleEventDescriptor *eventRes = [[[AppleMailMonitor appleMailShared] eventRes] copy];
     NSDictionary *eventErr = [[[AppleMailMonitor appleMailShared] errorRes] copy];
-    [[AppleMailMonitor appleMailShared] sendDone];
     if (eventErr){
-        NSLog(@"got Error! %@", eventErr);
-    }
+        NSLog(@"%@ got Error! %@ \n trying again", name, eventErr);
+		[self getNewest];
+	}
     else {
 		[self handleDescriptor:eventRes];
+	    [[AppleMailMonitor appleMailShared] sendDone];
 		[self mergeToCache];
-		[super saveDefaultValue:cachedMail forKey:CACHED_MAIL];
-		[self processThreads];
-        NSDate *minTime = [NSDate distantPast];
-        
+		[self saveCache];
+	//	[super saveDefaultValue:cachedMail forKey:CACHED_MAIL];
+//		[self processThreads];
+        NSDate *minTime = [NSDate date];
+		NSLog(@"(minTime = %@", minTime);
+
         if (summaryMode){
-			NSTimeInterval window = -1.0 * displayWindow * 60.0 * 60.0;
-            minTime = [[NSDate date] dateByAddingTimeInterval:window];
+			NSTimeInterval window = -(displayWindow * 60.0 * 60.0);
+			NSLog(@"time interval = %f secs", window);
+            minTime = [minTime dateByAddingTimeInterval:window];
+			NSAssert(minTime != nil, @"minTime is nil!");
+			NSLog(@"(minTime = %@", minTime);
             // the window may be longer than the default window if we haven't checked the inbox in a while
             minTime = [[self lastCheck] earlierDate:minTime];
         } else if (!summaryMode){
             minTime = [self lastCheck];
         }
-        
+	
+	
         NSMutableArray *mailToSend = [NSMutableArray arrayWithCapacity:[cachedMail count]];
         for (NSMutableDictionary *msg in cachedMail){
             NSColor *ruleColor = nil;
             
             NSDate *msgRecDate = [msg objectForKey:MAIL_ARRIVAL_TIME];
+			NSLog(@"rcv date = %@ - subj [%@]", msgRecDate, [msg objectForKey:MAIL_SUBJECT]);
             NSComparisonResult compRes = [msgRecDate compare:minTime];
-			NSString *subj = [msg objectForKey:MAIL_SUBJECT];
-			NSString *time = [msg objectForKey:MAIL_ARRIVAL_TIME];
+//			NSString *subj = [msg objectForKey:MAIL_SUBJECT];
+//			NSString *time = [msg objectForKey:MAIL_ARRIVAL_TIME];
 			if (compRes == NSOrderedAscending){
                 continue;
             }
@@ -592,16 +692,15 @@
        displayWindow = cacheHours;
     }
 	NSArray *temp = [super loadDefaultForKey:CACHED_MAIL];
-	cachedMail = [[NSMutableArray alloc]initWithCapacity:[temp count]];
+	newestMail = [[NSMutableArray alloc]initWithCapacity:[temp count]];
 	for (NSDictionary *msg in temp){
-		NSMutableDictionary *msgM = [[NSMutableDictionary alloc]initWithDictionary:msg copyItems:YES];
-		id thread = [msgM objectForKey:@"THREAD"];
-		if (thread != nil){
-			NSAssert([msgM isKindOfClass:[NSMutableDictionary class]], @"oops!" );
-			NSLog(@"here");
+		NSMutableDictionary *msgM = [[NSMutableDictionary alloc]initWithDictionary:msg];
+		if ([msgM objectForKey:@"THREAD"]){
+			[msgM removeObjectForKey:@"THREAD"];
 		}
-		[cachedMail addObject:msgM];
+		[newestMail addObject:msgM];
 	}
+	[self mergeToCache];
     [self loadRules];
 }
 
@@ -611,7 +710,6 @@
 	[super clearDefaultValue:mailMailboxName forKey:MAILBOX];
 	[super clearDefaultValue:nil forKey:DISPLAYWIN];
 	[super clearDefaultValue:nil forKey:REFRESH ];
-	[super clearDefaultValue:nil forKey:LASTCHECK];
 	[super clearDefaultValue:nil forKey:RULE_PREDS];
 	[super clearDefaultValue:nil forKey:RULE_COLORS];
 	[super clearDefaultValue:nil forKey:RULE_COMPARES];

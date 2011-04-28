@@ -1,6 +1,6 @@
 //
 //  SkypeModule.h
-//  Nudge
+//  Self-Imposed Structure
 //
 //  Created by Charles on 12/19/10.
 //  Copyright 2010 zer0gravitas.com. All rights reserved.

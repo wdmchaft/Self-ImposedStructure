@@ -74,7 +74,7 @@ didStartElement:(NSString *)elementName
 		[currentDict setObject:[[[NSString alloc] initWithString:id]retain] forKey:@"task_id"]; 
         NSString *dueTimeStr = [attributeDict objectForKey:@"due"];
         if ([dueTimeStr length]==0) {
-            [currentDict setObject:[NSDate distantFuture] forKey:TASK_DUE];
+        //    [currentDict setObject:[NSDate distantFuture] forKey:TASK_DUE];
         } else {
             NSDate *dueDate = [inputFormatter dateFromString:dueTimeStr];
             [currentDict setObject:dueDate forKey:TASK_DUE];
@@ -127,7 +127,7 @@ didEndElement:(NSString *)elementName
 
 - (void) doParse: (NSData*) respData
 {
-	NSLog(@"%@", [[NSString alloc] initWithData: respData encoding:NSUTF8StringEncoding]);
+	//NSLog(@"%@", [[NSString alloc] initWithData: respData encoding:NSUTF8StringEncoding]);
 	XMLParse *parser = [[XMLParse alloc]initWithData: respData andDelegate: self];
 	[parser parseData];
 	if (self.currentDict != nil && [self.currentDict count] > 0){

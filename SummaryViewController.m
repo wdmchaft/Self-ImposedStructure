@@ -35,7 +35,7 @@
 {
 	[super loadView];
 	table.dataSource=self;
-	NSLog(@"table = %@", table);
+	//NSLog(@"table = %@", table);
 	[table setDoubleAction:@selector(handleDouble:)];
 	//[table setAction:@selector(handleAction:)];
 	[table setTarget:self];
@@ -177,6 +177,7 @@
 
 - (int) actualHeight
 {
+	NSLog(@"maxlines = %d for %@", maxLines, reporter.name);
 	int lines = (actualLines > maxLines) ? maxLines :actualLines;
 	return lines * ([table rowHeight] + 3);
 }
@@ -256,8 +257,8 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 		NSString *val;
 		val = (NSString*)[params objectForKey:TASK_NAME];
 		if (![due isEqualToDate:[NSDate distantFuture]]){
-			NSLog(@"got val = %@", val);
-			val = [NSString stringWithFormat:@"%@ : %@",[Utility shortTimeStrFor:due], val];
+//			NSLog(@"got val = %@", val);
+			val = [NSString stringWithFormat:@"%@ : %@",[Utility dueTimeStrFor:due], val];
 		}
 		theValue = val;
 	} else {
@@ -266,7 +267,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 	if ([theValue isKindOfClass:[NSString class]] && due){
 		NSTimeInterval intv = [due timeIntervalSinceNow];
 		NSDictionary *attrs = [self attributesForInterval: intv];
-		NSLog(@"val = %@",(NSString*)[params objectForKey:TASK_NAME]);
+	//	NSLog(@"val = %@",(NSString*)[params objectForKey:TASK_NAME]);
 		theValue = [[NSAttributedString alloc]initWithString:(NSString*)theValue attributes: attrs];
 	}
     return theValue;

@@ -34,14 +34,15 @@
 @property (nonatomic) NSTimeInterval refreshInterval;
 
 
--(void) saveDefaults;
--(void) loadDefaults;
--(void) clearDefaults;
--(void) startValidation:(NSObject *)handler;
--(void) saveDefaultValue: (NSObject*) val forKey: (NSString*) key;
--(void) clearDefaultValue: (NSObject*) val forKey: (NSString*) key;
--(id) loadDefaultForKey: (NSString*) key;
+- (void) saveDefaults;
+- (void) loadDefaults;
+- (void) clearDefaults;
+- (void) startValidation:(NSObject *)handler;
+- (void) saveDefaultValue: (NSObject*) val forKey: (NSString*) key;
+- (void) clearDefaultValue: (NSObject*) val forKey: (NSString*) key;
+- (id) loadDefaultForKey: (NSString*) key;
 - (BOOL) loadBoolDefaultForKey: (NSString*) key;
+- (double) loadDoubleDefaultForKey: (NSString*) key;
 
 + (void) sendErrorToHandler:(id<AlertHandler>) handler error:(NSString*) err module:(NSString*) modName;
 + (void) sendDone: (id<AlertHandler>) handler module: (NSString*) modName;

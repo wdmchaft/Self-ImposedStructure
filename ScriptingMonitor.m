@@ -65,7 +65,7 @@
     }
     @finally {
     }
-    NSNotification *msg = [NSNotification notificationWithName:callback object:nil];
+    NSNotification *msg = [NSNotification notificationWithName:callback object:errorRes];
     [[NSNotificationCenter defaultCenter] postNotification:msg];
 	[pool drain];	
 }
@@ -96,12 +96,14 @@
     NSLog(@"got done");
     [scriptQueue removeObjectAtIndex:0];
     [callbackQueue removeObjectAtIndex:0];
-    if ([scriptQueue count] > 0){
+	if (scriptThread){
+		[scriptThread cancel];
+		scriptThread = nil;
+	}
+	if ([scriptQueue count] > 0){
         
 		lastStart = [NSDate date];
-        if (scriptThread){
-            [scriptThread cancel];
-        }
+
 		scriptThread = [[NSThread alloc]initWithTarget: self 
 											  selector: @selector(runScriptThread:)
 												object:nil];
@@ -145,10 +147,25 @@
 			
 			NSString *callback = [callbackQueue objectAtIndex:0];
 			
-			NSNotification *msg = [NSNotification notificationWithName:callback object:nil];
+			NSNotification *msg = [NSNotification notificationWithName:callback object:err];
 			[[NSNotificationCenter defaultCenter] postNotification:msg];
-			;	
 		}
+	}
+}
+
+- (void) reset
+{
+	[scriptQueue removeAllObjects];
+	for (NSString *callback in callbackQueue){
+		NSNotification *msg = [NSNotification notificationWithName:callback object:@"reset"];
+		[[NSNotificationCenter defaultCenter] postNotification:msg];	
+	}
+		 
+	[callbackQueue removeAllObjects];
+	if (scriptThread){
+		NSLog(@"cancelled script thread");
+		[scriptThread cancel];
+		scriptThread = nil;
 	}
 }
 

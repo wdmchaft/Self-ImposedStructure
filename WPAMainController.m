@@ -1,6 +1,6 @@
 //
 //  WPAMainController.m
-//  Nudge
+//  Self-Imposed Structure
 //
 //  Created by Charles on 11/28/10.
 //  Copyright 2010 zer0gravitas.com. All rights reserved.
@@ -347,11 +347,19 @@
 	}
 	[ctx saveTask];
 	
-	// we changed jobs so write a new tracking record
-//	if (ctx.currentState == WPASTATE_THINKING || ctx.currentState == WPASTATE_THINKTIME){
-	//	[WriteHandler sendNewRecord:ctx.currentState];
-//	}
-	[[ctx growlManager] growlFYI:[NSString stringWithFormat: @"New Activity: %@",[ctx.currentTask objectForKey:@"name"]]];
+	NSDictionary *task = ctx.currentTask;
+	//[[ctx growlManager] growlFYI:[NSString stringWithFormat: @"New Activity: %@",[task objectForKey:@"name"]]];
+	WPAAlert *newTaskMsg = [WPAAlert new];
+	NSString *src = [task objectForKey:@"source"];
+	newTaskMsg.title = [NSString stringWithFormat:@"New Activity from [%@]", src];
+	newTaskMsg.message = [task objectForKey:@"name"];
+	newTaskMsg.clickable = YES;
+	newTaskMsg.moduleName = src;
+	newTaskMsg.params = task;
+	newTaskMsg.isWork = [(NSNumber*)[task objectForKey:@"work"] boolValue];
+	newTaskMsg.urgent = YES;
+	
+	[[ctx growlManager] growlAlert:newTaskMsg];
 	[self buildStatusMenu];
 }
 

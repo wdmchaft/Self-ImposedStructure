@@ -1,6 +1,6 @@
 //
 //  RTMModule.m
-//  Nudge
+//  Self-Imposed Structure
 //
 //  Created by Charles on 11/18/10.
 //  Copyright 2010 zer0gravitas.com. All rights reserved.
@@ -13,6 +13,7 @@
 #define LISTID @"ListId"
 #define TASKLIST @"taskList"
 #define ISWORK @"isWork"
+#define LOOKAHEAD @"lookAhead"
 
 #import "Secret.h"
 #import "RTMModule.h"
@@ -55,6 +56,8 @@
 @synthesize lastError;
 @synthesize isWorkRelated;
 @synthesize isWorkButton;
+@synthesize lookAheadWindow;
+@synthesize lookAheadText;
 @dynamic refreshInterval;
 @dynamic notificationName;
 @dynamic notificationTitle;
@@ -130,31 +133,60 @@
 
 - (void) processAlertsWithAlarms: (BOOL) setAlarms
 {
-
-	for(NSDictionary *item in tasksList){
-		NSDate *date = [item objectForKey:@"due_time"];
-		NSComparisonResult cr = NSOrderedSame; // this will *stay* if there is no date
-		if (date){
-			cr = [date compare:[NSDate date]];
-		}
+	NSDate *windowDate = [NSDate dateWithTimeIntervalSinceNow:lookAheadWindow];
+	NSDate *nowDate = [NSDate date];
+	for(NSMutableDictionary *item in tasksList){
 		WPAAlert *alert = [[WPAAlert alloc]init];
-		alert.moduleName = name;
-		NSString *dateStr = date ? [Utility timeStrFor:date] : @"";
 		NSString *alertTitle = [listNameStr copy];
-		if (cr == NSOrderedDescending) {
-			alertTitle = [alertTitle stringByAppendingFormat:@"[Task Due: %@]",dateStr];
-		} else if (cr == NSOrderedAscending) {
-			alertTitle = [alertTitle stringByAppendingFormat:@"[Task OverDue: %@]",dateStr];
-		}
 		alert.title = alertTitle;
 		alert.clickable = YES;
 		
 		alert.message=[item objectForKey:@"name"];
 		alert.params = item;
+	
+		NSDate *dueDate = [item objectForKey:@"due_time"];
+		NSComparisonResult dueCheck = NSOrderedSame; // this will *stay* if there is no date
+		NSComparisonResult windowCheck = NSOrderedSame; // this will *stay* if there is no date
+		if (dueDate){
+			dueCheck = [dueDate compare:nowDate];
+			windowCheck = [dueDate compare:windowDate];
+		}
+		alert.moduleName = name;
+		alert.isWork = isWorkRelated;
+		if (alert.isWork)
+		{
+			[item setObject: [NSNumber numberWithBool:alert.isWork] forKey:@"work"];
+		}
+		NSString *dateStr = dueDate ? [Utility timeStrFor:dueDate] : @"";
+		
+		// check items which have due dates - they are either due in the future or past due or (unlikely) right now
+		
+		if (dueCheck == NSOrderedDescending) {
+			
+			// the task is due in the future don't show it if its out beyond our event horizon
+			
+			if (windowCheck == NSOrderedDescending) {
+				continue;
+			}
+			alertTitle = [alertTitle stringByAppendingFormat:@"[Task Due: %@]",dateStr];
+	
+		} else if (dueCheck == NSOrderedAscending) {
+			alertTitle = [alertTitle stringByAppendingFormat:@"[Task OverDue: %@]",dateStr];
+		}
+		else if (dueDate != nil) {
+			// it has a due date which is *exactly equal* to the current time 
+			NSLog(@"wow - a task due right now:%@", alert.message);
+			alertTitle = [alertTitle stringByAppendingString:@"[Task Due right now!!!]"];
+		} else {
+			// has no due date -- add a date in far future so task sorts to bottom of date sorted list
+			[item setObject:[NSDate distantFuture] forKey:@"due_time"];
+		}
+
+
 		[handler handleAlert:alert];
 		
-		if (cr == NSOrderedDescending && setAlarms == YES) {
-			NSTimeInterval dueInterval = [date timeIntervalSinceNow];
+		if (dueCheck == NSOrderedDescending && setAlarms == YES) {
+			NSTimeInterval dueInterval = [dueDate timeIntervalSinceNow];
 			if (alarmSet == nil){
 				alarmSet = [NSMutableDictionary new];
 			}
@@ -163,7 +195,7 @@
 			alarm.urgent = YES;
 			alarm.sticky = YES;
 			NSString *key = [NSString stringWithFormat:@"%@%@",
-							 [date description],
+							 [dueDate description],
 							 [item objectForKey:@"name"]];
 			// if we do not already have an alarm set -- set it
 			if ([alarmSet objectForKey:key] == nil){
@@ -252,6 +284,7 @@
 		category = CATEGORY_TASKS;
 		summaryTitle = @"Current Tasks";
 		refreshInterval = 15 * 60;
+		lookAheadWindow = 60 * 60 * 24 * 7.0;
 		[refreshText setIntValue:refreshInterval / 60];	
 	}
 	return self;
@@ -270,6 +303,8 @@
 	[stepperLabel setHidden:YES];	
 	[progInd setHidden:YES];
 	[userText setStringValue:userStr == nil ? @"" : userStr];
+	[lookAheadText setIntValue: (lookAheadWindow / 24 / 60 / 60)];
+	[lookAheadText setHidden:YES];
 	[passwordText setStringValue:passwordStr == nil ? @"" : passwordStr];
 	[refreshText setIntValue: refreshInterval / 60];
 	if (tokenStr == nil) {
@@ -299,7 +334,11 @@
 		refreshInterval = [temp intValue];
 	}
     isWorkRelated = [super loadBoolDefaultForKey:ISWORK];
-  tasksList = [super loadDefaultForKey:TASKLIST];
+	tasksList = [super loadDefaultForKey:TASKLIST];
+	double lhtemp = [super loadDoubleDefaultForKey:LOOKAHEAD];
+	if (lhtemp){
+		lookAheadWindow = lhtemp;
+	}
 }
 
 -(void) clearDefaults
@@ -311,6 +350,7 @@
 	[super clearDefaultValue:listNameStr forKey:LISTNAME];
 	[super clearDefaultValue: listIdStr forKey:LISTID];
 	[super clearDefaultValue: listIdStr forKey:ISWORK];
+	[super clearDefaultValue: [NSNumber numberWithDouble:lookAheadWindow] forKey:LOOKAHEAD];
 	[[NSUserDefaults standardUserDefaults] synchronize];	
 }
 
@@ -324,6 +364,7 @@
 	[super saveDefaultValue:listNameStr forKey:LISTNAME];
 	[super saveDefaultValue: listIdStr forKey:LISTID];
     [super saveDefaultValue:[NSNumber numberWithBool:isWorkRelated] forKey:ISWORK];
+    [super saveDefaultValue:[NSNumber numberWithDouble:lookAheadWindow] forKey:LOOKAHEAD];
 	[[NSUserDefaults standardUserDefaults] synchronize];		
 }
 
@@ -333,11 +374,13 @@
 	userStr = userText.stringValue;
 	passwordStr = passwordText.stringValue;
 	refreshInterval = (refreshText.intValue * 60);
+	lookAheadWindow = (lookAheadText.intValue * 60 * 60 * 24);
 
 	listNameStr = [listsCombo titleOfSelectedItem];
 	listIdStr = [idMapping objectForKey:listNameStr];
 	[validationHandler performSelector:@selector(validationComplete:) 
-								  withObject:nil];	}
+								  withObject:nil];	
+}
 
 - (void) clickAuthButton: (id) sender
 {
@@ -381,7 +424,7 @@
 }
 
 
--(void) frobDone {
+- (void) frobDone {
 	[progInd stopAnimation:self];
 	[progInd setHidden:YES];
 	if (frobStr == nil){
@@ -417,7 +460,7 @@
 	}
 }
 
--(void) tokenDone {
+- (void) tokenDone {
 	[progInd stopAnimation:self];
 	
 	if (tokenStr == nil){
@@ -440,7 +483,7 @@
 	}
 }
 
--(void) getLists
+- (void) getLists
 {
 	RequestREST *rr = [[RequestREST alloc]init];
 	NSMutableDictionary *params =  [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -459,7 +502,7 @@
 }
 
 
--(void) listsDone 
+- (void) listsDone 
 {
 	[progInd stopAnimation:self];
 	[progInd setHidden: YES];	
@@ -487,7 +530,8 @@
 		[refreshText setHidden:NO];
 		[refreshStepper setHidden:NO];
 		[refreshLabel setHidden:NO];
-		[stepperLabel setHidden:NO];		
+		[stepperLabel setHidden:NO];	
+		[lookAheadText setHidden:NO];
 	}
 }
 

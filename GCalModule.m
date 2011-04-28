@@ -1,6 +1,6 @@
 //
 //  GCalModule.m
-//  Nudge
+//  Self-Imposed Structure
 //
 //  Created by Charles on 11/23/10.
 //  Copyright 2010 zer0gravitas.com. All rights reserved.
