@@ -11,15 +11,15 @@
 
 @implementation RefreshListHandler
 
-- (id) initWithContext: (RTMModule*) ctx andDelegate: (id<RTMCallback>) delegate 
-{
-	self = (RefreshListHandler*)[super initWithContext:ctx andDelegate: delegate];
-	
-	return self;
-}
+//- (id) initWithContext: (RTMProtocol*) ctx 
+//{
+//	self = (RefreshListHandler*)[super initWithContext:ctx];
+//	
+//	return self;
+//}
 
-- (void) doCallback
-{
-	[callback taskRefreshDone];
-}
+//- (void) doCallback
+//{
+//	[ctx.module performSelector:ctx.callback];
+//}
 @end

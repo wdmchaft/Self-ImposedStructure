@@ -91,6 +91,7 @@ summaryField, summaryStepper, summaryLabel, summaryLabel2, summaryButton, editMo
 	editModuleSession = [NSApp beginModalSessionForWindow:amwControl.window];
 	[NSApp runModalSession:editModuleSession];
 }
+
 - (IBAction) clickAdd: (NSButton*) sender
 {
 	amwControl = [[AddModWinController alloc] initWithWindowNibName:@"AddMod"];

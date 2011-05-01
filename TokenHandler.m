@@ -29,8 +29,8 @@
 	
 }
 
-- (void) doCallback
-{
-	[callback tokenDone];
-}
+//- (void) doCallback
+//{
+//	[callback tokenDone];
+//}
 @end

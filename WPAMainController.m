@@ -21,7 +21,7 @@
 #import "VacationDialog.h"
 
 @implementation WPAMainController
-@synthesize  startButton, refreshButton, statusItem, statusMenu, statusTimer, myWindow, menuForTaskList;
+@synthesize  startButton, refreshButton, statusItem, statusMenu, statusTimer, myWindow, menuForTaskList, addTaskSession;
 @synthesize hudWindow, refreshManager, thinkTimer, siView, totalsManager, prefsWindow, statsWindow, addActivityWindow;
 
 + (void)initialize{
@@ -373,12 +373,15 @@
 	[addActivityWindow.window makeKeyAndOrderFront:self];
 	[addActivityWindow.window setOrderedIndex:0];
 	[[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
-	[NSApp runModalForWindow:addActivityWindow.window];
+//	[NSApp runModalForWindow:addActivityWindow.window];
+	addTaskSession = [NSApp beginModalSessionForWindow:addActivityWindow.window];
+	[NSApp runModalSession:addTaskSession];
 }
 
 - (void) addActClosed: (NSNotification*) notify
 {
-	[NSApp stopModal];
+	[NSApp endModalSession:addTaskSession];
+	[[Context sharedContext]refreshTasks];
 	[self enableStatusMenu:YES];
 	[self buildStatusMenu];
 	[[NSNotificationCenter defaultCenter] removeObserver:self  

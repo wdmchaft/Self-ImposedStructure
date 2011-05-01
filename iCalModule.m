@@ -46,6 +46,8 @@
 @dynamic enabled;
 @dynamic category;
 @dynamic name;
+@dynamic summaryTitle;
+@dynamic isWorkRelated;
 
 -(void) setId
 {

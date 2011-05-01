@@ -13,6 +13,8 @@
 
 @interface BaseReporter : BaseInstance <Reporter>{
 	NSString *summaryTitle;
+	BOOL isWorkRelated;
 }
 @property (nonatomic,retain) NSString *summaryTitle;
+@property (nonatomic) BOOL isWorkRelated;
 @end

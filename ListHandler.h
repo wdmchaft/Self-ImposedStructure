@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "ResponseRESTHandler.h"
-#import "RTMModule.h"
+#import "RTMProtocol.h"
 
 @interface ListHandler : ResponseRESTHandler <NSXMLParserDelegate> {
 	NSMutableDictionary *tempDictionary;
@@ -20,6 +20,6 @@
 @property (nonatomic,retain) NSMutableString *temp;
 @property (nonatomic,retain) NSDateFormatter *inputFormatter;
 
-- (ListHandler*) initWithContext: (RTMModule*) ctx andDelegate: (id<RTMCallback>) delegate;
+- (id) initWithContext:(RTMProtocol*) ctx delegate: (NSObject*) del selector: (SEL) callback ;
 - (void) addItem;
  @end

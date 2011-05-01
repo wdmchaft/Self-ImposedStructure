@@ -27,34 +27,24 @@
 #import "TaskDialogController.h"
 #import "Utility.h"
 #import "CompleteProcessHandler.h"
+#import "NewTaskHandler.h"
 
 @implementation RTMModule 
 
-@synthesize tokenStr; 
-@synthesize userStr; 
-@synthesize passwordStr; 
-@synthesize frobStr; 
-@synthesize listNameStr;
-@synthesize idMapping;
-@synthesize tasksDict;
-@synthesize tasksList;
 @synthesize userText;
 @synthesize passwordText;
 @synthesize listsCombo;
-@synthesize refreshStepper;
 @synthesize refreshText;
 @synthesize refreshLabel;
 @synthesize stepperLabel;
 @synthesize comboLabel;
+@synthesize lookAheadLabel;
+@synthesize lookAheadNote;
 @synthesize authButton;
 @synthesize progInd;
-@synthesize firstClick;
-@synthesize listIdStr;
-@synthesize timelineStr;
 @synthesize alarmSet;
 @synthesize handler;
 @synthesize lastError;
-@synthesize isWorkRelated;
 @synthesize isWorkButton;
 @synthesize lookAheadWindow;
 @synthesize lookAheadText;
@@ -64,13 +54,16 @@
 @dynamic enabled;
 @dynamic category;
 @dynamic name;
+@dynamic summaryTitle;
+@dynamic isWorkRelated;
+@synthesize protocol;
 
 /**
  Responding to refresh tracking items
  */
 - (void) taskRefreshDone
 {
-	[super saveDefaultValue:tasksList forKey:TASKLIST];
+	[super saveDefaultValue:protocol.tasksList forKey:TASKLIST];
 	NSNotification *notice = [NSNotification notificationWithName:@"com.zer0gravitas.tasks" object:self];
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	[nc postNotification:notice];
@@ -78,66 +71,32 @@
 
 - (void) listDone 
 {
-	[super saveDefaultValue:tasksList forKey:TASKLIST];
-	int taskCount = [tasksList count];
+	[super saveDefaultValue:protocol.tasksList forKey:TASKLIST];
+	int taskCount = [protocol.tasksList count];
 	int count = 0;
-	for (NSString *taskName in tasksList){
-		NSDictionary *tc = [[NSDictionary alloc]initWithDictionary:
-							[tasksDict objectForKey:taskName] copyItems:YES];
+	for (NSDictionary *taskData in protocol.tasksList){
 		WPAAlert *alert = [[WPAAlert alloc]init];
+		alert.message=[taskData objectForKey: @"name"];
+		NSLog(@"taskName = %@", alert.message);
+	//	NSDictionary *tc = [[NSDictionary alloc]initWithDictionary:
+	//						[protocol.tasksDict objectForKey:taskName] copyItems:YES];
 		alert.moduleName = name;
 		alert.title =name;
-		alert.message=taskName;
-		alert.params = tc;
+		alert.message=[taskData objectForKey: @"name"];
+		alert.params = taskData;
 		alert.lastAlert = ++count == taskCount;
 		[handler handleAlert:alert];
 	}
 	[self taskRefreshDone];
 }
 
-
--(void) runListReqWithHandler: (ResponseRESTHandler*)respHndler
-{
-	RequestREST *rr = [[RequestREST alloc]init];
-
-	NSMutableDictionary *params =  [NSMutableDictionary dictionaryWithObjectsAndKeys:
-									tokenStr, @"auth_token",
-									@"rtm.tasks.getList", @"method",
-									listIdStr,@"list_id",
-									@"xml", @"format",
-									@"status:incomplete:", @"filter",
-									APIKEY, @"api_key", 
-                                    [NSNumber numberWithBool:isWorkRelated],@"isWork",
-                                    nil];
-	
-	[progInd startAnimation:self];
-	[rr sendRequestWithURL:[rr createURLWithFamily:@"rest" 
-									   usingSecret:SECRET 
-										 andParams:params]
-				andHandler: respHndler];
-	[rr release];
-	
-}
-
--(void) updateList
-{
-	RefreshListHandler *refHandler = [[[RefreshListHandler alloc]initWithContext:self andDelegate:self] autorelease];
-	[self runListReqWithHandler:refHandler];
-}
-
--(void) startRefresh: (NSTimer*) theTimer
-{
-	RefreshHandler *refHandler = [[[RefreshHandler alloc]initWithContext:self andDelegate:self] autorelease];
-	[self runListReqWithHandler:refHandler];
-}
-
 - (void) processAlertsWithAlarms: (BOOL) setAlarms
 {
 	NSDate *windowDate = [NSDate dateWithTimeIntervalSinceNow:lookAheadWindow];
 	NSDate *nowDate = [NSDate date];
-	for(NSMutableDictionary *item in tasksList){
+	for(NSMutableDictionary *item in protocol.tasksList){
 		WPAAlert *alert = [[WPAAlert alloc]init];
-		NSString *alertTitle = [listNameStr copy];
+		NSString *alertTitle = [protocol.listNameStr copy];
 		alert.title = alertTitle;
 		alert.clickable = YES;
 		
@@ -163,9 +122,10 @@
 		
 		if (dueCheck == NSOrderedDescending) {
 			
-			// the task is due in the future don't show it if its out beyond our event horizon
+			// the task is due in the future don't show it (and remove it) if its out beyond our event horizon
 			
 			if (windowCheck == NSOrderedDescending) {
+				[protocol.tasksList removeObject:item];
 				continue;
 			}
 			alertTitle = [alertTitle stringByAppendingFormat:@"[Task Due: %@]",dateStr];
@@ -191,7 +151,7 @@
 				alarmSet = [NSMutableDictionary new];
 			}
 			WPAAlert *alarm = [alert copy];
-			alarm.title =[listNameStr stringByAppendingString:@" [Task Due Now]"];
+			alarm.title =[protocol.listNameStr stringByAppendingString:@" [Task Due Now]"];
 			alarm.urgent = YES;
 			alarm.sticky = YES;
 			NSString *key = [NSString stringWithFormat:@"%@%@",
@@ -215,7 +175,7 @@
 
 - (void) refreshDone
 {
-	[super saveDefaultValue:tasksList forKey:TASKLIST];
+	[super saveDefaultValue:protocol.tasksList forKey:TASKLIST];
 	[self taskRefreshDone];
 	[self processAlertsWithAlarms:YES];
 }
@@ -229,7 +189,7 @@
 - (void) refresh: (id<AlertHandler>) alertHandler isSummary: (BOOL) summary
 {
 	self.handler = alertHandler;
-	[self startRefresh: nil];
+	[protocol startRefresh: self callback:@selector(refreshDone)];
 }
 
 - (void) stateChange: (WPAStateType) newState
@@ -261,31 +221,42 @@
 	NSString *clickName = [task objectForKey:@"name"];
 	TaskDialogController *dialogCtrl= [[TaskDialogController alloc] 
 									   initWithWindowNibName:@"TaskDialog" 
-                                                andContext:self
+                                                andContext:protocol
                                                 andParams:ctx ];
-	dialogCtrl.context = self;
+	dialogCtrl.context = protocol;
 	[dialogCtrl showWindow:self];
 	
 	NSLog(@"name: %@",clickName, nil);
 }
 
-- (IBAction) clickRefreshStepper: (id) sender
+- (void) initGuts
 {
-	refreshText.intValue = refreshStepper.intValue;
+	name =@"RTM Module";
+	notificationName = @"Task Alert";
+	notificationTitle = @"Task Msg";
+	category = CATEGORY_TASKS;
+	summaryTitle = @"Current Tasks";
+	refreshInterval = 15 * 60;
+	lookAheadWindow = 60 * 60 * 24 * 7.0;
+	[refreshText setIntValue:refreshInterval / 60];	
+	protocol = [RTMProtocol new];
+	[protocol setModule:self];
 }
 
 -(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 	if (self){
-		name =@"RTM Module";
-		notificationName = @"Task Alert";
-		notificationTitle = @"Task Msg";
-		category = CATEGORY_TASKS;
-		summaryTitle = @"Current Tasks";
-		refreshInterval = 15 * 60;
-		lookAheadWindow = 60 * 60 * 24 * 7.0;
-		[refreshText setIntValue:refreshInterval / 60];	
+		[self initGuts];
+	}
+	return self;
+}
+
+-(id) init
+{
+	self = [super init];
+	if (self){
+		[self initGuts];
 	}
 	return self;
 }
@@ -293,21 +264,23 @@
 -(void) loadView
 {
 	[super loadView];
-	firstClick = YES;
 	[listsCombo setHidden:YES];
 	[listsCombo removeAllItems];
 	[refreshText setHidden:YES];	
 	[refreshLabel setHidden:YES];	
 	[comboLabel setHidden:YES];	
-	[refreshStepper setHidden:YES];	
 	[stepperLabel setHidden:YES];	
+	[lookAheadLabel setHidden:YES];
+	[lookAheadNote setHidden:YES];
 	[progInd setHidden:YES];
-	[userText setStringValue:userStr == nil ? @"" : userStr];
+	[userText setStringValue:protocol.userStr == nil ? @"" : protocol.userStr];
 	[lookAheadText setIntValue: (lookAheadWindow / 24 / 60 / 60)];
 	[lookAheadText setHidden:YES];
-	[passwordText setStringValue:passwordStr == nil ? @"" : passwordStr];
+	[isWorkButton setHidden:YES];
+	[isWorkButton setIntValue:isWorkRelated];
+	[passwordText setStringValue:protocol.passwordStr == nil ? @"" : protocol.passwordStr];
 	[refreshText setIntValue: refreshInterval / 60];
-	if (tokenStr == nil) {
+	if (protocol.tokenStr == nil) {
 		NSAlert *alert = [NSAlert alertWithMessageText:@"Not Authorized" 
 										 defaultButton:nil alternateButton:nil 
 										   otherButton:nil 
@@ -317,24 +290,24 @@
 	else {
 		[progInd startAnimation:self];
 		[progInd setHidden:NO];
-		[self getLists];
+		[protocol getLists:self callback:@selector(listsDone)];
 	}
 }
 
 -(void) loadDefaults
 {
 	[super loadDefaults];
-	tokenStr = [super loadDefaultForKey:TOKEN];
-	passwordStr = [super loadDefaultForKey:PASSWORD];
-	userStr = [super loadDefaultForKey:EMAIL];
-	listNameStr = [super loadDefaultForKey:LISTNAME];
-	listIdStr = [super loadDefaultForKey:LISTID];
+	protocol.tokenStr = [super loadDefaultForKey:TOKEN];
+	protocol.passwordStr = [super loadDefaultForKey:PASSWORD];
+	protocol.userStr = [super loadDefaultForKey:EMAIL];
+	protocol.listNameStr = [super loadDefaultForKey:LISTNAME];
+	protocol.listIdStr = [super loadDefaultForKey:LISTID];
 	NSNumber *temp =  [super loadDefaultForKey:REFRESH];
 	if (temp) {
 		refreshInterval = [temp intValue];
 	}
     isWorkRelated = [super loadBoolDefaultForKey:ISWORK];
-	tasksList = [super loadDefaultForKey:TASKLIST];
+	protocol.tasksList = [super loadDefaultForKey:TASKLIST];
 	double lhtemp = [super loadDoubleDefaultForKey:LOOKAHEAD];
 	if (lhtemp){
 		lookAheadWindow = lhtemp;
@@ -344,12 +317,12 @@
 -(void) clearDefaults
 {
 	[super clearDefaults];
-	[super clearDefaultValue:userStr forKey:EMAIL];
-	[super clearDefaultValue:passwordStr forKey:PASSWORD];
+	[super clearDefaultValue:protocol.userStr forKey:EMAIL];
+	[super clearDefaultValue:protocol.passwordStr forKey:PASSWORD];
 	[super clearDefaultValue:[NSNumber numberWithInt:refreshInterval] forKey:REFRESH];
-	[super clearDefaultValue:listNameStr forKey:LISTNAME];
-	[super clearDefaultValue: listIdStr forKey:LISTID];
-	[super clearDefaultValue: listIdStr forKey:ISWORK];
+	[super clearDefaultValue:protocol.listNameStr forKey:LISTNAME];
+	[super clearDefaultValue: protocol.listIdStr forKey:LISTID];
+	[super clearDefaultValue: nil forKey:ISWORK];
 	[super clearDefaultValue: [NSNumber numberWithDouble:lookAheadWindow] forKey:LOOKAHEAD];
 	[[NSUserDefaults standardUserDefaults] synchronize];	
 }
@@ -357,12 +330,12 @@
 -(void) saveDefaults
 {
 	[super saveDefaults];
-	[super saveDefaultValue:tokenStr forKey:TOKEN];
-	[super saveDefaultValue:userStr forKey:EMAIL];
-	[super saveDefaultValue:passwordStr forKey:PASSWORD];
+	[super saveDefaultValue:protocol.tokenStr forKey:TOKEN];
+	[super saveDefaultValue:protocol.userStr forKey:EMAIL];
+	[super saveDefaultValue:protocol.passwordStr forKey:PASSWORD];
 	[super saveDefaultValue:[NSNumber numberWithInt:refreshInterval] forKey:REFRESH];
-	[super saveDefaultValue:listNameStr forKey:LISTNAME];
-	[super saveDefaultValue: listIdStr forKey:LISTID];
+	[super saveDefaultValue:protocol.listNameStr forKey:LISTNAME];
+	[super saveDefaultValue: protocol.listIdStr forKey:LISTID];
     [super saveDefaultValue:[NSNumber numberWithBool:isWorkRelated] forKey:ISWORK];
     [super saveDefaultValue:[NSNumber numberWithDouble:lookAheadWindow] forKey:LOOKAHEAD];
 	[[NSUserDefaults standardUserDefaults] synchronize];		
@@ -371,64 +344,46 @@
 - (void) startValidation: (NSObject*) callback
 {
 	[super startValidation:callback];
-	userStr = userText.stringValue;
-	passwordStr = passwordText.stringValue;
+	[protocol setUserStr: userText.stringValue];
+	[protocol setPasswordStr: passwordText.stringValue];
 	refreshInterval = (refreshText.intValue * 60);
 	lookAheadWindow = (lookAheadText.intValue * 60 * 60 * 24);
+	isWorkRelated = [isWorkButton intValue];
 
-	listNameStr = [listsCombo titleOfSelectedItem];
-	listIdStr = [idMapping objectForKey:listNameStr];
+	protocol.listNameStr = [listsCombo titleOfSelectedItem];
+	protocol.listIdStr = [[self idMapping] objectForKey:protocol.listNameStr];
 	[validationHandler performSelector:@selector(validationComplete:) 
 								  withObject:nil];	
 }
 
 - (void) clickAuthButton: (id) sender
 {
-	if (firstClick == YES){
-		RequestREST *rr = [[RequestREST alloc]init];
-		NSMutableDictionary *params =  [NSMutableDictionary dictionaryWithObjectsAndKeys:
-										@"rtm.auth.getFrob", @"method",
-										@"xml", @"format",
-										APIKEY, @"api_key", nil];
-		
-		FrobHandler *frobHandler = (FrobHandler*)[[FrobHandler alloc]initWithContext:self andDelegate:self];
-		[progInd startAnimation:self];
-		//NSURLConnection *obj = [rr sendRequest:@"rtm.auth.getFrob" 
-		[rr sendRequestWithURL:[rr createURLWithFamily:@"rest" 
-										   usingSecret: SECRET  
-											 andParams:params]
-					andHandler: frobHandler];
-		[rr release];		
-		[progInd setHidden:NO];
-		[progInd startAnimation:self];
-		firstClick = NO;
-	}
-	else {
-		RequestREST *rr = [[RequestREST alloc]init];
-		NSMutableDictionary *params =  [NSMutableDictionary dictionaryWithObjectsAndKeys:
-										frobStr, @"frob",
-										@"rtm.auth.getToken", @"method",
-										@"xml", @"format",
-										APIKEY, @"api_key", nil];
-		
-		TokenHandler *tokHandler = (TokenHandler*)
-		[[TokenHandler alloc]initWithContext:self andDelegate:self]; 
-		[progInd startAnimation:self];
-		[rr sendRequestWithURL:[rr createURLWithFamily:@"rest" 
-										   usingSecret:SECRET
-											 andParams:params]
-					andHandler: tokHandler];
-		[rr release];	
-		[progInd setHidden:NO];
-	}
+
+	// step 1 - get a Frob string in preparation for application authorization
+	[protocol getFrob:self callback:@selector(frobDone)];
+	[progInd setHidden:NO];
+	[progInd startAnimation:self];
+
 }
 
+- (void) clickAuthorizedButton: (id) sender
+{
+	// step 3 - get a token which enables all further activity in RTM
+	
+	[protocol getToken:self callback:@selector(tokenDone)];
+	[progInd setHidden:NO];
+	[progInd startAnimation:self];
+
+}
 
 - (void) frobDone {
 	[progInd stopAnimation:self];
 	[progInd setHidden:YES];
-	if (frobStr == nil){
-		if (tokenStr == nil){
+	
+	// somehow failed to get a frob
+	
+	if (protocol.frobStr == nil){
+		if (protocol.tokenStr == nil){
 			NSString *errDetail = lastError != nil ? [NSString stringWithFormat:@" (%@)",lastError] : @"";
 			NSString *msgText = [NSString stringWithFormat:@"Authorization Error%@",errDetail];
 			NSAlert *alert = [NSAlert alertWithMessageText:msgText
@@ -437,68 +392,52 @@
 											   otherButton:nil 
 								 informativeTextWithFormat:@"Hmmm I could not get a frob while authorizing this application.  Lets try authorizing again"];
 			[alert runModal];
-			firstClick = YES;
 			authButton.title =@"Authorize";
+			[authButton setAction: @selector(clickAuthButton:)];
 			[progInd setHidden: YES];
 			lastError = nil;
 		}	
 	}
 	else {
-		RequestREST *rr = [[RequestREST alloc]init];
-		NSString *urlStr = [rr createURLWithFamily: @"auth" 
-									   usingSecret: SECRET
-										 andParams:
-							[NSDictionary dictionaryWithObjectsAndKeys:
-							 APIKEY, @"api_key",
-							 @"delete", @"perms",
-							 frobStr, @"frob", 
-							 nil]];
+		
+		// successful frob return -- 
+		// now  (step 2) open the browser with the magic URL so the user can authorize the app
+		
+		NSString *urlStr = [protocol getAuthURL];
 		NSLog(@"auth url:%@",urlStr);
 		NSURL *url = [NSURL URLWithString:urlStr];
 		[[NSWorkspace sharedWorkspace] openURL:url];
 		authButton.title =@"Authorized";
+		[authButton setAction: @selector(clickAuthorizedButton:)];
 	}
 }
 
 - (void) tokenDone {
 	[progInd stopAnimation:self];
 	
-	if (tokenStr == nil){
+	if (protocol.tokenStr == nil){
 		NSAlert *alert = [NSAlert alertWithMessageText:@"Authorization Error" 
 										 defaultButton:nil 
 									   alternateButton:nil 
 										   otherButton:nil 
 							 informativeTextWithFormat:@"Hmmm I could not get a token whle authorizing this application.  Lets try authorizing again"];
 		[alert runModal];
-		firstClick = YES;
 		authButton.title =@"Authorize";
 		[progInd setHidden: YES];
+		[progInd stopAnimation:self];
 	}
 	else {
-		[super saveDefaultValue:tokenStr forKey:TOKEN];
+		
+		// token was acquired -- last thing to initialize the dialog is a to get tasklist names for the combo
+		
+		[super saveDefaultValue:protocol.tokenStr forKey:TOKEN];
 		[[NSUserDefaults standardUserDefaults] synchronize];
-		NSLog(@"token: %@",tokenStr);
+		NSLog(@"token: %@",protocol.tokenStr);
 		// we have a token - now get the valid RTM task lists
-		[self getLists];
+		[progInd startAnimation:self];
+		[progInd setHidden:NO];
+		[protocol getLists:self callback:@selector(listsDone)];
 	}
-}
-
-- (void) getLists
-{
-	RequestREST *rr = [[RequestREST alloc]init];
-	NSMutableDictionary *params =  [NSMutableDictionary dictionaryWithObjectsAndKeys:
-									tokenStr, @"auth_token",
-									@"rtm.lists.getList", @"method",
-									@"xml", @"format",
-									APIKEY, @"api_key", nil];
-	
-	ListsHandler *listsHandler = (ListsHandler*)[[ListsHandler alloc]initWithContext:self andDelegate:self]; 
-	[progInd startAnimation:self];
-	[rr sendRequestWithURL:[rr createURLWithFamily:@"rest" 
-									   usingSecret:SECRET 
-										 andParams:params]
-				andHandler: listsHandler];
-	[rr release];
 }
 
 
@@ -506,48 +445,53 @@
 {
 	[progInd stopAnimation:self];
 	[progInd setHidden: YES];	
-	if (idMapping == nil){
+	if (protocol.idMapping == nil){
 		NSAlert *alert = [NSAlert alertWithMessageText:@"Error getting task lists" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@"Hmmm I could not get a token to authorizing this application.  Lets try authorizing again"];
-		firstClick = YES;
 		authButton.title =@"Authorize";
-		[progInd setHidden: NO];
 		[alert runModal];
 	}
 	else {
-		NSArray *keys = [idMapping allKeys];
+		
+		// load the combo with all of the task lists
+		
+		NSArray *keys = [protocol.idMapping allKeys];
 		for (int i = 0; i < [keys count];i++){
 			NSString *item = [keys objectAtIndex:i];
 			[listsCombo addItemWithTitle:item];
 		}
-		if (listNameStr != nil){
-			[listsCombo selectItemWithTitle:listNameStr];
+		if (protocol.listNameStr != nil){
+			[listsCombo selectItemWithTitle:protocol.listNameStr];
 		} 
 		else{
-			listNameStr = [keys objectAtIndex:0];
+			protocol.listNameStr = [keys objectAtIndex:0];
 		}
 		[listsCombo setHidden: NO];
-//		[listsCombo selectItem:[keys objectAtIndex:0]];
 		[refreshText setHidden:NO];
-		[refreshStepper setHidden:NO];
 		[refreshLabel setHidden:NO];
 		[stepperLabel setHidden:NO];	
 		[lookAheadText setHidden:NO];
+		[lookAheadLabel setHidden:NO];
+		[lookAheadNote setHidden:NO];
+		[isWorkButton setHidden:NO];
 	}
 }
 
 - (void) clickList: (id) sender
 {
-	listNameStr = listsCombo.stringValue;
+	protocol.listNameStr = listsCombo.stringValue;
 }
 
 -(NSArray*) getTasks;
 {
-	return tasksList;
+	if (protocol){
+		return protocol.tasksList;
+	}
+	return nil;
 }
 
 -(void) refreshTasks
 {
-	[self updateList];
+	[protocol updateList:self callback:@selector(taskRefreshDone)];
 }
 
 -(NSString*) projectForTask: (NSString *) task
@@ -555,11 +499,22 @@
 	return name;
 }
 
-- (void) markComplete:(NSDictionary *)ctx completeHandler: (NSObject*) callback
+- (void) newTask:(NSString *)tName completeHandler:(NSObject*) target selector: (SEL) callback
 {
-	CompleteProcessHandler *cph = [[CompleteProcessHandler alloc]initWithDictionary: ctx 
-																		   token: tokenStr 
-																	 andDelegate: callback];
+	NewTaskHandler *nth = [[NewTaskHandler alloc]initWithContext: protocol
+														delegate:target
+														selector:callback];
+	nth.dictionary = [NSDictionary dictionaryWithObject:tName forKey: @"name"];
+	[nth start];
+}
+
+- (void) markComplete:(NSDictionary *)ctx completeHandler: (NSObject*) target selector: (SEL) callback
+{
+	CompleteProcessHandler *cph = [[CompleteProcessHandler alloc]initWithContext: protocol
+																		delegate:target
+																		selector:callback];
+	cph.dictionary = ctx;
+
 	[cph start];
 }
 //
@@ -573,6 +528,14 @@
                                error:@"Could not contact Remember the Milk at this time. Using last known task list."
                               module:name];
     [self listDone];
+}
+
+- (NSDictionary*) idMapping
+{
+	if (protocol){
+		return protocol.idMapping;
+	}
+	return nil;
 }
 
 @end

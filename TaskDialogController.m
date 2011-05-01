@@ -17,7 +17,6 @@
 @implementation TaskDialogController
 @synthesize busyIndicator;
 @synthesize dismissButton;
-@synthesize timelineStr;
 @synthesize context;
 @synthesize tlHandler;
 @synthesize nameField;
@@ -35,7 +34,8 @@
 - (void) clickOk: (id) sender
 {
 	if (currentJob != JOB_NONE){
-		[self timelineRequest];
+	//	[context setCallback: @selector(timelineDone)];
+		[context timelineRequest:self callback:@selector(timelineDone)];
 	}
 	else {
 		[self close];
@@ -52,25 +52,6 @@
 	[self close];
 }
 
-- (void) timelineRequest
-{
-	
-	RequestREST *rr = [[RequestREST alloc]init];
-	NSMutableDictionary *params =  [NSMutableDictionary dictionaryWithObjectsAndKeys:
-									context.tokenStr, @"auth_token",
-									@"rtm.timelines.create", @"method",
-									@"xml", @"format",
-									APIKEY, @"api_key", nil];
-	tlHandler = (TimelineHandler*)[[TimelineHandler alloc]initWithHandler:self]; 
-	[busyIndicator startAnimation:self];
-	
-	[rr sendRequestWithURL:[rr createURLWithFamily:@"rest" 
-									   usingSecret:SECRET
-										 andParams:params]
-				andHandler: tlHandler];
-	[rr release];
-	
-}
 
 -(void) clickComplete: (id) sender
 {
@@ -82,43 +63,15 @@
 	currentJob = JOB_DELETE;	
 }
 
-- (void) sendMoveTo: (NSString*) newList
-{
-	//	selfstructAppDelegate *delegate = (<NSApplicationDelegate>)[NSApplication sharedApplication];
-	//	context = [delegate context];
-	RequestREST *rr = [[RequestREST alloc]init];
-	NSMutableDictionary *params =  [NSMutableDictionary dictionaryWithObjectsAndKeys:
-									context.tokenStr, @"auth_token",
-									@"rtm.tasks.moveTo", @"method",
-									newList,@"to_list_id",
-									[tdc objectForKey:@"task_id"], @"task_id",
-									[tdc objectForKey:@"taskseries_id"], @"taskseries_id",
-									[tdc objectForKey:@"list_id"], @"from_list_id",
-									[tlHandler timeLine], @"timeline",
-									@"xml", @"format",
-									APIKEY, @"api_key", nil];
-	
-	CompleteRespHandler *handler = (CompleteRespHandler*)[[CompleteRespHandler alloc]initWithHandler:self]; 
-	[busyIndicator startAnimation:self];
-	
-	context.timelineStr = nil; // we are about to fetch a new time line
-	
-	[rr sendRequestWithURL:[rr createURLWithFamily:@"rest" 
-									   usingSecret:SECRET
-										 andParams:params]
-				andHandler: handler];
-	[rr release];
-	
-}
 
 -(void) timelineDone
 {
 
-	if (![tlHandler timeLine]){
+	if (![context timelineStr]){
 		
 		[BaseInstance sendErrorToHandler:context.handler 
 								   error:@"No time line received" 
-								  module:[context description]]; 
+								  module:[context.module description]]; 
 		NSLog(@"oops -- bad");
 	}
 	else 
@@ -133,54 +86,26 @@
 		} 
 		else // currentJob == JOB_MOVETO 
 		{ 
+		//	[context setCallback:@selector(rmDone)];
 			NSString *newListName = [listsCombo stringValue];
 			NSString *newListId = [context.idMapping objectForKey: newListName];			
-			[self sendMoveTo:newListId];
+			[context sendMoveTo:self callback:@selector(rmDone) list: newListId params:tdc];
 		}
 	}
 }
 
-- (void) sendRm: (NSString*) method
-{
-//	selfstructAppDelegate *delegate = (<NSApplicationDelegate>)[NSApplication sharedApplication];
-//	context = [delegate context];
-	RequestREST *rr = [[RequestREST alloc]init];
-	NSLog(@"auth %@\n task %@\n series %@\n list %@\n api %@",[tdc objectForKey:@"auth_token"],
-		  [tdc objectForKey:@"task_id"],
-		  [tdc objectForKey:@"taskseries_id"], 
-		  [tdc objectForKey:@"list_id"],
-		  [tdc objectForKey:@"api_key"],nil);
-	NSMutableDictionary *params =  [NSMutableDictionary dictionaryWithObjectsAndKeys:
-									context.tokenStr, @"auth_token",
-									method, @"method",
-									[tdc objectForKey:@"task_id"], @"task_id",
-									[tdc objectForKey:@"taskseries_id"], @"taskseries_id",
-									[tdc objectForKey:@"list_id"], @"list_id",
-									[tlHandler timeLine], @"timeline",
-									@"xml", @"format",
-									APIKEY, @"api_key", nil];
-	
-	CompleteRespHandler *handler = (CompleteRespHandler*)[[CompleteRespHandler alloc]initWithHandler:self]; 
-	[busyIndicator startAnimation:self];
-	
-	context.timelineStr = nil; // we are about to fetch a new time line
-	
-	[rr sendRequestWithURL:[rr createURLWithFamily:@"rest" 
-									   usingSecret:SECRET
-										 andParams:params]
-				andHandler: handler];
-	[rr release];
-	
-}
+
 
 - (void) sendDelete
 {
-	[self sendRm: @"rtm.tasks.delete"];
+//	[context setCallback:@selector(rmDone)];
+	[context sendRm: self callback:@selector(rmDone) methodName: @"rtm.tasks.delete" params:tdc];
 }
 
 - (void) sendComplete
 {
-	[self sendRm: @"rtm.tasks.complete"];
+//	[context setCallback:@selector(rmDone)];
+	[context sendRm: self callback:@selector(rmDone) methodName:@"rtm.tasks.complete" params: tdc];
 }
 
 - (void) rmDone
@@ -202,7 +127,8 @@
 - (void) loadLists
 {
 	if (context.idMapping == nil){
-		[self getLists];
+	//	[context setCallback:@selector(listsDone)];
+		[context getLists:self callback:@selector(listsDone)];
 	}
 	NSDictionary *map = context.idMapping;
 	NSString *listId = [tdc objectForKey:@"list_id"];
@@ -217,24 +143,6 @@
 	}
 }
 
-
--(void) getLists
-{
-	RequestREST *rr = [[RequestREST alloc]init];
-	NSMutableDictionary *params =  [NSMutableDictionary dictionaryWithObjectsAndKeys:
-									context.tokenStr, @"auth_token",
-									@"rtm.lists.getList", @"method",
-									@"xml", @"format",
-									APIKEY, @"api_key", nil];
-	
-	ListsHandler *listsHandler = (ListsHandler*)[[ListsHandler alloc]initWithContext:context andDelegate:self]; 
-	[busyIndicator startAnimation:self];
-	[rr sendRequestWithURL:[rr createURLWithFamily:@"rest" 
-									   usingSecret:SECRET 
-										 andParams:params]
-				andHandler: listsHandler];
-	[rr release];
-}
 -(void) listsDone
 {
 	[busyIndicator stopAnimation:self];
@@ -268,12 +176,12 @@
 	[self clickUpdate:self];
 }
 
--(TaskDialogController*)initWithWindowNibName:(NSString*)nibName andContext: (RTMModule*) mod andParams: (NSDictionary*) params
+-(TaskDialogController*)initWithWindowNibName:(NSString*)nibName andContext: (RTMProtocol*) mod andParams: (NSDictionary*) params
 {	
 	self = (TaskDialogController*)[super initWithWindowNibName:nibName];
 	if (self){
-		self.tdc = params;
-		self.context = mod;
+		tdc = params;
+		context = mod;
 	
 		[nameField setStringValue:[tdc objectForKey:@"name"]];
 		[notesField setStringValue:[tdc objectForKey:@"notes"]];
@@ -281,9 +189,6 @@
 	}
 	return self;
 }
-- (void) frobDone{}
-- (void) listDone{}
-- (void) tokenDone{}
-- (void) taskRefreshDone{}
+
 
 @end

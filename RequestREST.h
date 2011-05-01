@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "ResponseRESTHandler.h"
 #import "FrobHandler.h"
+#import "ResponseHandler.h"
 #import <CommonCrypto/CommonDigest.h>
 
 

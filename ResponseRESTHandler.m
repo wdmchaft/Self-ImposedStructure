@@ -1,6 +1,6 @@
 //
 //  ResponseRESTHandler.m
-//  CocoaTest
+//  Self-Imposed Structure
 //
 //  Created by Charles on 10/28/10.
 //  Copyright 2010 zer0gravitas.com. All rights reserved.
@@ -12,18 +12,18 @@
 @implementation ResponseRESTHandler
 @synthesize respBuffer;
 @synthesize context;
-@synthesize callback;
 @synthesize currentDict;
-@synthesize listId;
+@synthesize target;
+@synthesize callback;
 
-
-- (ResponseRESTHandler*) initWithContext:(RTMModule*) ctx andDelegate: (id<RTMCallback>) delegate
+- (id) initWithContext:(RTMProtocol*) ctx delegate: (NSObject*) tgt selector: (SEL) cb  
 {
 	if (self) 
 	{
 		respBuffer = [[NSMutableData alloc] init];
 		context = ctx;
-		callback = delegate;
+		[self setTarget: tgt];
+		[self setCallback: cb];
 	}
 	return self;
 }
@@ -57,15 +57,14 @@
 	} else {
 		[BaseInstance sendErrorToHandler:context.handler 
 								   error: err 
-								  module: context.name];
+								  module: context.module.name];
 	}
-	if (context.validationHandler){
-		[context.validationHandler performSelector:@selector(validationComplete:) 
+	if (context.module.validationHandler){
+		[context.module.validationHandler performSelector:@selector(validationComplete:) 
                                         withObject:[error localizedDescription]];
 	}
 	context.lastError = [error localizedDescription];
-	[self doCallback];
-
+	[target performSelector: callback];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
@@ -88,5 +87,6 @@
 
 - (void) doCallback
 {
+	[target performSelector:callback];
 }
 @end

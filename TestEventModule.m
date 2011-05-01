@@ -24,6 +24,7 @@
 @dynamic enabled;
 @dynamic category;
 @dynamic summaryTitle;
+@dynamic isWorkRelated;
 
 -(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

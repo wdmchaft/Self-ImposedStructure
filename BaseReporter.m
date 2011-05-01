@@ -11,6 +11,7 @@
 
 @implementation BaseReporter
 @synthesize summaryTitle;
+@synthesize isWorkRelated;
 @dynamic refreshInterval;
 @dynamic notificationName;
 @dynamic notificationTitle;

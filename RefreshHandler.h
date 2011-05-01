@@ -8,9 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 #import "ListHandler.h"
-#import "RTMModule.h"
+#import "RTMProtocol.h"
 
 @interface RefreshHandler : ListHandler <NSXMLParserDelegate> {
 }
-- (RefreshHandler*) initWithContext: (RTMModule*) ctx andDelegate: (id<RTMCallback>) delegate;
+//- (RefreshHandler*) initWithContext: (RTMProtocol*) ctx;
 @end

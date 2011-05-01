@@ -32,5 +32,6 @@
 - (void) workState;
 - (void) freeState;
 - (void) awayState;
+- (void) vacationState;
 - (void) clearQueues;
 @end

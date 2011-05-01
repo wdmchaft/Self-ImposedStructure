@@ -11,11 +11,10 @@
 
 
 @implementation CompleteRespHandler
-- (id) initWithHandler:(id<RTMCallback>) delegate 
-{
-	return [super initWithContext:nil andDelegate:delegate];
-
-}
+//- (id) initWithContext: (RTMProtocol*) ctx
+//{
+//	return [super initWithContext:ctx];
+//}
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName 
   namespaceURI:(NSString *)namespaceURI 
@@ -38,8 +37,8 @@
 	[parser parseData];	
 }
 
-- (void) doCallback
-{
-	[callback rmDone];
-}
+//- (void) doCallback
+//{
+//	[callback rmDone];
+//}
 @end

@@ -47,6 +47,7 @@
 @dynamic category;
 @dynamic name;
 @dynamic summaryTitle;
+@dynamic isWorkRelated;
 @synthesize rulesData, rulesTable, removeRuleButton, addRuleButton, summaryMode;
 @synthesize mailDateFmt;
 @synthesize msgName;

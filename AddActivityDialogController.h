@@ -7,19 +7,27 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+#import "TaskList.h"
 
 @interface AddActivityDialogController : NSWindowController <NSComboBoxDataSource>{
-	NSComboBox  *activityCombo;
-	NSButton	*okButton;
-	NSButton	*cancelButton;
-	NSArray *allActivities;
+	NSPopUpButton		*listsCombo;
+	NSProgressIndicator *busy;
+	NSButton			*okButton;
+	NSButton			*cancelButton;
+	NSButton			*switchNowButton;
+	NSTextField			*taskField;
+	NSArray				*allLists;
+	id<TaskList>		list;
 }
 
-@property (nonatomic, retain) IBOutlet NSComboBox	*activityCombo;
-@property (nonatomic, retain) IBOutlet NSButton		*okButton;
-@property (nonatomic, retain) IBOutlet NSButton		*cancelButton;
-@property (nonatomic, retain)		   NSArray		*allActivities;
+@property (nonatomic, retain) IBOutlet NSPopUpButton		*listsCombo;
+@property (nonatomic, retain) IBOutlet NSButton				*okButton;
+@property (nonatomic, retain) IBOutlet NSButton				*cancelButton;
+@property (nonatomic, retain) IBOutlet NSTextField			*taskField;
+@property (nonatomic, retain) IBOutlet NSProgressIndicator	*busy;
+@property (nonatomic, retain) IBOutlet NSButton				*switchNowButton;
+@property (nonatomic, retain) id<TaskList>					list;
+@property (nonatomic, retain) NSArray						*allLists;
 
 - (IBAction) clickOK: (id) sender;
 - (IBAction) clickCancel: (id) sender;

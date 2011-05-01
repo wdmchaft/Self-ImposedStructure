@@ -10,36 +10,33 @@
 #import "Context.h"
 #import "WPADelegate.h"
 #import "WriteHandler.h"
-
+#import "TaskList.h"
 
 
 @implementation AddActivityDialogController
 @synthesize okButton;
 @synthesize cancelButton;
-@synthesize activityCombo;
-@synthesize allActivities;
+@synthesize taskField;
+@synthesize busy;
+@synthesize listsCombo;
+@synthesize allLists;
+@synthesize switchNowButton;
 
 - (void) initCombo
 {
 	Context *ctx = [Context sharedContext];
-	[activityCombo setDataSource:nil];
-	NSArray *allTasks = [ctx getTasks];
-	allActivities = allTasks;
-	for(NSDictionary *info in allTasks){
-		[activityCombo addItemWithObjectValue:[info objectForKey:@"name"]];
+	allLists = [ctx getTaskLists];
+	for(<TaskList> list in allLists){
+		NSString *name = [list name];
+		[listsCombo addItemWithTitle:name];
 	}
-	if (ctx.currentTask){
-		[activityCombo setObjectValue:[ctx.currentTask objectForKey:@"name"]];
-	} else {
-		[activityCombo setObjectValue:@"No current task"];
-	}
-	[activityCombo noteNumberOfItemsChanged];
-	[activityCombo setCompletes:YES];
 }
 
 - (void) windowDidLoad
 {
+	[busy setHidden:YES];
 	[self initCombo];
+	[switchNowButton setIntegerValue:1];
 }
 
 - (void) showWindow:(id)sender
@@ -50,36 +47,54 @@
 	[super showWindow:sender];
 }
 
+- (void) addDone
+{
+	Context *ctx = [Context sharedContext];
+	[busy setHidden:YES];
+	[busy stopAnimation:self];
+	NSString *tName = [taskField stringValue];
+	if ([switchNowButton integerValue]){
+		ctx.currentTask = [NSDictionary dictionaryWithObjectsAndKeys:tName, @"name",
+						   list.name, @"source", nil];
+		[[ctx growlManager] growlFYI:[NSString stringWithFormat: @"New activity: %@",tName]];
+	} else {
+		[[ctx growlManager] growlFYI:[NSString stringWithFormat: @"Added activity: %@", tName]];
+	}
+	[super.window close];
+}
+
+- (void)doAdd: (NSTimer*) timer 
+{
+	[list newTask: [taskField stringValue] completeHandler:self selector:@selector(addDone)];
+}
+	
 - (IBAction) clickOK: (id) sender
 {
 	Context *ctx = [Context sharedContext];
-	NSComboBox *cb = activityCombo;
+	NSPopUpButton *lb = listsCombo;
 	
 	ctx.currentTask = nil;
-	NSString *str = [cb objectValueOfSelectedItem];
+	NSString *str = [lb titleOfSelectedItem];
 	
-	for (NSDictionary *info in allActivities){
-		if ([[info objectForKey:@"name"] isEqualToString:str]){
-			ctx.currentTask = info;
+	for (id<TaskList> tl  in allLists){
+		if([[tl name] isEqualToString:str]){
+			list  = tl;
 			break;
 		}
 	}
-	
-	// if we get don't get the default or empty then it is "adhoc" task  (with no source)
-	
-	if (ctx.currentTask == nil){
-		if (![cb.stringValue isEqualToString:@"No current task"] && [cb.stringValue length] > 0) {
-			NSDictionary *newTI = [NSDictionary	dictionaryWithObject:cb.stringValue forKey:@"name"];
-			ctx.currentTask = newTI;
-		}
-	}
-	[ctx saveTask];
-	if (ctx.currentTask != nil){
-		[[ctx growlManager] growlFYI:[NSString stringWithFormat: @"Current activity: %@",[ctx.currentTask objectForKey:@"name"]]];
-	} else {
-		[[ctx growlManager] growlFYI:[NSString stringWithFormat: @"Current activity not set"]];
-	}
-	[super.window close];
+	[busy setHidden:NO];
+	[busy startAnimation:self];
+	[NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(doAdd:) userInfo:list repeats:NO ];
+
+	//[addList newTask: [taskField stringValue] completeHandler:self selector:@selector(addDone)];
+
+//	[ctx saveTask];
+//	if (ctx.currentTask != nil){
+//		[[ctx growlManager] growlFYI:[NSString stringWithFormat: @"Current activity: %@",[ctx.currentTask objectForKey:@"name"]]];
+//	} else {
+//		[[ctx growlManager] growlFYI:[NSString stringWithFormat: @"Current activity not set"]];
+//	}
+//	[super.window close];
 }
 
 - (IBAction) clickCancel: (id) sender

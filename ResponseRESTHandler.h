@@ -7,25 +7,26 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "RTMCallback.h"
-#import "RTMModule.h"
+#import "RTMProtocol.h"
+#import "ResponseHandler.h"
 
-@interface ResponseRESTHandler : NSObject {
+@interface ResponseRESTHandler : NSObject <ResponseHandler> {
 	NSMutableData *respBuffer;
-	RTMModule *context;
-	id<RTMCallback> callback;
+	RTMProtocol *context;
 	NSMutableDictionary *currentDict;
-	NSString *listId;
+	NSObject *target;
+	SEL callback;
 }
-@property (nonatomic, retain) RTMModule* context;
+@property (nonatomic, retain) RTMProtocol* context;
 @property (nonatomic, retain) NSMutableDictionary* currentDict;
-@property (nonatomic, retain) id<RTMCallback> callback;
 @property (nonatomic, retain) NSMutableData * respBuffer;
-@property (nonatomic, retain) NSString * listId;
-- (ResponseRESTHandler*) initWithContext:(RTMModule*) ctx andDelegate: (id<NSObject>) delegate;
+@property (nonatomic, retain) NSObject * target;
+@property (nonatomic) SEL callback;
+
+- (id) initWithContext:(RTMProtocol*) ctx delegate: (NSObject*) target selector: (SEL) callback ;
 
 - (void) doParse: (NSData*) respStr;
--(void) handleResponse: (NSData*) respStr;
+- (void) handleResponse: (NSData*) respStr;
 - (void) doCallback;
 
 @end

@@ -10,10 +10,7 @@
 #import "ResponseRESTHandler.h"
 
 @interface TimelineHandler : ResponseRESTHandler <NSXMLParserDelegate>{
-	NSMutableString *timeLine;	
 }
 
-@property (nonatomic, retain) NSMutableString *timeLine;
-- (TimelineHandler*) initWithHandler:(id<RTMCallback>) delegate;
 
 @end

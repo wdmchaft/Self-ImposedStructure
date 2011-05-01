@@ -38,7 +38,7 @@
 	TotalsManager *totalsManager;
 	AddActivityDialogController *addActivityWindow;
 	NSMutableDictionary *menuForTaskList;
-
+	NSModalSession addTaskSession;
 }
 
 @property (retain, nonatomic) IBOutlet NSWindow	*myWindow;
@@ -56,6 +56,7 @@
 @property (retain, nonatomic) StatsWindow *statsWindow;
 @property (retain, nonatomic) AddActivityDialogController *addActivityWindow;
 @property (retain, nonatomic) NSMutableDictionary *menuForTaskList;
+@property (nonatomic) NSModalSession addTaskSession;
 
 - (IBAction) clickStart: (id) sender;
 - (IBAction) clickRefresh: (id) sender;

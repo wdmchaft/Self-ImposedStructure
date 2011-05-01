@@ -46,9 +46,9 @@ didStartElement:(NSString *)elementName
 	[parser parseData];	
 }
 
-- (void) doCallback
-{
-	[callback listsDone];
-}
+//- (void) doCallback
+//{
+//	[callback listsDone];
+//}
 
 @end

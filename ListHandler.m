@@ -16,9 +16,11 @@
 @synthesize temp;
 @synthesize inputFormatter;
 
-- (ListHandler*) initWithContext: (RTMModule*) ctx andDelegate: (id<RTMCallback>) delegate
+- (id) initWithContext:(RTMProtocol*) ctx delegate: (NSObject*) del selector: (SEL) cb 
 {
-	if ((self = (ListHandler*)[super initWithContext:ctx andDelegate:delegate])!= nil)
+	if ((self = (ListHandler*)[super initWithContext:ctx 
+											delegate:del
+											selector:cb])!= nil)
 	{
 		tempDictionary = [NSMutableDictionary new];
         inputFormatter = [NSDateFormatter new];
@@ -52,9 +54,9 @@ didStartElement:(NSString *)elementName
 			[self addItem];
 		}
 		self.currentDict = [NSMutableDictionary new];
-		[currentDict setObject:[context name] forKey:@"source"]; 
-		[currentDict setObject:[context name] forKey:@"project"]; 
-		[currentDict setObject:[[[NSString alloc] initWithString:listId]retain] forKey:@"list_id"]; 
+		[currentDict setObject:[context.module name] forKey:@"source"]; 
+		[currentDict setObject:[context.module name] forKey:@"project"]; 
+		[currentDict setObject:[[[NSString alloc] initWithString:context.listIdStr]retain] forKey:@"list_id"]; 
 		[currentDict setObject:[[[NSString alloc] initWithString:id]retain] forKey:@"taskseries_id"]; 
 		[currentDict setObject:[[[NSString alloc] initWithString:name]retain] forKey:TASK_NAME];
         NSString *modStr = [attributeDict objectForKey:@"modified"];
@@ -63,7 +65,7 @@ didStartElement:(NSString *)elementName
             [currentDict setObject:modDate forKey:@"modified"]; 
         }
         
-		[currentDict setObject:context.name forKey:REPORTER_MODULE];
+		[currentDict setObject:context.module.name forKey:REPORTER_MODULE];
     }
 	//
 	// START ELEMENT: task (part of taskseries)
@@ -80,10 +82,10 @@ didStartElement:(NSString *)elementName
             [currentDict setObject:dueDate forKey:TASK_DUE];
 		} 
     }
-	if ( [elementName isEqualToString:@"list"]) {
-		NSString *id = [attributeDict objectForKey:@"id"];
-		listId = id; 
-    }
+//	if ( [elementName isEqualToString:@"list"]) {
+//		NSString *id = [attributeDict objectForKey:@"id"];
+//		listId = id; 
+//    }
 	if ( [elementName isEqualToString:@"err"]){
 		//NSString* code = [attributeDict objectForKey:@"code"];
 		NSString* msg = [attributeDict objectForKey:@"msg"];
@@ -137,8 +139,8 @@ didEndElement:(NSString *)elementName
 	context.tasksList = [NSMutableArray arrayWithArray:[tempDictionary allValues]];
 }
 
-- (void) doCallback
-{
-	[callback listDone];
-}
+//- (void) doCallback
+//{
+//	[callback listDone];
+//}
 @end

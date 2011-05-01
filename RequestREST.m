@@ -9,6 +9,7 @@
 #import "RequestREST.h"
 
 
+
 @implementation RequestREST
 
 
@@ -71,7 +72,7 @@
 			 result[12], result[13],result[14],result[15],nil] lowercaseString];
 }
 
-- (NSURLConnection*) sendRequestWithURL: (NSString*) urlStr andHandler:(ResponseRESTHandler*) handler
+- (NSURLConnection*) sendRequestWithURL: (NSString*) urlStr andHandler:(<ResponseHandler>) handler
 {
 	NSLog(@"sendRequestWithURL for %@", urlStr);
 	NSURL *url = [[[NSURL alloc]initWithString:urlStr]autorelease];

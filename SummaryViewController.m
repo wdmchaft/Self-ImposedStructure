@@ -122,10 +122,10 @@
 
 - (void) processComplete: (NSTimer*)timer
 {	
-//    [prog setHidden:NO];
-//	[prog startAnimation:self];
-//	NSDictionary* params = timer.userInfo;
-//	[((id<TaskList>)reporter) markComplete:params completeHandler:self];
+ [prog setHidden:NO];
+	[prog startAnimation:self];
+	NSDictionary* params = timer.userInfo;
+	[((id<TaskList>)reporter) markComplete:params completeHandler:self selector:@selector(handleComplete:)];
 }
 
 - (void) handleComplete: (NSString*) error
@@ -238,7 +238,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 	[prog startAnimation:self];
     [table setEnabled:NO];
 	NSDictionary* params = timer.userInfo;
-	[((id<TaskList>)reporter) markComplete:params completeHandler:self];
+	[((id<TaskList>)reporter) markComplete:params completeHandler:self selector:@selector(handleComplete:)];
 }
 
 - (id)tableView:(NSTableView *)tableView 

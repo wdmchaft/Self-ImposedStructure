@@ -28,12 +28,13 @@
 	}
 }
 
-- (void) doCallback
-{
-	[callback frobDone];
-}
 -(void) handleResponse:(NSData *)respStr
 {
 	[super handleResponse:respStr];
+}
+
+- (void) doCallback
+{
+	[super doCallback];
 }
 @end

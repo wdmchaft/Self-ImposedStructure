@@ -7,34 +7,31 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "RTMModule.h"
+#import "RTMProtocol.h"
 #import "TimelineHandler.h"
-#import "RTMCallback.h"
 #define JOB_DELETE 0
 #define JOB_COMPLETE 1
 #define JOB_MOVETO 2
 #define JOB_NONE 3
 
-@interface TaskDialogController : NSWindowController <RTMCallback> {
+@interface TaskDialogController : NSWindowController {
 	NSButton *dismissButton;
 	NSButton *okButton;
 	NSButton *cancelButton;
 	NSProgressIndicator *busyIndicator;
-	NSString *timelineStr;
 	NSTextField *nameField;
 	NSTextFieldCell *notesField;
 	NSDatePicker *dueDatePicker;
 	NSComboBox *listsCombo;
 	NSDictionary *tdc;
-	RTMModule *context;
+	RTMProtocol *context;
 	TimelineHandler *tlHandler;
 	int currentJob;
 }
-@property (nonatomic, retain) NSString *timelineStr;
 @property (nonatomic,retain) IBOutlet NSProgressIndicator *busyIndicator;
 @property (nonatomic,retain) IBOutlet NSButton *dismissButton;
 @property (nonatomic,retain)  NSDictionary *tdc;
-@property (nonatomic,retain)  RTMModule *context;
+@property (nonatomic,retain)  RTMProtocol *context;
 @property (nonatomic,retain)  TimelineHandler *tlHandler;
 @property (nonatomic,retain) IBOutlet NSTextField *nameField;
 @property (nonatomic,retain) IBOutlet NSTextFieldCell *notesField;
@@ -48,15 +45,14 @@
 - (IBAction) clickOk: (id)sender;
 - (IBAction) clickCancel: (id)sender;
 - (IBAction) listChanged: (id)sender;
-- (void) timelineRequest;
 
-- (void) getLists;
+
 - (void) sendComplete;
 - (void) sendDelete;
 - (void) rmDone;
 
 
--(TaskDialogController*)initWithWindowNibName:(NSString*)nibName andContext: (RTMModule*) mod andParams: (NSDictionary*) ctx;
+-(TaskDialogController*)initWithWindowNibName:(NSString*)nibName andContext: (RTMProtocol*) mod andParams: (NSDictionary*) ctx;
 - (void) loadLists;
 
 @end

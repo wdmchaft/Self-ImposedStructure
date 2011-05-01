@@ -10,15 +10,7 @@
 #import "XMLParse.h"
 
 @implementation TimelineHandler
-@synthesize timeLine;
-- (TimelineHandler*) initWithHandler:(<RTMCallback>) delegate 
-{
-	if (self =(TimelineHandler*)[super initWithContext:nil andDelegate:delegate])
-	{
-		timeLine = [NSMutableString new];
-	}
-	return self;
-}
+
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName 
   namespaceURI:(NSString *)namespaceURI 
@@ -27,21 +19,20 @@
 {
 	
 	if ( [elementName isEqualToString:@"timeline"]) {
-		timeLine =  [[NSMutableString alloc] initWithCapacity:50];
+		context.timelineStr =  [[NSMutableString alloc] initWithCapacity:50];
 	}
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
 	
-	[timeLine appendString:string];
+	[context.timelineStr appendString:string];
 }
 
 - (void) handleResponse: (NSData*) respData
 {
 	XMLParse *parser = [[XMLParse alloc]initWithData: respData andDelegate: self];
 	[parser parseData];
-	[callback timelineDone];
-	
+	[target performSelector:callback];
 }
 
 

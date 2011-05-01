@@ -52,6 +52,8 @@
 		8C01DD77131D5C7F00398AD8 /* HUDSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C01DD75131D5C7F00398AD8 /* HUDSettings.h */; };
 		8C01DD8F131D67EB00398AD8 /* HUDSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C01DD76131D5C7F00398AD8 /* HUDSettings.m */; };
 		8C01DD91131D680100398AD8 /* HUDSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C01DD76131D5C7F00398AD8 /* HUDSettings.m */; };
+		8C027C66136BB7B700D0D066 /* RTMProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C62C70E136A1E5500E9CABE /* RTMProtocol.m */; };
+		8C0282C9136CD54500D0D066 /* NewTaskHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0282C8136CD54500D0D066 /* NewTaskHandler.m */; };
 		8C02E5FC133FC61E0077F27B /* ColorWellCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5EAC62133D49C800E5F404 /* ColorWellCell.m */; };
 		8C0D93F912D63DBD009F3280 /* IconData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77293C12D46AC600F71FE7 /* IconData.m */; };
 		8C0D93FB12D63DBD009F3280 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
@@ -593,6 +595,9 @@
 		8C00DC161357ACD10037C1A3 /* mailFetchTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mailFetchTemplate.txt; sourceTree = "<group>"; };
 		8C01DD75131D5C7F00398AD8 /* HUDSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = HUDSettings.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8C01DD76131D5C7F00398AD8 /* HUDSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = HUDSettings.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		8C027C9D136C656600D0D066 /* ResponseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseHandler.h; sourceTree = "<group>"; };
+		8C0282C7136CD54500D0D066 /* NewTaskHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTaskHandler.h; sourceTree = "<group>"; };
+		8C0282C8136CD54500D0D066 /* NewTaskHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTaskHandler.m; sourceTree = "<group>"; };
 		8C0D93F012D63D3D009F3280 /* Dev Struct.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dev Struct.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C0D93F212D63D3D009F3280 /* WPADev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WPADev-Info.plist"; sourceTree = "<group>"; };
 		8C0D943A12D64018009F3280 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -638,6 +643,10 @@
 		8C5DEF3A12E9F3A900EE93F1 /* SummaryDeadlineData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SummaryDeadlineData.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8C5EAC61133D49B400E5F404 /* ColorWellCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ColorWellCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8C5EAC62133D49C800E5F404 /* ColorWellCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ColorWellCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		8C62C70D136A1E5500E9CABE /* RTMProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMProtocol.h; sourceTree = "<group>"; };
+		8C62C70E136A1E5500E9CABE /* RTMProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMProtocol.m; sourceTree = "<group>"; };
+		8C62C73C136B0E0800E9CABE /* RTMContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMContext.h; sourceTree = "<group>"; };
+		8C62C73D136B0E0800E9CABE /* RTMContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMContext.m; sourceTree = "<group>"; };
 		8C66A72912DFC598000644ED /* HostsFileSwitcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = HostsFileSwitcher.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8C66A72A12DFC598000644ED /* HostsFileSwitcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = HostsFileSwitcher.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8C66A74112DFCB11000644ED /* Switcher */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Switcher; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1415,6 +1424,13 @@
 		8CD1967212D46CF400C69AC9 /* RTMModule */ = {
 			isa = PBXGroup;
 			children = (
+				8C0282C7136CD54500D0D066 /* NewTaskHandler.h */,
+				8C0282C8136CD54500D0D066 /* NewTaskHandler.m */,
+				8C027C9D136C656600D0D066 /* ResponseHandler.h */,
+				8C62C73C136B0E0800E9CABE /* RTMContext.h */,
+				8C62C73D136B0E0800E9CABE /* RTMContext.m */,
+				8C62C70D136A1E5500E9CABE /* RTMProtocol.h */,
+				8C62C70E136A1E5500E9CABE /* RTMProtocol.m */,
 				8C77295612D46AC600F71FE7 /* TaskDialogController.h */,
 				8C77296212D46AC600F71FE7 /* Secret.h */,
 				8C77295412D46AC600F71FE7 /* rtm.ico */,
@@ -2337,6 +2353,7 @@
 				8C9E3BCA1347778000D8BDCC /* RepeatRule.m in Sources */,
 				8CF8BB7212D9FBA6009C7E3D /* RefreshListHandler.m in Sources */,
 				8CD197E212D4FED200C69AC9 /* RefreshHandler.m in Sources */,
+				8C027C66136BB7B700D0D066 /* RTMProtocol.m in Sources */,
 				8CD197E812D4FED200C69AC9 /* CompleteRespHandler.m in Sources */,
 				8CD197E912D4FED200C69AC9 /* ListsHandler.m in Sources */,
 				8CD197EA12D4FED200C69AC9 /* ResponseRESTHandler.m in Sources */,
@@ -2348,6 +2365,7 @@
 				8CD197F112D4FED200C69AC9 /* RequestREST.m in Sources */,
 				8CD197F212D4FED200C69AC9 /* FrobHandler.m in Sources */,
 				8C82B67912EF314100830486 /* CompleteProcessHandler.m in Sources */,
+				8C0282C9136CD54500D0D066 /* NewTaskHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

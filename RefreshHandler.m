@@ -11,13 +11,15 @@
 
 
 @implementation RefreshHandler
-
-- (RefreshHandler*) initWithContext: (RTMModule*) ctx andDelegate: (<RTMCallback>) delegate 
-{
-	self = (RefreshHandler*)[super initWithContext:ctx andDelegate: delegate];
-
-	return self;
+- (id) initWithContext:(RTMProtocol*) ctx delegate: (NSObject*) del selector: (SEL) cb  {
+	return [super initWithContext:ctx delegate:del selector:cb];
 }
+//- (RefreshHandler*) initWithContext: (RTMProtocol*) ctx
+//{
+//	self = (RefreshHandler*)[super initWithContext:ctx];
+//
+//	return self;
+//}
 
 //- (void) handleResponse: (NSData*) respData
 //{
@@ -27,8 +29,8 @@
 //	
 //}
 
-- (void) doCallback
-{
-	[callback refreshDone];
-}
+//- (void) doCallback
+//{
+//	[ctx.module performSelector:ctx.callback];
+//}
 @end

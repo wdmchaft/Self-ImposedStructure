@@ -74,4 +74,6 @@
 - (GrowlManager*) growlManager;
 - (void) endNagDelay: (NSTimer*) timer;
 - (void) startNagDelay;
+- (NSArray*) getTaskLists;
+
 @end
