@@ -288,7 +288,7 @@
 	}
 	// or we are here and there is already a summary -- so check to see if the date has changed
 	else {
-        //       NSLog(@"%@ using existing summary for %@",[NSThread currentThread], inDate);
+        //       //NSLog(@"%@ using existing summary for %@",[NSThread currentThread], inDate);
         NSDate *recDate = (NSDate*)[currentSummary valueForKey:@"recordDate"];
 		NSTimeInterval int1 = [recDate timeIntervalSince1970];
 		NSTimeInterval int2 = [inDate timeIntervalSince1970];
@@ -297,12 +297,12 @@
 		}
 	}
 	if (needsNewRec){
-        //		NSLog(@"%@ writing new summary for %@",[NSThread currentThread], inDate);
+        //		//NSLog(@"%@ writing new summary for %@",[NSThread currentThread], inDate);
 		
 		currentSummary = [NSEntityDescription
 						  insertNewObjectForEntityForName:@"DailySummary"
 						  inManagedObjectContext:moc];
-	    NSLog(@"saving Summary for Date: %f (%@)",[inDate timeIntervalSince1970],inDate);
+	    //NSLog(@"saving Summary for Date: %f (%@)",[inDate timeIntervalSince1970],inDate);
         [currentSummary setValue: inDate forKey: @"recordDate"];
 		
 	}
@@ -375,17 +375,17 @@
                 continue;
             }
         }
-        NSLog(@"found task %@", taskName);
+        //NSLog(@"found task %@", taskName);
         return task;
     }
-    NSLog(@"no task named %@", taskName);
+    //NSLog(@"no task named %@", taskName);
 	return nil;
 }
 
 - (void) saveActivityForDate:(NSDate*) inDate desc: (NSString*) taskName source: (NSString*) sourceName project: (NSString*) projectName addVal: (int) increment
 {
     if (!taskName){
-        NSLog(@"not saving task data");
+        //NSLog(@"not saving task data");
         return;
     };
     NSError *err = nil;
@@ -409,10 +409,10 @@
                     [projObj setValue:[NSDate date] forKey:@"createTime"];
                     [projObj validateForInsert:&err];
                     if (err){
-                        NSLog(@"error: %@",err);
+                        //NSLog(@"error: %@",err);
                     }
                     [managedObjectContext insertObject:projObj];
-                    NSLog(@"created project: %@", projectName);
+                    //NSLog(@"created project: %@", projectName);
                 }
             }
             if (sourceName){
@@ -426,11 +426,11 @@
                     [srcObj setValue:@"Test" forKey:@"type"];
                     [srcObj validateForInsert:&err];
                     if (err){
-                        NSLog(@"error: %@",err);
+                        //NSLog(@"error: %@",err);
                     }
                     [managedObjectContext insertObject:srcObj];
 
-                    NSLog(@"created source: %@", sourceName);
+                    //NSLog(@"created source: %@", sourceName);
                 }
             }
             taskObj = [NSEntityDescription
@@ -446,9 +446,9 @@
             }
             [taskObj validateForInsert:&err];
             if (err){
-                NSLog(@"error: %@",err);
+                //NSLog(@"error: %@",err);
             } 
-            NSLog(@"created task: %@", taskName);
+            //NSLog(@"created task: %@", taskName);
             [managedObjectContext insertObject:taskObj];
        
         }
@@ -474,8 +474,8 @@
         [actObj setValue:[NSNumber numberWithInt:dateParts.weekday] forKey: @"weekDay"];
         [actObj validateForInsert:&err];
         if (err){
-            NSLog(@"error: %@",err);
-            NSLog(@"created activity for task %@ [%@]", taskName, inDate);
+            //NSLog(@"error: %@",err);
+            //NSLog(@"created activity for task %@ [%@]", taskName, inDate);
         }  
         [managedObjectContext insertObject:actObj];
 
@@ -485,15 +485,15 @@
     NSNumber *newVal =[NSNumber numberWithInt:increment + oldVal];
     [actObj setValue:newVal forKey:@"total"];
     [managedObjectContext refreshObject:actObj mergeChanges:YES];
-    NSLog(@"updated activity to %d for task %@ [%@]",increment,	 taskName, inDate);
+    //NSLog(@"updated activity to %d for task %@ [%@]",increment,	 taskName, inDate);
     
     
 //    if (![managedObjectContext commitEditing]) {
-//        NSLog(@"%@: unable to commit editing before saving", [self class]);
+//        //NSLog(@"%@: unable to commit editing before saving", [self class]);
 //    }
 //    [managedObjectContext save:&err];
 //    if (err){
-//        NSLog(@"error: %@",err);
+//        //NSLog(@"error: %@",err);
 //    }
 }
 
@@ -573,11 +573,11 @@
  */
 
 - (IBAction) saveAction:(id)sender {
-	NSLog(@"doing save");
+	//NSLog(@"doing save");
     error = nil;
     
     if (![[self managedObjectContext] commitEditing]) {
-        NSLog(@"%@ unable to commit editing before saving", [self class]);
+        //NSLog(@"%@ unable to commit editing before saving", [self class]);
     }
 	
     if (![[self managedObjectContext] save:&error]) {
@@ -587,31 +587,31 @@
 
 - (void) doWrapUp: (NSObject*) ignore	
 {
-	NSLog(@"doWrapUp");
+	//NSLog(@"doWrapUp");
     error = nil;
 	if (!managedObjectContext) {
-		NSLog(@"no managedObjectContext");
+		//NSLog(@"no managedObjectContext");
 		reply = NSTerminateNow;
 		return;
 	}
     if (![managedObjectContext commitEditing]) {
-        NSLog(@"%@:%s unable to commit editing to terminate", [self class], _cmd);
+        //NSLog(@"%@:%s unable to commit editing to terminate", [self class], _cmd);
         reply = NSTerminateCancel;
 		return;
     }
 	
     if (![managedObjectContext hasChanges]){
-		NSLog(@"no managedObjectContext changes");
+		//NSLog(@"no managedObjectContext changes");
 		reply = NSTerminateNow;
 		return;
 	}
-	NSLog(@"starting save...");
+	//NSLog(@"starting save...");
     if (![managedObjectContext save:&error]) {
-		NSLog(@"save error: %@",error);
+		//NSLog(@"save error: %@",error);
 		reply = NSTerminateCancel;
 		return;
 	}
- 	NSLog(@"....saved");
+ 	//NSLog(@"....saved");
     reply = NSTerminateNow;
 }
 

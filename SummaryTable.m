@@ -35,7 +35,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
     NSParameterAssert(row >= 0 && row < [statData count]);
     StatsRecord *record  = [statData objectAtIndex:row];
 	NSString *colName = (NSString*) [tableColumn identifier];
-	//NSLog(@"row = %d colName = %@", row, colName);
+	////NSLog(@"row = %d colName = %@", row, colName);
 	if ([colName isEqualToString:ACTIVITY_COL]){
 		theValue = record.activity;
 		//	theValue = @"test";

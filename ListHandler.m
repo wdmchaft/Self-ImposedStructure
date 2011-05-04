@@ -105,7 +105,7 @@ didEndElement:(NSString *)elementName
  qualifiedName:(NSString *)qName 
 //	attributes:(NSDictionary *)attributeDict 
 {
-//	NSLog(@"didEndElement for %@", elementName);
+//	//NSLog(@"didEndElement for %@", elementName);
 	//
 	// END ELEMENT: taskseries
 	// save the dictionary to the tasks dictionary
@@ -129,7 +129,7 @@ didEndElement:(NSString *)elementName
 
 - (void) doParse: (NSData*) respData
 {
-	//NSLog(@"%@", [[NSString alloc] initWithData: respData encoding:NSUTF8StringEncoding]);
+	////NSLog(@"%@", [[NSString alloc] initWithData: respData encoding:NSUTF8StringEncoding]);
 	XMLParse *parser = [[XMLParse alloc]initWithData: respData andDelegate: self];
 	[parser parseData];
 	if (self.currentDict != nil && [self.currentDict count] > 0){

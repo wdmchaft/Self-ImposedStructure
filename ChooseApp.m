@@ -17,7 +17,7 @@
 @synthesize chosenApp;
 
 - (IBAction) clickOk: (id) sender{
-	NSLog(@"index = %d allApps size = %d",popUpRunningApps.indexOfSelectedItem, [allApps count]);
+	//NSLog(@"index = %d allApps size = %d",popUpRunningApps.indexOfSelectedItem, [allApps count]);
 	NSMenuItem *item = (NSMenuItem*) popUpRunningApps.selectedItem;
 	chosenApp = [allApps objectAtIndex:item.tag];
 	[super.window close];

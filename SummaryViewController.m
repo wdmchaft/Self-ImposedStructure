@@ -35,7 +35,7 @@
 {
 	[super loadView];
 	table.dataSource=self;
-	//NSLog(@"table = %@", table);
+	////NSLog(@"table = %@", table);
 	[table setDoubleAction:@selector(handleDouble:)];
 	//[table setAction:@selector(handleAction:)];
 	[table setTarget:self];
@@ -71,7 +71,7 @@
 
 - (void) refresh
 {
-	NSLog(@"refresh!");
+	//NSLog(@"refresh!");
 //	[data removeAllObjects];
 //    [table noteNumberOfRowsChanged];
 	[prog setHidden:NO];
@@ -89,6 +89,7 @@
 - (void) handleAlert: (WPAAlert*) alert
 {
 	if (alert.lastAlert){
+		NSLog(@"last alert for [%@] count = %d", [reporter name], [data count]);
 		[prog setHidden:YES];
 		[prog stopAnimation:self];
 		actualLines = [data count];
@@ -147,7 +148,7 @@
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
 {
 	NSInteger ret = [data count];
-	//NSLog(@"count = %d", ret);
+	NSLog(@"%@ count = %d", [reporter summaryTitle], ret);
 	return ret;
 }
 
@@ -177,8 +178,10 @@
 
 - (int) actualHeight
 {
-	NSLog(@"maxlines = %d for %@", maxLines, reporter.name);
+//	actualLines = [data count];
 	int lines = (actualLines > maxLines) ? maxLines :actualLines;
+	int height = lines * ([table rowHeight] + 3);
+	NSLog(@"maxLines = %d actualLines = %d height = %d for %@", maxLines, actualLines, height, reporter.name);
 	return lines * ([table rowHeight] + 3);
 }
 
@@ -204,7 +207,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 	NSTimeInterval intv = [starts timeIntervalSinceNow];
 	NSDictionary *attrs = [self attributesForInterval: intv];
 	if ([colName isEqualToString:@"COL1"]){
-		theValue = [Utility shortTimeStrFor:starts];
+		theValue = [Utility dueTimeStrFor:starts];
 	} else {
 		theValue = [params objectForKey:EVENT_SUMMARY];
 	}
@@ -230,7 +233,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 - (void) processComplete: (NSTimer*)timer
 {	
     if (inRefresh){
-        NSLog(@"ignoring complete click");
+        //NSLog(@"ignoring complete click");
         return;
     }
     inRefresh = YES;
@@ -257,7 +260,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 		NSString *val;
 		val = (NSString*)[params objectForKey:TASK_NAME];
 		if (![due isEqualToDate:[NSDate distantFuture]]){
-//			NSLog(@"got val = %@", val);
+//			//NSLog(@"got val = %@", val);
 			val = [NSString stringWithFormat:@"%@ : %@",[Utility dueTimeStrFor:due], val];
 		}
 		theValue = val;
@@ -267,7 +270,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 	if ([theValue isKindOfClass:[NSString class]] && due){
 		NSTimeInterval intv = [due timeIntervalSinceNow];
 		NSDictionary *attrs = [self attributesForInterval: intv];
-	//	NSLog(@"val = %@",(NSString*)[params objectForKey:TASK_NAME]);
+	//	//NSLog(@"val = %@",(NSString*)[params objectForKey:TASK_NAME]);
 		theValue = [[NSAttributedString alloc]initWithString:(NSString*)theValue attributes: attrs];
 	}
     return theValue;
@@ -373,7 +376,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
     	}
     	else if  ([colName isEqualToString:@"COL2"]){
     		NSDate *due = (NSDate*) [params objectForKey:MAIL_ARRIVAL_TIME];
-    		theValue = [Utility shortTimeStrFor:due];
+    		theValue = [Utility dueTimeStrFor:due];
     	} else {
     		theValue = [params objectForKey:MAIL_SUBJECT];
     	}

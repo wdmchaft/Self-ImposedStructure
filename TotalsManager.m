@@ -152,7 +152,7 @@
 	NSDateFormatter *compDate = [NSDateFormatter new];
 	[compDate  setDateFormat:@"yyyyMMdd hh:mm" ];
 	NSString *todayStr = [compDate stringFromDate:timer.fireDate];
-	NSLog(@"rolling over @ %@", todayStr);
+	//NSLog(@"rolling over @ %@", todayStr);
 	NSTimeInterval next = 24 * 60 * 60;
 	// if we are called the first time then set up the loop for every 24 hours
 	if (timer.userInfo == nil){
@@ -192,7 +192,7 @@
 	int hour = rollInterval / 3600; 
 	int min = (((int)rollInterval % 3600) / 60);
 	int sec = (((int)rollInterval) % 60);
-	NSLog(@"First Rollover is at %@, %f seconds (%02d:%02d:%02d) from now", rollStr, rollInterval, hour, min, sec);
+	//NSLog(@"First Rollover is at %@, %f seconds (%02d:%02d:%02d) from now", rollStr, rollInterval, hour, min, sec);
 }
 
 - (NSTimer*) getTimerAndStampForRollover: (NSDate*) rollDate
@@ -261,7 +261,7 @@
  //   [stamp timeIntervalSinceNow];
  //   NSDateFormatter *fmt = [NSDateFormatter new];
  //   [fmt setDateFormat:@"MM/dd HH:mm:SSSSS"];
- //   NSLog(@"stamp = %@", [fmt stringFromDate:stamp]);
+ //   //NSLog(@"stamp = %@", [fmt stringFromDate:stamp]);
 	return stamp;
 }
 
@@ -271,7 +271,7 @@
 	{
 		NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
 		rolloverTime = [ud objectForKey:@"dailyRolloverTime"]; // defaults to zero (aka midnight)
-		NSLog(@"rollover time: %@", rolloverTime);
+		//NSLog(@"rollover time: %@", rolloverTime);
 		rolloverDay =  ((NSNumber*)[ud objectForKey:@"weeklyRolloverDay"]).intValue;
 		interval = ((NSNumber*)[ud objectForKey:@"statusInterval"]).doubleValue; 
 		dailyRolloverTimer = [self getTimerAndStampForRollover: rolloverTime];

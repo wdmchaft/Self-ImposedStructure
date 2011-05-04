@@ -142,7 +142,7 @@ static Context* sharedContext = nil;
 	//NSString *bId = [me bundleIdentifier];
 	//NSArray *ids = [bId componentsSeparatedByString:@"."];
 	NSString *appName =  __APPNAME__;
-	NSLog(@"%@", appName); 
+	//NSLog(@"%@", appName); 
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
 	bundlesMap = [[NSMutableDictionary alloc]initWithCapacity:6];
 	NSFileManager *dfm = [NSFileManager defaultManager];
@@ -318,7 +318,7 @@ static Context* sharedContext = nil;
 		if ([path hasSuffix: @"ico"]) {
 			iconData = data;
 			if (iconData == nil){
-				NSLog(@"Can not load icon file: [%@]", path);
+				//NSLog(@"Can not load icon file: [%@]", path);
 				NSString *path = [NSString stringWithFormat:@"%@/wpa.ico",[[NSBundle mainBundle] resourcePath]];
 				return [NSData dataWithContentsOfFile:path];
 			}

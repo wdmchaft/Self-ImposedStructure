@@ -72,14 +72,14 @@
 		NSString *boundary = nil;
 		NSUInteger endBoundary = [MimeHandler getBoundaryFrom:srchStr ret:&boundary];
 
-	//	NSLog(@"boundary=%@",boundary);
+	//	//NSLog(@"boundary=%@",boundary);
 		[ret addObject:boundary];
 //		NSInteger pt2 = pt1 + eRange.location + eRange.length;
 		NSInteger pt2 = pt1 + endBoundary;
 		sData = [sData substringFromIndex:pt2];
 		range = [sData rangeOfString: @"\nContent-type: multipart/" options:NSCaseInsensitiveSearch];
 		if (range.location != NSNotFound){
-	//		NSLog(@"looping...");
+	//		//NSLog(@"looping...");
 		}
 	}
 	return [ret count] == 0 ? nil : ret;	
@@ -114,13 +114,13 @@
 
 + (NSString*)synopsisFromSimple: (NSString*) data
 {
-//	NSLog(@"data = %@",data);
+//	//NSLog(@"data = %@",data);
 	NSString* encodeStr = @"Content-Transfer-Encoding: base64";
 	NSRange encodeRange = [data rangeOfString:encodeStr options:NSCaseInsensitiveSearch];
 	BOOL decodeIt = encodeRange.location != NSNotFound;
 	
 	NSRange boundaryRange = [data rangeOfString:@"\n\n"];
-//	NSLog(@"location = %d length = %d", boundaryRange.location,boundaryRange.length);
+//	//NSLog(@"location = %d length = %d", boundaryRange.location,boundaryRange.length);
 	NSString *synopsis = [data substringFromIndex:boundaryRange.location + boundaryRange.length];
 	if (decodeIt) {
 		NSData *data = [Utility dataByBase64DecodingString:synopsis];

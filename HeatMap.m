@@ -49,13 +49,13 @@
 
 - (void) load
 {
-	NSLog(@"I am this: %@", self);
+	//NSLog(@"I am this: %@", self);
 
 	colors = [NSMutableArray arrayWithArray:[Utility loadColorsForKey:COLORS]];
     NSArray *defaultVals = [[NSUserDefaults standardUserDefaults] objectForKey:MINVALS];
-    NSLog(@"defaultWindows length = %d", [defaultVals count]);
+    //NSLog(@"defaultWindows length = %d", [defaultVals count]);
 	windows = [[NSMutableArray alloc]initWithArray:defaultVals];
-    NSLog(@"windows = %@", windows);
+    //NSLog(@"windows = %@", windows);
 }
 /****
  #FA0000 30 min

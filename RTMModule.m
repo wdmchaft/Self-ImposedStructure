@@ -77,7 +77,7 @@
 	for (NSDictionary *taskData in protocol.tasksList){
 		WPAAlert *alert = [[WPAAlert alloc]init];
 		alert.message=[taskData objectForKey: @"name"];
-		NSLog(@"taskName = %@", alert.message);
+		//NSLog(@"taskName = %@", alert.message);
 	//	NSDictionary *tc = [[NSDictionary alloc]initWithDictionary:
 	//						[protocol.tasksDict objectForKey:taskName] copyItems:YES];
 		alert.moduleName = name;
@@ -94,7 +94,8 @@
 {
 	NSDate *windowDate = [NSDate dateWithTimeIntervalSinceNow:lookAheadWindow];
 	NSDate *nowDate = [NSDate date];
-	for(NSMutableDictionary *item in protocol.tasksList){
+	NSArray *workList = [protocol.tasksList copy];
+	for(NSMutableDictionary *item in workList){
 		WPAAlert *alert = [[WPAAlert alloc]init];
 		NSString *alertTitle = [protocol.listNameStr copy];
 		alert.title = alertTitle;
@@ -135,7 +136,7 @@
 		}
 		else if (dueDate != nil) {
 			// it has a due date which is *exactly equal* to the current time 
-			NSLog(@"wow - a task due right now:%@", alert.message);
+			//NSLog(@"wow - a task due right now:%@", alert.message);
 			alertTitle = [alertTitle stringByAppendingString:@"[Task Due right now!!!]"];
 		} else {
 			// has no due date -- add a date in far future so task sorts to bottom of date sorted list
@@ -226,7 +227,7 @@
 	dialogCtrl.context = protocol;
 	[dialogCtrl showWindow:self];
 	
-	NSLog(@"name: %@",clickName, nil);
+	//NSLog(@"name: %@",clickName, nil);
 }
 
 - (void) initGuts
@@ -404,7 +405,7 @@
 		// now  (step 2) open the browser with the magic URL so the user can authorize the app
 		
 		NSString *urlStr = [protocol getAuthURL];
-		NSLog(@"auth url:%@",urlStr);
+		//NSLog(@"auth url:%@",urlStr);
 		NSURL *url = [NSURL URLWithString:urlStr];
 		[[NSWorkspace sharedWorkspace] openURL:url];
 		authButton.title =@"Authorized";
@@ -432,7 +433,7 @@
 		
 		[super saveDefaultValue:protocol.tokenStr forKey:TOKEN];
 		[[NSUserDefaults standardUserDefaults] synchronize];
-		NSLog(@"token: %@",protocol.tokenStr);
+		//NSLog(@"token: %@",protocol.tokenStr);
 		// we have a token - now get the valid RTM task lists
 		[progInd startAnimation:self];
 		[progInd setHidden:NO];
@@ -523,7 +524,7 @@
 - (void) handleRTMError:(NSDictionary*) errInfo
 {
     NSString *msg = [errInfo objectForKey:@"msg"];
-    NSLog(@"Error communicating with Remember The Milk [%@]", msg);
+    //NSLog(@"Error communicating with Remember The Milk [%@]", msg);
     [BaseInstance sendErrorToHandler:handler
                                error:@"Could not contact Remember the Milk at this time. Using last known task list."
                               module:name];

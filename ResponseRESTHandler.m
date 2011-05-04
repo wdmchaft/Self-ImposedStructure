@@ -53,7 +53,7 @@
           [[error userInfo] objectForKey:NSLocalizedRecoverySuggestionErrorKey]];
 	if ([[error localizedDescription] rangeOfString: @"offline"].length > 0){
 		// just log this error -- we are having connection problems
-		NSLog(@"%@", err);
+		//NSLog(@"%@", err);
 	} else {
 		[BaseInstance sendErrorToHandler:context.handler 
 								   error: err 
@@ -77,7 +77,7 @@
 -(void) handleResponse: (NSData*) respData
 {
 //	NSString *str = [[NSString alloc]initWithData: respData encoding: NSUTF8StringEncoding];
-//	NSLog(@"%@", str);
+//	//NSLog(@"%@", str);
 	[self doParse: respData];
 	[self doCallback];
 }

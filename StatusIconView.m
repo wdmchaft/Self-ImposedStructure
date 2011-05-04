@@ -82,7 +82,7 @@
 		// draw an arc 
 		int startAngle = 90 - (360 * ratio);
 		int endAngle = 90;
-		//NSLog(@"start = %d end = %d", startAngle, endAngle);
+		////NSLog(@"start = %d end = %d", startAngle, endAngle);
 		[greenPath appendBezierPathWithArcWithCenter: center 
 											  radius: radius 
 										  startAngle:startAngle
@@ -105,8 +105,8 @@
 		[redPath moveToPoint:center ] ;
 		
 		// draw an arc 
-		//	NSLog(@"ratio = %f", ratio);
-		//	NSLog(@"endAngle = %f", endAngle);
+		//	//NSLog(@"ratio = %f", ratio);
+		//	//NSLog(@"endAngle = %f", endAngle);
 		[redPath appendBezierPathWithArcWithCenter: center 
 											radius: radius 
 										startAngle: -270 
@@ -126,9 +126,9 @@
 	CGFloat red,green,blue,alpha;
 	CGFloat h,s,v;
 	[color getRed:&red green:&green blue:&blue alpha:&alpha];
-	NSLog(@"r: %f g: %f b: %f a: %f", red, green, blue, alpha);
+	//NSLog(@"r: %f g: %f b: %f a: %f", red, green, blue, alpha);
 	[color getHue:&h saturation:&s brightness:&v alpha:&alpha];
-	NSLog(@"h: %f s: %f v: %f a: %f", h, s, v, alpha);
+	//NSLog(@"h: %f s: %f v: %f a: %f", h, s, v, alpha);
 }
 
 - (CGFloat) calcHueForRatio: (CGFloat) ratio

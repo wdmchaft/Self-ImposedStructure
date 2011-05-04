@@ -33,7 +33,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
     NSParameterAssert(row >= 0 && row < [workData count]);
     StatsRecord *record  = [workData objectAtIndex:row];
 	NSString *colName = (NSString*) [tableColumn identifier];
-	//NSLog(@"row = %d colName = %@", row, colName);
+	////NSLog(@"row = %d colName = %@", row, colName);
 	if ([colName isEqualToString:TASK_COL]){
 		theValue = record.task;
 	}if ([colName isEqualToString:SOURCE_COL]){

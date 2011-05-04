@@ -100,7 +100,7 @@
 {
     // This is just an example of what you could do...
 	//    if ( inPieChartView == _sm_hardDrive )
-	//        NSLog( @"We're done drawing the hard drive usage chart." );
+	//        //NSLog( @"We're done drawing the hard drive usage chart." );
 }
 
 

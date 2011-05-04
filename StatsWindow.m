@@ -63,7 +63,7 @@
 	self = [super initWithWindowNibName:windowNibName];
 	if (self)
 	{
-		NSLog(@"in init");
+		//NSLog(@"in init");
 	//	[self setContents];
 		// hide two tabs we don't care about
 		
@@ -183,7 +183,7 @@
 		rand2 = fmod(r2, 2.0 * 60.0 * 60.0);
 		work = rand1 + 4.0 * 60.0 * 60.0;
 		free = rand2 + 2.0 * 60.0 * 60.0;	
-		NSLog(@"goal %f work %f free %f", goal,work,free);
+		//NSLog(@"goal %f work %f free %f", goal,work,free);
 		BOOL passed = work > goal;
 		[newRecord setValue:[NSNumber numberWithDouble:work] forKey:@"timeWork"];
 		[newRecord setValue:[NSNumber numberWithDouble:goal] forKey:@"timeGoal"];
@@ -242,7 +242,7 @@
 
 - (void)tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem
 {
-	NSLog(@"didselect");
+	//NSLog(@"didselect");
 	if (tabViewItem == goalsItem){
 		WPADelegate *nad = (WPADelegate*) [NSApplication sharedApplication].delegate;
 		[busyInd startAnimation:self];
@@ -268,12 +268,12 @@
 
 - (BOOL)tabView:(NSTabView *)tabView shouldSelectTabViewItem:(NSTabViewItem *)tabViewItem
 {
-	NSLog(@"shouldselect");
+	//NSLog(@"shouldselect");
 	return YES;
 }
 
 - (void)tabView:(NSTabView *)tabView willSelectTabViewItem:(NSTabViewItem *)tabViewItem
 {
-	NSLog(@"willSelect");
+	//NSLog(@"willSelect");
 }
 @end

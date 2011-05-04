@@ -50,7 +50,7 @@
 
 -(void) awakeFromNib
 {
-    NSLog(@"activity chart awakeFromNib");
+    //NSLog(@"activity chart awakeFromNib");
 	chart.dataSource = self;
 	chart.delegate = self;
 }
@@ -123,14 +123,14 @@
 
 - (unsigned int)numberOfSlicesInPieChartView:(SMPieChartView *)inPieChartView
 {
-    NSLog(@"%u slices", [seriesData count]);
+    //NSLog(@"%u slices", [seriesData count]);
     return [seriesData count];
 }
 
 - (double)pieChartView:(SMPieChartView *)inPieChartView dataForSliceIndex:(unsigned int)inSliceIndex
 {    
     SliceData *data = (SliceData*)[seriesData objectAtIndex: inSliceIndex ];
-    NSLog(@"slice %d value: %f",inSliceIndex, data.total.doubleValue);
+    //NSLog(@"slice %d value: %f",inSliceIndex, data.total.doubleValue);
     return data.total.doubleValue;
 }
 
@@ -167,7 +167,7 @@
 //    tempColor = [ tempColor colorWithAlphaComponent:0.4 ];
     
     result = [ NSDictionary dictionaryWithObject:tempColor forKey:NSBackgroundColorAttributeName ];
-	NSLog(@"returning: %@",result);
+	//NSLog(@"returning: %@",result);
     return result;
 }
 
@@ -198,7 +198,7 @@
 - (NSString *)pieChartView:(SMPieChartView *)inPieChartView labelForSliceIndex:(unsigned int)inSliceIndex
 { 
     SliceData *data = (SliceData*)[seriesData objectAtIndex: inSliceIndex ];
-    NSLog(@"slice %d name: %@",inSliceIndex,[data.keys objectForKey:@"task"]);
+    //NSLog(@"slice %d name: %@",inSliceIndex,[data.keys objectForKey:@"task"]);
     return [data.keys objectForKey:@"task"];
     
 }
@@ -207,13 +207,13 @@
 {
     // This is just an example of what you could do...
 	//    if ( inPieChartView == _sm_hardDrive )
-	//        NSLog( @"We're done drawing the hard drive usage chart." );
+	//        //NSLog( @"We're done drawing the hard drive usage chart." );
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
 {
 	NSInteger ret = [seriesData count];
-    NSLog(@"rows = %d", ret);
+    //NSLog(@"rows = %d", ret);
     
 	return ret;
 }
@@ -234,13 +234,13 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 
 	} else if ([colName isEqualToString:@"INFO"]){
         SliceData *data = (SliceData*)[seriesData objectAtIndex: row ];
-        NSLog(@"slice %d name: %@",row,[data.keys objectForKey:@"task"]);
+        //NSLog(@"slice %d name: %@",row,[data.keys objectForKey:@"task"]);
         NSString *task = [data.keys objectForKey:@"task"];
         NSTimeInterval totalInt = [data.total doubleValue];
         NSString *timeStr = [Utility formatInterval:totalInt];
         theValue = [NSString stringWithFormat:@"%@ %@",timeStr,task];	
     }
-    NSLog(@"returning %@", theValue);
+    //NSLog(@"returning %@", theValue);
     return theValue;
 }
 

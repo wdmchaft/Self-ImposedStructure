@@ -55,7 +55,7 @@ highestTagValue,minTagValue,hrefStr,rules, alertHandler, validationHandler, time
 		rules = inRules;
 		alertHandler = handler;
 		callback = delegate;
-		//NSLog(@"mintagval = %qi", minTagValue.longLongValue);
+		////NSLog(@"mintagval = %qi", minTagValue.longLongValue);
 	}
 	return self;
 }
@@ -86,7 +86,7 @@ highestTagValue,minTagValue,hrefStr,rules, alertHandler, validationHandler, time
 					 [[error userInfo] objectForKey:NSLocalizedRecoverySuggestionErrorKey]];
 	if ([[error localizedDescription] rangeOfString: @"offline"].length > 0){
 		// just log this error -- we are having connection problems
-		NSLog(@"%@", err);
+		//NSLog(@"%@", err);
 	} else {
 		if (alertHandler){
 			[BaseInstance sendErrorToHandler: alertHandler error: err module: ((<Instance>)callback).name];
@@ -105,7 +105,7 @@ highestTagValue,minTagValue,hrefStr,rules, alertHandler, validationHandler, time
 	NSArray *comps = [tag componentsSeparatedByString:@":"];
 	int compsCount = [comps count];
 	NSString *number = [comps objectAtIndex:compsCount - 1];
-	//	NSLog(@"id number = %@", number);
+	//	//NSLog(@"id number = %@", number);
 	return [NSNumber numberWithLongLong:number.longLongValue];
 }
 
@@ -115,7 +115,7 @@ highestTagValue,minTagValue,hrefStr,rules, alertHandler, validationHandler, time
 	
 //	if (tagVal.longLongValue > minTagValue.longLongValue) {
 		long long val = tagVal.longLongValue - minTagValue.longLongValue;
-		//NSLog(@"val = %qi", val);
+		////NSLog(@"val = %qi", val);
 		if (tagVal.longLongValue > highestTagValue.longLongValue){
 	
 			highestTagValue = tagVal;
@@ -140,13 +140,13 @@ highestTagValue,minTagValue,hrefStr,rules, alertHandler, validationHandler, time
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
 	NSString *respStr = [[[NSString alloc] initWithData:respBuffer encoding:NSUTF8StringEncoding]autorelease];
-	//NSLog(@"%@",respStr);
+	////NSLog(@"%@",respStr);
 	// look for errors now
 	NSRange successRange = [respStr rangeOfString:SUCCESSSTR];
 
 	if (successRange.location == NSNotFound){
 		// Some failure occurred
-		NSLog(@"%@",respStr);
+		//NSLog(@"%@",respStr);
 		NSString *errStr = @"Unknown error occurred see log for details";
 		NSRange authRange = [respStr rangeOfString:AUTHERR];
 		

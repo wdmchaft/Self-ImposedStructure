@@ -29,7 +29,7 @@
 
 - (void) sort
 {
-	NSLog(@"sort base class");
+	//NSLog(@"sort base class");
 }
 
 - (void) clear

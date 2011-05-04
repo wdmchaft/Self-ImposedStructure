@@ -115,7 +115,7 @@
 			return [compAttr isEqualToString:predicate];
 			break;
 		case COMPARE_STARTSWITH:
-            NSLog(@"predicate = %@", predicate);
+            //NSLog(@"predicate = %@", predicate);
 			return [compAttr hasPrefix:predicate];
 			break;
 		case COMPARE_CONTAINS:

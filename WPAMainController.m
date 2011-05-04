@@ -19,10 +19,12 @@
 #import "WriteHandler.h"
 #import "GoalHoursToAverageXForm.h"
 #import "VacationDialog.h"
+#import "SwitchActivityDialog.h"
 
 @implementation WPAMainController
-@synthesize  startButton, refreshButton, statusItem, statusMenu, statusTimer, myWindow, menuForTaskList, addTaskSession;
+@synthesize  startButton, refreshButton, statusItem, statusMenu, statusTimer, myWindow, menuForTaskList, modalSession;
 @synthesize hudWindow, refreshManager, thinkTimer, siView, totalsManager, prefsWindow, statsWindow, addActivityWindow;
+@synthesize switchActivityDialog;
 
 + (void)initialize{
 	GoalHoursToAverageXForm *ghtav;
@@ -117,7 +119,7 @@
 		[ctx setCurrentState: WPASTATE_FREE];
 	}
     BOOL pastGoal = totalsManager.workToday >= [totalsManager calcGoal];
-    NSLog(@"starting with goal acheived? [%@]", pastGoal ? @"YES" : @"NO");
+    //NSLog(@"starting with goal acheived? [%@]", pastGoal ? @"YES" : @"NO");
     if (ctx.currentState != WPASTATE_VACATION && pastGoal){
         [ctx setCurrentState:WPASTATE_DONE]; 
     }
@@ -267,6 +269,24 @@
 	return insts;
 }
 
+- (BOOL) matchTask:(NSDictionary*) info1 toTask:(NSDictionary*) info2
+{
+	NSString *name1 = [info1 objectForKey:@"name"];
+	NSString *name2 = [info2 objectForKey:@"name"];
+	if (![name1 isEqualToString:name2]){
+		return NO;
+	}
+	NSString *src1 = [info1 objectForKey:@"source"];
+	NSString *src2 = [info2 objectForKey:@"source"];	
+	if (src1 == nil && src2 == nil){
+	} else if ([src1 isEqualToString:src2]) {
+		
+	} else {
+		return NO;
+	}
+	return YES;
+}
+
 - (void) fillListActivities: (id<TaskList>) list
 {
 	Context *ctx = [Context sharedContext];	
@@ -287,7 +307,7 @@
 		mi.state = NSOffState;
 		[mi setEnabled:YES];
 		[mi setRepresentedObject:info];
-		if (ctx.currentTask && [ctx.currentTask isEqual:info]){
+		if (ctx.currentTask && [self matchTask:ctx.currentTask toTask:info]){
 			mi.state = NSOnState;
         }
 		[fillMenu insertItem:mi atIndex:idx+1]; 
@@ -302,8 +322,8 @@
 		ctx.tasksList = [ctx getTasks];
 	}
 	// clear anything out first
-	while ([[menu itemArray] count] > 2) {
-		NSMenuItem *mi = [menu itemAtIndex:2];
+	while ([[menu itemArray] count] > 3) {
+		NSMenuItem *mi = [menu itemAtIndex:3];
 		[menu removeItem:mi];
 	}
     NSArray *lists = [self getTasklists];
@@ -332,7 +352,7 @@
 
 - (void) newActivity: (id) sender
 {
-	NSLog(@"newActivity");
+	//NSLog(@"newActivity");
 	Context *ctx = [Context sharedContext];
 	NSMenuItem *mi = (NSMenuItem *) sender;
 	
@@ -363,24 +383,40 @@
 	[self buildStatusMenu];
 }
 
+- (void)loadModalWindow: (NSWindowController*) win class: (Class) clazz nibName: (NSString*) name callback: (SEL) cb
+{
+	win = [[clazz alloc] initWithWindowNibName:name];
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+											 selector:cb
+												 name:NSWindowWillCloseNotification 
+											   object:[win window]];
+	[win.window makeKeyAndOrderFront:self];
+	[win.window setOrderedIndex:0];
+	[[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
+	[win showWindow:self];
+	modalSession = [NSApp beginModalSessionForWindow:win.window];
+	[NSApp runModalSession:modalSession];
+}
+
+- (IBAction) clickSwitchActivity: (id) sender
+{
+	[self loadModalWindow: switchActivityDialog 
+					class:[SwitchActivityDialog class] 
+				  nibName: @"SwitchActivityDialog"
+				 callback: @selector(switchActClosed:)];
+}
+
 - (IBAction) clickAddActivity: (id) sender
 {
-	addActivityWindow = [[AddActivityDialogController alloc] initWithWindowNibName:@"AddActivityDialog"];
-	[[NSNotificationCenter defaultCenter] addObserver:self 
-											 selector:@selector(addActClosed:) 
-												 name:NSWindowWillCloseNotification 
-											   object:addActivityWindow.window];
-	[addActivityWindow.window makeKeyAndOrderFront:self];
-	[addActivityWindow.window setOrderedIndex:0];
-	[[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
-//	[NSApp runModalForWindow:addActivityWindow.window];
-	addTaskSession = [NSApp beginModalSessionForWindow:addActivityWindow.window];
-	[NSApp runModalSession:addTaskSession];
+	[self loadModalWindow: addActivityWindow 
+					class: [AddActivityDialogController class]
+				  nibName: @"AddActivityDialog"
+				 callback: @selector(addActClosed:)];
 }
 
 - (void) addActClosed: (NSNotification*) notify
 {
-	[NSApp endModalSession:addTaskSession];
+	[NSApp endModalSession:modalSession];
 	[[Context sharedContext]refreshTasks];
 	[self enableStatusMenu:YES];
 	[self buildStatusMenu];
@@ -389,7 +425,16 @@
 												  object:addActivityWindow];
 }
 
-
+- (void) switchActClosed: (NSNotification*) notify
+{
+	[NSApp endModalSession:modalSession];
+	[[Context sharedContext]refreshTasks];
+	[self enableStatusMenu:YES];
+	[self buildStatusMenu];
+	[[NSNotificationCenter defaultCenter] removeObserver:self  
+													name:NSWindowWillCloseNotification 
+												  object:switchActivityDialog];
+}
 - (void) enableUI: (BOOL) onOff
 {
 	[refreshButton setEnabled:onOff];
@@ -530,13 +575,13 @@
 }
 
 - (void) summaryClosed:(NSNotification*) notification{
-	NSLog(@"summaryClosed");
+	//NSLog(@"summaryClosed");
 
     NSWindow *win = [notification object];
 	[[NSNotificationCenter defaultCenter] removeObserver:self  
 												 name:NSWindowWillCloseNotification 
 											   object:nil];
-	NSLog(@"save hud string: %@", [win stringWithSavedFrame]);
+	//NSLog(@"save hud string: %@", [win stringWithSavedFrame]);
 	NSString *pos = [win stringWithSavedFrame];
 	[[NSUserDefaults standardUserDefaults] setObject:pos forKey: @"posHUD"];
 	

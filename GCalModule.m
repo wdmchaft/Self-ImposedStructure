@@ -96,10 +96,10 @@
 	NSString *credentials = [[NSString alloc]initWithFormat:@"%@:%@",userStr,passwordStr ];
 	credentials = [Utility base64EncodedString: [credentials UTF8String] withLength: [credentials length]];
 	NSString *authStr = [[NSString alloc]initWithFormat:@"Basic %@", credentials ];
-	//NSLog(@"auth str = [%@]", authStr);
+	////NSLog(@"auth str = [%@]", authStr);
 	[theRequest addValue:authStr forHTTPHeaderField: @"Authorization"];
-//	NSLog(@"req = %@", theRequest);
-//	NSLog(@"req body = %@", theRequest.HTTPBody);
+//	//NSLog(@"req = %@", theRequest);
+//	//NSLog(@"req body = %@", theRequest.HTTPBody);
 	respBuffer = [[NSMutableData alloc]init];
 	NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
 	if (!theConnection) {
@@ -145,7 +145,7 @@
 	
 	if ([[error localizedDescription] rangeOfString: @"offline"].length > 0){
 		// just log this error -- we are having connection problems
-		NSLog(@"%@", err);
+		//NSLog(@"%@", err);
 	} else {
 		[BaseInstance sendErrorToHandler:alertHandler error: err module: name];
 	}
@@ -166,7 +166,7 @@
 	NSRange successRange = [respStr rangeOfString:SUCCESSSTR];
 	if (successRange.location == NSNotFound){
 		// Some failure occurred
-		NSLog(@"%@",respStr);
+		//NSLog(@"%@",respStr);
 		NSString *errStr = @"Unknown error occurred see log for details";
 		NSRange authRange = [respStr rangeOfString:AUTHERR];
 		

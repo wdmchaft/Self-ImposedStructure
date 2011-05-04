@@ -32,7 +32,7 @@
 		//[BaseInstance sendErrorToHandler:context.handler 
 //								   error:@"No time line received" 
 //								  module:[context description]]; 
-		NSLog(@"oops -- bad");
+		//NSLog(@"oops -- bad");
 	}
 	else 
 	{

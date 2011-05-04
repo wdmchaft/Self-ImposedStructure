@@ -80,7 +80,7 @@
 	NSArray *comps = [tag componentsSeparatedByString:@":"];
 	int compsCount = [comps count];
 	NSString *number = [comps objectAtIndex:compsCount - 1];
-//	NSLog(@"id number = %@", number);
+//	//NSLog(@"id number = %@", number);
 	return [NSNumber numberWithLongLong:number.longLongValue];
 }
 
@@ -93,7 +93,7 @@
 	NSString *credentials = [[NSString alloc]initWithFormat:@"%@:%@",userStr,passwordStr ];
 	credentials = [Utility base64EncodedString: [credentials UTF8String] withLength: [credentials length]];
 	NSString *authStr = [[NSString alloc]initWithFormat:@"Basic %@", credentials ];
-	//NSLog(@"auth str = [%@]", authStr);
+	////NSLog(@"auth str = [%@]", authStr);
 	[theRequest addValue:authStr forHTTPHeaderField: @"Authorization"];
 	respBuffer = [[NSMutableData alloc]init];
 	NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:refreshHandler];
@@ -271,8 +271,8 @@
 	   FilterRule *rule = [rules objectAtIndex:rowIdx];
 	   rule.ruleType = idx;
 	   
-	//   NSLog(@"cell idx  = %d", idx);
-	//   NSLog(@"cell title = %@", [pop titleOfSelectedItem]);
+	//   //NSLog(@"cell idx  = %d", idx);
+	//   //NSLog(@"cell title = %@", [pop titleOfSelectedItem]);
    }
 - (IBAction) fieldChanged: (id) sender
 {

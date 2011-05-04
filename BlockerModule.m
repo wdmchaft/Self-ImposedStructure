@@ -82,13 +82,13 @@
 	if (res != 0) {
 		switch(res){
 			case 1:
-				NSLog(@"Error reading hosts file");
+				//NSLog(@"Error reading hosts file");
 				break;
 			case 2:
-				NSLog(@"Error reading hosts file");
+				//NSLog(@"Error reading hosts file");
 				break;
 			case 3:
-				NSLog(@"Error reading hosts file");
+				//NSLog(@"Error reading hosts file");
 				break;
 		}
 	}
@@ -107,7 +107,7 @@
 	if (res != 0) {
 		switch(res){
 			case 3:
-				NSLog(@"Error restoring original hosts file");
+				//NSLog(@"Error restoring original hosts file");
 				break;
 		}
 	}

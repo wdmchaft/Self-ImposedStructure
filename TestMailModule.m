@@ -269,8 +269,8 @@
 	FilterRule *rule = [rules objectAtIndex:rowIdx];
 	rule.ruleType = idx;
 	
-	//   NSLog(@"cell idx  = %d", idx);
-	//   NSLog(@"cell title = %@", [pop titleOfSelectedItem]);
+	//   //NSLog(@"cell idx  = %d", idx);
+	//   //NSLog(@"cell title = %@", [pop titleOfSelectedItem]);
 }
 - (IBAction) fieldChanged: (id) sender
 {

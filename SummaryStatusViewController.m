@@ -40,8 +40,8 @@
 {
    // [ctrl fetchPredicate];
    BOOL set = [ctrl setSelectionIndex:0];
-    NSLog(@"set = %d", set);
+    //NSLog(@"set = %d", set);
     id something = ctrl.content;
-    NSLog(@"content = %@", something);
+    //NSLog(@"content = %@", something);
 }
 @end

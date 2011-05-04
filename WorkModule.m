@@ -106,7 +106,7 @@
 			//com.zer0gravitas.wpa
 			NSDictionary *dict = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:wa.state] forKey:@"state"];
             NSString *stateStr = (wa.state == WPASTATE_FREE)? @"play" : @"work";
-            NSLog(@"for app [%@] going to %@", appBundle, stateStr);
+            //NSLog(@"for app [%@] going to %@", appBundle, stateStr);
 			[notificationCenter postNotificationName:@"com.zer0gravitas.wpa" object: nil userInfo:dict];
 		}
 	}

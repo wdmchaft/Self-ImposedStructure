@@ -58,7 +58,7 @@
 	[super.window setTitle:[fmttr stringForObjectValue:[NSDate date]]];
 	mainControl = sender; 
 	NSString *pos = [[NSUserDefaults standardUserDefaults] objectForKey: @"posHUD"];
-	NSLog(@"loading framePos: %@", pos);
+	//NSLog(@"loading framePos: %@", pos);
 
 	[[super window] setFrameFromString:pos];
 	[super.window makeKeyAndOrderFront:nil];
@@ -191,7 +191,7 @@
 - (void)windowDidMove:(NSNotification *)aNotification
 {
 	framePos = [[self window] stringWithSavedFrame];
-	NSLog(@"setting framePos: %@", framePos);
+	//NSLog(@"setting framePos: %@", framePos);
 	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 

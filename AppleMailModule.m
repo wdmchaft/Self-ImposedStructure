@@ -98,8 +98,8 @@
 	NSDate *latestMsgDate = nil;
 	if ([cachedMail count] > 0){
 		latestMsgDate = [[cachedMail objectAtIndex:0] objectForKey:MAIL_ARRIVAL_TIME];
-		NSLog(@"last message subj = %@", [[cachedMail objectAtIndex:0] objectForKey: MAIL_SUBJECT]);
-		NSLog(@"last message arrived = %@", [[cachedMail objectAtIndex:0] objectForKey: MAIL_ARRIVAL_TIME]);
+		//NSLog(@"last message subj = %@", [[cachedMail objectAtIndex:0] objectForKey: MAIL_SUBJECT]);
+		//NSLog(@"last message arrived = %@", [[cachedMail objectAtIndex:0] objectForKey: MAIL_ARRIVAL_TIME]);
 		latestMsgDate = [latestMsgDate dateByAddingTimeInterval:1.0]; // add one second
 		return latestMsgDate;
 	}
@@ -144,7 +144,7 @@
 
     NSDate *minTime = [self lastCheck];
     
-    NSLog(@"starting getNewest w/ received later than %@", minTime);    
+    //NSLog(@"starting getNewest w/ received later than %@", minTime);    
     //   NSDate *today = [NSDate date];
     if (mailDateFmt == nil){
         mailDateFmt = [NSDateFormatter new];
@@ -171,9 +171,10 @@
 	if (summaryMode){
 		[mailMonitor reset];
 	}
-    NSLog(@"script = %@",script);
+    //NSLog(@"script = %@",script);
 	
 	// first try at last check time -- what time is it now -- later we pull the time from the newest msg
+	NSLog(@"applemail sending script");
     [mailMonitor sendScript:script withCallback:[self msgName]];
 }
 
@@ -189,7 +190,7 @@
         cachedMail = [NSMutableArray new];
     }
     [newestMail removeAllObjects];
-    NSLog(@"msg = %@",[self msgName]);
+    //NSLog(@"msg = %@",[self msgName]);
 //	if (lastRefresh && ([lastRefresh timeIntervalSinceNow] > -120.0)) {
 //		// just return the cache
 //		[self fetchDone:nil];
@@ -207,7 +208,7 @@
     NSMutableDictionary *eDict = [NSMutableDictionary dictionaryWithCapacity:4];
     
     for(unsigned int j = 1; j <= [descN numberOfItems]; j+=2){
-        NSLog(@"descN[%d]", j);
+        //NSLog(@"descN[%d]", j);
         NSAppleEventDescriptor *fieldNameDesc = [descN descriptorAtIndex:j];
         NSAppleEventDescriptor *fieldValDesc = [descN descriptorAtIndex:j+1];
         
@@ -256,10 +257,10 @@
 	OSType osType = [aDescriptor enumCodeValue];
 	AEEventClass evClass = [aDescriptor eventClass];
 	c = (char*)&type;
-	NSLog(@"code = %d class = %d event descriptor: %c%c%c%c (%@)", osType, evClass, c[3],c[2],c[1],c[0], [aDescriptor description]);
+	//NSLog(@"code = %d class = %d event descriptor: %c%c%c%c (%@)", osType, evClass, c[3],c[2],c[1],c[0], [aDescriptor description]);
 	
 	if (osType == 0){
-        NSLog(@"Script return enumCodeValue indicates error");
+        //NSLog(@"Script return enumCodeValue indicates error");
 		return;
 	}
     if (type == typeAERecord) {
@@ -278,13 +279,13 @@
 				}
 			} else {
 				c = (char*)&typeN;
-				NSLog(@"Ignoring descN[%d] = %c%c%c%c (%@)",i, c[3],c[2],c[1],c[0], [descN description]);
+				//NSLog(@"Ignoring descN[%d] = %c%c%c%c (%@)",i, c[3],c[2],c[1],c[0], [descN description]);
 			}
         }
     }
     else {
         c = (char*)&type;
-        NSLog(@"unexpected event descriptor: %c%c%c%c (%@)",c[3],c[2],c[1],c[0], [aDescriptor description]);
+        //NSLog(@"unexpected event descriptor: %c%c%c%c (%@)",c[3],c[2],c[1],c[0], [aDescriptor description]);
     }
 }
 
@@ -371,18 +372,20 @@
 	}
 }
 
-- (void) saveCache{
-	// yuck -- we can not save a color into defaults so just blow it off 
+- (void) saveCache
+{
+	// we can not easily save a color into defaults so just blow it off 
 	// also the threads don't seem to restore nicely so remove them
+	
 	NSMutableArray *temp = [NSMutableArray arrayWithCapacity:[cachedMail count]];
 	
 	for (NSMutableDictionary *item in cachedMail){
-		NSLog(@"item subj = %@", [item objectForKey:MAIL_SUBJECT]);
+		//NSLog(@"item subj = %@", [item objectForKey:MAIL_SUBJECT]);
 		NSArray *thread = [item objectForKey:@"THREAD"];
 		if (thread){
-			NSLog(@"has thread");
+			//NSLog(@"has thread");
 			for (NSMutableDictionary *titem in thread){
-				NSLog(@"thread item subj = %@", [titem objectForKey:MAIL_SUBJECT]);
+				//NSLog(@"thread item subj = %@", [titem objectForKey:MAIL_SUBJECT]);
 				[titem removeObjectForKey:@"color"];
 				[temp addObject: titem];
 			}
@@ -395,17 +398,18 @@
 			[temp addObject:item];
 
 		}
-
 	}
+
+	// lastly - use this as an opportunity to remove entries that are too old
+
 	NSMutableArray *temp2 = [NSMutableArray arrayWithCapacity:[temp count]];
+	NSDate *now = [NSDate date];
 	for (NSMutableDictionary *item in temp){
-	id color = [item objectForKey:@"color"];
-		NSMutableDictionary *tdict = item;
-		if (color){
-			tdict = [NSMutableDictionary dictionaryWithDictionary:item];
-			[tdict removeObjectForKey:@"color"];
-		} 
-		[temp2 addObject:tdict];
+		NSDate *rcvDate = [item objectForKey:MAIL_ARRIVAL_TIME];
+		NSTimeInterval age = [now timeIntervalSinceDate:rcvDate];
+		if (age < displayWindow){
+			[temp2 addObject:item];
+		}
 	}
 	[super saveDefaultValue:temp2 forKey:CACHED_MAIL];
 }
@@ -427,7 +431,7 @@
     NSAppleEventDescriptor *eventRes = [[[AppleMailMonitor appleMailShared] eventRes] copy];
     NSDictionary *eventErr = [[[AppleMailMonitor appleMailShared] errorRes] copy];
     if (eventErr){
-        NSLog(@"%@ got Error! %@", name, eventErr);
+        //NSLog(@"%@ got Error! %@", name, eventErr);
     }
     else {
 		newestMail = [NSMutableArray new];
@@ -445,13 +449,13 @@
 - (void) fetchDone: (NSNotification*) note
 {
  	if (note.object != nil) {
-        NSLog(@"%@ fetch cancelled or timed out",name);
+        //NSLog(@"%@ fetch cancelled or timed out",name);
 		return;
 	}
 	NSAppleEventDescriptor *eventRes = [[[AppleMailMonitor appleMailShared] eventRes] copy];
     NSDictionary *eventErr = [[[AppleMailMonitor appleMailShared] errorRes] copy];
     if (eventErr){
-        NSLog(@"%@ got Error! %@ \n trying again", name, eventErr);
+        //NSLog(@"%@ got Error! %@ \n trying again", name, eventErr);
 		[self getNewest];
 	}
     else {
@@ -462,14 +466,14 @@
 	//	[super saveDefaultValue:cachedMail forKey:CACHED_MAIL];
 //		[self processThreads];
         NSDate *minTime = [NSDate date];
-		NSLog(@"(minTime = %@", minTime);
+		//NSLog(@"(minTime = %@", minTime);
 
         if (summaryMode){
 			NSTimeInterval window = -(displayWindow * 60.0 * 60.0);
-			NSLog(@"time interval = %f secs", window);
+			//NSLog(@"time interval = %f secs", window);
             minTime = [minTime dateByAddingTimeInterval:window];
 			NSAssert(minTime != nil, @"minTime is nil!");
-			NSLog(@"(minTime = %@", minTime);
+			//NSLog(@"(minTime = %@", minTime);
             // the window may be longer than the default window if we haven't checked the inbox in a while
             minTime = [[self lastCheck] earlierDate:minTime];
         } else if (!summaryMode){
@@ -482,7 +486,7 @@
             NSColor *ruleColor = nil;
             
             NSDate *msgRecDate = [msg objectForKey:MAIL_ARRIVAL_TIME];
-			NSLog(@"rcv date = %@ - subj [%@]", msgRecDate, [msg objectForKey:MAIL_SUBJECT]);
+			//NSLog(@"rcv date = %@ - subj [%@]", msgRecDate, [msg objectForKey:MAIL_SUBJECT]);
             NSComparisonResult compRes = [msgRecDate compare:minTime];
 //			NSString *subj = [msg objectForKey:MAIL_SUBJECT];
 //			NSString *time = [msg objectForKey:MAIL_ARRIVAL_TIME];
@@ -519,7 +523,7 @@
             [alertHandler handleAlert:alert];
         }
     }
-
+	NSLog(@"apple mail: sending refresh done");
 	[BaseInstance sendDone:alertHandler module: name];	
     [[NSNotificationCenter defaultCenter] removeObserver:self name:[self msgName] object:nil];
 }
@@ -527,17 +531,26 @@
 - (void) startValidation: (NSObject*) callback
 {
 	[super startValidation:callback];
-	accountName = [accountField stringValue];
-	mailMailboxName = [mailboxField stringValue];
 	displayWindow = [displayWindowField doubleValue];
-	[[NSNotificationCenter defaultCenter] addObserver:self 
-											 selector:@selector(validateDone:)
-												 name:@"com.zer0gravitas.validateDone" 
-											   object:nil];
-	[NSThread detachNewThreadSelector: @selector(doValidate:)
-							 toTarget:self
-						   withObject:nil];	
-
+	
+	// if the mailbox and account are still the same then don't bother loading the cache
+	
+	if ([[mailboxField stringValue] isEqualToString:mailMailboxName] &&
+		[[accountField stringValue] isEqualToString:accountName]){
+		[self validateDone:nil];
+	}
+	else {
+		accountName = [accountField stringValue];
+		mailMailboxName = [mailboxField stringValue];
+		
+		[[NSNotificationCenter defaultCenter] addObserver:self 
+												 selector:@selector(validateDone:)
+													 name:@"com.zer0gravitas.validateDone" 
+												   object:nil];
+		[NSThread detachNewThreadSelector: @selector(doValidate:)
+								 toTarget:self
+							   withObject:nil];
+	}
 }
 
 - (void) doValidate: (NSObject*) params
@@ -603,10 +616,10 @@
         [aryCompares addObject:[NSNumber numberWithInt:rule.compareType]];
         [aryTypes addObject:[NSNumber numberWithInt:rule.ruleType]];
         [aryPredicates addObject:rule.predicate];
-        NSLog(@"predicate = %@", rule.predicate);
+        //NSLog(@"predicate = %@", rule.predicate);
         [aryColors addObject:[NSArchiver archivedDataWithRootObject:rule.color]];
     }
-    NSLog(@"saving %u rules", [rules count]);
+    //NSLog(@"saving %u rules", [rules count]);
     [super saveDefaultValue:aryFields forKey:RULE_FIELDS];
     [super saveDefaultValue:aryColors forKey:RULE_COLORS];
     [super saveDefaultValue:aryCompares forKey:RULE_COMPARES];
@@ -627,7 +640,7 @@
 
 - (IBAction) colorPicked: (id) sender
 {
-    NSLog(@"color picked"); 
+    //NSLog(@"color picked"); 
 }
 
 - (IBAction) colorEdit: (id) sender
@@ -723,10 +736,10 @@
 {
 	NSDictionary *dict = (NSDictionary*) param;
 	NSString *msgId = [dict objectForKey:@"id"];
-	NSLog(@"msgId = %@", msgId);
+	//NSLog(@"msgId = %@", msgId);
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
-	//	NSLog(@"will get all email later than %@", minTime);
+	//	//NSLog(@"will get all email later than %@", minTime);
 	MailApplication *mailApp = [SBApplication applicationWithBundleIdentifier:@"com.apple.mail"];
 	if (mailApp) {
 
@@ -739,7 +752,7 @@
 								
 								[msg open];
 								BOOL res = [[NSWorkspace sharedWorkspace] launchApplication:@"Mail"];
-								NSLog(@"launched = %d", res);
+								//NSLog(@"launched = %d", res);
 							}
 														
 						}
@@ -801,8 +814,8 @@
     FilterRule *rule = [rules objectAtIndex:rowIdx];
     rule.ruleType = idx;
     
-	//   NSLog(@"cell idx  = %d", idx);
-	//   NSLog(@"cell title = %@", [pop titleOfSelectedItem]);
+	//   //NSLog(@"cell idx  = %d", idx);
+	//   //NSLog(@"cell title = %@", [pop titleOfSelectedItem]);
 }
 - (IBAction) fieldChanged: (id) sender
 {

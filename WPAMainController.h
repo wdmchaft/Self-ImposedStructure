@@ -19,6 +19,7 @@
 #import "RolloverDelegate.h"
 #import "WPAMDelegate.h"
 #import "TaskList.h"
+#import "SwitchActivityDialog.h"
 
 @interface WPAMainController :NSObject <NSWindowDelegate, RolloverDelegate, WPAMDelegate> {
 	NSWindow *myWindow;
@@ -37,8 +38,9 @@
 	NSTimeInterval weeklyWorkTotal;
 	TotalsManager *totalsManager;
 	AddActivityDialogController *addActivityWindow;
+	SwitchActivityDialog *switchActivityDialog;
 	NSMutableDictionary *menuForTaskList;
-	NSModalSession addTaskSession;
+	NSModalSession modalSession;
 }
 
 @property (retain, nonatomic) IBOutlet NSWindow	*myWindow;
@@ -55,8 +57,9 @@
 @property (retain, nonatomic) PreferencesWindow *prefsWindow;
 @property (retain, nonatomic) StatsWindow *statsWindow;
 @property (retain, nonatomic) AddActivityDialogController *addActivityWindow;
+@property (retain, nonatomic) SwitchActivityDialog *switchActivityDialog;
 @property (retain, nonatomic) NSMutableDictionary *menuForTaskList;
-@property (nonatomic) NSModalSession addTaskSession;
+@property (nonatomic) NSModalSession modalSession;
 
 - (IBAction) clickStart: (id) sender;
 - (IBAction) clickRefresh: (id) sender;
@@ -85,6 +88,7 @@
 - (void) doThinkTime: (NSTimeInterval) thinkMin ;
 - (void) popStatusMenu;
 - (IBAction) clickAddActivity: (id) sender;
+- (IBAction) clickSwitchActivity: (id) sender;
 - (void) fillActivities:(NSMenu*) menu;
 - (void) newActivity: (id) sender;
 - (void) setupHotKeyIfNecessary;
@@ -94,5 +98,6 @@
 - (void) clickPreferences: (id) sender;
 - (void) clickStatsWindow: (id) sender;
 - (void) addActClosed: (NSNotification*) notify;
+- (void) switchActClosed: (NSNotification*) notify;
 
 @end

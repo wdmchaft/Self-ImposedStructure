@@ -98,7 +98,7 @@
 +(NSString*) shortTimeStrFor:(NSDate*) date
 {
 	if (date == nil){
-		NSLog(@"nil date!");
+		//NSLog(@"nil date!");
 		return @"";
 	}
 	NSString *ret = nil;
@@ -122,7 +122,7 @@
 +(NSString*) dueTimeStrFor:(NSDate*) date
 {
 	if (date == nil){
-		NSLog(@"nil date!");
+		//NSLog(@"nil date!");
 		return @"";
 	}
 	NSString *ret = nil;
@@ -148,13 +148,13 @@
 			return @"Tommorrow";
 		} else {
 			NSDateFormatter *timeDate = [NSDateFormatter new];
-			[timeDate setDateFormat: @"M/dd"];
+			[timeDate setDateFormat: @"eee"];
 			return [timeDate stringFromDate:date];
 		}
 	}
 	else {
 		NSDateFormatter *timeDate = [NSDateFormatter new];
-		[timeDate setDateFormat: @"M/dd'-'hh:mm"];
+		[timeDate setDateFormat: @"eee'-'hh:mm"];
 		ret = [timeDate stringFromDate:date];
 	}
 	return ret;
@@ -163,7 +163,7 @@
 +(NSString*) MdStrFor:(NSDate*) date
 {
 	if (date == nil){
-		NSLog(@"nil date!");
+		//NSLog(@"nil date!");
 		return @"";
 	}
 	NSDateFormatter *compDate = [NSDateFormatter new];;
@@ -175,7 +175,7 @@
 +(NSString*) dStrFor:(NSDate*) date
 {
 	if (date == nil){
-		NSLog(@"nil date!");
+		//NSLog(@"nil date!");
 		return @"";
 	}
 	NSDateFormatter *compDate = [NSDateFormatter new];;
@@ -231,7 +231,7 @@
 	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
 	NSArray *ary = [ud objectForKey:key];
     if (ary) {
-        NSLog(@"ary count = %d", [ary count]);
+        //NSLog(@"ary count = %d", [ary count]);
         NSMutableArray *temp = [[NSMutableArray alloc]initWithCapacity:[ary count]];
         for (NSData *data in ary){
             if (data){

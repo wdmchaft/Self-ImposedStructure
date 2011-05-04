@@ -42,7 +42,7 @@
     if (error)
     {
         NSDictionary* userInfo = [error userInfo];
-        NSLog (@"encountered the following error: %@", userInfo);
+        //NSLog (@"encountered the following error: %@", userInfo);
         Debugger();
     }
     
@@ -63,7 +63,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 
 	//WPAMainController *wpam = (WPAMainController*)[window delegate];
-	NSLog(@"app launched");
+	//NSLog(@"app launched");
 	if ([[NSUserDefaults standardUserDefaults]boolForKey:@"startOnLoad"]){
 		[wpam clickStart:self];
 	}
@@ -248,7 +248,7 @@
 
 - (NSManagedObject*) findSummaryForDate:(NSDate *)dateIn
 {
-    NSLog(@"findingSummary for Date: %f",[dateIn timeIntervalSince1970]);
+    //NSLog(@"findingSummary for Date: %f",[dateIn timeIntervalSince1970]);
 	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
 	NSEntityDescription *entity =
     [NSEntityDescription entityForName:@"DailySummary"
@@ -289,7 +289,7 @@
 
 - (void) saveSummaryForDate: (NSDate*) date goal: (int) goalTime work: (int) workTime free: (int) freeTime
 {
-    NSLog(@"savingSummary for Date: %f",[date timeIntervalSince1970]);
+    //NSLog(@"savingSummary for Date: %f",[date timeIntervalSince1970]);
 
 	// new work record
 	NSManagedObjectContext *moc = [self managedObjectContext];
@@ -338,7 +338,7 @@
     NSManagedObjectModel *mom = [self managedObjectModel];
     if (!mom) {
         NSAssert(NO, @"Managed object model is nil");
-        NSLog(@"%@:%@ No model to generate a store from", [self class], _cmd);
+        //NSLog(@"%@:%@ No model to generate a store from", [self class], _cmd);
         return nil;
     }
 	
@@ -349,7 +349,7 @@
     if ( ![fileManager fileExistsAtPath:applicationSupportDirectory isDirectory:NULL] ) {
 		if (![fileManager createDirectoryAtPath:applicationSupportDirectory withIntermediateDirectories:NO attributes:nil error:&error]) {
             NSAssert(NO, ([NSString stringWithFormat:@"Failed to create App Support directory %@ : %@", applicationSupportDirectory,error]));
-            NSLog(@"Error creating application support directory at %@ : %@",applicationSupportDirectory,error);
+            //NSLog(@"Error creating application support directory at %@ : %@",applicationSupportDirectory,error);
             return nil;
 		}
     }
@@ -414,7 +414,7 @@
     NSError *error = nil;
     
     if (![[self managedObjectContext] commitEditing]) {
-        NSLog(@"%@:%@ unable to commit editing before saving", [self class], _cmd);
+        //NSLog(@"%@:%@ unable to commit editing before saving", [self class], _cmd);
     }
 	
     if (![[self managedObjectContext] save:&error]) {
@@ -463,13 +463,13 @@
  */
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
-	NSLog(@"applicationShouldTerminate");
+	//NSLog(@"applicationShouldTerminate");
 	//WPAMainController *wpam = (WPAMainController*)[window delegate];
 	[wpam changeState:WPASTATE_OFF];
 	
 
     if (managedObjectContext && ![managedObjectContext commitEditing]) {
-        NSLog(@"%@:%@ unable to commit editing to terminate", [self class], _cmd);
+        //NSLog(@"%@:%@ unable to commit editing to terminate", [self class], _cmd);
 		return NSTerminateCancel;
     }
 
@@ -479,7 +479,7 @@
 			return [self handleSaveError:error application:sender];
 		}
 	}
-	NSLog(@"calling doWrapUp...");
+	//NSLog(@"calling doWrapUp...");
 	[ioHandler performSelector:@selector(doWrapUp:) onThread:ioThread withObject:nil waitUntilDone:YES];
 	if (ioHandler.error){
 		return [self handleSaveError:ioHandler.error application:sender];

@@ -55,8 +55,8 @@
 	BOOL wantsMouseDowns = [ self respondsToSelector:@selector(twoDGraphView:didClickPoint:) ];
 	
 	BOOL wantsEndDraw = [ self respondsToSelector:@selector(twoDGraphView:doneDrawingLineIndex:) ];
-	NSLog(@"awakeFromNib labelForTickMark = %d, willDisplayBarIndex = %d wantMouseDowns = %d wantsEndDraw = %d",
-		  labelForTickMark, willDisplayBarIndex,wantsMouseDowns, wantsEndDraw);
+	//NSLog(@"awakeFromNib labelForTickMark = %d, willDisplayBarIndex = %d wantMouseDowns = %d wantsEndDraw = %d",
+	//	  labelForTickMark, willDisplayBarIndex,wantsMouseDowns, wantsEndDraw);
 }
 
 - (void) runQueryStarting: (NSDate*) start ending: (NSDate*) end withContext: (NSManagedObjectContext *) moc
@@ -196,7 +196,7 @@
             ret = YES;
         else
             ret = NO;
-        NSLog(@"ret = %d for idx = %d", ret, idx);
+        //NSLog(@"ret = %d for idx = %d", ret, idx);
         return ret;
     }
     
@@ -248,7 +248,7 @@
 {
     // This is just an example of what you could do...
 	//    if ( inGraphView == _sm_trigGraph )
-	NSLog( @"We're done drawing line number %d.", inLineIndex );
+	//NSLog( @"We're done drawing line number %d.", inLineIndex );
 }
 
 @end

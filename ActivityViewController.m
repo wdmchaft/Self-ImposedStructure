@@ -14,7 +14,7 @@
 @synthesize pieChart, table, busyInd, activityChart;
 
 - (void) awakeFromNib{
-    NSLog(@"awaking AVC");
+    //NSLog(@"awaking AVC");
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

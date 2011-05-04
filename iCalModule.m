@@ -83,7 +83,7 @@
     NSMutableDictionary *eDict = [NSMutableDictionary dictionaryWithCapacity:4];
 
     for(unsigned int j = 1; j <= [descN numberOfItems]; j+=2){
-        NSLog(@"descN[%d]", j);
+        //NSLog(@"descN[%d]", j);
         NSAppleEventDescriptor *fieldNameDesc = [descN descriptorAtIndex:j];
         NSAppleEventDescriptor *fieldValDesc = [descN descriptorAtIndex:j+1];
         
@@ -126,7 +126,7 @@
             DescType typeN = [descN descriptorType];
             NSAssert(typeN == typeAERecord, @"not a record");
             c = (char*)&type;
-            NSLog(@"descN[%d] = %c%c%c%c (%@)",i, c[3],c[2],c[1],c[0], [descN description]);
+            //NSLog(@"descN[%d] = %c%c%c%c (%@)",i, c[3],c[2],c[1],c[0], [descN description]);
             for(unsigned int j = 1; j <= [descN numberOfItems]; j++){
                 AEKeyword kw = [descN keywordForDescriptorAtIndex:j];
                 NSAppleEventDescriptor *fdesc0 = [descN descriptorForKeyword:kw];
@@ -138,7 +138,7 @@
     }
     else {
         c = (char*)&type;
-        NSLog(@"unexpected event descriptor: %c%c%c%c (%@)",c[3],c[2],c[1],c[0], [aDescriptor description]);
+        //NSLog(@"unexpected event descriptor: %c%c%c%c (%@)",c[3],c[2],c[1],c[0], [aDescriptor description]);
     }
     
 }
@@ -163,7 +163,7 @@
     script = [script stringByReplacingOccurrencesOfString:@"<sDate>" withString:nowStr];
     script = [script stringByReplacingOccurrencesOfString:@"<eDate>" withString:thenStr];
     iCalMonitor *mon = [iCalMonitor iCalShared];
-    NSLog(@"script = %@",script);
+    //NSLog(@"script = %@",script);
     [mon sendScript:script withCallback:[self msgName]];
 }
 
@@ -202,7 +202,7 @@
         eventsList = [NSMutableArray new];
     }
     [eventsList removeAllObjects];
-    NSLog(@"msg = %@",[self msgName]);
+    //NSLog(@"msg = %@",[self msgName]);
 	[[NSNotificationCenter defaultCenter] addObserver:self 
 											 selector:@selector(fetchDone:)
 												 name:[self msgName] 
@@ -217,7 +217,7 @@
     NSDictionary *eventErr = [[[iCalMonitor iCalShared] errorRes] copy];
     [[iCalMonitor iCalShared] sendDone];
     if (eventErr){
-        NSLog(@"%@ got Error! %@", name, eventErr);
+        //NSLog(@"%@ got Error! %@", name, eventErr);
     }
     else {
         [self handleDescriptor:eventRes];
@@ -246,7 +246,6 @@
         }
     }
 	[BaseInstance sendDone: alertHandler module: name];
-	[BaseInstance sendDone:alertHandler module: name];	
     [[NSNotificationCenter defaultCenter] removeObserver:self name:[self msgName] object:nil];
 }
 
@@ -273,7 +272,7 @@
 {
 	NSDictionary *event = [NSDictionary dictionaryWithDictionary:(NSDictionary*) ctx];
     [[NSWorkspace sharedWorkspace] launchApplication:@"iCal"];
- //   NSLog(@"launched = %d", res);	
+ //   //NSLog(@"launched = %d", res);	
     [NSThread detachNewThreadSelector: @selector(openEvent:)
 							 toTarget:self
 						   withObject:event];

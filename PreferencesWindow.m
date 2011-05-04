@@ -39,7 +39,7 @@ summaryField, summaryStepper, summaryLabel, summaryLabel2, summaryButton, editMo
 	
 	Context *ctx = [Context sharedContext];
 	NSDictionary *instances = ctx.instancesMap;
-	NSLog(@"instances size: %lu", [instances count]);
+	//NSLog(@"instances size: %lu", [instances count]);
 	tableData = [[ModulesTableData alloc] initWithDictionary:instances];
 	modulesTable.dataSource = tableData;
 	[modulesTable noteNumberOfRowsChanged];

@@ -74,14 +74,14 @@
 
 -(BOOL) trackMouse:(NSEvent *)event inRect:(NSRect)cellFrame ofView:(NSView *)view untilMouseUp:(BOOL)mouseUp
 {
-    NSLog(@"trackMouse mouseUp = %d", mouseUp);
+    //NSLog(@"trackMouse mouseUp = %d", mouseUp);
 
     return [super trackMouse:event inRect: cellFrame ofView:view untilMouseUp: mouseUp];
 }
 
 - (BOOL) startTrackingAt: (NSPoint) point inView: (NSView*) view
 {
-    NSLog(@"startTracking");
+    //NSLog(@"startTracking");
     [self performSelector:@selector(colorEdit)];
     
    return [super startTrackingAt: point inView: view];
@@ -89,14 +89,14 @@
 
 - (BOOL) continueTracking:(NSPoint)last  at:(NSPoint)point inView:(NSView *)view
 {
-    NSLog(@"continueTracking");
+    //NSLog(@"continueTracking");
     return [super continueTracking: last at:point inView: view];
 
 }
 
 - (void) stopTracking: (NSPoint) last at:(NSPoint)stop inView:(NSView *)view mouseIsUp:(BOOL)isUp
 {
-    NSLog(@"stopTracking mouseUp=%d", isUp);
+    //NSLog(@"stopTracking mouseUp=%d", isUp);
     return [super stopTracking: last at:stop inView: view mouseIsUp: isUp];
 }
 

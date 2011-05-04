@@ -36,7 +36,7 @@
 }
 
 - (id)transformedValue:(id)value {
-    NSLog(@"value = %@", value);
+    //NSLog(@"value = %@", value);
     NSNumber *daysHitGoal = value;
     Context *ctx = [Context sharedContext];
     

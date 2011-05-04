@@ -51,7 +51,7 @@
 - (void) runScriptThread: (NSObject*) param
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	NSLog(@"running script");
+	//NSLog(@"running script");
 	NSAssert([scriptQueue count] > 0,@"scriptQueue is empty!");
 	NSString *script = [scriptQueue objectAtIndex:0];
 	NSString *callback = [callbackQueue objectAtIndex:0];
@@ -93,7 +93,7 @@
 
 - (void) doDone: (NSNotification*) msg
 {
-    NSLog(@"got done");
+    //NSLog(@"got done");
     [scriptQueue removeObjectAtIndex:0];
     [callbackQueue removeObjectAtIndex:0];
 	if (scriptThread){
@@ -142,7 +142,7 @@
 			[scriptThread cancel];
 			scriptThread = nil;
 			NSString *err = [NSString stringWithFormat:@"%@ script timed out after %f seconds", prefix, scriptDuration];
-			NSLog(@"%@",err);
+			//NSLog(@"%@",err);
 			errorRes = [NSDictionary dictionaryWithObject:err forKey:@"error"];
 			
 			NSString *callback = [callbackQueue objectAtIndex:0];
@@ -163,7 +163,7 @@
 		 
 	[callbackQueue removeAllObjects];
 	if (scriptThread){
-		NSLog(@"cancelled script thread");
+		//NSLog(@"cancelled script thread");
 		[scriptThread cancel];
 		scriptThread = nil;
 	}

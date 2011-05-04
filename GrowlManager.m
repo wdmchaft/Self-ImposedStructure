@@ -18,7 +18,7 @@
 @dynamic enabled;
 - (id) init
 {
-	NSLog(@"GrowlDelegate started");
+	//NSLog(@"GrowlDelegate started");
 	if (self){
 		[GrowlApplicationBridge setGrowlDelegate:self];
 		alertQ = [NSMutableArray new];
@@ -37,7 +37,7 @@
 -(void) saveAlert: (WPAAlert*) alert
 {
 	if ([savedQ containsObject: alert]){
-	//	NSLog(@"skipping duplicate alert %@", alert.message);
+	//	//NSLog(@"skipping duplicate alert %@", alert.message);
 		return; 
 	}
 	[savedQ addObject:alert];
@@ -46,7 +46,7 @@
 -(void) queueAlert: (WPAAlert*) alert
 {
 	if ([alertQ containsObject: alert]){
-	//	NSLog(@"skipping duplicate alert %@", alert.message);
+	//	//NSLog(@"skipping duplicate alert %@", alert.message);
 		return; 
 	}
 	[alertQ addObject:alert];
@@ -71,7 +71,7 @@
 	Context *ctx = [Context sharedContext];
 	// ignore when flagged as lastAlert -- means a refresh cycle is complete
 	if (alert.lastAlert){
-		NSLog(@"cycle ended for %@", alert.moduleName);
+		//NSLog(@"cycle ended for %@", alert.moduleName);
 		return;
 	}
     if (ctx.currentState == WPASTATE_FREE && ctx.nagDelayTimer == nil) {
@@ -108,7 +108,7 @@
 
 -(void) growlAlert: (WPAAlert*) alert
 {
-//	NSLog(@"showing alert %@", alert.message);
+//	//NSLog(@"showing alert %@", alert.message);
 	id<Reporter> sender = [[[Context sharedContext] instancesMap] objectForKey:alert.moduleName];
 	
 	
@@ -137,7 +137,7 @@
 		timer = nil;
 	}
 	NSMutableArray *q =alertQ;
-	//	NSLogDebug(@"Checking Q...");
+	//	//NSLogDebug(@"Checking Q...");
 	if ([q count] > 0){
 		[self growlAlert:[q objectAtIndex:0]];
 		[q removeObjectAtIndex:0];

@@ -63,7 +63,7 @@
 	// 1 -- check the stamp
 	[data getBytes:buf length:FOUR];
 	if (memcmp(buf,MAGIC, 4) != 0){
-		NSLog(@"NO magic ICON");
+		//NSLog(@"NO magic ICON");
 		return;
 	}
 	unsigned int *pLength;
@@ -87,17 +87,17 @@
 		lenRange.location = idx + 4;
 		NSData *iconType = [data subdataWithRange:typeRange];
 		NSString *respStr = [[NSString alloc]initWithData:iconType encoding:NSUTF8StringEncoding];
-		NSLog(@"type= %@", respStr);
+		//NSLog(@"type= %@", respStr);
 		IconData *meta = [iconLookup objectForKey:iconType];
 		if (data == nil){
-			NSLog(@"Unrecognized icon type: %@", iconType);
+			//NSLog(@"Unrecognized icon type: %@", iconType);
 			return;
 		}
 		int metaLen = [meta.bytes intValue];
 		unsigned int actualLen;
 		[data getBytes: pLength range:lenRange];
 		actualLen = [self bytesToInt:(char*)pLength];
-		NSLog(@"len = %d", actualLen);
+		//NSLog(@"len = %d", actualLen);
 		if (metaLen > 0){
 			NSAssert(metaLen ==  (actualLen - 8), @"icon lengths do not agree for type");
 		}

@@ -35,7 +35,7 @@
 }
 
 - (id)transformedValue:(id)value {
-    NSLog(@"value = %@", value);
+    //NSLog(@"value = %@", value);
     NSNumber *workTime = value;
     Context *ctx = [Context sharedContext];
     
