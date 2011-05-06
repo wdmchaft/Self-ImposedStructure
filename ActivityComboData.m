@@ -23,7 +23,6 @@
 	id<TaskList> tl = [dialog list];
 	NSArray *items = [tl getTasks];	
 
-	printf("Get index %ld\n", index);
 	NSDictionary *itemAttrs = [items objectAtIndex:index];
 	return [itemAttrs objectForKey:@"name"];
 }

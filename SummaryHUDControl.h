@@ -16,33 +16,42 @@
 #import "Reporter.h"
 #import "SummaryViewController.h"
 #import "SummaryHUDCallback.h"
+#import "HUDBusy.h"
 
 @interface SummaryHUDControl :  NSWindowController <SummaryHUDCallback, NSWindowDelegate> {
-	NSArray *views;
-	NSArray *controls;
-	NSArray *boxes;
-	NSArray *progs;
+	NSMutableDictionary *svcs;
+	NSMutableDictionary *controls;
+	NSMutableDictionary *datas;
+	NSMutableDictionary *busys;
+	
 	NSView *view;
 
 	WPAMainController *mainControl;
  
-    NSArray *hudList;
+    NSMutableData *frameData;
     CGFloat lineHeight;
 	NSUInteger sizedCount;
 	NSString *framePos;
+	BOOL viewChanged;
+	NSTimer *buildTimer;
+	NSRect saveRect;
+	BOOL oneLastTime;
 }
-@property (nonatomic,retain) NSArray *hudList;
-@property (nonatomic, retain)  NSArray *views;
-@property (nonatomic, retain)  NSArray *controls;
-@property (nonatomic, retain)  NSArray *boxes;
-@property (nonatomic, retain)  NSArray *progs;
+@property (nonatomic, retain) NSMutableData *frameData;
+@property (nonatomic, retain)  NSMutableDictionary *svcs;
+@property (nonatomic, retain)  NSMutableDictionary *controls;
+@property (nonatomic, retain)  NSMutableDictionary *datas;
+@property (nonatomic, retain)  NSMutableDictionary *busys;
 @property (nonatomic, retain) IBOutlet NSView *view;
 
 @property (nonatomic, retain) WPAMainController *mainControl;
 @property (nonatomic, retain) NSString *framePos; // hack since auto frame save is buggy for mysterious reasons
 @property (nonatomic) CGFloat lineHeight;
 @property (nonatomic) NSUInteger sizedCount;
-
+@property (nonatomic) BOOL viewChanged;
+@property (nonatomic, retain) NSTimer *buildTimer;
+@property (nonatomic) NSRect saveRect;
+@property (nonatomic) BOOL oneLastTime;
 
 - (SummaryViewController*) getViewForInstance: (id<Reporter>) inst width: (CGFloat) vWidth rows: (int) nRows;
 

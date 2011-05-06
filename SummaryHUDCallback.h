@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "Reporter.h"
 
 @protocol SummaryHUDCallback <NSObject>
-- (void) viewSized;
+- (void) viewSized: (NSView*) view reporter: (id<Reporter>) rpt data: (NSArray*) array; 
 @end

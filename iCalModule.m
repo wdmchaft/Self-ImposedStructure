@@ -213,11 +213,12 @@
 
 - (void) fetchDone: (NSNotification*) note
 {
+	NSLog(@"fetchDone");
     NSAppleEventDescriptor *eventRes = [[[iCalMonitor iCalShared] eventRes] copy];
     NSDictionary *eventErr = [[[iCalMonitor iCalShared] errorRes] copy];
     [[iCalMonitor iCalShared] sendDone];
     if (eventErr){
-        //NSLog(@"%@ got Error! %@", name, eventErr);
+        NSLog(@"%@ got Error! %@", name, eventErr);
     }
     else {
         [self handleDescriptor:eventRes];

@@ -99,6 +99,8 @@
 		8C1C92A212EA3EC00077D343 /* SummaryData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F3D612E790B60056FAFF /* SummaryData.m */; };
 		8C1C92E512EB593C0077D343 /* GrowlManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1C92E412EB593C0077D343 /* GrowlManager.m */; };
 		8C1C92E612EB593C0077D343 /* GrowlManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1C92E412EB593C0077D343 /* GrowlManager.m */; };
+		8C285845137319E400CAAF2A /* HUDBusyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C285844137319E400CAAF2A /* HUDBusyView.xib */; };
+		8C285846137319E400CAAF2A /* HUDBusyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C285844137319E400CAAF2A /* HUDBusyView.xib */; };
 		8C34BC5C134D245300A9BCFE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C34BC5B134D245300A9BCFE /* Cocoa.framework */; };
 		8C34BC62134D245300A9BCFE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C34BC60134D245300A9BCFE /* InfoPlist.strings */; };
 		8C34BC77134D262A00A9BCFE /* iCalModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C34BC74134D262A00A9BCFE /* iCalModule.xib */; };
@@ -116,6 +118,12 @@
 		8C5BB83A136F40AA0004E88C /* ActivityComboData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5BB838136F40AA0004E88C /* ActivityComboData.m */; };
 		8C5BB83F136F448D0004E88C /* SwitchActivityDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C5BB83E136F448D0004E88C /* SwitchActivityDialog.xib */; };
 		8C5BB840136F448D0004E88C /* SwitchActivityDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C5BB83E136F448D0004E88C /* SwitchActivityDialog.xib */; };
+		8C5BB9861371E07F0004E88C /* HUDBusyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C5BB9851371E07E0004E88C /* HUDBusyView.xib */; };
+		8C5BB9871371E07F0004E88C /* HUDBusyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C5BB9851371E07E0004E88C /* HUDBusyView.xib */; };
+		8C5BB9A01371E20B0004E88C /* HudBusy.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C5BB99F1371E20B0004E88C /* HudBusy.xib */; };
+		8C5BB9A11371E20B0004E88C /* HudBusy.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C5BB99F1371E20B0004E88C /* HudBusy.xib */; };
+		8C5BB9B91371E2920004E88C /* HUDBusy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5BB9B81371E2920004E88C /* HUDBusy.m */; };
+		8C5BB9BA1371E2920004E88C /* HUDBusy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5BB9B81371E2920004E88C /* HUDBusy.m */; };
 		8C5DEC2812E8C05E00EE93F1 /* gmail.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C77295212D46AC600F71FE7 /* gmail.ico */; };
 		8C5DEC5012E8C4B800EE93F1 /* structcommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* structcommon.framework */; };
 		8C5DEC5C12E8C4DF00EE93F1 /* structcommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* structcommon.framework */; };
@@ -620,6 +628,7 @@
 		8C1C92DE12EB504A0077D343 /* Instance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Instance.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8C1C92E312EB593C0077D343 /* GrowlManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GrowlManager.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8C1C92E412EB593C0077D343 /* GrowlManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GrowlManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		8C285844137319E400CAAF2A /* HUDBusyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HUDBusyView.xib; sourceTree = "<group>"; };
 		8C34BC5A134D245300A9BCFE /* iCalModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iCalModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C34BC5B134D245300A9BCFE /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		8C34BC5F134D245300A9BCFE /* iCalModule-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iCalModule-Info.plist"; sourceTree = "<group>"; };
@@ -640,6 +649,10 @@
 		8C5BB837136F40AA0004E88C /* ActivityComboData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityComboData.h; sourceTree = "<group>"; };
 		8C5BB838136F40AA0004E88C /* ActivityComboData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityComboData.m; sourceTree = "<group>"; };
 		8C5BB83E136F448D0004E88C /* SwitchActivityDialog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchActivityDialog.xib; sourceTree = "<group>"; };
+		8C5BB9851371E07E0004E88C /* HUDBusyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HUDBusyView.xib; sourceTree = "<group>"; };
+		8C5BB99F1371E20B0004E88C /* HudBusy.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HudBusy.xib; sourceTree = "<group>"; };
+		8C5BB9B71371E2920004E88C /* HUDBusy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDBusy.h; sourceTree = "<group>"; };
+		8C5BB9B81371E2920004E88C /* HUDBusy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDBusy.m; sourceTree = "<group>"; };
 		8C5DEC4912E8C4A600EE93F1 /* TestTaskModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestTaskModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C5DEC4A12E8C4A600EE93F1 /* TestTaskModule-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TestTaskModule-Info.plist"; sourceTree = "<group>"; };
 		8C5DEC5512E8C4D000EE93F1 /* TestEventModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestEventModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1129,6 +1142,7 @@
 		29B97314FDCFA39411CA2CEA /* WorkPlayAway */ = {
 			isa = PBXGroup;
 			children = (
+				8C5BB99F1371E20B0004E88C /* HudBusy.xib */,
 				8C3982C7134D4F4A008C5670 /* ScriptingBridge.framework */,
 				8C73F10512E624080056FAFF /* Design.rtf */,
 				8C82CFDF12F3D0BE00830486 /* Design.txt */,
@@ -1155,6 +1169,9 @@
 				8CDC134313107DE500BA478C /* TaskTableView.xib */,
 				8C9FB5BD13356DB70034FE85 /* CoreData.framework */,
 				8C8020031355677D00E5C109 /* WPAMDelegate.h */,
+				8C5BB9851371E07E0004E88C /* HUDBusyView.xib */,
+				8C5BB9B71371E2920004E88C /* HUDBusy.h */,
+				8C5BB9B81371E2920004E88C /* HUDBusy.m */,
 			);
 			name = WorkPlayAway;
 			sourceTree = "<group>";
@@ -1268,6 +1285,7 @@
 		8C73F08D12E5E4460056FAFF /* SummaryHUD */ = {
 			isa = PBXGroup;
 			children = (
+				8C285844137319E400CAAF2A /* HUDBusyView.xib */,
 				8C4BD2F4132FAA4C00765A57 /* SummaryHUDCallback.h */,
 				8CDC13461310897F00BA478C /* SummaryViewController.h */,
 				8CDC13471310897F00BA478C /* SummaryViewController.m */,
@@ -2041,6 +2059,9 @@
 				8CEF4E0D13394FBF000F5E3A /* SummaryStatusViewController.xib in Resources */,
 				8C801CF3135373C500E5C109 /* VacationDialog.xib in Resources */,
 				8C5BB840136F448D0004E88C /* SwitchActivityDialog.xib in Resources */,
+				8C5BB9861371E07F0004E88C /* HUDBusyView.xib in Resources */,
+				8C5BB9A11371E20B0004E88C /* HudBusy.xib in Resources */,
+				8C285846137319E400CAAF2A /* HUDBusyView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2193,6 +2214,9 @@
 				8CEF4E0E13394FBF000F5E3A /* SummaryStatusViewController.xib in Resources */,
 				8C801CF4135373C500E5C109 /* VacationDialog.xib in Resources */,
 				8C5BB83F136F448D0004E88C /* SwitchActivityDialog.xib in Resources */,
+				8C5BB9871371E07F0004E88C /* HUDBusyView.xib in Resources */,
+				8C5BB9A01371E20B0004E88C /* HudBusy.xib in Resources */,
+				8C285845137319E400CAAF2A /* HUDBusyView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2294,6 +2318,7 @@
 				8CB05117135E6FF8008FCE40 /* WorkHoursToAverageXForm.m in Sources */,
 				8C5BB636136F33240004E88C /* SwitchActivityDialog.m in Sources */,
 				8C5BB83A136F40AA0004E88C /* ActivityComboData.m in Sources */,
+				8C5BB9BA1371E2920004E88C /* HUDBusy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2493,6 +2518,7 @@
 				8CB05118135E6FF8008FCE40 /* WorkHoursToAverageXForm.m in Sources */,
 				8C5BB635136F33240004E88C /* SwitchActivityDialog.m in Sources */,
 				8C5BB839136F40AA0004E88C /* ActivityComboData.m in Sources */,
+				8C5BB9B91371E2920004E88C /* HUDBusy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

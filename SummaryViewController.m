@@ -178,10 +178,10 @@
 
 - (int) actualHeight
 {
-//	actualLines = [data count];
+	actualLines = [data count];
 	int lines = (actualLines > maxLines) ? maxLines :actualLines;
 	int height = lines * ([table rowHeight] + 3);
-	NSLog(@"maxLines = %d actualLines = %d height = %d for %@", maxLines, actualLines, height, reporter.name);
+//	NSLog(@"maxLines = %d actualLines = %d height = %d for %@", maxLines, actualLines, height, reporter.name);
 	return lines * ([table rowHeight] + 3);
 }
 
