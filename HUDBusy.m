@@ -40,6 +40,9 @@
 		NSLog(@"last alert for [%@] count = %d", [reporter name], [data count]);
 		[prog setHidden:YES];
 		[prog stopAnimation:self];
+		if (!data){
+			data = [NSMutableArray new]; // no data but we are done
+		}
 		[caller viewSized: [self view] reporter: reporter data:data];
 		
 	}

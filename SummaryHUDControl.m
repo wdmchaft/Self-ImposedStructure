@@ -66,6 +66,8 @@
 
 	[[super window] setFrameFromString:pos];
 	[super.window makeKeyAndOrderFront:nil];
+//	NSSize resizeSize = NSMakeSize(0, 0);
+//	[super.window setResizeIncrements:resizeSize];
 	NSRect currRect = [[super window] frame];
 	CGFloat hgtTemp = [self calcHeight];
 	currRect.size.height = hgtTemp;	
@@ -152,11 +154,11 @@
 		if (data) {
 			CGFloat dataTemp = [self preCalc:data forSetting:setting] + 28;
 			totalHeight += dataTemp;
-			NSLog(@"height for data %d %f", [data count], dataTemp );
+			//NSLog(@"height for data %d %f", [data count], dataTemp );
 		} 
 		else if ((data == nil && busy == nil) || (busy)) {
 			totalHeight += lineHeight * 3;
-			NSLog(@"height for busy");
+			//NSLog(@"height for busy");
 		}
 		if (busy){
 			[[busy view]setHidden:YES];
@@ -168,7 +170,7 @@
 	}	
 	currRect.size.height = totalHeight;
 	if (!NSEqualRects(currRect, saveRect)){
-		NSLog(@"resizing window bc %@ != %@", NSStringFromRect(currRect),NSStringFromRect(saveRect	));
+		//NSLog(@"resizing window bc %@ != %@", NSStringFromRect(currRect),NSStringFromRect(saveRect	));
 		[[super window] setContentSize: currRect.size];
 		saveRect = currRect;
 		needsFrameChange = YES;
@@ -202,8 +204,11 @@
 			NSSize margins; margins.height = 0; margins.width = 0;
 			[box setContentViewMargins:margins];
 			[box setContentView:svc.view];
+			NSString *titleLabel = ([data count] == 0) 
+				? [setting.label stringByAppendingFormat:@" [empty]"] 
+				: setting.label;
 			NSDictionary *attrs = [NSDictionary dictionaryWithObject:[NSColor whiteColor] forKey:NSForegroundColorAttributeName];
-			NSString *titleStr = [[NSAttributedString alloc]initWithString:setting.label 
+			NSString *titleStr = [[NSAttributedString alloc]initWithString:titleLabel 
 																attributes:attrs];
 			[box setTitle:titleStr];
 			[box setTitlePosition:NSAboveTop];
@@ -226,7 +231,7 @@
 			NSRect contentFrame = boxFrame;
 			contentFrame.size.height = [svc actualHeight];
 			if (NSEqualRects(rect,contentFrame) == NO || needsFrameChange) {
-				NSLog(@"resizing SVC");
+			//	NSLog(@"resizing SVC");
 				[control setFrameFromContentFrame:contentFrame];
 				
 				[svc.view setFrame:[control.contentView bounds]];
@@ -243,12 +248,12 @@
 		if (data == nil && busy == nil)
 		{
 			// create busy control and add it to the view
-			NSLog(@"creating busy for %@", rptName);
+			//NSLog(@"creating busy for %@", rptName);
 			busy = [[HUDBusy alloc]initWithNibName:@"HUDBusyView" bundle:[NSBundle mainBundle]];
 			[view addSubview:[busy view]];
 			[busy setReporter:rpt];
 			[busy setCaller:self];
-			[[busy label] setStringValue:[rpt summaryTitle]]; 
+			[[busy label] setStringValue:[setting label]]; 
 			[busys setObject:busy forKey:rptName];
 			[busy refresh];
 		}
@@ -259,7 +264,6 @@
 			busyRect.origin.x = 5;
 			busyRect.size.width = winRect.size.width - 10;
 			if (NSEqualRects(rect,busyRect) == NO || needsFrameChange) {
-				NSLog(@"moving busy %@ from %f to %f", [rpt summaryTitle], rect.origin.y, busyRect.origin.y);
 				[[busy prog] stopAnimation:self];
 				[[busy view] setFrame: busyRect];
 				[[busy view] setNeedsDisplay:YES];

@@ -145,7 +145,7 @@
 		if (fromNow < 24 * 60 * 60) {
 			return @"Today";
 		} else if (fromNow < 48 * 60 * 60) {
-			return @"Tommorrow";
+			return @"Tomorrow";
 		} else {
 			NSDateFormatter *timeDate = [NSDateFormatter new];
 			[timeDate setDateFormat: @"eee"];
