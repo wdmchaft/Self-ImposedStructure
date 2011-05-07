@@ -175,6 +175,7 @@
 	
 	// first try at last check time -- what time is it now -- later we pull the time from the newest msg
 	NSLog(@"applemail sending script");
+	
     [mailMonitor sendScript:script withCallback:[self msgName]];
 }
 
@@ -407,7 +408,7 @@
 	for (NSMutableDictionary *item in temp){
 		NSDate *rcvDate = [item objectForKey:MAIL_ARRIVAL_TIME];
 		NSTimeInterval age = [now timeIntervalSinceDate:rcvDate];
-		if (age < displayWindow){
+		if (age < (displayWindow * 60 * 60)){
 			[temp2 addObject:item];
 		}
 	}
