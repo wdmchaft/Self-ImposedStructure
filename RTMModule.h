@@ -30,6 +30,7 @@
 	NSTimeInterval lookAheadWindow;
 	NSTextField *lookAheadText;
 	RTMProtocol *protocol;
+	BOOL summaryMode;
 }
 
 //@property (nonatomic, retain) NSMutableArray *tasksList;
@@ -51,6 +52,7 @@
 @property (nonatomic, retain) IBOutlet NSButton *isWorkButton;
 @property (nonatomic) NSTimeInterval lookAheadWindow;
 @property (nonatomic,retain) RTMProtocol *protocol;
+@property (nonatomic) BOOL summaryMode;
 
 - (IBAction) clickAuthButton: (id) sender;
 - (void) clickAuthorizedButton: (id) sender;

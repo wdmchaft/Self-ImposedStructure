@@ -160,6 +160,7 @@
     script = [script stringByReplacingOccurrencesOfString:@"<actName>" withString:accountName];
     script = [script stringByReplacingOccurrencesOfString:@"<boxName>" withString:mailMailboxName];
     script = [script stringByReplacingOccurrencesOfString:@"<sDate>" withString:thenStr];
+	NSLog(script);
     return script;
 }
 

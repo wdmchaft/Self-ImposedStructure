@@ -113,7 +113,6 @@
 
 - (void) buildDisplay 
 {
-	NSLog(@"buildDisplay");
 	buildTimer = nil;
 	
 	// 

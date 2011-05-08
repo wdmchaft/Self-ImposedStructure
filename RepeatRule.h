@@ -7,17 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-enum  _DayOfWeek {
-    Sunday,
-    Monday,
-    Tuesday,
-    Wednesday,
-    Thursday,
-    Friday,
-    Saturday,
-} ;
+#import "RepeatByDayType.h"
 
-typedef enum _DayOfWeek DayOfWeekType;
 
 enum  _RepeatRuleType {
    RepeatDaily,
@@ -27,19 +18,6 @@ enum  _RepeatRuleType {
 } ;
 
 typedef enum _RepeatRuleType FrequencyType;
-
-@interface ByDay : NSObject {
-@private
-    int numerator;
-    DayOfWeekType day;
-}
-@property (nonatomic) int numerator;
-@property (nonatomic) DayOfWeekType day;
-@end
-@implementation ByDay
-@synthesize numerator, day;
-@end
-
 @interface RepeatRule : NSObject {
 @private
     BOOL isEvery;
@@ -53,4 +31,6 @@ typedef enum _RepeatRuleType FrequencyType;
 @property (nonatomic) FrequencyType frequency;
 @property (nonatomic, retain) NSArray* byDays;
 @property (nonatomic, retain) NSArray* byMonthDays;
+- (id) initFromString:(NSString *)ruleStr;
+- (NSDate*) windowDate;
 @end

@@ -28,6 +28,7 @@
 #import "Utility.h"
 #import "CompleteProcessHandler.h"
 #import "NewTaskHandler.h"
+#import "RepeatRule.h"
 
 @implementation RTMModule 
 
@@ -56,6 +57,8 @@
 @dynamic name;
 @dynamic summaryTitle;
 @dynamic isWorkRelated;
+@dynamic summaryMode;
+
 @synthesize protocol;
 
 /**
@@ -89,6 +92,61 @@
 	}
 	[self taskRefreshDone];
 }
+
+- (NSDate*) windowDate
+{
+	NSDate *now = [NSDate date];
+	int TIMECOMPS = NSDayCalendarUnit |  NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+	NSCalendar *gregorian = [NSCalendar currentCalendar];
+	
+	NSDateComponents *nowComps = [gregorian components:TIMECOMPS fromDate:now];
+	nowComps.hour = 0;
+	nowComps.minute = 0;
+	nowComps.second = 0;
+	nowComps.day += 1;
+	return [gregorian dateFromComponents:nowComps];
+}
+
+- (NSDate *) dateForTomorrow 
+{
+	NSDate *now = [NSDate date];
+	int TIMECOMPS = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit |
+		NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+	NSCalendar *gregorian = [NSCalendar currentCalendar];
+	
+	NSDateComponents *nowComps = [gregorian components:TIMECOMPS fromDate:now];
+	nowComps.hour = 0;
+	nowComps.minute = 0;
+	nowComps.second = 0;
+	nowComps.day += 1;  
+	return [gregorian dateFromComponents:nowComps];
+}
+
+- (BOOL) repeatedTaskIgnorable: (NSDictionary*) msg
+{
+	// 
+	// find tasks with recurrence rules for everyday (or weekly on specific days) 
+	// if the due date is NOT today then return true 
+	//
+	// I do not want to be reminded today that I need to "feed the cat" tomorrow 
+	//
+	NSString *rptString = [msg objectForKey:@"rrule"];
+	NSDate *dueDate = [msg objectForKey:@"due_time"];
+	NSString *label = [msg objectForKey:@"name"];
+	if (rptString && dueDate){
+		RepeatRule *rRule = [[RepeatRule alloc]initFromString:rptString];
+		FrequencyType freqType = [rRule frequency];
+		int interval = [rRule interval];
+		if (freqType == RepeatDaily || (freqType == RepeatWeekly && interval == 1)){
+			NSDate* tomorrow = [self dateForTomorrow];
+			NSComparisonResult res = [dueDate compare:tomorrow];
+			NSLog(@"[%@] (%@) is %@ (%@)", label, dueDate, (res == NSOrderedDescending ? @"after" : @"not after"), tomorrow);	
+			return res == NSOrderedDescending; // return true if the due date/time is after today
+		}
+	}
+	return NO;
+}
+
 
 - (void) processAlertsWithAlarms: (BOOL) setAlarms
 {
@@ -142,7 +200,10 @@
 			// has no due date -- add a date in far future so task sorts to bottom of date sorted list
 			[item setObject:[NSDate distantFuture] forKey:@"due_time"];
 		}
-
+		// strip out repeating tasks that are not necessary to show
+		if ([self repeatedTaskIgnorable:item]) {
+			continue;
+		}
 
 		[handler handleAlert:alert];
 		
@@ -190,6 +251,7 @@
 - (void) refresh: (id<AlertHandler>) alertHandler isSummary: (BOOL) summary
 {
 	self.handler = alertHandler;
+	summaryMode = summary;
 	[protocol startRefresh: self callback:@selector(refreshDone)];
 }
 
@@ -219,7 +281,7 @@
 -(void) handleClick: (NSDictionary*) ctx
 {
 	NSDictionary *task = [NSDictionary dictionaryWithDictionary:(NSDictionary*) ctx];
-	NSString *clickName = [task objectForKey:@"name"];
+//	NSString *clickName = [task objectForKey:@"name"];
 	TaskDialogController *dialogCtrl= [[TaskDialogController alloc] 
 									   initWithWindowNibName:@"TaskDialog" 
                                                 andContext:protocol
@@ -523,7 +585,7 @@
 // but return the last copy of the list
 - (void) handleRTMError:(NSDictionary*) errInfo
 {
-    NSString *msg = [errInfo objectForKey:@"msg"];
+ //   NSString *msg = [errInfo objectForKey:@"msg"];
     //NSLog(@"Error communicating with Remember The Milk [%@]", msg);
     [BaseInstance sendErrorToHandler:handler
                                error:@"Could not contact Remember the Milk at this time. Using last known task list."

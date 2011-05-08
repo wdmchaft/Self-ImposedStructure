@@ -101,6 +101,7 @@
 		8C1C92E612EB593C0077D343 /* GrowlManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1C92E412EB593C0077D343 /* GrowlManager.m */; };
 		8C285845137319E400CAAF2A /* HUDBusyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C285844137319E400CAAF2A /* HUDBusyView.xib */; };
 		8C285846137319E400CAAF2A /* HUDBusyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C285844137319E400CAAF2A /* HUDBusyView.xib */; };
+		8C2861631375CE4D00CAAF2A /* RepeatByDayType.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C28615C1375CD4E00CAAF2A /* RepeatByDayType.m */; };
 		8C34BC5C134D245300A9BCFE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C34BC5B134D245300A9BCFE /* Cocoa.framework */; };
 		8C34BC62134D245300A9BCFE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C34BC60134D245300A9BCFE /* InfoPlist.strings */; };
 		8C34BC77134D262A00A9BCFE /* iCalModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C34BC74134D262A00A9BCFE /* iCalModule.xib */; };
@@ -120,8 +121,6 @@
 		8C5BB840136F448D0004E88C /* SwitchActivityDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C5BB83E136F448D0004E88C /* SwitchActivityDialog.xib */; };
 		8C5BB9861371E07F0004E88C /* HUDBusyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C5BB9851371E07E0004E88C /* HUDBusyView.xib */; };
 		8C5BB9871371E07F0004E88C /* HUDBusyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C5BB9851371E07E0004E88C /* HUDBusyView.xib */; };
-		8C5BB9A01371E20B0004E88C /* HudBusy.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C5BB99F1371E20B0004E88C /* HudBusy.xib */; };
-		8C5BB9A11371E20B0004E88C /* HudBusy.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C5BB99F1371E20B0004E88C /* HudBusy.xib */; };
 		8C5BB9B91371E2920004E88C /* HUDBusy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5BB9B81371E2920004E88C /* HUDBusy.m */; };
 		8C5BB9BA1371E2920004E88C /* HUDBusy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5BB9B81371E2920004E88C /* HUDBusy.m */; };
 		8C5DEC2812E8C05E00EE93F1 /* gmail.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C77295212D46AC600F71FE7 /* gmail.ico */; };
@@ -629,6 +628,8 @@
 		8C1C92E312EB593C0077D343 /* GrowlManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GrowlManager.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8C1C92E412EB593C0077D343 /* GrowlManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GrowlManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8C285844137319E400CAAF2A /* HUDBusyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HUDBusyView.xib; sourceTree = "<group>"; };
+		8C28615B1375CD4E00CAAF2A /* RepeatByDayType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatByDayType.h; sourceTree = "<group>"; };
+		8C28615C1375CD4E00CAAF2A /* RepeatByDayType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatByDayType.m; sourceTree = "<group>"; };
 		8C34BC5A134D245300A9BCFE /* iCalModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iCalModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C34BC5B134D245300A9BCFE /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		8C34BC5F134D245300A9BCFE /* iCalModule-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iCalModule-Info.plist"; sourceTree = "<group>"; };
@@ -650,7 +651,6 @@
 		8C5BB838136F40AA0004E88C /* ActivityComboData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityComboData.m; sourceTree = "<group>"; };
 		8C5BB83E136F448D0004E88C /* SwitchActivityDialog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchActivityDialog.xib; sourceTree = "<group>"; };
 		8C5BB9851371E07E0004E88C /* HUDBusyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HUDBusyView.xib; sourceTree = "<group>"; };
-		8C5BB99F1371E20B0004E88C /* HudBusy.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HudBusy.xib; sourceTree = "<group>"; };
 		8C5BB9B71371E2920004E88C /* HUDBusy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDBusy.h; sourceTree = "<group>"; };
 		8C5BB9B81371E2920004E88C /* HUDBusy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDBusy.m; sourceTree = "<group>"; };
 		8C5DEC4912E8C4A600EE93F1 /* TestTaskModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestTaskModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -772,7 +772,6 @@
 		8C77295A12D46AC600F71FE7 /* TimerDialogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TimerDialogController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8C77295B12D46AC600F71FE7 /* TimerDialog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimerDialog.xib; sourceTree = "<group>"; };
 		8C77295C12D46AC600F71FE7 /* ResponseRESTHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ResponseRESTHandler.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		8C77295D12D46AC600F71FE7 /* RTMCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = RTMCallback.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8C77295E12D46AC600F71FE7 /* CompleteRespHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CompleteRespHandler.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8C77295F12D46AC600F71FE7 /* AdiumModule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdiumModule.xib; sourceTree = "<group>"; };
 		8C77296012D46AC600F71FE7 /* AdiumModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AdiumModule.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -1142,7 +1141,6 @@
 		29B97314FDCFA39411CA2CEA /* WorkPlayAway */ = {
 			isa = PBXGroup;
 			children = (
-				8C5BB99F1371E20B0004E88C /* HudBusy.xib */,
 				8C3982C7134D4F4A008C5670 /* ScriptingBridge.framework */,
 				8C73F10512E624080056FAFF /* Design.rtf */,
 				8C82CFDF12F3D0BE00830486 /* Design.txt */,
@@ -1471,7 +1469,6 @@
 				8C77297112D46AC600F71FE7 /* TimelineHandler.h */,
 				8C77295312D46AC600F71FE7 /* RTMModule-Info.plist */,
 				8C77295C12D46AC600F71FE7 /* ResponseRESTHandler.h */,
-				8C77295D12D46AC600F71FE7 /* RTMCallback.h */,
 				8C77295E12D46AC600F71FE7 /* CompleteRespHandler.m */,
 				8C77296112D46AC600F71FE7 /* ListsHandler.m */,
 				8C77293012D46AC600F71FE7 /* ResponseRESTHandler.m */,
@@ -1486,6 +1483,8 @@
 				8C77291F12D46AC600F71FE7 /* RTMModule.h */,
 				8C82B67712EF314100830486 /* CompleteProcessHandler.h */,
 				8C82B67812EF314100830486 /* CompleteProcessHandler.m */,
+				8C28615B1375CD4E00CAAF2A /* RepeatByDayType.h */,
+				8C28615C1375CD4E00CAAF2A /* RepeatByDayType.m */,
 			);
 			name = RTMModule;
 			sourceTree = "<group>";
@@ -2060,7 +2059,6 @@
 				8C801CF3135373C500E5C109 /* VacationDialog.xib in Resources */,
 				8C5BB840136F448D0004E88C /* SwitchActivityDialog.xib in Resources */,
 				8C5BB9861371E07F0004E88C /* HUDBusyView.xib in Resources */,
-				8C5BB9A11371E20B0004E88C /* HudBusy.xib in Resources */,
 				8C285846137319E400CAAF2A /* HUDBusyView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2215,7 +2213,6 @@
 				8C801CF4135373C500E5C109 /* VacationDialog.xib in Resources */,
 				8C5BB83F136F448D0004E88C /* SwitchActivityDialog.xib in Resources */,
 				8C5BB9871371E07F0004E88C /* HUDBusyView.xib in Resources */,
-				8C5BB9A01371E20B0004E88C /* HudBusy.xib in Resources */,
 				8C285845137319E400CAAF2A /* HUDBusyView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2392,6 +2389,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C9E3BCA1347778000D8BDCC /* RepeatRule.m in Sources */,
+				8C2861631375CE4D00CAAF2A /* RepeatByDayType.m in Sources */,
 				8CF8BB7212D9FBA6009C7E3D /* RefreshListHandler.m in Sources */,
 				8CD197E212D4FED200C69AC9 /* RefreshHandler.m in Sources */,
 				8C027C66136BB7B700D0D066 /* RTMProtocol.m in Sources */,
