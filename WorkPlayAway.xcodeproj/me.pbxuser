@@ -9,27 +9,13 @@
 	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
 		activeArchitecturePreference = x86_64;
-		activeBuildConfigurationName = Debug;
+		activeBuildConfigurationName = Release;
 		activeExecutable = 8C77290012D469F900F71FE7 /* WorkPlayAway */;
 		activeTarget = 8D1107260486CEB800E47090 /* selfstruct */;
 		addToTargets = (
 			8CD1974312D4C59600C69AC9 /* structcommon */,
 		);
 		breakpoints = (
-			8C2858BA1373203300CAAF2A /* SummaryViewController.m:60 */,
-			8C2858D61373318400CAAF2A /* SummaryViewController.m:59 */,
-			8C28607D1374E00200CAAF2A /* iCalModule.m:121 */,
-			8C2865471378478F00CAAF2A /* AppleMailManagerDelegate.m:140 */,
-			8C286653137865EA00CAAF2A /* AppleMailManagerDelegate.m:167 */,
-			8C2866841378737200CAAF2A /* AppleMailModule.m:193 */,
-			8C8558941379A4EC006FFB59 /* SkypeModule.m:48 */,
-			8C8559AE1379C17F006FFB59 /* ScriptDaemon.m:45 */,
-			8C8559BA1379C2F1006FFB59 /* icmain.m:38 */,
-			8C8559BC1379C309006FFB59 /* admain.m:17 */,
-			8C8559EB1379C7C0006FFB59 /* icmain.m:38 */,
-			8C855B8B137AD549006FFB59 /* iCalModule.m:217 */,
-			8C855B8D137AD5B8006FFB59 /* iCalModule.m:186 */,
-			8C855B8F137AD5E7006FFB59 /* iCalModule.m:144 */,
 		);
 		codeSenseManager = 8C77290512D46A1800F71FE7 /* Code sense */;
 		executables = (
@@ -405,6 +391,7 @@
 			8C8559B41379C183006FFB59 /* PBXTextBookmark */ = 8C8559B41379C183006FFB59 /* PBXTextBookmark */;
 			8C8559B51379C183006FFB59 /* PBXTextBookmark */ = 8C8559B51379C183006FFB59 /* PBXTextBookmark */;
 			8C8559B61379C183006FFB59 /* PBXTextBookmark */ = 8C8559B61379C183006FFB59 /* PBXTextBookmark */;
+			8C8559BB1379C2F1006FFB59 /* PBXTextBookmark */ = 8C8559BB1379C2F1006FFB59 /* PBXTextBookmark */;
 			8C8559C01379C394006FFB59 /* PBXTextBookmark */ = 8C8559C01379C394006FFB59 /* PBXTextBookmark */;
 			8C8559C11379C394006FFB59 /* PBXTextBookmark */ = 8C8559C11379C394006FFB59 /* PBXTextBookmark */;
 			8C8559C21379C394006FFB59 /* PBXTextBookmark */ = 8C8559C21379C394006FFB59 /* PBXTextBookmark */;
@@ -741,6 +728,32 @@
 			8C855B85137A428B006FFB59 /* PBXTextBookmark */ = 8C855B85137A428B006FFB59 /* PBXTextBookmark */;
 			8C855B86137A428B006FFB59 /* PBXTextBookmark */ = 8C855B86137A428B006FFB59 /* PBXTextBookmark */;
 			8C855B87137A428B006FFB59 /* PBXTextBookmark */ = 8C855B87137A428B006FFB59 /* PBXTextBookmark */;
+			8C855B91137AE3AC006FFB59 /* PBXTextBookmark */ = 8C855B91137AE3AC006FFB59 /* PBXTextBookmark */;
+			8C855B9A137AE866006FFB59 /* PBXTextBookmark */ = 8C855B9A137AE866006FFB59 /* PBXTextBookmark */;
+			8C855B9B137AE866006FFB59 /* PBXTextBookmark */ = 8C855B9B137AE866006FFB59 /* PBXTextBookmark */;
+			8C855B9C137AE866006FFB59 /* PBXTextBookmark */ = 8C855B9C137AE866006FFB59 /* PBXTextBookmark */;
+			8C855B9D137AE866006FFB59 /* PBXTextBookmark */ = 8C855B9D137AE866006FFB59 /* PBXTextBookmark */;
+			8C855B9E137AE866006FFB59 /* PBXTextBookmark */ = 8C855B9E137AE866006FFB59 /* PBXTextBookmark */;
+			8C855B9F137AE866006FFB59 /* PBXTextBookmark */ = 8C855B9F137AE866006FFB59 /* PBXTextBookmark */;
+			8C855BA0137AE866006FFB59 /* PBXTextBookmark */ = 8C855BA0137AE866006FFB59 /* PBXTextBookmark */;
+			8C855BAF137AE8BE006FFB59 /* PBXTextBookmark */ = 8C855BAF137AE8BE006FFB59 /* PBXTextBookmark */;
+			8C855BB0137AE8BE006FFB59 /* PBXTextBookmark */ = 8C855BB0137AE8BE006FFB59 /* PBXTextBookmark */;
+			8C855BB1137AE8BE006FFB59 /* PBXTextBookmark */ = 8C855BB1137AE8BE006FFB59 /* PBXTextBookmark */;
+			8C855BB4137AEA17006FFB59 /* PBXTextBookmark */ = 8C855BB4137AEA17006FFB59 /* PBXTextBookmark */;
+			8C855BB5137AEA17006FFB59 /* XCBuildMessageTextBookmark */ = 8C855BB5137AEA17006FFB59 /* XCBuildMessageTextBookmark */;
+			8C855BB6137AEA17006FFB59 /* PBXTextBookmark */ = 8C855BB6137AEA17006FFB59 /* PBXTextBookmark */;
+			8C855BBC137AEB9F006FFB59 /* PBXTextBookmark */ = 8C855BBC137AEB9F006FFB59 /* PBXTextBookmark */;
+			8C855BBD137AEB9F006FFB59 /* PBXTextBookmark */ = 8C855BBD137AEB9F006FFB59 /* PBXTextBookmark */;
+			8C855BC0137AEB9F006FFB59 /* PBXTextBookmark */ = 8C855BC0137AEB9F006FFB59 /* PBXTextBookmark */;
+			8C855BC1137AEB9F006FFB59 /* PBXTextBookmark */ = 8C855BC1137AEB9F006FFB59 /* PBXTextBookmark */;
+			8C855BC2137AEB9F006FFB59 /* PBXTextBookmark */ = 8C855BC2137AEB9F006FFB59 /* PBXTextBookmark */;
+			8C855BC6137AEDBE006FFB59 /* PBXTextBookmark */ = 8C855BC6137AEDBE006FFB59 /* PBXTextBookmark */;
+			8C855BC7137AEDBE006FFB59 /* PBXTextBookmark */ = 8C855BC7137AEDBE006FFB59 /* PBXTextBookmark */;
+			8C855BCB137AF173006FFB59 /* PBXTextBookmark */ = 8C855BCB137AF173006FFB59 /* PBXTextBookmark */;
+			8C855BCE137AF173006FFB59 /* PBXTextBookmark */ = 8C855BCE137AF173006FFB59 /* PBXTextBookmark */;
+			8C855BCF137AF173006FFB59 /* PBXTextBookmark */ = 8C855BCF137AF173006FFB59 /* PBXTextBookmark */;
+			8C855BD0137AF173006FFB59 /* PBXTextBookmark */ = 8C855BD0137AF173006FFB59 /* PBXTextBookmark */;
+			8C855BD1137AF173006FFB59 /* PBXTextBookmark */ = 8C855BD1137AF173006FFB59 /* PBXTextBookmark */;
 			8C89439F131558EC00E01F06 = 8C89439F131558EC00E01F06 /* PBXTextBookmark */;
 			8C8943A0131558EC00E01F06 = 8C8943A0131558EC00E01F06 /* PBXTextBookmark */;
 			8C8943A1131558EC00E01F06 = 8C8943A1131558EC00E01F06 /* PBXTextBookmark */;
@@ -1312,46 +1325,10 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 587";
 		rLen = 0;
-		rLoc = 20971;
+		rLoc = 20978;
 		rType = 0;
 		vrLen = 1258;
 		vrLoc = 24917;
-	};
-	8C2858BA1373203300CAAF2A /* SummaryViewController.m:60 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 8CDC13471310897F00BA478C /* SummaryViewController.m */;
-		functionName = "-initWithNibName:bundle:module:rows:waitRows:width:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 60;
-		location = "Self-Imposed Structure";
-		modificationTime = 326817049.46027;
-		originalNumberOfMultipleMatches = 1;
-		state = 1;
-	};
-	8C2858D61373318400CAAF2A /* SummaryViewController.m:59 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 8CDC13471310897F00BA478C /* SummaryViewController.m */;
-		functionName = "-initWithNibName:bundle:module:rows:waitRows:width:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 59;
-		location = "Self-Imposed Structure";
-		modificationTime = 326817049.569708;
-		originalNumberOfMultipleMatches = 1;
-		state = 1;
 	};
 	8C28596313735E5D00CAAF2A /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -1382,32 +1359,6 @@
 		rType = 0;
 		vrLen = 1391;
 		vrLoc = 9066;
-	};
-	8C28607D1374E00200CAAF2A /* iCalModule.m:121 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-			8C28607F1374E02A00CAAF2A /* XCBreakpointCommandAction */,
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
-		functionName = "-fetchDone:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 121;
-		location = iCalModule;
-		modificationTime = 326817035.484012;
-		originalNumberOfMultipleMatches = 1;
-		state = 1;
-	};
-	8C28607F1374E02A00CAAF2A /* XCBreakpointCommandAction */ = {
-		isa = XCBreakpointCommandAction;
-		command = "print-object [note moduleName]\nprint-object [note message]\ncontinue";
-		fallbackIsa = XCBreakpointAction;
-		logCommand = 0;
-		useDebuggerSideImplementation = 1;
 	};
 	8C2860841374E36D00CAAF2A /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -1450,7 +1401,7 @@
 		rLen = 0;
 		rLoc = 348;
 		rType = 0;
-		vrLen = 894;
+		vrLen = 536;
 		vrLoc = 261;
 	};
 	8C2861681375CE5D00CAAF2A /* PBXTextBookmark */ = {
@@ -1585,23 +1536,6 @@
 		vrLen = 674;
 		vrLoc = 0;
 	};
-	8C2865471378478F00CAAF2A /* AppleMailManagerDelegate.m:140 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 8C2862B61377970700CAAF2A /* AppleMailManagerDelegate.m */;
-		functionName = "-handleNotification:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 140;
-		modificationTime = 326817035.564309;
-		originalNumberOfMultipleMatches = 1;
-		state = 0;
-	};
 	8C286641137863AF00CAAF2A /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 8C2862B61377970700CAAF2A /* AppleMailManagerDelegate.m */;
@@ -1611,41 +1545,6 @@
 		rType = 0;
 		vrLen = 1447;
 		vrLoc = 5045;
-	};
-	8C286653137865EA00CAAF2A /* AppleMailManagerDelegate.m:167 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 8C2862B61377970700CAAF2A /* AppleMailManagerDelegate.m */;
-		functionName = "-handleNotification:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 167;
-		modificationTime = 326817035.564372;
-		originalNumberOfMultipleMatches = 1;
-		state = 0;
-	};
-	8C2866841378737200CAAF2A /* AppleMailModule.m:193 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 8CDC1087130CA60D00BA478C /* AppleMailModule.m */;
-		functionName = "-messageFetched:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 193;
-		location = AppleMailModule;
-		modificationTime = 326817035.5644;
-		originalNumberOfMultipleMatches = 1;
-		state = 1;
 	};
 	8C2866BD1378796C00CAAF2A /* AppleMailDaemon */ = {
 		activeExec = 0;
@@ -1735,10 +1634,10 @@
 	};
 	8C2866F3137886B900CAAF2A /* ScriptDaemon.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {846, 2158}}";
-			sepNavSelRange = "{2622, 0}";
-			sepNavVisRange = "{1780, 1654}";
-			sepNavWindowFrame = "{{15, 42}, {907, 831}}";
+			sepNavIntBoundsRect = "{{0, 0}, {884, 2132}}";
+			sepNavSelRange = "{2559, 2}";
+			sepNavVisRange = "{2114, 904}";
+			sepNavWindowFrame = "{{357, 47}, {907, 831}}";
 		};
 	};
 	8C2866F61378883B00CAAF2A /* AppleScriptEventHandler.h */ = {
@@ -1791,17 +1690,17 @@
 	};
 	8C34BC75134D262A00A9BCFE /* iCalModule.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {876, 5174}}";
-			sepNavSelRange = "{4002, 0}";
-			sepNavVisRange = "{5725, 1494}";
-			sepNavWindowFrame = "{{519, 37}, {907, 831}}";
+			sepNavIntBoundsRect = "{{0, 0}, {846, 5694}}";
+			sepNavSelRange = "{1317, 0}";
+			sepNavVisRange = "{668, 1024}";
+			sepNavWindowFrame = "{{237, 39}, {907, 831}}";
 		};
 	};
 	8C34BC76134D262A00A9BCFE /* iCalModule.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {884, 897}}";
-			sepNavSelRange = "{2417, 0}";
-			sepNavVisRange = "{878, 1584}";
+			sepNavIntBoundsRect = "{{0, 0}, {846, 871}}";
+			sepNavSelRange = "{1121, 0}";
+			sepNavVisRange = "{269, 2114}";
 		};
 	};
 	8C3AB4AB12E2CEBF00A19AA4 /* README.txt */ = {
@@ -2297,7 +2196,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1125, 1001}}";
 			sepNavSelRange = "{1500, 0}";
-			sepNavVisRange = "{55, 2096}";
+			sepNavVisRange = "{55, 2160}";
 			sepNavWindowFrame = "{{529, 47}, {907, 831}}";
 		};
 	};
@@ -2626,7 +2525,7 @@
 		argumentStrings = (
 		);
 		autoAttachOnCrash = 1;
-		breakpointsEnabled = 1;
+		breakpointsEnabled = 0;
 		configStateDict = {
 		};
 		customDataFormattersEnabled = 1;
@@ -2831,9 +2730,9 @@
 	};
 	8C77291E12D46AC600F71FE7 /* WPAMainController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {846, 11037}}";
-			sepNavSelRange = "{3016, 0}";
-			sepNavVisRange = "{17519, 1871}";
+			sepNavIntBoundsRect = "{{0, 0}, {901, 11297}}";
+			sepNavSelRange = "{17195, 39}";
+			sepNavVisRange = "{16221, 1383}";
 			sepNavWindowFrame = "{{356, 47}, {907, 831}}";
 		};
 	};
@@ -2895,9 +2794,9 @@
 	};
 	8C77292B12D46AC600F71FE7 /* Context.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {848, 6383}}";
-			sepNavSelRange = "{970, 1}";
-			sepNavVisRange = "{318, 1881}";
+			sepNavIntBoundsRect = "{{0, 0}, {848, 6396}}";
+			sepNavSelRange = "{14317, 0}";
+			sepNavVisRange = "{446, 1876}";
 			sepNavWindowFrame = "{{261, 38}, {907, 831}}";
 		};
 	};
@@ -3623,7 +3522,7 @@
 		fRef = 8CDC0D621309D49400BA478C /* WorkModule.m */;
 		name = "WorkModule.m: 107";
 		rLen = 0;
-		rLoc = 2899;
+		rLoc = 2901;
 		rType = 0;
 		vrLen = 1255;
 		vrLoc = 2140;
@@ -3956,9 +3855,9 @@
 	};
 	8C82CF8A12F3BEAC00830486 /* StatusIconView.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {908, 3588}}";
-			sepNavSelRange = "{7123, 0}";
-			sepNavVisRange = "{5912, 1544}";
+			sepNavIntBoundsRect = "{{0, 0}, {908, 3718}}";
+			sepNavSelRange = "{6378, 0}";
+			sepNavVisRange = "{5837, 1301}";
 			sepNavWindowFrame = "{{349, 47}, {907, 831}}";
 		};
 	};
@@ -3988,8 +3887,9 @@
 	8C85578C13788EEC006FFB59 /* icmain.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {876, 585}}";
-			sepNavSelRange = "{968, 0}";
-			sepNavVisRange = "{16, 1174}";
+			sepNavSelRange = "{1150, 0}";
+			sepNavVisRange = "{0, 1190}";
+			sepNavWindowFrame = "{{327, 41}, {907, 831}}";
 		};
 	};
 	8C85578F13788F0B006FFB59 /* ICalEventHandler.h */ = {
@@ -4022,7 +3922,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 231";
 		rLen = 23;
-		rLoc = 2800;
+		rLoc = 2794;
 		rType = 0;
 		vrLen = 1779;
 		vrLoc = 6674;
@@ -4082,7 +3982,7 @@
 		fRef = 8C85578C13788EEC006FFB59 /* icmain.m */;
 		name = "icmain.m: 17";
 		rLen = 0;
-		rLoc = 1152;
+		rLoc = 1153;
 		rType = 0;
 		vrLen = 623;
 		vrLoc = 0;
@@ -4155,24 +4055,6 @@
 		rType = 0;
 		vrLen = 1670;
 		vrLoc = 1692;
-	};
-	8C8558941379A4EC006FFB59 /* SkypeModule.m:48 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 8C77292312D46AC600F71FE7 /* SkypeModule.m */;
-		functionName = "-start";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 48;
-		location = SkypeModule;
-		modificationTime = 326817035.564543;
-		originalNumberOfMultipleMatches = 1;
-		state = 0;
 	};
 	8C85589D1379A69E006FFB59 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -4286,7 +4168,7 @@
 		fRef = 8C85578C13788EEC006FFB59 /* icmain.m */;
 		name = "icmain.m: 17";
 		rLen = 0;
-		rLoc = 1152;
+		rLoc = 1153;
 		rType = 0;
 		vrLen = 623;
 		vrLoc = 0;
@@ -4326,7 +4208,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 188";
 		rLen = 0;
-		rLoc = 5371;
+		rLoc = 5365;
 		rType = 0;
 		vrLen = 1616;
 		vrLoc = 10086;
@@ -4336,7 +4218,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 160";
 		rLen = 1007;
-		rLoc = 3937;
+		rLoc = 3931;
 		rType = 0;
 		vrLen = 2026;
 		vrLoc = 3130;
@@ -4406,7 +4288,7 @@
 		fRef = 8C85578C13788EEC006FFB59 /* icmain.m */;
 		name = "icmain.m: 17";
 		rLen = 0;
-		rLoc = 1152;
+		rLoc = 1153;
 		rType = 0;
 		vrLen = 623;
 		vrLoc = 0;
@@ -4426,7 +4308,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 389";
 		rLen = 11;
-		rLoc = 12355;
+		rLoc = 12349;
 		rType = 0;
 		vrLen = 1487;
 		vrLoc = 10602;
@@ -4476,7 +4358,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 389";
 		rLen = 11;
-		rLoc = 12355;
+		rLoc = 12349;
 		rType = 0;
 		vrLen = 1487;
 		vrLoc = 10602;
@@ -4526,7 +4408,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 389";
 		rLen = 11;
-		rLoc = 12355;
+		rLoc = 12349;
 		rType = 0;
 		vrLen = 1927;
 		vrLoc = 3168;
@@ -4536,7 +4418,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 389";
 		rLen = 11;
-		rLoc = 12355;
+		rLoc = 12349;
 		rType = 0;
 		vrLen = 1988;
 		vrLoc = 3168;
@@ -4586,7 +4468,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 389";
 		rLen = 11;
-		rLoc = 12355;
+		rLoc = 12349;
 		rType = 0;
 		vrLen = 1951;
 		vrLoc = 3205;
@@ -4653,7 +4535,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 164";
 		rLen = 0;
-		rLoc = 4108;
+		rLoc = 4102;
 		rType = 0;
 		vrLen = 1645;
 		vrLoc = 3511;
@@ -4663,7 +4545,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 389";
 		rLen = 11;
-		rLoc = 12355;
+		rLoc = 12349;
 		rType = 0;
 		vrLen = 1951;
 		vrLoc = 3205;
@@ -4703,7 +4585,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 164";
 		rLen = 0;
-		rLoc = 4108;
+		rLoc = 4102;
 		rType = 0;
 		vrLen = 1018;
 		vrLoc = 281;
@@ -4713,7 +4595,7 @@
 		fRef = 8C85578C13788EEC006FFB59 /* icmain.m */;
 		name = "icmain.m: 17";
 		rLen = 0;
-		rLoc = 1152;
+		rLoc = 1153;
 		rType = 0;
 		vrLen = 624;
 		vrLoc = 0;
@@ -4743,7 +4625,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 389";
 		rLen = 11;
-		rLoc = 12355;
+		rLoc = 12349;
 		rType = 0;
 		vrLen = 2171;
 		vrLoc = 3220;
@@ -4773,7 +4655,7 @@
 		fRef = 8C85578C13788EEC006FFB59 /* icmain.m */;
 		name = "icmain.m: 17";
 		rLen = 0;
-		rLoc = 1152;
+		rLoc = 1153;
 		rType = 0;
 		vrLen = 624;
 		vrLoc = 0;
@@ -4783,7 +4665,7 @@
 		fRef = 8C85578C13788EEC006FFB59 /* icmain.m */;
 		name = "icmain.m: 17";
 		rLen = 0;
-		rLoc = 1152;
+		rLoc = 1153;
 		rType = 0;
 		vrLen = 624;
 		vrLoc = 0;
@@ -4793,7 +4675,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 389";
 		rLen = 11;
-		rLoc = 12355;
+		rLoc = 12349;
 		rType = 0;
 		vrLen = 2388;
 		vrLoc = 3370;
@@ -4803,7 +4685,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 157";
 		rLen = 0;
-		rLoc = 3903;
+		rLoc = 3897;
 		rType = 0;
 		vrLen = 2018;
 		vrLoc = 2496;
@@ -4843,7 +4725,7 @@
 		fRef = 8C85578C13788EEC006FFB59 /* icmain.m */;
 		name = "icmain.m: 17";
 		rLen = 0;
-		rLoc = 1152;
+		rLoc = 1153;
 		rType = 0;
 		vrLen = 624;
 		vrLoc = 0;
@@ -4853,7 +4735,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 156";
 		rLen = 0;
-		rLoc = 3903;
+		rLoc = 3897;
 		rType = 0;
 		vrLen = 1936;
 		vrLoc = 2597;
@@ -4888,29 +4770,12 @@
 		vrLen = 1881;
 		vrLoc = 318;
 	};
-	8C8559AE1379C17F006FFB59 /* ScriptDaemon.m:45 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 8C2866F3137886B900CAAF2A /* ScriptDaemon.m */;
-		functionName = "-handleNotification:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 45;
-		modificationTime = 326817035.564571;
-		originalNumberOfMultipleMatches = 1;
-		state = 0;
-	};
 	8C8559B01379C183006FFB59 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 8C85578C13788EEC006FFB59 /* icmain.m */;
 		name = "icmain.m: 17";
 		rLen = 0;
-		rLoc = 1152;
+		rLoc = 1153;
 		rType = 0;
 		vrLen = 624;
 		vrLoc = 0;
@@ -4940,7 +4805,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 156";
 		rLen = 0;
-		rLoc = 3903;
+		rLoc = 3897;
 		rType = 0;
 		vrLen = 1929;
 		vrLoc = 2694;
@@ -4975,39 +4840,12 @@
 		vrLen = 1881;
 		vrLoc = 318;
 	};
-	8C8559BA1379C2F1006FFB59 /* icmain.m:38 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 8C85578C13788EEC006FFB59 /* icmain.m */;
-		functionName = "main()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 38;
-		modificationTime = 326817035.564701;
-		originalNumberOfMultipleMatches = 1;
-		state = 0;
-	};
-	8C8559BC1379C309006FFB59 /* admain.m:17 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 8C2866DA13787ACF00CAAF2A /* admain.m */;
-		functionName = "main()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 17;
-		modificationTime = 326817035.564854;
-		originalNumberOfMultipleMatches = 1;
-		state = 0;
+	8C8559BB1379C2F1006FFB59 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C85578C13788EEC006FFB59 /* icmain.m */;
+		rLen = 0;
+		rLoc = 37;
+		rType = 1;
 	};
 	8C8559C01379C394006FFB59 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -5024,7 +4862,7 @@
 		fRef = 8C85578C13788EEC006FFB59 /* icmain.m */;
 		name = "icmain.m: 18";
 		rLen = 0;
-		rLoc = 1152;
+		rLoc = 1153;
 		rType = 0;
 		vrLen = 772;
 		vrLoc = 0;
@@ -5064,7 +4902,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 156";
 		rLen = 0;
-		rLoc = 3903;
+		rLoc = 3897;
 		rType = 0;
 		vrLen = 1988;
 		vrLoc = 2694;
@@ -5074,7 +4912,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 156";
 		rLen = 0;
-		rLoc = 3903;
+		rLoc = 3897;
 		rType = 0;
 		vrLen = 1960;
 		vrLoc = 2969;
@@ -5124,7 +4962,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 156";
 		rLen = 0;
-		rLoc = 3903;
+		rLoc = 3897;
 		rType = 0;
 		vrLen = 1753;
 		vrLoc = 2172;
@@ -5174,7 +5012,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 156";
 		rLen = 0;
-		rLoc = 3903;
+		rLoc = 3897;
 		rType = 0;
 		vrLen = 1756;
 		vrLoc = 2172;
@@ -5224,7 +5062,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 156";
 		rLen = 0;
-		rLoc = 3903;
+		rLoc = 3897;
 		rType = 0;
 		vrLen = 1570;
 		vrLoc = 2358;
@@ -5328,23 +5166,6 @@
 		vrLen = 1136;
 		vrLoc = 267;
 	};
-	8C8559EB1379C7C0006FFB59 /* icmain.m:38 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 8C85578C13788EEC006FFB59 /* icmain.m */;
-		functionName = "main()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 38;
-		modificationTime = 326817035.56489;
-		originalNumberOfMultipleMatches = 1;
-		state = 0;
-	};
 	8C8559ED1379C7DA006FFB59 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 8CDC1087130CA60D00BA478C /* AppleMailModule.m */;
@@ -5360,7 +5181,7 @@
 		fRef = 8C85578C13788EEC006FFB59 /* icmain.m */;
 		name = "icmain.m: 18";
 		rLen = 0;
-		rLoc = 1152;
+		rLoc = 1153;
 		rType = 0;
 		vrLen = 772;
 		vrLoc = 0;
@@ -5370,7 +5191,7 @@
 		fRef = 8C85578C13788EEC006FFB59 /* icmain.m */;
 		name = "icmain.m: 18";
 		rLen = 0;
-		rLoc = 1152;
+		rLoc = 1153;
 		rType = 0;
 		vrLen = 772;
 		vrLoc = 0;
@@ -5410,7 +5231,7 @@
 		fRef = 8C85578C13788EEC006FFB59 /* icmain.m */;
 		name = "icmain.m: 18";
 		rLen = 0;
-		rLoc = 1152;
+		rLoc = 1153;
 		rType = 0;
 		vrLen = 772;
 		vrLoc = 0;
@@ -5440,7 +5261,7 @@
 		fRef = 8C85578C13788EEC006FFB59 /* icmain.m */;
 		name = "icmain.m: 18";
 		rLen = 0;
-		rLoc = 1152;
+		rLoc = 1153;
 		rType = 0;
 		vrLen = 772;
 		vrLoc = 0;
@@ -5587,7 +5408,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 163";
 		rLen = 0;
-		rLoc = 4108;
+		rLoc = 4102;
 		rType = 0;
 		vrLen = 1408;
 		vrLoc = 5452;
@@ -5597,7 +5418,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 163";
 		rLen = 0;
-		rLoc = 4108;
+		rLoc = 4102;
 		rType = 0;
 		vrLen = 1653;
 		vrLoc = 3347;
@@ -5627,7 +5448,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 163";
 		rLen = 0;
-		rLoc = 4108;
+		rLoc = 4102;
 		rType = 0;
 		vrLen = 1653;
 		vrLoc = 3347;
@@ -5647,7 +5468,7 @@
 		fRef = 8C2866F3137886B900CAAF2A /* ScriptDaemon.m */;
 		name = "ScriptDaemon.m: 132";
 		rLen = 0;
-		rLoc = 3587;
+		rLoc = 3525;
 		rType = 0;
 		vrLen = 1514;
 		vrLoc = 3032;
@@ -5677,7 +5498,7 @@
 		fRef = 8C2866F3137886B900CAAF2A /* ScriptDaemon.m */;
 		name = "ScriptDaemon.m: 132";
 		rLen = 0;
-		rLoc = 3587;
+		rLoc = 3525;
 		rType = 0;
 		vrLen = 1481;
 		vrLoc = 3065;
@@ -5707,7 +5528,7 @@
 		fRef = 8C2866F3137886B900CAAF2A /* ScriptDaemon.m */;
 		name = "ScriptDaemon.m: 132";
 		rLen = 0;
-		rLoc = 3587;
+		rLoc = 3525;
 		rType = 0;
 		vrLen = 1481;
 		vrLoc = 3065;
@@ -5734,7 +5555,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 163";
 		rLen = 0;
-		rLoc = 4108;
+		rLoc = 4102;
 		rType = 0;
 		vrLen = 1653;
 		vrLoc = 3347;
@@ -5764,7 +5585,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 163";
 		rLen = 0;
-		rLoc = 4108;
+		rLoc = 4102;
 		rType = 0;
 		vrLen = 1667;
 		vrLoc = 3398;
@@ -5794,7 +5615,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 163";
 		rLen = 0;
-		rLoc = 4108;
+		rLoc = 4102;
 		rType = 0;
 		vrLen = 1667;
 		vrLoc = 3398;
@@ -6024,7 +5845,7 @@
 		fRef = 8C2866F3137886B900CAAF2A /* ScriptDaemon.m */;
 		name = "ScriptDaemon.m: 132";
 		rLen = 0;
-		rLoc = 3587;
+		rLoc = 3525;
 		rType = 0;
 		vrLen = 1388;
 		vrLoc = 2631;
@@ -6054,7 +5875,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 175";
 		rLen = 0;
-		rLoc = 4927;
+		rLoc = 4921;
 		rType = 0;
 		vrLen = 2082;
 		vrLoc = 2541;
@@ -6064,7 +5885,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 188";
 		rLen = 0;
-		rLoc = 4945;
+		rLoc = 4939;
 		rType = 0;
 		vrLen = 2161;
 		vrLoc = 3833;
@@ -6078,7 +5899,7 @@
 		fRef = 8C2866F3137886B900CAAF2A /* ScriptDaemon.m */;
 		name = "ScriptDaemon.m: 139";
 		rLen = 0;
-		rLoc = 3889;
+		rLoc = 3827;
 		rType = 0;
 		vrLen = 1808;
 		vrLoc = 2778;
@@ -6146,7 +5967,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 187";
 		rLen = 0;
-		rLoc = 5013;
+		rLoc = 5007;
 		rType = 0;
 		vrLen = 2262;
 		vrLoc = 3936;
@@ -6156,7 +5977,7 @@
 		fRef = 8C2866F3137886B900CAAF2A /* ScriptDaemon.m */;
 		name = "ScriptDaemon.m: 139";
 		rLen = 0;
-		rLoc = 3889;
+		rLoc = 3827;
 		rType = 0;
 		vrLen = 1769;
 		vrLoc = 2817;
@@ -6216,7 +6037,7 @@
 		fRef = 8C2866F3137886B900CAAF2A /* ScriptDaemon.m */;
 		name = "ScriptDaemon.m: 139";
 		rLen = 0;
-		rLoc = 3889;
+		rLoc = 3827;
 		rType = 0;
 		vrLen = 1783;
 		vrLoc = 2820;
@@ -6226,7 +6047,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 187";
 		rLen = 0;
-		rLoc = 5013;
+		rLoc = 5007;
 		rType = 0;
 		vrLen = 2249;
 		vrLoc = 3970;
@@ -6306,7 +6127,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 187";
 		rLen = 0;
-		rLoc = 5013;
+		rLoc = 5007;
 		rType = 0;
 		vrLen = 2220;
 		vrLoc = 4108;
@@ -6356,7 +6177,7 @@
 		fRef = 8C85578C13788EEC006FFB59 /* icmain.m */;
 		name = "icmain.m: 41";
 		rLen = 0;
-		rLoc = 1171;
+		rLoc = 1172;
 		rType = 0;
 		vrLen = 1143;
 		vrLoc = 0;
@@ -6366,7 +6187,7 @@
 		fRef = 8C85578C13788EEC006FFB59 /* icmain.m */;
 		name = "icmain.m: 41";
 		rLen = 0;
-		rLoc = 1171;
+		rLoc = 1172;
 		rType = 0;
 		vrLen = 1143;
 		vrLoc = 0;
@@ -6386,7 +6207,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 187";
 		rLen = 0;
-		rLoc = 5013;
+		rLoc = 5007;
 		rType = 0;
 		vrLen = 2222;
 		vrLoc = 4108;
@@ -6436,7 +6257,7 @@
 		fRef = 8C85578C13788EEC006FFB59 /* icmain.m */;
 		name = "icmain.m: 41";
 		rLen = 0;
-		rLoc = 1171;
+		rLoc = 1172;
 		rType = 0;
 		vrLen = 1140;
 		vrLoc = 3;
@@ -6466,7 +6287,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 187";
 		rLen = 0;
-		rLoc = 5013;
+		rLoc = 5007;
 		rType = 0;
 		vrLen = 2134;
 		vrLoc = 4196;
@@ -6506,7 +6327,7 @@
 		fRef = 8C85578C13788EEC006FFB59 /* icmain.m */;
 		name = "icmain.m: 41";
 		rLen = 0;
-		rLoc = 1171;
+		rLoc = 1172;
 		rType = 0;
 		vrLen = 1127;
 		vrLoc = 16;
@@ -6536,7 +6357,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 187";
 		rLen = 0;
-		rLoc = 5013;
+		rLoc = 5007;
 		rType = 0;
 		vrLen = 2027;
 		vrLoc = 4355;
@@ -6576,7 +6397,7 @@
 		fRef = 8C85578C13788EEC006FFB59 /* icmain.m */;
 		name = "icmain.m: 41";
 		rLen = 0;
-		rLoc = 1171;
+		rLoc = 1172;
 		rType = 0;
 		vrLen = 1127;
 		vrLoc = 16;
@@ -6586,7 +6407,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 187";
 		rLen = 0;
-		rLoc = 5013;
+		rLoc = 5007;
 		rType = 0;
 		vrLen = 2110;
 		vrLoc = 3453;
@@ -6596,7 +6417,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 187";
 		rLen = 0;
-		rLoc = 5013;
+		rLoc = 5007;
 		rType = 0;
 		vrLen = 2110;
 		vrLoc = 3453;
@@ -6656,7 +6477,7 @@
 		fRef = 8C85578C13788EEC006FFB59 /* icmain.m */;
 		name = "icmain.m: 41";
 		rLen = 0;
-		rLoc = 1171;
+		rLoc = 1172;
 		rType = 0;
 		vrLen = 1127;
 		vrLoc = 16;
@@ -6666,7 +6487,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 161";
 		rLen = 12;
-		rLoc = 4017;
+		rLoc = 4011;
 		rType = 0;
 		vrLen = 2055;
 		vrLoc = 3565;
@@ -6726,7 +6547,7 @@
 		fRef = 8C85578C13788EEC006FFB59 /* icmain.m */;
 		name = "icmain.m: 41";
 		rLen = 0;
-		rLoc = 1171;
+		rLoc = 1172;
 		rType = 0;
 		vrLen = 1143;
 		vrLoc = 0;
@@ -6736,7 +6557,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 161";
 		rLen = 12;
-		rLoc = 4017;
+		rLoc = 4011;
 		rType = 0;
 		vrLen = 2243;
 		vrLoc = 3565;
@@ -6796,7 +6617,7 @@
 		fRef = 8C85578C13788EEC006FFB59 /* icmain.m */;
 		name = "icmain.m: 41";
 		rLen = 0;
-		rLoc = 1171;
+		rLoc = 1172;
 		rType = 0;
 		vrLen = 1127;
 		vrLoc = 16;
@@ -6806,7 +6627,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 161";
 		rLen = 12;
-		rLoc = 4017;
+		rLoc = 4011;
 		rType = 0;
 		vrLen = 2195;
 		vrLoc = 3613;
@@ -6866,7 +6687,7 @@
 		fRef = 8C85578C13788EEC006FFB59 /* icmain.m */;
 		name = "icmain.m: 41";
 		rLen = 0;
-		rLoc = 1171;
+		rLoc = 1172;
 		rType = 0;
 		vrLen = 1143;
 		vrLoc = 0;
@@ -6876,7 +6697,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 161";
 		rLen = 12;
-		rLoc = 4017;
+		rLoc = 4011;
 		rType = 0;
 		vrLen = 2374;
 		vrLoc = 3613;
@@ -6936,7 +6757,7 @@
 		fRef = 8C85578C13788EEC006FFB59 /* icmain.m */;
 		name = "icmain.m: 41";
 		rLen = 0;
-		rLoc = 1171;
+		rLoc = 1172;
 		rType = 0;
 		vrLen = 1127;
 		vrLoc = 16;
@@ -6946,7 +6767,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 161";
 		rLen = 12;
-		rLoc = 4017;
+		rLoc = 4011;
 		rType = 0;
 		vrLen = 2322;
 		vrLoc = 3665;
@@ -7006,7 +6827,7 @@
 		fRef = 8C85578C13788EEC006FFB59 /* icmain.m */;
 		name = "icmain.m: 41";
 		rLen = 0;
-		rLoc = 1171;
+		rLoc = 1172;
 		rType = 0;
 		vrLen = 1127;
 		vrLoc = 16;
@@ -7016,7 +6837,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 161";
 		rLen = 12;
-		rLoc = 4017;
+		rLoc = 4011;
 		rType = 0;
 		vrLen = 2269;
 		vrLoc = 3755;
@@ -7076,7 +6897,7 @@
 		fRef = 8C85578C13788EEC006FFB59 /* icmain.m */;
 		name = "icmain.m: 41";
 		rLen = 0;
-		rLoc = 1171;
+		rLoc = 1172;
 		rType = 0;
 		vrLen = 1127;
 		vrLoc = 16;
@@ -7116,7 +6937,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 161";
 		rLen = 12;
-		rLoc = 4017;
+		rLoc = 4011;
 		rType = 0;
 		vrLen = 2269;
 		vrLoc = 3755;
@@ -7126,7 +6947,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 161";
 		rLen = 12;
-		rLoc = 4017;
+		rLoc = 4011;
 		rType = 0;
 		vrLen = 2279;
 		vrLoc = 3847;
@@ -7206,7 +7027,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 161";
 		rLen = 12;
-		rLoc = 4017;
+		rLoc = 4011;
 		rType = 0;
 		vrLen = 2279;
 		vrLoc = 3847;
@@ -7273,7 +7094,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 161";
 		rLen = 0;
-		rLoc = 4002;
+		rLoc = 3996;
 		rType = 0;
 		vrLen = 1284;
 		vrLoc = 6037;
@@ -7293,7 +7114,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 161";
 		rLen = 12;
-		rLoc = 4017;
+		rLoc = 4011;
 		rType = 0;
 		vrLen = 2251;
 		vrLoc = 3936;
@@ -7343,7 +7164,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 161";
 		rLen = 0;
-		rLoc = 4002;
+		rLoc = 3996;
 		rType = 0;
 		vrLen = 1291;
 		vrLoc = 6037;
@@ -7373,7 +7194,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 161";
 		rLen = 12;
-		rLoc = 4017;
+		rLoc = 4011;
 		rType = 0;
 		vrLen = 2291;
 		vrLoc = 3936;
@@ -7423,7 +7244,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 161";
 		rLen = 0;
-		rLoc = 4002;
+		rLoc = 3996;
 		rType = 0;
 		vrLen = 1202;
 		vrLoc = 6126;
@@ -7443,7 +7264,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 161";
 		rLen = 12;
-		rLoc = 4017;
+		rLoc = 4011;
 		rType = 0;
 		vrLen = 2257;
 		vrLoc = 3970;
@@ -7493,7 +7314,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 161";
 		rLen = 0;
-		rLoc = 4002;
+		rLoc = 3996;
 		rType = 0;
 		vrLen = 1144;
 		vrLoc = 6187;
@@ -7513,7 +7334,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 161";
 		rLen = 12;
-		rLoc = 4017;
+		rLoc = 4011;
 		rType = 0;
 		vrLen = 2268;
 		vrLoc = 4000;
@@ -7563,7 +7384,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 161";
 		rLen = 0;
-		rLoc = 4002;
+		rLoc = 3996;
 		rType = 0;
 		vrLen = 1227;
 		vrLoc = 6187;
@@ -7573,7 +7394,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 161";
 		rLen = 12;
-		rLoc = 4017;
+		rLoc = 4011;
 		rType = 0;
 		vrLen = 2271;
 		vrLoc = 4000;
@@ -7583,7 +7404,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 247";
 		rLen = 0;
-		rLoc = 7327;
+		rLoc = 7321;
 		rType = 0;
 		vrLen = 1956;
 		vrLoc = 6418;
@@ -7643,7 +7464,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 161";
 		rLen = 0;
-		rLoc = 4002;
+		rLoc = 3996;
 		rType = 0;
 		vrLen = 1228;
 		vrLoc = 6187;
@@ -7653,7 +7474,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 247";
 		rLen = 0;
-		rLoc = 7331;
+		rLoc = 7325;
 		rType = 0;
 		vrLen = 1957;
 		vrLoc = 6418;
@@ -7713,7 +7534,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 161";
 		rLen = 0;
-		rLoc = 4002;
+		rLoc = 3996;
 		rType = 0;
 		vrLen = 1228;
 		vrLoc = 6187;
@@ -7733,7 +7554,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 247";
 		rLen = 0;
-		rLoc = 7331;
+		rLoc = 7325;
 		rType = 0;
 		vrLen = 1957;
 		vrLoc = 6418;
@@ -7783,7 +7604,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 161";
 		rLen = 0;
-		rLoc = 4002;
+		rLoc = 3996;
 		rType = 0;
 		vrLen = 1188;
 		vrLoc = 6227;
@@ -7803,7 +7624,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 247";
 		rLen = 0;
-		rLoc = 7331;
+		rLoc = 7325;
 		rType = 0;
 		vrLen = 1908;
 		vrLoc = 6467;
@@ -7853,7 +7674,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 161";
 		rLen = 0;
-		rLoc = 4002;
+		rLoc = 3996;
 		rType = 0;
 		vrLen = 1188;
 		vrLoc = 6227;
@@ -7863,7 +7684,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 247";
 		rLen = 0;
-		rLoc = 7331;
+		rLoc = 7325;
 		rType = 0;
 		vrLen = 1780;
 		vrLoc = 3186;
@@ -7923,7 +7744,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 161";
 		rLen = 0;
-		rLoc = 4002;
+		rLoc = 3996;
 		rType = 0;
 		vrLen = 1194;
 		vrLoc = 6268;
@@ -7933,7 +7754,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 247";
 		rLen = 0;
-		rLoc = 7331;
+		rLoc = 7325;
 		rType = 0;
 		vrLen = 1751;
 		vrLoc = 3250;
@@ -7993,7 +7814,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 161";
 		rLen = 0;
-		rLoc = 4002;
+		rLoc = 3996;
 		rType = 0;
 		vrLen = 1299;
 		vrLoc = 6270;
@@ -8003,7 +7824,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 247";
 		rLen = 0;
-		rLoc = 7331;
+		rLoc = 7325;
 		rType = 0;
 		vrLen = 1727;
 		vrLoc = 3287;
@@ -8063,7 +7884,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 161";
 		rLen = 0;
-		rLoc = 4002;
+		rLoc = 3996;
 		rType = 0;
 		vrLen = 1376;
 		vrLoc = 6368;
@@ -8087,7 +7908,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 247";
 		rLen = 0;
-		rLoc = 7331;
+		rLoc = 7325;
 		rType = 0;
 		vrLen = 1847;
 		vrLoc = 3355;
@@ -8167,7 +7988,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 161";
 		rLen = 0;
-		rLoc = 4002;
+		rLoc = 3996;
 		rType = 0;
 		vrLen = 1376;
 		vrLoc = 6368;
@@ -8187,7 +8008,7 @@
 		fRef = 8C85578C13788EEC006FFB59 /* icmain.m */;
 		name = "icmain.m: 37";
 		rLen = 56;
-		rLoc = 1093;
+		rLoc = 1094;
 		rType = 0;
 		vrLen = 1188;
 		vrLoc = 0;
@@ -8197,7 +8018,7 @@
 		fRef = 8C85578C13788EEC006FFB59 /* icmain.m */;
 		name = "icmain.m: 37";
 		rLen = 56;
-		rLoc = 1093;
+		rLoc = 1094;
 		rType = 0;
 		vrLen = 1189;
 		vrLoc = 0;
@@ -8217,7 +8038,7 @@
 		fRef = 8C2866F3137886B900CAAF2A /* ScriptDaemon.m */;
 		name = "ScriptDaemon.m: 95";
 		rLen = 0;
-		rLoc = 2622;
+		rLoc = 2560;
 		rType = 0;
 		vrLen = 1671;
 		vrLoc = 1763;
@@ -8227,7 +8048,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 247";
 		rLen = 0;
-		rLoc = 7331;
+		rLoc = 7325;
 		rType = 0;
 		vrLen = 1921;
 		vrLoc = 2578;
@@ -8237,7 +8058,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 247";
 		rLen = 0;
-		rLoc = 7331;
+		rLoc = 7325;
 		rType = 0;
 		vrLen = 2139;
 		vrLoc = 3438;
@@ -8287,7 +8108,7 @@
 		fRef = 8C85578C13788EEC006FFB59 /* icmain.m */;
 		name = "icmain.m: 37";
 		rLen = 56;
-		rLoc = 1093;
+		rLoc = 1094;
 		rType = 0;
 		vrLen = 1186;
 		vrLoc = 3;
@@ -8297,7 +8118,7 @@
 		fRef = 8C2866F3137886B900CAAF2A /* ScriptDaemon.m */;
 		name = "ScriptDaemon.m: 95";
 		rLen = 0;
-		rLoc = 2622;
+		rLoc = 2560;
 		rType = 0;
 		vrLen = 1654;
 		vrLoc = 1780;
@@ -8307,7 +8128,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 247";
 		rLen = 0;
-		rLoc = 7331;
+		rLoc = 7325;
 		rType = 0;
 		vrLen = 2085;
 		vrLoc = 3492;
@@ -8352,59 +8173,264 @@
 		vrLen = 2096;
 		vrLoc = 55;
 	};
-	8C855B8B137AD549006FFB59 /* iCalModule.m:217 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
-		functionName = "-refresh:isSummary:";
-		hitCount = 2;
-		ignoreCount = 0;
-		lineNumber = 217;
-		location = iCalModule;
-		modificationTime = 326817220.886757;
-		originalNumberOfMultipleMatches = 1;
-		state = 1;
+	8C855B91137AE3AC006FFB59 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CDC1086130CA60D00BA478C /* AppleMailModule.h */;
+		name = "AppleMailModule.h: 13";
+		rLen = 0;
+		rLoc = 245;
+		rType = 0;
+		vrLen = 1495;
+		vrLoc = 1273;
 	};
-	8C855B8D137AD5B8006FFB59 /* iCalModule.m:186 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
-		functionName = "-getEvents";
-		hitCount = 1;
-		ignoreCount = 0;
-		lineNumber = 186;
-		location = iCalModule;
-		modificationTime = 326817224.908461;
-		originalNumberOfMultipleMatches = 1;
-		state = 1;
+	8C855B9A137AE866006FFB59 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C85578C13788EEC006FFB59 /* icmain.m */;
+		name = "icmain.m: 32";
+		rLen = 0;
+		rLoc = 968;
+		rType = 0;
+		vrLen = 1174;
+		vrLoc = 16;
 	};
-	8C855B8F137AD5E7006FFB59 /* iCalModule.m:144 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
-		functionName = "-sendFetchWithScript:";
-		hitCount = 1;
-		ignoreCount = 0;
-		lineNumber = 144;
-		location = iCalModule;
-		modificationTime = 326817257.987288;
-		originalNumberOfMultipleMatches = 1;
-		state = 1;
+	8C855B9B137AE866006FFB59 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C2866DA13787ACF00CAAF2A /* admain.m */;
+		name = "admain.m: 36";
+		rLen = 0;
+		rLoc = 1085;
+		rType = 0;
+		vrLen = 1124;
+		vrLoc = 0;
+	};
+	8C855B9C137AE866006FFB59 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C82AECE12EB98A300830486 /* RefreshManager.m */;
+		name = "RefreshManager.m: 81";
+		rLen = 0;
+		rLoc = 2109;
+		rType = 0;
+		vrLen = 1483;
+		vrLoc = 1094;
+	};
+	8C855B9D137AE866006FFB59 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
+		name = "iCalModule.m: 142";
+		rLen = 0;
+		rLoc = 3400;
+		rType = 0;
+		vrLen = 1728;
+		vrLoc = 3186;
+	};
+	8C855B9E137AE866006FFB59 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
+		name = "WPAMainController.m: 475";
+		rLen = 39;
+		rLoc = 17195;
+		rType = 0;
+		vrLen = 1383;
+		vrLoc = 16221;
+	};
+	8C855B9F137AE866006FFB59 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CDC0D621309D49400BA478C /* WorkModule.m */;
+		name = "WorkModule.m: 119";
+		rLen = 0;
+		rLoc = 3403;
+		rType = 0;
+		vrLen = 1595;
+		vrLoc = 2379;
+	};
+	8C855BA0137AE866006FFB59 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
+		name = "StatusIconView.m: 239";
+		rLen = 0;
+		rLoc = 6378;
+		rType = 0;
+		vrLen = 1301;
+		vrLoc = 5837;
+	};
+	8C855BAF137AE8BE006FFB59 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C82CF8A12F3BEAC00830486 /* StatusIconView.m */;
+		name = "StatusIconView.m: 239";
+		rLen = 0;
+		rLoc = 6378;
+		rType = 0;
+		vrLen = 1301;
+		vrLoc = 5837;
+	};
+	8C855BB0137AE8BE006FFB59 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
+		name = "iCalModule.m: 217";
+		rLen = 0;
+		rLoc = 6337;
+		rType = 0;
+		vrLen = 1890;
+		vrLoc = 4260;
+	};
+	8C855BB1137AE8BE006FFB59 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C85578C13788EEC006FFB59 /* icmain.m */;
+		name = "icmain.m: 38";
+		rLen = 0;
+		rLoc = 1150;
+		rType = 0;
+		vrLen = 1189;
+		vrLoc = 0;
+	};
+	8C855BB4137AEA17006FFB59 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CDC1086130CA60D00BA478C /* AppleMailModule.h */;
+		name = "AppleMailModule.h: 13";
+		rLen = 0;
+		rLoc = 245;
+		rType = 0;
+		vrLen = 1495;
+		vrLoc = 1273;
+	};
+	8C855BB5137AEA17006FFB59 /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "Incomplete implementation of class 'RepeatRule'";
+		fRef = 8C9E3BC81347775400D8BDCC /* RepeatRule.m */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 1;
+		rLoc = 116;
+		rType = 1;
+	};
+	8C855BB6137AEA17006FFB59 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C9E3BC81347775400D8BDCC /* RepeatRule.m */;
+		name = "RepeatRule.m: 117";
+		rLen = 0;
+		rLoc = 3437;
+		rType = 0;
+		vrLen = 940;
+		vrLoc = 2502;
+	};
+	8C855BBC137AEB9F006FFB59 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C85578C13788EEC006FFB59 /* icmain.m */;
+		name = "icmain.m: 38";
+		rLen = 0;
+		rLoc = 1150;
+		rType = 0;
+		vrLen = 1190;
+		vrLoc = 0;
+	};
+	8C855BBD137AEB9F006FFB59 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CDC1087130CA60D00BA478C /* AppleMailModule.m */;
+		name = "AppleMailModule.m: 182";
+		rLen = 0;
+		rLoc = 5941;
+		rType = 0;
+		vrLen = 1652;
+		vrLoc = 2053;
+	};
+	8C855BC0137AEB9F006FFB59 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C34BC76134D262A00A9BCFE /* iCalModule.h */;
+		name = "iCalModule.h: 43";
+		rLen = 0;
+		rLoc = 1121;
+		rType = 0;
+		vrLen = 2114;
+		vrLoc = 269;
+	};
+	8C855BC1137AEB9F006FFB59 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
+		name = "iCalModule.m: 67";
+		rLen = 0;
+		rLoc = 1415;
+		rType = 0;
+		vrLen = 1125;
+		vrLoc = 747;
+	};
+	8C855BC2137AEB9F006FFB59 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
+		name = "iCalModule.m: 59";
+		rLen = 0;
+		rLoc = 1317;
+		rType = 0;
+		vrLen = 1004;
+		vrLoc = 668;
+	};
+	8C855BC6137AEDBE006FFB59 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CDC1087130CA60D00BA478C /* AppleMailModule.m */;
+		name = "AppleMailModule.m: 182";
+		rLen = 0;
+		rLoc = 5941;
+		rType = 0;
+		vrLen = 1654;
+		vrLoc = 2053;
+	};
+	8C855BC7137AEDBE006FFB59 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
+		name = "iCalModule.m: 59";
+		rLen = 0;
+		rLoc = 1317;
+		rType = 0;
+		vrLen = 1024;
+		vrLoc = 668;
+	};
+	8C855BCB137AF173006FFB59 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CDC1087130CA60D00BA478C /* AppleMailModule.m */;
+		name = "AppleMailModule.m: 182";
+		rLen = 0;
+		rLoc = 5941;
+		rType = 0;
+		vrLen = 1654;
+		vrLoc = 2053;
+	};
+	8C855BCE137AF173006FFB59 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C9E3BC71347775400D8BDCC /* RepeatRule.h */;
+		name = "RepeatRule.h: 35";
+		rLen = 0;
+		rLoc = 768;
+		rType = 0;
+		vrLen = 773;
+		vrLoc = 0;
+	};
+	8C855BCF137AF173006FFB59 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C9E3BC81347775400D8BDCC /* RepeatRule.m */;
+		name = "RepeatRule.m: 117";
+		rLen = 0;
+		rLoc = 3437;
+		rType = 0;
+		vrLen = 1959;
+		vrLoc = 1483;
+	};
+	8C855BD0137AF173006FFB59 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C9E3BC81347775400D8BDCC /* RepeatRule.m */;
+		name = "RepeatRule.m: 117";
+		rLen = 0;
+		rLoc = 3437;
+		rType = 0;
+		vrLen = 1999;
+		vrLoc = 1443;
+	};
+	8C855BD1137AF173006FFB59 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
+		name = "iCalModule.m: 59";
+		rLen = 0;
+		rLoc = 1317;
+		rType = 0;
+		vrLen = 1024;
+		vrLoc = 668;
 	};
 	8C89439F131558EC00E01F06 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -8511,16 +8537,16 @@
 	8C9E3BC71347775400D8BDCC /* RepeatRule.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {846, 717}}";
-			sepNavSelRange = "{428, 0}";
-			sepNavVisRange = "{0, 797}";
+			sepNavSelRange = "{768, 0}";
+			sepNavVisRange = "{0, 773}";
 			sepNavWindowFrame = "{{417, 22}, {907, 831}}";
 		};
 	};
 	8C9E3BC81347775400D8BDCC /* RepeatRule.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {884, 1534}}";
+			sepNavIntBoundsRect = "{{0, 0}, {846, 1534}}";
 			sepNavSelRange = "{3437, 0}";
-			sepNavVisRange = "{2502, 940}";
+			sepNavVisRange = "{1443, 1999}";
 			sepNavWindowFrame = "{{15, 42}, {907, 831}}";
 		};
 	};
@@ -8947,9 +8973,9 @@
 	};
 	8CDC0D621309D49400BA478C /* WorkModule.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {876, 2964}}";
-			sepNavSelRange = "{2899, 0}";
-			sepNavVisRange = "{2140, 1255}";
+			sepNavIntBoundsRect = "{{0, 0}, {876, 3016}}";
+			sepNavSelRange = "{3403, 0}";
+			sepNavVisRange = "{2379, 1595}";
 			sepNavWindowFrame = "{{15, 42}, {907, 831}}";
 		};
 	};
@@ -9069,15 +9095,15 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {884, 1001}}";
 			sepNavSelRange = "{245, 0}";
-			sepNavVisRange = "{1338, 1430}";
+			sepNavVisRange = "{1273, 1495}";
 		};
 	};
 	8CDC1087130CA60D00BA478C /* AppleMailModule.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {929, 10426}}";
-			sepNavSelRange = "{6735, 0}";
-			sepNavVisRange = "{12446, 1577}";
-			sepNavWindowFrame = "{{534, 46}, {907, 831}}";
+			sepNavIntBoundsRect = "{{0, 0}, {876, 10608}}";
+			sepNavSelRange = "{5941, 0}";
+			sepNavVisRange = "{2053, 1654}";
+			sepNavWindowFrame = "{{509, 20}, {907, 831}}";
 		};
 	};
 	8CDC10A6130CA6CA00BA478C /* AppleMailModule */ = {
@@ -9574,7 +9600,7 @@
 	};
 	8CDCC12B12E2BD6D00CEAAD3 /* skmain.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {876, 554}}";
+			sepNavIntBoundsRect = "{{0, 0}, {846, 694}}";
 			sepNavSelRange = "{256, 0}";
 			sepNavVisRange = "{0, 256}";
 			sepNavWindowFrame = "{{282, 47}, {907, 831}}";
