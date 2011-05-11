@@ -15,14 +15,14 @@
 }
 //@property (nonatomic) void* bytes;
 //@property (nonatomic) int length;
-+(NSString *)base64EncodedString:(char*) bytes withLength: (int) length;
++ (NSString *)base64EncodedString:(char*) bytes withLength: (int) length;
 + (NSData *)dataByBase64DecodingString:(NSString *)decode;
 
-+(NSString*) timeStrFor:(NSDate*) date;
-+(NSString*) shortTimeStrFor:(NSDate*) date;
-+(NSString*) dueTimeStrFor:(NSDate*) date;
-+(NSString*) MdStrFor:(NSDate*) date;
-+(NSString*) dStrFor:(NSDate*) date;
++ (NSString*) timeStrFor:(NSDate*) date;
++ (NSString*) shortTimeStrFor:(NSDate*) date;
++ (NSString*) dueTimeStrFor:(NSDate*) date;
++ (NSString*) MdStrFor:(NSDate*) date;
++ (NSString*) dStrFor:(NSDate*) date;
 
 + (NSString*) encode: (NSString*) inStr;
 + (NSString*) decode: (NSString*) inStr;
@@ -34,5 +34,7 @@
 + (NSColor*) colorFromArch: (NSData*) data;
 
 + (NSArray*) loadColorsForKey: (NSString*) key;
-+(NSString*) formatInterval: (NSTimeInterval) timeInt;
++ (NSString*) formatInterval: (NSTimeInterval) timeInt;
++ (NSString*) applicationSupportDirectory;
+
 @end

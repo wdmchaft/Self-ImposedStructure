@@ -51,9 +51,10 @@
 @synthesize rulesData, rulesTable, removeRuleButton, addRuleButton, summaryMode;
 @synthesize mailDateFmt;
 @synthesize msgName;
-@synthesize mailMonitor;
 @synthesize displayWindowFmt;
 @synthesize lastRefresh;
+@synthesize fetchCallback;
+@synthesize errStr;
 
 + (void) initialize
 {
@@ -129,15 +130,15 @@
     return test;
 }
 
-- (NSString*) msgName
+- (NSString*) callbackName
 {
     if (!msgName){
         NSTimeInterval ti = [[NSDate date] timeIntervalSince1970];
-        msgName = [@"com.zer0gravitas.iCalDone" stringByAppendingString:[[NSNumber numberWithDouble:ti] stringValue]];
+        msgName = [@"com.zer0gravitas.mailFetch" stringByAppendingString:[[NSNumber numberWithDouble:ti] stringValue]];
     }
+	NSLog(@"callbackName = %@", msgName);
     return msgName;
 }
-
 
 - (NSString *) getScript
 {
@@ -160,24 +161,90 @@
     script = [script stringByReplacingOccurrencesOfString:@"<actName>" withString:accountName];
     script = [script stringByReplacingOccurrencesOfString:@"<boxName>" withString:mailMailboxName];
     script = [script stringByReplacingOccurrencesOfString:@"<sDate>" withString:thenStr];
-	NSLog(script);
+	NSLog(@"%@", script);
     return script;
+}
+
+- (void) sendFetchWithScript: (NSString*) script
+{
+	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
+	NSDictionary *params = nil;
+	if (script) {
+		NSLog(@"sending fetch with script");
+		params = [NSDictionary dictionaryWithObjectsAndKeys:script, @"script",
+							[self callbackName], @"callback", 
+							nil];
+	} else {
+		NSLog(@"sending fetch without script");
+		params = [NSDictionary dictionaryWithObjectsAndKeys: [self callbackName], @"callback", nil];
+	}
+
+	[dnc postNotificationName:@"com.zer0gravitas.applemaildaemon" object:nil userInfo:params];
+}
+
+- (void) messageFetched: (NSNotification*) notification
+{
+	NSDictionary *msg = [notification userInfo];
+	errStr = [msg objectForKey:@"error"];
+	if (errStr){		
+		NSLog(@"got error %@", errStr);
+		NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
+		[dnc removeObserver:self name:[self callbackName] object:nil];
+		[self performSelector:fetchCallback];
+	}
+	else {
+		if ([msg count] == 0){
+			NSLog(@"end of file");
+			NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
+			[dnc removeObserver:self name:[self callbackName] object:nil];
+			[self performSelector:fetchCallback];
+		} else {
+			NSLog(@"got message");
+			[newestMail addObject:[NSMutableDictionary dictionaryWithDictionary:msg]];
+			[self sendFetchWithScript:NO];
+		}
+	}
+}
+
+#define MAILDAEMON @"AppleMailDaemon"
+- (BOOL) launchDaemonIfNeeded
+{
+	NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] persistentDomainForName:MAILDAEMON];
+	BOOL started = [[defaults objectForKey:@"running"] integerValue];
+	if (!started) {
+		NSString *supportDir = [Utility applicationSupportDirectory];
+		NSString *monitorPath = [NSString stringWithFormat:@"%@/Plugins/%@",supportDir, MAILDAEMON];
+		
+		//	NSString *monitorPath = [NSString stringWithFormat:@"%@/%@.app/Contents/MacOS/%@",@"/Applications/", 
+		//							 ICALDAEMON,ICALDAEMON];
+		NSLog(@"monitorPath = %@", monitorPath);
+		[[NSDistributedNotificationCenter defaultCenter] addObserver:self 
+															selector:@selector(getNewest)
+																name:@"com.zer0gravitas.applemaildaemon.started" 
+															  object:nil];	
+		NSTask *task = [NSTask launchedTaskWithLaunchPath:monitorPath arguments:[NSArray new]];
+		if (!task){
+			NSLog(@"error launching %@", MAILDAEMON);
+			return NO;
+		}
+		return YES;
+	}
+	return NO;
 }
 
 -(void) getNewest
 {
+	if ([self launchDaemonIfNeeded] == YES) {
+		return;
+	}
 	lastRefresh = [NSDate date];
     NSString *script = [self getScript];
-    mailMonitor = [AppleMailMonitor appleMailShared];
-	if (summaryMode){
-		[mailMonitor reset];
-	}
-    //NSLog(@"script = %@",script);
-	
-	// first try at last check time -- what time is it now -- later we pull the time from the newest msg
-	NSLog(@"applemail sending script");
-	
-    [mailMonitor sendScript:script withCallback:[self msgName]];
+	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
+	[dnc addObserver:self 
+			selector:@selector(messageFetched:)
+				name:[self callbackName] 
+			  object:nil];
+	[self sendFetchWithScript:script];
 }
 
 -(void) refresh: (id<AlertHandler>) handler isSummary: (BOOL) summary
@@ -197,98 +264,8 @@
 //		// just return the cache
 //		[self fetchDone:nil];
 //	}
-	[[NSNotificationCenter defaultCenter] addObserver:self 
-											 selector:@selector(fetchDone:)
-												 name:[self msgName] 
-											   object:nil];
-    
+    fetchCallback = @selector(fetchDone);
 	[self getNewest];
-}
-
-- (void) handleMessageDescriptor:(NSAppleEventDescriptor*) descN
-{
-    NSMutableDictionary *eDict = [NSMutableDictionary dictionaryWithCapacity:4];
-    
-    for(unsigned int j = 1; j <= [descN numberOfItems]; j+=2){
-        //NSLog(@"descN[%d]", j);
-        NSAppleEventDescriptor *fieldNameDesc = [descN descriptorAtIndex:j];
-        NSAppleEventDescriptor *fieldValDesc = [descN descriptorAtIndex:j+1];
-        
-        // typeType (aka '    ') means the result is an empty string (which means nil in this case)
-        if ([fieldValDesc descriptorType] != typeType) {
-
-            NSString *fieldName = [fieldNameDesc stringValue];
-            if ([fieldName isEqualToString:@"rDate"]){
-                NSString *dateTemp = [fieldValDesc stringValue];
-                NSDate *date = [mailDateFmt dateFromString:dateTemp];
-                [eDict setValue:date forKey:MAIL_ARRIVAL_TIME];
-            }   
-            if ([fieldName isEqualToString:@"sDate"]){
-                NSString *dateTemp = [fieldValDesc stringValue];
-                NSDate *date = [mailDateFmt dateFromString:dateTemp];
-                [eDict setValue:date forKey:MAIL_SENT_TIME];
-            }  
-            if ([fieldName isEqualToString:@"subj"]){
-                [eDict setValue:[fieldValDesc stringValue] forKey:MAIL_SUBJECT];
-            } 
-            if ([fieldName isEqualToString:@"cont"]){
-                [eDict setValue:[fieldValDesc stringValue] forKey:MAIL_SUMMARY];
-            } 
-            if ([fieldName isEqualToString:@"unique"]){
-                [eDict setValue:[fieldValDesc stringValue] forKey:@"id"];
-            } 
-            if ([fieldName isEqualToString:@"sendr"]){
-                [eDict setValue:[fieldValDesc stringValue] forKey:MAIL_NAME];
-            } 
-            if ([fieldName isEqualToString:@"mailr"]){
-                [eDict setValue:[fieldValDesc stringValue] forKey:MAIL_EMAIL];
-            } 
-            if ([fieldName isEqualToString:@"stat"]){
-                [eDict setValue:[NSNumber numberWithBool:[fieldValDesc booleanValue]] forKey:@"readStatus"];
-            } 
-        }
-    }
-    [newestMail addObject:eDict];                 
-}
-
-- (void) handleDescriptor: (NSAppleEventDescriptor*) aDescriptor
-{
-    char *c = nil;
-    
-	DescType type = [aDescriptor descriptorType];
-	OSType osType = [aDescriptor enumCodeValue];
-	AEEventClass evClass = [aDescriptor eventClass];
-	c = (char*)&type;
-	//NSLog(@"code = %d class = %d event descriptor: %c%c%c%c (%@)", osType, evClass, c[3],c[2],c[1],c[0], [aDescriptor description]);
-	
-	if (osType == 0){
-        //NSLog(@"Script return enumCodeValue indicates error");
-		return;
-	}
-    if (type == typeAERecord) {
-        [self handleMessageDescriptor:aDescriptor];
-    }
-    else if (type == typeAEList) {
-        for(unsigned int i = 1; i <= [aDescriptor numberOfItems]; i++){
-            NSAppleEventDescriptor *descN = [aDescriptor descriptorAtIndex:i];
-            DescType typeN = [descN descriptorType];
-			if (typeN == typeAERecord) {
-				
-				for(unsigned int j = 1; j <= [descN numberOfItems]; j++){
-					AEKeyword kw = [descN keywordForDescriptorAtIndex:j];
-					NSAppleEventDescriptor *fdesc0 = [descN descriptorForKeyword:kw];
-					[self handleMessageDescriptor:fdesc0];
-				}
-			} else {
-				c = (char*)&typeN;
-				//NSLog(@"Ignoring descN[%d] = %c%c%c%c (%@)",i, c[3],c[2],c[1],c[0], [descN description]);
-			}
-        }
-    }
-    else {
-        c = (char*)&type;
-        //NSLog(@"unexpected event descriptor: %c%c%c%c (%@)",c[3],c[2],c[1],c[0], [aDescriptor description]);
-    }
 }
 
 /**
@@ -396,7 +373,9 @@
 			[tdict	removeObjectForKey:@"THREAD"];
 			[temp addObject:tdict];
 		} else {
-			[item removeObjectForKey:@"color"];
+			if ([item objectForKey:@"color"] != nil){
+				[item removeObjectForKey:@"color"];
+			}
 			[temp addObject:item];
 
 		}
@@ -416,53 +395,36 @@
 	[super saveDefaultValue:temp2 forKey:CACHED_MAIL];
 }
 
-- (void)  cacheFetched: (NSNotification*) note
+- (void)  cacheFetched
 {
-	if (note.object != nil) {
+	if (errStr != nil) {
 		NSAlert *alert = [NSAlert alertWithMessageText:@"Problem validating"
 										 defaultButton:nil 
 									   alternateButton:nil 
 										   otherButton:nil 
-							 informativeTextWithFormat:@"Cache fetch timed-out or was cancelled.  You can try again"];
+							 informativeTextWithFormat:@"Cache fetch failed with eror [%@]  You can try again",errStr];
 		[alert runModal];		
 		return;
 	}
 	
-	[[NSNotificationCenter defaultCenter] removeObserver:self name: [self msgName] object:nil];
-												 
-    NSAppleEventDescriptor *eventRes = [[[AppleMailMonitor appleMailShared] eventRes] copy];
-    NSDictionary *eventErr = [[[AppleMailMonitor appleMailShared] errorRes] copy];
-    if (eventErr){
-        //NSLog(@"%@ got Error! %@", name, eventErr);
-    }
-    else {
-		newestMail = [NSMutableArray new];
-		[self handleDescriptor:eventRes];
-        [self mergeToCache];
-	}
+	[self mergeToCache];
 	[self saveCache];
    // [super saveDefaultValue:cachedMail forKey:CACHED_MAIL];
-	[[AppleMailMonitor appleMailShared] sendDone];
-	NSNotification *msg = [NSNotification notificationWithName:@"com.zer0gravitas.validateDone" object:eventErr];
+	NSNotification *msg = [NSNotification notificationWithName:@"com.zer0gravitas.validateDone" object:nil];
 	[[NSNotificationCenter defaultCenter] postNotification:msg];
-	
 }
 
-- (void) fetchDone: (NSNotification*) note
+- (void) fetchDone
 {
- 	if (note.object != nil) {
-        //NSLog(@"%@ fetch cancelled or timed out",name);
-		return;
-	}
-	NSAppleEventDescriptor *eventRes = [[[AppleMailMonitor appleMailShared] eventRes] copy];
-    NSDictionary *eventErr = [[[AppleMailMonitor appleMailShared] errorRes] copy];
-    if (eventErr){
+// 	if (note.object != nil) {
+//        //NSLog(@"%@ fetch cancelled or timed out",name);
+//		return;
+//	}
+    if (errStr){
         //NSLog(@"%@ got Error! %@ \n trying again", name, eventErr);
 		[self getNewest];
 	}
     else {
-		[self handleDescriptor:eventRes];
-	    [[AppleMailMonitor appleMailShared] sendDone];
 		[self mergeToCache];
 		[self saveCache];
 	//	[super saveDefaultValue:cachedMail forKey:CACHED_MAIL];
@@ -591,10 +553,7 @@
         [[NSNotificationCenter defaultCenter] postNotification:msg];
 		return;
     }
-	[[NSNotificationCenter defaultCenter] addObserver:self 
-											 selector:@selector(cacheFetched:)
-												 name:[self msgName] 
-											   object:nil]; 
+	fetchCallback = @selector(cacheFetched);
 	[self setSummaryMode:YES];
     [self getNewest];
     [pool drain];
@@ -845,5 +804,12 @@
 	NSTextFieldCell *cell = [tView selectedCell];
 	FilterRule *rule = [rules objectAtIndex:rowIdx];
 	rule.predicate = [cell stringValue];
+}
+
+- (void) changeState: (WPAStateType) state
+{
+	if (state == WPASTATE_OFF){
+		[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.zer0gravitas.applemaildaemon.quit" object:nil];
+	}
 }
 @end

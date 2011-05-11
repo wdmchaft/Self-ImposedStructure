@@ -72,8 +72,6 @@
 	
 	ioThread = [[NSThread alloc] initWithTarget:ioHandler selector:@selector(ioLoop:) object:nil];
 	[ioThread start];
-
-	//[self saveData: nil];
 }
 
 //- (WPAMainController*) mainCtrl

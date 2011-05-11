@@ -10,9 +10,9 @@
 #import "Reporter.h"
 #import "BaseReporter.h"
 #import "RulesTableData.h"
-#import "AppleMailMonitor.h"
+#import "Stateful.h"
 
-@interface AppleMailModule : BaseReporter {
+@interface AppleMailModule : BaseReporter <Stateful> {
 	NSString *accountName;
 	NSString *mailMailboxName;
 	NSMutableArray *cachedMail;
@@ -31,12 +31,13 @@
 	RulesTableData *rulesData;
     BOOL summaryMode;
     NSDateFormatter *mailDateFmt;
-    AppleMailMonitor *mailMonitor;
     NSString* msgName;
     NSMutableArray *newestMail;
     NSNumberFormatter* displayWindowFmt;
 	NSMutableDictionary *threadCache;
 	NSDate *lastRefresh;
+	SEL fetchCallback;
+	NSString* errStr;
 }
 @property (nonatomic,retain) NSString *accountName;
 @property (nonatomic,retain) NSString *mailMailboxName;
@@ -55,14 +56,13 @@
 @property (nonatomic, retain) IBOutlet NSNumberFormatter* displayWindowFmt;
 @property (nonatomic, retain) RulesTableData *rulesData;
 @property (nonatomic, retain) NSDateFormatter *mailDateFmt;
-@property (nonatomic, retain) AppleMailMonitor *mailMonitor;
 @property (nonatomic, retain) NSString *msgName;
 @property (nonatomic, retain) NSMutableDictionary *threadCache;
 @property (nonatomic) BOOL summaryMode;
 @property (nonatomic, retain) NSDate *lastRefresh;
+@property (nonatomic) SEL fetchCallback;
+@property (nonatomic, retain) NSString* errStr;
 
-- (void) getUnread;
-- (void) fetchDone: (NSNotification*) msg;
 - (void) validateDone: (NSNotification*) note;
 - (void) doValidate: (NSObject*) params;
 
