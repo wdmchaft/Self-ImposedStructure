@@ -119,3 +119,5 @@
 {
 	[mailDateFmt release];
 }
+
+@end

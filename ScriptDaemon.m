@@ -91,8 +91,6 @@
 
 - (void) doQuit: (NSNotification*) notification
 {
-	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-
 	[NSApp stop:self];
 }
 

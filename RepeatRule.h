@@ -32,5 +32,4 @@ typedef enum _RepeatRuleType FrequencyType;
 @property (nonatomic, retain) NSArray* byDays;
 @property (nonatomic, retain) NSArray* byMonthDays;
 - (id) initFromString:(NSString *)ruleStr;
-- (NSDate*) windowDate;
 @end

@@ -315,7 +315,7 @@
 - (void) handleRTMError:(NSDictionary*) errInfo
 {
     NSString *msg = [errInfo objectForKey:@"msg"];
-    //NSLog(@"Error communicating with Remember The Milk [%@]", msg);
+    NSLog(@"Error communicating with Remember The Milk [%@]", msg);
     [BaseInstance sendErrorToHandler:handler
                                error:@"Could not contact Remember the Milk at this time. Using last known task list."
                               module:module.name];
