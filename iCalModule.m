@@ -38,7 +38,6 @@
 @synthesize alertHandler;
 @synthesize iCalDateFmt;
 @synthesize msgName;
-@synthesize daemonProcessId;
 
 @dynamic refreshInterval;
 @dynamic notificationName;
@@ -57,6 +56,8 @@
 	category = CATEGORY_EVENTS;
 	warningWindow = 15;
 	summaryTitle = @"Calendar Events";
+	lookAhead = 7;
+	refreshInterval = 60 * 60.0;
 }
 
 -(id) init
@@ -64,7 +65,6 @@
 	self = [super init];
 	if (self){
 		[self setId];
-		daemonProcessId = 0;
 	}
 	return self;
 }
