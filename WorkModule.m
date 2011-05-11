@@ -98,7 +98,7 @@
 - (void) handleNewActiveApp: (NSNotification*) notification
 {
 	NSDictionary *dict = [notification userInfo];
-	NSRunningApplication *newApp = [dict objectForKey:@"NSWorkspaceApplicationKey"];
+//	NSRunningApplication *newApp = [dict objectForKey:@"NSWorkspaceApplicationKey"];
     NSDictionary *appInfo = [[NSWorkspace sharedWorkspace] activeApplication];
     NSString *appBundle = [appInfo objectForKey:@"NSApplicationBundleIdentifier"];
 	for (WatchApp *wa in appsToWatch){
@@ -106,8 +106,8 @@
 			//com.zer0gravitas.wpa
 			NSDictionary *dict = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:wa.state] forKey:@"state"];
             NSString *stateStr = (wa.state == WPASTATE_FREE)? @"play" : @"work";
-            //NSLog(@"for app [%@] going to %@", appBundle, stateStr);
-			[notificationCenter postNotificationName:@"com.zer0gravitas.wpa" object: nil userInfo:dict];
+			NSLog(@"for app [%@] going to %@", appBundle, stateStr);
+			[notificationCenter postNotificationName:@"com.zer0gravitas.selfstruct.changestate" object: nil userInfo:dict];
 		}
 	}
 }

@@ -92,7 +92,7 @@
 	}
 	
 	NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-	[center addObserver: self selector:@selector(statusHandler:)
+	[center addObserver: self selector:@selector(endTimed:)
 				   name:@"com.zer0gravitas.alarm" object:nil];
 	[center addObserver: self selector:@selector(tasksChanged:)
 				   name:@"com.zer0gravitas.tasks" object:nil];
@@ -472,7 +472,7 @@
 		//ctx.growlManager = [GrowlManager new];
 		newState = WPASTATE_FREE;
 		// start listening for pause commands
-		[center addObserver:self selector:@selector(remoteNotify:) name:@"com.zer0gravitas.selfstruct" object:nil];
+		[center addObserver:self selector:@selector(remoteNotify:) name:@"com.zer0gravitas.selfstruct.changestate" object:nil];
 	}
 	ctx.running = on;
 //	[self enableUI:ctx.running];
@@ -729,7 +729,7 @@
 					  
 
 
--(void) statusHandler: (NSNotification*) notification
+-(void) endTimed: (NSNotification*) notification
 {
 	[self changeState:WPASTATE_FREE];
 }
