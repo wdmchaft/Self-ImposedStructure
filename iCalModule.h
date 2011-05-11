@@ -8,8 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 #import "BaseReporter.h"
+#import "Stateful.h"
 
-@interface iCalModule : BaseReporter{
+@interface iCalModule : BaseReporter <Stateful> {
     NSPopUpButton *calendarMenu;
     NSTextField *refreshField;
 	NSTextField *lookAheadField;
@@ -32,6 +33,7 @@
 	id<AlertHandler> alertHandler;
     NSDateFormatter *iCalDateFmt;
     NSString *msgName;
+	NSUInteger daemonProcessId;
 }
 @property (nonatomic, retain) NSDate *refreshDate;
 @property (nonatomic,retain) NSMutableData *respBuffer;
@@ -39,6 +41,7 @@
 @property (nonatomic) int lookAhead;
 @property (nonatomic) BOOL addThis;
 @property (nonatomic) BOOL summaryMode;
+@property (nonatomic) NSUInteger daemonProcessId;
 @property (nonatomic, retain) IBOutlet NSPopUpButton *calendarMenu;
 @property (nonatomic, retain) IBOutlet NSTextField *refreshField;
 @property (nonatomic, retain) IBOutlet NSTextField *warningField;
@@ -61,6 +64,5 @@
 -(IBAction) clickWarningStepper: (id) sender;
 -(void) refreshData;
 - (void) handleWarningAlarm: (NSTimer*) theTimer;
-- (void) processEvents;
 -(NSString*) timeStrFor:(NSDate*) date;
 @end

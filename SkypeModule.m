@@ -42,7 +42,7 @@
 
 -(void) start
 {
-	NSString *monitorPath = [NSString stringWithFormat:@"%@/%@.app/Contents/MacOS/%@",@"/Applications/", 
+	NSString *monitorPath = [NSString stringWithFormat:@"%@/%@.app/Contents/MacOS/%@", @"/Applications/", 
 							 SKYPEMONITOR,SKYPEMONITOR];
 	//NSLog(@"monitorPath = %@", monitorPath);
 	monitorTask = [NSTask launchedTaskWithLaunchPath:monitorPath arguments:[NSArray new]];

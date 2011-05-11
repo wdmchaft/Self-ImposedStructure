@@ -10,7 +10,6 @@
 #import "WPAAlert.h"
 #import "Utility.h"
 #import "iCal.h"
-#import "iCalMonitor.h"
 
 #define MAILBOX @"MailBox"
 #define REFRESH @"Refresh"
@@ -39,6 +38,7 @@
 @synthesize alertHandler;
 @synthesize iCalDateFmt;
 @synthesize msgName;
+@synthesize daemonProcessId;
 
 @dynamic refreshInterval;
 @dynamic notificationName;
@@ -64,6 +64,7 @@
 	self = [super init];
 	if (self){
 		[self setId];
+		daemonProcessId = 0;
 	}
 	return self;
 }
@@ -78,94 +79,7 @@
 	return self;
 }
 
-- (void) handleEventDescriptor:(NSAppleEventDescriptor*) descN
-{
-    NSMutableDictionary *eDict = [NSMutableDictionary dictionaryWithCapacity:4];
-
-    for(unsigned int j = 1; j <= [descN numberOfItems]; j+=2){
-        //NSLog(@"descN[%d]", j);
-        NSAppleEventDescriptor *fieldNameDesc = [descN descriptorAtIndex:j];
-        NSAppleEventDescriptor *fieldValDesc = [descN descriptorAtIndex:j+1];
-        
-        // typeType (aka '    ') means the result is an empty string (which means nil in this case)
-        if ([fieldValDesc descriptorType] != typeType) {
-            
-            NSString *fieldName = [fieldNameDesc stringValue];
-            if ([fieldName isEqualToString:@"sDate"]){
-                NSString *dateTemp = [fieldValDesc stringValue];
-                NSDate *date = [iCalDateFmt dateFromString:dateTemp];
-                [eDict setValue:date forKey:EVENT_START];
-            }       
-            if ([fieldName isEqualToString:@"desc"]){
-                [eDict setValue:[fieldValDesc stringValue] forKey:EVENT_DESC];
-            } 
-            if ([fieldName isEqualToString:@"summ"]){
-                [eDict setValue:[fieldValDesc stringValue] forKey:EVENT_SUMMARY];
-            } 
-            if ([fieldName isEqualToString:@"unique"]){
-                [eDict setValue:[fieldValDesc stringValue] forKey:EVENT_ID];
-            } 
-        }
-    }
-    [eventsList addObject:eDict];                 
-}
-
-
-#define NILSCRIPT '    '
-- (void) handleDescriptor: (NSAppleEventDescriptor*) aDescriptor
-{
-    char *c = nil;
-    DescType type = [aDescriptor descriptorType];
-    if (type == typeAERecord) {
-        [self handleEventDescriptor:aDescriptor];
-    }
-    else if (type == typeAEList) {
-        NSAssert(type == typeAEList, @"not a list!");
-        for(unsigned int i = 1; i <= [aDescriptor numberOfItems]; i++){
-            NSAppleEventDescriptor *descN = [aDescriptor descriptorAtIndex:i];
-            DescType typeN = [descN descriptorType];
-            NSAssert(typeN == typeAERecord, @"not a record");
-            c = (char*)&type;
-            //NSLog(@"descN[%d] = %c%c%c%c (%@)",i, c[3],c[2],c[1],c[0], [descN description]);
-            for(unsigned int j = 1; j <= [descN numberOfItems]; j++){
-                AEKeyword kw = [descN keywordForDescriptorAtIndex:j];
-                NSAppleEventDescriptor *fdesc0 = [descN descriptorForKeyword:kw];
-                //  DescType fldDesc = [fdesc0 descriptorType];
-                [self handleEventDescriptor:fdesc0];
-                
-            }
-        }
-    }
-    else {
-        c = (char*)&type;
-        //NSLog(@"unexpected event descriptor: %c%c%c%c (%@)",c[3],c[2],c[1],c[0], [aDescriptor description]);
-    }
-    
-}
 #define ONEDAYSECS (60 * 60 * 24)	
-
--(void) getEvents
-{
-    NSDate *today = [NSDate date];
-    NSDate *window = [today dateByAddingTimeInterval:ONEDAYSECS * lookAhead]; 
-    if (iCalDateFmt == nil){
-        iCalDateFmt = [NSDateFormatter new];
-        [iCalDateFmt setDateFormat:@"EEEE, MMMM dd, yyyy hh:mm:ss a"];
-    }
-    NSString *nowStr = [iCalDateFmt stringFromDate:today];
-    NSString *thenStr = [iCalDateFmt stringFromDate:window];
-    NSBundle *myBundle = [NSBundle bundleForClass:[self class]];
-    NSString *path = [myBundle resourcePath];
-    path = [path stringByAppendingFormat:@"/%@",@"allEvents.txt"];
-    NSData *data = [NSData dataWithContentsOfFile:path];
-    NSString *script = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    script = [script stringByReplacingOccurrencesOfString:@"<calName>" withString:calendarName];
-    script = [script stringByReplacingOccurrencesOfString:@"<sDate>" withString:nowStr];
-    script = [script stringByReplacingOccurrencesOfString:@"<eDate>" withString:thenStr];
-    iCalMonitor *mon = [iCalMonitor iCalShared];
-    //NSLog(@"script = %@",script);
-    [mon sendScript:script withCallback:[self msgName]];
-}
 
 -(void) refreshData
 {
@@ -194,6 +108,110 @@
     return msgName;
 }
 
+- (void) fetchDone
+{
+	NSLog(@"fetchDone");
+    [[NSDistributedNotificationCenter defaultCenter] removeObserver:self name:[self msgName] object:nil];
+	for (NSDictionary *event in eventsList){
+		WPAAlert *note = [[WPAAlert alloc]init];
+		note.moduleName = name;
+		NSDate *eventDate = [event objectForKey:EVENT_START];
+		note.title = [self timeStrFor:eventDate];
+		note.message = [event objectForKey:EVENT_SUMMARY];
+		note.params = event;
+		
+		if (summaryMode){
+			[alertHandler handleAlert:note];
+		}
+		NSTimeInterval fireTime = [eventDate timeIntervalSinceNow];
+		fireTime -= warningWindow;
+		NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:fireTime 
+														  target:self 
+														selector:@selector(handleWarningAlarm:) 
+														userInfo:note
+														 repeats:NO];
+		if (alarmsList == nil){
+			alarmsList = [NSMutableArray new];
+		}
+		[alarmsList addObject: timer];
+        
+    }
+	[BaseInstance sendDone: alertHandler module: name];
+}
+
+- (void) sendFetchWithScript: (NSString*) script
+{
+	NSDictionary *params = nil;
+	if (script) {
+		NSLog(@"sending fetch with script");
+		params = [NSDictionary dictionaryWithObjectsAndKeys:script, @"script",
+				  [self msgName], @"callback", 
+				  nil];
+	} else {
+		NSLog(@"sending fetch without script");
+		params = [NSDictionary dictionaryWithObjectsAndKeys: [self msgName], @"callback", nil];
+	}
+	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
+	[dnc postNotificationName:@"com.zer0gravitas.icaldaemon" object:nil userInfo:params];
+}
+
+#define ICALDAEMON @"ICalDaemon"
+- (BOOL) launchDaemonIfNeeded
+{
+	NSDictionary *icalDefaults = [[NSUserDefaults standardUserDefaults] persistentDomainForName:ICALDAEMON];
+	BOOL started = [[icalDefaults objectForKey:@"running"] integerValue];
+	if (!started) {
+		NSString *supportDir = [Utility applicationSupportDirectory];
+		NSString *monitorPath = [NSString stringWithFormat:@"%@/Plugins/%@",supportDir, ICALDAEMON];
+		
+	//	NSString *monitorPath = [NSString stringWithFormat:@"%@/%@.app/Contents/MacOS/%@",@"/Applications/", 
+	//							 ICALDAEMON,ICALDAEMON];
+		NSLog(@"monitorPath = %@", monitorPath);
+		[[NSDistributedNotificationCenter defaultCenter] addObserver:self 
+															selector:@selector(getEvents)
+																name:@"com.zer0gravitas.icaldaemon.started" 
+															  object:nil];
+		NSTask *task = [NSTask launchedTaskWithLaunchPath:monitorPath arguments:[NSArray new]];
+		if (!task){
+			NSLog(@"error launching %@", ICALDAEMON);
+			return NO;
+		}
+		return YES;
+	}
+	return NO;
+}
+
+-(void) getEvents
+{
+	if([self launchDaemonIfNeeded]) {
+		return;
+	}
+    NSDate *today = [NSDate date];
+    NSDate *window = [today dateByAddingTimeInterval:ONEDAYSECS * lookAhead]; 
+    if (iCalDateFmt == nil){
+        iCalDateFmt = [NSDateFormatter new];
+        [iCalDateFmt setDateFormat:@"EEEE, MMMM dd, yyyy hh:mm:ss a"];
+    }
+    NSString *nowStr = [iCalDateFmt stringFromDate:today];
+    NSString *thenStr = [iCalDateFmt stringFromDate:window];
+    NSBundle *myBundle = [NSBundle bundleForClass:[self class]];
+    NSString *path = [myBundle resourcePath];
+    path = [path stringByAppendingFormat:@"/%@",@"allEvents.txt"];
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    NSString *script = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    script = [script stringByReplacingOccurrencesOfString:@"<calName>" withString:calendarName];
+    script = [script stringByReplacingOccurrencesOfString:@"<sDate>" withString:nowStr];
+    script = [script stringByReplacingOccurrencesOfString:@"<eDate>" withString:thenStr];
+    //NSLog(@"script = %@",script);
+	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
+	[dnc addObserver:self 
+			selector:@selector(eventFetched:)
+				name:[self msgName]
+			  object:nil
+	 ];
+	[self sendFetchWithScript:script];
+}
+
 -(void) refresh: (id<AlertHandler>) handler isSummary: (BOOL) summary
 {
 	alertHandler = handler;
@@ -203,51 +221,33 @@
     }
     [eventsList removeAllObjects];
     //NSLog(@"msg = %@",[self msgName]);
-	[[NSNotificationCenter defaultCenter] addObserver:self 
-											 selector:@selector(fetchDone:)
-												 name:[self msgName] 
-											   object:nil];
     
 	[self getEvents];
 }
 
-- (void) fetchDone: (NSNotification*) note
+- (void) eventFetched: (NSNotification*) notification
 {
-	NSLog(@"fetchDone");
-    NSAppleEventDescriptor *eventRes = [[[iCalMonitor iCalShared] eventRes] copy];
-    NSDictionary *eventErr = [[[iCalMonitor iCalShared] errorRes] copy];
-    [[iCalMonitor iCalShared] sendDone];
-    if (eventErr){
-        NSLog(@"%@ got Error! %@", name, eventErr);
-    }
-    else {
-        [self handleDescriptor:eventRes];
-        for (NSDictionary *event in eventsList){
-            WPAAlert *note = [[WPAAlert alloc]init];
-            note.moduleName = name;
-            NSDate *eventDate = [event objectForKey:EVENT_START];
-            note.title = [self timeStrFor:eventDate];
-            note.message = [event objectForKey:EVENT_SUMMARY];
-            note.params = event;
-            
-			if (summaryMode){
-				[alertHandler handleAlert:note];
-            }
-			NSTimeInterval fireTime = [eventDate timeIntervalSinceNow];
-			fireTime -= warningWindow;
-			NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:fireTime 
-															  target:self 
-															selector:@selector(handleWarningAlarm:) 
-															userInfo:note
-																repeats:NO];
-			if (alarmsList == nil){
-				alarmsList = [NSMutableArray new];
-			}
-			[alarmsList addObject: timer];
-        }
-    }
-	[BaseInstance sendDone: alertHandler module: name];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:[self msgName] object:nil];
+	NSDictionary *msg = [notification userInfo];
+	NSString *errStr = [msg objectForKey:@"error"];
+	if (errStr){		
+		NSLog(@"got error %@", errStr);
+		NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
+		[dnc removeObserver:self name:[self msgName] object:nil];
+		//	[self performSelector:fetchCallback];
+		[self fetchDone];
+	}
+	else {
+		if ([msg count] == 0){
+			NSLog(@"end of file");
+			NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
+			[dnc removeObserver:self name:[self msgName] object:nil];
+			[self fetchDone];
+		} else {
+			NSLog(@"got message");
+			[eventsList addObject:[NSMutableDictionary dictionaryWithDictionary:msg]];
+			[self sendFetchWithScript:NO];
+		}
+	}
 }
 
 -(void) openEvent: (NSObject*) param
@@ -400,4 +400,9 @@
 	warningField.intValue = stepperWarning.intValue;
 }
 
+- (void) changeState: (WPAStateType) state
+{
+	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
+	[dnc postNotificationName: @"com.zer0gravitas.icaldaemon.quit" object:@"icalModule"];
+}
 @end
