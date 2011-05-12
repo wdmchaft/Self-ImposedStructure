@@ -118,6 +118,7 @@
 - (void) dealloc
 {
 	[mailDateFmt release];
+	[super dealloc];
 }
-
 @end
+

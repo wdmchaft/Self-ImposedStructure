@@ -38,8 +38,8 @@
 				8C3982BA134D45C1008C5670 /* PBXTargetDependency */,
 				8CDC10F4130CB40D00BA478C /* PBXTargetDependency */,
 				8CDC10F2130CB40D00BA478C /* PBXTargetDependency */,
-				8C85595C1379B5B9006FFB59 /* PBXTargetDependency */,
-				8C85595E1379B5BD006FFB59 /* PBXTargetDependency */,
+				8CB8CCD4137C5326007F7647 /* PBXTargetDependency */,
+				8CB8CCD6137C5326007F7647 /* PBXTargetDependency */,
 			);
 			name = "All Modules";
 			productName = "All Modules";
@@ -101,9 +101,6 @@
 		8C285845137319E400CAAF2A /* HUDBusyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C285844137319E400CAAF2A /* HUDBusyView.xib */; };
 		8C285846137319E400CAAF2A /* HUDBusyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C285844137319E400CAAF2A /* HUDBusyView.xib */; };
 		8C2861631375CE4D00CAAF2A /* RepeatByDayType.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C28615C1375CD4E00CAAF2A /* RepeatByDayType.m */; };
-		8C2866DB13787ACF00CAAF2A /* admain.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2866DA13787ACF00CAAF2A /* admain.m */; };
-		8C2866E013787FC100CAAF2A /* MailEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2866DF13787FC100CAAF2A /* MailEventHandler.m */; };
-		8C2866F71378883B00CAAF2A /* AppleScriptEventHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C2866F61378883B00CAAF2A /* AppleScriptEventHandler.h */; };
 		8C34BC5C134D245300A9BCFE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C34BC5B134D245300A9BCFE /* Cocoa.framework */; };
 		8C34BC62134D245300A9BCFE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C34BC60134D245300A9BCFE /* InfoPlist.strings */; };
 		8C34BC77134D262A00A9BCFE /* iCalModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C34BC74134D262A00A9BCFE /* iCalModule.xib */; };
@@ -175,6 +172,7 @@
 		8C7729C212D46AC600F71FE7 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C77297C12D46AC600F71FE7 /* Growl.framework */; };
 		8C78507113294FA20008CF2B /* HeatMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C785014132916510008CF2B /* HeatMap.m */; };
 		8C78508113294FF10008CF2B /* HeatMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C785014132916510008CF2B /* HeatMap.m */; };
+		8C801CF2135373C500E5C109 /* VacationDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C801CF1135373C500E5C109 /* VacationDialog.xib */; };
 		8C801CF3135373C500E5C109 /* VacationDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C801CF1135373C500E5C109 /* VacationDialog.xib */; };
 		8C801CF4135373C500E5C109 /* VacationDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C801CF1135373C500E5C109 /* VacationDialog.xib */; };
 		8C801CF8135373EC00E5C109 /* VacationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C801CF7135373EC00E5C109 /* VacationDialog.m */; };
@@ -207,12 +205,6 @@
 		8C82D01D12F3DC7000830486 /* TotalsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C82D01B12F3DC7000830486 /* TotalsManager.m */; };
 		8C844AAD133AEA5700998D1C /* PercentOfDaysXForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C844AAC133AEA5700998D1C /* PercentOfDaysXForm.m */; };
 		8C844AAE133AEA5700998D1C /* PercentOfDaysXForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C844AAC133AEA5700998D1C /* PercentOfDaysXForm.m */; };
-		8C85578D13788EEC006FFB59 /* icmain.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C85578C13788EEC006FFB59 /* icmain.m */; };
-		8C85579113788F0B006FFB59 /* ICalEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C85579013788F0B006FFB59 /* ICalEventHandler.m */; };
-		8C8558131379968D006FFB59 /* ScriptDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2866F3137886B900CAAF2A /* ScriptDaemon.m */; };
-		8C85581413799697006FFB59 /* ScriptDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2866F3137886B900CAAF2A /* ScriptDaemon.m */; };
-		8C85582813799789006FFB59 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C85582713799789006FFB59 /* CoreFoundation.framework */; };
-		8C85582C137997B8006FFB59 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C85582B137997B8006FFB59 /* Foundation.framework */; };
 		8C9CE85D12E2683800017A02 /* BlockerModule.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CE85C12E2683800017A02 /* BlockerModule.icns */; };
 		8C9CE86212E2698300017A02 /* BlockerModule.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CE86112E2698300017A02 /* BlockerModule.ico */; };
 		8C9CE88812E2700900017A02 /* Skype.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C9CE77812E2465B00017A02 /* Skype.framework */; };
@@ -226,6 +218,12 @@
 		8CA668A512FF86C5004FD7EE /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA668A312FF86C5004FD7EE /* LaunchAtLoginController.m */; };
 		8CB05117135E6FF8008FCE40 /* WorkHoursToAverageXForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB05116135E6FF8008FCE40 /* WorkHoursToAverageXForm.m */; };
 		8CB05118135E6FF8008FCE40 /* WorkHoursToAverageXForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB05116135E6FF8008FCE40 /* WorkHoursToAverageXForm.m */; };
+		8CB8CCDB137C53EA007F7647 /* icmain.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB8CCD8137C53EA007F7647 /* icmain.m */; };
+		8CB8CCDC137C53EA007F7647 /* ICalEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB8CCDA137C53EA007F7647 /* ICalEventHandler.m */; };
+		8CB8CCDF137C5413007F7647 /* admain.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB8CCDE137C5413007F7647 /* admain.m */; };
+		8CB8CCE3137C543B007F7647 /* MailEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB8CCE2137C543B007F7647 /* MailEventHandler.m */; };
+		8CB8CCE8137C548D007F7647 /* ScriptDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB8CCE7137C548D007F7647 /* ScriptDaemon.m */; };
+		8CB8CCE9137C548D007F7647 /* ScriptDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB8CCE7137C548D007F7647 /* ScriptDaemon.m */; };
 		8CBEAB47133AAA3E00277FEA /* SummaryRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBEAB46133AAA3D00277FEA /* SummaryRecord.m */; };
 		8CBEAB48133AAA3E00277FEA /* SummaryRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBEAB46133AAA3D00277FEA /* SummaryRecord.m */; };
 		8CC7543F1335524E007FE425 /* ActivityChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC7543E1335524C007FE425 /* ActivityChart.m */; };
@@ -398,18 +396,18 @@
 			remoteGlobalIDString = 8CD1974312D4C59600C69AC9;
 			remoteInfo = WPACommon;
 		};
-		8C85595B1379B5B9006FFB59 /* PBXContainerItemProxy */ = {
+		8CB8CCD3137C5326007F7647 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8C2866BD1378796C00CAAF2A;
+			remoteGlobalIDString = 8CB8CCC5137C52ED007F7647 /* AppleMailDaemon */;
 			remoteInfo = AppleMailDaemon;
 		};
-		8C85595D1379B5BD006FFB59 /* PBXContainerItemProxy */ = {
+		8CB8CCD5137C5326007F7647 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8C28670313788A2F00CAAF2A;
+			remoteGlobalIDString = 8CB8CCCD137C530F007F7647 /* ICalDaemon */;
 			remoteInfo = ICalDaemon;
 		};
 		8CD1975312D4C61D00C69AC9 /* PBXContainerItemProxy */ = {
@@ -621,6 +619,8 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = main.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		8C00DC0B13579E9C0037C1A3 /* AppleMailMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppleMailMonitor.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8C00DC0C13579E9C0037C1A3 /* AppleMailMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppleMailMonitor.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8C00DC161357ACD10037C1A3 /* mailFetchTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mailFetchTemplate.txt; sourceTree = "<group>"; };
 		8C01DD75131D5C7F00398AD8 /* HUDSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = HUDSettings.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8C01DD76131D5C7F00398AD8 /* HUDSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = HUDSettings.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -646,14 +646,6 @@
 		8C285844137319E400CAAF2A /* HUDBusyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HUDBusyView.xib; sourceTree = "<group>"; };
 		8C28615B1375CD4E00CAAF2A /* RepeatByDayType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatByDayType.h; sourceTree = "<group>"; };
 		8C28615C1375CD4E00CAAF2A /* RepeatByDayType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatByDayType.m; sourceTree = "<group>"; };
-		8C2866BE1378796C00CAAF2A /* AppleMailDaemon */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AppleMailDaemon; sourceTree = BUILT_PRODUCTS_DIR; };
-		8C2866DA13787ACF00CAAF2A /* admain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = admain.m; path = AppleMailDaemon/admain.m; sourceTree = "<group>"; };
-		8C2866DE13787FC100CAAF2A /* MailEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailEventHandler.h; sourceTree = "<group>"; };
-		8C2866DF13787FC100CAAF2A /* MailEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailEventHandler.m; sourceTree = "<group>"; };
-		8C2866F2137886B900CAAF2A /* ScriptDaemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptDaemon.h; sourceTree = "<group>"; };
-		8C2866F3137886B900CAAF2A /* ScriptDaemon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptDaemon.m; sourceTree = "<group>"; };
-		8C2866F61378883B00CAAF2A /* AppleScriptEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleScriptEventHandler.h; sourceTree = "<group>"; };
-		8C28670413788A2F00CAAF2A /* ICalDaemon */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ICalDaemon; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C34BC5A134D245300A9BCFE /* iCalModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iCalModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C34BC5B134D245300A9BCFE /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		8C34BC5F134D245300A9BCFE /* iCalModule-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iCalModule-Info.plist"; sourceTree = "<group>"; };
@@ -858,11 +850,6 @@
 		8C82D01B12F3DC7000830486 /* TotalsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TotalsManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8C844AAB133AEA5700998D1C /* PercentOfDaysXForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PercentOfDaysXForm.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8C844AAC133AEA5700998D1C /* PercentOfDaysXForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PercentOfDaysXForm.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		8C85578C13788EEC006FFB59 /* icmain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = icmain.m; path = ICalDaemon/icmain.m; sourceTree = "<group>"; };
-		8C85578F13788F0B006FFB59 /* ICalEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICalEventHandler.h; sourceTree = "<group>"; };
-		8C85579013788F0B006FFB59 /* ICalEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICalEventHandler.m; sourceTree = "<group>"; };
-		8C85582713799789006FFB59 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
-		8C85582B137997B8006FFB59 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8C9CE76312E2449900017A02 /* SkypeState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SkypeState.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8C9CE77412E2463700017A02 /* SkypeAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SkypeAPI.h; path = Skype.framework/Versions/A/Headers/SkypeAPI.h; sourceTree = "<group>"; };
 		8C9CE77512E2463700017A02 /* SkypeAPI-Carbon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SkypeAPI-Carbon.h"; path = "Skype.framework/Versions/A/Headers/SkypeAPI-Carbon.h"; sourceTree = "<group>"; };
@@ -879,6 +866,16 @@
 		8CA668A312FF86C5004FD7EE /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchAtLoginController.m; sourceTree = "<group>"; };
 		8CB05115135E6FF8008FCE40 /* WorkHoursToAverageXForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WorkHoursToAverageXForm.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8CB05116135E6FF8008FCE40 /* WorkHoursToAverageXForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WorkHoursToAverageXForm.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		8CB8CCC6137C52ED007F7647 /* AppleMailDaemon */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AppleMailDaemon; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CB8CCCE137C530F007F7647 /* ICalDaemon */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ICalDaemon; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CB8CCD8137C53EA007F7647 /* icmain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = icmain.m; path = ICalDaemon/icmain.m; sourceTree = "<group>"; };
+		8CB8CCD9137C53EA007F7647 /* ICalEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICalEventHandler.h; sourceTree = "<group>"; };
+		8CB8CCDA137C53EA007F7647 /* ICalEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICalEventHandler.m; sourceTree = "<group>"; };
+		8CB8CCDE137C5413007F7647 /* admain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = admain.m; path = AppleMailDaemon/admain.m; sourceTree = "<group>"; };
+		8CB8CCE1137C543B007F7647 /* MailEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailEventHandler.h; sourceTree = "<group>"; };
+		8CB8CCE2137C543B007F7647 /* MailEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailEventHandler.m; sourceTree = "<group>"; };
+		8CB8CCE6137C548D007F7647 /* ScriptDaemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptDaemon.h; sourceTree = "<group>"; };
+		8CB8CCE7137C548D007F7647 /* ScriptDaemon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptDaemon.m; sourceTree = "<group>"; };
 		8CBEAB43133AA13400277FEA /* GoalHoursToAverageXForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GoalHoursToAverageXForm.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8CBEAB45133AAA3C00277FEA /* SummaryRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SummaryRecord.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8CBEAB46133AAA3D00277FEA /* SummaryRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SummaryRecord.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -972,22 +969,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8C2866BC1378796C00CAAF2A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8C85582813799789006FFB59 /* CoreFoundation.framework in Frameworks */,
-				8C85582C137997B8006FFB59 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8C28670213788A2F00CAAF2A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		8C34BC57134D245300A9BCFE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1034,6 +1015,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C73F89812E891D80056FAFF /* structcommon.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CB8CCC4137C52ED007F7647 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CB8CCCC137C530F007F7647 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1177,8 +1172,8 @@
 				8CDC0D6A1309D68B00BA478C /* WorkModule.bundle */,
 				8CDC10A7130CA6CA00BA478C /* AppleMailModule.bundle */,
 				8C34BC5A134D245300A9BCFE /* iCalModule.bundle */,
-				8C2866BE1378796C00CAAF2A /* AppleMailDaemon */,
-				8C28670413788A2F00CAAF2A /* ICalDaemon */,
+				8CB8CCC6137C52ED007F7647 /* AppleMailDaemon */,
+				8CB8CCCE137C530F007F7647 /* ICalDaemon */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1215,8 +1210,6 @@
 				8C5BB9851371E07E0004E88C /* HUDBusyView.xib */,
 				8C5BB9B71371E2920004E88C /* HUDBusy.h */,
 				8C5BB9B81371E2920004E88C /* HUDBusy.m */,
-				8C85582713799789006FFB59 /* CoreFoundation.framework */,
-				8C85582B137997B8006FFB59 /* Foundation.framework */,
 			);
 			name = WorkPlayAway;
 			sourceTree = "<group>";
@@ -1250,26 +1243,6 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		8C2866C413787A7800CAAF2A /* AppleMailDaemon */ = {
-			isa = PBXGroup;
-			children = (
-				8C2866DA13787ACF00CAAF2A /* admain.m */,
-				8C2866DE13787FC100CAAF2A /* MailEventHandler.h */,
-				8C2866DF13787FC100CAAF2A /* MailEventHandler.m */,
-			);
-			name = AppleMailDaemon;
-			sourceTree = "<group>";
-		};
-		8C28670A13788A4F00CAAF2A /* ICalDaemon */ = {
-			isa = PBXGroup;
-			children = (
-				8C85578C13788EEC006FFB59 /* icmain.m */,
-				8C85578F13788F0B006FFB59 /* ICalEventHandler.h */,
-				8C85579013788F0B006FFB59 /* ICalEventHandler.m */,
-			);
-			name = ICalDaemon;
 			sourceTree = "<group>";
 		};
 		8C34BC5D134D245300A9BCFE /* iCalModule */ = {
@@ -1394,8 +1367,8 @@
 		8C73F8B212E8933B0056FAFF /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				8C28670A13788A4F00CAAF2A /* ICalDaemon */,
-				8C2866C413787A7800CAAF2A /* AppleMailDaemon */,
+				8CB8CCAF137C52BA007F7647 /* AppleMailDaemon */,
+				8CB8CCAB137C52A1007F7647 /* ICalDaemon */,
 				8C34BC5D134D245300A9BCFE /* iCalModule */,
 				8CDC1084130CA5D900BA478C /* AppleMailModule */,
 				8CDC0D601309D47000BA478C /* WorkModule */,
@@ -1435,6 +1408,26 @@
 				8CDCC10612E2B7BA00CEAAD3 /* SkypeManagerDelegate.m */,
 			);
 			name = SkypeManager;
+			sourceTree = "<group>";
+		};
+		8CB8CCAB137C52A1007F7647 /* ICalDaemon */ = {
+			isa = PBXGroup;
+			children = (
+				8CB8CCD8137C53EA007F7647 /* icmain.m */,
+				8CB8CCD9137C53EA007F7647 /* ICalEventHandler.h */,
+				8CB8CCDA137C53EA007F7647 /* ICalEventHandler.m */,
+			);
+			name = ICalDaemon;
+			sourceTree = "<group>";
+		};
+		8CB8CCAF137C52BA007F7647 /* AppleMailDaemon */ = {
+			isa = PBXGroup;
+			children = (
+				8CB8CCE1137C543B007F7647 /* MailEventHandler.h */,
+				8CB8CCE2137C543B007F7647 /* MailEventHandler.m */,
+				8CB8CCDE137C5413007F7647 /* admain.m */,
+			);
+			name = AppleMailDaemon;
 			sourceTree = "<group>";
 		};
 		8CD1966D12D46C8800C69AC9 /* SkypeModule */ = {
@@ -1559,7 +1552,8 @@
 		8CD1967712D46DDB00C69AC9 /* WPAFramework */ = {
 			isa = PBXGroup;
 			children = (
-				8C2866F61378883B00CAAF2A /* AppleScriptEventHandler.h */,
+				8CB8CCE6137C548D007F7647 /* ScriptDaemon.h */,
+				8CB8CCE7137C548D007F7647 /* ScriptDaemon.m */,
 				8C5EAC61133D49B400E5F404 /* ColorWellCell.h */,
 				8C5EAC62133D49C800E5F404 /* ColorWellCell.m */,
 				8C77293A12D46AC600F71FE7 /* State.h */,
@@ -1579,8 +1573,6 @@
 				8C82AF5F12ECF25D00830486 /* BaseInstance.h */,
 				8C82AF6012ECF25D00830486 /* BaseInstance.m */,
 				8C82C1AC12F0630000830486 /* Stateful.h */,
-				8C2866F2137886B900CAAF2A /* ScriptDaemon.h */,
-				8C2866F3137886B900CAAF2A /* ScriptDaemon.m */,
 			);
 			name = WPAFramework;
 			sourceTree = "<group>";
@@ -1699,6 +1691,8 @@
 				8CDC10BA130CA72B00BA478C /* AppleMailModule.xib */,
 				8CDC1086130CA60D00BA478C /* AppleMailModule.h */,
 				8CDC1087130CA60D00BA478C /* AppleMailModule.m */,
+				8C00DC0B13579E9C0037C1A3 /* AppleMailMonitor.h */,
+				8C00DC0C13579E9C0037C1A3 /* AppleMailMonitor.m */,
 				8C00DC161357ACD10037C1A3 /* mailFetchTemplate.txt */,
 			);
 			name = AppleMailModule;
@@ -1751,7 +1745,6 @@
 				8CDC14531311B26B00BA478C /* BaseReporter.h in Headers */,
 				8C01DD77131D5C7F00398AD8 /* HUDSettings.h in Headers */,
 				8C9E3D5213206F8E007632E5 /* WriteHandler.h in Headers */,
-				8C2866F71378883B00CAAF2A /* AppleScriptEventHandler.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1777,38 +1770,6 @@
 			productName = WPADev;
 			productReference = 8C0D93F012D63D3D009F3280 /* Dev Struct.app */;
 			productType = "com.apple.product-type.application";
-		};
-		8C2866BD1378796C00CAAF2A /* AppleMailDaemon */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8C2866C21378798B00CAAF2A /* Build configuration list for PBXNativeTarget "AppleMailDaemon" */;
-			buildPhases = (
-				8C2866BB1378796C00CAAF2A /* Sources */,
-				8C2866BC1378796C00CAAF2A /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = AppleMailDaemon;
-			productName = AppleMailDaemon;
-			productReference = 8C2866BE1378796C00CAAF2A /* AppleMailDaemon */;
-			productType = "com.apple.product-type.tool";
-		};
-		8C28670313788A2F00CAAF2A /* ICalDaemon */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8C28670B13788A4F00CAAF2A /* Build configuration list for PBXNativeTarget "ICalDaemon" */;
-			buildPhases = (
-				8C28670113788A2F00CAAF2A /* Sources */,
-				8C28670213788A2F00CAAF2A /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = ICalDaemon;
-			productName = ICalDaemon;
-			productReference = 8C28670413788A2F00CAAF2A /* ICalDaemon */;
-			productType = "com.apple.product-type.tool";
 		};
 		8C34BC59134D245300A9BCFE /* iCalModule */ = {
 			isa = PBXNativeTarget;
@@ -1916,6 +1877,38 @@
 			productName = TestMailModule;
 			productReference = 8C73F89312E891D00056FAFF /* TestMailModule.bundle */;
 			productType = "com.apple.product-type.bundle";
+		};
+		8CB8CCC5137C52ED007F7647 /* AppleMailDaemon */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8CB8CCCA137C530D007F7647 /* Build configuration list for PBXNativeTarget "AppleMailDaemon" */;
+			buildPhases = (
+				8CB8CCC3137C52ED007F7647 /* Sources */,
+				8CB8CCC4137C52ED007F7647 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AppleMailDaemon;
+			productName = AppleMailDaemon;
+			productReference = 8CB8CCC6137C52ED007F7647 /* AppleMailDaemon */;
+			productType = "com.apple.product-type.tool";
+		};
+		8CB8CCCD137C530F007F7647 /* ICalDaemon */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8CB8CCD7137C5344007F7647 /* Build configuration list for PBXNativeTarget "ICalDaemon" */;
+			buildPhases = (
+				8CB8CCCB137C530F007F7647 /* Sources */,
+				8CB8CCCC137C530F007F7647 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ICalDaemon;
+			productName = ICalDaemon;
+			productReference = 8CB8CCCE137C530F007F7647 /* ICalDaemon */;
+			productType = "com.apple.product-type.tool";
 		};
 		8CD1974312D4C59600C69AC9 /* structcommon */ = {
 			isa = PBXNativeTarget;
@@ -2124,8 +2117,8 @@
 				8CDC0D691309D68B00BA478C /* WorkModule */,
 				8CDC10A6130CA6CA00BA478C /* AppleMailModule */,
 				8C34BC59134D245300A9BCFE /* iCalModule */,
-				8C2866BD1378796C00CAAF2A /* AppleMailDaemon */,
-				8C28670313788A2F00CAAF2A /* ICalDaemon */,
+				8CB8CCC5137C52ED007F7647 /* AppleMailDaemon */,
+				8CB8CCCD137C530F007F7647 /* ICalDaemon */,
 			);
 		};
 /* End PBXProject section */
@@ -2270,6 +2263,7 @@
 			files = (
 				8CDC10BB130CA72B00BA478C /* AppleMailModule.xib in Resources */,
 				8CEE6A8613268A7C00E45829 /* AppleMailModule.ico in Resources */,
+				8C801CF2135373C500E5C109 /* VacationDialog.xib in Resources */,
 				8C00DC171357ACD10037C1A3 /* mailFetchTemplate.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2330,7 +2324,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -d \"${HOME}/Library/Application Support/${PRODUCT_NAME}\" ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME} exists'\nelse \n\tmkdir \"${HOME}/Library/Application Support/${PRODUCT_NAME}\"\nfi\n\nif [ -d \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\" ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins exists'\nelse\n\tmkdir \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"\nfi\n\ncp -r ${TARGET_BUILD_DIR}/*.bundle \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"\n\ncp -r ${TARGET_BUILD_DIR}/*Daemon \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"\n";
+			shellScript = "if [ -d \"${HOME}/Library/Application Support/${PRODUCT_NAME}\" ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME} exists'\nelse \n\tmkdir \"${HOME}/Library/Application Support/${PRODUCT_NAME}\"\nfi\n\nif [ -d \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\" ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins exists'\nelse\n\tmkdir \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"\nfi\n\nrm -rf \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins/*\"\n\ncp -r ${TARGET_BUILD_DIR}/*.bundle \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"\ncp -r ${TARGET_BUILD_DIR}/*Daemon \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"";
 		};
 		8C73EE8312E454F50056FAFF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2356,7 +2350,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -d \"${HOME}/Library/Application Support/${PRODUCT_NAME}\" ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME} exists'\nelse \n\tmkdir \"${HOME}/Library/Application Support/${PRODUCT_NAME}\"\nfi\n\nif [ -d \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\" ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins exists'\nelse\n\tmkdir \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"\nfi\ncd \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins/\"\nrm -r *bundle\nrm *Daemon\n\ncp -r ${TARGET_BUILD_DIR}/*.bundle \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"\n\ncp -r ${TARGET_BUILD_DIR}/*Daemon \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"\n";
+			shellScript = "if [ -d \"${HOME}/Library/Application Support/${PRODUCT_NAME}\" ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME} exists'\nelse \n\tmkdir \"${HOME}/Library/Application Support/${PRODUCT_NAME}\"\nfi\n\nif [ -d \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\" ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins exists'\nelse\n\tmkdir \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"\nfi\n\nrm -rf \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins/*\"\n\ncp -r ${TARGET_BUILD_DIR}/*.bundle \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"\ncp -r ${TARGET_BUILD_DIR}/*Daemon \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2418,26 +2412,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8C2866BB1378796C00CAAF2A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8C85581413799697006FFB59 /* ScriptDaemon.m in Sources */,
-				8C2866DB13787ACF00CAAF2A /* admain.m in Sources */,
-				8C2866E013787FC100CAAF2A /* MailEventHandler.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8C28670113788A2F00CAAF2A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8C8558131379968D006FFB59 /* ScriptDaemon.m in Sources */,
-				8C85578D13788EEC006FFB59 /* icmain.m in Sources */,
-				8C85579113788F0B006FFB59 /* ICalEventHandler.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		8C34BC56134D245300A9BCFE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2483,6 +2457,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C73F8B512E893CC0056FAFF /* TestMailModule.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CB8CCC3137C52ED007F7647 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CB8CCDF137C5413007F7647 /* admain.m in Sources */,
+				8CB8CCE3137C543B007F7647 /* MailEventHandler.m in Sources */,
+				8CB8CCE8137C548D007F7647 /* ScriptDaemon.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CB8CCCB137C530F007F7647 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CB8CCDB137C53EA007F7647 /* icmain.m in Sources */,
+				8CB8CCDC137C53EA007F7647 /* ICalEventHandler.m in Sources */,
+				8CB8CCE9137C548D007F7647 /* ScriptDaemon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2689,15 +2683,15 @@
 			target = 8CD1974312D4C59600C69AC9 /* structcommon */;
 			targetProxy = 8C73F89912E891E20056FAFF /* PBXContainerItemProxy */;
 		};
-		8C85595C1379B5B9006FFB59 /* PBXTargetDependency */ = {
+		8CB8CCD4137C5326007F7647 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8C2866BD1378796C00CAAF2A /* AppleMailDaemon */;
-			targetProxy = 8C85595B1379B5B9006FFB59 /* PBXContainerItemProxy */;
+			target = 8CB8CCC5137C52ED007F7647 /* AppleMailDaemon */;
+			targetProxy = 8CB8CCD3137C5326007F7647 /* PBXContainerItemProxy */;
 		};
-		8C85595E1379B5BD006FFB59 /* PBXTargetDependency */ = {
+		8CB8CCD6137C5326007F7647 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8C28670313788A2F00CAAF2A /* ICalDaemon */;
-			targetProxy = 8C85595D1379B5BD006FFB59 /* PBXContainerItemProxy */;
+			target = 8CB8CCCD137C530F007F7647 /* ICalDaemon */;
+			targetProxy = 8CB8CCD5137C5326007F7647 /* PBXContainerItemProxy */;
 		};
 		8CD1975412D4C61D00C69AC9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2907,98 +2901,6 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "Dev Struct";
 				VALID_ARCHS = "i386 x86_64";
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
-		8C2866C01378796D00CAAF2A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INSTALL_PATH = /usr/local/bin;
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = AppleMailDaemon;
-			};
-			name = Debug;
-		};
-		8C2866C11378796D00CAAF2A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INSTALL_PATH = /usr/local/bin;
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = AppleMailDaemon;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
-		8C28670613788A3100CAAF2A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INSTALL_PATH = /usr/local/bin;
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = ICalDaemon;
-			};
-			name = Debug;
-		};
-		8C28670713788A3100CAAF2A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INSTALL_PATH = /usr/local/bin;
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = ICalDaemon;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -3318,6 +3220,98 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = TestMailModule;
 				WRAPPER_EXTENSION = bundle;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		8CB8CCC8137C52EF007F7647 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = AppleMailDaemon;
+			};
+			name = Debug;
+		};
+		8CB8CCC9137C52EF007F7647 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = AppleMailDaemon;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		8CB8CCD1137C530F007F7647 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = ICalDaemon;
+			};
+			name = Debug;
+		};
+		8CB8CCD2137C530F007F7647 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = ICalDaemon;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -3874,24 +3868,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8C2866C21378798B00CAAF2A /* Build configuration list for PBXNativeTarget "AppleMailDaemon" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8C2866C01378796D00CAAF2A /* Debug */,
-				8C2866C11378796D00CAAF2A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8C28670B13788A4F00CAAF2A /* Build configuration list for PBXNativeTarget "ICalDaemon" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8C28670613788A3100CAAF2A /* Debug */,
-				8C28670713788A3100CAAF2A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		8C34BC66134D245300A9BCFE /* Build configuration list for PBXNativeTarget "iCalModule" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -3951,6 +3927,24 @@
 			buildConfigurations = (
 				8C73F89512E891D00056FAFF /* Debug */,
 				8C73F89612E891D00056FAFF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8CB8CCCA137C530D007F7647 /* Build configuration list for PBXNativeTarget "AppleMailDaemon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8CB8CCC8137C52EF007F7647 /* Debug */,
+				8CB8CCC9137C52EF007F7647 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8CB8CCD7137C5344007F7647 /* Build configuration list for PBXNativeTarget "ICalDaemon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8CB8CCD1137C530F007F7647 /* Debug */,
+				8CB8CCD2137C530F007F7647 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

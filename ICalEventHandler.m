@@ -90,5 +90,9 @@
     }
     
 }
-
+- (void) dealloc
+{
+	[iCalDateFmt release];
+	[super dealloc];
+}
 @end

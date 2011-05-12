@@ -38,6 +38,7 @@
 @synthesize alertHandler;
 @synthesize iCalDateFmt;
 @synthesize msgName;
+@synthesize daemonProcessId;
 
 @dynamic refreshInterval;
 @dynamic notificationName;
@@ -65,6 +66,7 @@
 	self = [super init];
 	if (self){
 		[self setId];
+		daemonProcessId = 0;
 	}
 	return self;
 }
