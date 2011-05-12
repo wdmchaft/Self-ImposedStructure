@@ -402,14 +402,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8C2866BD1378796C00CAAF2A /* AppleMailDaemon */;
+			remoteGlobalIDString = 8C2866BD1378796C00CAAF2A;
 			remoteInfo = AppleMailDaemon;
 		};
 		8C85595D1379B5BD006FFB59 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8C28670313788A2F00CAAF2A /* ICalDaemon */;
+			remoteGlobalIDString = 8C28670313788A2F00CAAF2A;
 			remoteInfo = ICalDaemon;
 		};
 		8CD1975312D4C61D00C69AC9 /* PBXContainerItemProxy */ = {
@@ -646,7 +646,6 @@
 		8C285844137319E400CAAF2A /* HUDBusyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HUDBusyView.xib; sourceTree = "<group>"; };
 		8C28615B1375CD4E00CAAF2A /* RepeatByDayType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatByDayType.h; sourceTree = "<group>"; };
 		8C28615C1375CD4E00CAAF2A /* RepeatByDayType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatByDayType.m; sourceTree = "<group>"; };
-		8C2862AE137796C700CAAF2A /* AppleMailManager-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AppleMailManager-Info.plist"; sourceTree = "<group>"; };
 		8C2866BE1378796C00CAAF2A /* AppleMailDaemon */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AppleMailDaemon; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C2866DA13787ACF00CAAF2A /* admain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = admain.m; path = AppleMailDaemon/admain.m; sourceTree = "<group>"; };
 		8C2866DE13787FC100CAAF2A /* MailEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailEventHandler.h; sourceTree = "<group>"; };
@@ -1216,7 +1215,6 @@
 				8C5BB9851371E07E0004E88C /* HUDBusyView.xib */,
 				8C5BB9B71371E2920004E88C /* HUDBusy.h */,
 				8C5BB9B81371E2920004E88C /* HUDBusy.m */,
-				8C2862AE137796C700CAAF2A /* AppleMailManager-Info.plist */,
 				8C85582713799789006FFB59 /* CoreFoundation.framework */,
 				8C85582B137997B8006FFB59 /* Foundation.framework */,
 			);
@@ -2358,7 +2356,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -d \"${HOME}/Library/Application Support/${PRODUCT_NAME}\" ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME} exists'\nelse \n\tmkdir \"${HOME}/Library/Application Support/${PRODUCT_NAME}\"\nfi\n\nif [ -d \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\" ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins exists'\nelse\n\tmkdir \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"\nfi\n\ncp -r ${TARGET_BUILD_DIR}/*.bundle \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"\n\ncp -r ${TARGET_BUILD_DIR}/*Daemon \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"\n";
+			shellScript = "if [ -d \"${HOME}/Library/Application Support/${PRODUCT_NAME}\" ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME} exists'\nelse \n\tmkdir \"${HOME}/Library/Application Support/${PRODUCT_NAME}\"\nfi\n\nif [ -d \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\" ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins exists'\nelse\n\tmkdir \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"\nfi\ncd \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins/\"\nrm -r *bundle\nrm *Daemon\n\ncp -r ${TARGET_BUILD_DIR}/*.bundle \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"\n\ncp -r ${TARGET_BUILD_DIR}/*Daemon \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
