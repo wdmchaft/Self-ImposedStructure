@@ -92,21 +92,22 @@
 		[appsToWatch removeObjectAtIndex:rowNum];
 		[tableApps noteNumberOfRowsChanged];
 	}
-	
 }
 
 - (void) handleNewActiveApp: (NSNotification*) notification
 {
-	NSDictionary *dict = [notification userInfo];
+//	NSDictionary *dict = [notification userInfo];
 //	NSRunningApplication *newApp = [dict objectForKey:@"NSWorkspaceApplicationKey"];
     NSDictionary *appInfo = [[NSWorkspace sharedWorkspace] activeApplication];
     NSString *appBundle = [appInfo objectForKey:@"NSApplicationBundleIdentifier"];
+	NSLog(@"WorkModule new app [%@]", appBundle);	
 	for (WatchApp *wa in appsToWatch){
+	//	NSLog(@"checking %@ [%@]",[wa idString], [wa nameString]);
 		if ([wa.idString isEqualToString:appBundle]){
 			//com.zer0gravitas.wpa
 			NSDictionary *dict = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:wa.state] forKey:@"state"];
             NSString *stateStr = (wa.state == WPASTATE_FREE)? @"play" : @"work";
-			NSLog(@"for app [%@] going to %@", appBundle, stateStr);
+			NSLog(@"WorkModule going to %@", appBundle, stateStr);
 			[notificationCenter postNotificationName:@"com.zer0gravitas.selfstruct.changestate" object: nil userInfo:dict];
 		}
 	}
@@ -121,6 +122,7 @@
 
 - (void) initNotificationCenter
 {
+	NSLog(@"WorkModule listening for activation now...");
 	notificationCenter = [NSDistributedNotificationCenter defaultCenter];
 	[notificationCenter addObserver:self 
 						   selector:@selector(handleNewActiveApp:) 
