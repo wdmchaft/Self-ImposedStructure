@@ -33,7 +33,6 @@
 	id<AlertHandler> alertHandler;
     NSDateFormatter *iCalDateFmt;
     NSString *msgName;
-	NSUInteger daemonProcessId;
 }
 @property (nonatomic, retain) NSDate *refreshDate;
 @property (nonatomic,retain) NSMutableData *respBuffer;
@@ -41,7 +40,6 @@
 @property (nonatomic) int lookAhead;
 @property (nonatomic) BOOL addThis;
 @property (nonatomic) BOOL summaryMode;
-@property (nonatomic) NSUInteger daemonProcessId;
 @property (nonatomic, retain) IBOutlet NSPopUpButton *calendarMenu;
 @property (nonatomic, retain) IBOutlet NSTextField *refreshField;
 @property (nonatomic, retain) IBOutlet NSTextField *warningField;

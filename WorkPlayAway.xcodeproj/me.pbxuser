@@ -19,7 +19,7 @@
 		breakpoints = (
 			8C2858BA1373203300CAAF2A /* SummaryViewController.m:60 */,
 			8C2858D61373318400CAAF2A /* SummaryViewController.m:59 */,
-			8C28607D1374E00200CAAF2A /* iCalModule.m:231 */,
+			8C28607D1374E00200CAAF2A /* iCalModule.m:229 */,
 			8C2861F21376C8AB00CAAF2A /* RTMModule.m:137 */,
 		);
 		codeSenseManager = 8C77290512D46A1800F71FE7 /* Code sense */;
@@ -325,6 +325,17 @@
 			8CB8CD08137C5A5B007F7647 /* PBXBookmark */ = 8CB8CD08137C5A5B007F7647 /* PBXBookmark */;
 			8CB8CD09137C5A5B007F7647 /* PBXTextBookmark */ = 8CB8CD09137C5A5B007F7647 /* PBXTextBookmark */;
 			8CB8CD0C137C5A5B007F7647 /* PBXTextBookmark */ = 8CB8CD0C137C5A5B007F7647 /* PBXTextBookmark */;
+			8CB8CD11137C6DBB007F7647 /* PBXTextBookmark */ = 8CB8CD11137C6DBB007F7647 /* PBXTextBookmark */;
+			8CB8CD12137C6DBB007F7647 /* PBXTextBookmark */ = 8CB8CD12137C6DBB007F7647 /* PBXTextBookmark */;
+			8CB8CD13137C6DBB007F7647 /* PBXTextBookmark */ = 8CB8CD13137C6DBB007F7647 /* PBXTextBookmark */;
+			8CB8CD14137C6DBB007F7647 /* PBXTextBookmark */ = 8CB8CD14137C6DBB007F7647 /* PBXTextBookmark */;
+			8CB8CD15137C6DBB007F7647 /* PBXTextBookmark */ = 8CB8CD15137C6DBB007F7647 /* PBXTextBookmark */;
+			8CB8CD18137C6DBB007F7647 /* PBXTextBookmark */ = 8CB8CD18137C6DBB007F7647 /* PBXTextBookmark */;
+			8CB8CD19137C6DBB007F7647 /* PBXTextBookmark */ = 8CB8CD19137C6DBB007F7647 /* PBXTextBookmark */;
+			8CB8CD1A137C6DBB007F7647 /* PBXTextBookmark */ = 8CB8CD1A137C6DBB007F7647 /* PBXTextBookmark */;
+			8CB8CD22137C6E04007F7647 /* PBXTextBookmark */ = 8CB8CD22137C6E04007F7647 /* PBXTextBookmark */;
+			8CB8CD23137C6E04007F7647 /* PBXTextBookmark */ = 8CB8CD23137C6E04007F7647 /* PBXTextBookmark */;
+			8CB8CD24137C6E04007F7647 /* PBXTextBookmark */ = 8CB8CD24137C6E04007F7647 /* PBXTextBookmark */;
 			8CD196D812D4C37800C69AC9 = 8CD196D812D4C37800C69AC9 /* PBXTextBookmark */;
 			8CD196D912D4C37800C69AC9 = 8CD196D912D4C37800C69AC9 /* PBXTextBookmark */;
 			8CD196EB12D4C37800C69AC9 = 8CD196EB12D4C37800C69AC9 /* PBXTextBookmark */;
@@ -921,7 +932,7 @@
 		vrLen = 1391;
 		vrLoc = 9066;
 	};
-	8C28607D1374E00200CAAF2A /* iCalModule.m:231 */ = {
+	8C28607D1374E00200CAAF2A /* iCalModule.m:229 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 			8C28607F1374E02A00CAAF2A /* XCBreakpointCommandAction */,
@@ -934,7 +945,7 @@
 		functionName = "-fetchDone:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 231;
+		lineNumber = 229;
 		location = iCalModule;
 		modificationTime = 326552447.301731;
 		originalNumberOfMultipleMatches = 1;
@@ -962,7 +973,7 @@
 		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
 		name = "iCalModule.m: 231";
 		rLen = 33;
-		rLoc = 7390;
+		rLoc = 7338;
 		rType = 0;
 		vrLen = 1622;
 		vrLoc = 6718;
@@ -1074,10 +1085,17 @@
 	};
 	8C34BC75134D262A00A9BCFE /* iCalModule.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {876, 5291}}";
-			sepNavSelRange = "{7390, 33}";
-			sepNavVisRange = "{6718, 1622}";
+			sepNavIntBoundsRect = "{{0, 0}, {876, 5304}}";
+			sepNavSelRange = "{920, 0}";
+			sepNavVisRange = "{0, 1054}";
 			sepNavWindowFrame = "{{38, 21}, {907, 831}}";
+		};
+	};
+	8C34BC76134D262A00A9BCFE /* iCalModule.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {876, 871}}";
+			sepNavSelRange = "{1121, 0}";
+			sepNavVisRange = "{447, 1936}";
 		};
 	};
 	8C3AB4AB12E2CEBF00A19AA4 /* README.txt */ = {
@@ -2667,9 +2685,9 @@
 	};
 	8C77296D12D46AC600F71FE7 /* Utility.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {884, 3406}}";
+			sepNavIntBoundsRect = "{{0, 0}, {876, 3575}}";
 			sepNavSelRange = "{8033, 0}";
-			sepNavVisRange = "{6882, 1219}";
+			sepNavVisRange = "{6652, 1449}";
 			sepNavWindowFrame = "{{61, 0}, {907, 831}}";
 		};
 	};
@@ -3579,9 +3597,9 @@
 	};
 	8CB8CCE2137C543B007F7647 /* MailEventHandler.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {936, 1495}}";
-			sepNavSelRange = "{4275, 62}";
-			sepNavVisRange = "{3097, 1239}";
+			sepNavIntBoundsRect = "{{0, 0}, {936, 1625}}";
+			sepNavSelRange = "{4335, 0}";
+			sepNavVisRange = "{2541, 1803}";
 		};
 	};
 	8CB8CCE7137C548D007F7647 /* ScriptDaemon.m */ = {
@@ -3672,6 +3690,113 @@
 		rType = 0;
 		vrLen = 1785;
 		vrLoc = 2541;
+	};
+	8CB8CD11137C6DBB007F7647 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77296D12D46AC600F71FE7 /* Utility.m */;
+		name = "Utility.m: 260";
+		rLen = 0;
+		rLoc = 8033;
+		rType = 0;
+		vrLen = 1449;
+		vrLoc = 6652;
+	};
+	8CB8CD12137C6DBB007F7647 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */;
+		name = "iCalModule.m: 41";
+		rLen = 0;
+		rLoc = 920;
+		rType = 0;
+		vrLen = 1054;
+		vrLoc = 0;
+	};
+	8CB8CD13137C6DBB007F7647 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C34BC76134D262A00A9BCFE /* iCalModule.h */;
+		rLen = 0;
+		rLoc = 9223372036854775728;
+		rType = 0;
+	};
+	8CB8CD14137C6DBB007F7647 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C34BC76134D262A00A9BCFE /* iCalModule.h */;
+		name = "iCalModule.h: 43";
+		rLen = 0;
+		rLoc = 1121;
+		rType = 0;
+		vrLen = 1936;
+		vrLoc = 447;
+	};
+	8CB8CD15137C6DBB007F7647 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CB8CCE2137C543B007F7647 /* MailEventHandler.m */;
+		name = "MailEventHandler.m: 121";
+		rLen = 0;
+		rLoc = 4335;
+		rType = 0;
+		vrLen = 1803;
+		vrLoc = 2541;
+	};
+	8CB8CD18137C6DBB007F7647 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CB8CCD9137C53EA007F7647 /* ICalEventHandler.h */;
+		name = "ICalEventHandler.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 365;
+		vrLoc = 0;
+	};
+	8CB8CD19137C6DBB007F7647 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CB8CCDA137C53EA007F7647 /* ICalEventHandler.m */;
+		name = "ICalEventHandler.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 2217;
+		vrLoc = 1154;
+	};
+	8CB8CD1A137C6DBB007F7647 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CB8CCDA137C53EA007F7647 /* ICalEventHandler.m */;
+		name = "ICalEventHandler.m: 95";
+		rLen = 0;
+		rLoc = 3397;
+		rType = 0;
+		vrLen = 2083;
+		vrLoc = 1350;
+	};
+	8CB8CD22137C6E04007F7647 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C34BC76134D262A00A9BCFE /* iCalModule.h */;
+		name = "iCalModule.h: 43";
+		rLen = 0;
+		rLoc = 1121;
+		rType = 0;
+		vrLen = 1936;
+		vrLoc = 447;
+	};
+	8CB8CD23137C6E04007F7647 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CB8CCE2137C543B007F7647 /* MailEventHandler.m */;
+		name = "MailEventHandler.m: 121";
+		rLen = 0;
+		rLoc = 4335;
+		rType = 0;
+		vrLen = 1803;
+		vrLoc = 2541;
+	};
+	8CB8CD24137C6E04007F7647 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CB8CCDA137C53EA007F7647 /* ICalEventHandler.m */;
+		name = "ICalEventHandler.m: 95";
+		rLen = 0;
+		rLoc = 3397;
+		rType = 0;
+		vrLen = 2083;
+		vrLoc = 1350;
 	};
 	8CBEAB46133AAA3D00277FEA /* SummaryRecord.m */ = {
 		uiCtxt = {
