@@ -765,9 +765,11 @@
     if (prefsWindow == nil) {
         prefsWindow = [[PreferencesWindow alloc] initWithWindowNibName:@"PreferencesWindow"];
     }
+	[prefsWindow setHkTarget:self];
+	[prefsWindow setHkSelector:@selector(popStatusMenu)];
 	[prefsWindow showWindow:self];
 	[[prefsWindow window] makeKeyAndOrderFront:self];
-	[[statsWindow window] setOrderedIndex:0];
+	[[prefsWindow window] setOrderedIndex:0];
 	[[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
 }
 
@@ -781,39 +783,13 @@
 	[[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
 }
 
-
-
-OSStatus hotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
-						 void *userData)
-{
-	WPAMainController *self = (WPAMainController*) userData;
-	//Do something once the key is pressed
-	[self popStatusMenu];
-	return noErr;
-}
-
 - (void) setupHotKeyIfNecessary
 {
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"useHotKey"])
-		[self setupHotKey];
-}
+	NDHotKeyEvent *event = [[Context sharedContext]  hotkeyEvent];
+	if (event){
+		[event setTarget: self selector:@selector(popStatusMenu)];
+	}
 
-- (void) setupHotKey
-{
-	//Register the Hotkeys
-	EventHotKeyRef gMyHotKeyRef;
-	EventHotKeyID gMyHotKeyID;
-	EventTypeSpec eventType;
-	eventType.eventClass=kEventClassKeyboard;
-	eventType.eventKind=kEventHotKeyPressed;
-	
-	InstallApplicationEventHandler(&hotKeyHandler,1,&eventType,(void*)self,NULL);
-	
-	gMyHotKeyID.signature='htk1';
-	gMyHotKeyID.id=1;
-	
-	
-	RegisterEventHotKey(24, cmdKey+optionKey, gMyHotKeyID, GetApplicationEventTarget(), 0, &gMyHotKeyRef);
 }
 
 - (void) gotRollover

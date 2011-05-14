@@ -8,8 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 #import "AddModWinController.h"
+#import "NDHotKeyControl.h"
 
-@interface PreferencesWindow : NSWindowController {
+@interface PreferencesWindow : NSWindowController <NSTextFieldDelegate>{
 	
 	NSView *workView;
 	NSTableView *modulesTable;
@@ -29,8 +30,14 @@
 	NSTextField *summaryLabel;
 	NSTextField *summaryLabel2;
 	NSButton *summaryButton;
+	NDHotKeyControl *hkControl;
+	NSButton *useHKButton;
+	NSButton *preHKButton;
+	NSObject *hkTarget;
+	SEL hkSelector;
 }
 
+@property (retain, nonatomic) IBOutlet NDHotKeyControl *hkControl;
 @property (retain, nonatomic) IBOutlet NSTableView *modulesTable;
 @property (retain, nonatomic) IBOutlet NSTableView *hudTable;
 @property (retain, nonatomic) IBOutlet NSTableView *heatTable;
@@ -47,6 +54,10 @@
 @property (retain, nonatomic) IBOutlet NSTextField *summaryLabel;
 @property (retain, nonatomic) IBOutlet NSTextField *summaryLabel2;
 @property (retain, nonatomic) IBOutlet NSButton *summaryButton;
+@property (retain, nonatomic) IBOutlet NSButton *useHKButton;
+@property (retain, nonatomic) IBOutlet NSButton *preHKButton;
+@property (retain, nonatomic) NSObject *hkTarget;
+@property (nonatomic) SEL hkSelector;
 
 - (IBAction) clickAdd: (id) sender;
 - (IBAction) clickRemove: (id) sender;
@@ -57,8 +68,9 @@
 -(BOOL) removeFromLogin;
 
 - (void) addClosed: (NSNotification*) notification;
-- (IBAction) clickUseHotKey: (id) sender;
 
 - (IBAction) clickSummary: (id) sender;
-
+- (IBAction) clickUseHotKey: (id) sender;
+- (IBAction) mouseDownInHotKey: (id) sender;
+- (IBAction) clickPreHK: (id) sender;
 @end

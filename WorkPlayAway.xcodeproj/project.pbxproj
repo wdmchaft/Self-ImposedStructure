@@ -218,6 +218,12 @@
 		8CA668A512FF86C5004FD7EE /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA668A312FF86C5004FD7EE /* LaunchAtLoginController.m */; };
 		8CB05117135E6FF8008FCE40 /* WorkHoursToAverageXForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB05116135E6FF8008FCE40 /* WorkHoursToAverageXForm.m */; };
 		8CB05118135E6FF8008FCE40 /* WorkHoursToAverageXForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB05116135E6FF8008FCE40 /* WorkHoursToAverageXForm.m */; };
+		8CB7C774137D95DB00CB3193 /* NDHotKeyEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB7C765137D95DA00CB3193 /* NDHotKeyEvent.m */; };
+		8CB7C775137D95DB00CB3193 /* NDHotKeyControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB7C767137D95DA00CB3193 /* NDHotKeyControl.m */; };
+		8CB7C776137D95DB00CB3193 /* NDKeyboardLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB7C76A137D95DA00CB3193 /* NDKeyboardLayout.m */; };
+		8CB7C77A137D95DB00CB3193 /* NDHotKeyEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB7C765137D95DA00CB3193 /* NDHotKeyEvent.m */; };
+		8CB7C77B137D95DB00CB3193 /* NDHotKeyControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB7C767137D95DA00CB3193 /* NDHotKeyControl.m */; };
+		8CB7C77C137D95DB00CB3193 /* NDKeyboardLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB7C76A137D95DA00CB3193 /* NDKeyboardLayout.m */; };
 		8CB8CCDB137C53EA007F7647 /* icmain.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB8CCD8137C53EA007F7647 /* icmain.m */; };
 		8CB8CCDC137C53EA007F7647 /* ICalEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB8CCDA137C53EA007F7647 /* ICalEventHandler.m */; };
 		8CB8CCDF137C5413007F7647 /* admain.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB8CCDE137C5413007F7647 /* admain.m */; };
@@ -400,14 +406,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8CB8CCC5137C52ED007F7647 /* AppleMailDaemon */;
+			remoteGlobalIDString = 8CB8CCC5137C52ED007F7647;
 			remoteInfo = AppleMailDaemon;
 		};
 		8CB8CCD5137C5326007F7647 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8CB8CCCD137C530F007F7647 /* ICalDaemon */;
+			remoteGlobalIDString = 8CB8CCCD137C530F007F7647;
 			remoteInfo = ICalDaemon;
 		};
 		8CD1975312D4C61D00C69AC9 /* PBXContainerItemProxy */ = {
@@ -866,6 +872,12 @@
 		8CA668A312FF86C5004FD7EE /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchAtLoginController.m; sourceTree = "<group>"; };
 		8CB05115135E6FF8008FCE40 /* WorkHoursToAverageXForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WorkHoursToAverageXForm.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8CB05116135E6FF8008FCE40 /* WorkHoursToAverageXForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WorkHoursToAverageXForm.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		8CB7C765137D95DA00CB3193 /* NDHotKeyEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NDHotKeyEvent.m; path = NDHotKeyEvent/NDHotKeyEvent.m; sourceTree = "<group>"; };
+		8CB7C766137D95DA00CB3193 /* NDHotKeyControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NDHotKeyControl.h; path = NDHotKeyEvent/NDHotKeyControl.h; sourceTree = "<group>"; };
+		8CB7C767137D95DA00CB3193 /* NDHotKeyControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NDHotKeyControl.m; path = NDHotKeyEvent/NDHotKeyControl.m; sourceTree = "<group>"; };
+		8CB7C768137D95DA00CB3193 /* NDHotKeyEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NDHotKeyEvent.h; path = NDHotKeyEvent/NDHotKeyEvent.h; sourceTree = "<group>"; };
+		8CB7C769137D95DA00CB3193 /* NDKeyboardLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NDKeyboardLayout.h; path = NDHotKeyEvent/NDKeyboardLayout.h; sourceTree = "<group>"; };
+		8CB7C76A137D95DA00CB3193 /* NDKeyboardLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NDKeyboardLayout.m; path = NDHotKeyEvent/NDKeyboardLayout.m; sourceTree = "<group>"; };
 		8CB8CCC6137C52ED007F7647 /* AppleMailDaemon */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AppleMailDaemon; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CB8CCCE137C530F007F7647 /* ICalDaemon */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ICalDaemon; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CB8CCD8137C53EA007F7647 /* icmain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = icmain.m; path = ICalDaemon/icmain.m; sourceTree = "<group>"; };
@@ -1119,6 +1131,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8CB7C75D137D958A00CB3193 /* NDHotKeyEvent */,
 				8C73F8B212E8933B0056FAFF /* Modules */,
 				8C73F8B112E8932C0056FAFF /* Test */,
 				8C73F08D12E5E4460056FAFF /* SummaryHUD */,
@@ -1408,6 +1421,19 @@
 				8CDCC10612E2B7BA00CEAAD3 /* SkypeManagerDelegate.m */,
 			);
 			name = SkypeManager;
+			sourceTree = "<group>";
+		};
+		8CB7C75D137D958A00CB3193 /* NDHotKeyEvent */ = {
+			isa = PBXGroup;
+			children = (
+				8CB7C765137D95DA00CB3193 /* NDHotKeyEvent.m */,
+				8CB7C766137D95DA00CB3193 /* NDHotKeyControl.h */,
+				8CB7C767137D95DA00CB3193 /* NDHotKeyControl.m */,
+				8CB7C768137D95DA00CB3193 /* NDHotKeyEvent.h */,
+				8CB7C769137D95DA00CB3193 /* NDKeyboardLayout.h */,
+				8CB7C76A137D95DA00CB3193 /* NDKeyboardLayout.m */,
+			);
+			name = NDHotKeyEvent;
 			sourceTree = "<group>";
 		};
 		8CB8CCAB137C52A1007F7647 /* ICalDaemon */ = {
@@ -2409,6 +2435,9 @@
 				8C5BB636136F33240004E88C /* SwitchActivityDialog.m in Sources */,
 				8C5BB83A136F40AA0004E88C /* ActivityComboData.m in Sources */,
 				8C5BB9BA1371E2920004E88C /* HUDBusy.m in Sources */,
+				8CB7C774137D95DB00CB3193 /* NDHotKeyEvent.m in Sources */,
+				8CB7C775137D95DB00CB3193 /* NDHotKeyControl.m in Sources */,
+				8CB7C776137D95DB00CB3193 /* NDKeyboardLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2627,6 +2656,9 @@
 				8C5BB635136F33240004E88C /* SwitchActivityDialog.m in Sources */,
 				8C5BB839136F40AA0004E88C /* ActivityComboData.m in Sources */,
 				8C5BB9B91371E2920004E88C /* HUDBusy.m in Sources */,
+				8CB7C77A137D95DB00CB3193 /* NDHotKeyEvent.m in Sources */,
+				8CB7C77B137D95DB00CB3193 /* NDHotKeyControl.m in Sources */,
+				8CB7C77C137D95DB00CB3193 /* NDKeyboardLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,6 +12,7 @@
 #import "HUDSettings.h"
 #import "HeatMap.h"
 #import "TotalsManager.h"
+#import "NDHotKeyEvent.h"
 
 @interface Context : NSObject {
 	NSMutableDictionary *instancesMap; // maps module name to instance of module
@@ -30,6 +31,7 @@
 	HeatMap *heatMapSettings;
     TotalsManager *totalsManager;
 	NSTimer *nagDelayTimer;
+	NDHotKeyEvent *hotkeyEvent;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *instancesMap;
@@ -44,10 +46,11 @@
 @property (nonatomic, retain) NSArray *tasksList;
 @property (nonatomic) WPAStateType currentState;
 @property (nonatomic, readonly) WPAStateType previousState;
-//@property (nonatomic,retain) GrowlManager *growlManager;
+@property (nonatomic,retain) GrowlManager *growlManager;
 @property (nonatomic,retain) HUDSettings *hudSettings;
 @property (nonatomic,retain) HeatMap *heatMapSettings;
 @property (nonatomic,retain) TotalsManager *totalsManager;
+@property (nonatomic, retain) NDHotKeyEvent *hotkeyEvent;
 
 + (Context*)sharedContext;
 - (void) loadBundles;

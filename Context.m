@@ -6,7 +6,7 @@
 //  Copyright 2010 zer0gravitas.com. All rights reserved.
 //
 
-//#import "BaseModule.h"
+#import "Context.h"
 #import "IconsFile.h"
 #import "State.h"
 #import "Utility.h"
@@ -18,57 +18,7 @@
 #import "HUDSettings.h"
 #import "HeatMap.h"
 #import "TotalsManager.h"
-
-@interface Context : NSObject {
-	NSMutableDictionary *instancesMap; // maps module name to instance of module
-	NSMutableDictionary *bundlesMap; // maps plugin name to its bundle
-	NSMutableDictionary *iconsMap; // maps module name to its icon;
-	int thinkTime;
-	NSDictionary *currentTask;
-	NSManagedObject *currentActivity;
-	BOOL running;
-	NSArray *tasksList;
-	WPAStateType previousState;
-	WPAStateType currentState;
-	GrowlManager *growlManager;
-	HUDSettings *hudSettings;
-	HeatMap *heatMapSettings;
-    TotalsManager *totalsManager;
-	NSTimer *nagDelayTimer;
-}
-
-@property (nonatomic, retain) NSMutableDictionary *instancesMap;
-@property (nonatomic, retain) NSMutableDictionary *bundlesMap;
-@property (nonatomic, retain) NSMutableDictionary *iconsMap;
-
-
-@property (nonatomic) BOOL running;
-@property (nonatomic) WPAStateType currentState;
-@property (nonatomic) int thinkTime;
-@property (nonatomic, retain) NSDictionary *currentTask;
-//@property (nonatomic, retain) NSString *currentSource;
-@property (nonatomic, retain) NSManagedObject *currentActivity;
-@property (nonatomic, retain) NSArray *tasksList;
-@property (nonatomic, retain) GrowlManager *growlManager;
-@property (nonatomic, retain) HUDSettings *hudSettings;
-@property (nonatomic, retain) HeatMap *heatMapSettings;
-@property (nonatomic) WPAStateType previousState;
-@property (nonatomic, retain) NSTimer *nagDelayTimer;
-@property (nonatomic,retain) TotalsManager *totalsManager;
-
-+ (Context*)sharedContext;
-- (void) loadBundles;
-- (void) initFromDefaults;
-- (void) saveModules;
-- (void) saveDefaults;
-- (void) saveTask;
-- (NSDictionary*) readTask:(NSUserDefaults*) defaults;
-- (NSString*) descriptionForModule: (NSObject*) mod;
-- (NSData*) iconForModule: (id<Instance>) mod;
-- (void) removeDefaultsForKey: (NSString*) keyPrefix;
-- (BOOL) isWorkingState;
-
-@end
+#import "NDHotKeyEvent.h"
 
 
 @implementation Context
@@ -88,6 +38,7 @@
 @synthesize heatMapSettings;
 @synthesize totalsManager;
 @synthesize nagDelayTimer;
+@synthesize hotkeyEvent;
 
 static Context* sharedContext = nil;
 
@@ -236,6 +187,12 @@ static Context* sharedContext = nil;
 	}
 	// this depends on having the instances map set
 	currentTask = [self readTask:ud];
+	
+	int keyCode = [ud integerForKey:@"keyCode"];
+	if (keyCode != 0){
+		int keyModifiers = [ud integerForKey:@"keyModifiers"];
+		hotkeyEvent = [NDHotKeyEvent getHotKeyForKeyCode:keyCode modifierFlags:keyModifiers];
+	}
 }
 
 -(void) saveDefaults
@@ -451,7 +408,7 @@ static Context* sharedContext = nil;
 	NSString *name = nil;
 	for (name in instancesMap){
 		id thing = [instancesMap objectForKey: name];
-		id<TaskList> list  = (id<TaskList>) thing;
+//		id<TaskList> list  = (id<TaskList>) thing;
 		id<Instance> inst  = (id<Instance>) thing;
 		//		NSString *proj = nil;
 		if (inst.enabled && [thing conformsToProtocol:@protocol(TaskList)]){

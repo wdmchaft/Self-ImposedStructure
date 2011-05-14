@@ -16,7 +16,8 @@
 @implementation PreferencesWindow
 @synthesize modulesTable, amwControl,addButton, removeButton, newModuleView, tableData, 
 launchOnBootButton, editButton, hudTable, heatTable, 
-summaryField, summaryStepper, summaryLabel, summaryLabel2, summaryButton, editModuleSession;
+summaryField, summaryStepper, summaryLabel, summaryLabel2, summaryButton, editModuleSession, hkControl, 
+preHKButton, useHKButton, hkTarget, hkSelector;
 
 - (void)awakeFromNib
 {
@@ -64,14 +65,51 @@ summaryField, summaryStepper, summaryLabel, summaryLabel2, summaryButton, editMo
     NSTableColumn *col = [heatTable.tableColumns objectAtIndex:1];
     [col setDataCell:[ColorWellCell new]];
 }
+//	@param modifierFlags The modifer flags, ( <tt>NSCommandKeyMask</tt>, <tt>NSControlKeyMask</tt>, <tt>NSAlternateKeyMask</tt>, <tt>NSShiftKeyMask</tt> ).
+
+- (NSString*) stringForKeyEvent:(NDHotKeyEvent*) ev
+{
+	unichar buf[5];
+	NSUInteger bufIdx = 0;
+	NSUInteger flags = [ev modifierFlags];
+	if (flags & NSCommandKeyMask) {
+		buf[bufIdx++] = 0x2318;
+	}
+	if (flags & NSControlKeyMask) {
+		buf[bufIdx++] = 0x2303;
+	}
+	if (flags & NSAlternateKeyMask) {
+		buf[bufIdx++] = 0x2325;
+	}
+	if (flags & NSShiftKeyMask) {
+		buf[bufIdx++] = 0x2325;
+	}
+	buf[bufIdx++] = [ev character];
+	return [NSString stringWithCharacters:buf length:bufIdx];
+}
 
 - (void) showWindow:(id)sender
 {
 	[super showWindow:sender];
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+											 selector:@selector(close:)
+												 name:NSWindowWillCloseNotification 
+											   object:[self window]];
+	
     [[super window] setFrameAutosaveName:@"Preferences"];
 	LaunchAtLoginController *lALCtrl = [LaunchAtLoginController new];
 	[launchOnBootButton setIntValue: [lALCtrl launchAtLogin]];
-	
+	NDHotKeyEvent *hkEvent = [[Context sharedContext] hotkeyEvent];
+	BOOL useKey = hkEvent != nil;
+	[useHKButton setIntValue:useKey];
+	[hkControl setEnabled:useKey];
+	[preHKButton setEnabled:useKey];
+	if (useKey){
+		[hkControl setReadyForHotKeyEvent:YES];
+		NSString *str = [self stringForKeyEvent:hkEvent];
+		[hkControl setStringValue:str];
+	}
+	[hkControl setDelegate:self];
 	[[super window]orderFront:self];
 }
 
@@ -203,13 +241,31 @@ summaryField, summaryStepper, summaryLabel, summaryLabel2, summaryButton, editMo
 
 - (IBAction) clickUseHotKey: (id) sender
 {
-	NSAlert *alert = [NSAlert alertWithMessageText:@"For your information" 
-									 defaultButton:nil alternateButton:nil 
-									   otherButton:nil 
-						 informativeTextWithFormat:@"This change will not take effect until you quit and restart."];
-	[alert runModal];	
-	
+	BOOL hkOn = [sender intValue] != 0;
+	[hkControl setEnabled:hkOn];
+	[preHKButton setEnabled:hkOn];
+	NDHotKeyEvent *ev = [[Context sharedContext] hotkeyEvent];
+	if (ev){
+		[ev setEnabled:NO];
+	}
+	if (!hkOn){
+		[hkControl setStringValue:@""];
+		NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+		[ud setInteger:0 forKey:@"keyCode"];
+		[ud setInteger:0 forKey:@"keyModifiers"];
+		[ud setInteger:0 forKey:@"keyChar"];
+		[[Context sharedContext] setHotkeyEvent:nil];
+	}
+	else {
+		[hkControl setReadyForHotKeyEvent:YES];
+	}
 }
+
+- (void )clickPreHK:(id) sender
+{
+	[hkControl setReadyForHotKeyEvent:YES];
+}
+
 - (IBAction) clickSummary: (id) sender {
 	BOOL enabled = summaryButton.intValue;
 	[summaryLabel setEnabled:enabled];
@@ -217,8 +273,29 @@ summaryField, summaryStepper, summaryLabel, summaryLabel2, summaryButton, editMo
 	[summaryStepper setEnabled:enabled];
 	[summaryField setEnabled:enabled];
 }
-- (void) close
+
+- (void) close: (NSNotification*) msg
 {
+	[[NSNotificationCenter defaultCenter] removeObserver:self name: NSWindowWillCloseNotification object:[self window]];
+	NDHotKeyEvent *event = [hkControl hotKeyEvent];
+	BOOL useHK = [useHKButton intValue];
+	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+	if (event && useHK){
+		[ud setInteger:[hkControl character] forKey:@"keyChar"];
+		[ud setInteger:[hkControl modifierFlags] forKey:@"keyModifiers"];
+		[ud setInteger:[hkControl keyCode] forKey:@"keyCode"];
+		[ud setBool:YES forKey:@"useHotKey"];
+		NDHotKeyEvent *event = [hkControl hotKeyEvent];
+		[event setTarget:hkTarget selector:hkSelector];
+		[event setEnabled:YES];
+		[[Context sharedContext] setHotkeyEvent:event] ;
+	} 
+	else {
+		[ud setBool:NO forKey:@"useHotKey"];
+		
+	}
+
+	
 	[[Context sharedContext]saveDefaults];
 }
 @end
