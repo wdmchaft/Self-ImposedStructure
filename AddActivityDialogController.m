@@ -21,6 +21,7 @@
 @synthesize listsCombo;
 @synthesize allLists;
 @synthesize switchNowButton;
+@synthesize taskList;
 
 - (void) initCombo
 {
@@ -55,7 +56,7 @@
 	NSString *tName = [taskField stringValue];
 	if ([switchNowButton integerValue]){
 		ctx.currentTask = [NSDictionary dictionaryWithObjectsAndKeys:tName, @"name",
-						   list.name, @"source", nil];
+						   taskList.name, @"source", nil];
 		[[ctx growlManager] growlFYI:[NSString stringWithFormat: @"New activity: %@",tName]];
 	} else {
 		[[ctx growlManager] growlFYI:[NSString stringWithFormat: @"Added activity: %@", tName]];
@@ -65,7 +66,7 @@
 
 - (void)doAdd: (NSTimer*) timer 
 {
-	[list newTask: [taskField stringValue] completeHandler:self selector:@selector(addDone)];
+	[taskList newTask: [taskField stringValue] completeHandler:self selector:@selector(addDone)];
 }
 	
 - (IBAction) clickOK: (id) sender
@@ -78,13 +79,13 @@
 	
 	for (id<TaskList> tl  in allLists){
 		if([[tl name] isEqualToString:str]){
-			list  = tl;
+			taskList  = tl;
 			break;
 		}
 	}
 	[busy setHidden:NO];
 	[busy startAnimation:self];
-	[NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(doAdd:) userInfo:list repeats:NO ];
+	[NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(doAdd:) userInfo:taskList repeats:NO ];
 
 	//[addList newTask: [taskField stringValue] completeHandler:self selector:@selector(addDone)];
 

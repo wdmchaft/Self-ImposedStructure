@@ -17,7 +17,7 @@
 	NSButton			*switchNowButton;
 	NSTextField			*taskField;
 	NSArray				*allLists;
-	id<TaskList>		list;
+	id<TaskList>		taskList;
 }
 
 @property (nonatomic, retain) IBOutlet NSPopUpButton		*listsCombo;
@@ -26,7 +26,7 @@
 @property (nonatomic, retain) IBOutlet NSTextField			*taskField;
 @property (nonatomic, retain) IBOutlet NSProgressIndicator	*busy;
 @property (nonatomic, retain) IBOutlet NSButton				*switchNowButton;
-@property (nonatomic, retain) id<TaskList>					list;
+@property (nonatomic, retain) id<TaskList>					taskList;
 @property (nonatomic, retain) NSArray						*allLists;
 
 - (IBAction) clickOK: (id) sender;
