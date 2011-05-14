@@ -300,6 +300,7 @@
 		case WPASTATE_THINKING:
 			workToday += interval;
 			workWeek += interval;
+			[self updateSummaryWithWork:workToday free:freeToday away:awayToday];
 			break;
 			
 		default:
