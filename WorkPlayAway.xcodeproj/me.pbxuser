@@ -13,9 +13,7 @@
 		activeExecutable = 8C0D93F112D63D3D009F3280 /* WPADev */;
 		activeTarget = 8C0D93EF12D63D3D009F3280 /* devstruct */;
 		addToTargets = (
-			8CB8CCCD137C530F007F7647 /* ICalDaemon */,
-			8C0D93EF12D63D3D009F3280 /* devstruct */,
-			8D1107260486CEB800E47090 /* selfstruct */,
+			8C9E9AB1137E65B900529EC2 /* iCalTodoModule */,
 		);
 		breakpoints = (
 			8C2858BA1373203300CAAF2A /* SummaryViewController.m:60 */,
@@ -336,6 +334,10 @@
 			8C9E9A73137E5CD900529EC2 /* PBXTextBookmark */ = 8C9E9A73137E5CD900529EC2 /* PBXTextBookmark */;
 			8C9E9A74137E5CD900529EC2 /* PBXTextBookmark */ = 8C9E9A74137E5CD900529EC2 /* PBXTextBookmark */;
 			8C9E9A75137E5CD900529EC2 /* PBXTextBookmark */ = 8C9E9A75137E5CD900529EC2 /* PBXTextBookmark */;
+			8C9E9A7A137E646D00529EC2 /* PBXTextBookmark */ = 8C9E9A7A137E646D00529EC2 /* PBXTextBookmark */;
+			8C9E9A7B137E646D00529EC2 /* PBXTextBookmark */ = 8C9E9A7B137E646D00529EC2 /* PBXTextBookmark */;
+			8C9E9A7C137E646D00529EC2 /* PBXTextBookmark */ = 8C9E9A7C137E646D00529EC2 /* PBXTextBookmark */;
+			8C9E9A7D137E646D00529EC2 /* PBXTextBookmark */ = 8C9E9A7D137E646D00529EC2 /* PBXTextBookmark */;
 			8C9FB5D213356F0F0034FE85 = 8C9FB5D213356F0F0034FE85 /* PBXTextBookmark */;
 			8C9FB5D313356F0F0034FE85 = 8C9FB5D313356F0F0034FE85 /* PBXTextBookmark */;
 			8CB7C797137DCC2900CB3193 = 8CB7C797137DCC2900CB3193 /* PBXTextBookmark */;
@@ -1068,9 +1070,10 @@
 	};
 	8C34BC76134D262A00A9BCFE /* iCalModule.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {876, 871}}";
-			sepNavSelRange = "{1121, 0}";
-			sepNavVisRange = "{447, 1936}";
+			sepNavIntBoundsRect = "{{0, 0}, {1187, 871}}";
+			sepNavSelRange = "{446, 0}";
+			sepNavVisRange = "{269, 2114}";
+			sepNavWindowFrame = "{{15, 39}, {1248, 834}}";
 		};
 	};
 	8C3AB4AB12E2CEBF00A19AA4 /* README.txt */ = {
@@ -2094,7 +2097,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {901, 10738}}";
 			sepNavSelRange = "{5885, 11}";
-			sepNavVisRange = "{5519, 658}";
+			sepNavVisRange = "{5522, 658}";
 			sepNavWindowFrame = "{{356, 47}, {907, 831}}";
 		};
 	};
@@ -3206,9 +3209,9 @@
 	};
 	8C82D01B12F3DC7000830486 /* TotalsManager.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {876, 4641}}";
+			sepNavIntBoundsRect = "{{0, 0}, {876, 4654}}";
 			sepNavSelRange = "{4361, 63}";
-			sepNavVisRange = "{3284, 1790}";
+			sepNavVisRange = "{3363, 1724}";
 			sepNavWindowFrame = "{{15, 42}, {907, 831}}";
 		};
 	};
@@ -3576,11 +3579,11 @@
 		delayBeforeContinue = 0;
 		fileReference = 8C82D01B12F3DC7000830486 /* TotalsManager.m */;
 		functionName = "-updateSummaryWithWork:free:away:";
-		hitCount = 0;
+		hitCount = 1;
 		ignoreCount = 0;
 		lineNumber = 130;
 		location = "Dev Struct";
-		modificationTime = 327048226.898992;
+		modificationTime = 327048414.263527;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -3704,6 +3707,63 @@
 		vrLen = 750;
 		vrLoc = 2101;
 	};
+	8C9E9A7A137E646D00529EC2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C82D01B12F3DC7000830486 /* TotalsManager.m */;
+		name = "TotalsManager.m: 128";
+		rLen = 63;
+		rLoc = 4361;
+		rType = 0;
+		vrLen = 1724;
+		vrLoc = 3363;
+	};
+	8C9E9A7B137E646D00529EC2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CB7C767137D95DA00CB3193 /* NDHotKeyControl.m */;
+		name = "NDHotKeyControl.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1054;
+		vrLoc = 1243;
+	};
+	8C9E9A7C137E646D00529EC2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CB7C768137D95DA00CB3193 /* NDHotKeyEvent.h */;
+		name = "NDHotKeyEvent.h: 236";
+		rLen = 153;
+		rLoc = 12297;
+		rType = 0;
+		vrLen = 3698;
+		vrLoc = 11301;
+	};
+	8C9E9A7D137E646D00529EC2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CB7C767137D95DA00CB3193 /* NDHotKeyControl.m */;
+		name = "NDHotKeyControl.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 750;
+		vrLoc = 2101;
+	};
+	8C9E9AB1137E65B900529EC2 /* iCalTodoModule */ = {
+		activeExec = 0;
+	};
+	8C9E9AB8137E65FA00529EC2 /* iCalTodoModule.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {876, 975}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1121}";
+		};
+	};
+	8C9E9AB9137E65FA00529EC2 /* iCalTodoModule.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {876, 5668}}";
+			sepNavSelRange = "{1246, 0}";
+			sepNavVisRange = "{1800, 1344}";
+		};
+	};
 	8C9FB5D213356F0F0034FE85 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 8CDC13461310897F00BA478C /* SummaryViewController.h */;
@@ -3751,6 +3811,7 @@
 			sepNavIntBoundsRect = "{{0, 0}, {848, 2522}}";
 			sepNavSelRange = "{0, 0}";
 			sepNavVisRange = "{2101, 750}";
+			sepNavWindowFrame = "{{15, 42}, {907, 831}}";
 		};
 	};
 	8CB7C768137D95DA00CB3193 /* NDHotKeyEvent.h */ = {

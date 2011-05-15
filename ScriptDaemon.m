@@ -12,7 +12,7 @@
 @implementation ScriptDaemon
 @synthesize sessionMap;
 @synthesize stopMe;
-@synthesize aseHandler;
+@synthesize handlerMap;
 @synthesize queueName;
 
 - (id) initWithName: (NSString*) name
@@ -46,6 +46,7 @@
 	
 	NSString *script = [[notification userInfo] objectForKey: @"script"];
 	NSString *callback = [[notification userInfo] objectForKey: @"callback"];
+	NSString *hName = [[notification userInfo] objectForKey: @"handler"];
 	NSDictionary *errorRes = nil;
     NSAppleEventDescriptor *eventRes = nil;
 	if (!sessionMap){
@@ -72,8 +73,8 @@
 		}
 		if (!errorRes) {
 			mailArray = [[NSMutableArray new] retain];
-			
-			[aseHandler handleEventDescriptor: eventRes list: mailArray];
+			id<AppleScriptEventHandler> handler = [handlerMap objectForKey:hName];
+			[handler handleEventDescriptor: eventRes list: mailArray];
 			[sessionMap setObject:mailArray forKey:callback];
 			NSLog(@"ok script result - %d messages", [mailArray count]);
 			[mailArray addObject:[NSDictionary new]]; // add an empty dictionary -- EOF

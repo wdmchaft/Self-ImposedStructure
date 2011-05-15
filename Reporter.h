@@ -15,6 +15,7 @@
 #define EVENT_ID @"id"
 #define TASK_DUE @"due_time"
 #define TASK_NAME @"name"
+#define TASK_SUMMARY @"summary"
 #define REPORTER_MODULE @"module"
 #define MAIL_EMAIL @"email"
 #define MAIL_SUMMARY @"summary"

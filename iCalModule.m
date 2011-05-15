@@ -146,6 +146,7 @@
 		NSLog(@"sending fetch with script");
 		params = [NSDictionary dictionaryWithObjectsAndKeys:script, @"script",
 				  [self msgName], @"callback", 
+                  @"event", @"handler",
 				  nil];
 	} else {
 		NSLog(@"sending fetch without script");

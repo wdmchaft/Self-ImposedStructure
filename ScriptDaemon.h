@@ -12,16 +12,16 @@
 @interface ScriptDaemon : NSObject {
 	NSMutableDictionary *sessionMap;
 	BOOL stopMe;
-	<AppleScriptEventHandler> aseHandler;
+//	<AppleScriptEventHandler> aseHandler;
+    NSDictionary *handlerMap;
 	NSString *queueName;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *sessionMap;
 @property (nonatomic) BOOL stopMe;
-@property (nonatomic, retain) <AppleScriptEventHandler> aseHandler;
+@property (nonatomic, retain) NSDictionary *handlerMap;
 @property (nonatomic, retain) NSString* queueName;
 
 - (id) initWithName: (NSString*) name;
 - (void) loop: (NSAutoreleasePool*) pool;
-
 @end
