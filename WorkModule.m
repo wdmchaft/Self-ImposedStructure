@@ -48,7 +48,7 @@
 	NSTableView* tView = (NSTableView*)sender;
 	int row = [tView selectedRow];
 	WatchApp *wa = [appsToWatch objectAtIndex:row];
-	wa.state = wa.state == WPASTATE_THINKING ? WPASTATE_FREE : WPASTATE_THINKING;
+	wa.state = wa.state == WPASTATE_THINKING ? WPASTATE_OFF : WPASTATE_THINKING;
 }
 
 - (void) addClosed: (NSNotification*) notification
@@ -101,16 +101,27 @@
     NSDictionary *appInfo = [[NSWorkspace sharedWorkspace] activeApplication];
     NSString *appBundle = [appInfo objectForKey:@"NSApplicationBundleIdentifier"];
 	NSLog(@"WorkModule new app [%@]", appBundle);	
+	NSDictionary *dict = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:WPASTATE_FREE] forKey:@"state"];
+	NSString *stateStr =  @"free";
 	for (WatchApp *wa in appsToWatch){
 	//	NSLog(@"checking %@ [%@]",[wa idString], [wa nameString]);
 		if ([wa.idString isEqualToString:appBundle]){
 			//com.zer0gravitas.wpa
-			NSDictionary *dict = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:wa.state] forKey:@"state"];
-            NSString *stateStr = (wa.state == WPASTATE_FREE)? @"play" : @"work";
-			NSLog(@"WorkModule going to %@", appBundle, stateStr);
-			[notificationCenter postNotificationName:@"com.zer0gravitas.selfstruct.changestate" object: nil userInfo:dict];
+            if(wa.state == WPASTATE_THINKING){
+				[notificationCenter postNotificationName:@"com.zer0gravitas.selfstruct.changestate" object: nil userInfo:dict];
+				dict = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:WPASTATE_THINKING] forKey:@"state"];
+				stateStr = @"work";
+				break;
+			}
+			else if (wa.state == WPASTATE_OFF){
+				NSLog(@"WorkModule ignoring %@", appBundle);
+				return;
+			}
+
 		}
 	}
+	NSLog(@"WorkModule going to %@ state = %@", appBundle, stateStr);
+	[notificationCenter postNotificationName:@"com.zer0gravitas.selfstruct.changestate" object: nil userInfo:dict];
 }
 
 -(void) startValidation: (NSObject*) callback  
