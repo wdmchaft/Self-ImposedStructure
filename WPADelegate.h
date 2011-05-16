@@ -30,6 +30,8 @@
 	WriteHandler *ioHandler;
 	NSMenu *statusMenu;
 	id<WPAMDelegate> wpam;
+	NSTask *amDaemon;
+	NSTask *icDaemon;
 }
 
 @property (assign) IBOutlet NSWindow *window;
@@ -42,6 +44,8 @@
 @property (retain, nonatomic) IBOutlet id<WPAMDelegate> wpam;
 @property (retain, nonatomic) NSThread *ioThread;
 @property (retain, nonatomic) WriteHandler *ioHandler;
+@property (retain, nonatomic) NSTask *amDaemon;
+@property (retain, nonatomic) NSTask *icDaemon;
 //-(void) start;
 //-(void) stop;
 

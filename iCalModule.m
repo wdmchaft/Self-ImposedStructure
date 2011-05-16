@@ -184,9 +184,9 @@
 
 -(void) getEvents
 {
-	if([self launchDaemonIfNeeded]) {
-		return;
-	}
+	//if([self launchDaemonIfNeeded]) {
+//		return;
+//	}
     NSDate *today = [NSDate date];
     NSDate *window = [today dateByAddingTimeInterval:ONEDAYSECS * lookAhead]; 
     if (iCalDateFmt == nil){
@@ -255,7 +255,6 @@
 {
 	NSDictionary *dict = (NSDictionary*) param;
 	NSString *msgId = [dict objectForKey:@"id"];
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	NSBundle *myBundle = [NSBundle bundleForClass:[self class]];
     NSString *path = [myBundle resourcePath];
     path = [path stringByAppendingFormat:@"/%@",@"openEvent.txt"];
@@ -263,11 +262,7 @@
     NSString *script = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     script = [script stringByReplacingOccurrencesOfString:@"<calName>" withString:calendarName];
     script = [script stringByReplacingOccurrencesOfString:@"<idParam>" withString:msgId];
-    NSDictionary *anError;
-    NSAppleScript *aScript = [[NSAppleScript alloc] initWithSource:script];
-    [aScript executeAndReturnError:&anError];
-
-	[pool drain];	
+	[self sendFetchWithScript:script];
 }
 
 -(void) handleClick: (NSDictionary*) ctx
@@ -275,10 +270,11 @@
 	NSDictionary *event = [NSDictionary dictionaryWithDictionary:(NSDictionary*) ctx];
     [[NSWorkspace sharedWorkspace] launchApplication:@"iCal"];
  //   //NSLog(@"launched = %d", res);	
-    [NSThread detachNewThreadSelector: @selector(openEvent:)
-							 toTarget:self
-						   withObject:event];
-    
+	[self openEvent:ctx];
+   // [NSThread detachNewThreadSelector: @selector(openEvent:)
+//							 toTarget:self
+//						   withObject:event];
+//    
 }
 
 -(NSString*) timeStrFor:(NSDate*) date

@@ -1,0 +1,7 @@
+tell application "iCal"
+	tell calendar "<calName>"
+		set findId to "<idParam>"
+		set a to first todo whose uid = findId
+		show a
+	end tell
+end tell

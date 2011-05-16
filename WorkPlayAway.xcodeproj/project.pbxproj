@@ -26,6 +26,7 @@
 			buildPhases = (
 			);
 			dependencies = (
+				8CA45C76138036FF002144DC /* PBXTargetDependency */,
 				8CDC110C130CB40E00BA478C /* PBXTargetDependency */,
 				8CDC1108130CB40E00BA478C /* PBXTargetDependency */,
 				8CDC1106130CB40E00BA478C /* PBXTargetDependency */,
@@ -101,6 +102,8 @@
 		8C285845137319E400CAAF2A /* HUDBusyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C285844137319E400CAAF2A /* HUDBusyView.xib */; };
 		8C285846137319E400CAAF2A /* HUDBusyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C285844137319E400CAAF2A /* HUDBusyView.xib */; };
 		8C2861631375CE4D00CAAF2A /* RepeatByDayType.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C28615C1375CD4E00CAAF2A /* RepeatByDayType.m */; };
+		8C2B2D761380D69900AC08CF /* iCalTodoModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C2B2D751380D69900AC08CF /* iCalTodoModule.xib */; };
+		8C2B2F311381281C00AC08CF /* openTodo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C2B2F301381281C00AC08CF /* openTodo.txt */; };
 		8C34BC5C134D245300A9BCFE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C34BC5B134D245300A9BCFE /* Cocoa.framework */; };
 		8C34BC62134D245300A9BCFE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C34BC60134D245300A9BCFE /* InfoPlist.strings */; };
 		8C34BC77134D262A00A9BCFE /* iCalModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C34BC74134D262A00A9BCFE /* iCalModule.xib */; };
@@ -218,6 +221,7 @@
 		8C9E9ABD137E680D00529EC2 /* structcommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* structcommon.framework */; };
 		8C9FB5BE13356DB70034FE85 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9FB5BD13356DB70034FE85 /* CoreData.framework */; };
 		8C9FB5C213356DD20034FE85 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9FB5BD13356DB70034FE85 /* CoreData.framework */; };
+		8CA45C7813803AD4002144DC /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA45C7713803AD4002144DC /* ScriptingBridge.framework */; };
 		8CA668A412FF86C5004FD7EE /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA668A312FF86C5004FD7EE /* LaunchAtLoginController.m */; };
 		8CA668A512FF86C5004FD7EE /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA668A312FF86C5004FD7EE /* LaunchAtLoginController.m */; };
 		8CB05117135E6FF8008FCE40 /* WorkHoursToAverageXForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB05116135E6FF8008FCE40 /* WorkHoursToAverageXForm.m */; };
@@ -412,6 +416,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8CD1974312D4C59600C69AC9;
 			remoteInfo = structcommon;
+		};
+		8CA45C75138036FF002144DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C9E9AB1137E65B900529EC2;
+			remoteInfo = iCalTodoModule;
 		};
 		8CB8CCD3137C5326007F7647 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -663,6 +674,8 @@
 		8C285844137319E400CAAF2A /* HUDBusyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HUDBusyView.xib; sourceTree = "<group>"; };
 		8C28615B1375CD4E00CAAF2A /* RepeatByDayType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatByDayType.h; sourceTree = "<group>"; };
 		8C28615C1375CD4E00CAAF2A /* RepeatByDayType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatByDayType.m; sourceTree = "<group>"; };
+		8C2B2D751380D69900AC08CF /* iCalTodoModule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = iCalTodoModule.xib; sourceTree = "<group>"; };
+		8C2B2F301381281C00AC08CF /* openTodo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = openTodo.txt; sourceTree = SOURCE_ROOT; };
 		8C34BC5A134D245300A9BCFE /* iCalModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iCalModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C34BC5B134D245300A9BCFE /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		8C34BC5F134D245300A9BCFE /* iCalModule-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iCalModule-Info.plist"; sourceTree = "<group>"; };
@@ -886,6 +899,7 @@
 		8C9E9AB8137E65FA00529EC2 /* iCalTodoModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCalTodoModule.h; sourceTree = "<group>"; };
 		8C9E9AB9137E65FA00529EC2 /* iCalTodoModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCalTodoModule.m; sourceTree = "<group>"; };
 		8C9FB5BD13356DB70034FE85 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		8CA45C7713803AD4002144DC /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 		8CA668A212FF86C5004FD7EE /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchAtLoginController.h; sourceTree = "<group>"; };
 		8CA668A312FF86C5004FD7EE /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchAtLoginController.m; sourceTree = "<group>"; };
 		8CB05115135E6FF8008FCE40 /* WorkHoursToAverageXForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WorkHoursToAverageXForm.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -1052,6 +1066,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CA45C7813803AD4002144DC /* ScriptingBridge.framework in Frameworks */,
 				8C9E9ABD137E680D00529EC2 /* structcommon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1221,9 +1236,7 @@
 		29B97314FDCFA39411CA2CEA /* WorkPlayAway */ = {
 			isa = PBXGroup;
 			children = (
-				8C598FC0137F7403007AAD11 /* todoFetchTemplate.txt */,
-				8C598FBD137EC905007AAD11 /* iCalTodoHandler.h */,
-				8C598FBE137EC905007AAD11 /* iCalTodoHandler.m */,
+				8CA45C7713803AD4002144DC /* ScriptingBridge.framework */,
 				8C3982C7134D4F4A008C5670 /* ScriptingBridge.framework */,
 				8C73F10512E624080056FAFF /* Design.rtf */,
 				8C82CFDF12F3D0BE00830486 /* Design.txt */,
@@ -1314,6 +1327,7 @@
 		8C34BC67134D24B600A9BCFE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8C2B2F301381281C00AC08CF /* openTodo.txt */,
 				8C3982C0134D48DE008C5670 /* openEvent.txt */,
 				8C3982C5134D4E8C008C5670 /* allEvents.txt */,
 			);
@@ -1458,6 +1472,8 @@
 		8C9E9A79137E645D00529EC2 /* iCalTodoModule */ = {
 			isa = PBXGroup;
 			children = (
+				8C2B2D751380D69900AC08CF /* iCalTodoModule.xib */,
+				8C598FC0137F7403007AAD11 /* todoFetchTemplate.txt */,
 				8C9E9AB8137E65FA00529EC2 /* iCalTodoModule.h */,
 				8C9E9AB9137E65FA00529EC2 /* iCalTodoModule.m */,
 			);
@@ -1480,6 +1496,8 @@
 		8CB8CCAB137C52A1007F7647 /* ICalDaemon */ = {
 			isa = PBXGroup;
 			children = (
+				8C598FBD137EC905007AAD11 /* iCalTodoHandler.h */,
+				8C598FBE137EC905007AAD11 /* iCalTodoHandler.m */,
 				8CB8CCD8137C53EA007F7647 /* icmain.m */,
 				8CB8CCD9137C53EA007F7647 /* ICalEventHandler.h */,
 				8CB8CCDA137C53EA007F7647 /* ICalEventHandler.m */,
@@ -2296,6 +2314,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C598FC1137F7403007AAD11 /* todoFetchTemplate.txt in Resources */,
+				8C2B2D761380D69900AC08CF /* iCalTodoModule.xib in Resources */,
+				8C2B2F311381281C00AC08CF /* openTodo.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2796,6 +2816,11 @@
 			isa = PBXTargetDependency;
 			target = 8CD1974312D4C59600C69AC9 /* structcommon */;
 			targetProxy = 8C9E9ABB137E680600529EC2 /* PBXContainerItemProxy */;
+		};
+		8CA45C76138036FF002144DC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C9E9AB1137E65B900529EC2 /* iCalTodoModule */;
+			targetProxy = 8CA45C75138036FF002144DC /* PBXContainerItemProxy */;
 		};
 		8CB8CCD4137C5326007F7647 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

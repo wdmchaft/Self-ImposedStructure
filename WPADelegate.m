@@ -27,6 +27,8 @@
 @synthesize ioThread;
 @synthesize ioHandler;
 @synthesize wpam;
+@synthesize icDaemon;
+@synthesize amDaemon;
 
 + (void) initialize
 {
@@ -41,7 +43,7 @@
 {
     if (error)
     {
-        NSDictionary* userInfo = [error userInfo];
+//        NSDictionary* userInfo = [error userInfo];
         //NSLog (@"encountered the following error: %@", userInfo);
         Debugger();
     }
@@ -60,10 +62,30 @@
 	[NSTimer scheduledTimerWithTimeInterval:saveInt target:self selector:@selector(saveData:) userInfo:nil repeats:NO ];
 }
 
+- (NSTask*) startDaemon: (NSString*) name 
+{
+	NSString *supportDir = [self applicationSupportDirectory];
+	NSString *monitorPath = [NSString stringWithFormat:@"%@/Plugins/%@",supportDir, name];
+	NSLog(@"monitorPath = %@", monitorPath);
+	NSTask *task = [NSTask launchedTaskWithLaunchPath:monitorPath arguments:[NSArray new]];
+	if (!task){
+		NSLog(@"error launching %@", name);
+	}
+	return task;
+}
+
+- (void) startDaemons
+{
+	amDaemon = [self startDaemon:@"AppleMailDaemon"];
+	icDaemon = [self startDaemon:@"ICalDaemon"];
+		
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 
 	//WPAMainController *wpam = (WPAMainController*)[window delegate];
 	//NSLog(@"app launched");
+	[self startDaemons];
 	if ([[NSUserDefaults standardUserDefaults]boolForKey:@"startOnLoad"]){
 		[wpam clickStart:self];
 	}
@@ -481,6 +503,12 @@
 	[ioHandler performSelector:@selector(doWrapUp:) onThread:ioThread withObject:nil waitUntilDone:YES];
 	if (ioHandler.error){
 		return [self handleSaveError:ioHandler.error application:sender];
+	}
+	if (icDaemon){
+		[icDaemon terminate];
+	}
+	if (amDaemon){
+		[amDaemon terminate];
 	}
     return ioHandler.reply;
 }

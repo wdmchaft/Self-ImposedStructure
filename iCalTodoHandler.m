@@ -1,6 +1,6 @@
 //
 //  iCalTodoHandler.m
-//  WorkPlayAway
+//  Self-Imposed Structure
 //
 //  Created by Charles on 5/14/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
@@ -8,9 +8,10 @@
 
 #import "iCalTodoHandler.h"
 #define TASK_DUE @"due_time"
-#define TASK_NAME @"name"
-#define TASK_SUMMARY @"summary"
-#define TASK_NOTES @"notes"
+#define TASK_PRIORITY @"priority"
+#define TASK_NOTES @"summary"
+#define TASK_SUMMARY @"name"
+#define TASK_URL @"url"
 #define TASK_ID @"id"
 
 @implementation iCalTodoHandler
@@ -39,7 +40,7 @@
         if ([fieldValDesc descriptorType] != typeType) {
             
             NSString *fieldName = [fieldNameDesc stringValue];
-            if ([fieldName isEqualToString:@"sDate"]){
+            if ([fieldName isEqualToString:@"due"]){
                 NSString *dateTemp = [fieldValDesc stringValue];
                 NSDate *date = [iCalDateFmt dateFromString:dateTemp];
                 [eDict setValue:date forKey:TASK_DUE];
@@ -47,7 +48,10 @@
             if ([fieldName isEqualToString:@"desc"]){
                 [eDict setValue:[fieldValDesc stringValue] forKey:TASK_NOTES];
             } 
-            if ([fieldName isEqualToString:@"summ"]){
+			if ([fieldName isEqualToString:@"pri"]){
+                [eDict setValue:[fieldValDesc stringValue] forKey:TASK_NOTES];
+            } 
+            if ([fieldName isEqualToString:@"sum"]){
                 [eDict setValue:[fieldValDesc stringValue] forKey:TASK_SUMMARY];
             } 
             if ([fieldName isEqualToString:@"unique"]){
@@ -88,7 +92,7 @@
         c = (char*)&type;
         //NSLog(@"unexpected event descriptor: %c%c%c%c (%@)",c[3],c[2],c[1],c[0], [aDescriptor description]);
     }
-    
+    NSLog(@"processed %d events", [eventsList count]);
 }
 - (void) dealloc
 {

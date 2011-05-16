@@ -173,6 +173,7 @@
 		NSLog(@"sending fetch with script");
 		params = [NSDictionary dictionaryWithObjectsAndKeys:script, @"script",
 							[self callbackName], @"callback", 
+							@"mail", @"handler",
 							nil];
 	} else {
 		NSLog(@"sending fetch without script");
@@ -234,9 +235,9 @@
 
 -(void) getNewest
 {
-	if ([self launchDaemonIfNeeded] == YES) {
-		return;
-	}
+//	if ([self launchDaemonIfNeeded] == YES) {
+//		return;
+//	}
 	lastRefresh = [NSDate date];
     NSString *script = [self getScript];
 	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];

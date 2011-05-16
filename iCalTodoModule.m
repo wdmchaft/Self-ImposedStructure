@@ -81,20 +81,6 @@
 
 #define ONEDAYSECS (60 * 60 * 24)	
 
--(void) refreshData
-{
-	if (alarmsList != nil && [alarmsList count] > 0){
-		NSUInteger count = [alarmsList count];
-		while (count > 0) {
-			NSTimer *timer = [alarmsList objectAtIndex:count - 1];
-			[timer invalidate];
-			[alarmsList removeLastObject];
-			count --;
-		}
-	}
-	refreshDate = [NSDate new];
-}
-
 //
 // the message name is used to name a private notification back from the scripting monitor
 // so just use a timestamp to keep the name unique
@@ -112,29 +98,74 @@
 {
 	NSLog(@"fetchDone");
     [[NSDistributedNotificationCenter defaultCenter] removeObserver:self name:[self msgName] object:nil];
-	for (NSDictionary *event in eventsList){
-		WPAAlert *note = [[WPAAlert alloc]init];
-		note.moduleName = name;
-		NSDate *eventDate = [event objectForKey:EVENT_START];
-		note.title = [self timeStrFor:eventDate];
-		note.message = [event objectForKey:EVENT_SUMMARY];
-		note.params = event;
+	NSLog(@"eventslist count = %d", [eventsList count]);
+	NSDate *nowDate = [NSDate date];
+	for (NSMutableDictionary *item in eventsList){
+		WPAAlert *alert = [[WPAAlert alloc]init];
+		NSString *alertTitle = [calendarName copy];
+		alert.title = alertTitle;
+		alert.clickable = YES;
 		
-		if (summaryMode){
-			[alertHandler handleAlert:note];
+		alert.message=[item objectForKey:@"name"];
+		alert.params = item;
+		
+		NSDate *dueDate = [item objectForKey:@"due_time"];
+		NSComparisonResult dueCheck = NSOrderedSame; // this will *stay* if there is no date
+		if (dueDate){
+			dueCheck = [dueDate compare:nowDate];
 		}
-		NSTimeInterval fireTime = [eventDate timeIntervalSinceNow];
-		fireTime -= warningWindow;
-		NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:fireTime 
-														  target:self 
-														selector:@selector(handleWarningAlarm:) 
-														userInfo:note
-														 repeats:NO];
-		if (alarmsList == nil){
-			alarmsList = [NSMutableArray new];
+		alert.moduleName = name;
+		alert.isWork = isWorkRelated;
+		if (alert.isWork)
+		{
+			[item setObject: [NSNumber numberWithBool:alert.isWork] forKey:@"work"];
 		}
-		[alarmsList addObject: timer];
-        
+		NSString *dateStr = dueDate ? [Utility timeStrFor:dueDate] : @"";
+		
+		// check items which have due dates - they are either due in the future or past due or (unlikely) right now
+		
+		if (dueCheck == NSOrderedDescending) {
+			
+			// the task is due in the future don't show it (and remove it) if its out beyond our event horizon
+			
+			alertTitle = [alertTitle stringByAppendingFormat:@"[Task Due: %@]",dateStr];
+			
+		} else if (dueCheck == NSOrderedAscending) {
+			alertTitle = [alertTitle stringByAppendingFormat:@"[Task OverDue: %@]",dateStr];
+		}
+		else if (dueDate != nil) {
+			// it has a due date which is *exactly equal* to the current time 
+			//NSLog(@"wow - a task due right now:%@", alert.message);
+			alertTitle = [alertTitle stringByAppendingString:@"[Task Due right now!!!]"];
+		} else {
+			// has no due date -- add a date in far future so task sorts to bottom of date sorted list
+			[item setObject:[NSDate distantFuture] forKey:@"due_time"];
+		}
+		[alertHandler handleAlert:alert];
+		
+		if (dueCheck == NSOrderedDescending) {
+			NSTimeInterval dueInterval = [dueDate timeIntervalSinceNow];
+			if (alarmsList == nil){
+				alarmsList = [NSMutableDictionary new];
+			}
+			WPAAlert *alarm = [alert copy];
+			alarm.title =[calendarName stringByAppendingString:@" [Task Due Now]"];
+			alarm.urgent = YES;
+			alarm.sticky = YES;
+			NSString *key = [NSString stringWithFormat:@"%@%@",
+							 [dueDate description],
+							 [item objectForKey:@"name"]];
+			// if we do not already have an alarm set -- set it
+			if ([alarmsList objectForKey:key] == nil){
+				NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:dueInterval
+																  target:self 
+																selector:@selector(handleWarningAlarm:)
+																userInfo:alarm
+																 repeats:NO]; 
+				
+				[alarmsList setObject:timer forKey:key];	
+			}
+		}	
     }
 	[BaseInstance sendDone: alertHandler module: name];
 }
@@ -146,6 +177,7 @@
 		NSLog(@"sending fetch with script");
 		params = [NSDictionary dictionaryWithObjectsAndKeys:script, @"script",
 				  [self msgName], @"callback", 
+                  @"task", @"handler",
 				  nil];
 	} else {
 		NSLog(@"sending fetch without script");
@@ -183,26 +215,25 @@
 
 -(void) getEvents
 {
-	if([self launchDaemonIfNeeded]) {
-		return;
-	}
+//	if([self launchDaemonIfNeeded]) {
+//		return;
+//	}
     NSDate *today = [NSDate date];
     NSDate *window = [today dateByAddingTimeInterval:ONEDAYSECS * lookAhead]; 
     if (iCalDateFmt == nil){
         iCalDateFmt = [NSDateFormatter new];
         [iCalDateFmt setDateFormat:@"EEEE, MMMM dd, yyyy hh:mm:ss a"];
     }
-    NSString *nowStr = [iCalDateFmt stringFromDate:today];
+//    NSString *nowStr = [iCalDateFmt stringFromDate:today];
     NSString *thenStr = [iCalDateFmt stringFromDate:window];
     NSBundle *myBundle = [NSBundle bundleForClass:[self class]];
     NSString *path = [myBundle resourcePath];
-    path = [path stringByAppendingFormat:@"/%@",@"allEvents.txt"];
+    path = [path stringByAppendingFormat:@"/%@",@"todoFetchTemplate.txt"];
     NSData *data = [NSData dataWithContentsOfFile:path];
     NSString *script = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     script = [script stringByReplacingOccurrencesOfString:@"<calName>" withString:calendarName];
-    script = [script stringByReplacingOccurrencesOfString:@"<sDate>" withString:nowStr];
-    script = [script stringByReplacingOccurrencesOfString:@"<eDate>" withString:thenStr];
-    //NSLog(@"script = %@",script);
+	script = [script stringByReplacingOccurrencesOfString:@"<eDate>" withString:thenStr];
+    NSLog(@"script = %@",script);
 	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
 	[dnc addObserver:self 
 			selector:@selector(eventFetched:)
@@ -250,23 +281,37 @@
 	}
 }
 
--(void) openEvent: (NSObject*) param
+-(void) openTodo: (NSObject*) param
 {
-	NSDictionary *dict = (NSDictionary*) param;
-	NSString *msgId = [dict objectForKey:@"id"];
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	NSBundle *myBundle = [NSBundle bundleForClass:[self class]];
-    NSString *path = [myBundle resourcePath];
-    path = [path stringByAppendingFormat:@"/%@",@"openEvent.txt"];
-    NSData *data = [NSData dataWithContentsOfFile:path];
-    NSString *script = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    script = [script stringByReplacingOccurrencesOfString:@"<calName>" withString:calendarName];
-    script = [script stringByReplacingOccurrencesOfString:@"<idParam>" withString:msgId];
-    NSDictionary *anError;
-    NSAppleScript *aScript = [[NSAppleScript alloc] initWithSource:script];
-    [aScript executeAndReturnError:&anError];
-
-	[pool drain];	
+//	NSDictionary *dict = (NSDictionary*) param;
+//	NSString *msgId = [dict objectForKey:@"id"];
+//	//NSLog(@"msgId = %@", msgId);
+//	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+//	
+//	//	//NSLog(@"will get all email later than %@", minTime);
+//	iCalApplication *icalApp = [SBApplication applicationWithBundleIdentifier:@"com.apple.ical"];
+//	if (mailApp) {
+//		
+//		for (iCalCalendar *cal in icalApp.calendars){
+//			if ([cal.name isEqualToString:calendarName]){
+//				for(iCalTodo *todo in cal.todos){
+//					if ([todo.id isEqualToString: taskId]) {
+//						for (MailMessage *msg in box.messages){
+//							if ([msg.messageId isEqualToString: msgId]){
+//								
+//								[msg open];
+//								BOOL res = [[NSWorkspace sharedWorkspace] launchApplication:@"Mail"];
+//								//NSLog(@"launched = %d", res);
+//							}
+//							
+//						}
+//					}
+//				}
+//			}
+//		}
+//	}
+//	
+//	[pool drain];	
 }
 
 -(void) handleClick: (NSDictionary*) ctx
@@ -274,7 +319,7 @@
 	NSDictionary *event = [NSDictionary dictionaryWithDictionary:(NSDictionary*) ctx];
     [[NSWorkspace sharedWorkspace] launchApplication:@"iCal"];
  //   //NSLog(@"launched = %d", res);	
-    [NSThread detachNewThreadSelector: @selector(openEvent:)
+    [NSThread detachNewThreadSelector: @selector(openTodo:)
 							 toTarget:self
 						   withObject:event];
     

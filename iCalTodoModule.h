@@ -26,7 +26,7 @@
 	NSDate *refreshDate;
 	BOOL addThis;
 	NSTimeInterval warningWindow;
-	NSMutableArray *alarmsList;
+	NSMutableDictionary *alarmsList;
 	NSMutableDictionary *currentEvent;
 	BOOL summaryMode;
 	NSMutableArray *eventsList;
@@ -47,7 +47,7 @@
 @property (nonatomic, retain) IBOutlet NSStepper *stepperRefresh;
 @property (nonatomic, retain) IBOutlet NSStepper *stepperLookAhead;
 @property (nonatomic, retain) IBOutlet NSStepper *stepperWarning;
-@property (nonatomic,retain) NSMutableArray *alarmsList;
+@property (nonatomic,retain) NSMutableDictionary *alarmsList;
 @property (nonatomic,retain) NSMutableDictionary *currentEvent;
 @property (nonatomic,retain) NSMutableArray *eventsList;
 @property (nonatomic,retain) id<AlertHandler> alertHandler;
