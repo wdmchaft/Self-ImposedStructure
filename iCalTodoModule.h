@@ -9,8 +9,9 @@
 #import <Cocoa/Cocoa.h>
 #import "BaseReporter.h"
 #import "Stateful.h"
+#import "TaskList.h"
 
-@interface iCalTodoModule : BaseReporter <Stateful> {
+@interface iCalTodoModule : BaseReporter <TaskList, Stateful> {
     NSPopUpButton *calendarMenu;
     NSTextField *refreshField;
 	NSTextField *lookAheadField;
@@ -29,10 +30,13 @@
 	NSMutableDictionary *alarmsList;
 	NSMutableDictionary *currentEvent;
 	BOOL summaryMode;
-	NSMutableArray *eventsList;
+	NSMutableArray *tasksList;
 	id<AlertHandler> alertHandler;
     NSDateFormatter *iCalDateFmt;
     NSString *msgName;
+	SEL scriptCallback;
+	NSObject *completeCaller;
+	SEL completeHandler;
 }
 @property (nonatomic, retain) NSDate *refreshDate;
 @property (nonatomic,retain) NSMutableData *respBuffer;
@@ -49,18 +53,20 @@
 @property (nonatomic, retain) IBOutlet NSStepper *stepperWarning;
 @property (nonatomic,retain) NSMutableDictionary *alarmsList;
 @property (nonatomic,retain) NSMutableDictionary *currentEvent;
-@property (nonatomic,retain) NSMutableArray *eventsList;
+@property (nonatomic,retain) NSMutableArray *tasksList;
 @property (nonatomic,retain) id<AlertHandler> alertHandler;
 @property (nonatomic,retain) NSString *calendarName;
 @property (nonatomic,retain) NSDateFormatter *iCalDateFmt;
 @property (nonatomic,retain) NSString *msgName;
+@property (nonatomic) SEL scriptCallback;
+@property (nonatomic, retain) NSObject *completeCaller;
+@property (nonatomic) SEL completeHandler;
 
 //-(void) saveDefaultValue: (NSObject*) val forKey: (NSString*) key;
 //-(void) clearDefaultValue: (NSObject*) val forKey: (NSString*) key;
 -(IBAction) clickRefreshStepper: (id) sender;
 -(IBAction) clickLookAheadStepper: (id) sender;
 -(IBAction) clickWarningStepper: (id) sender;
--(void) refreshData;
 - (void) handleWarningAlarm: (NSTimer*) theTimer;
 -(NSString*) timeStrFor:(NSDate*) date;
 @end

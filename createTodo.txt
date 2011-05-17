@@ -1,0 +1,3 @@
+tell application "iCal"
+	make todo at end of todos of calendar "<calName>" with properties {summary:"<summText>"}
+end tell

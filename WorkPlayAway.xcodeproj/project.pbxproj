@@ -104,6 +104,8 @@
 		8C2861631375CE4D00CAAF2A /* RepeatByDayType.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C28615C1375CD4E00CAAF2A /* RepeatByDayType.m */; };
 		8C2B2D761380D69900AC08CF /* iCalTodoModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C2B2D751380D69900AC08CF /* iCalTodoModule.xib */; };
 		8C2B2F311381281C00AC08CF /* openTodo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C2B2F301381281C00AC08CF /* openTodo.txt */; };
+		8C2B318F1382168D00AC08CF /* completeTodo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C2B318E1382168D00AC08CF /* completeTodo.txt */; };
+		8C2B31911382215000AC08CF /* createTodo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C2B31901382215000AC08CF /* createTodo.txt */; };
 		8C34BC5C134D245300A9BCFE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C34BC5B134D245300A9BCFE /* Cocoa.framework */; };
 		8C34BC62134D245300A9BCFE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C34BC60134D245300A9BCFE /* InfoPlist.strings */; };
 		8C34BC77134D262A00A9BCFE /* iCalModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C34BC74134D262A00A9BCFE /* iCalModule.xib */; };
@@ -676,6 +678,8 @@
 		8C28615C1375CD4E00CAAF2A /* RepeatByDayType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatByDayType.m; sourceTree = "<group>"; };
 		8C2B2D751380D69900AC08CF /* iCalTodoModule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = iCalTodoModule.xib; sourceTree = "<group>"; };
 		8C2B2F301381281C00AC08CF /* openTodo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = openTodo.txt; sourceTree = SOURCE_ROOT; };
+		8C2B318E1382168D00AC08CF /* completeTodo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = completeTodo.txt; sourceTree = "<group>"; };
+		8C2B31901382215000AC08CF /* createTodo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = createTodo.txt; sourceTree = "<group>"; };
 		8C34BC5A134D245300A9BCFE /* iCalModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iCalModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C34BC5B134D245300A9BCFE /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		8C34BC5F134D245300A9BCFE /* iCalModule-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iCalModule-Info.plist"; sourceTree = "<group>"; };
@@ -1327,6 +1331,7 @@
 		8C34BC67134D24B600A9BCFE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8C2B318E1382168D00AC08CF /* completeTodo.txt */,
 				8C2B2F301381281C00AC08CF /* openTodo.txt */,
 				8C3982C0134D48DE008C5670 /* openEvent.txt */,
 				8C3982C5134D4E8C008C5670 /* allEvents.txt */,
@@ -1673,6 +1678,7 @@
 		8CD1978912D4C89D00C69AC9 /* WPAMain */ = {
 			isa = PBXGroup;
 			children = (
+				8C2B31901382215000AC08CF /* createTodo.txt */,
 				8C5BB633136F33230004E88C /* SwitchActivityDialog.h */,
 				8C5BB83E136F448D0004E88C /* SwitchActivityDialog.xib */,
 				8C5BB634136F33230004E88C /* SwitchActivityDialog.m */,
@@ -2316,6 +2322,8 @@
 				8C598FC1137F7403007AAD11 /* todoFetchTemplate.txt in Resources */,
 				8C2B2D761380D69900AC08CF /* iCalTodoModule.xib in Resources */,
 				8C2B2F311381281C00AC08CF /* openTodo.txt in Resources */,
+				8C2B318F1382168D00AC08CF /* completeTodo.txt in Resources */,
+				8C2B31911382215000AC08CF /* createTodo.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

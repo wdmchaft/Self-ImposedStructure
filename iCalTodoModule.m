@@ -34,10 +34,13 @@
 @synthesize warningField;
 @synthesize currentEvent;
 @synthesize summaryMode;
-@synthesize eventsList;
+@synthesize tasksList;
 @synthesize alertHandler;
 @synthesize iCalDateFmt;
 @synthesize msgName;
+@synthesize scriptCallback;
+@synthesize completeHandler;
+@synthesize completeCaller;
 
 @dynamic refreshInterval;
 @dynamic notificationName;
@@ -98,9 +101,15 @@
 {
 	NSLog(@"fetchDone");
     [[NSDistributedNotificationCenter defaultCenter] removeObserver:self name:[self msgName] object:nil];
-	NSLog(@"eventslist count = %d", [eventsList count]);
+	NSLog(@"tasksList count = %d", [tasksList count]);
 	NSDate *nowDate = [NSDate date];
-	for (NSMutableDictionary *item in eventsList){
+	if (alertHandler == nil) {
+		NSNotification *notice = [NSNotification notificationWithName:@"com.zer0gravitas.tasks" object:self];
+		NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+		[nc postNotification:notice];
+		return;
+	}
+	for (NSMutableDictionary *item in tasksList){
 		WPAAlert *alert = [[WPAAlert alloc]init];
 		NSString *alertTitle = [calendarName copy];
 		alert.title = alertTitle;
@@ -187,33 +196,7 @@
 	[dnc postNotificationName:@"com.zer0gravitas.icaldaemon" object:nil userInfo:params];
 }
 
-#define ICALDAEMON @"ICalDaemon"
-- (BOOL) launchDaemonIfNeeded
-{
-	NSDictionary *icalDefaults = [[NSUserDefaults standardUserDefaults] persistentDomainForName:ICALDAEMON];
-	BOOL started = [[icalDefaults objectForKey:@"running"] integerValue];
-	if (!started) {
-		NSString *supportDir = [Utility applicationSupportDirectory];
-		NSString *monitorPath = [NSString stringWithFormat:@"%@/Plugins/%@",supportDir, ICALDAEMON];
-		
-	//	NSString *monitorPath = [NSString stringWithFormat:@"%@/%@.app/Contents/MacOS/%@",@"/Applications/", 
-	//							 ICALDAEMON,ICALDAEMON];
-		NSLog(@"monitorPath = %@", monitorPath);
-		[[NSDistributedNotificationCenter defaultCenter] addObserver:self 
-															selector:@selector(getEvents)
-																name:@"com.zer0gravitas.icaldaemon.started" 
-															  object:nil];
-		NSTask *task = [NSTask launchedTaskWithLaunchPath:monitorPath arguments:[NSArray new]];
-		if (!task){
-			NSLog(@"error launching %@", ICALDAEMON);
-			return NO;
-		}
-		return YES;
-	}
-	return NO;
-}
-
--(void) getEvents
+-(void) fetchTasks
 {
 //	if([self launchDaemonIfNeeded]) {
 //		return;
@@ -236,7 +219,7 @@
     NSLog(@"script = %@",script);
 	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
 	[dnc addObserver:self 
-			selector:@selector(eventFetched:)
+			selector:@selector(taskFetched:)
 				name:[self msgName]
 			  object:nil
 	 ];
@@ -247,16 +230,19 @@
 {
 	alertHandler = handler;
     summaryMode = summary;
-    if (!eventsList) {
-        eventsList = [NSMutableArray new];
+    if (!tasksList) {
+        tasksList = [NSMutableArray new];
     }
-    [eventsList removeAllObjects];
+    [tasksList removeAllObjects];
     //NSLog(@"msg = %@",[self msgName]);
     
-	[self getEvents];
+	[self fetchTasks];
+}
+- (void) refreshTasks{
+	[self refresh: nil isSummary: NO];
 }
 
-- (void) eventFetched: (NSNotification*) notification
+- (void) taskFetched: (NSNotification*) notification
 {
 	NSDictionary *msg = [notification userInfo];
 	NSString *errStr = [msg objectForKey:@"error"];
@@ -275,7 +261,7 @@
 			[self fetchDone];
 		} else {
 			NSLog(@"got message");
-			[eventsList addObject:[NSMutableDictionary dictionaryWithDictionary:msg]];
+			[tasksList addObject:[NSMutableDictionary dictionaryWithDictionary:msg]];
 			[self sendFetchWithScript:NO];
 		}
 	}
@@ -283,46 +269,23 @@
 
 -(void) openTodo: (NSObject*) param
 {
-//	NSDictionary *dict = (NSDictionary*) param;
-//	NSString *msgId = [dict objectForKey:@"id"];
-//	//NSLog(@"msgId = %@", msgId);
-//	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-//	
-//	//	//NSLog(@"will get all email later than %@", minTime);
-//	iCalApplication *icalApp = [SBApplication applicationWithBundleIdentifier:@"com.apple.ical"];
-//	if (mailApp) {
-//		
-//		for (iCalCalendar *cal in icalApp.calendars){
-//			if ([cal.name isEqualToString:calendarName]){
-//				for(iCalTodo *todo in cal.todos){
-//					if ([todo.id isEqualToString: taskId]) {
-//						for (MailMessage *msg in box.messages){
-//							if ([msg.messageId isEqualToString: msgId]){
-//								
-//								[msg open];
-//								BOOL res = [[NSWorkspace sharedWorkspace] launchApplication:@"Mail"];
-//								//NSLog(@"launched = %d", res);
-//							}
-//							
-//						}
-//					}
-//				}
-//			}
-//		}
-//	}
-//	
-//	[pool drain];	
+	NSDictionary *dict = (NSDictionary*) param;
+	NSString *msgId = [dict objectForKey:@"id"];
+	NSBundle *myBundle = [NSBundle bundleForClass:[self class]];
+    NSString *path = [myBundle resourcePath];
+    path = [path stringByAppendingFormat:@"/%@",@"openTodo.txt"];
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    NSString *script = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    script = [script stringByReplacingOccurrencesOfString:@"<calName>" withString:calendarName];
+    script = [script stringByReplacingOccurrencesOfString:@"<idParam>" withString:msgId];
+	[self sendFetchWithScript:script];
 }
 
 -(void) handleClick: (NSDictionary*) ctx
 {
-	NSDictionary *event = [NSDictionary dictionaryWithDictionary:(NSDictionary*) ctx];
     [[NSWorkspace sharedWorkspace] launchApplication:@"iCal"];
  //   //NSLog(@"launched = %d", res);	
-    [NSThread detachNewThreadSelector: @selector(openTodo:)
-							 toTarget:self
-						   withObject:event];
-    
+	[self openTodo:ctx];
 }
 
 -(NSString*) timeStrFor:(NSDate*) date
@@ -449,5 +412,65 @@
 {
 	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
 	[dnc postNotificationName: @"com.zer0gravitas.icaldaemon.quit" object:@"iCalTodoModule"];
+}
+- (NSString*) projectForTask: (NSString*) task{
+	return calendarName;
+}
+
+- (void) didComplete: (NSNotification *) msg
+{
+    [[NSDistributedNotificationCenter defaultCenter] removeObserver:self name:[self msgName] object:nil];
+	[completeCaller performSelector: completeHandler];
+}
+
+- (void) markComplete:(NSDictionary *)ctx completeHandler:(NSObject*) target selector: (SEL) handler
+{
+	NSString *msgId = [ctx objectForKey:@"id"];
+	NSBundle *myBundle = [NSBundle bundleForClass:[self class]];
+    NSString *path = [myBundle resourcePath];
+    path = [path stringByAppendingFormat:@"/%@",@"completeTodo.txt"];
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    NSString *script = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    script = [script stringByReplacingOccurrencesOfString:@"<calName>" withString:calendarName];
+    script = [script stringByReplacingOccurrencesOfString:@"<idParam>" withString:msgId];
+	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
+	[dnc addObserver:self 
+			selector:@selector(didComplete:)
+				name:[self msgName]
+			  object:nil
+	 ];
+	completeCaller = target;
+	completeHandler = handler;
+	[self sendFetchWithScript:script];
+}
+
+- (void) didCreate: (NSNotification *) msg
+{
+    [[NSDistributedNotificationCenter defaultCenter] removeObserver:self name:[self msgName] object:nil];
+	[completeCaller performSelector: completeHandler];
+}
+
+- (void) newTask:(NSString *)summary  completeHandler:(NSObject*) target selector: (SEL) handler {
+	NSBundle *myBundle = [NSBundle bundleForClass:[self class]];
+    NSString *path = [myBundle resourcePath];
+    path = [path stringByAppendingFormat:@"/%@",@"createTodo.txt"];
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    NSString *script = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    script = [script stringByReplacingOccurrencesOfString:@"<calName>" withString:calendarName];
+    script = [script stringByReplacingOccurrencesOfString:@"<summText>" withString:summary];
+	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
+	[dnc addObserver:self 
+			selector:@selector(didCreate:)
+				name:[self msgName]
+			  object:nil
+	 ];
+	completeCaller = target;
+	completeHandler = handler;	
+	[self sendFetchWithScript:script];
+}
+
+- (NSArray*) getTasks
+{
+	return tasksList;
 }
 @end
