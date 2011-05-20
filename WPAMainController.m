@@ -788,7 +788,8 @@
 	NDHotKeyEvent *event = [[Context sharedContext]  hotkeyEvent];
 	if (event){
 		[event setTarget: self selector:@selector(popStatusMenu)];
-	}
+		[event setEnabled:YES];
+}
 
 }
 
