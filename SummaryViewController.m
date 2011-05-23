@@ -79,7 +79,6 @@
 	[reporter refresh: self isSummary:YES];
 }
 
-
 -(void) handleError: (WPAAlert*) error
 {
 	[prog setHidden:YES];

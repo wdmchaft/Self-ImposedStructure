@@ -75,8 +75,8 @@
 - (void) listDone 
 {
 	[super saveDefaultValue:protocol.tasksList forKey:TASKLIST];
-	int taskCount = [protocol.tasksList count];
-	int count = 0;
+	if ([protocol.tasksList count] == 0){
+	}
 	for (NSDictionary *taskData in protocol.tasksList){
 		WPAAlert *alert = [[WPAAlert alloc]init];
 		alert.message=[taskData objectForKey: @"name"];
@@ -87,8 +87,11 @@
 		alert.title =name;
 		alert.message=[taskData objectForKey: @"name"];
 		alert.params = taskData;
-		alert.lastAlert = ++count == taskCount;
+		alert.lastAlert =  NO;
 		[handler handleAlert:alert];
+	}
+	if (summaryMode){
+		[BaseInstance sendDone:handler module:name];
 	}
 	[self taskRefreshDone];
 }
@@ -529,6 +532,7 @@
 			protocol.listNameStr = [keys objectAtIndex:0];
 		}
 		[listsCombo setHidden: NO];
+		[comboLabel setHidden:NO];
 		[refreshText setHidden:NO];
 		[refreshLabel setHidden:NO];
 		[stepperLabel setHidden:NO];	

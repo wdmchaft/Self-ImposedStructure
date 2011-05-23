@@ -41,6 +41,7 @@
 				8CDC10F2130CB40D00BA478C /* PBXTargetDependency */,
 				8CB8CCD4137C5326007F7647 /* PBXTargetDependency */,
 				8CB8CCD6137C5326007F7647 /* PBXTargetDependency */,
+				8C9652D613847E9C007970F2 /* PBXTargetDependency */,
 			);
 			name = "All Modules";
 			productName = "All Modules";
@@ -110,6 +111,10 @@
 		8C34BC62134D245300A9BCFE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C34BC60134D245300A9BCFE /* InfoPlist.strings */; };
 		8C34BC77134D262A00A9BCFE /* iCalModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C34BC74134D262A00A9BCFE /* iCalModule.xib */; };
 		8C34BC78134D262A00A9BCFE /* iCalModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C34BC75134D262A00A9BCFE /* iCalModule.m */; };
+		8C3798481384CFEE008EADC7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C3798471384CFEE008EADC7 /* SystemConfiguration.framework */; };
+		8C37984E1384D018008EADC7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C37984D1384D018008EADC7 /* Security.framework */; };
+		8C3798AE1384D702008EADC7 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C3798AD1384D702008EADC7 /* WebKit.framework */; };
+		8C3798B21384D716008EADC7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0D943A12D64018009F3280 /* Cocoa.framework */; };
 		8C3982BF134D4686008C5670 /* structcommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* structcommon.framework */; };
 		8C3982C1134D48DE008C5670 /* openEvent.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C3982C0134D48DE008C5670 /* openEvent.txt */; };
 		8C3982C6134D4E8C008C5670 /* allEvents.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C3982C5134D4E8C008C5670 /* allEvents.txt */; };
@@ -117,6 +122,9 @@
 		8C3AB4AC12E2CEBF00A19AA4 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C3AB4AB12E2CEBF00A19AA4 /* README.txt */; };
 		8C3AB4AD12E2CEBF00A19AA4 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C3AB4AB12E2CEBF00A19AA4 /* README.txt */; };
 		8C4019E9133FFE1D00EB414F /* VariableTableColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C4019E8133FFE1B00EB414F /* VariableTableColumn.m */; };
+		8C58219A1383981B00E33F53 /* GoogleTodoModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5821981383981B00E33F53 /* GoogleTodoModule.m */; };
+		8C58219B1383981B00E33F53 /* GoogleTodoModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C5821991383981B00E33F53 /* GoogleTodoModule.xib */; };
+		8C5821E51383A69700E33F53 /* GTProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */; };
 		8C598FBF137EC905007AAD11 /* iCalTodoHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C598FBE137EC905007AAD11 /* iCalTodoHandler.m */; };
 		8C598FC1137F7403007AAD11 /* todoFetchTemplate.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C598FC0137F7403007AAD11 /* todoFetchTemplate.txt */; };
 		8C5BB635136F33240004E88C /* SwitchActivityDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5BB634136F33230004E88C /* SwitchActivityDialog.m */; };
@@ -144,6 +152,8 @@
 		8C66A77F12DFCE4E000644ED /* structcommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* structcommon.framework */; };
 		8C66A7BC12DFEE8A000644ED /* BlockerModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C66A7BB12DFEE8A000644ED /* BlockerModule.xib */; };
 		8C66A85F12E0BAE6000644ED /* BlockerModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C66A76212DFCD23000644ED /* BlockerModule.m */; };
+		8C6C9B6E1386578C00418CC4 /* GoogleTodoModule.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C6C9B6D1386578C00418CC4 /* GoogleTodoModule.ico */; };
+		8C6CA016138815E600418CC4 /* GTMHTTPFetcherLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C96535B1384BFFB007970F2 /* GTMHTTPFetcherLogging.m */; };
 		8C73EF9512E563220056FAFF /* SkypeManager-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CDCC0FD12E2B5F400CEAAD3 /* SkypeManager-Info.plist */; };
 		8C73EFA712E563660056FAFF /* BlockerModule-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C66A77712DFCE20000644ED /* BlockerModule-Info.plist */; };
 		8C73F00312E578160056FAFF /* AdiumState.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F00112E578160056FAFF /* AdiumState.m */; };
@@ -212,6 +222,18 @@
 		8C82D01D12F3DC7000830486 /* TotalsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C82D01B12F3DC7000830486 /* TotalsManager.m */; };
 		8C844AAD133AEA5700998D1C /* PercentOfDaysXForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C844AAC133AEA5700998D1C /* PercentOfDaysXForm.m */; };
 		8C844AAE133AEA5700998D1C /* PercentOfDaysXForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C844AAC133AEA5700998D1C /* PercentOfDaysXForm.m */; };
+		8C8EF5C21389DF0800F2E80F /* GoogleTaskEdit.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C8EF5C11389DF0800F2E80F /* GoogleTaskEdit.xib */; };
+		8C8EF5C51389DFD600F2E80F /* GoogleTaskEditCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8EF5C41389DFD600F2E80F /* GoogleTaskEditCtrl.m */; };
+		8C8EF6C2138A43E100F2E80F /* NullOrDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8EF6C1138A43E100F2E80F /* NullOrDatePicker.m */; };
+		8C9651F313845296007970F2 /* structcommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* structcommon.framework */; };
+		8C96522913847505007970F2 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1988112D5079F00C69AC9 /* ScriptingBridge.framework */; };
+		8C9653971384BFFB007970F2 /* GTMOAuth2Window.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C96533C1384BFFB007970F2 /* GTMOAuth2Window.xib */; };
+		8C9653981384BFFB007970F2 /* GTMOAuth2WindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C96533E1384BFFB007970F2 /* GTMOAuth2WindowController.m */; };
+		8C9653991384BFFB007970F2 /* GTMOAuth2SignIn.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C96533F1384BFFB007970F2 /* GTMOAuth2SignIn.m */; };
+		8C96539A1384BFFB007970F2 /* GTMOAuth2Authentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9653411384BFFB007970F2 /* GTMOAuth2Authentication.m */; };
+		8C96539D1384BFFB007970F2 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C96534A1384BFFB007970F2 /* SBJSON.m */; };
+		8C9653A21384BFFB007970F2 /* GTMHTTPFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9653561384BFFB007970F2 /* GTMHTTPFetcher.m */; };
+		8C9653A51384BFFB007970F2 /* GTMHTTPFetchHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C96535F1384BFFB007970F2 /* GTMHTTPFetchHistory.m */; };
 		8C9CE85D12E2683800017A02 /* BlockerModule.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CE85C12E2683800017A02 /* BlockerModule.icns */; };
 		8C9CE86212E2698300017A02 /* BlockerModule.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C9CE86112E2698300017A02 /* BlockerModule.ico */; };
 		8C9CE88812E2700900017A02 /* Skype.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C9CE77812E2465B00017A02 /* Skype.framework */; };
@@ -223,7 +245,6 @@
 		8C9E9ABD137E680D00529EC2 /* structcommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* structcommon.framework */; };
 		8C9FB5BE13356DB70034FE85 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9FB5BD13356DB70034FE85 /* CoreData.framework */; };
 		8C9FB5C213356DD20034FE85 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9FB5BD13356DB70034FE85 /* CoreData.framework */; };
-		8CA45C7813803AD4002144DC /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA45C7713803AD4002144DC /* ScriptingBridge.framework */; };
 		8CA668A412FF86C5004FD7EE /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA668A312FF86C5004FD7EE /* LaunchAtLoginController.m */; };
 		8CA668A512FF86C5004FD7EE /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA668A312FF86C5004FD7EE /* LaunchAtLoginController.m */; };
 		8CB05117135E6FF8008FCE40 /* WorkHoursToAverageXForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB05116135E6FF8008FCE40 /* WorkHoursToAverageXForm.m */; };
@@ -412,6 +433,20 @@
 			remoteGlobalIDString = 8CD1974312D4C59600C69AC9;
 			remoteInfo = WPACommon;
 		};
+		8C9651F113845290007970F2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CD1974312D4C59600C69AC9;
+			remoteInfo = structcommon;
+		};
+		8C9652D513847E9C007970F2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C58217E1383978900E33F53;
+			remoteInfo = GoogleTodoModule;
+		};
 		8C9E9ABB137E680600529EC2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -596,6 +631,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8C9652A813847881007970F2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8C9CE89412E2702600017A02 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -688,6 +732,9 @@
 		8C34BC74134D262A00A9BCFE /* iCalModule.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iCalModule.xib; sourceTree = SOURCE_ROOT; };
 		8C34BC75134D262A00A9BCFE /* iCalModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = iCalModule.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8C34BC76134D262A00A9BCFE /* iCalModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = iCalModule.h; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8C3798471384CFEE008EADC7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		8C37984D1384D018008EADC7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		8C3798AD1384D702008EADC7 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		8C3982C0134D48DE008C5670 /* openEvent.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = openEvent.txt; sourceTree = "<group>"; };
 		8C3982C5134D4E8C008C5670 /* allEvents.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = allEvents.txt; sourceTree = "<group>"; };
 		8C3982C7134D4F4A008C5670 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
@@ -695,6 +742,13 @@
 		8C4019E7133FFE1A00EB414F /* VariableTableColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = VariableTableColumn.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8C4019E8133FFE1B00EB414F /* VariableTableColumn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = VariableTableColumn.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8C4BD2F4132FAA4C00765A57 /* SummaryHUDCallback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SummaryHUDCallback.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8C58217F1383978900E33F53 /* GoogleTodoModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoogleTodoModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C5821801383978900E33F53 /* GoogleTodoModule-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleTodoModule-Info.plist"; sourceTree = "<group>"; };
+		8C5821971383981B00E33F53 /* GoogleTodoModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleTodoModule.h; sourceTree = "<group>"; };
+		8C5821981383981B00E33F53 /* GoogleTodoModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleTodoModule.m; sourceTree = "<group>"; };
+		8C5821991383981B00E33F53 /* GoogleTodoModule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoogleTodoModule.xib; sourceTree = "<group>"; };
+		8C5821E31383A69700E33F53 /* GTProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTProtocol.h; sourceTree = "<group>"; };
+		8C5821E41383A69700E33F53 /* GTProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTProtocol.m; sourceTree = "<group>"; };
 		8C598FBD137EC905007AAD11 /* iCalTodoHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCalTodoHandler.h; sourceTree = "<group>"; };
 		8C598FBE137EC905007AAD11 /* iCalTodoHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCalTodoHandler.m; sourceTree = "<group>"; };
 		8C598FC0137F7403007AAD11 /* todoFetchTemplate.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todoFetchTemplate.txt; sourceTree = "<group>"; };
@@ -730,6 +784,7 @@
 		8C66A77612DFCE20000644ED /* BlockerModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlockerModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C66A77712DFCE20000644ED /* BlockerModule-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BlockerModule-Info.plist"; sourceTree = "<group>"; };
 		8C66A7BB12DFEE8A000644ED /* BlockerModule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlockerModule.xib; sourceTree = "<group>"; };
+		8C6C9B6D1386578C00418CC4 /* GoogleTodoModule.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = GoogleTodoModule.ico; sourceTree = "<group>"; };
 		8C73F00012E577C30056FAFF /* AdiumState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdiumState.h; sourceTree = "<group>"; };
 		8C73F00112E578160056FAFF /* AdiumState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AdiumState.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8C73F08E12E5E49E0056FAFF /* SummaryHUD.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SummaryHUD.xib; sourceTree = "<group>"; };
@@ -887,6 +942,35 @@
 		8C82D01B12F3DC7000830486 /* TotalsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TotalsManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8C844AAB133AEA5700998D1C /* PercentOfDaysXForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PercentOfDaysXForm.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8C844AAC133AEA5700998D1C /* PercentOfDaysXForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PercentOfDaysXForm.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		8C8EF5C11389DF0800F2E80F /* GoogleTaskEdit.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoogleTaskEdit.xib; sourceTree = "<group>"; };
+		8C8EF5C31389DFD600F2E80F /* GoogleTaskEditCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleTaskEditCtrl.h; sourceTree = "<group>"; };
+		8C8EF5C41389DFD600F2E80F /* GoogleTaskEditCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleTaskEditCtrl.m; sourceTree = "<group>"; };
+		8C8EF6C0138A43E100F2E80F /* NullOrDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NullOrDatePicker.h; sourceTree = "<group>"; };
+		8C8EF6C1138A43E100F2E80F /* NullOrDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullOrDatePicker.m; sourceTree = "<group>"; };
+		8C9653391384BFFB007970F2 /* ReleaseNotes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ReleaseNotes.txt; path = GoogleOAuth/Source/ReleaseNotes.txt; sourceTree = "<group>"; };
+		8C96533C1384BFFB007970F2 /* GTMOAuth2Window.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GTMOAuth2Window.xib; sourceTree = "<group>"; };
+		8C96533D1384BFFB007970F2 /* GTMOAuth2WindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMOAuth2WindowController.h; sourceTree = "<group>"; };
+		8C96533E1384BFFB007970F2 /* GTMOAuth2WindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMOAuth2WindowController.m; sourceTree = "<group>"; };
+		8C96533F1384BFFB007970F2 /* GTMOAuth2SignIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMOAuth2SignIn.m; path = GoogleOAuth/Source/GTMOAuth2SignIn.m; sourceTree = "<group>"; };
+		8C9653401384BFFB007970F2 /* GTMOAuth2SignIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMOAuth2SignIn.h; path = GoogleOAuth/Source/GTMOAuth2SignIn.h; sourceTree = "<group>"; };
+		8C9653411384BFFB007970F2 /* GTMOAuth2Authentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMOAuth2Authentication.m; path = GoogleOAuth/Source/GTMOAuth2Authentication.m; sourceTree = "<group>"; };
+		8C9653421384BFFB007970F2 /* GTMOAuth2Authentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMOAuth2Authentication.h; path = GoogleOAuth/Source/GTMOAuth2Authentication.h; sourceTree = "<group>"; };
+		8C9653441384BFFB007970F2 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		8C9653491384BFFB007970F2 /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJSON.h; sourceTree = "<group>"; };
+		8C96534A1384BFFB007970F2 /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJSON.m; sourceTree = "<group>"; };
+		8C96534B1384BFFB007970F2 /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJSON.m; path = GoogleOAuth/JSON/SBJSON.m; sourceTree = "<group>"; };
+		8C96534C1384BFFB007970F2 /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJSON.h; path = GoogleOAuth/JSON/SBJSON.h; sourceTree = "<group>"; };
+		8C9653511384BFFB007970F2 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSON.h; path = GoogleOAuth/JSON/JSON.h; sourceTree = "<group>"; };
+		8C9653551384BFFB007970F2 /* GTMHTTPFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMHTTPFetcher.h; sourceTree = "<group>"; };
+		8C9653561384BFFB007970F2 /* GTMHTTPFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMHTTPFetcher.m; sourceTree = "<group>"; };
+		8C96535A1384BFFB007970F2 /* GTMHTTPFetcherLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMHTTPFetcherLogging.h; sourceTree = "<group>"; };
+		8C96535B1384BFFB007970F2 /* GTMHTTPFetcherLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMHTTPFetcherLogging.m; sourceTree = "<group>"; };
+		8C96535E1384BFFB007970F2 /* GTMHTTPFetchHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMHTTPFetchHistory.h; sourceTree = "<group>"; };
+		8C96535F1384BFFB007970F2 /* GTMHTTPFetchHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMHTTPFetchHistory.m; sourceTree = "<group>"; };
+		8C9653891384BFFB007970F2 /* GTMHTTPFetchHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMHTTPFetchHistory.m; path = GoogleOAuth/HTTPFetcher/GTMHTTPFetchHistory.m; sourceTree = "<group>"; };
+		8C96538A1384BFFB007970F2 /* GTMHTTPFetchHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMHTTPFetchHistory.h; path = GoogleOAuth/HTTPFetcher/GTMHTTPFetchHistory.h; sourceTree = "<group>"; };
+		8C96538F1384BFFB007970F2 /* GTMHTTPFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMHTTPFetcher.m; path = GoogleOAuth/HTTPFetcher/GTMHTTPFetcher.m; sourceTree = "<group>"; };
+		8C9653901384BFFB007970F2 /* GTMHTTPFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMHTTPFetcher.h; path = GoogleOAuth/HTTPFetcher/GTMHTTPFetcher.h; sourceTree = "<group>"; };
 		8C9CE76312E2449900017A02 /* SkypeState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SkypeState.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8C9CE77412E2463700017A02 /* SkypeAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SkypeAPI.h; path = Skype.framework/Versions/A/Headers/SkypeAPI.h; sourceTree = "<group>"; };
 		8C9CE77512E2463700017A02 /* SkypeAPI-Carbon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SkypeAPI-Carbon.h"; path = "Skype.framework/Versions/A/Headers/SkypeAPI-Carbon.h"; sourceTree = "<group>"; };
@@ -903,7 +987,6 @@
 		8C9E9AB8137E65FA00529EC2 /* iCalTodoModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCalTodoModule.h; sourceTree = "<group>"; };
 		8C9E9AB9137E65FA00529EC2 /* iCalTodoModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCalTodoModule.m; sourceTree = "<group>"; };
 		8C9FB5BD13356DB70034FE85 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		8CA45C7713803AD4002144DC /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 		8CA668A212FF86C5004FD7EE /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchAtLoginController.h; sourceTree = "<group>"; };
 		8CA668A312FF86C5004FD7EE /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchAtLoginController.m; sourceTree = "<group>"; };
 		8CB05115135E6FF8008FCE40 /* WorkHoursToAverageXForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WorkHoursToAverageXForm.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -1027,6 +1110,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8C58217D1383978900E33F53 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C9651F313845296007970F2 /* structcommon.framework in Frameworks */,
+				8C3798481384CFEE008EADC7 /* SystemConfiguration.framework in Frameworks */,
+				8C37984E1384D018008EADC7 /* Security.framework in Frameworks */,
+				8C3798AE1384D702008EADC7 /* WebKit.framework in Frameworks */,
+				8C3798B21384D716008EADC7 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8C5DEC4712E8C4A600EE93F1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1070,8 +1165,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CA45C7813803AD4002144DC /* ScriptingBridge.framework in Frameworks */,
 				8C9E9ABD137E680D00529EC2 /* structcommon.framework in Frameworks */,
+				8C96522913847505007970F2 /* ScriptingBridge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1233,6 +1328,7 @@
 				8CB8CCC6137C52ED007F7647 /* AppleMailDaemon */,
 				8CB8CCCE137C530F007F7647 /* ICalDaemon */,
 				8C9E9AB2137E65B900529EC2 /* iCalTodoModule.bundle */,
+				8C58217F1383978900E33F53 /* GoogleTodoModule.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1240,8 +1336,6 @@
 		29B97314FDCFA39411CA2CEA /* WorkPlayAway */ = {
 			isa = PBXGroup;
 			children = (
-				8CA45C7713803AD4002144DC /* ScriptingBridge.framework */,
-				8C3982C7134D4F4A008C5670 /* ScriptingBridge.framework */,
 				8C73F10512E624080056FAFF /* Design.rtf */,
 				8C82CFDF12F3D0BE00830486 /* Design.txt */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -1271,6 +1365,11 @@
 				8C5BB9B71371E2920004E88C /* HUDBusy.h */,
 				8C5BB9B81371E2920004E88C /* HUDBusy.m */,
 				8C9E9AB3137E65B900529EC2 /* iCalTodoModule-Info.plist */,
+				8C5821801383978900E33F53 /* GoogleTodoModule-Info.plist */,
+				8C3798471384CFEE008EADC7 /* SystemConfiguration.framework */,
+				8C37984D1384D018008EADC7 /* Security.framework */,
+				8C3798AD1384D702008EADC7 /* WebKit.framework */,
+				8C8EF5C11389DF0800F2E80F /* GoogleTaskEdit.xib */,
 			);
 			name = WorkPlayAway;
 			sourceTree = "<group>";
@@ -1337,6 +1436,38 @@
 				8C3982C5134D4E8C008C5670 /* allEvents.txt */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		8C582184138397BC00E33F53 /* GoogleTodoModule */ = {
+			isa = PBXGroup;
+			children = (
+				8C6C9B6D1386578C00418CC4 /* GoogleTodoModule.ico */,
+				8C9653391384BFFB007970F2 /* ReleaseNotes.txt */,
+				8C96533A1384BFFB007970F2 /* Mac */,
+				8C96533F1384BFFB007970F2 /* GTMOAuth2SignIn.m */,
+				8C9653401384BFFB007970F2 /* GTMOAuth2SignIn.h */,
+				8C9653411384BFFB007970F2 /* GTMOAuth2Authentication.m */,
+				8C9653421384BFFB007970F2 /* GTMOAuth2Authentication.h */,
+				8C9653431384BFFB007970F2 /* JSON */,
+				8C96534B1384BFFB007970F2 /* SBJSON.m */,
+				8C96534C1384BFFB007970F2 /* SBJSON.h */,
+				8C9653511384BFFB007970F2 /* JSON.h */,
+				8C9653521384BFFB007970F2 /* HTTPFetcher */,
+				8C9653891384BFFB007970F2 /* GTMHTTPFetchHistory.m */,
+				8C96538A1384BFFB007970F2 /* GTMHTTPFetchHistory.h */,
+				8C96538F1384BFFB007970F2 /* GTMHTTPFetcher.m */,
+				8C9653901384BFFB007970F2 /* GTMHTTPFetcher.h */,
+				8C5821E31383A69700E33F53 /* GTProtocol.h */,
+				8C5821E41383A69700E33F53 /* GTProtocol.m */,
+				8C5821971383981B00E33F53 /* GoogleTodoModule.h */,
+				8C5821981383981B00E33F53 /* GoogleTodoModule.m */,
+				8C5821991383981B00E33F53 /* GoogleTodoModule.xib */,
+				8C8EF5C31389DFD600F2E80F /* GoogleTaskEditCtrl.h */,
+				8C8EF5C41389DFD600F2E80F /* GoogleTaskEditCtrl.m */,
+				8C8EF6C0138A43E100F2E80F /* NullOrDatePicker.h */,
+				8C8EF6C1138A43E100F2E80F /* NullOrDatePicker.m */,
+			);
+			name = GoogleTodoModule;
 			sourceTree = "<group>";
 		};
 		8C5DEC4212E8C46700EE93F1 /* TestTaskModule */ = {
@@ -1430,6 +1561,7 @@
 		8C73F8B212E8933B0056FAFF /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				8C582184138397BC00E33F53 /* GoogleTodoModule */,
 				8C9E9A79137E645D00529EC2 /* iCalTodoModule */,
 				8CB8CCAF137C52BA007F7647 /* AppleMailDaemon */,
 				8CB8CCAB137C52A1007F7647 /* ICalDaemon */,
@@ -1458,6 +1590,42 @@
 			path = English.lproj;
 			sourceTree = "<group>";
 		};
+		8C96533A1384BFFB007970F2 /* Mac */ = {
+			isa = PBXGroup;
+			children = (
+				8C96533C1384BFFB007970F2 /* GTMOAuth2Window.xib */,
+				8C96533D1384BFFB007970F2 /* GTMOAuth2WindowController.h */,
+				8C96533E1384BFFB007970F2 /* GTMOAuth2WindowController.m */,
+			);
+			name = Mac;
+			path = GoogleOAuth/Source/Mac;
+			sourceTree = "<group>";
+		};
+		8C9653431384BFFB007970F2 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				8C9653441384BFFB007970F2 /* JSON.h */,
+				8C9653491384BFFB007970F2 /* SBJSON.h */,
+				8C96534A1384BFFB007970F2 /* SBJSON.m */,
+			);
+			name = JSON;
+			path = GoogleOAuth/JSON;
+			sourceTree = "<group>";
+		};
+		8C9653521384BFFB007970F2 /* HTTPFetcher */ = {
+			isa = PBXGroup;
+			children = (
+				8C9653551384BFFB007970F2 /* GTMHTTPFetcher.h */,
+				8C9653561384BFFB007970F2 /* GTMHTTPFetcher.m */,
+				8C96535A1384BFFB007970F2 /* GTMHTTPFetcherLogging.h */,
+				8C96535B1384BFFB007970F2 /* GTMHTTPFetcherLogging.m */,
+				8C96535E1384BFFB007970F2 /* GTMHTTPFetchHistory.h */,
+				8C96535F1384BFFB007970F2 /* GTMHTTPFetchHistory.m */,
+			);
+			name = HTTPFetcher;
+			path = GoogleOAuth/HTTPFetcher;
+			sourceTree = "<group>";
+		};
 		8C9CE75512E23ABE00017A02 /* SkypeManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -1477,6 +1645,7 @@
 		8C9E9A79137E645D00529EC2 /* iCalTodoModule */ = {
 			isa = PBXGroup;
 			children = (
+				8C3982C7134D4F4A008C5670 /* ScriptingBridge.framework */,
 				8C2B2D751380D69900AC08CF /* iCalTodoModule.xib */,
 				8C598FC0137F7403007AAD11 /* todoFetchTemplate.txt */,
 				8C9E9AB8137E65FA00529EC2 /* iCalTodoModule.h */,
@@ -1880,6 +2049,25 @@
 			productReference = 8C34BC5A134D245300A9BCFE /* iCalModule.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
+		8C58217E1383978900E33F53 /* GoogleTodoModule */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C5821831383978A00E33F53 /* Build configuration list for PBXNativeTarget "GoogleTodoModule" */;
+			buildPhases = (
+				8C58217B1383978900E33F53 /* Resources */,
+				8C58217C1383978900E33F53 /* Sources */,
+				8C58217D1383978900E33F53 /* Frameworks */,
+				8C9652A813847881007970F2 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8C9651F213845290007970F2 /* PBXTargetDependency */,
+			);
+			name = GoogleTodoModule;
+			productName = GoogleTodoModule;
+			productReference = 8C58217F1383978900E33F53 /* GoogleTodoModule.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
 		8C5DEC4812E8C4A600EE93F1 /* TestTaskModule */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8C5DEC4D12E8C4A600EE93F1 /* Build configuration list for PBXNativeTarget "TestTaskModule" */;
@@ -2229,6 +2417,7 @@
 				8CB8CCC5137C52ED007F7647 /* AppleMailDaemon */,
 				8CB8CCCD137C530F007F7647 /* ICalDaemon */,
 				8C9E9AB1137E65B900529EC2 /* iCalTodoModule */,
+				8C58217E1383978900E33F53 /* GoogleTodoModule */,
 			);
 		};
 /* End PBXProject section */
@@ -2274,6 +2463,17 @@
 				8C34BC77134D262A00A9BCFE /* iCalModule.xib in Resources */,
 				8C3982C1134D48DE008C5670 /* openEvent.txt in Resources */,
 				8C3982C6134D4E8C008C5670 /* allEvents.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C58217B1383978900E33F53 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C58219B1383981B00E33F53 /* GoogleTodoModule.xib in Resources */,
+				8C9653971384BFFB007970F2 /* GTMOAuth2Window.xib in Resources */,
+				8C6C9B6E1386578C00418CC4 /* GoogleTodoModule.ico in Resources */,
+				8C8EF5C21389DF0800F2E80F /* GoogleTaskEdit.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2542,6 +2742,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C34BC78134D262A00A9BCFE /* iCalModule.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C58217C1383978900E33F53 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C6CA016138815E600418CC4 /* GTMHTTPFetcherLogging.m in Sources */,
+				8C58219A1383981B00E33F53 /* GoogleTodoModule.m in Sources */,
+				8C5821E51383A69700E33F53 /* GTProtocol.m in Sources */,
+				8C9653981384BFFB007970F2 /* GTMOAuth2WindowController.m in Sources */,
+				8C9653991384BFFB007970F2 /* GTMOAuth2SignIn.m in Sources */,
+				8C96539A1384BFFB007970F2 /* GTMOAuth2Authentication.m in Sources */,
+				8C96539D1384BFFB007970F2 /* SBJSON.m in Sources */,
+				8C9653A21384BFFB007970F2 /* GTMHTTPFetcher.m in Sources */,
+				8C9653A51384BFFB007970F2 /* GTMHTTPFetchHistory.m in Sources */,
+				8C8EF5C51389DFD600F2E80F /* GoogleTaskEditCtrl.m in Sources */,
+				8C8EF6C2138A43E100F2E80F /* NullOrDatePicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2820,6 +3038,16 @@
 			target = 8CD1974312D4C59600C69AC9 /* structcommon */;
 			targetProxy = 8C73F89912E891E20056FAFF /* PBXContainerItemProxy */;
 		};
+		8C9651F213845290007970F2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CD1974312D4C59600C69AC9 /* structcommon */;
+			targetProxy = 8C9651F113845290007970F2 /* PBXContainerItemProxy */;
+		};
+		8C9652D613847E9C007970F2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C58217E1383978900E33F53 /* GoogleTodoModule */;
+			targetProxy = 8C9652D513847E9C007970F2 /* PBXContainerItemProxy */;
+		};
 		8C9E9ABC137E680600529EC2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8CD1974312D4C59600C69AC9 /* structcommon */;
@@ -3093,6 +3321,66 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = "";
 				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		8C5821811383978A00E33F53 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "GoogleTodoModule-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = GoogleTodoModule;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		8C5821821383978A00E33F53 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "GoogleTodoModule-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = GoogleTodoModule;
+				WRAPPER_EXTENSION = bundle;
+				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
@@ -3986,7 +4274,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/../../Tools/bwtoolkit/build/Release\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -4013,7 +4300,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/../../Tools/bwtoolkit/build/Release\"",
 				);
 				GCC_ENABLE_OBJC_GC = supported;
 				GCC_MODEL_TUNING = G5;
@@ -4072,6 +4358,15 @@
 			buildConfigurations = (
 				8C34BC64134D245300A9BCFE /* Debug */,
 				8C34BC65134D245300A9BCFE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C5821831383978A00E33F53 /* Build configuration list for PBXNativeTarget "GoogleTodoModule" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C5821811383978A00E33F53 /* Debug */,
+				8C5821821383978A00E33F53 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

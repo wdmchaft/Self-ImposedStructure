@@ -21,6 +21,7 @@
 - (void) refresh: (id<AlertHandler>) handler isSummary: (BOOL) summary{}
 - (void) initSummaryTable: (NSTableView*) view{}
 - (void) handleClick:(NSDictionary *)params{}
+
 @end
 
 
