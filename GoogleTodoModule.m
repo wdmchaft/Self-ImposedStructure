@@ -221,8 +221,7 @@
 {
 	self.handler = alertHandler;
 	summaryMode = summary;
-	NSDate *windowDate = [[NSDate date]  dateByAddingTimeInterval:lookAheadWindow];
-	[protocol updateList:self returnTo:@selector(refreshDone) maxDate: windowDate];
+	[protocol updateList:self returnTo:@selector(refreshDone)];
 }
 
 - (void) stateChange: (WPAStateType) newState
@@ -466,11 +465,7 @@
 
 - (void) newTask:(NSString *)tName completeHandler:(NSObject*) target selector: (SEL) callback
 {
-//	NewTaskHandler *nth = [[NewTaskHandler alloc]initWithContext: protocol
-//														delegate:target
-//														selector:callback];
-//	nth.dictionary = [NSDictionary dictionaryWithObject:tName forKey: @"name"];
-//	[nth start];
+	[protocol sendAdd:target returnTo:callback params:[NSDictionary dictionaryWithObject: tName forKey:@"title"]];
 }
 
 - (void) completeDone

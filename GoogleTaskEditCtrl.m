@@ -25,14 +25,8 @@
 @synthesize nilDateLabel;
 @synthesize saveView;
 @synthesize baseView;
+@synthesize newListId;
 
-
-- (void) gtProtocol: (GTProtocol*) proto callEndingAt: (SelWrapper*) selWrap gotError:  (NSError*) error  
-{
-	[prog stopAnimation:self];
-	[prog setHidden:YES];
-	NSLog(@"error: %@", error);
-}
 
 - (void) loadLists
 {
@@ -54,11 +48,60 @@
 	}
 }
 
-- (void) actionComplete
+- (void) allDone
 {
 	[prog stopAnimation:self];
 	[prog setHidden:YES];
 	[self close];
+}
+- (void) actionComplete
+{
+	[self allDone];
+}
+
+- (void) deleteDone
+{
+	[protocol sendAdd:self returnTo:@selector(createComplete) params:task listId: newListId];
+}
+
+- (void) createComplete
+{
+	[self allDone];
+}
+
+- (void) updateComplete
+{
+	[self allDone];
+}
+
+- (void) gtProtocol: (GTProtocol*) proto callEndingAt: (SelWrapper*) selWrap gotError:  (NSError*) error  
+{
+	[prog stopAnimation:self];
+	[prog setHidden:YES];
+	NSLog(@"error: %@", error);
+	SEL returnAddr = selWrap.selector;
+	NSString *msg;
+	if (returnAddr == @selector(actionComplete)){
+		msg = @"error completing task";
+	}
+	if (returnAddr == @selector(deleteComplete)){
+		msg = @"error deleting task";
+	}
+	if (returnAddr == @selector(deleteDone)){
+		msg = @"error doing delete for switch list";
+	}
+	if (returnAddr == @selector(createComplete)){
+		msg = @"error doing create for switch list";
+	}
+	if (returnAddr == @selector(updateComplete)){
+		msg = @"error updating task";
+	}
+	NSAlert *alert = [NSAlert alertWithMessageText:@"Problem with Action"
+									 defaultButton:nil 
+								   alternateButton:nil 
+									   otherButton:nil 
+						 informativeTextWithFormat:msg];
+	[alert runModal];
 }
 
 - (NSString*) stringFor:(NSDate*) inDate
@@ -78,12 +121,13 @@
 			[protocol sendComplete:self returnTo:@selector(actionComplete) params:task];
 			break;
 		case taskActionDelete:
-			[protocol sendDelete:self returnTo:@selector(actionComplete) params:task];
+			[protocol sendDelete:self returnTo:@selector(deleteComplete) params:task];
 			break;
 		case taskActionSwitch:
 			newListStr = [listDropDown titleOfSelectedItem];
-			newList = [[protocol idMapping] objectForKey:newListStr] ;
-			[protocol sendMoveTo:self returnTo:@selector(actionComplete) list:newList params:task];
+			newList = [[protocol idMapping] objectForKey:newListStr]; 
+			newListId = [newList objectForKey:@"id"];
+			[protocol sendDelete:self returnTo:@selector(deleteDone) params:task];
 			break;
 		case taskActionModify:
 			[taskUpdates setObject: [task objectForKey:@"id"] forKey:@"id"] ;
@@ -96,7 +140,7 @@
 			else {
 				[taskUpdates setObject:@"nil" forKey:@"due"];
 			}
-			[protocol sendUpdate:self returnTo:@selector(actionComplete) params:taskUpdates];
+			[protocol sendUpdate:self returnTo:@selector(updateComplete) params:taskUpdates];
 			break;
 		default:
 			break;
@@ -281,7 +325,7 @@
 {	
 	self = [super initWithWindowNibName:nibName];
 	if (self){
-		task = params;
+		task = [NSMutableDictionary dictionaryWithDictionary:params];
 		protocol = mod;
 		[self initGuts];
 	}

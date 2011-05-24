@@ -30,6 +30,7 @@ typedef enum {
 	NSTextField *nilDateLabel;
 	NSView *saveView;
 	NSView *baseView;
+	NSString *newListId;
 }
 @property (nonatomic, retain) IBOutlet NSMatrix *buttonsMatrix;
 @property (nonatomic, retain) IBOutlet NSTextField *titleLabel;
@@ -47,6 +48,7 @@ typedef enum {
 @property (nonatomic, retain) NSMutableDictionary *task;
 @property (nonatomic, assign) TaskActionType okAction;
 @property (nonatomic, retain) NSView *saveView;
+@property (nonatomic, retain) NSString *newListId;
 
 - (IBAction) clickOK: (id) sender;
 - (IBAction) clickCancel: (id) sender;

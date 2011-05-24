@@ -283,7 +283,7 @@
 
 -(void) handleClick: (NSDictionary*) ctx
 {
-	NSDictionary *task = [NSDictionary dictionaryWithDictionary:(NSDictionary*) ctx];
+//	NSDictionary *task = [NSDictionary dictionaryWithDictionary:(NSDictionary*) ctx];
 //	NSString *clickName = [task objectForKey:@"name"];
 	TaskDialogController *dialogCtrl= [[TaskDialogController alloc] 
 									   initWithWindowNibName:@"TaskDialog" 

@@ -72,21 +72,26 @@
 @property (nonatomic, retain) NSDateFormatter *dateFormatter;
 @property (nonatomic, retain) NSString *moveToListId;
 
-- (void) updateList:(NSObject*) caller returnTo:(SEL) cb maxDate: (NSDate*) max;
-- (void) getList:(NSObject*) caller returnTo:(SEL) cb maxDate: (NSDate*) max;
+- (void) updateList:(NSObject*) caller returnTo:(SEL) cb;
+- (void) getList:(NSObject*) caller returnTo:(SEL) cb;
 
 - (void) getTokenInWindow: (NSWindow*) win handler:(NSObject*) retHandler returnTo: (SEL) cb;
 - (void) getLists: (NSObject*) target returnTo: (SEL) cb;
 - (void) sendDelete: (NSObject*) target returnTo: (SEL) cb params: (NSDictionary*) tdc;
 - (void) sendMoveTo: (NSObject*) target returnTo: (SEL) cb list: (NSDictionary*) newList params: (NSMutableDictionary*) tdc;
 
-- (void) sendAdd: (NSObject*) target returnTo: (SEL) cb params: (NSDictionary*) dictionary;
+- (void) sendAdd: (NSObject*) caller returnTo: (SEL) cb params: (NSDictionary*) newTask listId: (NSString*) idStr;
+- (void) sendAdd: (NSObject*) caller returnTo: (SEL) cb params: (NSDictionary*) newTask list: (NSDictionary*) listData;
+
+- (void) sendAdd: (NSObject*) caller returnTo: (SEL) cb params: (NSDictionary*) newTask;
+
 - (void) sendComplete: (NSObject*) caller returnTo: (SEL) cb params:(NSDictionary*) task;
 - (void) sendUpdate: (NSObject*) caller returnTo: (SEL) cb params:(NSMutableDictionary*) task;
 
 - (void) handleWarningAlarm: (NSTimer*) theTimer;
 - (void) doSignInOnWindow: (NSWindow*) window;
 - (void) loadAuth:(NSString*) authStr;
+
 - (NSString*) authStr;
 @end
 
