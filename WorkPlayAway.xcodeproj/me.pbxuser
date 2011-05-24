@@ -9,7 +9,7 @@
 	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
 		activeArchitecturePreference = x86_64;
-		activeBuildConfigurationName = Debug;
+		activeBuildConfigurationName = Release;
 		activeExecutable = 8C0D93F112D63D3D009F3280 /* WPADev */;
 		activeTarget = 8C0D93EF12D63D3D009F3280 /* devstruct */;
 		addToTargets = (
@@ -30,15 +30,15 @@
 			8C3799351384EA0F008EADC7 /* GTMHTTPFetcher.m:187 */,
 			8C37995813856824008EADC7 /* GTMOAuth2Authentication.m:471 */,
 			8C37995A1385683C008EADC7 /* GTMOAuth2Authentication.m:492 */,
-			8C6C9F531387804800418CC4 /* GTProtocol.m:307 */,
-			8C8EF777138A747500F2E80F /* GTProtocol.m:347 */,
-			8C8EF78F138A74FD00F2E80F /* GTProtocol.m:426 */,
-			8C8EF8E3138AFCBD00F2E80F /* GTProtocol.m:458 */,
-			8C8EF8EF138AFD0300F2E80F /* GTProtocol.m:315 */,
-			8C8EF8FA138AFD3C00F2E80F /* GTProtocol.m:313 */,
-			8C8EF8FC138AFD8000F2E80F /* GTProtocol.m:357 */,
-			8C8EF958138B047400F2E80F /* GTProtocol.m:291 */,
-			8C8EF9B5138C02FC00F2E80F /* GTProtocol.m:496 */,
+			8C6C9F531387804800418CC4 /* GTProtocol.m:271 */,
+			8C8EF777138A747500F2E80F /* GTProtocol.m:311 */,
+			8C8EF78F138A74FD00F2E80F /* GTProtocol.m:390 */,
+			8C8EF8E3138AFCBD00F2E80F /* GTProtocol.m:422 */,
+			8C8EF8EF138AFD0300F2E80F /* GTProtocol.m:279 */,
+			8C8EF8FA138AFD3C00F2E80F /* GTProtocol.m:277 */,
+			8C8EF8FC138AFD8000F2E80F /* GTProtocol.m:321 */,
+			8C8EF958138B047400F2E80F /* GTProtocol.m:255 */,
+			8C8EF9B5138C02FC00F2E80F /* GTProtocol.m:460 */,
 			8C8EFB00138C256D00F2E80F /* GoogleTaskEditCtrl.m:94 */,
 		);
 		codeSenseManager = 8C77290512D46A1800F71FE7 /* Code sense */;
@@ -2211,6 +2211,31 @@
 			8C8EFB76138C2EC300F2E80F /* PBXTextBookmark */ = 8C8EFB76138C2EC300F2E80F /* PBXTextBookmark */;
 			8C8EFB77138C2EC300F2E80F /* PBXTextBookmark */ = 8C8EFB77138C2EC300F2E80F /* PBXTextBookmark */;
 			8C8EFB78138C2EC300F2E80F /* PBXTextBookmark */ = 8C8EFB78138C2EC300F2E80F /* PBXTextBookmark */;
+			8C8EFB7C138C32F000F2E80F /* PBXTextBookmark */ = 8C8EFB7C138C32F000F2E80F /* PBXTextBookmark */;
+			8C8EFB7D138C32F000F2E80F /* PBXTextBookmark */ = 8C8EFB7D138C32F000F2E80F /* PBXTextBookmark */;
+			8C8EFB7E138C32F000F2E80F /* PBXTextBookmark */ = 8C8EFB7E138C32F000F2E80F /* PBXTextBookmark */;
+			8C8EFB7F138C32F000F2E80F /* PBXTextBookmark */ = 8C8EFB7F138C32F000F2E80F /* PBXTextBookmark */;
+			8C8EFB80138C32F000F2E80F /* PBXTextBookmark */ = 8C8EFB80138C32F000F2E80F /* PBXTextBookmark */;
+			8C8EFB81138C32F000F2E80F /* PBXTextBookmark */ = 8C8EFB81138C32F000F2E80F /* PBXTextBookmark */;
+			8C8EFB82138C32F000F2E80F /* PBXTextBookmark */ = 8C8EFB82138C32F000F2E80F /* PBXTextBookmark */;
+			8C8EFB83138C32F000F2E80F /* PBXTextBookmark */ = 8C8EFB83138C32F000F2E80F /* PBXTextBookmark */;
+			8C8EFB84138C32F000F2E80F /* PBXTextBookmark */ = 8C8EFB84138C32F000F2E80F /* PBXTextBookmark */;
+			8C8EFB85138C32F000F2E80F /* PBXTextBookmark */ = 8C8EFB85138C32F000F2E80F /* PBXTextBookmark */;
+			8C8EFB86138C32F000F2E80F /* PBXTextBookmark */ = 8C8EFB86138C32F000F2E80F /* PBXTextBookmark */;
+			8C8EFB87138C32F000F2E80F /* PBXTextBookmark */ = 8C8EFB87138C32F000F2E80F /* PBXTextBookmark */;
+			8C8EFB88138C32F000F2E80F /* PBXTextBookmark */ = 8C8EFB88138C32F000F2E80F /* PBXTextBookmark */;
+			8C8EFB98138C33E200F2E80F /* PBXTextBookmark */ = 8C8EFB98138C33E200F2E80F /* PBXTextBookmark */;
+			8C8EFB99138C33E200F2E80F /* PBXTextBookmark */ = 8C8EFB99138C33E200F2E80F /* PBXTextBookmark */;
+			8C8EFB9A138C33E200F2E80F /* PBXTextBookmark */ = 8C8EFB9A138C33E200F2E80F /* PBXTextBookmark */;
+			8C8EFB9B138C33E200F2E80F /* PBXTextBookmark */ = 8C8EFB9B138C33E200F2E80F /* PBXTextBookmark */;
+			8C8EFB9C138C33E200F2E80F /* PBXTextBookmark */ = 8C8EFB9C138C33E200F2E80F /* PBXTextBookmark */;
+			8C8EFB9D138C33E200F2E80F /* PBXTextBookmark */ = 8C8EFB9D138C33E200F2E80F /* PBXTextBookmark */;
+			8C8EFB9E138C33E200F2E80F /* PBXTextBookmark */ = 8C8EFB9E138C33E200F2E80F /* PBXTextBookmark */;
+			8C8EFB9F138C33E200F2E80F /* PBXTextBookmark */ = 8C8EFB9F138C33E200F2E80F /* PBXTextBookmark */;
+			8C8EFBA0138C33E200F2E80F /* PBXTextBookmark */ = 8C8EFBA0138C33E200F2E80F /* PBXTextBookmark */;
+			8C8EFBA1138C33E200F2E80F /* PBXTextBookmark */ = 8C8EFBA1138C33E200F2E80F /* PBXTextBookmark */;
+			8C8EFBA2138C33E200F2E80F /* PBXTextBookmark */ = 8C8EFBA2138C33E200F2E80F /* PBXTextBookmark */;
+			8C8EFBA3138C33E200F2E80F /* PBXTextBookmark */ = 8C8EFBA3138C33E200F2E80F /* PBXTextBookmark */;
 			8C96522E13847510007970F2 = 8C96522E13847510007970F2 /* PBXTextBookmark */;
 			8C96522F13847510007970F2 = 8C96522F13847510007970F2 /* PBXTextBookmark */;
 			8C96523113847510007970F2 = 8C96523113847510007970F2 /* PBXTextBookmark */;
@@ -2757,7 +2782,7 @@
 		ignoreCount = 0;
 		lineNumber = 60;
 		location = "Dev Struct";
-		modificationTime = 327954113.064667;
+		modificationTime = 327955418.877313;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -2775,7 +2800,7 @@
 		ignoreCount = 0;
 		lineNumber = 59;
 		location = "Dev Struct";
-		modificationTime = 327954113.334141;
+		modificationTime = 327955419.272664;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -2804,7 +2829,7 @@
 		ignoreCount = 0;
 		lineNumber = 229;
 		location = iCalModule;
-		modificationTime = 327954110.990543;
+		modificationTime = 327955416.738988;
 		originalNumberOfMultipleMatches = 1;
 		state = 0;
 	};
@@ -2943,7 +2968,7 @@
 		ignoreCount = 0;
 		lineNumber = 90;
 		location = "Dev Struct";
-		modificationTime = 327954113.901999;
+		modificationTime = 327955419.939027;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -3018,7 +3043,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 77;
-		modificationTime = 327954110.990751;
+		modificationTime = 327955416.739102;
 		originalNumberOfMultipleMatches = 1;
 		state = 0;
 	};
@@ -3112,7 +3137,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 411";
 		rLen = 0;
-		rLoc = 20766;
+		rLoc = 18957;
 		rType = 0;
 		vrLen = 1455;
 		vrLoc = 3639;
@@ -3141,7 +3166,7 @@
 		ignoreCount = 0;
 		lineNumber = 403;
 		location = GoogleTodoModule;
-		modificationTime = 327954110.990994;
+		modificationTime = 327955416.739139;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -3159,9 +3184,9 @@
 		ignoreCount = 0;
 		lineNumber = 328;
 		location = GoogleTodoModule;
-		modificationTime = 327954110.991301;
+		modificationTime = 327955416.739318;
 		originalNumberOfMultipleMatches = 1;
-		state = 0;
+		state = 1;
 	};
 	8C37991D1384E7B4008EADC7 /* GTMOAuth2Authentication.m:461 */ = {
 		isa = PBXFileBreakpoint;
@@ -3177,9 +3202,9 @@
 		ignoreCount = 0;
 		lineNumber = 461;
 		location = GoogleTodoModule;
-		modificationTime = 327954110.991469;
+		modificationTime = 327955416.739452;
 		originalNumberOfMultipleMatches = 1;
-		state = 0;
+		state = 1;
 	};
 	8C3799251384E91D008EADC7 /* GTMOAuth2Authentication.m:467 */ = {
 		isa = PBXFileBreakpoint;
@@ -3195,7 +3220,7 @@
 		ignoreCount = 0;
 		lineNumber = 467;
 		location = GoogleTodoModule;
-		modificationTime = 327954110.991651;
+		modificationTime = 327955416.838364;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -3213,7 +3238,7 @@
 		ignoreCount = 0;
 		lineNumber = 458;
 		location = GoogleTodoModule;
-		modificationTime = 327954110.991786;
+		modificationTime = 327955416.838531;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -3231,7 +3256,7 @@
 		ignoreCount = 0;
 		lineNumber = 187;
 		location = UnitTests;
-		modificationTime = 327954110.992131;
+		modificationTime = 327955416.838671;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -3259,7 +3284,7 @@
 		ignoreCount = 0;
 		lineNumber = 471;
 		location = GoogleTodoModule;
-		modificationTime = 327954110.992188;
+		modificationTime = 327955416.838719;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -3277,7 +3302,7 @@
 		ignoreCount = 0;
 		lineNumber = 492;
 		location = GoogleTodoModule;
-		modificationTime = 327954110.992322;
+		modificationTime = 327955416.838835;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -3421,9 +3446,9 @@
 	};
 	8C5821E41383A69700E33F53 /* GTProtocol.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {740, 7930}}";
-			sepNavSelRange = "{7005, 0}";
-			sepNavVisRange = "{6378, 2061}";
+			sepNavIntBoundsRect = "{{0, 0}, {775, 7592}}";
+			sepNavSelRange = "{116, 0}";
+			sepNavVisRange = "{3, 1108}";
 			sepNavWindowFrame = "{{15, 11}, {1038, 862}}";
 		};
 	};
@@ -4048,7 +4073,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 193";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2196;
 		vrLoc = 4862;
@@ -4158,7 +4183,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 191";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1929;
 		vrLoc = 2565;
@@ -4168,7 +4193,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 203";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2076;
 		vrLoc = 2643;
@@ -4298,7 +4323,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 232";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2170;
 		vrLoc = 6788;
@@ -4308,7 +4333,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 204";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2005;
 		vrLoc = 5719;
@@ -4562,7 +4587,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 469";
 		rLen = 0;
-		rLoc = 20766;
+		rLoc = 18957;
 		rType = 0;
 		vrLen = 36;
 		vrLoc = 14674;
@@ -4572,7 +4597,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 471";
 		rLen = 0;
-		rLoc = 20764;
+		rLoc = 18955;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 14710;
@@ -4682,7 +4707,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 435";
 		rLen = 0;
-		rLoc = 19679;
+		rLoc = 17870;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 14710;
@@ -4782,7 +4807,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 435";
 		rLen = 0;
-		rLoc = 19679;
+		rLoc = 17870;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 14710;
@@ -4882,7 +4907,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 255";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2362;
 		vrLoc = 7444;
@@ -4992,7 +5017,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 231";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2362;
 		vrLoc = 7444;
@@ -5002,7 +5027,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 231";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2334;
 		vrLoc = 7476;
@@ -5102,7 +5127,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 231";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2297;
 		vrLoc = 7580;
@@ -5272,7 +5297,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 231";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2297;
 		vrLoc = 7580;
@@ -5377,7 +5402,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 231";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2333;
 		vrLoc = 7636;
@@ -5455,7 +5480,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 231";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2346;
 		vrLoc = 7654;
@@ -5489,7 +5514,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 231";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2375;
 		vrLoc = 7672;
@@ -5523,7 +5548,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 231";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2375;
 		vrLoc = 7672;
@@ -5567,7 +5592,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 231";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2375;
 		vrLoc = 7672;
@@ -5841,7 +5866,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 219";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1938;
 		vrLoc = 5349;
@@ -6693,7 +6718,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 456";
 		rLen = 0;
-		rLoc = 20695;
+		rLoc = 18886;
 		rType = 0;
 		vrLen = 840;
 		vrLoc = 13870;
@@ -6703,7 +6728,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 456";
 		rLen = 0;
-		rLoc = 20695;
+		rLoc = 18886;
 		rType = 0;
 		vrLen = 839;
 		vrLoc = 13871;
@@ -6773,7 +6798,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 456";
 		rLen = 0;
-		rLoc = 20695;
+		rLoc = 18886;
 		rType = 0;
 		vrLen = 1828;
 		vrLoc = 5397;
@@ -6783,7 +6808,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 456";
 		rLen = 0;
-		rLoc = 20695;
+		rLoc = 18886;
 		rType = 0;
 		vrLen = 1828;
 		vrLoc = 5397;
@@ -6853,7 +6878,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 456";
 		rLen = 0;
-		rLoc = 20695;
+		rLoc = 18886;
 		rType = 0;
 		vrLen = 1836;
 		vrLoc = 4474;
@@ -6923,7 +6948,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 456";
 		rLen = 0;
-		rLoc = 20695;
+		rLoc = 18886;
 		rType = 0;
 		vrLen = 1738;
 		vrLoc = 4575;
@@ -6993,7 +7018,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 456";
 		rLen = 0;
-		rLoc = 20695;
+		rLoc = 18886;
 		rType = 0;
 		vrLen = 1738;
 		vrLoc = 4575;
@@ -7063,7 +7088,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 456";
 		rLen = 0;
-		rLoc = 20695;
+		rLoc = 18886;
 		rType = 0;
 		vrLen = 1738;
 		vrLoc = 4575;
@@ -7143,7 +7168,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 456";
 		rLen = 0;
-		rLoc = 20695;
+		rLoc = 18886;
 		rType = 0;
 		vrLen = 1740;
 		vrLoc = 4590;
@@ -7213,7 +7238,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 456";
 		rLen = 0;
-		rLoc = 20695;
+		rLoc = 18886;
 		rType = 0;
 		vrLen = 1699;
 		vrLoc = 4634;
@@ -7283,7 +7308,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 458";
 		rLen = 0;
-		rLoc = 20695;
+		rLoc = 18886;
 		rType = 0;
 		vrLen = 1806;
 		vrLoc = 4645;
@@ -7353,7 +7378,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 458";
 		rLen = 0;
-		rLoc = 20695;
+		rLoc = 18886;
 		rType = 0;
 		vrLen = 1767;
 		vrLoc = 4762;
@@ -7413,7 +7438,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 458";
 		rLen = 0;
-		rLoc = 20695;
+		rLoc = 18886;
 		rType = 0;
 		vrLen = 1767;
 		vrLoc = 4762;
@@ -7493,7 +7518,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 236";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1456;
 		vrLoc = 6606;
@@ -7730,7 +7755,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 236";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1484;
 		vrLoc = 6532;
@@ -7767,7 +7792,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 235";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1748;
 		vrLoc = 5192;
@@ -7837,7 +7862,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 235";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1748;
 		vrLoc = 5192;
@@ -7907,7 +7932,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 229";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2345;
 		vrLoc = 6410;
@@ -7917,7 +7942,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 229";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2267;
 		vrLoc = 6488;
@@ -7987,7 +8012,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 229";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2267;
 		vrLoc = 6488;
@@ -8057,7 +8082,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 229";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2415;
 		vrLoc = 6488;
@@ -8127,7 +8152,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 456";
 		rLen = 0;
-		rLoc = 20535;
+		rLoc = 18726;
 		rType = 0;
 		vrLen = 558;
 		vrLoc = 14152;
@@ -8207,7 +8232,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 456";
 		rLen = 0;
-		rLoc = 20535;
+		rLoc = 18726;
 		rType = 0;
 		vrLen = 490;
 		vrLoc = 14220;
@@ -8307,7 +8332,7 @@
 		comments = "'mAuth' undeclared (first use in this function)";
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		rLen = 1;
-		rLoc = 378;
+		rLoc = 342;
 		rType = 1;
 	};
 	8C6C9DF1138704A700418CC4 /* PBXTextBookmark */ = {
@@ -8315,7 +8340,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 221";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1290;
 		vrLoc = 6229;
@@ -8355,7 +8380,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 229";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2047;
 		vrLoc = 6190;
@@ -8425,7 +8450,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 229";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2024;
 		vrLoc = 6282;
@@ -8495,7 +8520,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 229";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2024;
 		vrLoc = 6282;
@@ -8565,7 +8590,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 229";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2024;
 		vrLoc = 6282;
@@ -8635,7 +8660,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 229";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2024;
 		vrLoc = 6282;
@@ -8756,7 +8781,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 229";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2024;
 		vrLoc = 6282;
@@ -8766,7 +8791,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 255";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2352;
 		vrLoc = 7102;
@@ -8846,7 +8871,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 255";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2352;
 		vrLoc = 7102;
@@ -8856,7 +8881,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 255";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2395;
 		vrLoc = 7118;
@@ -8906,7 +8931,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 255";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1888;
 		vrLoc = 4474;
@@ -8976,7 +9001,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 271";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2492;
 		vrLoc = 7283;
@@ -9073,7 +9098,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 271";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2492;
 		vrLoc = 7283;
@@ -9153,7 +9178,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 261";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1742;
 		vrLoc = 5196;
@@ -9323,7 +9348,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 270";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2289;
 		vrLoc = 6722;
@@ -9403,7 +9428,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 270";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2458;
 		vrLoc = 7314;
@@ -9413,7 +9438,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 270";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2458;
 		vrLoc = 7314;
@@ -9493,7 +9518,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 270";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1822;
 		vrLoc = 4703;
@@ -9503,7 +9528,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 271";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2530;
 		vrLoc = 8182;
@@ -9583,7 +9608,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 271";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1966;
 		vrLoc = 4475;
@@ -9663,7 +9688,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 273";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1939;
 		vrLoc = 5238;
@@ -9743,7 +9768,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 273";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1841;
 		vrLoc = 5339;
@@ -9823,7 +9848,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 273";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1845;
 		vrLoc = 5339;
@@ -9903,7 +9928,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 273";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1845;
 		vrLoc = 5339;
@@ -9983,7 +10008,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 273";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1845;
 		vrLoc = 5339;
@@ -10063,7 +10088,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 273";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1714;
 		vrLoc = 5456;
@@ -10143,7 +10168,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 273";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1735;
 		vrLoc = 5486;
@@ -10253,7 +10278,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 296";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2342;
 		vrLoc = 5238;
@@ -10323,7 +10348,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 296";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2342;
 		vrLoc = 5238;
@@ -10333,7 +10358,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 216";
 		rLen = 0;
-		rLoc = 9076;
+		rLoc = 7267;
 		rType = 0;
 		vrLen = 1971;
 		vrLoc = 5939;
@@ -10413,7 +10438,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 216";
 		rLen = 0;
-		rLoc = 9076;
+		rLoc = 7267;
 		rType = 0;
 		vrLen = 1998;
 		vrLoc = 7753;
@@ -10493,7 +10518,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 216";
 		rLen = 0;
-		rLoc = 9076;
+		rLoc = 7267;
 		rType = 0;
 		vrLen = 1998;
 		vrLoc = 7813;
@@ -10573,7 +10598,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 216";
 		rLen = 0;
-		rLoc = 9076;
+		rLoc = 7267;
 		rType = 0;
 		vrLen = 2101;
 		vrLoc = 5710;
@@ -10583,7 +10608,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 216";
 		rLen = 0;
-		rLoc = 9076;
+		rLoc = 7267;
 		rType = 0;
 		vrLen = 2101;
 		vrLoc = 5710;
@@ -10663,7 +10688,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 221";
 		rLen = 0;
-		rLoc = 9324;
+		rLoc = 7515;
 		rType = 0;
 		vrLen = 2022;
 		vrLoc = 5977;
@@ -10743,7 +10768,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 296";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2162;
 		vrLoc = 8748;
@@ -10808,7 +10833,7 @@
 		vrLen = 1786;
 		vrLoc = 2376;
 	};
-	8C6C9F531387804800418CC4 /* GTProtocol.m:307 */ = {
+	8C6C9F531387804800418CC4 /* GTProtocol.m:271 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -10820,11 +10845,11 @@
 		functionName = "-finishComplete:withFetcher:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 307;
+		lineNumber = 271;
 		location = GoogleTodoModule;
-		modificationTime = 327954110.992463;
+		modificationTime = 327955416.838951;
 		originalNumberOfMultipleMatches = 1;
-		state = 0;
+		state = 1;
 	};
 	8C6C9F551387805000418CC4 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -10841,7 +10866,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 224";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1801;
 		vrLoc = 5975;
@@ -10851,7 +10876,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 224";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1800;
 		vrLoc = 5975;
@@ -10931,7 +10956,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 232";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1824;
 		vrLoc = 6024;
@@ -11111,7 +11136,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 236";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2074;
 		vrLoc = 6594;
@@ -11211,7 +11236,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 236";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2221;
 		vrLoc = 6871;
@@ -11291,7 +11316,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 236";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1836;
 		vrLoc = 6109;
@@ -11371,7 +11396,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 236";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1944;
 		vrLoc = 6159;
@@ -11451,7 +11476,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 236";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1840;
 		vrLoc = 6263;
@@ -11531,7 +11556,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 237";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1946;
 		vrLoc = 6263;
@@ -11611,7 +11636,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 237";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1891;
 		vrLoc = 6318;
@@ -11691,7 +11716,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 237";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1957;
 		vrLoc = 5301;
@@ -11811,7 +11836,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 237";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2135;
 		vrLoc = 5304;
@@ -11891,7 +11916,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 228";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2150;
 		vrLoc = 5387;
@@ -11971,7 +11996,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 228";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2039;
 		vrLoc = 5498;
@@ -12071,7 +12096,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 228";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1918;
 		vrLoc = 5620;
@@ -12121,7 +12146,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 228";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1944;
 		vrLoc = 5690;
@@ -12161,7 +12186,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 228";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2076;
 		vrLoc = 5690;
@@ -12221,7 +12246,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 228";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2039;
 		vrLoc = 5727;
@@ -12271,7 +12296,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 229";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2034;
 		vrLoc = 5765;
@@ -12321,7 +12346,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 223";
 		rLen = 0;
-		rLoc = 9213;
+		rLoc = 7404;
 		rType = 0;
 		vrLen = 1982;
 		vrLoc = 5846;
@@ -12371,7 +12396,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 231";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2033;
 		vrLoc = 5896;
@@ -12421,7 +12446,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 231";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2033;
 		vrLoc = 5896;
@@ -12471,7 +12496,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 228";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2129;
 		vrLoc = 7740;
@@ -12531,7 +12556,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 228";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1134;
 		vrLoc = 0;
@@ -12541,7 +12566,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 228";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2040;
 		vrLoc = 6057;
@@ -12591,7 +12616,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 228";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2104;
 		vrLoc = 6146;
@@ -12811,7 +12836,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 234";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2091;
 		vrLoc = 6249;
@@ -12861,7 +12886,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 231";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2052;
 		vrLoc = 6287;
@@ -12911,7 +12936,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 298";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1220;
 		vrLoc = 9867;
@@ -12921,7 +12946,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 306";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1338;
 		vrLoc = 10020;
@@ -13038,7 +13063,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 186";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1933;
 		vrLoc = 4713;
@@ -13088,7 +13113,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 193";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2157;
 		vrLoc = 4899;
@@ -13266,7 +13291,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1265, 4706}}";
 			sepNavSelRange = "{3622, 0}";
-			sepNavVisRange = "{6988, 1822}";
+			sepNavVisRange = "{7016, 1916}";
 			sepNavWindowFrame = "{{0, 27}, {907, 831}}";
 		};
 	};
@@ -13540,7 +13565,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1811, 7605}}";
 			sepNavSelRange = "{14263, 305}";
-			sepNavVisRange = "{14262, 1813}";
+			sepNavVisRange = "{14351, 1727}";
 			sepNavWindowFrame = "{{206, 47}, {907, 831}}";
 		};
 	};
@@ -14743,7 +14768,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 244";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2088;
 		vrLoc = 6274;
@@ -14794,7 +14819,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 1;
-		rLoc = 513;
+		rLoc = 477;
 		rType = 1;
 	};
 	8C8EF56F1389B30200F2E80F /* PBXTextBookmark */ = {
@@ -14802,7 +14827,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 348";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1789;
 		vrLoc = 11092;
@@ -14822,7 +14847,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 314";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2097;
 		vrLoc = 5313;
@@ -14832,7 +14857,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 303";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2476;
 		vrLoc = 8361;
@@ -14886,7 +14911,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 373";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1451;
 		vrLoc = 11116;
@@ -14896,7 +14921,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 322";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2076;
 		vrLoc = 8452;
@@ -14946,7 +14971,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 374";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1451;
 		vrLoc = 11118;
@@ -15006,7 +15031,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 374";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1451;
 		vrLoc = 11118;
@@ -15066,7 +15091,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 374";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1454;
 		vrLoc = 11118;
@@ -15126,7 +15151,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 374";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1451;
 		vrLoc = 11118;
@@ -15186,7 +15211,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 374";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1454;
 		vrLoc = 11120;
@@ -15246,7 +15271,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 374";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1451;
 		vrLoc = 11120;
@@ -15307,7 +15332,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 1;
-		rLoc = 513;
+		rLoc = 477;
 		rType = 1;
 	};
 	8C8EF5B91389CA2F00F2E80F /* PBXTextBookmark */ = {
@@ -15345,7 +15370,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 381";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1454;
 		vrLoc = 11326;
@@ -15389,9 +15414,9 @@
 	};
 	8C8EF5C41389DFD600F2E80F /* GoogleTaskEditCtrl.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1136, 4147}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1136, 4121}}";
 			sepNavSelRange = "{1652, 5}";
-			sepNavVisRange = "{1662, 1659}";
+			sepNavVisRange = "{1713, 1758}";
 		};
 	};
 	8C8EF5CA1389E30500F2E80F /* PBXTextBookmark */ = {
@@ -15732,7 +15757,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 258";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2444;
 		vrLoc = 6297;
@@ -16188,6 +16213,12 @@
 		vrLoc = 609;
 	};
 	8C8EF6C0138A43E100F2E80F /* NullOrDatePicker.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = NullOrDatePicker.h;
+		path = "/Users/me/Experiment/Self-ImposedStructure/NullOrDatePicker.h";
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {807, 478}}";
 			sepNavSelRange = "{264, 0}";
@@ -16195,6 +16226,12 @@
 		};
 	};
 	8C8EF6C1138A43E100F2E80F /* NullOrDatePicker.m */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.objc;
+		name = NullOrDatePicker.m;
+		path = "/Users/me/Experiment/Self-ImposedStructure/NullOrDatePicker.m";
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {884, 462}}";
 			sepNavSelRange = "{222, 0}";
@@ -17239,7 +17276,7 @@
 		vrLen = 2275;
 		vrLoc = 3622;
 	};
-	8C8EF777138A747500F2E80F /* GTProtocol.m:347 */ = {
+	8C8EF777138A747500F2E80F /* GTProtocol.m:311 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -17251,11 +17288,11 @@
 		functionName = "-gotEtag:finishedWithData:error:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 347;
+		lineNumber = 311;
 		location = GoogleTodoModule;
-		modificationTime = 327954110.992943;
+		modificationTime = 327955416.83951;
 		originalNumberOfMultipleMatches = 1;
-		state = 0;
+		state = 1;
 	};
 	8C8EF77B138A748500F2E80F /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -17282,7 +17319,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 407";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1933;
 		vrLoc = 7639;
@@ -17292,7 +17329,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 407";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1823;
 		vrLoc = 7749;
@@ -17342,7 +17379,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 263";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1369;
 		vrLoc = 805;
@@ -17377,7 +17414,7 @@
 		vrLen = 2334;
 		vrLoc = 3648;
 	};
-	8C8EF78F138A74FD00F2E80F /* GTProtocol.m:426 */ = {
+	8C8EF78F138A74FD00F2E80F /* GTProtocol.m:390 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -17389,11 +17426,11 @@
 		functionName = "-sendComplete:returnTo:params:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 426;
+		lineNumber = 390;
 		location = GoogleTodoModule;
-		modificationTime = 327954110.993247;
+		modificationTime = 327955416.839777;
 		originalNumberOfMultipleMatches = 1;
-		state = 0;
+		state = 1;
 	};
 	8C8EF791138A750C00F2E80F /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -17410,7 +17447,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 263";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2067;
 		vrLoc = 10808;
@@ -17420,7 +17457,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 263";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2067;
 		vrLoc = 10808;
@@ -17935,7 +17972,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 295";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2203;
 		vrLoc = 7361;
@@ -18125,7 +18162,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 391";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1944;
 		vrLoc = 12191;
@@ -18135,7 +18172,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 403";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2023;
 		vrLoc = 12221;
@@ -18245,7 +18282,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 403";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2023;
 		vrLoc = 12221;
@@ -18255,7 +18292,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 403";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2059;
 		vrLoc = 12665;
@@ -18345,7 +18382,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 403";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2039;
 		vrLoc = 12761;
@@ -18415,7 +18452,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 403";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2039;
 		vrLoc = 12761;
@@ -18425,7 +18462,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 401";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2098;
 		vrLoc = 12050;
@@ -18525,7 +18562,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 401";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2098;
 		vrLoc = 12050;
@@ -18535,7 +18572,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 401";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2098;
 		vrLoc = 12050;
@@ -18615,7 +18652,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 401";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2306;
 		vrLoc = 13034;
@@ -18625,7 +18662,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 401";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2306;
 		vrLoc = 13034;
@@ -18705,7 +18742,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 401";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2487;
 		vrLoc = 13034;
@@ -18785,7 +18822,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 401";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2439;
 		vrLoc = 13082;
@@ -18865,7 +18902,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 401";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2439;
 		vrLoc = 13082;
@@ -18875,7 +18912,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 415";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2167;
 		vrLoc = 12874;
@@ -18955,7 +18992,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 415";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2167;
 		vrLoc = 12874;
@@ -18965,7 +19002,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 396";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2099;
 		vrLoc = 12662;
@@ -19045,7 +19082,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 396";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2219;
 		vrLoc = 12665;
@@ -19135,7 +19172,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 421";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2224;
 		vrLoc = 12665;
@@ -19145,7 +19182,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 421";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2364;
 		vrLoc = 12876;
@@ -19225,7 +19262,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 421";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2332;
 		vrLoc = 13014;
@@ -19305,7 +19342,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 421";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2257;
 		vrLoc = 13123;
@@ -19385,7 +19422,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 421";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2257;
 		vrLoc = 13123;
@@ -19450,7 +19487,7 @@
 		vrLen = 1758;
 		vrLoc = 5189;
 	};
-	8C8EF8E3138AFCBD00F2E80F /* GTProtocol.m:458 */ = {
+	8C8EF8E3138AFCBD00F2E80F /* GTProtocol.m:422 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -19462,11 +19499,11 @@
 		functionName = "-sendUpdate:returnTo:params:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 458;
+		lineNumber = 422;
 		location = GoogleTodoModule;
-		modificationTime = 327954110.99355;
+		modificationTime = 327955416.840044;
 		originalNumberOfMultipleMatches = 1;
-		state = 0;
+		state = 1;
 	};
 	8C8EF8E5138AFCC500F2E80F /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -19568,7 +19605,7 @@
 		vrLen = 1758;
 		vrLoc = 5189;
 	};
-	8C8EF8EF138AFD0300F2E80F /* GTProtocol.m:315 */ = {
+	8C8EF8EF138AFD0300F2E80F /* GTProtocol.m:279 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -19580,11 +19617,11 @@
 		functionName = "-finishUpdate:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 315;
+		lineNumber = 279;
 		location = GoogleTodoModule;
-		modificationTime = 327954110.993837;
+		modificationTime = 327955416.84031;
 		originalNumberOfMultipleMatches = 1;
-		state = 0;
+		state = 1;
 	};
 	8C8EF8F1138AFD1400F2E80F /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -19601,7 +19638,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 250";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2004;
 		vrLoc = 7171;
@@ -19611,7 +19648,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 250";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2004;
 		vrLoc = 7171;
@@ -19676,7 +19713,7 @@
 		vrLen = 1758;
 		vrLoc = 5189;
 	};
-	8C8EF8FA138AFD3C00F2E80F /* GTProtocol.m:313 */ = {
+	8C8EF8FA138AFD3C00F2E80F /* GTProtocol.m:277 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -19688,13 +19725,13 @@
 		functionName = "-finishUpdate:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 313;
+		lineNumber = 277;
 		location = GoogleTodoModule;
-		modificationTime = 327954110.994125;
+		modificationTime = 327955416.840504;
 		originalNumberOfMultipleMatches = 1;
-		state = 0;
+		state = 1;
 	};
-	8C8EF8FC138AFD8000F2E80F /* GTProtocol.m:357 */ = {
+	8C8EF8FC138AFD8000F2E80F /* GTProtocol.m:321 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -19706,11 +19743,11 @@
 		functionName = "-gotEtag:finishedWithData:error:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 357;
+		lineNumber = 321;
 		location = GoogleTodoModule;
-		modificationTime = 327954110.99441;
+		modificationTime = 327955416.840688;
 		originalNumberOfMultipleMatches = 1;
-		state = 0;
+		state = 1;
 	};
 	8C8EF8FE138AFD8E00F2E80F /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -19727,7 +19764,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 250";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2004;
 		vrLoc = 7171;
@@ -19827,7 +19864,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 250";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1889;
 		vrLoc = 7338;
@@ -19907,7 +19944,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 261";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1888;
 		vrLoc = 7446;
@@ -19987,7 +20024,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 261";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1900;
 		vrLoc = 7449;
@@ -20067,7 +20104,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 261";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1885;
 		vrLoc = 7495;
@@ -20147,7 +20184,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 261";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1715;
 		vrLoc = 7661;
@@ -20227,7 +20264,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 261";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1681;
 		vrLoc = 7698;
@@ -20282,7 +20319,7 @@
 		vrLen = 1705;
 		vrLoc = 5672;
 	};
-	8C8EF958138B047400F2E80F /* GTProtocol.m:291 */ = {
+	8C8EF958138B047400F2E80F /* GTProtocol.m:255 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -20294,11 +20331,11 @@
 		functionName = "-finishComplete:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 291;
+		lineNumber = 255;
 		location = GoogleTodoModule;
-		modificationTime = 327954110.994682;
+		modificationTime = 327955416.840882;
 		originalNumberOfMultipleMatches = 1;
-		state = 0;
+		state = 1;
 	};
 	8C8EF95A138B047700F2E80F /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -20325,7 +20362,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 261";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1681;
 		vrLoc = 7698;
@@ -20405,7 +20442,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 261";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1573;
 		vrLoc = 7825;
@@ -20475,7 +20512,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 261";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1832;
 		vrLoc = 5257;
@@ -20555,7 +20592,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 261";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1914;
 		vrLoc = 5257;
@@ -20635,7 +20672,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 261";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1792;
 		vrLoc = 5379;
@@ -20715,7 +20752,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 261";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1792;
 		vrLoc = 5379;
@@ -20795,7 +20832,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 261";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1792;
 		vrLoc = 5379;
@@ -20875,7 +20912,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 453";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2526;
 		vrLoc = 13361;
@@ -20955,7 +20992,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 453";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2442;
 		vrLoc = 13467;
@@ -21020,7 +21057,7 @@
 		vrLen = 1877;
 		vrLoc = 5800;
 	};
-	8C8EF9B5138C02FC00F2E80F /* GTProtocol.m:496 */ = {
+	8C8EF9B5138C02FC00F2E80F /* GTProtocol.m:460 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -21032,11 +21069,11 @@
 		functionName = "-finishMoveDelete:finishedWithData:error:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 496;
+		lineNumber = 460;
 		location = GoogleTodoModule;
-		modificationTime = 327954110.994949;
+		modificationTime = 327955416.841085;
 		originalNumberOfMultipleMatches = 1;
-		state = 0;
+		state = 1;
 	};
 	8C8EF9B7138C030200F2E80F /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -21053,7 +21090,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 453";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2442;
 		vrLoc = 13467;
@@ -21063,7 +21100,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 453";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2442;
 		vrLoc = 13467;
@@ -21143,7 +21180,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 453";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1686;
 		vrLoc = 4882;
@@ -21153,7 +21190,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 453";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2436;
 		vrLoc = 13661;
@@ -21233,7 +21270,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 453";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2417;
 		vrLoc = 13680;
@@ -21313,7 +21350,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 494";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2486;
 		vrLoc = 15891;
@@ -21403,7 +21440,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 474";
 		rLen = 1062;
-		rLoc = 18187;
+		rLoc = 16378;
 		rType = 0;
 		vrLen = 2216;
 		vrLoc = 16097;
@@ -22491,7 +22528,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = handleErr;
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1954;
 		vrLoc = 11292;
@@ -22521,7 +22558,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 272";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2003;
 		vrLoc = 12556;
@@ -22641,7 +22678,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 390";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 1970;
 		vrLoc = 11436;
@@ -22761,7 +22798,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 434";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2470;
 		vrLoc = 12862;
@@ -22881,7 +22918,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 434";
 		rLen = 0;
-		rLoc = 9432;
+		rLoc = 7623;
 		rType = 0;
 		vrLen = 2357;
 		vrLoc = 15332;
@@ -23001,7 +23038,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 506";
 		rLen = 0;
-		rLoc = 18248;
+		rLoc = 16439;
 		rType = 0;
 		vrLen = 2017;
 		vrLoc = 16746;
@@ -23121,7 +23158,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 506";
 		rLen = 0;
-		rLoc = 18248;
+		rLoc = 16439;
 		rType = 0;
 		vrLen = 2009;
 		vrLoc = 16746;
@@ -23241,7 +23278,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 507";
 		rLen = 0;
-		rLoc = 18248;
+		rLoc = 16439;
 		rType = 0;
 		vrLen = 2161;
 		vrLoc = 16397;
@@ -23361,7 +23398,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 508";
 		rLen = 0;
-		rLoc = 18248;
+		rLoc = 16439;
 		rType = 0;
 		vrLen = 2134;
 		vrLoc = 15188;
@@ -23480,9 +23517,9 @@
 		ignoreCount = 0;
 		lineNumber = 94;
 		location = GoogleTodoModule;
-		modificationTime = 327954110.99523;
+		modificationTime = 327955416.841271;
 		originalNumberOfMultipleMatches = 1;
-		state = 0;
+		state = 1;
 	};
 	8C8EFB02138C257200F2E80F /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -23519,7 +23556,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 508";
 		rLen = 0;
-		rLoc = 18248;
+		rLoc = 16439;
 		rType = 0;
 		vrLen = 2134;
 		vrLoc = 15188;
@@ -23618,7 +23655,7 @@
 		isa = PBXTextBookmark;
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		rLen = 0;
-		rLoc = 7266;
+		rLoc = 7267;
 		rType = 0;
 	};
 	8C8EFB14138C263F00F2E80F /* PBXTextBookmark */ = {
@@ -23636,7 +23673,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 237";
 		rLen = 0;
-		rLoc = 7266;
+		rLoc = 7267;
 		rType = 0;
 		vrLen = 2144;
 		vrLoc = 6330;
@@ -23795,6 +23832,7 @@
 	};
 	8C8EFB33138C2DC200F2E80F /* NSString+SBJSON.m */ = {
 		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
 		name = "NSString+SBJSON.m";
 		path = "/Users/me/Experiment/gtm-oauth2-read-only/JSON/NSString+SBJSON.m";
 		sourceTree = "<absolute>";
@@ -23809,7 +23847,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 245";
 		rLen = 0;
-		rLoc = 7081;
+		rLoc = 7083;
 		rType = 0;
 		vrLen = 2194;
 		vrLoc = 6533;
@@ -23929,7 +23967,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 245";
 		rLen = 0;
-		rLoc = 7081;
+		rLoc = 7083;
 		rType = 0;
 		vrLen = 2194;
 		vrLoc = 6533;
@@ -23939,7 +23977,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 245";
 		rLen = 0;
-		rLoc = 7081;
+		rLoc = 7083;
 		rType = 0;
 		vrLen = 2194;
 		vrLoc = 6533;
@@ -24059,7 +24097,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 232";
 		rLen = 0;
-		rLoc = 6709;
+		rLoc = 6710;
 		rType = 0;
 		vrLen = 2004;
 		vrLoc = 6294;
@@ -24179,7 +24217,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 232";
 		rLen = 0;
-		rLoc = 6710;
+		rLoc = 6711;
 		rType = 0;
 		vrLen = 2070;
 		vrLoc = 6332;
@@ -24299,7 +24337,7 @@
 		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
 		name = "GTProtocol.m: 244";
 		rLen = 0;
-		rLoc = 7005;
+		rLoc = 7007;
 		rType = 0;
 		vrLen = 2061;
 		vrLoc = 6378;
@@ -24404,6 +24442,256 @@
 		vrLen = 1822;
 		vrLoc = 6988;
 	};
+	8C8EFB7C138C32F000F2E80F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C8EFB33138C2DC200F2E80F /* NSString+SBJSON.m */;
+		name = "NSString+SBJSON.m: 41";
+		rLen = 0;
+		rLoc = 1715;
+		rType = 0;
+		vrLen = 595;
+		vrLoc = 1415;
+	};
+	8C8EFB7D138C32F000F2E80F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C96533F1384BFFB007970F2 /* GTMOAuth2SignIn.m */;
+		name = "GTMOAuth2SignIn.m: 110";
+		rLen = 0;
+		rLoc = 3947;
+		rType = 0;
+		vrLen = 1265;
+		vrLoc = 5660;
+	};
+	8C8EFB7E138C32F000F2E80F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
+		name = "GTProtocol.m: 6";
+		rLen = 0;
+		rLoc = 116;
+		rType = 0;
+		vrLen = 1111;
+		vrLoc = 0;
+	};
+	8C8EFB7F138C32F000F2E80F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C8EF5C41389DFD600F2E80F /* GoogleTaskEditCtrl.m */;
+		name = "GoogleTaskEditCtrl.m: 77";
+		rLen = 5;
+		rLoc = 1652;
+		rType = 0;
+		vrLen = 1809;
+		vrLoc = 1662;
+	};
+	8C8EFB80138C32F000F2E80F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77291612D46AC600F71FE7 /* RTMModule.m */;
+		name = "RTMModule.m: 455";
+		rLen = 305;
+		rLoc = 14263;
+		rType = 0;
+		vrLen = 1816;
+		vrLoc = 14262;
+	};
+	8C8EFB81138C32F000F2E80F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C82AF5D12ECD17100830486 /* TaskList.h */;
+		name = "TaskList.h: 15";
+		rLen = 23;
+		rLoc = 241;
+		rType = 0;
+		vrLen = 513;
+		vrLoc = 0;
+	};
+	8C8EFB82138C32F000F2E80F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5821981383981B00E33F53 /* GoogleTodoModule.m */;
+		name = "GoogleTodoModule.m: 468";
+		rLen = 0;
+		rLoc = 13396;
+		rType = 0;
+		vrLen = 1338;
+		vrLoc = 12892;
+	};
+	8C8EFB83138C32F000F2E80F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C18041612F770DB0061FDE6 /* AddActivityDialogController.m */;
+		name = "AddActivityDialogController.m: 40";
+		rLen = 0;
+		rLoc = 825;
+		rType = 0;
+		vrLen = 1368;
+		vrLoc = 617;
+	};
+	8C8EFB84138C32F000F2E80F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5821E31383A69700E33F53 /* GTProtocol.h */;
+		name = "GTProtocol.h: 85";
+		rLen = 0;
+		rLoc = 2931;
+		rType = 0;
+		vrLen = 2475;
+		vrLoc = 1044;
+	};
+	8C8EFB85138C32F000F2E80F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C96533F1384BFFB007970F2 /* GTMOAuth2SignIn.m */;
+		name = "GTMOAuth2SignIn.m: 114";
+		rLen = 0;
+		rLoc = 4099;
+		rType = 0;
+		vrLen = 1996;
+		vrLoc = 21431;
+	};
+	8C8EFB86138C32F000F2E80F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C96533D1384BFFB007970F2 /* GTMOAuth2WindowController.h */;
+		name = "GTMOAuth2WindowController.h: 211";
+		rLen = 22;
+		rLoc = 7751;
+		rType = 0;
+		vrLen = 2302;
+		vrLoc = 8642;
+	};
+	8C8EFB87138C32F000F2E80F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C9653411384BFFB007970F2 /* GTMOAuth2Authentication.m */;
+		name = "GTMOAuth2Authentication.m: 33";
+		rLen = 1;
+		rLoc = 1544;
+		rType = 0;
+		vrLen = 1614;
+		vrLoc = 3095;
+	};
+	8C8EFB88138C32F000F2E80F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C73F09A12E5F6590056FAFF /* SummaryHUDControl.m */;
+		name = "SummaryHUDControl.m: 116";
+		rLen = 0;
+		rLoc = 3622;
+		rType = 0;
+		vrLen = 1944;
+		vrLoc = 6988;
+	};
+	8C8EFB98138C33E200F2E80F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C96533F1384BFFB007970F2 /* GTMOAuth2SignIn.m */;
+		name = "GTMOAuth2SignIn.m: 110";
+		rLen = 0;
+		rLoc = 3947;
+		rType = 0;
+		vrLen = 1265;
+		vrLoc = 5660;
+	};
+	8C8EFB99138C33E200F2E80F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */;
+		name = "GTProtocol.m: 6";
+		rLen = 0;
+		rLoc = 116;
+		rType = 0;
+		vrLen = 1108;
+		vrLoc = 3;
+	};
+	8C8EFB9A138C33E200F2E80F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C8EF5C41389DFD600F2E80F /* GoogleTaskEditCtrl.m */;
+		name = "GoogleTaskEditCtrl.m: 77";
+		rLen = 5;
+		rLoc = 1652;
+		rType = 0;
+		vrLen = 1758;
+		vrLoc = 1713;
+	};
+	8C8EFB9B138C33E200F2E80F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77291612D46AC600F71FE7 /* RTMModule.m */;
+		name = "RTMModule.m: 455";
+		rLen = 305;
+		rLoc = 14263;
+		rType = 0;
+		vrLen = 1727;
+		vrLoc = 14351;
+	};
+	8C8EFB9C138C33E200F2E80F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C82AF5D12ECD17100830486 /* TaskList.h */;
+		name = "TaskList.h: 15";
+		rLen = 23;
+		rLoc = 241;
+		rType = 0;
+		vrLen = 513;
+		vrLoc = 0;
+	};
+	8C8EFB9D138C33E200F2E80F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5821981383981B00E33F53 /* GoogleTodoModule.m */;
+		name = "GoogleTodoModule.m: 468";
+		rLen = 0;
+		rLoc = 13396;
+		rType = 0;
+		vrLen = 1288;
+		vrLoc = 12942;
+	};
+	8C8EFB9E138C33E200F2E80F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C18041612F770DB0061FDE6 /* AddActivityDialogController.m */;
+		name = "AddActivityDialogController.m: 40";
+		rLen = 0;
+		rLoc = 825;
+		rType = 0;
+		vrLen = 1365;
+		vrLoc = 617;
+	};
+	8C8EFB9F138C33E200F2E80F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5821E31383A69700E33F53 /* GTProtocol.h */;
+		name = "GTProtocol.h: 85";
+		rLen = 0;
+		rLoc = 2931;
+		rType = 0;
+		vrLen = 2410;
+		vrLoc = 1109;
+	};
+	8C8EFBA0138C33E200F2E80F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C96533F1384BFFB007970F2 /* GTMOAuth2SignIn.m */;
+		name = "GTMOAuth2SignIn.m: 114";
+		rLen = 0;
+		rLoc = 4099;
+		rType = 0;
+		vrLen = 1996;
+		vrLoc = 21431;
+	};
+	8C8EFBA1138C33E200F2E80F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C96533D1384BFFB007970F2 /* GTMOAuth2WindowController.h */;
+		name = "GTMOAuth2WindowController.h: 211";
+		rLen = 22;
+		rLoc = 7751;
+		rType = 0;
+		vrLen = 2190;
+		vrLoc = 8754;
+	};
+	8C8EFBA2138C33E200F2E80F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C9653411384BFFB007970F2 /* GTMOAuth2Authentication.m */;
+		name = "GTMOAuth2Authentication.m: 33";
+		rLen = 1;
+		rLoc = 1544;
+		rType = 0;
+		vrLen = 1532;
+		vrLoc = 3177;
+	};
+	8C8EFBA3138C33E200F2E80F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C73F09A12E5F6590056FAFF /* SummaryHUDControl.m */;
+		name = "SummaryHUDControl.m: 116";
+		rLen = 0;
+		rLoc = 3622;
+		rType = 0;
+		vrLen = 1916;
+		vrLoc = 7016;
+	};
 	8C96522E13847510007970F2 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 8C77291612D46AC600F71FE7 /* RTMModule.m */;
@@ -24484,7 +24772,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1136, 13325}}";
 			sepNavSelRange = "{1544, 1}";
-			sepNavVisRange = "{3095, 1551}";
+			sepNavVisRange = "{3177, 1532}";
 			sepNavWindowFrame = "{{15, 16}, {1197, 857}}";
 		};
 	};
@@ -24668,7 +24956,7 @@
 		ignoreCount = 0;
 		lineNumber = 130;
 		location = "Dev Struct";
-		modificationTime = 327954113.654914;
+		modificationTime = 327955419.574858;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};

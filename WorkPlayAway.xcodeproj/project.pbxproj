@@ -224,7 +224,6 @@
 		8C844AAE133AEA5700998D1C /* PercentOfDaysXForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C844AAC133AEA5700998D1C /* PercentOfDaysXForm.m */; };
 		8C8EF5C21389DF0800F2E80F /* GoogleTaskEdit.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C8EF5C11389DF0800F2E80F /* GoogleTaskEdit.xib */; };
 		8C8EF5C51389DFD600F2E80F /* GoogleTaskEditCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8EF5C41389DFD600F2E80F /* GoogleTaskEditCtrl.m */; };
-		8C8EF6C2138A43E100F2E80F /* NullOrDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8EF6C1138A43E100F2E80F /* NullOrDatePicker.m */; };
 		8C9651F313845296007970F2 /* structcommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* structcommon.framework */; };
 		8C96522913847505007970F2 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1988112D5079F00C69AC9 /* ScriptingBridge.framework */; };
 		8C9653971384BFFB007970F2 /* GTMOAuth2Window.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C96533C1384BFFB007970F2 /* GTMOAuth2Window.xib */; };
@@ -945,8 +944,6 @@
 		8C8EF5C11389DF0800F2E80F /* GoogleTaskEdit.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoogleTaskEdit.xib; sourceTree = "<group>"; };
 		8C8EF5C31389DFD600F2E80F /* GoogleTaskEditCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleTaskEditCtrl.h; sourceTree = "<group>"; };
 		8C8EF5C41389DFD600F2E80F /* GoogleTaskEditCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleTaskEditCtrl.m; sourceTree = "<group>"; };
-		8C8EF6C0138A43E100F2E80F /* NullOrDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NullOrDatePicker.h; sourceTree = "<group>"; };
-		8C8EF6C1138A43E100F2E80F /* NullOrDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullOrDatePicker.m; sourceTree = "<group>"; };
 		8C9653391384BFFB007970F2 /* ReleaseNotes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ReleaseNotes.txt; path = GoogleOAuth/Source/ReleaseNotes.txt; sourceTree = "<group>"; };
 		8C96533C1384BFFB007970F2 /* GTMOAuth2Window.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GTMOAuth2Window.xib; sourceTree = "<group>"; };
 		8C96533D1384BFFB007970F2 /* GTMOAuth2WindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMOAuth2WindowController.h; sourceTree = "<group>"; };
@@ -1464,8 +1461,6 @@
 				8C5821991383981B00E33F53 /* GoogleTodoModule.xib */,
 				8C8EF5C31389DFD600F2E80F /* GoogleTaskEditCtrl.h */,
 				8C8EF5C41389DFD600F2E80F /* GoogleTaskEditCtrl.m */,
-				8C8EF6C0138A43E100F2E80F /* NullOrDatePicker.h */,
-				8C8EF6C1138A43E100F2E80F /* NullOrDatePicker.m */,
 			);
 			name = GoogleTodoModule;
 			sourceTree = "<group>";
@@ -2759,7 +2754,6 @@
 				8C9653A21384BFFB007970F2 /* GTMHTTPFetcher.m in Sources */,
 				8C9653A51384BFFB007970F2 /* GTMHTTPFetchHistory.m in Sources */,
 				8C8EF5C51389DFD600F2E80F /* GoogleTaskEditCtrl.m in Sources */,
-				8C8EF6C2138A43E100F2E80F /* NullOrDatePicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

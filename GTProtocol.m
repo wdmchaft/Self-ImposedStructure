@@ -3,7 +3,7 @@
 //  Self-Imposed Structure
 //
 //  Created by Charles on 4/28/11.
-//  Copyright 2011 WorkPlayAway. All rights reserved.
+//  Copyright 2011 zer0gravitas. All rights reserved.
 //
 #define EMAIL @"Email"
 #define PASSWORD @"Password"
@@ -224,6 +224,7 @@
 	NSString *str = [dateFormatter stringFromDate:date];
 	return str;
 }
+
 - (NSDictionary*) filterDictionary:(NSDictionary*) dict includeKeys:(NSArray*) keys
 {
 	NSMutableDictionary *temp = [NSMutableDictionary dictionaryWithCapacity:[dict count]];
@@ -235,6 +236,7 @@
 	return temp;
 
 }
+
 - (NSDictionary*) scrubTask: (NSDictionary*) task isAdd: (BOOL) doingAdd
 {
 	if (doingAdd){
@@ -247,44 +249,6 @@
 							 @"selfLink", @"deleted", @"etag", @"parent", @"hidden",
 							 @"kind", @"id", @"position", @"updated", nil]];
 }
-
-//- (NSDictionary*) scrubTask: (NSDictionary*) task isAdd: (BOOL) doingAdd
-//{
-//	NSMutableDictionary *newTask = [NSMutableDictionary dictionaryWithCapacity:5];
-//	if ([task objectForKey:@"title"])
-//		[newTask setObject:[task objectForKey:@"title"] forKey:@"title"];
-//	if ([task objectForKey:@"notes"])
-//		[newTask setObject:[task objectForKey:@"notes"] forKey:@"notes"];
-//	if ([task objectForKey:@"due"])
-//		[newTask setObject:[task objectForKey:@"due"] forKey:@"due"];
-//	if ([task objectForKey:@"status"])
-//		[newTask setObject:[task objectForKey:@"status"] forKey:@"status"];
-//	if ([task objectForKey:@"completed"])
-//		[newTask setObject:[task objectForKey:@"completed"] forKey:@"completed"];
-//	if (doingAdd)
-//		return newTask;
-//	
-//	// allow these to pass through for updates / deletes
-//	if ([task objectForKey:@"selfLink"])
-//		[newTask setObject:[task objectForKey:@"selfLink"] forKey:@"selfLink"];
-//	if ([task objectForKey:@"deleted"])
-//		[newTask setObject:[task objectForKey:@"deleted"] forKey:@"deleted"];
-//	if ([task objectForKey:@"etag"])
-//		[newTask setObject:[task objectForKey:@"etag"] forKey:@"etag"];
-//	if ([task objectForKey:@"parent"])
-//		[newTask setObject:[task objectForKey:@"parent"] forKey:@"parent"];
-//	if ([task objectForKey:@"hidden"])
-//		[newTask setObject:[task objectForKey:@"hidden"] forKey:@"hidden"];
-//	if ([task objectForKey:@"kind"])
-//		[newTask setObject:[task objectForKey:@"kind"] forKey:@"kind"];	
-//	if ([task objectForKey:@"id"])
-//		[newTask setObject:[task objectForKey:@"id"] forKey:@"id"];
-//	if ([task objectForKey:@"position"])
-//		[newTask setObject:[task objectForKey:@"position"] forKey:@"position"];
-//	if ([task objectForKey:@"updated"])
-//		[newTask setObject:[task objectForKey:@"updated"] forKey:@"updated"];
-//	return newTask;
-//}
 
 - (void) finishComplete:(NSDictionary*) task 
 {
