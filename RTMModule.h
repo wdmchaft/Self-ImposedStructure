@@ -10,8 +10,9 @@
 #import "BaseReporter.h"
 #import "TaskList.h"
 #import "RTMProtocol.h"
+#import "BaseTaskList.h"
 
-@interface RTMModule : BaseReporter <TaskList> {
+@interface RTMModule : BaseTaskList {
 	NSTextField *userText;
 	NSSecureTextField *passwordText;
 	NSTextField *refreshText;
@@ -27,6 +28,7 @@
 	id<AlertHandler> handler;
 	NSString *lastError;
     NSButton *isWorkButton;
+    NSButton *isTrackedButton;
 	NSTimeInterval lookAheadWindow;
 	NSTextField *lookAheadText;
 	RTMProtocol *protocol;
@@ -50,6 +52,7 @@
 @property (nonatomic, retain) id<AlertHandler> handler;
 @property (nonatomic, retain) NSString *lastError;
 @property (nonatomic, retain) IBOutlet NSButton *isWorkButton;
+@property (nonatomic, retain) IBOutlet NSButton *isTrackedButton;
 @property (nonatomic) NSTimeInterval lookAheadWindow;
 @property (nonatomic,retain) RTMProtocol *protocol;
 @property (nonatomic) BOOL summaryMode;

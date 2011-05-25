@@ -263,21 +263,6 @@
 	[[statusMenu itemWithTag:MENU_VACA] setAction:vacaAction];
 }
 
-- (NSArray*) getTasklists {
-    NSDictionary *instancesMap = [Context sharedContext].instancesMap;
-	NSMutableArray *insts = [NSMutableArray new];
-	NSString *name = nil;
-	for (name in instancesMap){
-		id thing = [instancesMap objectForKey: name];
-		id<TaskList> list  = (id<TaskList>) thing;
-		id<Instance> inst  = (id<Instance>) thing;
-		if (inst.enabled && [thing conformsToProtocol:@protocol(TaskList)]){
-            [insts addObject:list];
-        }
-	}
-	return insts;
-}
-
 - (BOOL) matchTask:(NSDictionary*) info1 toTask:(NSDictionary*) info2
 {
 	NSString *name1 = [info1 objectForKey:@"name"];
@@ -335,9 +320,9 @@
 		NSMenuItem *mi = [menu itemAtIndex:3];
 		[menu removeItem:mi];
 	}
-    NSArray *lists = [self getTasklists];
+    NSArray *lists = [ctx getTrackedLists];
 	menuForTaskList= [NSMutableDictionary dictionaryWithCapacity:[lists count]];
-    for (id<Instance> tasklist in  lists){
+    for (id<Instance> tasklist in lists){
         
         NSMenuItem *mi = [[NSMenuItem alloc]initWithTitle:[NSString stringWithFormat:@"%@:",tasklist.name]
 												   action:@selector(newActivity:)
@@ -356,7 +341,9 @@
 - (void) tasksChanged:(NSNotification *)notification
 {
 	id<TaskList> list = [notification object];
-	[self fillListActivities:list];
+	if ([list tracked]){
+		[self fillListActivities:list];
+	}
 }
 
 - (void) newActivity: (id) sender

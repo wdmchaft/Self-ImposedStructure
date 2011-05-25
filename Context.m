@@ -436,6 +436,22 @@ static Context* sharedContext = nil;
 	return gather;
 }
 
+- (NSArray*) getTrackedLists {
+	NSMutableArray *gather = [NSMutableArray new];
+	NSString *name = nil;
+	for (name in instancesMap){
+		id thing = [instancesMap objectForKey: name];
+		id<Instance> inst  = (id<Instance>) thing;
+		if (inst.enabled && [thing conformsToProtocol:@protocol(TaskList)]){
+			id<TaskList> list = (<TaskList>) thing;
+			if ([list tracked]){
+				[gather addObject: thing];
+			}
+		}
+	}
+	return gather;
+}
+
 - (GrowlManager*) growlManager 
 {
     if (!growlManager){

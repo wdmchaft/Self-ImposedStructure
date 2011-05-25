@@ -16,4 +16,5 @@
 - (NSString*) projectForTask: (NSString*) task;
 - (void) markComplete:(NSDictionary *)ctx completeHandler:(NSObject*) target selector: (SEL) handler;
 - (void) newTask:(NSString *)name completeHandler:(NSObject*) target selector: (SEL) handler;
+- (BOOL) tracked;
 @end

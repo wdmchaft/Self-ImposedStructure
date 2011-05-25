@@ -26,7 +26,7 @@
 - (void) initCombo
 {
 	Context *ctx = [Context sharedContext];
-	allLists = [ctx getTaskLists];
+	allLists = [ctx getTrackedLists];
 	for(<TaskList> list in allLists){
 		NSString *name = [list name];
 		[listsCombo addItemWithTitle:name];

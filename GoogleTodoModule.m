@@ -12,7 +12,6 @@
 #define TOKEN  @"Token"
 #define LISTID @"ListId"
 #define TASKLIST @"taskList"
-#define ISWORK @"isWork"
 #define LOOKAHEAD @"lookAhead"
 
 #import "Secret.h"
@@ -49,6 +48,7 @@
 @synthesize lookAheadWindow;
 @synthesize lookAheadText;
 @synthesize protocol;
+@synthesize isTrackedButton;
 
 @dynamic refreshInterval;
 @dynamic notificationName;
@@ -320,6 +320,8 @@
 	[lookAheadText setHidden:YES];
 	[isWorkButton setHidden:YES];
 	[isWorkButton setIntValue:isWorkRelated];
+	[isTrackedButton setHidden:YES];
+	[isTrackedButton setIntValue:tracked];
 	[refreshText setIntValue: refreshInterval / 60];
 	if (protocol.auth) {
 		[authButton setHidden:YES];
@@ -339,7 +341,6 @@
 	if (temp) {
 		refreshInterval = [temp intValue];
 	}
-    isWorkRelated = [super loadBoolDefaultForKey:ISWORK];
 	protocol.tasksList = [super loadDefaultForKey:TASKLIST];
 	double lhtemp = [super loadDoubleDefaultForKey:LOOKAHEAD];
 	if (lhtemp){
@@ -353,7 +354,6 @@
 	[super clearDefaultValue:[NSNumber numberWithInt:refreshInterval] forKey:REFRESH];
 	[super clearDefaultValue:protocol.listNameStr forKey:LISTNAME];
 	[super clearDefaultValue: protocol.listIdStr forKey:LISTID];
-	[super clearDefaultValue: nil forKey:ISWORK];
 	[super clearDefaultValue: nil forKey:TOKEN];
 	[super clearDefaultValue: [NSNumber numberWithDouble:lookAheadWindow] forKey:LOOKAHEAD];
 	[[NSUserDefaults standardUserDefaults] synchronize];	
@@ -361,14 +361,13 @@
 
 -(void) saveDefaults
 {
-	[super saveDefaults];
 	[super saveDefaultValue:[NSNumber numberWithInt:refreshInterval] forKey:REFRESH];
 	[super saveDefaultValue:protocol.listNameStr forKey:LISTNAME];
 	[super saveDefaultValue: protocol.listIdStr forKey:LISTID];
-    [super saveDefaultValue:[NSNumber numberWithBool:isWorkRelated] forKey:ISWORK];
     [super saveDefaultValue:[NSNumber numberWithDouble:lookAheadWindow] forKey:LOOKAHEAD];
 	[super saveDefaultValue:[protocol authStr] forKey:TOKEN];
 	[[NSUserDefaults standardUserDefaults] synchronize];		
+	[super saveDefaults];
 }
 
 - (void) startValidation: (NSObject*) callback
@@ -378,6 +377,7 @@
 	refreshInterval = (refreshText.intValue * 60);
 	lookAheadWindow = (lookAheadText.intValue * 60 * 60 * 24);
 	isWorkRelated = [isWorkButton intValue];
+	tracked = [isTrackedButton intValue];
 	protocol.listNameStr = [listsCombo titleOfSelectedItem];
 	NSDictionary *listInfo =  [[self idMapping] objectForKey:protocol.listNameStr];
 	protocol.listIdStr = [listInfo objectForKey:@"id"];
@@ -436,6 +436,7 @@
 		[lookAheadLabel setHidden:NO];
 		[lookAheadNote setHidden:NO];
 		[isWorkButton setHidden:NO];
+		[isTrackedButton setHidden:NO];
 		[authButton setHidden:YES];
 	}
 }

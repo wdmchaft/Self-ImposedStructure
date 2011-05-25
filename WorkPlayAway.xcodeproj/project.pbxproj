@@ -145,6 +145,8 @@
 		8C5DEF3C12E9F3A900EE93F1 /* SummaryDeadlineData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5DEF3A12E9F3A900EE93F1 /* SummaryDeadlineData.m */; };
 		8C5EAC57133C073600E5F404 /* FilterRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77290E12D46AC600F71FE7 /* FilterRule.m */; };
 		8C5EAC58133C075800E5F404 /* RulesTableData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77291912D46AC600F71FE7 /* RulesTableData.m */; };
+		8C630CBE138D548200E2570F /* BaseTaskList.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C630CBC138D548200E2570F /* BaseTaskList.h */; };
+		8C630CBF138D548200E2570F /* BaseTaskList.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C630CBD138D548200E2570F /* BaseTaskList.m */; };
 		8C66A74612DFCB58000644ED /* HostsFileSwitcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C66A72A12DFC598000644ED /* HostsFileSwitcher.m */; };
 		8C66A77F12DFCE4E000644ED /* structcommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* structcommon.framework */; };
 		8C66A7BC12DFEE8A000644ED /* BlockerModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C66A7BB12DFEE8A000644ED /* BlockerModule.xib */; };
@@ -751,6 +753,8 @@
 		8C5EAC62133D49C800E5F404 /* ColorWellCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ColorWellCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8C62C70D136A1E5500E9CABE /* RTMProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMProtocol.h; sourceTree = "<group>"; };
 		8C62C70E136A1E5500E9CABE /* RTMProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMProtocol.m; sourceTree = "<group>"; };
+		8C630CBC138D548200E2570F /* BaseTaskList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTaskList.h; sourceTree = "<group>"; };
+		8C630CBD138D548200E2570F /* BaseTaskList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTaskList.m; sourceTree = "<group>"; };
 		8C66A72912DFC598000644ED /* HostsFileSwitcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = HostsFileSwitcher.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8C66A72A12DFC598000644ED /* HostsFileSwitcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = HostsFileSwitcher.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8C66A74112DFCB11000644ED /* Switcher */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Switcher; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1781,6 +1785,8 @@
 		8CD1967712D46DDB00C69AC9 /* WPAFramework */ = {
 			isa = PBXGroup;
 			children = (
+				8C630CBC138D548200E2570F /* BaseTaskList.h */,
+				8C630CBD138D548200E2570F /* BaseTaskList.m */,
 				8CB8CCE6137C548D007F7647 /* ScriptDaemon.h */,
 				8CB8CCE7137C548D007F7647 /* ScriptDaemon.m */,
 				8C5EAC61133D49B400E5F404 /* ColorWellCell.h */,
@@ -1976,6 +1982,7 @@
 				8CDC14531311B26B00BA478C /* BaseReporter.h in Headers */,
 				8C01DD77131D5C7F00398AD8 /* HUDSettings.h in Headers */,
 				8C9E3D5213206F8E007632E5 /* WriteHandler.h in Headers */,
+				8C630CBE138D548200E2570F /* BaseTaskList.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2814,6 +2821,7 @@
 				8CD1975212D4C5D900C69AC9 /* XMLParse.m in Sources */,
 				8C5EAC57133C073600E5F404 /* FilterRule.m in Sources */,
 				8CDC14521311B26B00BA478C /* BaseReporter.m in Sources */,
+				8C630CBF138D548200E2570F /* BaseTaskList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

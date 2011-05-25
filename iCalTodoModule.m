@@ -41,6 +41,8 @@
 @synthesize scriptCallback;
 @synthesize completeHandler;
 @synthesize completeCaller;
+@synthesize isWorkButton;
+@synthesize isTrackedButton;
 
 @dynamic refreshInterval;
 @dynamic notificationName;
@@ -330,6 +332,9 @@
 	refreshInterval = refreshField.intValue * 60;
 	warningWindow = warningField.intValue;
 	lookAhead = lookAheadField.intValue;
+	tracked = [isTrackedButton intValue];
+	isWorkRelated = [isWorkButton intValue];
+
     [validationHandler performSelector:@selector(validationComplete:) 
                             withObject:nil];}
 
@@ -364,6 +369,8 @@
 	[refreshField setIntValue:refreshInterval / 60];
 	[lookAheadField setIntValue:lookAhead];
 	[warningField setIntValue:warningWindow];
+	[isWorkButton setIntValue:isWorkRelated];
+	[isTrackedButton setIntValue:tracked];
 }
 
 -(void) loadDefaults

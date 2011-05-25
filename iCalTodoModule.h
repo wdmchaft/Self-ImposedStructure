@@ -9,9 +9,9 @@
 #import <Cocoa/Cocoa.h>
 #import "BaseReporter.h"
 #import "Stateful.h"
-#import "TaskList.h"
+#import "BaseTaskList.h"
 
-@interface iCalTodoModule : BaseReporter <TaskList, Stateful> {
+@interface iCalTodoModule : BaseTaskList <Stateful> {
     NSPopUpButton *calendarMenu;
     NSTextField *refreshField;
 	NSTextField *lookAheadField;
@@ -37,6 +37,8 @@
 	SEL scriptCallback;
 	NSObject *completeCaller;
 	SEL completeHandler;
+	NSButton *isTrackedButton;
+	NSButton *isWorkButton;
 }
 @property (nonatomic, retain) NSDate *refreshDate;
 @property (nonatomic,retain) NSMutableData *respBuffer;
@@ -51,6 +53,8 @@
 @property (nonatomic, retain) IBOutlet NSStepper *stepperRefresh;
 @property (nonatomic, retain) IBOutlet NSStepper *stepperLookAhead;
 @property (nonatomic, retain) IBOutlet NSStepper *stepperWarning;
+@property (nonatomic, retain) IBOutlet NSButton *isWorkButton;
+@property (nonatomic, retain) IBOutlet NSButton *isTrackedButton;
 @property (nonatomic,retain) NSMutableDictionary *alarmsList;
 @property (nonatomic,retain) NSMutableDictionary *currentEvent;
 @property (nonatomic,retain) NSMutableArray *tasksList;

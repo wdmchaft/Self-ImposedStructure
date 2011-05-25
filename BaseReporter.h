@@ -10,12 +10,16 @@
 #import "Reporter.h"
 #import "BaseInstance.h"
 
+#define ISWORKRELATED @"WorkRelated"
+#define SUMMARYTITLE @"SummaryTitle"
 
 @interface BaseReporter : BaseInstance <Reporter>{
 	NSString *summaryTitle;
 	BOOL isWorkRelated;
 }
-@property (nonatomic,retain) NSString *summaryTitle;
-@property (nonatomic) BOOL isWorkRelated;
+@property (nonatomic, retain) NSString *summaryTitle;
+@property (nonatomic, assign) BOOL isWorkRelated;
+
+
 
 @end

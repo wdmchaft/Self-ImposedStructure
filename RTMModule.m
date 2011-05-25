@@ -12,7 +12,6 @@
 #define TOKEN  @"Token"
 #define LISTID @"ListId"
 #define TASKLIST @"taskList"
-#define ISWORK @"isWork"
 #define LOOKAHEAD @"lookAhead"
 
 #import "Secret.h"
@@ -47,17 +46,15 @@
 @synthesize handler;
 @synthesize lastError;
 @synthesize isWorkButton;
+@synthesize isTrackedButton;
 @synthesize lookAheadWindow;
 @synthesize lookAheadText;
-@dynamic refreshInterval;
-@dynamic notificationName;
-@dynamic notificationTitle;
 @dynamic enabled;
 @dynamic category;
 @dynamic name;
-@dynamic summaryTitle;
-@dynamic isWorkRelated;
 @dynamic summaryMode;
+@dynamic tracked;
+@dynamic isWorkRelated;
 
 @synthesize protocol;
 
@@ -344,6 +341,8 @@
 	[lookAheadText setHidden:YES];
 	[isWorkButton setHidden:YES];
 	[isWorkButton setIntValue:isWorkRelated];
+	[isTrackedButton setHidden:YES];
+	[isTrackedButton setIntValue:tracked];
 	[passwordText setStringValue:protocol.passwordStr == nil ? @"" : protocol.passwordStr];
 	[refreshText setIntValue: refreshInterval / 60];
 	if (protocol.tokenStr == nil) {
@@ -372,7 +371,6 @@
 	if (temp) {
 		refreshInterval = [temp intValue];
 	}
-    isWorkRelated = [super loadBoolDefaultForKey:ISWORK];
 	protocol.tasksList = [super loadDefaultForKey:TASKLIST];
 	double lhtemp = [super loadDoubleDefaultForKey:LOOKAHEAD];
 	if (lhtemp){
@@ -382,29 +380,26 @@
 
 -(void) clearDefaults
 {
-	[super clearDefaults];
 	[super clearDefaultValue:protocol.userStr forKey:EMAIL];
 	[super clearDefaultValue:protocol.passwordStr forKey:PASSWORD];
 	[super clearDefaultValue:[NSNumber numberWithInt:refreshInterval] forKey:REFRESH];
 	[super clearDefaultValue:protocol.listNameStr forKey:LISTNAME];
 	[super clearDefaultValue: protocol.listIdStr forKey:LISTID];
-	[super clearDefaultValue: nil forKey:ISWORK];
 	[super clearDefaultValue: [NSNumber numberWithDouble:lookAheadWindow] forKey:LOOKAHEAD];
 	[[NSUserDefaults standardUserDefaults] synchronize];	
+	[super clearDefaults];
 }
 
 -(void) saveDefaults
 {
-	[super saveDefaults];
 	[super saveDefaultValue:protocol.tokenStr forKey:TOKEN];
 	[super saveDefaultValue:protocol.userStr forKey:EMAIL];
 	[super saveDefaultValue:protocol.passwordStr forKey:PASSWORD];
 	[super saveDefaultValue:[NSNumber numberWithInt:refreshInterval] forKey:REFRESH];
 	[super saveDefaultValue:protocol.listNameStr forKey:LISTNAME];
 	[super saveDefaultValue: protocol.listIdStr forKey:LISTID];
-    [super saveDefaultValue:[NSNumber numberWithBool:isWorkRelated] forKey:ISWORK];
     [super saveDefaultValue:[NSNumber numberWithDouble:lookAheadWindow] forKey:LOOKAHEAD];
-	[[NSUserDefaults standardUserDefaults] synchronize];		
+	[super saveDefaults];
 }
 
 - (void) startValidation: (NSObject*) callback
@@ -415,6 +410,7 @@
 	refreshInterval = (refreshText.intValue * 60);
 	lookAheadWindow = (lookAheadText.intValue * 60 * 60 * 24);
 	isWorkRelated = [isWorkButton intValue];
+	tracked = [isTrackedButton intValue];
 
 	protocol.listNameStr = [listsCombo titleOfSelectedItem];
 	protocol.listIdStr = [[self idMapping] objectForKey:protocol.listNameStr];
@@ -540,6 +536,7 @@
 		[lookAheadLabel setHidden:NO];
 		[lookAheadNote setHidden:NO];
 		[isWorkButton setHidden:NO];
+		[isTrackedButton setHidden:NO];
 	}
 }
 

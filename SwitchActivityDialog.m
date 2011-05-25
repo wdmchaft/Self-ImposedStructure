@@ -16,7 +16,7 @@
 - (id<TaskList>) listForName: (NSString*)name
 {
 	Context *ctx = [Context sharedContext];
-	NSArray *lists = [ctx getTaskLists];
+	NSArray *lists = [ctx getTrackedLists];
 	for (id<TaskList> tl in lists){
 		if ([[tl name] isEqualToString:name])
 			return tl;
@@ -41,7 +41,7 @@
 {
 	[super showWindow: sender];
 	Context *ctx = [Context sharedContext];
-	NSArray *lists = [ctx getTaskLists];
+	NSArray *lists = [ctx getTrackedLists];
 
 	[listsButton addItemWithTitle:@"None Selected"];
 	NSMenuItem *item = [listsButton itemAtIndex:0];

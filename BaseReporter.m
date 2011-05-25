@@ -18,10 +18,31 @@
 @dynamic enabled;
 @dynamic name;
 @dynamic category;
+
 - (void) refresh: (id<AlertHandler>) handler isSummary: (BOOL) summary{}
 - (void) initSummaryTable: (NSTableView*) view{}
 - (void) handleClick:(NSDictionary *)params{}
 
+-(void) saveDefaults
+{
+	[self saveDefaultValue:[NSNumber numberWithInt:isWorkRelated] forKey:ISWORKRELATED];
+	[self saveDefaultValue:summaryTitle forKey:SUMMARYTITLE];
+	[super saveDefaults];
+}
+
+-(void) clearDefaults
+{
+	[self clearDefaultValue:nil forKey:ISWORKRELATED];
+	[self clearDefaultValue:nil forKey:SUMMARYTITLE];
+	[super clearDefaults];
+}
+
+-(void) loadDefaults{
+	[super loadDefaults];
+	NSNumber *temp = [self loadDefaultForKey:ISWORKRELATED];
+	isWorkRelated = [temp intValue];
+	summaryTitle = [self loadDefaultForKey:SUMMARYTITLE];
+}
 @end
 
 

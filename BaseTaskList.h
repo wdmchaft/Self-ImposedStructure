@@ -7,10 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "BaseReporter.h"
 #import "TaskList.h"
 
-@interface BaseTaskList : NSObject <TaskList> {
-
+#define TRACKED @"Tracked"
+@interface BaseTaskList : BaseReporter <TaskList> {
+	BOOL tracked;
 }
-
+@property (nonatomic, assign) BOOL tracked;
 @end

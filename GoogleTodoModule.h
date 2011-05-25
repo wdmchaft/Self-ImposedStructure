@@ -8,10 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 #import "BaseReporter.h"
-#import "TaskList.h"
+#import "BaseTaskList.h"
 #import "GTProtocol.h"
 
-@interface GoogleTodoModule : BaseReporter <TaskList, GTProtocolErrorDelegate> {
+@interface GoogleTodoModule : BaseTaskList <GTProtocolErrorDelegate> {
 	NSTextField *userText;
 	NSSecureTextField *passwordText;
 	NSTextField *refreshText;
@@ -27,6 +27,7 @@
 	id<AlertHandler> handler;
 	NSString *lastError;
     NSButton *isWorkButton;
+    NSButton *isTrackedButton;
 	NSTimeInterval lookAheadWindow;
 	NSTextField *lookAheadText;
 	BOOL summaryMode;
@@ -51,6 +52,7 @@
 @property (nonatomic, retain) id<AlertHandler> handler;
 @property (nonatomic, retain) NSString *lastError;
 @property (nonatomic, retain) IBOutlet NSButton *isWorkButton;
+@property (nonatomic, retain) IBOutlet NSButton *isTrackedButton;
 @property (nonatomic) NSTimeInterval lookAheadWindow;
 @property (nonatomic) BOOL summaryMode;
 @property (nonatomic, retain) GTProtocol *protocol;

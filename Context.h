@@ -78,5 +78,6 @@
 - (void) endNagDelay: (NSTimer*) timer;
 - (void) startNagDelay;
 - (NSArray*) getTaskLists;
+- (NSArray*) getTrackedLists;
 
 @end
