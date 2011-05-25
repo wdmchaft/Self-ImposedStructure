@@ -100,6 +100,9 @@ static Context* sharedContext = nil;
 	for (NSString *path in paths){
 		NSError *err = [NSError new];
 		NSString *nudgePath = [path stringByAppendingFormat:@"/%@/Plugins", appName];
+#if DEBUG
+		NSLog(@"nudgePath = %@", nudgePath);
+#endif
 		NSArray *fileNames = [dfm contentsOfDirectoryAtPath:nudgePath error: &err];
 		for (NSString *fileName in fileNames){
 			if ([fileName hasSuffix:@".bundle"]){
@@ -303,6 +306,9 @@ static Context* sharedContext = nil;
 		NSObject* thing = [instancesMap objectForKey: name];
 		id<Stateful> inst = (id<Stateful>) thing;
 		if ( ((id<Instance>)inst).enabled && [thing conformsToProtocol:@protocol(Stateful)]){
+#ifdef DEBUG
+			NSLog(@"making %@ vacate", inst);
+#endif
 			[inst changeState: WPASTATE_VACATION];
 		}
 	}
@@ -314,6 +320,9 @@ static Context* sharedContext = nil;
 		NSObject* thing = [instancesMap objectForKey: name];
 		id<Stateful> inst = (id<Stateful>) thing;
 		if ( ((id<Instance>)inst).enabled && [thing conformsToProtocol:@protocol(Stateful)]){
+#ifdef DEBUG
+			NSLog(@"making %@ work", inst);
+#endif
 			[inst changeState: WPASTATE_THINKING];
 		}
 	}
@@ -325,6 +334,9 @@ static Context* sharedContext = nil;
 		NSObject* thing = [instancesMap objectForKey: name];
 		id<Stateful> inst = (id<Stateful>) thing;
 		if ( ((id<Instance>)inst).enabled && [thing conformsToProtocol:@protocol(Stateful)]){
+#ifdef DEBUG
+			NSLog(@"making %@ free", inst);
+#endif
 			[inst changeState: WPASTATE_FREE];
 		}
 	}
@@ -336,6 +348,9 @@ static Context* sharedContext = nil;
 		NSObject* thing = [instancesMap objectForKey: name];
 		id<Stateful> inst = (id<Stateful>) thing;
 		if ( ((id<Instance>)inst).enabled && [thing conformsToProtocol:@protocol(Stateful)]){
+#ifdef DEBUG
+			NSLog(@"making %@ away", inst);
+#endif			
 			[inst changeState: WPASTATE_AWAY];
 		}		
 	}
@@ -347,6 +362,9 @@ static Context* sharedContext = nil;
 		NSObject* thing = [instancesMap objectForKey: name];
 		id<Stateful> inst = (id<Stateful>) thing;
 		if ( ((id<Instance>)inst).enabled && [thing conformsToProtocol:@protocol(Stateful)]){
+#ifdef DEBUG
+			NSLog(@"making %@ off", inst);
+#endif			
 			[inst changeState: WPASTATE_OFF];
 		}		
 	}

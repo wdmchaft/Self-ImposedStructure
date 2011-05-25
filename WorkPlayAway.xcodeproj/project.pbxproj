@@ -33,9 +33,6 @@
 				8CDC1102130CB40E00BA478C /* PBXTargetDependency */,
 				8CDC1100130CB40E00BA478C /* PBXTargetDependency */,
 				8CDC10FE130CB40D00BA478C /* PBXTargetDependency */,
-				8CDC10FA130CB40D00BA478C /* PBXTargetDependency */,
-				8CDC10F8130CB40D00BA478C /* PBXTargetDependency */,
-				8CDC10F6130CB40D00BA478C /* PBXTargetDependency */,
 				8C3982BA134D45C1008C5670 /* PBXTargetDependency */,
 				8CDC10F4130CB40D00BA478C /* PBXTargetDependency */,
 				8CDC10F2130CB40D00BA478C /* PBXTargetDependency */,
@@ -536,27 +533,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8CDC0D691309D68B00BA478C;
 			remoteInfo = WorkModule;
-		};
-		8CDC10F5130CB40D00BA478C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8C5DEC5412E8C4D000EE93F1;
-			remoteInfo = TestEventModule;
-		};
-		8CDC10F7130CB40D00BA478C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8C5DEC4812E8C4A600EE93F1;
-			remoteInfo = TestTaskModule;
-		};
-		8CDC10F9130CB40D00BA478C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8C73F89212E891D00056FAFF;
-			remoteInfo = TestMailModule;
 		};
 		8CDC10FD130CB40D00BA478C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1357,10 +1333,6 @@
 				8CDC134013107C9600BA478C /* MailTableView.xib */,
 				8CDC134313107DE500BA478C /* TaskTableView.xib */,
 				8C9FB5BD13356DB70034FE85 /* CoreData.framework */,
-				8C8020031355677D00E5C109 /* WPAMDelegate.h */,
-				8C5BB9851371E07E0004E88C /* HUDBusyView.xib */,
-				8C5BB9B71371E2920004E88C /* HUDBusy.h */,
-				8C5BB9B81371E2920004E88C /* HUDBusy.m */,
 				8C9E9AB3137E65B900529EC2 /* iCalTodoModule-Info.plist */,
 				8C5821801383978900E33F53 /* GoogleTodoModule-Info.plist */,
 				8C3798471384CFEE008EADC7 /* SystemConfiguration.framework */,
@@ -1510,6 +1482,9 @@
 		8C73F08D12E5E4460056FAFF /* SummaryHUD */ = {
 			isa = PBXGroup;
 			children = (
+				8C5BB9851371E07E0004E88C /* HUDBusyView.xib */,
+				8C5BB9B71371E2920004E88C /* HUDBusy.h */,
+				8C5BB9B81371E2920004E88C /* HUDBusy.m */,
 				8C285844137319E400CAAF2A /* HUDBusyView.xib */,
 				8C4BD2F4132FAA4C00765A57 /* SummaryHUDCallback.h */,
 				8CDC13461310897F00BA478C /* SummaryViewController.h */,
@@ -1842,6 +1817,7 @@
 		8CD1978912D4C89D00C69AC9 /* WPAMain */ = {
 			isa = PBXGroup;
 			children = (
+				8C8020031355677D00E5C109 /* WPAMDelegate.h */,
 				8C2B31901382215000AC08CF /* createTodo.txt */,
 				8C5BB633136F33230004E88C /* SwitchActivityDialog.h */,
 				8C5BB83E136F448D0004E88C /* SwitchActivityDialog.xib */,
@@ -2641,7 +2617,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -d \"${HOME}/Library/Application Support/${PRODUCT_NAME}\" ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME} exists'\nelse \n\tmkdir \"${HOME}/Library/Application Support/${PRODUCT_NAME}\"\nfi\n\nif [ -d \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\" ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins exists'\nelse\n\tmkdir \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"\nfi\n\nrm -rf \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins/*\"\n\ncp -r ${TARGET_BUILD_DIR}/*.bundle \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"\ncp -r ${TARGET_BUILD_DIR}/*Daemon \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"";
+			shellScript = "echo 'doing devstruct module copy'\nif [ -d \"${HOME}/Library/Application Support/${PRODUCT_NAME}\" ]\nthen \n\techo \"directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME} exists\"\nelse \n\tmkdir \"${HOME}/Library/Application Support/${PRODUCT_NAME}\"\nfi\n\nif [ -d \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\" ]\nthen \n\techo \"directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins exists\"\nelse\n\tmkdir \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"\nfi\n\nrm -rf \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins/*\"\nls  ${TARGET_BUILD_DIR}/*.bundle\ncp -r ${TARGET_BUILD_DIR}/*.bundle \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"\ncp -r ${TARGET_BUILD_DIR}/*Daemon \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"";
 		};
 		8C73EE8312E454F50056FAFF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2667,7 +2643,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -d \"${HOME}/Library/Application Support/${PRODUCT_NAME}\" ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME} exists'\nelse \n\tmkdir \"${HOME}/Library/Application Support/${PRODUCT_NAME}\"\nfi\n\nif [ -d \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\" ]\nthen \n\techo 'directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins exists'\nelse\n\tmkdir \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"\nfi\n\nrm -rf \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins/*\"\n\ncp -r ${TARGET_BUILD_DIR}/*.bundle \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"\ncp -r ${TARGET_BUILD_DIR}/*Daemon \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"\n";
+			shellScript = "echo 'doing devstruct module copy'\nif [ -d \"${HOME}/Library/Application Support/${PRODUCT_NAME}\" ]\nthen \n\techo \"directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME} exists\"\nelse \n\tmkdir \"${HOME}/Library/Application Support/${PRODUCT_NAME}\"\nfi\n\nif [ -d \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\" ]\nthen \n\techo \"directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins exists\"\nelse\n\tmkdir \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"\nfi\n\nrm -rf \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins/*\"\nls  ${TARGET_BUILD_DIR}/*.bundle\ncp -r ${TARGET_BUILD_DIR}/*.bundle \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"\ncp -r ${TARGET_BUILD_DIR}/*Daemon \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -3107,21 +3083,6 @@
 			target = 8CDC0D691309D68B00BA478C /* WorkModule */;
 			targetProxy = 8CDC10F3130CB40D00BA478C /* PBXContainerItemProxy */;
 		};
-		8CDC10F6130CB40D00BA478C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8C5DEC5412E8C4D000EE93F1 /* TestEventModule */;
-			targetProxy = 8CDC10F5130CB40D00BA478C /* PBXContainerItemProxy */;
-		};
-		8CDC10F8130CB40D00BA478C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8C5DEC4812E8C4A600EE93F1 /* TestTaskModule */;
-			targetProxy = 8CDC10F7130CB40D00BA478C /* PBXContainerItemProxy */;
-		};
-		8CDC10FA130CB40D00BA478C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8C73F89212E891D00056FAFF /* TestMailModule */;
-			targetProxy = 8CDC10F9130CB40D00BA478C /* PBXContainerItemProxy */;
-		};
 		8CDC10FE130CB40D00BA478C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8CD1985012D5061300C69AC9 /* SkypeModule */;
@@ -3226,6 +3187,7 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"__APPNAME__=@\\\"Dev\\ Struct\\\"",
+					"DEBUG=1",
 				);
 				INFOPLIST_FILE = "WPADev-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -3258,6 +3220,7 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"__APPNAME__=@\\\"Dev\\ Struct\\\"",
+					"DEBUG=1",
 				);
 				INFOPLIST_FILE = "WPADev-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -4089,6 +4052,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				INFOPLIST_FILE = "WorkModule-Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
 				OTHER_LDFLAGS = (

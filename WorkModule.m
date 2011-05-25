@@ -108,7 +108,7 @@
 		if ([wa.idString isEqualToString:appBundle]){
 			//com.zer0gravitas.wpa
             if(wa.state == WPASTATE_THINKING){
-				[notificationCenter postNotificationName:@"com.zer0gravitas.selfstruct.changestate" object: nil userInfo:dict];
+				[notificationCenter postNotificationName:WPA_WORKQUEUE object: nil userInfo:dict];
 				dict = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:WPASTATE_THINKING] forKey:@"state"];
 				stateStr = @"work";
 				break;
@@ -121,7 +121,7 @@
 		}
 	}
 	NSLog(@"WorkModule going to %@ state = %@", appBundle, stateStr);
-	[notificationCenter postNotificationName:@"com.zer0gravitas.selfstruct.changestate" object: nil userInfo:dict];
+	[notificationCenter postNotificationName:WPA_WORKQUEUE object: nil userInfo:dict];
 }
 
 -(void) startValidation: (NSObject*) callback  
@@ -133,7 +133,10 @@
 
 - (void) initNotificationCenter
 {
+#ifdef DEBUG
 	NSLog(@"WorkModule listening for activation now...");
+#warning WorkModule in DEBUG mode
+#endif
 	notificationCenter = [NSDistributedNotificationCenter defaultCenter];
 	[notificationCenter addObserver:self 
 						   selector:@selector(handleNewActiveApp:) 
@@ -146,8 +149,16 @@
 
 - (void) changeState:(WPAStateType)  newState
 {
-	if (notificationCenter == nil)
+#ifdef DEBUG
+#warning WorkModule in debug mode 
+	NSLog(@"WorkModule changing to %d", newState);
+#endif
+	if (notificationCenter == nil) {
+#ifdef DEBUG
+		NSLog(@"WorkModule listening for activation now...");
+#endif		
 		[self initNotificationCenter];
+	}
 }
 
 
@@ -202,7 +213,19 @@
 	[[NSUserDefaults standardUserDefaults] synchronize];		
 }
 
+- (id) init 
+{
+	self = [super init];
+	if (self){
+		notificationCenter = nil;
+	}
+	return self;
+}
+ 
 -(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
+#if DEBUG
+	NSLog(@"WorkModule initWithNibName");
+#endif
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 	if (self){
 		WatchApp *app = [[WatchApp alloc] init];

@@ -20,6 +20,11 @@
 #import "GoalHoursToAverageXForm.h"
 #import "VacationDialog.h"
 #import "SwitchActivityDialog.h"
+#if DEBUG
+#warning DEBUG enabled
+#else
+#warning DEBUG not enabled
+#endif
 
 @implementation WPAMainController
 @synthesize  startButton, refreshButton, statusItem, statusMenu, statusTimer, myWindow, menuForTaskList, modalSession;
@@ -111,7 +116,7 @@
 	// for the screensaver
 	[dCenter addObserver:self selector:@selector(handleScreenSaverStart:) name:@"com.apple.screensaver.didlaunch" object:nil];
 	[dCenter addObserver:self selector:@selector(handleScreenSaverStop:) name:@"com.apple.screensaver.didstop" object:nil];
-	[self enableUI: ctx.running];
+//	[self enableUI: ctx.running];
 		
 	totalsManager = [TotalsManager new];
 	[totalsManager setRollDelegate:self];
@@ -136,6 +141,10 @@
 												 userInfo:nil 
 												  repeats:NO];
 	[self setupHotKeyIfNecessary];
+//	if (ctx.running){
+		[self running:ctx.running];
+	//}
+//		 [self enableUI: ctx.running];
 }
 
 -(void) updateStatus: (NSTimer*) timer
@@ -472,7 +481,10 @@
 		//ctx.growlManager = [GrowlManager new];
 		newState = WPASTATE_FREE;
 		// start listening for pause commands
-		[center addObserver:self selector:@selector(remoteNotify:) name:@"com.zer0gravitas.selfstruct.changestate" object:nil];
+#if DEBUG
+		NSLog(@"listening on %@ for state change", WPA_WORKQUEUE);
+#endif
+		[center addObserver:self selector:@selector(remoteNotify:) name:WPA_WORKQUEUE object:nil];
 	}
 	ctx.running = on;
 //	[self enableUI:ctx.running];

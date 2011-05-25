@@ -7,8 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
-
+#if DEBUG
+#define WPA_WORKQUEUE @"com.zer0gravitas.devstruct.changestate"
+#else
+#define WPA_WORKQUEUE @"com.zer0gravitas.selfstruct.changestate"
+#endif
 @protocol State
 
 typedef enum {
