@@ -1,6 +1,6 @@
 //
 //  AppleMailDaemon.m
-//  WorkPlayAway
+//  Self-Imposed Structure
 //
 //  Created by Charles on 5/9/11.
 //  Copyright 2011 zer0gravitas. All rights reserved.

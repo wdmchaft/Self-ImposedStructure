@@ -1,6 +1,6 @@
 //
 //  SwitchActivityDialog.m
-//  WorkPlayAway
+//  Self-Imposed Structure
 //
 //  Created by Charles on 5/2/11.
 //  Copyright 2011 zer0gravitas. All rights reserved.
