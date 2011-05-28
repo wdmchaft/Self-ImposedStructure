@@ -1,6 +1,6 @@
 //
 //  NewTaskHandler.h
-//  WorkPlayAway
+//  Self-Imposed Structure
 //
 //  Created by Charles on 4/30/11.
 //  Copyright 2011 zer0gravitas. All rights reserved.

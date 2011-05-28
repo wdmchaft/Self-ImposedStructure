@@ -256,7 +256,7 @@
 	//	[newTask setObject:[self formatTimeStamp:[NSDate date]]forKey:@"completed"];
 	[newTask setObject:@"completed" forKey:@"status"];
 	NSError *err = nil;
-	NSString *payload = [json stringWithObject:[self scrubTask:newTask isAdd:YES] error:&err];
+	NSString *payload = [json stringWithObject:[self scrubTask:newTask isAdd:NO] error:&err];
 	NSLog(@"payload = [%@]", payload);
 	if (err){
 		[self handleError:err];
