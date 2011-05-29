@@ -11,7 +11,7 @@
 #import "TaskList.h"
 
 @implementation SwitchActivityDialog
-@synthesize listsButton, okButton, cancelButton, availableActCombo, list;
+@synthesize listsButton, okButton, cancelButton, availableActCombo, list, currentText, completeButton;
 
 - (id<TaskList>) listForName: (NSString*)name
 {
@@ -37,33 +37,47 @@
 	}
 }
 
-- (void) showWindow: (id) sender
+- (void) initGuts
 {
-	[super showWindow: sender];
 	Context *ctx = [Context sharedContext];
+	NSString *currentStr =  [[ctx currentTask] objectForKey: @"name"];
+	currentStr = (currentStr) ? currentStr : @"No Current Activity";
+	[currentText setStringValue: currentStr];
 	NSArray *lists = [ctx getTrackedLists];
-
-	[listsButton addItemWithTitle:@"None Selected"];
-	NSMenuItem *item = [listsButton itemAtIndex:0];
-	[item setTarget:self];	
-	[item setAction:@selector(clickItem:)];
+	
+//	NSMenuItem *item = [listsButton itemAtIndex:0];
+//	[item setTarget:self];	
+//	[item setAction:@selector(clickItem:)];
 	for (id<TaskList> tl in lists){
 		[listsButton addItemWithTitle:[tl name]];
-		item = [listsButton itemWithTitle:[tl name]];
+		NSMenuItem *item = [listsButton itemWithTitle:[tl name]];
 		[item setTarget:self];	
 		[item setAction:@selector(clickItem:)];
 	}
 	NSDictionary *task = [ctx currentTask];
-	if (task) {
-		NSString *src = [task objectForKey: @"source"];
-		if (src) {
-			[listsButton selectItemWithTitle:src];
-			[availableActCombo setStringValue:[task objectForKey:@"name"]];
-		}
-	}
-	else {
-		[availableActCombo setEnabled:NO];
-	}
+//	if (task) {
+//		NSString *src = [task objectForKey: @"source"];
+//		if (src) {
+//			[listsButton selectItemWithTitle:src];
+//			list = [self listForName:src];
+//			[availableActCombo setStringValue:[task objectForKey:@"name"]];
+//			[availableActCombo reloadData];
+//		}
+//	}
+//	else {
+//		[availableActCombo setEnabled:NO];
+//	}
+}
+
+- (void) windowDidLoad
+{
+	[self initGuts];
+}
+
+- (void) showWindow: (id) sender
+{
+	[super showWindow: sender];
+	[self initGuts];
 }
 
 - (void) clickLists: (id) sender

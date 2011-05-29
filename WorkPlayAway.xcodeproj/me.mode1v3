@@ -202,24 +202,24 @@
 			<key>Content</key>
 			<dict>
 				<key>PBXProjectModuleGUID</key>
-				<string>8C6314B71392C10C00E2570F</string>
+				<string>8C63133B1391722700E2570F</string>
 				<key>PBXProjectModuleLabel</key>
-				<string>GoogleTaskEditCtrl.h</string>
+				<string>WorkModule.m</string>
 				<key>PBXSplitModuleInNavigatorKey</key>
 				<dict>
 					<key>Split0</key>
 					<dict>
 						<key>PBXProjectModuleGUID</key>
-						<string>8C6314B81392C10C00E2570F</string>
+						<string>8C63133C1391722700E2570F</string>
 						<key>PBXProjectModuleLabel</key>
-						<string>GoogleTaskEditCtrl.h</string>
+						<string>WorkModule.m</string>
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>8C6314C21392C13000E2570F</string>
+						<string>8C63151D1392C8A600E2570F</string>
 						<key>history</key>
 						<array>
-							<string>8C6314B51392C10300E2570F</string>
+							<string>8C63145B1392B98C00E2570F</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -231,35 +231,35 @@
 			<key>Geometry</key>
 			<dict>
 				<key>Frame</key>
-				<string>{{0, 20}, {780, 740}}</string>
+				<string>{{0, 20}, {1038, 765}}</string>
 				<key>PBXModuleWindowStatusBarHidden2</key>
 				<false/>
 				<key>RubberWindowFrame</key>
-				<string>15 92 780 781 0 0 1440 878 </string>
+				<string>15 67 1038 806 0 0 1440 878 </string>
 			</dict>
 		</dict>
 		<dict>
 			<key>Content</key>
 			<dict>
 				<key>PBXProjectModuleGUID</key>
-				<string>8C6314BA1392C10C00E2570F</string>
+				<string>8C63132613916DDD00E2570F</string>
 				<key>PBXProjectModuleLabel</key>
-				<string>GoogleTaskEditCtrl.m</string>
+				<string>WriteHandler.m</string>
 				<key>PBXSplitModuleInNavigatorKey</key>
 				<dict>
 					<key>Split0</key>
 					<dict>
 						<key>PBXProjectModuleGUID</key>
-						<string>8C6314BB1392C10C00E2570F</string>
+						<string>8C63132713916DDD00E2570F</string>
 						<key>PBXProjectModuleLabel</key>
-						<string>GoogleTaskEditCtrl.m</string>
+						<string>WriteHandler.m</string>
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>8C6314C31392C13000E2570F</string>
+						<string>8C63151E1392C8A600E2570F</string>
 						<key>history</key>
 						<array>
-							<string>8C6314B41392C0F400E2570F</string>
+							<string>8C63145C1392B98C00E2570F</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -271,11 +271,51 @@
 			<key>Geometry</key>
 			<dict>
 				<key>Frame</key>
-				<string>{{0, 20}, {780, 740}}</string>
+				<string>{{0, 20}, {907, 734}}</string>
 				<key>PBXModuleWindowStatusBarHidden2</key>
 				<false/>
 				<key>RubberWindowFrame</key>
-				<string>38 71 780 781 0 0 1440 878 </string>
+				<string>15 98 907 775 0 0 1440 878 </string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Content</key>
+			<dict>
+				<key>PBXProjectModuleGUID</key>
+				<string>8C630F0A138ED72C00E2570F</string>
+				<key>PBXProjectModuleLabel</key>
+				<string>WPA_DataModel.xcdatamodel</string>
+				<key>PBXSplitModuleInNavigatorKey</key>
+				<dict>
+					<key>Split0</key>
+					<dict>
+						<key>PBXProjectModuleGUID</key>
+						<string>8C630F0B138ED72C00E2570F</string>
+						<key>PBXProjectModuleLabel</key>
+						<string>WPA_DataModel.xcdatamodel</string>
+						<key>_historyCapacity</key>
+						<integer>0</integer>
+						<key>bookmark</key>
+						<string>8C63151F1392C8A600E2570F</string>
+						<key>history</key>
+						<array>
+							<string>8C63145D1392B98C00E2570F</string>
+						</array>
+					</dict>
+					<key>SplitCount</key>
+					<string>1</string>
+				</dict>
+				<key>StatusBarVisibility</key>
+				<true/>
+			</dict>
+			<key>Geometry</key>
+			<dict>
+				<key>Frame</key>
+				<string>{{0, 20}, {907, 734}}</string>
+				<key>PBXModuleWindowStatusBarHidden2</key>
+				<false/>
+				<key>RubberWindowFrame</key>
+				<string>61 56 907 775 0 0 1440 878 </string>
 			</dict>
 		</dict>
 	</array>
@@ -498,7 +538,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>GoogleTaskEditCtrl.m</string>
+								<string>WPAMainController.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -506,11 +546,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>GoogleTaskEditCtrl.m</string>
+										<string>WPAMainController.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>8C6314C11392C13000E2570F</string>
+										<string>8C63151C1392C8A600E2570F</string>
 										<key>history</key>
 										<array>
 											<string>8CD196D812D4C37800C69AC9</string>
@@ -749,7 +789,21 @@
 											<string>8C630CD9138D5A0200E2570F</string>
 											<string>8C630CDA138D5A0200E2570F</string>
 											<string>8C630CDB138D5A0200E2570F</string>
-											<string>8C6314B41392C0F400E2570F</string>
+											<string>8C630EF3138ED72C00E2570F</string>
+											<string>8C630EF4138ED72C00E2570F</string>
+											<string>8C630F63138EEE9200E2570F</string>
+											<string>8C630FFA138F064600E2570F</string>
+											<string>8C631036138F083000E2570F</string>
+											<string>8C631045138F08BD00E2570F</string>
+											<string>8C63104F138F092C00E2570F</string>
+											<string>8C6310E5138F121E00E2570F</string>
+											<string>8C631134139074A600E2570F</string>
+											<string>8C63123E1390902E00E2570F</string>
+											<string>8C631310139156CA00E2570F</string>
+											<string>8C63132313916DDD00E2570F</string>
+											<string>8C63132413916DDD00E2570F</string>
+											<string>8C63139C1391A54100E2570F</string>
+											<string>8C63145A1392B98C00E2570F</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -809,11 +863,11 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>8C6314B01392C0D700E2570F</string>
-				<string>8C6314B11392C0D700E2570F</string>
+				<string>8C6315131392C73C00E2570F</string>
+				<string>8C6315141392C73C00E2570F</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>8C6314B21392C0D700E2570F</string>
+				<string>8C6315151392C73C00E2570F</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -952,10 +1006,10 @@
 	<key>WindowOrderList</key>
 	<array>
 		<string>8CD1967312D46D7A00C69AC9</string>
+		<string>8C630F0A138ED72C00E2570F</string>
+		<string>8C63132613916DDD00E2570F</string>
 		<string>/Users/me/Experiment/Self-ImposedStructure/WorkPlayAway.xcodeproj</string>
-		<string>8C6314BA1392C10C00E2570F</string>
-		<string>1C530D57069F1CE1000CFCEE</string>
-		<string>8C6314B71392C10C00E2570F</string>
+		<string>8C63133B1391722700E2570F</string>
 	</array>
 	<key>WindowString</key>
 	<string>66 106 1187 772 0 0 1440 878 </string>
@@ -1035,7 +1089,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>8CD1967312D46D7A00C69AC9</string>
-				<string>8C6314B31392C0D700E2570F</string>
+				<string>8C6315191392C73C00E2570F</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -1195,7 +1249,7 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>GoogleTaskEditCtrl.h</string>
+										<string>WPAMainController.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -1253,8 +1307,8 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>8C6314BD1392C10C00E2570F</string>
-				<string>8C6314BE1392C10C00E2570F</string>
+				<string>8C630D10138D5A0200E2570F</string>
+				<string>8C630D11138D5A0200E2570F</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>

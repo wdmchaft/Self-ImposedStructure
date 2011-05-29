@@ -39,6 +39,7 @@
 @synthesize actTitle;
 @synthesize workArray;
 @synthesize workData;
+@synthesize tasksTable;
 
 - (void) clickClear: (id) sender
 { 
@@ -123,6 +124,10 @@
     NSTableColumn *col = [[actTable tableColumns] objectAtIndex:0];
     [col setDataCell:[ColorWellCell new]];
     [actTable setDataSource:activityChart];
+	tasksDataSource = [TasksDataSource new];
+	[tasksTable setDataSource:tasksDataSource];
+	[tasksDataSource runQueryStarting:[NSDate dateWithTimeIntervalSinceNow:-(14*24*60*60)] 
+							   ending:[NSDate date] withContext:nad.managedObjectContext];
 }
 
 - (void) clickGen2: (id) sender

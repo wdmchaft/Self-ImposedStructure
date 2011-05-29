@@ -12,6 +12,7 @@
 #import "TaskList.h"
 #import "HeatMap.h"
 #import "Context.h"
+#import "WriteHandler.h"
 
 @implementation SummaryViewController
 @synthesize table;
@@ -105,7 +106,6 @@
 	}
 }
 
-
 - (IBAction) checkTask: (id) sender
 {
 	int row = [sender selectedRow];	
@@ -122,10 +122,11 @@
 
 - (void) processComplete: (NSTimer*)timer
 {	
- [prog setHidden:NO];
+	[prog setHidden:NO];
 	[prog startAnimation:self];
 	NSDictionary* params = timer.userInfo;
 	[((id<TaskList>)reporter) markComplete:params completeHandler:self selector:@selector(handleComplete:)];
+	[WriteHandler completeActivity:params atTime:[timer fireDate]];
 }
 
 - (void) handleComplete: (NSString*) error
@@ -241,6 +242,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
     [table setEnabled:NO];
 	NSDictionary* params = timer.userInfo;
 	[((id<TaskList>)reporter) markComplete:params completeHandler:self selector:@selector(handleComplete:)];
+	[WriteHandler completeActivity:params atTime:[timer fireDate]];
 }
 
 - (id)tableView:(NSTableView *)tableView 

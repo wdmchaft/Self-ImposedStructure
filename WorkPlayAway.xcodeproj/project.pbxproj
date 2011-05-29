@@ -147,6 +147,10 @@
 		8C5EAC58133C075800E5F404 /* RulesTableData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77291912D46AC600F71FE7 /* RulesTableData.m */; };
 		8C630CBE138D548200E2570F /* BaseTaskList.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C630CBC138D548200E2570F /* BaseTaskList.h */; };
 		8C630CBF138D548200E2570F /* BaseTaskList.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C630CBD138D548200E2570F /* BaseTaskList.m */; };
+		8C630F4F138EE81B00E2570F /* TasksDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C630F4E138EE81B00E2570F /* TasksDataSource.m */; };
+		8C630F50138EE81B00E2570F /* TasksDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C630F4E138EE81B00E2570F /* TasksDataSource.m */; };
+		8C63131C13916C7500E2570F /* WriteHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E3D5113206F8E007632E5 /* WriteHandler.m */; };
+		8C63131D13916C7F00E2570F /* WriteHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E3D5113206F8E007632E5 /* WriteHandler.m */; };
 		8C66A74612DFCB58000644ED /* HostsFileSwitcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C66A72A12DFC598000644ED /* HostsFileSwitcher.m */; };
 		8C66A77F12DFCE4E000644ED /* structcommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* structcommon.framework */; };
 		8C66A7BC12DFEE8A000644ED /* BlockerModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C66A7BB12DFEE8A000644ED /* BlockerModule.xib */; };
@@ -237,8 +241,6 @@
 		8C9CE88812E2700900017A02 /* Skype.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C9CE77812E2465B00017A02 /* Skype.framework */; };
 		8C9E3BCA1347778000D8BDCC /* RepeatRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E3BC81347775400D8BDCC /* RepeatRule.m */; };
 		8C9E3D5213206F8E007632E5 /* WriteHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C9E3D5013206F8E007632E5 /* WriteHandler.h */; };
-		8C9E3D6B1320B337007632E5 /* WriteHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E3D5113206F8E007632E5 /* WriteHandler.m */; };
-		8C9E3D6E1320B35E007632E5 /* WriteHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E3D5113206F8E007632E5 /* WriteHandler.m */; };
 		8C9E9ABA137E65FA00529EC2 /* iCalTodoModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E9AB9137E65FA00529EC2 /* iCalTodoModule.m */; };
 		8C9E9ABD137E680D00529EC2 /* structcommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* structcommon.framework */; };
 		8C9FB5BE13356DB70034FE85 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9FB5BD13356DB70034FE85 /* CoreData.framework */; };
@@ -755,6 +757,8 @@
 		8C62C70E136A1E5500E9CABE /* RTMProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMProtocol.m; sourceTree = "<group>"; };
 		8C630CBC138D548200E2570F /* BaseTaskList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTaskList.h; sourceTree = "<group>"; };
 		8C630CBD138D548200E2570F /* BaseTaskList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTaskList.m; sourceTree = "<group>"; };
+		8C630F4D138EE81B00E2570F /* TasksDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TasksDataSource.h; sourceTree = "<group>"; };
+		8C630F4E138EE81B00E2570F /* TasksDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TasksDataSource.m; sourceTree = "<group>"; };
 		8C66A72912DFC598000644ED /* HostsFileSwitcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = HostsFileSwitcher.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8C66A72A12DFC598000644ED /* HostsFileSwitcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = HostsFileSwitcher.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8C66A74112DFCB11000644ED /* Switcher */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Switcher; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1938,6 +1942,8 @@
 		8CF8C14012DC2B71009C7E3D /* Reporting */ = {
 			isa = PBXGroup;
 			children = (
+				8C630F4D138EE81B00E2570F /* TasksDataSource.h */,
+				8C630F4E138EE81B00E2570F /* TasksDataSource.m */,
 				8CB05115135E6FF8008FCE40 /* WorkHoursToAverageXForm.h */,
 				8CB05116135E6FF8008FCE40 /* WorkHoursToAverageXForm.m */,
 				8C11513A1344EF9D00273D0A /* ActivityViewController.h */,
@@ -2659,8 +2665,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C63131D13916C7F00E2570F /* WriteHandler.m in Sources */,
 				8C78507113294FA20008CF2B /* HeatMap.m in Sources */,
-				8C9E3D6E1320B35E007632E5 /* WriteHandler.m in Sources */,
 				8C01DD8F131D67EB00398AD8 /* HUDSettings.m in Sources */,
 				8C0D93F912D63DBD009F3280 /* IconData.m in Sources */,
 				8C0D93FB12D63DBD009F3280 /* main.m in Sources */,
@@ -2712,6 +2718,7 @@
 				8CB7C774137D95DB00CB3193 /* NDHotKeyEvent.m in Sources */,
 				8CB7C775137D95DB00CB3193 /* NDHotKeyControl.m in Sources */,
 				8CB7C776137D95DB00CB3193 /* NDKeyboardLayout.m in Sources */,
+				8C630F50138EE81B00E2570F /* TasksDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2907,8 +2914,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C63131C13916C7500E2570F /* WriteHandler.m in Sources */,
 				8C78508113294FF10008CF2B /* HeatMap.m in Sources */,
-				8C9E3D6B1320B337007632E5 /* WriteHandler.m in Sources */,
 				8C01DD91131D680100398AD8 /* HUDSettings.m in Sources */,
 				8C1C92A212EA3EC00077D343 /* SummaryData.m in Sources */,
 				8C73F3E012E793340056FAFF /* SummaryMailData.m in Sources */,
@@ -2960,6 +2967,7 @@
 				8CB7C77A137D95DB00CB3193 /* NDHotKeyEvent.m in Sources */,
 				8CB7C77B137D95DB00CB3193 /* NDHotKeyControl.m in Sources */,
 				8CB7C77C137D95DB00CB3193 /* NDKeyboardLayout.m in Sources */,
+				8C630F4F138EE81B00E2570F /* TasksDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

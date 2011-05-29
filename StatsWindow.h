@@ -15,6 +15,7 @@
 #import "GoalChart.h"
 #import "ActivityChart.h"
 #import "WriteHandler.h"
+#import "TasksDataSource.h"
 
 @interface StatsWindow : NSWindowController <NSTabViewDelegate> {
 	NSButton *resetButton;
@@ -37,6 +38,8 @@
     WriteHandler *wh;
     NSTableView *actTable;
     NSTextField *actTitle;
+	NSTableView *tasksTable;
+	TasksDataSource *tasksDataSource;
 }
 @property (nonatomic,retain) IBOutlet NSButton *resetButton;
 @property (nonatomic,retain) IBOutlet NSTableView *summaryTable;
@@ -50,7 +53,9 @@
 @property (nonatomic,retain) IBOutlet NSTabViewItem *summaryItem;
 @property (nonatomic,retain) IBOutlet NSTabViewItem *activityItem;
 @property (nonatomic,retain) IBOutlet NSTableView *actTable;
-@property (nonatomic,retain) IBOutlet NSTextField   *actTitle;
+@property (nonatomic,retain) IBOutlet NSTextField *actTitle;
+@property (nonatomic,retain) IBOutlet NSTableView *tasksTable;
+@property (nonatomic,retain) IBOutlet TasksDataSource *tasksDataSource;
 
 @property (nonatomic,retain) NSArray *workArray;
 @property (nonatomic,retain) WorkTable *workData;

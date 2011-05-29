@@ -16,11 +16,13 @@
 	NSButton		*cancelButton;
 	id<TaskList>	list;
 }
+@property (nonatomic, retain) IBOutlet NSButton			*completeButton;
+@property (nonatomic, retain) IBOutlet NSTextField		*currentText;
 @property (nonatomic, retain) IBOutlet NSPopUpButton	*listsButton;
 @property (nonatomic, retain) IBOutlet NSComboBox		*availableActCombo;
 @property (nonatomic, retain) IBOutlet NSButton			*okButton;
 @property (nonatomic, retain) IBOutlet NSButton			*cancelButton;
-@property (nonatomic, retain)  id<TaskList>				list;
+@property (nonatomic, retain) id<TaskList>				list;
 
 - (IBAction) clickLists: (id) sender;
 - (IBAction) clickOk: (id) sender;
