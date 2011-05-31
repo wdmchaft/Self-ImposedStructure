@@ -257,6 +257,44 @@ static Context* sharedContext = nil;
 	return dispName;
 }
 
+- (NSImage*) iconImageForModule: (id<Instance>) mod 
+{
+	NSString *name = [[((NSObject*)mod) class]description];
+	if (iconsMap == nil){
+		iconsMap = [[NSMutableDictionary alloc]initWithCapacity:[bundlesMap count]];
+	}
+	if (name == nil){
+		NSString *path = [NSString stringWithFormat:@"%@/wpa.ico",[[NSBundle mainBundle] resourcePath]];
+		return [NSData dataWithContentsOfFile:path];
+	}
+	if ([[iconsMap allKeys] indexOfObject:name] == NSNotFound) {
+		
+		NSBundle *bundle = [bundlesMap objectForKey: name];
+		NSString *iconName = [bundle objectForInfoDictionaryKey:@"CFBundleIconFile"];
+		NSString *path = [bundle resourcePath];
+		path = [path stringByAppendingFormat:@"/%@",iconName];
+		NSData *data = [NSData dataWithContentsOfFile:path];
+		NSData *iconData = nil;
+		if ([path hasSuffix: @"ico"]) {
+			iconData = data;
+			if (iconData == nil){
+				//NSLog(@"Can not load icon file: [%@]", path);
+				NSString *path = [NSString stringWithFormat:@"%@/wpa.ico",[[NSBundle mainBundle] resourcePath]];
+				return [[NSImage alloc ]initWithContentsOfFile:path];
+			}
+		}
+		else {
+			IconsFile *iFile = [[IconsFile alloc]init];
+			[iFile loadIconData:data];
+			iconData = [iFile getIconForHeight:32];
+		}
+		[iconsMap setObject:iconData forKey:name ];
+	}
+	NSData *ret = [iconsMap objectForKey:name];
+	
+	return [[NSImage alloc]initWithData:ret];
+}
+
 - (NSData*) iconForModule: (id<Instance>) mod 
 {
 	NSString *name = [[((NSObject*)mod) class]description];

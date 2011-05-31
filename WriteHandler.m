@@ -111,7 +111,7 @@
 {
 	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
 	NSEntityDescription *entity =
-    [NSEntityDescription entityForName:@"Task"
+    [NSEntityDescription entityForName:@"ActiveTask"
 				inManagedObjectContext:moc];
 	[request setEntity:entity];
 	
@@ -269,6 +269,9 @@
 - (void) saveTotalsForDate: (NSNotification*) msg
 //(NSDate*) date goal: (int) goalTime work: (int) workTime free: (int) freeTime
 {
+#if DEBUG
+	NSLog(@"saveTotalsForDate");
+#endif	
 	NSDictionary *d = msg.userInfo;
 	NSDate *inDate = (NSDate*)[d objectForKey:@"date"];
 	int goalTime = ((NSNumber*)[d objectForKey:@"goal"]).intValue;
@@ -314,10 +317,10 @@
 
 - (NSManagedObject*) findTask: (NSString*) taskName project:(NSString*) projectName source: (NSString*) sourceName
 {
-    NSArray *taskList;
+    NSArray *taskList = [NSArray new];
     NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
     NSEntityDescription *entity =
-    [NSEntityDescription entityForName:@"Task"
+    [NSEntityDescription entityForName:@"ActiveTask"
                 inManagedObjectContext:[self managedObjectContext]];
     if (entity) {
         [request setEntity:entity];
@@ -386,6 +389,9 @@
 						  source: (NSString*) sourceName 
 						 project: (NSString*) projectName
 {
+#if DEBUG
+	NSLog(@"completeActivityForDate");
+#endif
     if (!taskName){
         //NSLog(@"not saving task data");
         return;
@@ -460,8 +466,10 @@
 		//NSLog(@"error: %@",err);
 	} 
 	//NSLog(@"created task: %@", taskName);
-	[managedObjectContext insertObject:completedObj];    
-	[managedObjectContext deleteObject:taskObj];
+	[managedObjectContext insertObject:completedObj];   
+	if (taskObj) {
+		[managedObjectContext deleteObject:taskObj];
+	}
 }
 
 - (void) completeActivityForDate:(NSNotification*) msg
@@ -482,6 +490,9 @@
 
 - (void) saveActivityForDate:(NSDate*) inDate desc: (NSString*) taskName source: (NSString*) sourceName project: (NSString*) projectName addVal: (int) increment
 {
+#if DEBUG
+	NSLog(@"saveActivityForDate");
+#endif
     if (!taskName){
         //NSLog(@"not saving task data");
         return;
@@ -595,11 +606,6 @@
 
 - (void) saveActivityForDate:(NSNotification*) msg
 {
-    //		date,@"date",
-    //  taskInfo.project, @"project",
-    //   taskInfo.name, @"activity",
-    //   taskInfo.source.name,  @"source",
-    // [NSNumber numberWithInt:incr], @"increment",
 	NSDictionary *d = msg.userInfo;
 	NSDate *inDate = (NSDate*)[d objectForKey:@"date"];
 	int increment = ((NSNumber*)[d objectForKey:@"increment"]).intValue;

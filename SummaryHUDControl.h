@@ -18,11 +18,22 @@
 #import "SummaryHUDCallback.h"
 #import "HUDBusy.h"
 
+@interface TaskView : NSView {
+	NSFont *font;
+	NSString *titleStr;
+	NSRect saveFrame;
+}
+@property (nonatomic, retain) NSFont *font;
+@property (nonatomic, retain) NSString *titleStr;
+@property (nonatomic, assign) NSRect saveFrame;
+@end
+
 @interface SummaryHUDControl :  NSWindowController <SummaryHUDCallback, NSWindowDelegate> {
 	NSMutableDictionary *svcs;
 	NSMutableDictionary *controls;
 	NSMutableDictionary *datas;
 	NSMutableDictionary *busys;
+	NSMutableDictionary *titles;
 	
 	NSView *view;
 
@@ -36,16 +47,19 @@
 	NSTimer *buildTimer;
 	NSRect saveRect;
 	BOOL oneLastTime;
+	TaskView *currentTaskView;
 }
 @property (nonatomic, retain) NSMutableData *frameData;
 @property (nonatomic, retain)  NSMutableDictionary *svcs;
 @property (nonatomic, retain)  NSMutableDictionary *controls;
 @property (nonatomic, retain)  NSMutableDictionary *datas;
 @property (nonatomic, retain)  NSMutableDictionary *busys;
+@property (nonatomic, retain)  NSMutableDictionary *titles;
 @property (nonatomic, retain) IBOutlet NSView *view;
 
 @property (nonatomic, retain) WPAMainController *mainControl;
 @property (nonatomic, retain) NSString *framePos; // hack since auto frame save is buggy for mysterious reasons
+@property (nonatomic, retain) NSView *currentTaskView; 
 @property (nonatomic) CGFloat lineHeight;
 @property (nonatomic) NSUInteger sizedCount;
 @property (nonatomic) BOOL viewChanged;
@@ -59,3 +73,16 @@
 
 - (CGFloat) calcHeight;
 @end
+
+@interface TitleView : NSView {
+	NSFont *font;
+	NSString *titleStr;
+	NSRect saveFrame;
+	NSImage *altImage;
+}
+@property (nonatomic, retain) NSFont *font;
+@property (nonatomic, retain) NSString *titleStr;
+@property (nonatomic, retain) NSImage *altImage;
+@property (nonatomic, assign) NSRect saveFrame;
+@end
+

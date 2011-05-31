@@ -16,7 +16,7 @@
 #import "SummaryViewController.h"
 
 @implementation SummaryHUDControl
-@synthesize controls,busys, datas, svcs;
+@synthesize controls,busys, datas, svcs, titles;
 @synthesize lineHeight;
 @synthesize mainControl;
 
@@ -28,6 +28,7 @@
 @synthesize buildTimer;
 @synthesize saveRect;
 @synthesize oneLastTime;
+@synthesize currentTaskView;
 
 + (void) initialize
 {
@@ -48,6 +49,7 @@
 	self = [super initWithWindow:window];
 	if (self){
 		framePos = [window stringWithSavedFrame];
+		[window setAllowsToolTipsWhenApplicationIsInactive:YES];
 	}
 	return self;
 }
@@ -84,6 +86,7 @@
 	datas = [NSMutableDictionary dictionaryWithCapacity:hudCount];
 	busys = [NSMutableDictionary dictionaryWithCapacity:hudCount];
 	svcs = [NSMutableDictionary dictionaryWithCapacity:hudCount];
+	titles = [NSMutableDictionary dictionaryWithCapacity:hudCount];
 	viewChanged = YES;
 	[self buildDisplay];
 	[self setSizedCount:0];
@@ -151,13 +154,11 @@
 		NSBox *control = [controls objectForKey:rptName];
 		NSMutableArray *data = [datas objectForKey:rptName];
 		if (data) {
-			CGFloat dataTemp = [self preCalc:data forSetting:setting] + 28;
+			CGFloat dataTemp = [self preCalc:data forSetting:setting] + 5;
 			totalHeight += dataTemp;
-			//NSLog(@"height for data %d %f", [data count], dataTemp );
 		} 
 		else if ((data == nil && busy == nil) || (busy)) {
 			totalHeight += lineHeight * 3;
-			//NSLog(@"height for busy");
 		}
 		if (busy){
 			[[busy view]setHidden:YES];
@@ -165,8 +166,11 @@
 		if (control) {
 			[control setHidden:YES];
 		}
-		
 	}	
+	Context *ctx = [Context sharedContext];
+//	if (ctx.currentTask && [ctx.currentTask objectForKey:@"name"]){
+		totalHeight += 19.0; // for currentTask
+//	}
 	currRect.size.height = totalHeight;
 	if (!NSEqualRects(currRect, saveRect)){
 		//NSLog(@"resizing window bc %@ != %@", NSStringFromRect(currRect),NSStringFromRect(saveRect	));
@@ -186,6 +190,7 @@
 		HUDBusy *busy = [busys objectForKey:rptName];
 		NSMutableArray *data = [datas objectForKey:rptName];
 		SummaryViewController *svc = [svcs objectForKey:rptName];
+		TitleView *stv = [titles objectForKey:rptName];
 		NSRect rect = rects[i-1];
 	//	NSLog(@"loop %d %@",i, svc);
 		
@@ -206,7 +211,8 @@
 			NSString *titleLabel = ([data count] == 0) 
 				? [setting.label stringByAppendingFormat:@" [empty]"] 
 				: setting.label;
-			NSDictionary *attrs = [NSDictionary dictionaryWithObject:[NSColor whiteColor] forKey:NSForegroundColorAttributeName];
+			NSDictionary *attrs = [NSDictionary dictionaryWithObject:[NSColor whiteColor] 
+															  forKey:NSForegroundColorAttributeName];
 			NSString *titleStr = [[NSAttributedString alloc]initWithString:titleLabel 
 																attributes:attrs];
 			[box setTitle:titleStr];
@@ -216,30 +222,49 @@
 			control = box;
 		}
 		if (svc) {
+			[view addSubview:svc.view];
+			[control removeFromSuperview];
 			[control setHidden:NO];
 			[[svc view] setHidden:NO];
 			//	[svc.table setHidden:NO];
 			NSRect boxFrame;
+			
 			lineHeight = [svc.table rowHeight];
 			//NSLog(@"before totalheight = %f for %@", totalHeight, [rpt name]);
 			boxFrame.origin.y = totalHeight;
-			boxFrame.origin.x = 7;
-			boxFrame.size.width = winRect.size.width - 10;
-			boxFrame.size.height = [svc actualHeight] + (lineHeight * 2);
+			boxFrame.origin.x = 21;
+			boxFrame.size.width = winRect.size.width - 24;
+			boxFrame.size.height = [svc actualHeight] + 5; //(lineHeight * 2);
 			
 			NSRect contentFrame = boxFrame;
 			contentFrame.size.height = [svc actualHeight];
-			if (NSEqualRects(rect,contentFrame) == NO || needsFrameChange) {
+		//	if (NSEqualRects(rect,contentFrame) == NO || needsFrameChange) {
 			//	NSLog(@"resizing SVC");
-				[control setFrameFromContentFrame:contentFrame];
+				[svc.view setFrame:contentFrame];
 				
-				[svc.view setFrame:[control.contentView bounds]];
+			//	[svc.view setFrame:[control.contentView bounds]];
 				rects[i-1] = contentFrame;
 				[svc.view setNeedsDisplay:YES];
 				
+		//	}
+			NSRect stvFrame = boxFrame;
+		//	stvFrame.origin.y = totalHeight + lineHeight;
+			stvFrame.origin.x = 5;
+			stvFrame.size.width = 21;
+			stvFrame.size.height = [svc actualHeight];
+		//	stvFrame.size.height = 60;
+			if (!stv) {
+				stv = [[TitleView alloc]initWithFrame:stvFrame];
+				[stv setAltImage:[ctx iconImageForModule:rpt]];
+				[titles setObject:stv forKey: rptName];
+				NSFont *font = [NSFont systemFontOfSize:[NSFont smallSystemFontSize]];
+				[stv setFont:font];
+				[stv setTitleStr:setting.label];
+		
+				[view addSubview:stv];
 			}
-			
-			
+			[stv setFrame:stvFrame];
+
 			totalHeight += boxFrame.size.height;			
 			//	NSLog(@"after totalheight = %f for %@", totalHeight, [rpt name]);
 		}
@@ -272,7 +297,21 @@
 			}
 			totalHeight += busyRect.size.height + lineHeight;
 		}
+	}
+	
+	NSRect tvFrame = NSMakeRect(21.0,totalHeight, winRect.size.width - 24.0, 14.0);
+	if (!currentTaskView)
+	{
+		currentTaskView = [[TaskView alloc]initWithFrame:tvFrame];
+		[currentTaskView setFont:[NSFont systemFontOfSize:[NSFont smallSystemFontSize]]];
+		[currentTaskView setTitleStr:@"No active task set"];
+		if (ctx.currentTask && [ctx.currentTask objectForKey:@"name"]){
+			[currentTaskView setTitleStr:[ctx.currentTask objectForKey:@"name"]];
 		}
+		[view addSubview:currentTaskView];
+	}
+	[currentTaskView setFrame:tvFrame];
+	
 	if (needsFrameChange) {
 		currRect.size.height = totalHeight;	
 	//	NSLog(@"new height = %f", totalHeight);
@@ -370,6 +409,77 @@
 			break;	
 	}
 	return temp;
+}
+
+@end
+
+@implementation TaskView
+
+@synthesize font, titleStr, saveFrame;
+
+- (id)initWithFrame:(NSRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+		saveFrame = frame;
+    }
+    return self;
+}
+
+- (void)drawRect:(NSRect)dirtyRect {
+	
+	NSDictionary *attrs = [NSDictionary dictionaryWithObjectsAndKeys:
+						   [NSColor whiteColor], NSForegroundColorAttributeName,
+						   font, NSFontAttributeName,
+						   nil];
+	
+	NSPoint newPt = NSMakePoint(0.0, 0.0);
+	[titleStr drawAtPoint:newPt withAttributes:attrs];
+}
+@end
+
+@implementation TitleView
+@synthesize font, titleStr, saveFrame, altImage;
+
+- (id)initWithFrame:(NSRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+		saveFrame = frame;
+    }
+    return self;
+}
+
+- (void)drawRect:(NSRect)dirtyRect {
+	[self setToolTip:titleStr];
+	if (saveFrame.size.height < 40.0){
+		NSRect rect = saveFrame;
+		NSImageView *iView = [[NSImageView alloc]initWithFrame:NSMakeRect(0, 0, rect.size.width-7, rect.size.width-7)];
+		[self addSubview:iView];
+		[altImage setSize:NSMakeSize(14, 14)];
+		[iView setImage:altImage];
+	//	NSImageRep *rep = [altImage bestRepresentationForRect:rect context:nil hints:nil];
+	//	rect.size.height = rect.size.width;
+	//	[altImage drawRepresentation:rep inRect:rect];
+		return;
+	}
+	NSAffineTransform *xform = [[NSAffineTransform alloc] init];
+	
+	[xform translateXBy: 14.0 yBy: 0.0];
+	[xform rotateByDegrees: 90.0];
+	[xform concat]; 
+	
+	NSDictionary *attrs = [NSDictionary dictionaryWithObjectsAndKeys:
+						   [NSColor whiteColor], NSForegroundColorAttributeName,
+						   font, NSFontAttributeName,
+						   nil];
+	NSRect rect = [titleStr boundingRectWithSize:saveFrame.size 
+										 options:0 
+									  attributes:attrs];
+	CGFloat shift = (saveFrame.size.height - rect.size.width) / 2;
+	
+	NSPoint newPt;
+	newPt.x = shift;
+	newPt.y = 0;
+	[titleStr drawAtPoint:newPt withAttributes:attrs];
 }
 
 @end

@@ -45,6 +45,9 @@
     {
 //        NSDictionary* userInfo = [error userInfo];
         //NSLog (@"encountered the following error: %@", userInfo);
+		NSSet *insSet =[managedObjectContext insertedObjects];
+		NSSet *delSet =[managedObjectContext deletedObjects];
+		NSSet *updSet =[managedObjectContext updatedObjects];
         Debugger();
     }
     
@@ -184,7 +187,7 @@
 {
 	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
 	NSEntityDescription *entity =
-    [NSEntityDescription entityForName:@"Task"
+    [NSEntityDescription entityForName:@"ActiveTask"
 				inManagedObjectContext:moc];
 	[request setEntity:entity];
 	

@@ -61,6 +61,7 @@
 - (NSDictionary*) readTask:(NSUserDefaults*) defaults;
 - (NSString*) descriptionForModule: (NSObject*) mod;
 - (NSData*) iconForModule: (id<Instance>) mod;
+- (NSImage*) iconImageForModule: (id<Instance>) mod;
 - (void) removeDefaultsForKey: (NSString*) keyPrefix;
 
 - (void) refreshModules: (id<AlertHandler>) handler withLoop: (BOOL) loopingOn;

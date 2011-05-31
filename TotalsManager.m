@@ -71,11 +71,14 @@
                                goal:[self calcGoal]
                                work:workToday 
                                free:freeToday];
-    [WriteHandler sendSummary:summary]; 
+	if (summary){
+		[WriteHandler sendSummary:summary]; 
+	}
 }
 
 - (void) saveActivity 
 {
+	NSLog(@"sendActivity");
     [WriteHandler sendActivity: timeStampDate
                       activity:[Context sharedContext].currentTask
                      increment:interval];
