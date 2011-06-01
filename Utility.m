@@ -69,6 +69,14 @@
     return outputData;
 }
 
++ (NSString*) durationStrFor: (NSTimeInterval) interval
+{
+	int hours = floor(interval / 3600);
+	double remainder = fmod(interval, 3600.0);
+	int minutes = floor(remainder / 60);
+	return [NSString stringWithFormat:@"%0.2d:%0.2d",hours,minutes];
+}
+
 +(NSString*) timeStrFor:(NSDate*) date
 {
 	NSString *ret = nil;

@@ -17,14 +17,17 @@
 #import "SummaryViewController.h"
 #import "SummaryHUDCallback.h"
 #import "HUDBusy.h"
+#import "TotalsManager.h"
 
 @interface TaskView : NSView {
 	NSFont *font;
 	NSString *titleStr;
+	NSString *timeStr;
 	NSRect saveFrame;
 }
 @property (nonatomic, retain) NSFont *font;
 @property (nonatomic, retain) NSString *titleStr;
+@property (nonatomic, retain) NSString *timeStr;
 @property (nonatomic, assign) NSRect saveFrame;
 @end
 
@@ -48,6 +51,9 @@
 	NSRect saveRect;
 	BOOL oneLastTime;
 	TaskView *currentTaskView;
+	NSTextView *goalText;
+	TotalsManager *totalsManager;
+	
 }
 @property (nonatomic, retain) NSMutableData *frameData;
 @property (nonatomic, retain)  NSMutableDictionary *svcs;
@@ -60,6 +66,7 @@
 @property (nonatomic, retain) WPAMainController *mainControl;
 @property (nonatomic, retain) NSString *framePos; // hack since auto frame save is buggy for mysterious reasons
 @property (nonatomic, retain) NSView *currentTaskView; 
+@property (nonatomic, retain) TotalsManager *totalsManager; 
 @property (nonatomic) CGFloat lineHeight;
 @property (nonatomic) NSUInteger sizedCount;
 @property (nonatomic) BOOL viewChanged;

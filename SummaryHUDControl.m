@@ -14,6 +14,7 @@
 #import "Reporter.h"
 #import <BGHUDAppKit/BGHUDAppKit.h>
 #import "SummaryViewController.h"
+#import "Utility.h"
 
 @implementation SummaryHUDControl
 @synthesize controls,busys, datas, svcs, titles;
@@ -29,6 +30,7 @@
 @synthesize saveRect;
 @synthesize oneLastTime;
 @synthesize currentTaskView;
+@synthesize totalsManager;
 
 + (void) initialize
 {
@@ -56,12 +58,30 @@
 
 - (void) showWindow:(id)sender
 {
+	Context *ctx =[Context sharedContext];
+
 	saveRect = NSMakeRect(0,0,0,0);
 	[super showWindow:sender];
 	NSDateFormatter *fmttr = [NSDateFormatter new];
 	[fmttr setDateStyle:NSDateFormatterMediumStyle];
 	[fmttr setTimeStyle:NSDateFormatterShortStyle];
-	[super.window setTitle:[fmttr stringForObjectValue:[NSDate date]]];
+	NSString *infoStr = @"";
+	if ([ctx currentState] == WPASTATE_VACATION){
+		infoStr = @"Vacation Day";
+	} 
+	else if ([totalsManager calcGoal] == 0.0){
+		infoStr = @"Day Off";
+	}
+	else if ([totalsManager workToday] > [totalsManager calcGoal]){
+		infoStr = @"Quittin' Time";
+    } else {
+		infoStr = @"Get Ta Work!";
+	}
+
+	NSString* titleStr = [NSString stringWithFormat:@"%@ -- %@",
+						  [fmttr stringForObjectValue:[NSDate date]],
+						  infoStr];
+	[super.window setTitle: titleStr];
 	mainControl = sender; 
 	NSString *pos = [[NSUserDefaults standardUserDefaults] objectForKey: @"posHUD"];
 	//NSLog(@"loading framePos: %@", pos);
@@ -74,7 +94,7 @@
 	CGFloat hgtTemp = [self calcHeight];
 	currRect.size.height = hgtTemp;	
 	[[super window] setContentSize: currRect.size];
-	NSUInteger hudCount = [[[Context sharedContext].hudSettings allEnabled] count];
+	NSUInteger hudCount = [[ctx.hudSettings allEnabled] count];
 	
 	NSRect rects[hudCount];
 	for (int i = 0;i < hudCount;i++){
@@ -305,6 +325,8 @@
 		currentTaskView = [[TaskView alloc]initWithFrame:tvFrame];
 		[currentTaskView setFont:[NSFont systemFontOfSize:[NSFont smallSystemFontSize]]];
 		[currentTaskView setTitleStr:@"No active task set"];
+		NSString *goalStr = [Utility durationStrFor:[totalsManager calcGoal]];
+		[currentTaskView setTimeStr:goalStr];
 		if (ctx.currentTask && [ctx.currentTask objectForKey:@"name"]){
 			[currentTaskView setTitleStr:[ctx.currentTask objectForKey:@"name"]];
 		}
@@ -415,7 +437,7 @@
 
 @implementation TaskView
 
-@synthesize font, titleStr, saveFrame;
+@synthesize font, titleStr, saveFrame, timeStr;
 
 - (id)initWithFrame:(NSRect)frame {
     self = [super initWithFrame:frame];
@@ -426,14 +448,21 @@
 }
 
 - (void)drawRect:(NSRect)dirtyRect {
-	
-	NSDictionary *attrs = [NSDictionary dictionaryWithObjectsAndKeys:
-						   [NSColor whiteColor], NSForegroundColorAttributeName,
+	// 1 label
+	NSColor *labelColor = [NSColor colorWithDeviceHue:0.0 saturation:0.0 brightness:0.80 alpha:1.0];
+	NSDictionary *labelAttrs = [NSDictionary dictionaryWithObjectsAndKeys:
+						   labelColor, NSForegroundColorAttributeName,
 						   font, NSFontAttributeName,
 						   nil];
+	NSDictionary *valueAttrs = [NSDictionary dictionaryWithObjectsAndKeys:
+								[NSColor whiteColor], NSForegroundColorAttributeName,
+								font, NSFontAttributeName,
+								nil];
+	[@"Currently Tracking:" drawAtPoint:NSMakePoint(10, 0) withAttributes:labelAttrs];
+	[titleStr drawAtPoint:NSMakePoint(120.0, 0) withAttributes:valueAttrs];
+	[@"Work Goal:" drawAtPoint:NSMakePoint(357.0, 0) withAttributes:labelAttrs];
+	[timeStr drawAtPoint:NSMakePoint(420.0, 0) withAttributes:valueAttrs];
 	
-	NSPoint newPt = NSMakePoint(0.0, 0.0);
-	[titleStr drawAtPoint:newPt withAttributes:attrs];
 }
 @end
 
@@ -467,19 +496,20 @@
 	[xform rotateByDegrees: 90.0];
 	[xform concat]; 
 	
-	NSDictionary *attrs = [NSDictionary dictionaryWithObjectsAndKeys:
-						   [NSColor whiteColor], NSForegroundColorAttributeName,
-						   font, NSFontAttributeName,
-						   nil];
+	NSColor *labelColor = [NSColor colorWithDeviceHue:0.0 saturation:0.0 brightness:0.80 alpha:1.0];
+	NSDictionary *labelAttrs = [NSDictionary dictionaryWithObjectsAndKeys:
+								labelColor, NSForegroundColorAttributeName,
+								font, NSFontAttributeName,
+								nil];
 	NSRect rect = [titleStr boundingRectWithSize:saveFrame.size 
 										 options:0 
-									  attributes:attrs];
+									  attributes:labelAttrs];
 	CGFloat shift = (saveFrame.size.height - rect.size.width) / 2;
 	
 	NSPoint newPt;
 	newPt.x = shift;
 	newPt.y = 0;
-	[titleStr drawAtPoint:newPt withAttributes:attrs];
+	[titleStr drawAtPoint:newPt withAttributes:labelAttrs];
 }
 
 @end

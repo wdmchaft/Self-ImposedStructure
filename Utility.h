@@ -36,5 +36,6 @@
 + (NSArray*) loadColorsForKey: (NSString*) key;
 + (NSString*) formatInterval: (NSTimeInterval) timeInt;
 + (NSString*) applicationSupportDirectory;
++ (NSString*) durationStrFor: (NSTimeInterval) interval;
 
 @end

@@ -586,6 +586,7 @@
 	[[[Context sharedContext] growlManager] clearQueues];
 	[self enableStatusMenu:NO];
 	SummaryHUDControl *shc = [[SummaryHUDControl alloc]initWithWindowNibName:@"SummaryHUD"];
+	shc.totalsManager = totalsManager;
 	hudWindow = shc.window;
 	[shc showWindow:self];
 	[[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
