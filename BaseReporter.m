@@ -19,6 +19,13 @@
 @dynamic name;
 @dynamic category;
 
+- (id) initWithNibName:(NSString *) nibNameOrNil 
+				bundle:(NSBundle *) nibBundleOrNil
+				params: (NSDictionary *) appParams
+{
+	return [super initWithNibName: nibNameOrNil bundle: nibBundleOrNil params: appParams];
+}
+
 - (void) refresh: (id<AlertHandler>) handler isSummary: (BOOL) summary{}
 - (void) initSummaryTable: (NSTableView*) view{}
 - (void) handleClick:(NSDictionary *)params{}

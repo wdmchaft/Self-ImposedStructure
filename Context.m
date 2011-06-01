@@ -39,20 +39,29 @@
 @synthesize totalsManager;
 @synthesize nagDelayTimer;
 @synthesize hotkeyEvent;
+@synthesize params;
+@synthesize debug;
+@synthesize queueName;
 
 static Context* sharedContext = nil;
 
 + (Context*)sharedContext;
 {
     if (sharedContext == nil) {
+#if DEBUG
+		sharedContext.debug = YES;
+#endif
 		sharedContext = [[super allocWithZone:NULL] init];
-	//	[sharedContext clearModules];
+		sharedContext.queueName = @"com.zer0gravitas.devstruct";
+		if ([__APPNAME__ isEqualToString:@"Self-Imposed Structure"]) {
+			sharedContext.queueName = @"com.zer0gravitas.selfstruct";
+		}	
 		[sharedContext loadBundles];
 		[sharedContext initFromDefaults];
 		sharedContext.hudSettings = [[HUDSettings alloc]init];
 		[sharedContext.hudSettings readFromDefaults];
 		sharedContext.heatMapSettings = [[HeatMap alloc] init];
-
+		sharedContext.debug = NO;
 	}
     return sharedContext;
 }
@@ -174,6 +183,10 @@ static Context* sharedContext = nil;
 
 	instancesMap = [[NSMutableDictionary alloc]initWithCapacity:count];
 	
+	params = [NSDictionary dictionaryWithObjectsAndKeys:
+			  [NSNumber numberWithBool:debug], @"debug",
+			  queueName, @"queuename",
+			  nil];
 	// and finally instantiate each module
 	for (NSString *modName in modulesMap){
 		NSString *bundleName = [modulesMap objectForKey:modName];
@@ -183,7 +196,7 @@ static Context* sharedContext = nil;
 		//
 		// the NIB name should match the plugin
 		//
-		mod = [mod initWithNibName:bundleName bundle:bundle];
+		mod = [mod initWithNibName:bundleName bundle:bundle params:params];
 		mod.name = modName;
 		[instancesMap setObject: mod forKey:modName];
 		[mod loadDefaults];
@@ -258,41 +271,12 @@ static Context* sharedContext = nil;
 }
 
 - (NSImage*) iconImageForModule: (id<Instance>) mod 
-{
-	NSString *name = [[((NSObject*)mod) class]description];
-	if (iconsMap == nil){
-		iconsMap = [[NSMutableDictionary alloc]initWithCapacity:[bundlesMap count]];
+{	
+	NSData *data = [self iconForModule:mod];
+	if (!data){
+		return nil;
 	}
-	if (name == nil){
-		NSString *path = [NSString stringWithFormat:@"%@/wpa.ico",[[NSBundle mainBundle] resourcePath]];
-		return [NSData dataWithContentsOfFile:path];
-	}
-	if ([[iconsMap allKeys] indexOfObject:name] == NSNotFound) {
-		
-		NSBundle *bundle = [bundlesMap objectForKey: name];
-		NSString *iconName = [bundle objectForInfoDictionaryKey:@"CFBundleIconFile"];
-		NSString *path = [bundle resourcePath];
-		path = [path stringByAppendingFormat:@"/%@",iconName];
-		NSData *data = [NSData dataWithContentsOfFile:path];
-		NSData *iconData = nil;
-		if ([path hasSuffix: @"ico"]) {
-			iconData = data;
-			if (iconData == nil){
-				//NSLog(@"Can not load icon file: [%@]", path);
-				NSString *path = [NSString stringWithFormat:@"%@/wpa.ico",[[NSBundle mainBundle] resourcePath]];
-				return [[NSImage alloc ]initWithContentsOfFile:path];
-			}
-		}
-		else {
-			IconsFile *iFile = [[IconsFile alloc]init];
-			[iFile loadIconData:data];
-			iconData = [iFile getIconForHeight:32];
-		}
-		[iconsMap setObject:iconData forKey:name ];
-	}
-	NSData *ret = [iconsMap objectForKey:name];
-	
-	return [[NSImage alloc]initWithData:ret];
+	return [[NSImage alloc]initWithData:data];
 }
 
 - (NSData*) iconForModule: (id<Instance>) mod 

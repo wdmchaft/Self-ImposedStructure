@@ -75,11 +75,12 @@
 	
 }
 
--(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+-(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil params:_params
 {
-	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil params:_params];
 	if (self)
 	{
+		
 		name =@"Apple Mail Module";
 		notificationName = @"Mail Alert";
 		notificationTitle = @"Mail Msg";

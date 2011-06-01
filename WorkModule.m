@@ -9,6 +9,7 @@
 #import "WorkModule.h"
 #import "State.h"
 #import "ChooseApp.h"
+#import "Queues.h"
 
 @interface WatchApp : NSObject
 {
@@ -35,6 +36,7 @@
 @dynamic enabled;
 @dynamic category;
 @dynamic name;
+@dynamic params;
 @synthesize notificationCenter;
 @synthesize wsCenter;
 @synthesize appsToWatch;
@@ -42,6 +44,7 @@
 @synthesize buttonAdd;
 @synthesize buttonRemove;
 @synthesize chooseApp;
+@synthesize queueName;
 
 
 - (IBAction) clickState: (id) sender{
@@ -94,6 +97,16 @@
 	}
 }
 
+- (NSString*) queueName 
+{
+	if (!queueName) {
+		NSString *base = [params objectForKey:@"queuename"];
+		queueName = [Queues queueNameFor:WPA_STATEQUEUE 
+								fromBase:base];
+	}
+	return queueName;
+}
+
 - (void) handleNewActiveApp: (NSNotification*) notification
 {
 //	NSDictionary *dict = [notification userInfo];
@@ -108,7 +121,9 @@
 		if ([wa.idString isEqualToString:appBundle]){
 			//com.zer0gravitas.wpa
             if(wa.state == WPASTATE_THINKING){
-				[notificationCenter postNotificationName:WPA_WORKQUEUE object: nil userInfo:dict];
+				[notificationCenter postNotificationName:[self queueName]
+												  object: nil 
+												userInfo:dict];
 				dict = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:WPASTATE_THINKING] forKey:@"state"];
 				stateStr = @"work";
 				break;
@@ -120,8 +135,10 @@
 
 		}
 	}
-	NSLog(@"WorkModule going to %@ state = %@", appBundle, stateStr);
-	[notificationCenter postNotificationName:WPA_WORKQUEUE object: nil userInfo:dict];
+	NSLog(@"WorkModule going to %@ state = %@ sent on %@", appBundle, stateStr, [self queueName]);
+	[notificationCenter postNotificationName:[self queueName] 
+									  object: nil 
+									userInfo:dict];
 }
 
 -(void) startValidation: (NSObject*) callback  
@@ -222,11 +239,11 @@
 	return self;
 }
  
--(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
+-(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil params: appParams{
 #if DEBUG
 	NSLog(@"WorkModule initWithNibName");
 #endif
-	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil params:appParams];
 	if (self){
 		WatchApp *app = [[WatchApp alloc] init];
 	//	app.idString = @"com.apple.Xcode";

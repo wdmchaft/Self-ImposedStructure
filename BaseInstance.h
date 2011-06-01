@@ -22,6 +22,7 @@
 	NSWindowController *detailController;
 	WPAModuleCategory category;
 	NSTimeInterval refreshInterval;
+	NSDictionary *params ;
 }
 
 @property (nonatomic) BOOL enabled;
@@ -30,6 +31,7 @@
 @property (nonatomic, retain) NSString *notificationTitle;
 @property (nonatomic, retain) NSObject *validationHandler;
 @property (nonatomic, retain) NSWindowController *detailController;
+@property (nonatomic, retain) NSDictionary *params;
 @property (nonatomic) WPAModuleCategory category;
 @property (nonatomic) NSTimeInterval refreshInterval;
 
@@ -47,6 +49,8 @@
 + (void) sendErrorToHandler:(id<AlertHandler>) handler error:(NSString*) err module:(NSString*) modName;
 + (void) sendDone: (id<AlertHandler>) handler module: (NSString*) modName;
 - (NSString*) myKeyForKey: (NSString*) key;
-
+- (id) initWithNibName:(NSString *) nibNameOrNil 
+				bundle:(NSBundle *) nibBundleOrNil
+			   params: (NSDictionary *) appParams;
 @end
 

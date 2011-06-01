@@ -69,9 +69,9 @@
 	return self;
 }
 
--(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+-(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil params: (NSDictionary*) appParams
 {
-	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil params:appParams];
 	if (self)
 	{
 		[self setId];

@@ -59,6 +59,7 @@
 @dynamic summaryTitle;
 @dynamic isWorkRelated;
 @dynamic summaryMode;
+@dynamic completeQueue;
 
 
 /**
@@ -253,8 +254,9 @@
 //	NSString *clickName = [taskParams objectForKey:@"name"];
 	GoogleTaskEditCtrl *dialogCtrl= [[GoogleTaskEditCtrl alloc] 
 									   initWithWindowNibName:@"GoogleTaskEdit" 
-											   usingProtocol:protocol
-													forTask:taskParams];
+											   usingProtocol: protocol
+													forTask: taskParams
+													usingQueue: [self completeQueue]];
 	[dialogCtrl showWindow:self];
 	
 	//NSLog(@"name: %@",clickName, nil);
@@ -286,9 +288,9 @@
 	[protocol setModule:self];
 }
 
--(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+-(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil params: _params
 {
-	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil params:_params];
 	if (self){
 		[self initGuts];
 	}
@@ -472,10 +474,20 @@
 - (void) completeDone
 {
 }
+
 - (void) markComplete:(NSDictionary *)ctx completeHandler: (NSObject*) target selector: (SEL) callback
 {
-	[protocol sendDelete: target returnTo: callback params:ctx];
+	[protocol sendComplete:target returnTo:callback params:ctx];
+
+	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
+	NSDictionary *taskInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+							  [ctx objectForKey:@"name"], @"task",
+							  [ctx objectForKey:@"project"], @"project",
+							  [ctx objectForKey:@"project"], @"source",
+							  nil];
+	[dnc postNotificationName:[self completeQueue] object:nil userInfo: taskInfo];
 }
+
 //
 // if there is an error then put out an error message saying results may be out of date 
 // but return the last copy of the list

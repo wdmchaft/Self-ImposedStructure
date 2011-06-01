@@ -7,10 +7,12 @@
 //
 
 #import "BaseTaskList.h"
+#import "Queues.h"
 
 
 @implementation BaseTaskList
 @synthesize tracked;
+@synthesize completeQueue;
 @dynamic refreshInterval;
 @dynamic notificationName;
 @dynamic notificationTitle;
@@ -19,6 +21,7 @@
 @dynamic enabled;
 @dynamic name;
 @dynamic category;
+@dynamic params;
 
 -(void) saveDefaults{
 	[self saveDefaultValue:[NSNumber numberWithInt:tracked] forKey:TRACKED];
@@ -34,6 +37,14 @@
 	[super loadDefaults];
 	NSNumber *temp = [self loadDefaultForKey:TRACKED];
 	tracked = [temp intValue];
+}
+
+- (NSString*) completeQueue{
+	if (!completeQueue){
+		NSString *base = [params objectForKey:@"queuename"];
+		completeQueue =  [Queues queueNameFor:WPA_COMPLETEQUEUE fromBase:base];
+	}
+	return completeQueue;
 }
 
 @end

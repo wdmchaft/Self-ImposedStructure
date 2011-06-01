@@ -41,6 +41,8 @@
 	SwitchActivityDialog *switchActivityDialog;
 	NSMutableDictionary *menuForTaskList;
 	NSModalSession modalSession;
+	NSString *stateQueue;
+	NSString *completeQueue;
 }
 
 @property (retain, nonatomic) IBOutlet NSWindow	*myWindow;
@@ -59,6 +61,8 @@
 @property (retain, nonatomic) AddActivityDialogController *addActivityWindow;
 @property (retain, nonatomic) SwitchActivityDialog *switchActivityDialog;
 @property (retain, nonatomic) NSMutableDictionary *menuForTaskList;
+@property (retain, nonatomic) NSString *stateQueue ;
+@property (retain, nonatomic) NSString *completeQueue ;
 @property (nonatomic) NSModalSession modalSession;
 
 - (IBAction) clickStart: (id) sender;
@@ -99,4 +103,6 @@
 - (void) addActClosed: (NSNotification*) notify;
 - (void) switchActClosed: (NSNotification*) notify;
 
+- (NSString *) completeQueue;
+- (NSString *) stateQueue;
 @end

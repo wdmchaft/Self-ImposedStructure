@@ -8,8 +8,8 @@
 
 #import "WPAMainController.h"
 #import "WPADelegate.h"
-#include "Context.h"
-#include "Columns.h"
+#import "Context.h"
+#import "Columns.h"
 #import "TimerDialogController.h"
 #import "SummaryHUDControl.h"
 #import "AddActivityDialogController.h"
@@ -20,6 +20,8 @@
 #import "GoalHoursToAverageXForm.h"
 #import "VacationDialog.h"
 #import "SwitchActivityDialog.h"
+#import "Queues.h"
+
 #if DEBUG
 #warning DEBUG enabled
 #else
@@ -29,7 +31,7 @@
 @implementation WPAMainController
 @synthesize  startButton, refreshButton, statusItem, statusMenu, statusTimer, myWindow, menuForTaskList, modalSession;
 @synthesize hudWindow, refreshManager, thinkTimer, siView, totalsManager, prefsWindow, statsWindow, addActivityWindow;
-@synthesize switchActivityDialog;
+@synthesize switchActivityDialog, stateQueue, completeQueue;
 
 + (void)initialize{
 	GoalHoursToAverageXForm *ghtav;
@@ -444,6 +446,23 @@
 	[self running:NO];
 }
 
+- (NSString*) stateQueue
+{
+	if (!stateQueue){
+		Context *ctx = [Context sharedContext];
+		stateQueue = [Queues queueNameFor:WPA_STATEQUEUE fromBase:ctx.queueName];
+	}
+	return stateQueue;
+}
+- (NSString*) completeQueue
+{
+	if (!completeQueue){
+		Context *ctx = [Context sharedContext];
+		completeQueue = [Queues queueNameFor:WPA_COMPLETEQUEUE fromBase:ctx.queueName];
+	}
+	return completeQueue;
+}
+
 - (void) running: (BOOL) on
 {
 	Context *ctx = [Context sharedContext];
@@ -456,7 +475,8 @@
 		[[ctx growlManager] stop];
 		newState = WPASTATE_OFF;
 		[statusTimer invalidate];
-		[center removeObserver:self name:@"com.zer0gravitas.selfstruct" object:nil];
+		[center removeObserver:self name:[self stateQueue] object:nil];
+		[center removeObserver:self name:[self completeQueue] object:nil];
 	} else {
 		startButton.title = @"Stop";
 		[startButton setAction: @selector(clickStop:)];
@@ -469,9 +489,13 @@
 		newState = WPASTATE_FREE;
 		// start listening for pause commands
 #if DEBUG
-		NSLog(@"listening on %@ for state change", WPA_WORKQUEUE);
+		NSLog(@"listening on %@ for state change", [self stateQueue]);
+		NSLog(@"listening on %@ for complete", [self completeQueue]);
 #endif
-		[center addObserver:self selector:@selector(remoteNotify:) name:WPA_WORKQUEUE object:nil];
+		NSLog(@"listening on %@ for complete", [self completeQueue]);
+		NSLog(@"listening on %@ for state change", [self stateQueue]);
+		[center addObserver:self selector:@selector(remoteNotify:) name:[self stateQueue] object:nil];
+		[center addObserver:self selector:@selector(remoteComplete:) name:[self completeQueue] object:nil];
 	}
 	ctx.running = on;
 //	[self enableUI:ctx.running];
@@ -603,6 +627,7 @@
 
 - (void) remoteNotify: (NSNotification*) notification
 {	
+	NSLog(@"remoteNotify");
 	NSDictionary *dict = [notification userInfo];
 	NSNumber *minStr =  [dict objectForKey:@"time"];
 	NSNumber *state =  [dict objectForKey:@"state"];
@@ -622,6 +647,13 @@
 		default:
 			break;
 	}
+}
+
+- (void) remoteComplete: (NSNotification*) notification
+{	
+	NSLog(@"remoteComplete");
+	NSDictionary *dict = [notification userInfo];
+	[WriteHandler completeActivity:dict atTime:[NSDate date]];
 }
 
 - (void) doThinkTime: (NSTimeInterval) thinkMin 

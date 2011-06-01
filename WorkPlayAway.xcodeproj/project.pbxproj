@@ -339,6 +339,8 @@
 		8CDCC12C12E2BD6D00CEAAD3 /* skmain.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDCC12B12E2BD6D00CEAAD3 /* skmain.m */; };
 		8CEE6A8613268A7C00E45829 /* AppleMailModule.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8CEE6A8513268A7C00E45829 /* AppleMailModule.ico */; };
 		8CEF0D8513951FD3008D9F1D /* iCalModule.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8CEF0D8413951FD3008D9F1D /* iCalModule.ico */; };
+		8CEF0ECC13968B09008D9F1D /* Queues.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CEF0ECA13968B09008D9F1D /* Queues.h */; };
+		8CEF0ECD13968B09008D9F1D /* Queues.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CEF0ECB13968B09008D9F1D /* Queues.m */; };
 		8CEF4DF613393AED000F5E3A /* SummaryStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CEF4DF413393AE7000F5E3A /* SummaryStatusViewController.m */; };
 		8CEF4DF713393AED000F5E3A /* SummaryStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CEF4DF413393AE7000F5E3A /* SummaryStatusViewController.m */; };
 		8CEF4E0D13394FBF000F5E3A /* SummaryStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CEF4E0C13394FBF000F5E3A /* SummaryStatusViewController.xib */; };
@@ -1044,6 +1046,8 @@
 		8CDCC12B12E2BD6D00CEAAD3 /* skmain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = skmain.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8CEE6A8513268A7C00E45829 /* AppleMailModule.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = AppleMailModule.ico; sourceTree = "<group>"; };
 		8CEF0D8413951FD3008D9F1D /* iCalModule.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = iCalModule.ico; sourceTree = "<group>"; };
+		8CEF0ECA13968B09008D9F1D /* Queues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queues.h; sourceTree = "<group>"; };
+		8CEF0ECB13968B09008D9F1D /* Queues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Queues.m; sourceTree = "<group>"; };
 		8CEF4DF313393AE6000F5E3A /* SummaryStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SummaryStatusViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8CEF4DF413393AE7000F5E3A /* SummaryStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SummaryStatusViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8CEF4E0C13394FBF000F5E3A /* SummaryStatusViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummaryStatusViewController.xib; sourceTree = "<group>"; };
@@ -1792,6 +1796,8 @@
 		8CD1967712D46DDB00C69AC9 /* WPAFramework */ = {
 			isa = PBXGroup;
 			children = (
+				8CEF0ECA13968B09008D9F1D /* Queues.h */,
+				8CEF0ECB13968B09008D9F1D /* Queues.m */,
 				8C630CBC138D548200E2570F /* BaseTaskList.h */,
 				8C630CBD138D548200E2570F /* BaseTaskList.m */,
 				8CB8CCE6137C548D007F7647 /* ScriptDaemon.h */,
@@ -1992,6 +1998,7 @@
 				8C01DD77131D5C7F00398AD8 /* HUDSettings.h in Headers */,
 				8C9E3D5213206F8E007632E5 /* WriteHandler.h in Headers */,
 				8C630CBE138D548200E2570F /* BaseTaskList.h in Headers */,
+				8CEF0ECC13968B09008D9F1D /* Queues.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2833,6 +2840,7 @@
 				8C5EAC57133C073600E5F404 /* FilterRule.m in Sources */,
 				8CDC14521311B26B00BA478C /* BaseReporter.m in Sources */,
 				8C630CBF138D548200E2570F /* BaseTaskList.m in Sources */,
+				8CEF0ECD13968B09008D9F1D /* Queues.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

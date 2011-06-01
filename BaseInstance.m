@@ -18,12 +18,16 @@
 @synthesize detailController;
 @synthesize category;
 @synthesize refreshInterval;
+@synthesize params;
 
-- (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id) initWithNibName:(NSString *) nibNameOrNil 
+				bundle:(NSBundle *) nibBundleOrNil
+			   params: (NSDictionary *) appParams
 {
 	self = [super initWithNibName: nibNameOrNil bundle: nibBundleOrNil];
 	if (self) {
 		refreshInterval = 15 * 60;
+		params = appParams;
 	}
 	return self;
 }

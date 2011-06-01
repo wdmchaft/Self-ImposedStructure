@@ -20,11 +20,13 @@
 	NSButton *buttonAdd;
 	NSButton *buttonRemove;
 	ChooseApp *chooseApp;
+	NSString *queueName;
 }
 @property (nonatomic, retain) NSDistributedNotificationCenter *notificationCenter;
 @property (nonatomic, retain) NSDistributedNotificationCenter *wsCenter;
 @property (nonatomic, retain) NSMutableArray *appsToWatch;
 @property (nonatomic, retain) ChooseApp *chooseApp;
+@property (nonatomic, retain) NSString *queueName;
 @property (nonatomic, retain) IBOutlet NSTableView *tableApps;
 @property (nonatomic, retain) IBOutlet NSButton *buttonAdd;
 @property (nonatomic, retain) IBOutlet NSButton *buttonRemove;

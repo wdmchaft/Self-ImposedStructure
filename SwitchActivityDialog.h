@@ -14,6 +14,8 @@
 	NSComboBox		*availableActCombo;
 	NSButton		*okButton;
 	NSButton		*cancelButton;
+	NSButton		*completeButton;
+	NSTextField		*currentText;
 	id<TaskList>	list;
 }
 @property (nonatomic, retain) IBOutlet NSButton			*completeButton;

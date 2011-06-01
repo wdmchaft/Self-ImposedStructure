@@ -26,7 +26,7 @@
 @synthesize saveView;
 @synthesize baseView;
 @synthesize newListId;
-
+@synthesize completeQueue;
 
 - (void) loadLists
 {
@@ -56,6 +56,14 @@
 }
 - (void) actionComplete
 {
+
+	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
+	NSDictionary *taskInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+							  [task objectForKey:@"name"], @"task",
+							  [task objectForKey:@"project"], @"project",
+							  [task objectForKey:@"project"], @"source",
+							  nil];
+	[dnc postNotificationName:completeQueue object:nil userInfo: taskInfo];
 	[self allDone];
 }
 
@@ -321,13 +329,17 @@
 }
 
 
--(id)initWithWindowNibName:(NSString*)nibName usingProtocol: (GTProtocol*) mod forTask: (NSDictionary*) params
+-(id)initWithWindowNibName:(NSString*)nibName 
+			 usingProtocol: (GTProtocol*) mod 
+				   forTask: (NSDictionary*) params
+				usingQueue: (NSString*) queueName
 {	
 	self = [super initWithWindowNibName:nibName];
 	if (self){
 		task = [NSMutableDictionary dictionaryWithDictionary:params];
 		protocol = mod;
 		[self initGuts];
+		[self setCompleteQueue:queueName];
 	}
 	return self;
 }

@@ -9,6 +9,7 @@
 #import "AddModWinController.h"
 #import "Context.h"
 #import "Reporter.h"
+#import "BaseInstance.h"
 
 @implementation AddModWinController
 @synthesize okButton, cancelButton, typeButton, configBox, nothingView, currCtrl, indicator, nameText,tableData,
@@ -149,9 +150,10 @@ tableView, modNames, originalName, hudView;
 
 -(void) clickType :(id) sender
 {
+	Context *ctx = [Context sharedContext];
 	NSNumber *itemNum = typeButton.objectValue;
 	NSString *pluginName = [modNames objectAtIndex: [itemNum intValue]];
-	NSDictionary *map = [Context sharedContext].bundlesMap;
+	NSDictionary *map = ctx.bundlesMap;
 	NSBundle *modBundle = [map objectForKey:pluginName];
 
 	currCtrl = nil;
@@ -165,8 +167,8 @@ tableView, modNames, originalName, hudView;
 		//
 		// the NIB name should match the plugin
 		//
-		NSViewController *temp = [modClass alloc];
-		temp = [temp initWithNibName:pluginName bundle:modBundle];
+		BaseInstance *temp = [modClass alloc];
+		temp = [temp initWithNibName:pluginName bundle:modBundle params:ctx.params];
 		currCtrl = temp;
 		NSString *dispName = [[Context sharedContext] descriptionForModule:((id<Instance>)currCtrl)];
 		modView= currCtrl.view;

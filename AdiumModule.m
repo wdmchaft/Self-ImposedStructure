@@ -142,8 +142,8 @@
 	[[NSUserDefaults standardUserDefaults] synchronize];		
 }
 
--(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
-	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+-(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil params: appParams{
+	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil params:appParams];
 	if (self){
 		adiumPlayState = ADIUM_STATE_ONLINE;
 		adiumWorkState = ADIUM_STATE_INVISIBLE;

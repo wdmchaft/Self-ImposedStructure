@@ -32,6 +32,9 @@
     TotalsManager *totalsManager;
 	NSTimer *nagDelayTimer;
 	NDHotKeyEvent *hotkeyEvent;
+	NSString *queueName;
+	BOOL debug;
+	NSDictionary *params;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *instancesMap;
@@ -51,6 +54,9 @@
 @property (nonatomic,retain) HeatMap *heatMapSettings;
 @property (nonatomic,retain) TotalsManager *totalsManager;
 @property (nonatomic, retain) NDHotKeyEvent *hotkeyEvent;
+@property (nonatomic, retain) NSString *queueName;
+@property (nonatomic, assign) BOOL	debug;
+@property (nonatomic, retain) NSDictionary *params;
 
 + (Context*)sharedContext;
 - (void) loadBundles;

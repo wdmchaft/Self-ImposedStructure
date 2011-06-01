@@ -51,6 +51,7 @@
 @property (nonatomic, retain) NSMutableDictionary *alarmSet;
 @property (nonatomic, retain) id<AlertHandler> handler;
 @property (nonatomic, retain) NSString *lastError;
+@property (nonatomic, retain) NSString *completeQueue;
 @property (nonatomic, retain) IBOutlet NSButton *isWorkButton;
 @property (nonatomic, retain) IBOutlet NSButton *isTrackedButton;
 @property (nonatomic) NSTimeInterval lookAheadWindow;
