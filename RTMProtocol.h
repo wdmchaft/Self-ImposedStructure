@@ -53,7 +53,6 @@
 - (void) getFrob: (NSObject*) target callback: (SEL) cb;
 - (NSString*) getAuthURL;
 - (void) getLists: (NSObject*) target callback: (SEL) cb;
-- (void) sendRm: (NSObject*) target callback: (SEL) cb methodName: (NSString*) method params: (NSDictionary*) tdc;
 - (void) sendMoveTo: (NSObject*) target callback: (SEL) cb list: (NSString*) newList params: (NSDictionary*) tdc;
 - (void) timelineRequest: (NSObject*) target callback: (SEL) cb;
 - (void) sendComplete: (NSObject*) target callback: (SEL) cb params: (NSDictionary*) dictionary;
@@ -61,5 +60,14 @@
 
 - (void) handleWarningAlarm: (NSTimer*) theTimer;
 - (void) handleRTMError:(NSDictionary*) errInfo;
+- (void) send: (NSObject*) target 
+	 callback: (SEL) cb 
+   methodName: (NSString*) method 
+	   params: (NSDictionary*) tdc
+  optionNames: (NSArray*) names;
+- (void) sendSimple: (NSObject*) target 
+		   callback: (SEL) cb 
+		 methodName: (NSString*) method 
+			 params: (NSDictionary*) tdc;
 
 @end

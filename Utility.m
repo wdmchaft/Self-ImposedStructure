@@ -195,6 +195,7 @@
 {
 	NSString *out = [inStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	out = [out stringByReplacingOccurrencesOfString:@"," withString:@"%2C"];
+	out = [out stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
 	return out;
 }
 
@@ -202,6 +203,7 @@
 {
 	NSString *out = [inStr stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	out = [out stringByReplacingOccurrencesOfString:@"%2C" withString:@","];
+	out = [out stringByReplacingOccurrencesOfString:@"%20" withString:@" "];
 	return out;
 }
 

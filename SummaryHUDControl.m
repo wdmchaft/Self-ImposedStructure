@@ -325,7 +325,13 @@
 		currentTaskView = [[TaskView alloc]initWithFrame:tvFrame];
 		[currentTaskView setFont:[NSFont systemFontOfSize:[NSFont smallSystemFontSize]]];
 		[currentTaskView setTitleStr:@"No active task set"];
-		NSString *goalStr = [Utility durationStrFor:[totalsManager calcGoal]];
+		NSTimeInterval goal = [totalsManager calcGoal];
+		NSTimeInterval work = [totalsManager workToday];
+		NSString *goalStr = [Utility durationStrFor:work];
+		if (goal > 0.0){
+			int pct = (int)(( work / goal) * 100);
+			goalStr = [goalStr stringByAppendingFormat:@" [%d%%]",pct];
+		}
 		[currentTaskView setTimeStr:goalStr];
 		if (ctx.currentTask && [ctx.currentTask objectForKey:@"name"]){
 			[currentTaskView setTitleStr:[ctx.currentTask objectForKey:@"name"]];
@@ -458,10 +464,10 @@
 								[NSColor whiteColor], NSForegroundColorAttributeName,
 								font, NSFontAttributeName,
 								nil];
-	[@"Currently Tracking:" drawAtPoint:NSMakePoint(10, 0) withAttributes:labelAttrs];
-	[titleStr drawAtPoint:NSMakePoint(120.0, 0) withAttributes:valueAttrs];
-	[@"Work Goal:" drawAtPoint:NSMakePoint(357.0, 0) withAttributes:labelAttrs];
-	[timeStr drawAtPoint:NSMakePoint(420.0, 0) withAttributes:valueAttrs];
+	[@"Tracking:" drawAtPoint:NSMakePoint(10, 0) withAttributes:labelAttrs];
+	[titleStr drawAtPoint:NSMakePoint(65.0, 0) withAttributes:valueAttrs];
+	[@"Worked:" drawAtPoint:NSMakePoint(360.0, 0) withAttributes:labelAttrs];
+	[timeStr drawAtPoint:NSMakePoint(405.0, 0) withAttributes:valueAttrs];
 	
 }
 @end

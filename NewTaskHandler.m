@@ -35,12 +35,12 @@
 	}
 	else 
 	{
-		[context sendAdd:self callback: @selector(rmDone) params: dictionary];
+		[context sendAdd:self callback: @selector(simpleDone) params: dictionary];
 	}
 }
 
 
-- (void) rmDone
+- (void) simpleDone
 {
 	[target performSelector:callback withObject:nil];
 }

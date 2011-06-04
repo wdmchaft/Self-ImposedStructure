@@ -39,6 +39,6 @@
 
 //- (void) doCallback
 //{
-//	[callback rmDone];
+//	[callback simpleDone];
 //}
 @end

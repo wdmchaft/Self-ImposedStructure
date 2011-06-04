@@ -7,7 +7,7 @@
 //
 
 #import "RequestREST.h"
-
+#import "Utility.h"
 
 
 @implementation RequestREST
@@ -30,9 +30,12 @@
 		for (int i =0; i < [sorted count]; i++) {
 			NSString *key = [sorted objectAtIndex: i];
 			
-			NSString *value = [params valueForKey:key];
+			id value = [params valueForKey:key];
+			if ([value isKindOfClass:[NSString class]]){
+				value = [Utility encode:value];
+			}
 			NSString *sep = i == 0 ? @"?" : @"&";
-			urlStr = [urlStr stringByAppendingFormat:@"%@%@=%@", sep, key, value,nil]; 
+			urlStr = [urlStr stringByAppendingFormat:@"%@%@=%@", sep, key, value, nil]; 
 		}
 	}
 	urlStr = [urlStr stringByAppendingFormat:@"&api_sig=%@", apiSig];

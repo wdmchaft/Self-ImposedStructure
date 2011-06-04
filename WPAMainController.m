@@ -628,7 +628,6 @@
 
 - (void) remoteNotify: (NSNotification*) notification
 {	
-	NSLog(@"remoteNotify");
 	NSDictionary *dict = [notification userInfo];
 	NSNumber *minStr =  [dict objectForKey:@"time"];
 	NSNumber *state =  [dict objectForKey:@"state"];

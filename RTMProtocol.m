@@ -171,17 +171,14 @@
 	[rr release];
 }
 
-
-- (void) sendRm: (NSObject*) target callback: (SEL) cb methodName: (NSString*) method params: (NSDictionary*) tdc 
+- (void) send: (NSObject*) target 
+	 callback: (SEL) cb 
+   methodName: (NSString*) method 
+	   params: (NSDictionary*) tdc
+  optionNames: (NSArray*) names
 {
-	//	selfstructAppDelegate *delegate = (<NSApplicationDelegate>)[NSApplication sharedApplication];
-	//	context = [delegate context];
 	RequestREST *rr = [[RequestREST alloc]init];
-	//NSLog(@"auth %@\n task %@\n series %@\n list %@\n api %@",[tdc objectForKey:@"auth_token"],
-	//	  [tdc objectForKey:@"task_id"],
-	//	  [tdc objectForKey:@"taskseries_id"], 
-	//	  [tdc objectForKey:@"list_id"],
-	//	  [tdc objectForKey:@"api_key"],nil);
+	
 	NSMutableDictionary *params =  [NSMutableDictionary dictionaryWithObjectsAndKeys:
 									tokenStr, @"auth_token",
 									method, @"method",
@@ -191,10 +188,18 @@
 									timelineStr, @"timeline",
 									@"xml", @"format",
 									APIKEY, @"api_key", nil];
+	// add optional parameters
+	
+	for (NSString *optKey in names){
+		NSObject *value = [tdc objectForKey:optKey];
+		if (value) {
+			[params setObject:value forKey:optKey];
+		}
+	}
 	
 	CompleteRespHandler *crHandler = (CompleteRespHandler*)[[[CompleteRespHandler alloc]initWithContext:self
-																							  delegate: target
-																							  selector:cb ] autorelease]; 
+																							   delegate: target
+																							   selector:cb ] autorelease]; 
 	
 	timelineStr = nil; // we are about to fetch a new time line
 	
@@ -204,6 +209,10 @@
 				andHandler: crHandler];
 	[rr release];
 	
+}
+- (void) sendSimple: (NSObject*) target callback: (SEL) cb methodName: (NSString*) method params: (NSDictionary*) tdc 
+{
+	[self send: target callback: cb methodName: method params: tdc optionNames: nil];	
 }
 
 - (void) timelineRequest: (NSObject*) target callback: (SEL) cb
@@ -235,13 +244,14 @@
 	NSMutableDictionary *params =  [NSMutableDictionary dictionaryWithObjectsAndKeys:
 									tokenStr, @"auth_token",
 									@"rtm.tasks.moveTo", @"method",
-									newList,@"to_list_id",
+									newList, @"to_list_id",
 									[tdc objectForKey:@"task_id"], @"task_id",
 									[tdc objectForKey:@"taskseries_id"], @"taskseries_id",
 									[tdc objectForKey:@"list_id"], @"from_list_id",
 									timelineStr, @"timeline",
 									@"xml", @"format",
-									APIKEY, @"api_key", nil];
+									APIKEY, @"api_key", 
+									nil];
 	
 	CompleteRespHandler *crHandler = (CompleteRespHandler*)[[[CompleteRespHandler alloc]initWithContext:self
 																							  delegate: target

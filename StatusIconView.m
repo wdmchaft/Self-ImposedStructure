@@ -167,17 +167,18 @@
 
 -(void) drawLetter: (NSString*) inStr center: (NSPoint) pt
 {
-	NSFont *font = [NSFont systemFontOfSize:size_x * 4/7];
-	NSRect rect = [font boundingRectForGlyph:[inStr characterAtIndex:0]];
-	
+	NSFont *font = [NSFont systemFontOfSize:size_x * 0.5];
+//	NSRect rect = [font boundingRectForGlyph:[inStr characterAtIndex:0]];
 	NSDictionary *attrs = [NSDictionary dictionaryWithObjectsAndKeys:
 						   [NSColor whiteColor], NSForegroundColorAttributeName,
 						   font, NSFontAttributeName,
 						   nil];
+	NSRect rect = [inStr boundingRectWithSize:NSMakeSize(size_x, size_y) options:0 attributes:attrs];
+
 	NSPoint newPt;
-	newPt.x = pt.x - rect.size.width / 2;
-	//newPt.y = (pt.y - rect.size.height / 2 )- [font descender];
-	newPt.y = (pt.y - [font ascender] / 2);
+	newPt.x = (pt.x - rect.size.width / 2) + 1;
+	newPt.y = (pt.y - rect.size.height / 2 );
+//	newPt.y = (pt.y - [font ascender] / 2);
 	[inStr drawAtPoint:newPt withAttributes:attrs];
 }
 
