@@ -19,7 +19,6 @@
 
 - (void) timelineRequest
 {
-
 	[context timelineRequest:self callback:@selector(timelineDone)];
 }
 

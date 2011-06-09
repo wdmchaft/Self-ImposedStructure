@@ -29,7 +29,7 @@
 @property (nonatomic,retain) NSMutableArray *data; 
 @property (nonatomic,retain) id<Reporter> reporter; 
 
-- (void) refresh;
+- (void) refresh: (BOOL) useCache;
 - (IBAction) clickRetry: (id) sender;
 - (IBAction) clickCancel: (id) sender;
 @end

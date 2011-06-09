@@ -651,7 +651,6 @@
 
 - (void) remoteComplete: (NSNotification*) notification
 {	
-	NSLog(@"remoteComplete");
 	NSDictionary *dict = [notification userInfo];
 	[WriteHandler completeActivity:dict atTime:[NSDate date]];
 }

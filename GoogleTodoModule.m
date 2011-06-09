@@ -218,7 +218,7 @@
 	[handler handleAlert:alert];
 }
 
-- (void) refresh: (id<AlertHandler>) alertHandler isSummary: (BOOL) summary
+- (void) refresh: (id<AlertHandler>) alertHandler isSummary: (BOOL) summary useCache: (BOOL) cached
 {
 	self.handler = alertHandler;
 	summaryMode = summary;

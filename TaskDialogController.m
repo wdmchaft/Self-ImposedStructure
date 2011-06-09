@@ -14,6 +14,7 @@
 #import "ListsHandler.h"
 #import "BaseInstance.h"
 #import "Utility.h"
+#import "Queues.h"
 
 @implementation TaskDialogController
 @synthesize busyIndicator;
@@ -57,18 +58,19 @@
 	NSString *taskName = [tdc objectForKey:@"name"];
 	if (![[nameField stringValue] isEqualToString: taskName])
 		[updateSteps addStep: updateName];
-	NSString *taskNote = [tdc objectForKey:@"note"];
+	NSString *taskNote = [tdc objectForKey:@"note_text"];
 	NSString *newNote = [notesField stringValue];
-	if ([newNote length] == 0) newNote == nil;
+	if ([newNote length] == 0) newNote = nil;
 	
 	if (taskNote && newNote && ![[notesField stringValue] isEqualToString: taskNote])
 		[updateSteps addStep: updateNote];	
 	else if (taskNote != newNote)
 		[updateSteps addStep: updateNote];	
 
+	NSNumber *hasDate = [tdc objectForKey:@"has_due_time"];
 	NSDate *taskDate = [tdc objectForKey:@"due_time"];
-	if ([dueButton intValue]) {
-		if (taskDate ==  nil) {
+	if ([dueButton intValue] == 1) {
+		if ([hasDate intValue] ==  0) {
 			[updateSteps addStep:updateDate];
 		}
 		if (![taskDate isEqualToDate:[dueDatePicker dateValue]]) {
@@ -76,36 +78,11 @@
 		}
 	}
 	else {
-		if (taskDate !=  nil) {
+		if ([hasDate intValue] == 1) {
 			[updateSteps addStep:updateDate];
 		}
 	}
 	
-}
-
-- (void) clickOk: (id) sender
-{
-	// decide what to do
-	switch (currentJob) {
-		case taskActionSwitch:
-			NSLog(@"switch");
-			break;
-			
-		case taskActionModify:
-			[self setSteps];
-			NSLog(@"modify");
-			break;
-		case taskActionDelete:
-			NSLog(@"delete");	
-			break;
-		case taskActionComplete:
-			NSLog(@"complete");
-			break;
-			
-		default:
-			break;
-	}
-	[context timelineRequest:self callback:@selector(timelineDone)];
 }
 
 - (void) clickUpdate: (id) sender
@@ -193,44 +170,49 @@
 {
 	
 }
-- (void) stepDone
+
+- (void) nextStep
 {
+	updateStep step = [updateSteps getStep];
+	switch (step) {
+		case updateDone:
+			[self simpleDone];
+			break;
+		case updateDate:
+			[self sendDate];
+			break;
+		case updateName:
+			[self sendName];
+			break;
+		case updateNote:
+			[self sendNote];
+			break;
+		default:
+			break;
+	}
 	[updateSteps popStep];
-	[context timelineRequest:self callback:@selector(timelineDone)];
 }
 
 - (void) sendName
 {
 	NSMutableDictionary *newDict = [NSMutableDictionary dictionaryWithDictionary:tdc];
 	[newDict setObject:[nameField stringValue] forKey:@"name"];
-	[context send: self 
-		 callback:@selector(stepDone) 
-	   methodName: @"rtm.tasks.setName" 
-		   params:newDict 
-	  optionNames:[NSArray arrayWithObject:@"name"]];	
+	[context sendName: self 
+			 callback:@selector(nextStep) 
+				 name:[nameField stringValue]
+				 task:tdc];	
 }
 
 - (void) sendNote
 {
-	NSMutableDictionary *newDict = [NSMutableDictionary dictionaryWithDictionary:tdc];
 	NSString *newText = [notesField stringValue];
-	[newDict setObject:[notesField stringValue] forKey:@"note_text"];
+	newText = [newText length] == 0 ? nil : newText;
 	NSString *oldText = [tdc objectForKey:@"note_text"]; 
-	NSString *method = @"rtm.tasks.notes.edit";
-	if (!oldText) {
-		method = @"rtm.tasks.notes.add";
-	} 
-	if ([newText length] == 0){
-		method = @"rtm.tasks.notes.delete";
-	}
-	
-	NSString *title =  oldText ?[tdc objectForKey:@"note_title"] : @"";
-	[newDict setObject:title forKey:@"note_title"];
-	[context send: self 
-		 callback:@selector(stepDone) 
-	   methodName: method 
-		   params:newDict 
-	  optionNames:[NSArray arrayWithObjects:@"note_id", @"note_title", @"note_text",nil]];	
+		
+	[context sendNote:self callback: @selector(nextStep)
+			   newVal:newText oldVal: oldText
+				 task:tdc];
+
 }
 
 - (void) sendDate
@@ -239,71 +221,49 @@
 	int val = [dueButton intValue];
 	BOOL hasDate = val != 0;
 	[newDict setObject:[NSNumber numberWithBool:hasDate] forKey:@"has_due_time"];
+	NSDate *newDate = nil;
 	if (hasDate){
-		NSDate *newDate = [dueDatePicker dateValue];
-		NSDateFormatter *inputFormatter = [NSDateFormatter new];
-     	[inputFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
-        [inputFormatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];  
-		NSString *newDateStr = [inputFormatter stringFromDate:newDate];
-		[newDict setObject:newDateStr forKey:@"due"];
+		newDate = [dueDatePicker dateValue];
+		
 	} 
-	[context send: self 
-		 callback:@selector(stepDone) 
-	   methodName: @"rtm.tasks.setDueDate" 
-		   params:newDict 
-	  optionNames:[NSArray arrayWithObjects:@"due", @"has_due_time", nil]];	
+	[context sendDate: self 
+			 callback:@selector(nextStep) 
+				 date: newDate
+				 task:tdc] ;
 }
 
-
--(void) timelineDone
+- (void) clickOk: (id) sender
 {
-
-	if (![context timelineStr]){
-		
-		[BaseInstance sendErrorToHandler:context.handler 
-								   error:@"No time line received" 
-								  module:[context.module description]]; 
-		//NSLog(@"oops -- bad");
-	}
-	else 
-	{
-		if (currentJob == taskActionDelete)
-		{
-			[self sendDelete];
-		} 
-		else if (currentJob == taskActionComplete) 
-		{
-			[self sendComplete];
-		} 
-		else if (currentJob == taskActionSwitch)
-		{ 
-		//	[context setCallback:@selector(simpleDone)];
+	// decide what to do
+	switch (currentJob) {
+		case taskActionSwitch:
+			NSLog(@"switch");
 			NSString *newListName = [listsCombo titleOfSelectedItem];
 			NSString *newListId = [context.idMapping objectForKey: newListName];			
 			[context sendMoveTo:self callback:@selector(simpleDone) list: newListId params:tdc];
-		}
-		else if (currentJob == taskActionModify)
-		{
-			updateStep step = [updateSteps getStep];
-			switch (step) {
-				case updateDone:
-					[self clickCancel:self];
-					break;
-				case updateDate:
-					[self sendDate];
-					break;
-				case updateName:
-					[self sendName];
-					break;
-				case updateNote:
-					[self sendNote];
-					break;
-				default:
-					break;
-			}
-		}
+			
+			break;
+			
+		case taskActionModify:
+			[self setSteps];
+			[self nextStep];
+			break;
+		case taskActionDelete:
+			NSLog(@"delete");	
+			[self sendDelete];
+			break;
+		case taskActionComplete:
+			[self sendComplete];
+			
+			break;
+			
+		default:
+			break;
 	}
 }
+
+
+
 
 - (void) sendDelete
 {
@@ -312,14 +272,18 @@
 
 - (void) sendComplete
 {
-//	[context setCallback:@selector(simpleDone)];
-	[context sendSimple: self callback:@selector(simpleDone) methodName:@"rtm.tasks.complete" params: tdc];
+	[context sendComplete: self callback:@selector(simpleDone) params: tdc];
+
 }
 
 - (void) simpleDone
 {
 	[busyIndicator stopAnimation:self];
 	[NSAlert alertWithMessageText:@"Completed!" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@"yippie!"];
+	BaseTaskList *btList = (BaseTaskList*)[context module];
+	NSString *changeQueue = [btList completeQueue];
+	NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
+	[center postNotificationName:changeQueue object:nil userInfo: tdc];
 	[self close];
 }
 

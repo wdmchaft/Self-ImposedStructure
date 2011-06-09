@@ -91,6 +91,7 @@
 		[handler handleAlert:alert];
 	}
 	if (summaryMode){
+		NSLog(@"sending done");
 		[BaseInstance sendDone:handler module:name];
 	}
 	[self taskRefreshDone];
@@ -251,8 +252,13 @@
 	[handler handleAlert:alert];
 }
 
-- (void) refresh: (id<AlertHandler>) alertHandler isSummary: (BOOL) summary
+- (void) refresh: (id<AlertHandler>) alertHandler isSummary: (BOOL) summary useCache: (BOOL) cached
 {
+	// if we want to save time (and we have cache) -- just use it to return data
+	if (cached && [[protocol tasksList] count] > 0){
+		[self listDone];
+		return;
+	}
 	self.handler = alertHandler;
 	summaryMode = summary;
 	[protocol startRefresh: self callback:@selector(refreshDone)];

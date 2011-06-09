@@ -10,29 +10,25 @@
 #import "XMLParse.h"
 
 @implementation TimelineHandler
-
+@synthesize timeline;
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName 
   namespaceURI:(NSString *)namespaceURI 
  qualifiedName:(NSString *)qName 
 	attributes:(NSDictionary *)attributeDict 
 {
-	
-	if ( [elementName isEqualToString:@"timeline"]) {
-		context.timelineStr =  [[NSMutableString alloc] initWithCapacity:50];
-	}
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
 	
-	[context.timelineStr appendString:string];
+	[self setTimeline: [string copy]];
 }
 
 - (void) handleResponse: (NSData*) respData
 {
 	XMLParse *parser = [[XMLParse alloc]initWithData: respData andDelegate: self];
 	[parser parseData];
-	[target performSelector:callback];
+	[target performSelector:callback withObject:timeline];
 }
 
 

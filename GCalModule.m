@@ -110,7 +110,7 @@
 	}
 }
 
--(void) refresh: (id<AlertHandler>) handler isSummary: (BOOL) summary
+-(void) refresh: (id<AlertHandler>) handler isSummary: (BOOL) summary useCache: (BOOL) cached
 {
 	alertHandler = handler;
 	[self refreshData];

@@ -162,7 +162,7 @@
 	[BaseInstance sendDone:handler module: name];
 }
 
--(void) refresh: (id<AlertHandler>) handler isSummary: (BOOL) summary
+-(void) refresh: (id<AlertHandler>) handler isSummary: (BOOL) summary useCache: (BOOL) cached
 {
 	[self refreshData:handler];
 }

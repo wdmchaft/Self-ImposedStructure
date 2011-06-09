@@ -28,7 +28,7 @@
 @protocol Reporter <Instance>
 @required
 // implement these two to provide status information (email/events/tasks)
-- (void) refresh: (id<AlertHandler>) handler isSummary: (BOOL) summary;
+- (void) refresh: (id<AlertHandler>) handler isSummary: (BOOL) summary useCache: (BOOL) cached;
 - (void) handleClick: (NSDictionary*) params;
 - (void) initSummaryTable: (NSTableView*) view;
 

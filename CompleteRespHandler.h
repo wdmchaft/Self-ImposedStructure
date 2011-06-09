@@ -8,10 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 #import "ResponseRESTHandler.h"
-
+#import "RTMProtocol.h"
 
 @interface CompleteRespHandler : ResponseRESTHandler <NSXMLParserDelegate>{
-
+	RouteInfo *route;
 }
-
+@property (nonatomic, retain) RouteInfo* route;
+- (id) initWithContext:(RTMProtocol*) ctx 
+			  delegate: (NSObject*) tgt 
+			  selector: (SEL) cb  
+				 route: (RouteInfo*) info;
 @end

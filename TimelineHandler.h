@@ -8,9 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 #import "ResponseRESTHandler.h"
+#import "RTMProtocol.h"
 
 @interface TimelineHandler : ResponseRESTHandler <NSXMLParserDelegate>{
+	NSString *timeline;
 }
 
-
+@property (nonatomic, retain) NSString *timeline;
 @end

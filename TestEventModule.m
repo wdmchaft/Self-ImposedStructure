@@ -48,7 +48,7 @@
 }
 
 
--(void) refresh: (id<AlertHandler>) handler isSummary: (BOOL) summary
+-(void) refresh: (id<AlertHandler>) handler isSummary: (BOOL) summary useCache: (BOOL) cached
 {
 	NSDictionary *dict1 = [NSDictionary dictionaryWithObjectsAndKeys:
 						  @"in the drawing room",	@"location",

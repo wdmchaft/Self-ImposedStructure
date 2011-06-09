@@ -17,16 +17,13 @@
 {
 	NSLog(@"awaking");
 }
-- (void) refresh
+- (void) refresh: (BOOL) useCache
 {
-	//NSLog(@"refresh!");
-	//	[data removeAllObjects];
-	//    [table noteNumberOfRowsChanged];
+	NSLog(@"hudBusy refresh useCache: %@", useCache ? @"yes" : @"no");
 	[prog setHidden:NO];
 	[prog startAnimation:self];
-	[reporter refresh: self isSummary:YES];
+	[reporter refresh: self isSummary:YES useCache: useCache];
 }
-
 
 -(void) handleError: (WPAAlert*) error
 {
@@ -37,7 +34,7 @@
 - (void) handleAlert: (WPAAlert*) alert
 {
 	if (alert.lastAlert){
-		NSLog(@"last alert for [%@] count = %d", [reporter name], [data count]);
+		NSLog(@"%@ last alert for [%@] count = %d", self, [reporter name], [data count]);
 		[prog setHidden:YES];
 		[prog stopAnimation:self];
 		if (!data){
@@ -62,6 +59,12 @@
 
 - (void) clickRetry: (id) sender
 {
-	[reporter refresh: self isSummary:YES];
+	[reporter refresh: self isSummary:YES useCache:NO];
+}
+- (void) release
+{
+	data = nil;
+	reporter = nil;
+	caller = nil;
 }
 @end

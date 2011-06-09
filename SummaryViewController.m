@@ -13,6 +13,7 @@
 #import "HeatMap.h"
 #import "Context.h"
 #import "WriteHandler.h"
+#import "Queues.h"
 
 @implementation SummaryViewController
 @synthesize table;
@@ -112,7 +113,7 @@
 	NSDictionary *params = [data objectAtIndex:row];
   //  [data removeAllObjects];
 	NSTableColumn *checkCol = [[table tableColumns] objectAtIndex:0];
-    [[checkCol dataCell]setEnabled:NO];
+    [[checkCol dataCell]setEditable:NO];
 	[NSTimer scheduledTimerWithTimeInterval:0
 									 target:self
 								   selector:@selector(processComplete:) 
@@ -133,15 +134,19 @@
 {
 	[prog stopAnimation:self];
 	[prog setHidden:YES];
+	Context *ctx = [Context sharedContext];
+	NSString *changeQueue =  [Queues queueNameFor:WPA_COMPLETEQUEUE fromBase:ctx.queueName];
+	NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
+	[center postNotificationName:changeQueue object:nil userInfo:nil];
 	
 	//[reporter refresh:self isSummary:YES];
 //	[table deselectAll:self];
-    if (!refreshHandler){
-        refreshHandler = [SVRefHandler new];
-        refreshHandler.ref = self;
-    }
-    [[refreshHandler data] removeAllObjects];
-    [reporter refresh:refreshHandler isSummary:YES];
+   // if (!refreshHandler){
+//        refreshHandler = [SVRefHandler new];
+//        refreshHandler.ref = self;
+//    }
+//    [[refreshHandler data] removeAllObjects];
+//    [reporter refresh:refreshHandler isSummary:YES];
  //   [self performSelector:@selector(refresh) withObject:nil afterDelay:0.1]; 
 }
 

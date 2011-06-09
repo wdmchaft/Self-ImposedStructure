@@ -53,7 +53,7 @@
 	TaskView *currentTaskView;
 	NSTextView *goalText;
 	TotalsManager *totalsManager;
-	
+	BOOL useCache;
 }
 @property (nonatomic, retain) NSMutableData *frameData;
 @property (nonatomic, retain)  NSMutableDictionary *svcs;
@@ -73,6 +73,7 @@
 @property (nonatomic, retain) NSTimer *buildTimer;
 @property (nonatomic) NSRect saveRect;
 @property (nonatomic) BOOL oneLastTime;
+@property (nonatomic) BOOL useCache;
 
 - (SummaryViewController*) getViewForInstance: (id<Reporter>) inst width: (CGFloat) vWidth rows: (int) nRows;
 

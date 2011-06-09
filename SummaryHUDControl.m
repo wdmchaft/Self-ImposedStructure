@@ -15,6 +15,7 @@
 #import <BGHUDAppKit/BGHUDAppKit.h>
 #import "SummaryViewController.h"
 #import "Utility.h"
+#import "Queues.h"
 
 @implementation SummaryHUDControl
 @synthesize controls,busys, datas, svcs, titles;
@@ -31,6 +32,7 @@
 @synthesize oneLastTime;
 @synthesize currentTaskView;
 @synthesize totalsManager;
+@synthesize useCache;
 
 + (void) initialize
 {
@@ -54,6 +56,29 @@
 		[window setAllowsToolTipsWhenApplicationIsInactive:YES];
 	}
 	return self;
+}
+
+- (void) dataChanged: (NSNotification*) msg
+{
+	NSString *modName = [[msg userInfo]objectForKey:@"module"];
+	NSMutableArray *data = [datas objectForKey:modName];
+	[data removeAllObjects];
+	[datas removeObjectForKey:modName];
+	data = nil;
+
+	[busys removeObjectForKey:modName];
+	SummaryViewController *svc = [svcs objectForKey:modName];
+	[[svc view] removeFromSuperview];
+	[svcs removeObjectForKey:modName];
+	NSView *title = [titles objectForKey:modName];
+	[title removeFromSuperview];
+	[titles removeObjectForKey:modName];
+	NSView *box = [controls objectForKey:modName];
+	[box removeFromSuperview];
+	[controls removeObjectForKey:modName];
+	sizedCount--;
+	oneLastTime = NO;
+	[self buildDisplay];
 }
 
 - (void) showWindow:(id)sender
@@ -108,8 +133,13 @@
 	svcs = [NSMutableDictionary dictionaryWithCapacity:hudCount];
 	titles = [NSMutableDictionary dictionaryWithCapacity:hudCount];
 	viewChanged = YES;
+	useCache = NO;
 	[self buildDisplay];
 	[self setSizedCount:0];
+	NSString *changeQueue =  [Queues queueNameFor:WPA_COMPLETEQUEUE fromBase:ctx.queueName];
+	NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
+	[center addObserver:self selector:@selector(dataChanged:) name:changeQueue object:nil];
+	useCache = YES;
 }
 
 - (void) windowDidLoad
@@ -163,6 +193,7 @@
 	CGFloat totalHeight = 14 * 1.5;
 	NSUInteger nSettings = [settings count];
 	BOOL lastDisplay = sizedCount == nSettings;
+
 	NSRect rects[nSettings];
 	[frameData getBytes:&rects length:sizeof(NSRect) * nSettings];
 	for (int i = nSettings;i > 0;i--){
@@ -216,7 +247,10 @@
 		
 		if (data && control == nil){
 			[[busy view] removeFromSuperview];
+			
 			[busys removeObjectForKey:rptName];
+			NSLog(@"removing busy %@", busy);
+			[busy release];
 			busy = nil;
 			// create table view control/box and add it to the view
 			svc = [self getViewForInstance:rpt width:viewWidth rows:setting.height];
@@ -294,12 +328,13 @@
 			// create busy control and add it to the view
 			//NSLog(@"creating busy for %@", rptName);
 			busy = [[HUDBusy alloc]initWithNibName:@"HUDBusyView" bundle:[NSBundle mainBundle]];
+			NSLog(@"create new busy");
 			[view addSubview:[busy view]];
 			[busy setReporter:rpt];
 			[busy setCaller:self];
 			[[busy label] setStringValue:[setting label]]; 
 			[busys setObject:busy forKey:rptName];
-			[busy refresh];
+			[busy refresh:useCache];
 		}
 		if (busy) {
 			[[busy view] setHidden:NO];
@@ -385,6 +420,7 @@
 		buildTimer = nil;
 	}
 }
+
 - (void) viewSized: (NSView*) retView reporter: (id<Reporter>) rpt data: (NSArray*) array
 {
 	NSLog(@"viewSized for %@", rpt.name);
