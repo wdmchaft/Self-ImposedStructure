@@ -119,6 +119,8 @@
 		8C3AB4AC12E2CEBF00A19AA4 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C3AB4AB12E2CEBF00A19AA4 /* README.txt */; };
 		8C3AB4AD12E2CEBF00A19AA4 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C3AB4AB12E2CEBF00A19AA4 /* README.txt */; };
 		8C4019E9133FFE1D00EB414F /* VariableTableColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C4019E8133FFE1B00EB414F /* VariableTableColumn.m */; };
+		8C550A7213A2AFA000ACE29E /* ICalTodoEdit.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C550A6F13A2AFA000ACE29E /* ICalTodoEdit.xib */; };
+		8C550A7313A2AFA000ACE29E /* ICalTodoEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C550A7113A2AFA000ACE29E /* ICalTodoEdit.m */; };
 		8C58219A1383981B00E33F53 /* GoogleTodoModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5821981383981B00E33F53 /* GoogleTodoModule.m */; };
 		8C58219B1383981B00E33F53 /* GoogleTodoModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C5821991383981B00E33F53 /* GoogleTodoModule.xib */; };
 		8C5821E51383A69700E33F53 /* GTProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */; };
@@ -724,6 +726,9 @@
 		8C4019E7133FFE1A00EB414F /* VariableTableColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = VariableTableColumn.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8C4019E8133FFE1B00EB414F /* VariableTableColumn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = VariableTableColumn.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8C4BD2F4132FAA4C00765A57 /* SummaryHUDCallback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SummaryHUDCallback.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8C550A6F13A2AFA000ACE29E /* ICalTodoEdit.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ICalTodoEdit.xib; sourceTree = "<group>"; };
+		8C550A7013A2AFA000ACE29E /* ICalTodoEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICalTodoEdit.h; sourceTree = "<group>"; };
+		8C550A7113A2AFA000ACE29E /* ICalTodoEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICalTodoEdit.m; sourceTree = "<group>"; };
 		8C58217F1383978900E33F53 /* GoogleTodoModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoogleTodoModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C5821801383978900E33F53 /* GoogleTodoModule-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleTodoModule-Info.plist"; sourceTree = "<group>"; };
 		8C5821971383981B00E33F53 /* GoogleTodoModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleTodoModule.h; sourceTree = "<group>"; };
@@ -1630,6 +1635,9 @@
 		8C9E9A79137E645D00529EC2 /* iCalTodoModule */ = {
 			isa = PBXGroup;
 			children = (
+				8C550A6F13A2AFA000ACE29E /* ICalTodoEdit.xib */,
+				8C550A7013A2AFA000ACE29E /* ICalTodoEdit.h */,
+				8C550A7113A2AFA000ACE29E /* ICalTodoEdit.m */,
 				8C3982C7134D4F4A008C5670 /* ScriptingBridge.framework */,
 				8C2B2D751380D69900AC08CF /* iCalTodoModule.xib */,
 				8C598FC0137F7403007AAD11 /* todoFetchTemplate.txt */,
@@ -2519,6 +2527,7 @@
 				8C2B2F311381281C00AC08CF /* openTodo.txt in Resources */,
 				8C2B318F1382168D00AC08CF /* completeTodo.txt in Resources */,
 				8C2B31911382215000AC08CF /* createTodo.txt in Resources */,
+				8C550A7213A2AFA000ACE29E /* ICalTodoEdit.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2803,6 +2812,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C9E9ABA137E65FA00529EC2 /* iCalTodoModule.m in Sources */,
+				8C550A7313A2AFA000ACE29E /* ICalTodoEdit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

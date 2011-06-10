@@ -107,9 +107,33 @@
 	}
 }
 
+- (void) doSwitch
+{
+	NSString *newListStr = [listDropDown titleOfSelectedItem];
+	iCalCalendar *newCal = [[iCalApp calendars] objectWithName:newListStr];
+	
+	NSDictionary *props = [NSDictionary dictionaryWithObjectsAndKeys:
+	 [todoItem summary], @"summary",
+	 nil];
+	
+	/* create the new event */
+	
+	iCalTodo *newItem = [[[iCalApp classForScriptingClass:@"todo"] alloc]
+				initWithProperties: props];
+	/* add it to the list of todos for this calendar. (must be before setting properties)*/
+	[[newCal todos] addObject: newItem];
+
+	[newItem setObjectDescription:[todoItem objectDescription]];
+	[newItem setDueDate:[todoItem dueDate]];
+	iCalCALPriorities priority = [todoItem priority];
+	[newItem setPriority:priority];
+	
+	
+	[todoItem delete];
+}
+
 - (void) clickOK: (id) sender
 {
-	NSString *newListStr = @"";
 	[prog setHidden:NO];
 	[prog startAnimation:self];
 	switch (okAction) {
@@ -121,9 +145,7 @@
 			[todoItem delete];
 			break;
 		case taskActionSwitch:
-			newListStr = [listDropDown titleOfSelectedItem];
-			iCalCalendar *newCal = [[iCalApp calendars] objectWithName:newListStr];
-			[todoItem moveTo:newCal];
+			[self doSwitch];
 			break;
 		case taskActionModify:
 			[self doModify];
