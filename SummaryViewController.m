@@ -143,7 +143,7 @@
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
 {
 	NSInteger ret = [data count];
-	NSLog(@"%@ count = %d", [reporter summaryTitle], ret);
+//	NSLog(@"%@ count = %d", [reporter summaryTitle], ret);
 	return ret;
 }
 
@@ -303,7 +303,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
     data = refreshHandler.data;
     [table reloadData];
     NSTableColumn *checkCol = [[table tableColumns] objectAtIndex:0];
-    [[checkCol dataCell]setEnabled:YES];
+    [[checkCol dataCell]setEditable:YES];
     [table setEnabled:YES];
     inRefresh = NO;
 }

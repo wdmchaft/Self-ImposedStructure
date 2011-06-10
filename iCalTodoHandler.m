@@ -49,7 +49,7 @@
                 [eDict setValue:[fieldValDesc stringValue] forKey:TASK_NOTES];
             } 
 			if ([fieldName isEqualToString:@"pri"]){
-                [eDict setValue:[fieldValDesc stringValue] forKey:TASK_NOTES];
+                [eDict setValue:[fieldValDesc stringValue] forKey:TASK_PRIORITY];
             } 
             if ([fieldName isEqualToString:@"sum"]){
                 [eDict setValue:[fieldValDesc stringValue] forKey:TASK_SUMMARY];

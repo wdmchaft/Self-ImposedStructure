@@ -10,6 +10,7 @@
 #import "WPAAlert.h"
 #import "Utility.h"
 #import "iCal.h"
+#import "ICalTodoEdit.h"
 
 #define MAILBOX @"MailBox"
 #define REFRESH @"Refresh"
@@ -286,9 +287,14 @@
 
 -(void) handleClick: (NSDictionary*) ctx
 {
-    [[NSWorkspace sharedWorkspace] launchApplication:@"iCal"];
- //   //NSLog(@"launched = %d", res);	
-	[self openTodo:ctx];
+	ICalTodoEdit *dialogCtrl= [[ICalTodoEdit alloc] 
+									   initWithWindowNibName:@"ICalTodoEdit" 
+												forModuleName: name
+											forCalendarName: calendarName
+											forTask: ctx
+										usingQueue: [self completeQueue]];
+//	dialogCtrl.context = protocol;
+	[dialogCtrl showWindow:self];
 }
 
 -(NSString*) timeStrFor:(NSDate*) date
