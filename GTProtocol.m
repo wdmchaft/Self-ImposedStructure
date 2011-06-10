@@ -563,4 +563,46 @@ finishedWithError:(NSError *)error
 {
 	return [auth persistenceResponseString];
 }
+
+// cache coherence methods
+// NB: all methods read from the list BUT delete/insert from/into dictionary AND THEN rebuild list from dictionary
+
+- (void) cacheDeleteTask: (NSDictionary*) params
+{
+	NSString *targId = [params objectForKey:@"id"];
+	for (NSDictionary *task in [self tasksList	])
+	{
+		NSString *taskId = [task objectForKey:@"id"];
+		if ([taskId isEqualToString:targId]) {
+			[[self tasksDict] removeObjectForKey:[task objectForKey:@"name"]];
+			continue;
+		}
+	}
+	tasksList = [NSMutableArray arrayWithArray:[[self tasksDict] allValues]];
+}
+
+- (void) cacheUpdateTask:  (NSDictionary*) params
+{
+	NSDictionary *newTask = params;
+	NSString *targId = [newTask objectForKey:@"id"];
+	NSString *newName = [newTask objectForKey:@"name"];	
+	for (NSDictionary *task in [self tasksList])
+	{
+		NSString *taskId = [task objectForKey:@"id"];
+		if ([taskId isEqualToString:targId]) {
+			NSString *oldName = [task objectForKey:@"name"];
+			int idx = [[self tasksList] indexOfObject:task];
+			[[self tasksList] replaceObjectAtIndex:idx withObject:params];
+			continue;
+		}
+	}
+}
+
+- (void) cacheAddTask: (NSDictionary*) params
+{
+	NSString *name = [params objectForKey:@"name"];
+	[[self tasksDict] setObject: params forKey:name];
+	tasksList = [NSMutableArray arrayWithArray:[[self tasksDict] allValues]];
+}
+
 @end

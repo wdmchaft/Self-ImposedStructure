@@ -7,6 +7,7 @@
 //
 
 #import "GoogleTaskEditCtrl.h"
+#import "BaseTaskList.h"
 
 @implementation GoogleTaskEditCtrl
 @synthesize buttonsMatrix;
@@ -50,10 +51,15 @@
 
 - (void) allDone
 {
+	BaseTaskList *btList = (BaseTaskList*)[protocol module];
+	NSString *changeQueue = [btList completeQueue];
+	NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
+	[center postNotificationName:changeQueue object:nil userInfo: [NSDictionary dictionaryWithObject:[[protocol module]name]forKey:@"module"]];
 	[prog stopAnimation:self];
 	[prog setHidden:YES];
 	[self close];
 }
+
 - (void) actionComplete
 {
 
@@ -64,6 +70,7 @@
 							  [task objectForKey:@"project"], @"source",
 							  nil];
 	[dnc postNotificationName:completeQueue object:nil userInfo: taskInfo];
+	[protocol cacheDeleteTask: task];
 	[self allDone];
 }
 
@@ -79,6 +86,13 @@
 
 - (void) updateComplete
 {
+	[protocol cacheUpdateTask: task];
+	[self allDone];
+}
+
+- (void) deleteComplete
+{
+	[protocol cacheDeleteTask: task];
 	[self allDone];
 }
 
@@ -142,11 +156,17 @@
 			[taskUpdates setObject: [task objectForKey:@"selfLink"] forKey:@"selfLink"] ;
 			[taskUpdates setObject: [titleEdit stringValue] forKey:@"title"] ;
 			[taskUpdates setObject: [notesEdit stringValue] forKey:@"notes"] ;
+			[task setObject: [notesEdit stringValue] forKey:@"notes"] ;
 			if ([dueToggle intValue]){
+				NSDate *newDate = [datePicker dateValue];
+				[task setObject:newDate forKey:@"due_time"];
+				[task setObject:[self stringFor:[datePicker dateValue]] forKey:@"due"];
 				[taskUpdates setObject:[self stringFor:[datePicker dateValue]] forKey:@"due"];
 			}
 			else {
 				[taskUpdates setObject:@"nil" forKey:@"due"];
+				[task setObject:[NSDate distantFuture] forKey:@"due_time"];
+				[task removeObjectForKey:@"due"];
 			}
 			[protocol sendUpdate:self returnTo:@selector(updateComplete) params:taskUpdates];
 			break;
@@ -337,7 +357,7 @@
 	self = [super initWithWindowNibName:nibName];
 	if (self){
 		task = [NSMutableDictionary dictionaryWithDictionary:params];
-		protocol = mod;
+			protocol = mod;
 		[self initGuts];
 		[self setCompleteQueue:queueName];
 	}

@@ -240,8 +240,9 @@
     
 	[self fetchTasks];
 }
+
 - (void) refreshTasks{
-	[self refresh: nil isSummary: NO];
+	[self refresh: nil isSummary: NO useCache:NO];
 }
 
 - (void) taskFetched: (NSNotification*) notification

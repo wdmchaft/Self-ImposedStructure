@@ -91,6 +91,9 @@
 - (void) handleWarningAlarm: (NSTimer*) theTimer;
 - (void) doSignInOnWindow: (NSWindow*) window;
 - (void) loadAuth:(NSString*) authStr;
+- (void) cacheDeleteTask: (NSDictionary*) task;
+- (void) cacheUpdateTask: (NSDictionary*) task;
+- (void) cacheAddTask: (NSDictionary*) task;
 
 - (NSString*) authStr;
 @end

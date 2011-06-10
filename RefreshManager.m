@@ -76,7 +76,7 @@
 	info.timer = nil;
 	//NSLog(@"%@ doRefresh for %@ at " , self,[info.module name], [Utility shortTimeStrFor:[NSDate date]]);
 	if (running){
-		[info.module refresh:alertHandler isSummary:NO];
+		[info.module refresh:alertHandler isSummary:NO useCache:NO];
 	}
 	if (running){
 		//NSLog(@"next refresh for %@ in %f secs at %@", 

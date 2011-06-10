@@ -78,7 +78,7 @@
 //    [table noteNumberOfRowsChanged];
 	[prog setHidden:NO];
 	[prog startAnimation:self];
-	[reporter refresh: self isSummary:YES];
+	[reporter refresh: self isSummary:YES useCache:YES];
 }
 
 -(void) handleError: (WPAAlert*) error
@@ -138,16 +138,6 @@
 	NSString *changeQueue =  [Queues queueNameFor:WPA_COMPLETEQUEUE fromBase:ctx.queueName];
 	NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
 	[center postNotificationName:changeQueue object:nil userInfo:nil];
-	
-	//[reporter refresh:self isSummary:YES];
-//	[table deselectAll:self];
-   // if (!refreshHandler){
-//        refreshHandler = [SVRefHandler new];
-//        refreshHandler.ref = self;
-//    }
-//    [[refreshHandler data] removeAllObjects];
-//    [reporter refresh:refreshHandler isSummary:YES];
- //   [self performSelector:@selector(refresh) withObject:nil afterDelay:0.1]; 
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView

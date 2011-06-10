@@ -220,6 +220,10 @@
 
 - (void) refresh: (id<AlertHandler>) alertHandler isSummary: (BOOL) summary useCache: (BOOL) cached
 {
+	if (cached) {
+		[self listDone];
+		return;
+	}
 	self.handler = alertHandler;
 	summaryMode = summary;
 	[protocol updateList:self returnTo:@selector(refreshDone)];
