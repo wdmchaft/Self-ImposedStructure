@@ -581,10 +581,13 @@
 //
 - (void) showSummaryScreen: (id) sender
 {
-	Context *ctx = [Context sharedContext];
-	[ctx setCurrentState: WPASTATE_SUMMARY];
+	if (hudWindow && [hudWindow isVisible]){
+		return;
+	}
+	//Context *ctx = [Context sharedContext];
+//	[ctx setCurrentState: WPASTATE_SUMMARY];
 	[[[Context sharedContext] growlManager] clearQueues];
-	[self enableStatusMenu:NO];
+//	[self enableStatusMenu:NO];
 	SummaryHUDControl *shc = [[SummaryHUDControl alloc]initWithWindowNibName:@"SummaryHUD"];
 	shc.totalsManager = totalsManager;
 	hudWindow = shc.window;
@@ -615,15 +618,15 @@
 	}
 	[refreshManager startWithRefresh:NO];
 
-	if ([[Context sharedContext] previousState] == WPASTATE_VACATION){
-		[self changeState:WPASTATE_VACATION];
-	}
-    else if ([[Context sharedContext] previousState] == WPASTATE_DONE){
-		[self changeState:WPASTATE_DONE];
-	}
-	else {
-		[self changeState:WPASTATE_FREE];
-	}
+//	if ([[Context sharedContext] previousState] == WPASTATE_VACATION){
+//		[self changeState:WPASTATE_VACATION];
+//	}
+//    else if ([[Context sharedContext] previousState] == WPASTATE_DONE){
+//		[self changeState:WPASTATE_DONE];
+//	}
+//	else {
+//		[self changeState:WPASTATE_FREE];
+//	}
 }
 
 - (void) remoteNotify: (NSNotification*) notification
@@ -700,7 +703,7 @@
 		TimerDialogController *tdc = [[TimerDialogController alloc] initWithWindowNibName:@"TimerDialog"];
 		NSWindow *tdcWindow = [tdc window];
 		[self enableStatusMenu:NO];
-		[[NSApplication sharedApplication] activateIgnoringOtherApps];
+		[[NSApplication sharedApplication] activateIgnoringOtherApps:NO];
 		[tdcWindow orderFrontRegardless];
 		[NSApp runModalForWindow: tdcWindow];
 		[self enableStatusMenu:YES];
