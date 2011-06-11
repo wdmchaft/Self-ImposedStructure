@@ -50,19 +50,19 @@
 
 - (void) allDone
 {
-	NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
-	NSString *updateQueue = [[protocol module] updateQueue];
-	[center postNotificationName:updateQueue object:nil 
-						userInfo: [NSDictionary dictionaryWithObject:[[protocol module]name]forKey:@"module"]];
-	if (okAction == taskActionComplete) {
-		NSString *completeQueue = [[protocol module] completeQueue];
-		NSDictionary *msg = [NSDictionary dictionaryWithObjectsAndKeys:[task objectForKey:@"title"], @"name",
-																	[[protocol module]name],@"source",
-																	[[protocol module]name],@"project", 
-																	nil];
-		[center postNotificationName:completeQueue object:nil 
-							userInfo: msg];
-	}
+//	NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
+//	NSString *updateQueue = [[protocol module] updateQueue];
+//	[center postNotificationName:updateQueue object:nil 
+//						userInfo: [NSDictionary dictionaryWithObject:[[protocol module]name]forKey:@"module"]];
+//	if (okAction == taskActionComplete) {
+//		NSString *completeQueue = [[protocol module] completeQueue];
+//		NSDictionary *msg = [NSDictionary dictionaryWithObjectsAndKeys:[task objectForKey:@"title"], @"name",
+//																	[[protocol module]name],@"source",
+//																	[[protocol module]name],@"project", 
+//																	nil];
+//		[center postNotificationName:completeQueue object:nil 
+//							userInfo: msg];
+//	}
 	[prog stopAnimation:self];
 	[prog setHidden:YES];
 	[self close];
@@ -70,7 +70,7 @@
 
 - (void) actionComplete
 {
-	[protocol cacheDeleteTask: task];
+	//[protocol cacheDeleteTask: task];
 	[self allDone];
 }
 
@@ -86,13 +86,13 @@
 
 - (void) updateComplete
 {
-	[protocol cacheUpdateTask: task];
+//	[protocol cacheUpdateTask: task];
 	[self allDone];
 }
 
 - (void) deleteComplete
 {
-	[protocol cacheDeleteTask: task];
+	//[protocol cacheDeleteTask: task];
 	[self allDone];
 }
 

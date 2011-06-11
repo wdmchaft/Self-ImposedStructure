@@ -45,7 +45,7 @@
 @synthesize timelineStr;
 @synthesize handler;
 @synthesize lastError;
-@synthesize step2Handler;
+
 @synthesize json;
 @synthesize errorCallback;
 @synthesize saveTask;
@@ -163,7 +163,7 @@
 	[target performSelector:callback];
 }
 
-- (void) listDone:(GTMHTTPFetcher *)fetcher finishedWithData:(NSData *)data error:(NSError *)error
+- (void) listDone:(GTFetcher *)fetcher finishedWithData:(NSData *)data error:(NSError *)error
 {
 	if (error){
 		[self handleError:error];
@@ -183,6 +183,8 @@
 	
 	NSArray *items = [dict objectForKey:@"items"];
 	tasksList = [NSMutableArray arrayWithCapacity:[items count]];
+	tasksDict = [NSMutableDictionary dictionaryWithCapacity:[items count]];
+
 	for (NSDictionary *item in items){
 		NSMutableDictionary *newItem = [NSMutableDictionary dictionaryWithDictionary:item];
 		NSString *titleStr = [newItem objectForKey:@"title"];
@@ -194,6 +196,7 @@
 				[newItem setObject:dueDate forKey:@"due_time"];
 			}
 			[tasksList addObject:newItem];
+			[tasksDict setObject:newItem forKey:titleStr];
 		}
 		
 	}	
@@ -205,7 +208,7 @@
 	[self getList:caller returnTo:cb];
 }
 
-- (void) returnToSender:(GTMHTTPFetcher *)fetcher finishedWithData:(NSData *)data error:(NSError *)error
+- (void) returnToSender:(GTFetcher *)fetcher finishedWithData:(NSData *)data error:(NSError *)error
 {
 	NSString *res = [[NSString alloc] initWithData:data
 										  encoding:NSUTF8StringEncoding];
@@ -217,6 +220,35 @@
 	NSDictionary *dict = [json objectWithString:res error:&err];
 	NSLog(@"%@",dict);
 	[target performSelector:callback];
+	switch ([fetcher operation]) {
+		case opAdd:
+			[self cacheAddTask:dict];
+			break;
+		case opDelete:
+			[self cacheDeleteTask:dict];
+			break;
+		case opUpdate:
+			[self cacheUpdateTask:dict];
+			break;
+		case opComplete:
+			[self cacheDeleteTask:dict];
+			break;
+			
+		default:
+			break;
+	}
+	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
+	NSDictionary *taskInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+							  [dict objectForKey:@"name"], @"task",
+							  [[self module]name], @"project",
+							  [[self module]name], @"source",
+							  nil];
+	[dnc postNotificationName:[[self module ]completeQueue] object:nil userInfo: taskInfo];
+	NSDictionary *updateInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+								[[self module]name], @"module",
+								nil];
+	[dnc postNotificationName:[[self module ]updateQueue] object:nil userInfo: updateInfo];
+	
 }
 
 - (NSString*) formatTimeStamp:(NSDate*) date
@@ -264,7 +296,8 @@
 	}
 	NSString *newURLStr = [[task objectForKey:@"selfLink"] stringByAppendingFormat:@"?key=%@",API_SECRET ];
 	NSLog(@"url: %@",newURLStr);
-	GTMHTTPFetcher *fetcher = [GTMHTTPFetcher fetcherWithURL:[NSURL URLWithString:newURLStr]];
+	GTFetcher *fetcher = [GTFetcher fetcherWithURL:[NSURL URLWithString:newURLStr]];
+	[fetcher setOperation:opComplete];
 	[fetcher setAuthorizer:auth];
 	[[fetcher mutableRequest] setHTTPMethod:@"PUT"];
 	[[fetcher mutableRequest] setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -298,7 +331,8 @@
 	}
 	NSString *newURLStr = [[task objectForKey:@"selfLink"] stringByAppendingFormat:@"?key=%@",API_SECRET ];
 	NSLog(@"url: %@",newURLStr);
-	GTMHTTPFetcher *fetcher = [GTMHTTPFetcher fetcherWithURL:[NSURL URLWithString:newURLStr]];
+	GTFetcher *fetcher = [GTFetcher fetcherWithURL:[NSURL URLWithString:newURLStr]];
+	[fetcher setOperation:opUpdate];
 	[fetcher setAuthorizer:auth];
 	[[fetcher mutableRequest] setHTTPMethod:@"PUT"];
 	[[fetcher mutableRequest] setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -306,7 +340,29 @@
 	[fetcher beginFetchWithDelegate:self didFinishSelector:@selector(returnToSender:finishedWithData:error:)];
 }
 
-- (void) gotEtag:(GTMHTTPFetcher *)fetcher finishedWithData:(NSData *)data error:(NSError *)error
+- (SEL) handlerForOp: (GTOperation) op
+{
+	SEL ret;
+	switch (op) {
+		case opComplete:
+			ret = @selector(finishComplete:);
+			break;
+		case opDelete:
+			ret = @selector(finishDelete:);
+			break;
+		case opUpdate:
+			ret = @selector(finishUpdate:);
+			break;
+		case opAdd:
+			ret = @selector(finishAdd:);
+			break;
+		default:
+			break;
+	}
+	return ret;
+}
+
+- (void) gotEtag:(GTFetcher *)fetcher finishedWithData:(NSData *)data error:(NSError *)error
 {
 	if (error){
 		[self handleError:error];
@@ -318,6 +374,7 @@
 	if (err){
 		[self handleError:err];
 	}
+	SEL step2Handler = [self handlerForOp:[fetcher operation]];
 	[self performSelector:step2Handler withObject:origTask];
 }
 
@@ -372,22 +429,22 @@ finishedWithError:(NSError *)error
 	[fetcher beginFetchWithDelegate:self didFinishSelector:@selector(listsDone:finishedWithData:error:)];
 }
 
-- (void) sendEtag: (NSObject*) caller returnTo: (SEL) cb params:(NSDictionary*) task step2Handler: (SEL) s2Handler
+- (void) sendEtag: (NSObject*) caller returnTo: (SEL) cb params:(NSDictionary*) task opType: (GTOperation) operation
 {
 	callback = cb;
-	step2Handler = s2Handler;
 	target = caller;
 	NSString *urlStr = [task objectForKey:@"selfLink"];
 	NSURL *url = [NSURL URLWithString:urlStr];
 	NSMutableURLRequest *urlReq = [NSMutableURLRequest requestWithURL:url];
-	GTMHTTPFetcher *fetcher = [GTMHTTPFetcher fetcherWithRequest:urlReq];
+	GTFetcher *fetcher = [GTFetcher fetcherWithRequest:urlReq];
 	[fetcher  setAuthorizer:auth];
+	[fetcher setOperation:operation];
 	[fetcher beginFetchWithDelegate:self didFinishSelector:@selector(gotEtag:finishedWithData:error:)];	
 }
 
 - (void) sendComplete: (NSObject*) caller returnTo: (SEL) cb params:(NSDictionary*) task
 {
-	[self sendEtag:caller returnTo:cb params: task step2Handler: @selector(finishComplete:)];	
+	[self sendEtag:caller returnTo:cb params: task opType: opComplete];	
 }
 
 - (void) finishDelete:(NSDictionary*) task 
@@ -401,7 +458,8 @@ finishedWithError:(NSError *)error
 		NSLog(@"payload = [%@]", payload);
 		NSString *newURLStr = [[task objectForKey:@"selfLink"] stringByAppendingFormat:@"?key=%@",API_SECRET ];
 		NSLog(@"url: %@",newURLStr);
-		GTMHTTPFetcher *fetcher = [GTMHTTPFetcher fetcherWithURL:[NSURL URLWithString:newURLStr]];
+		GTFetcher *fetcher = [GTFetcher fetcherWithURL:[NSURL URLWithString:newURLStr]];
+		[fetcher setOperation:opDelete];
 		[fetcher setAuthorizer:auth];
 		[[fetcher mutableRequest] setHTTPMethod:@"DELETE"];
 		[fetcher beginFetchWithDelegate:self didFinishSelector:@selector(returnToSender:finishedWithData:error:)];
@@ -420,7 +478,7 @@ finishedWithError:(NSError *)error
 	NSMutableDictionary *newTask = [NSMutableDictionary dictionaryWithDictionary:[self scrubTask:task isAdd:NO]];
 	
 	saveTask = task;
-	[self sendEtag:caller returnTo:cb params: newTask step2Handler: @selector(finishUpdate:)];	
+	[self sendEtag:caller returnTo:cb params: newTask opType: opUpdate];	
 }
 
 - (void) sendMoveCreate
@@ -444,31 +502,35 @@ finishedWithError:(NSError *)error
 	
 }
 
-- (void) finishMoveDelete:(GTMHTTPFetcher *)fetcher finishedWithData:(NSData *)data error:(NSError *)error
+- (void) finishMove:(GTMHTTPFetcher *)fetcher finishedWithData:(NSData *)data error:(NSError *)error
 {
 	if (error){
 		[self handleError:error];
 	}
 	else {
-	NSError *err = nil;
-	
+		NSError *err = nil;
+		
 		NSString *payload = [json stringWithObject:[self scrubTask:saveTask isAdd:YES] error:&err];
 		if (err){
 			[self handleError:err];
 			return;
 		}
-	NSLog(@"payload = [%@]", payload);
-	NSString *newURLStr = [NSString stringWithFormat:@"https://www.googleapis.com/tasks/v1/lists/%@/tasks?pp=1&key=%@",moveToListId, API_SECRET ];
-	NSLog(@"url: %@",newURLStr);
-	fetcher = [GTMHTTPFetcher fetcherWithURL:[NSURL URLWithString:newURLStr]];
-	[fetcher setAuthorizer:auth];
-	//	[fetcher setMutableRequest:[NSMutableURLRequest requestWithURL:[NSURL URLWithString: newURLStr]]];
-	[[fetcher mutableRequest] setHTTPMethod:@"POST"];
-	[[fetcher mutableRequest] setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-	[fetcher setPostData:[payload dataUsingEncoding:NSUTF8StringEncoding]];
-	[fetcher beginFetchWithDelegate:self didFinishSelector:@selector(returnToSender:finishedWithData:error:)];
-	//[self sendMoveCreate];
-}
+		NSLog(@"payload = [%@]", payload);
+		
+		// now the old task is gone so recreate it in the target list
+		
+		NSString *newURLStr = [NSString stringWithFormat:@"https://www.googleapis.com/tasks/v1/lists/%@/tasks?pp=1&key=%@",moveToListId, API_SECRET ];
+		NSLog(@"url: %@",newURLStr);
+		GTFetcher *fetcher = [GTFetcher fetcherWithURL:[NSURL URLWithString:newURLStr]];
+		[fetcher setOperation:opMove2];
+		[fetcher setAuthorizer:auth];
+		//	[fetcher setMutableRequest:[NSMutableURLRequest requestWithURL:[NSURL URLWithString: newURLStr]]];
+		[[fetcher mutableRequest] setHTTPMethod:@"POST"];
+		[[fetcher mutableRequest] setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+		[fetcher setPostData:[payload dataUsingEncoding:NSUTF8StringEncoding]];
+		[fetcher beginFetchWithDelegate:self didFinishSelector:@selector(returnToSender:finishedWithData:error:)];
+		//[self sendMoveCreate];
+	}
 }
 
 - (void) sendMoveTo: (NSObject*) caller returnTo: (SEL) cb list: (NSDictionary*) listData params: (NSMutableDictionary*) task
@@ -478,10 +540,12 @@ finishedWithError:(NSError *)error
 	saveTask = task;
 	NSString *newURLStr = [[task objectForKey:@"selfLink"] stringByAppendingFormat:@"?key=%@",API_SECRET ];
 	NSLog(@"url: %@",newURLStr);
-	GTMHTTPFetcher *fetcher = [GTMHTTPFetcher fetcherWithURL:[NSURL URLWithString:newURLStr]];
+	GTFetcher *fetcher = [GTFetcher fetcherWithURL:[NSURL URLWithString:newURLStr]];
+	[fetcher setOperation:opMove];
 	[fetcher setAuthorizer:auth];
 	[[fetcher mutableRequest] setHTTPMethod:@"DELETE"];
-	[fetcher beginFetchWithDelegate:self didFinishSelector:@selector(finishMoveDelete:finishedWithData:error:)];}
+	[fetcher beginFetchWithDelegate:self didFinishSelector:@selector(finishMove:finishedWithData:error:)];
+}
 
 
 - (void) sendAdd: (NSObject*) caller returnTo: (SEL) cb params: (NSDictionary*) newTask listId: (NSString*) idStr
@@ -497,7 +561,8 @@ finishedWithError:(NSError *)error
 		NSLog(@"payload = [%@]", payload);
 		NSString *newURLStr = [NSString stringWithFormat:@"https://www.googleapis.com/tasks/v1/lists/%@/tasks?pp=1&key=%@",idStr, API_SECRET ];
 		NSLog(@"url: %@",newURLStr);
-		GTMHTTPFetcher *fetcher = [GTMHTTPFetcher fetcherWithURL:[NSURL URLWithString:newURLStr]];
+		GTFetcher *fetcher = [GTFetcher fetcherWithURL:[NSURL URLWithString:newURLStr]];
+		[fetcher setOperation:opAdd];
 		[fetcher setAuthorizer:auth];
 		[[fetcher mutableRequest] setHTTPMethod:@"POST"];
 		[[fetcher mutableRequest] setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -585,12 +650,10 @@ finishedWithError:(NSError *)error
 {
 	NSDictionary *newTask = params;
 	NSString *targId = [newTask objectForKey:@"id"];
-	NSString *newName = [newTask objectForKey:@"name"];	
 	for (NSDictionary *task in [self tasksList])
 	{
 		NSString *taskId = [task objectForKey:@"id"];
 		if ([taskId isEqualToString:targId]) {
-			NSString *oldName = [task objectForKey:@"name"];
 			int idx = [[self tasksList] indexOfObject:task];
 			[[self tasksList] replaceObjectAtIndex:idx withObject:params];
 			continue;
@@ -600,9 +663,34 @@ finishedWithError:(NSError *)error
 
 - (void) cacheAddTask: (NSDictionary*) params
 {
-	NSString *name = [params objectForKey:@"name"];
-	[[self tasksDict] setObject: params forKey:name];
-	tasksList = [NSMutableArray arrayWithArray:[[self tasksDict] allValues]];
+//	NSString *name = [params objectForKey:@"title"];
+	[[self tasksList] addObject:params];
+	[[self tasksDict] setObject: params forKey:[params objectForKey:@"title"]];
+//	tasksList = [NSMutableArray arrayWithArray:[[self tasksDict] allValues]];
 }
 
 @end
+
+@implementation GTFetcher
+@synthesize operation;
+- (id)initWithRequest:(NSURLRequest *)request
+{
+	self = [super initWithRequest:request];
+	return self;
+}
+
+
++ (GTFetcher *)fetcherWithRequest:(NSURLRequest *)request {
+	return [[[[self class] alloc] initWithRequest:request] autorelease];
+}
+
++ (GTFetcher *)fetcherWithURL:(NSURL *)requestURL {
+	return [self fetcherWithRequest:[NSURLRequest requestWithURL:requestURL]];
+}
+
++ (GTFetcher *)fetcherWithURLString:(NSString *)requestURLString {
+	return [self fetcherWithURL:[NSURL URLWithString:requestURLString]];
+}
+
+@end
+

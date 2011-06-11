@@ -601,7 +601,7 @@
 	NSDictionary *updateInfo = [NSDictionary dictionaryWithObjectsAndKeys:
 							  [ctx objectForKey:@"project"], @"module",
 							  nil];
-	[dnc postNotificationName:[self completeQueue] object:nil userInfo: taskInfo];
+	[dnc postNotificationName:[self updateQueue] object:nil userInfo: updateInfo];
 }
 
 //

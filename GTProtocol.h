@@ -12,6 +12,10 @@
 #import "GTMOAuth2Authentication.h"
 #import "SBJSON.h"
 
+typedef enum  {
+	opComplete, opDelete, opUpdate, opAdd, opMove, opMove2
+} GTOperation;
+
 #define API_SECRET @"lYSJuxP8hR2YJNJN87N22ZRU"
 #define CLIENT_ID @"884448025606.apps.googleusercontent.com"
 #define SCOPE @"https://www.googleapis.com/auth/tasks"
@@ -42,7 +46,6 @@
 	BaseReporter *module;
 	SEL callback;
 	NSObject *target;
-	SEL step2Handler;
 	SBJSON  *json;
 	SEL errorCallback;
 	NSMutableDictionary *saveTask;
@@ -66,7 +69,6 @@
 @property (nonatomic, assign) SEL callback;
 @property (nonatomic, assign) SEL errorCallback;
 @property (nonatomic, retain) NSObject *target;
-@property (nonatomic) SEL step2Handler;
 @property (nonatomic,retain) SBJSON *json;
 @property (nonatomic, retain) NSMutableDictionary *saveTask;
 @property (nonatomic, retain) NSDateFormatter *dateFormatter;
@@ -103,3 +105,17 @@
 - (void) gtProtocol: (GTProtocol*) proto callEndingAt: (SelWrapper*) selObj gotError: (NSError*) error;
 
 @end
+
+@interface GTFetcher : GTMHTTPFetcher
+{
+	GTOperation operation;
+}
+@property (nonatomic, assign) GTOperation operation;
+
+- (id) initWithRequest:(NSURLRequest *)request;
+
++ (GTFetcher *)fetcherWithRequest:(NSURLRequest *)request ;
++ (GTFetcher *)fetcherWithURL:(NSURL *)requestURL ;
++ (GTFetcher *)fetcherWithURLString:(NSString *)requestURLString ;
+@end
+
