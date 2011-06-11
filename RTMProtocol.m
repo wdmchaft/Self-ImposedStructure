@@ -232,9 +232,36 @@
 - (void) sendName: (NSObject*) target callback: (SEL) cb name: (NSString *) newName task: (NSDictionary*) tdc
 {
 	NSMutableDictionary *newDict = [NSMutableDictionary dictionaryWithDictionary:tdc];
-	[newDict setObject:newName forKey:@"name"];
+	[newDict setObject:newName forKey:@"priority"];
 	[self timelineRequest:target callback:cb nextStep: @selector(sendName2:) params: newDict];
 
+}
+
+- (void) sendPriority2: (RouteInfo*) info
+{
+	NSDictionary *newDict = [info params];
+	NSArray *optionNames = nil;
+	int prio = [[newDict objectForKey:@"priority"] intValue];
+	
+	// only send priority if it exists (non-zero)
+	
+	if (prio > 0){
+		optionNames = [NSArray arrayWithObject:@"priority"];
+	}
+	[self sendWithRoute: info 
+			   returnTo: self 
+			   callback: @selector(handleTask:)
+			 methodName: @"rtm.tasks.setPriority" 
+				 params:newDict
+			optionNames:optionNames];
+}
+
+- (void) sendPriority: (NSObject*) target callback: (SEL) cb priority: (int) prio task: (NSDictionary*) tdc
+{
+	NSMutableDictionary *newDict = [NSMutableDictionary dictionaryWithDictionary:tdc];
+	[newDict setObject:[NSNumber numberWithInt:prio] forKey:@"priority"];
+	[self timelineRequest:target callback:cb nextStep: @selector(sendPriority2:) params: newDict];
+	
 }
 
 - (void) sendNote2: (RouteInfo*) info
@@ -413,6 +440,7 @@
 	}
 	if (step2 == @selector(sendName2:) ||
 		step2 == @selector(sendDate2:) ||
+		step2 == @selector(sendPriority2:) ||
 		step2 == @selector(sendNote2:)){
 		[self updateTask:info];
 	}

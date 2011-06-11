@@ -15,7 +15,7 @@ typedef enum {
 } actionType;
 
 typedef enum {
-	updateName, updateDate, updateNote, updateDone
+	updateName, updateDate, updateNote, updatePriority, updateDone
 } updateStep;
 
 @interface UpdateSteps : NSObject
@@ -41,6 +41,7 @@ typedef enum {
 	NSTextField *notesField;
 	NSDatePicker *dueDatePicker;
 	NSPopUpButton *listsCombo;
+	NSPopUpButton *priorityCombo;
 	NSDictionary *tdc;
 	RTMProtocol *context;
 	TimelineHandler *tlHandler;
@@ -63,6 +64,7 @@ typedef enum {
 @property (nonatomic,retain) IBOutlet NSTextField *notesField;
 @property (nonatomic,retain) IBOutlet NSDatePicker *dueDatePicker;
 @property (nonatomic,retain) IBOutlet NSPopUpButton *listsCombo;
+@property (nonatomic,retain) IBOutlet NSPopUpButton *priorityCombo;
 @property (nonatomic,retain) IBOutlet NSTextField *nilDateLabel;
 @property (nonatomic,retain) IBOutlet NSTextField *listLabel;
 @property (nonatomic,retain) IBOutlet NSTextField *titleLabel;
@@ -85,6 +87,10 @@ typedef enum {
 - (void) sendComplete;
 - (void) sendDelete;
 - (void) simpleDone;
+- (void) sendDate;
+- (void) sendPriority;
+- (void) sendName;
+- (void) sendNote;
 
 
 -(TaskDialogController*)initWithWindowNibName:(NSString*)nibName andContext: (RTMProtocol*) mod andParams: (NSDictionary*) ctx;

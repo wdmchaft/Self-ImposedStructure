@@ -700,6 +700,7 @@
 		TimerDialogController *tdc = [[TimerDialogController alloc] initWithWindowNibName:@"TimerDialog"];
 		NSWindow *tdcWindow = [tdc window];
 		[self enableStatusMenu:NO];
+		[[NSApplication sharedApplication] activateIgnoringOtherApps];
 		[tdcWindow orderFrontRegardless];
 		[NSApp runModalForWindow: tdcWindow];
 		[self enableStatusMenu:YES];

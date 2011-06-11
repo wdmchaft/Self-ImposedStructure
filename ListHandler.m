@@ -74,6 +74,7 @@ didStartElement:(NSString *)elementName
 	if ( [elementName isEqualToString:@"task"]) {
 		NSString *id = [attributeDict objectForKey:@"id"];
 		[currentDict setObject:[[[NSString alloc] initWithString:id]retain] forKey:@"task_id"]; 
+		NSString *priority = [attributeDict objectForKey:@"priority"];
         NSString *dueTimeStr = [attributeDict objectForKey:@"due"];
 		BOOL hasDue = [dueTimeStr length]!=0;
         if (hasDue) {
@@ -81,7 +82,11 @@ didStartElement:(NSString *)elementName
             [currentDict setObject:dueDate forKey:TASK_DUE];
 		} 
 		[currentDict setObject:[NSNumber numberWithInt:hasDue] forKey:@"has_due_time"];
-
+		if ([priority isEqualToString:@"N"]){
+			[currentDict setObject:@"0" forKey:@"priority"];
+		} else {
+			[currentDict setObject:priority forKey:@"priority"];
+		}
     }
 	//
 	// START ELEMENT: task (part of taskseries)

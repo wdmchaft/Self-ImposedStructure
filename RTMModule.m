@@ -295,6 +295,8 @@
 									   initWithWindowNibName:@"TaskDialog" 
                                                 andContext:protocol
                                                 andParams:ctx ];
+	
+	[[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
 	dialogCtrl.context = protocol;
 	[dialogCtrl showWindow:self];
 	

@@ -98,6 +98,8 @@
 - (void) sendNote: (NSObject*) target callback: (SEL) cb 
 		   newVal: (NSString *) newNote oldVal: (NSString*) old
 			 task: (NSDictionary*) tdc;
+- (void) sendPriority: (NSObject*) target callback: (SEL) cb priority: (int) prio task: (NSDictionary*) tdc;
+
 @end
 
 

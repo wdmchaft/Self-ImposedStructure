@@ -116,11 +116,11 @@
 	 [todoItem summary], @"summary",
 	 nil];
 	
-	/* create the new event */
+	// create the new todo 
 	
 	iCalTodo *newItem = [[[iCalApp classForScriptingClass:@"todo"] alloc]
 				initWithProperties: props];
-	/* add it to the list of todos for this calendar. (must be before setting properties)*/
+	// add it to the list of todos for this calendar. (must be before setting properties)
 	[[newCal todos] addObject: newItem];
 
 	[newItem setObjectDescription:[todoItem objectDescription]];

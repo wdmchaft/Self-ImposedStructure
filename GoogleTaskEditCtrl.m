@@ -339,6 +339,7 @@
 
 - (void) showWindow:(id)sender
 {
+	[[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
 	[super.window makeKeyWindow];
 	[super.window orderFrontRegardless];
 }

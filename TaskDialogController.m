@@ -25,6 +25,7 @@
 @synthesize notesField;
 @synthesize dueDatePicker;
 @synthesize listsCombo;
+@synthesize priorityCombo;
 @synthesize tdc;
 @synthesize currentJob;
 @synthesize buttonsMatrix;
@@ -46,6 +47,7 @@
 	[titleLabel setEnabled:NO];
 	[notesLabel setEnabled:NO];
 	[listsCombo setEnabled:NO];
+	[priorityCombo setEnabled:NO];
 }
 
 - (void) setSteps
@@ -82,6 +84,11 @@
 			[updateSteps addStep:updateDate];
 		}
 	}
+	int pNum = [[tdc objectForKey:@"priority"] intValue];
+	int ddNum = [priorityCombo indexOfSelectedItem];
+	if (pNum != ddNum) {
+		[updateSteps addStep:updatePriority];
+	}
 	
 }
 
@@ -96,6 +103,7 @@
 	[titleLabel setEnabled:YES];
 	[notesLabel setEnabled:YES];
 	[dueButton setEnabled:YES];
+	[priorityCombo setEnabled:YES];
 	NSDate *dueDate = [tdc objectForKey:@"due_time"];
 	if (dueDate){
 		[dueDatePicker setEnabled:YES];
@@ -166,9 +174,14 @@
 	[buttonsMatrix setEnabled:NO];
 }
 
-- (void) handleDate
+- (void) sendPriority
 {
-	
+	NSMutableDictionary *newDict = [NSMutableDictionary dictionaryWithDictionary:tdc];
+	[newDict setObject:[nameField stringValue] forKey:@"name"];
+	[context sendPriority: self 
+				 callback:@selector(nextStep) 
+				 priority:[priorityCombo indexOfSelectedItem]
+					 task:tdc];	
 }
 
 - (void) nextStep
@@ -187,6 +200,8 @@
 		case updateNote:
 			[self sendNote];
 			break;
+		case updatePriority:
+			[self sendPriority];
 		default:
 			break;
 	}
@@ -287,9 +302,17 @@
 	[self close];
 }
 
+- (void) setPriorityDD 
+{
+	NSString* priority = [tdc objectForKey:@"priority"];
+	int pNum = [priority intValue];
+	[priorityCombo selectItemAtIndex:pNum];
+}
+
 - (void) initGuts
 {
 	[self disableEverything];
+	[self setPriorityDD];
 	[busyIndicator setHidden:YES];
 	[nameField setStringValue:[tdc valueForKey:@"name"]];
 	[notesField setStringValue:[tdc valueForKey:@"note_text"]?[tdc valueForKey:@"note_text"]:@""];
@@ -355,6 +378,7 @@
 
 - (void) showWindow:(id)sender
 {
+	[[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
 	[super.window makeKeyWindow];
 	[super.window orderFrontRegardless];
 }
