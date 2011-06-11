@@ -8,6 +8,7 @@
 
 #import "BaseInstance.h"
 #import "Utility.h"
+#import "Queues.h"
 
 @implementation BaseInstance
 @synthesize enabled;
@@ -19,6 +20,9 @@
 @synthesize category;
 @synthesize refreshInterval;
 @synthesize params;
+@synthesize baseQueue;
+@synthesize completeQueue;
+@synthesize updateQueue;
 
 - (id) initWithNibName:(NSString *) nibNameOrNil 
 				bundle:(NSBundle *) nibBundleOrNil
@@ -28,6 +32,7 @@
 	if (self) {
 		refreshInterval = 15 * 60;
 		params = appParams;
+		baseQueue = [appParams objectForKey:@"queuename"];
 	}
 	return self;
 }
@@ -110,4 +115,17 @@
     return [[[self class] allocWithZone:zone] init];
 }
 
+- (NSString*) completeQueue{
+	if (!completeQueue){
+		completeQueue =  [Queues queueNameFor:WPA_COMPLETEQUEUE fromBase:baseQueue];
+	}
+	return completeQueue;
+}
+
+- (NSString*) updateQueue{
+	if (!updateQueue){
+		updateQueue =  [Queues queueNameFor:WPA_UPDATEQUEUE fromBase:baseQueue];
+	}
+	return updateQueue;
+}
 @end

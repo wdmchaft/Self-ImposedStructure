@@ -431,31 +431,46 @@
 	return calendarName;
 }
 
-- (void) didComplete: (NSNotification *) msg
-{
-    [[NSDistributedNotificationCenter defaultCenter] removeObserver:self name:[self msgName] object:nil];
-	[completeCaller performSelector: completeHandler];
-}
+//- (void) didComplete: (NSNotification *) msg
+//{
+//    [[NSDistributedNotificationCenter defaultCenter] removeObserver:self name:[self msgName] object:nil];
+//	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
+//	// What to do about this!!!! -- maybe just use scripting bridge for complete?
+//	NSDictionary *taskInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+//							  [ctx objectForKey:@"name"], @"task",
+//							  [ctx objectForKey:@"project"], @"project",
+//							  [ctx objectForKey:@"project"], @"source",
+//							  nil];
+//	[dnc postNotificationName:[self completeQueue] object:nil userInfo: taskInfo];
+//	NSDictionary *modInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+//							 [ctx objectForKey:@"project"], @"module",
+//							 nil];
+//	[dnc postNotificationName:[self updateQueue] object:nil userInfo: modInfo]
+//	[completeCaller performSelector: completeHandler];
+//}
 
 - (void) markComplete:(NSDictionary *)ctx completeHandler:(NSObject*) target selector: (SEL) handler
 {
-	NSString *msgId = [ctx objectForKey:@"id"];
-	NSBundle *myBundle = [NSBundle bundleForClass:[self class]];
-    NSString *path = [myBundle resourcePath];
-    path = [path stringByAppendingFormat:@"/%@",@"completeTodo.txt"];
-    NSData *data = [NSData dataWithContentsOfFile:path];
-    NSString *script = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    script = [script stringByReplacingOccurrencesOfString:@"<calName>" withString:calendarName];
-    script = [script stringByReplacingOccurrencesOfString:@"<idParam>" withString:msgId];
-	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
-	[dnc addObserver:self 
-			selector:@selector(didComplete:)
-				name:[self msgName]
-			  object:nil
-	 ];
-	completeCaller = target;
-	completeHandler = handler;
-	[self sendFetchWithScript:script];
+	NSString *eventID = [ctx objectForKey:@"id"];
+	iCalApplication *calApp = [SBApplication applicationWithBundleIdentifier:@"com.apple.ical"];
+	if (calApp) {
+		iCalCalendar *cal = [[calApp calendars] objectWithName:calendarName];
+		iCalTodo *todo = [[cal todos] objectWithID:eventID];
+		[todo setCompletionDate:[NSDate date]];
+	}
+		NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
+	NSDictionary *taskInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+							  [ctx objectForKey:@"name"], @"task",
+							  name, @"project",
+							  name, @"source",
+							  nil];
+	[dnc postNotificationName:[self completeQueue] object:nil userInfo: taskInfo];
+	NSDictionary *modInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+							 name, @"module",
+							 nil];
+	[dnc postNotificationName:[self updateQueue] object:nil userInfo: modInfo];
+	[target performSelector: handler];
+
 }
 
 - (void) didCreate: (NSNotification *) msg

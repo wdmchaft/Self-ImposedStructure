@@ -22,7 +22,10 @@
 	NSWindowController *detailController;
 	WPAModuleCategory category;
 	NSTimeInterval refreshInterval;
-	NSDictionary *params ;
+	NSDictionary *params;
+	NSString *baseQueue;
+	NSString *completeQueue;
+	NSString *updateQueue;
 }
 
 @property (nonatomic) BOOL enabled;
@@ -32,6 +35,9 @@
 @property (nonatomic, retain) NSObject *validationHandler;
 @property (nonatomic, retain) NSWindowController *detailController;
 @property (nonatomic, retain) NSDictionary *params;
+@property (nonatomic, retain) NSString *baseQueue;
+@property (nonatomic, retain) NSString *completeQueue;
+@property (nonatomic, retain) NSString *updateQueue;
 @property (nonatomic) WPAModuleCategory category;
 @property (nonatomic) NSTimeInterval refreshInterval;
 

@@ -59,7 +59,7 @@
 @dynamic summaryTitle;
 @dynamic isWorkRelated;
 @dynamic summaryMode;
-@dynamic completeQueue;
+@dynamic baseQueue;
 
 
 /**
@@ -483,13 +483,18 @@
 {
 	[protocol sendComplete:target returnTo:callback params:ctx];
 
-	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
-	NSDictionary *taskInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-							  [ctx objectForKey:@"name"], @"task",
-							  [ctx objectForKey:@"project"], @"project",
-							  [ctx objectForKey:@"project"], @"source",
-							  nil];
-	[dnc postNotificationName:[self completeQueue] object:nil userInfo: taskInfo];
+//	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
+//	NSDictionary *taskInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+//							  [ctx objectForKey:@"name"], @"task",
+//							  [ctx objectForKey:@"project"], @"project",
+//							  [ctx objectForKey:@"project"], @"source",
+//							  nil];
+//	[dnc postNotificationName:[self completeQueue] object:nil userInfo: taskInfo];
+//	NSDictionary *modInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+//							  [ctx objectForKey:@"project"], @"module",
+//							  nil];
+//	[dnc postNotificationName:[self updateQueue] object:nil userInfo: modInfo];
+	
 }
 
 //

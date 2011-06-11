@@ -25,6 +25,8 @@ typedef enum {
 @property (nonatomic, retain) NSString* name;
 @property (nonatomic) BOOL enabled ;// allows the module to be turned on and off
 
+- (NSString*) completeQueue;
+- (NSString*) updateQueue;
 /* All that follow are optional
 
  any module can implement 

@@ -9,6 +9,7 @@
 #import "ICalTodoEdit.h"
 #import "BaseTaskList.h"
 #import "iCal.h"
+#import "Queues.h"
 
 @implementation ICalTodoEdit
 @synthesize buttonsMatrix;
@@ -28,7 +29,7 @@
 @synthesize saveView;
 @synthesize baseView;
 @synthesize newListId;
-@synthesize completeQueue;
+@synthesize baseQueueName;
 @synthesize modName;
 @synthesize calendarName;
 @synthesize todoItem;
@@ -51,7 +52,8 @@
 - (void) allDone
 {
 	NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
-	[center postNotificationName: completeQueue 
+	NSString *updateQueue = [Queues queueNameFor:WPA_UPDATEQUEUE fromBase:baseQueueName];
+	[center postNotificationName: updateQueue 
 						  object: nil 
 						userInfo: [NSDictionary dictionaryWithObject:modName forKey:@"module"]];
 	[prog stopAnimation:self];
@@ -67,6 +69,7 @@
 							  modName, @"project",
 							  modName, @"source",
 							  nil];
+	NSString *completeQueue = [Queues queueNameFor:WPA_COMPLETEQUEUE fromBase:baseQueueName];
 	[dnc postNotificationName:completeQueue object:nil userInfo: taskInfo];
 }
 
@@ -367,7 +370,7 @@
 	self = [super initWithWindowNibName:nibName];
 	if (self){
 		task = [NSMutableDictionary dictionaryWithDictionary:params];
-		[self setCompleteQueue: queueName];
+		[self setBaseQueueName: queueName];
 		[self setModName: name];
 		[self setCalendarName:calName];
 		[self initGuts];

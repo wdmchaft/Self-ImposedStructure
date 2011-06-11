@@ -18,6 +18,7 @@
 @dynamic enabled;
 @dynamic name;
 @dynamic category;
+@dynamic baseQueue;
 
 - (id) initWithNibName:(NSString *) nibNameOrNil 
 				bundle:(NSBundle *) nibBundleOrNil

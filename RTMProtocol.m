@@ -422,7 +422,7 @@
 - (void) addTask: (RouteInfo*) info
 {
 	NSString *name = [[info params] objectForKey:@"name"];
-	[[self tasksDict] setObject: info forKey:name];
+	[[self tasksDict] setObject: [info params] forKey:name];
 	tasksList = [NSMutableArray arrayWithArray:[[self tasksDict] allValues]];
 }
 

@@ -57,7 +57,7 @@
 @dynamic summaryMode;
 @dynamic tracked;
 @dynamic isWorkRelated;
-@dynamic completeQueue;
+@dynamic baseQueue;
 
 @synthesize protocol;
 
@@ -590,12 +590,17 @@
 																		selector:callback];
 	cph.dictionary = ctx;
 	[cph start];
+	[protocol sendComplete:target callback:callback params: ctx];
 	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
 	NSDictionary *taskInfo = [NSDictionary dictionaryWithObjectsAndKeys:
 							[ctx objectForKey:@"name"], @"task",
 							[ctx objectForKey:@"project"], @"project",
 							[ctx objectForKey:@"project"], @"source",
 							nil];
+	[dnc postNotificationName:[self completeQueue] object:nil userInfo: taskInfo];
+	NSDictionary *updateInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+							  [ctx objectForKey:@"project"], @"module",
+							  nil];
 	[dnc postNotificationName:[self completeQueue] object:nil userInfo: taskInfo];
 }
 

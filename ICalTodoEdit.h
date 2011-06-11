@@ -31,7 +31,7 @@ typedef enum {
 	NSView *saveView;
 	NSView *baseView;
 	NSString *newListId;
-	NSString *completeQueue;
+	NSString *baseQueuName;
 	NSString *modName;
 	NSString *calendarName;
 	iCalTodo *todoItem;
@@ -54,7 +54,7 @@ typedef enum {
 @property (nonatomic, assign) TaskActionType okAction;
 @property (nonatomic, retain) NSView *saveView;
 @property (nonatomic, retain) NSString *newListId;
-@property (nonatomic, retain) NSString *completeQueue;
+@property (nonatomic, retain) NSString *baseQueueName;
 @property (nonatomic, retain) NSString *modName;
 @property (nonatomic, retain) NSString *calendarName;
 @property (nonatomic, retain) iCalTodo *todoItem;

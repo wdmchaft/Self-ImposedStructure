@@ -13,10 +13,8 @@
 #define TRACKED @"Tracked"
 @interface BaseTaskList : BaseReporter <TaskList> {
 	BOOL tracked;
-	NSString *completeQueue;
 }
 @property (nonatomic, assign) BOOL tracked;
-@property (nonatomic, retain) NSString *completeQueue;
 
 - (NSString *) completeQueue;
 @end

@@ -12,7 +12,7 @@
 
 @implementation BaseTaskList
 @synthesize tracked;
-@synthesize completeQueue;
+@dynamic baseQueue;
 @dynamic refreshInterval;
 @dynamic notificationName;
 @dynamic notificationTitle;
@@ -39,12 +39,6 @@
 	tracked = [temp intValue];
 }
 
-- (NSString*) completeQueue{
-	if (!completeQueue){
-		NSString *base = [params objectForKey:@"queuename"];
-		completeQueue =  [Queues queueNameFor:WPA_COMPLETEQUEUE fromBase:base];
-	}
-	return completeQueue;
-}
+
 
 @end

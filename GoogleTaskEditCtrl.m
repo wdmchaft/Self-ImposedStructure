@@ -27,7 +27,6 @@
 @synthesize saveView;
 @synthesize baseView;
 @synthesize newListId;
-@synthesize completeQueue;
 
 - (void) loadLists
 {
@@ -51,10 +50,19 @@
 
 - (void) allDone
 {
-	BaseTaskList *btList = (BaseTaskList*)[protocol module];
-	NSString *changeQueue = [btList completeQueue];
 	NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
-	[center postNotificationName:changeQueue object:nil userInfo: [NSDictionary dictionaryWithObject:[[protocol module]name]forKey:@"module"]];
+	NSString *updateQueue = [[protocol module] updateQueue];
+	[center postNotificationName:updateQueue object:nil 
+						userInfo: [NSDictionary dictionaryWithObject:[[protocol module]name]forKey:@"module"]];
+	if (okAction == taskActionComplete) {
+		NSString *completeQueue = [[protocol module] completeQueue];
+		NSDictionary *msg = [NSDictionary dictionaryWithObjectsAndKeys:[task objectForKey:@"title"], @"name",
+																	[[protocol module]name],@"source",
+																	[[protocol module]name],@"project", 
+																	nil];
+		[center postNotificationName:completeQueue object:nil 
+							userInfo: msg];
+	}
 	[prog stopAnimation:self];
 	[prog setHidden:YES];
 	[self close];
@@ -62,14 +70,6 @@
 
 - (void) actionComplete
 {
-
-	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
-	NSDictionary *taskInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-							  [task objectForKey:@"name"], @"task",
-							  [task objectForKey:@"project"], @"project",
-							  [task objectForKey:@"project"], @"source",
-							  nil];
-	[dnc postNotificationName:completeQueue object:nil userInfo: taskInfo];
 	[protocol cacheDeleteTask: task];
 	[self allDone];
 }
@@ -349,7 +349,6 @@
 	[self initGuts];
 }
 
-
 -(id)initWithWindowNibName:(NSString*)nibName 
 			 usingProtocol: (GTProtocol*) mod 
 				   forTask: (NSDictionary*) params
@@ -360,7 +359,6 @@
 		task = [NSMutableDictionary dictionaryWithDictionary:params];
 			protocol = mod;
 		[self initGuts];
-		[self setCompleteQueue:queueName];
 	}
 	return self;
 }

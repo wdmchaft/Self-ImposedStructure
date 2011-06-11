@@ -293,12 +293,25 @@
 
 - (void) simpleDone
 {
+	NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
 	[busyIndicator stopAnimation:self];
 	[NSAlert alertWithMessageText:@"Completed!" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@"yippie!"];
-	BaseTaskList *btList = (BaseTaskList*)[context module];
-	NSString *changeQueue = [btList completeQueue];
-	NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
-	[center postNotificationName:changeQueue object:nil userInfo: tdc];
+	NSString *baseQueue = [[context module] baseQueue];
+	NSString *changeQueue = [Queues queueNameFor:baseQueue fromBase:WPA_UPDATEQUEUE];
+	NSDictionary *msg = [NSDictionary dictionaryWithObjectsAndKeys:
+						  [[context module]name], @"module",
+						  nil];
+	[center postNotificationName:changeQueue object:nil userInfo: msg];
+	// if a task was completed then mark it as such
+	if (currentJob == taskActionComplete){
+		NSString *completeQueue = [Queues queueNameFor:baseQueue fromBase:WPA_UPDATEQUEUE];
+		msg = [NSDictionary dictionaryWithObjectsAndKeys:
+							 [tdc objectForKey:@"name"], @"task",
+							 [[context module]name], @"source",
+							 [[context module]name], @"project",
+							 nil];
+		[center postNotificationName:completeQueue object:nil userInfo: msg];
+	}
 	[self close];
 }
 

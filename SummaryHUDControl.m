@@ -136,9 +136,9 @@
 	useCache = NO;
 	[self buildDisplay];
 	[self setSizedCount:0];
-	NSString *changeQueue =  [Queues queueNameFor:WPA_COMPLETEQUEUE fromBase:ctx.queueName];
+	NSString *updateQueue =  [Queues queueNameFor:WPA_UPDATEQUEUE fromBase:ctx.queueName];
 	NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
-	[center addObserver:self selector:@selector(dataChanged:) name:changeQueue object:nil];
+	[center addObserver:self selector:@selector(dataChanged:) name:updateQueue object:nil];
 	useCache = YES;
 }
 

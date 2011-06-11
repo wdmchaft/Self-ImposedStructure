@@ -19,30 +19,42 @@
 
 - (void) timelineRequest
 {
-	[context timelineRequest:self callback:@selector(timelineDone)];
+	[context sendComplete:self callback:@selector(simpleDone)  params:dictionary];
 }
 
-
--(void) timelineDone
-{
-	
-	if (![context timelineStr]){
-		
-		//[BaseInstance sendErrorToHandler:context.handler 
-//								   error:@"No time line received" 
-//								  module:[context description]]; 
-		//NSLog(@"oops -- bad");
-	}
-	else 
-	{
-		[context sendComplete:self callback: @selector(simpleDone) params: dictionary];
-	}
-}
-
+//
+//-(void) timelineDone: (RouteInfo*) info
+//{
+//	
+//	if (![context timelineStr]){
+//		
+//		//[BaseInstance sendErrorToHandler:context.handler 
+////								   error:@"No time line received" 
+////								  module:[context description]]; 
+//		//NSLog(@"oops -- bad");
+//	}
+//	else 
+//	{
+//		[context sendComplete:self callback: @selector(simpleDone) params: dictionary];
+//	}
+//}
 
 - (void) simpleDone
 {
+	id<Instance> inst = [context module];
+	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
+	NSDictionary *taskInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+							  [dictionary objectForKey:@"name"], @"task",
+							  [dictionary objectForKey:@"project"], @"project",
+							  [dictionary objectForKey:@"project"], @"source",
+							  nil];
+	[dnc postNotificationName:[inst completeQueue] object:nil userInfo: taskInfo];
+	NSDictionary *modInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+							 [dictionary objectForKey:@"project"], @"module",
+							 nil];
+	[dnc postNotificationName:[inst updateQueue] object:nil userInfo: modInfo];
 	[target performSelector:callback withObject:nil];
+	
 }
 
 - (void) start 
