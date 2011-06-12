@@ -16,6 +16,7 @@
 #import "SummaryViewController.h"
 #import "Utility.h"
 #import "Queues.h"
+#import "StatusIconView.h"
 
 @implementation SummaryHUDControl
 @synthesize controls,busys, datas, svcs, titles;
@@ -189,7 +190,7 @@
 	NSArray *settings = [[Context sharedContext].hudSettings allEnabled];
     // build it from the bottom of the list up because of the way screen coordinates work in cocoa
 	NSRect winRect = [[super window] frame];
-    CGFloat viewWidth = winRect.size.width - 10;
+    CGFloat viewWidth = winRect.size.width;
 	CGFloat totalHeight = 14 * 1.5;
 	NSUInteger nSettings = [settings count];
 	BOOL lastDisplay = sizedCount == nSettings;
@@ -354,7 +355,7 @@
 		}
 	}
 	
-	NSRect tvFrame = NSMakeRect(21.0,totalHeight, winRect.size.width - 24.0, 14.0);
+	NSRect tvFrame = NSMakeRect(5.0,totalHeight, viewWidth - 10.0, 14.0);
 	if (!currentTaskView)
 	{
 		currentTaskView = [[TaskView alloc]initWithFrame:tvFrame];
@@ -362,12 +363,12 @@
 		[currentTaskView setTitleStr:@"No active task set"];
 		NSTimeInterval goal = [totalsManager calcGoal];
 		NSTimeInterval work = [totalsManager workToday];
-		NSString *goalStr = [Utility durationStrFor:work];
+		NSString *workStr = [Utility durationStrFor:work];
+		[currentTaskView setRatio: -1.0];
 		if (goal > 0.0){
-			int pct = (int)(( work / goal) * 100);
-			goalStr = [goalStr stringByAppendingFormat:@" [%d%%]",pct];
+			[currentTaskView setRatio: work / goal];
 		}
-		[currentTaskView setTimeStr:goalStr];
+		[currentTaskView setTimeStr:workStr];
 		if (ctx.currentTask && [ctx.currentTask objectForKey:@"name"]){
 			[currentTaskView setTitleStr:[ctx.currentTask objectForKey:@"name"]];
 		}
@@ -479,7 +480,7 @@
 
 @implementation TaskView
 
-@synthesize font, titleStr, saveFrame, timeStr;
+@synthesize font, titleStr, saveFrame, timeStr, ratio;
 
 - (id)initWithFrame:(NSRect)frame {
     self = [super initWithFrame:frame];
@@ -487,6 +488,16 @@
 		saveFrame = frame;
     }
     return self;
+}
+
+- (CGFloat) calcHueForRatio: (CGFloat) inRatio
+{
+	/** at zero we should be red (90) and at 100 we should be at orange (60) **/
+	CGFloat start = 0.0;
+	CGFloat end = 240.0;
+	CGFloat range = end - start;
+	CGFloat dist = inRatio * range;
+	return dist / 360.0;
 }
 
 - (void)drawRect:(NSRect)dirtyRect {
@@ -500,10 +511,20 @@
 								[NSColor whiteColor], NSForegroundColorAttributeName,
 								font, NSFontAttributeName,
 								nil];
+	NSBezierPath *path = [NSBezierPath bezierPath];
+	NSColor *patchColor = [[self window] backgroundColor];
+	if (ratio >= 0.0){
+		CGFloat hue = [self calcHueForRatio: ratio];
+		patchColor = [NSColor colorWithDeviceHue:hue saturation:0.66 brightness:0.80 alpha:1];
+	}
+	CGFloat rPos = saveFrame.size.width - 78.0;
+	[patchColor set];
+	[path appendBezierPathWithRect:NSMakeRect(rPos+45, -1.0, 48.0, 16.0)];
+	[path fill];
 	[@"Tracking:" drawAtPoint:NSMakePoint(10, 0) withAttributes:labelAttrs];
 	[titleStr drawAtPoint:NSMakePoint(65.0, 0) withAttributes:valueAttrs];
-	[@"Worked:" drawAtPoint:NSMakePoint(360.0, 0) withAttributes:labelAttrs];
-	[timeStr drawAtPoint:NSMakePoint(405.0, 0) withAttributes:valueAttrs];
+	[@"Worked:" drawAtPoint:NSMakePoint(rPos, 0) withAttributes:labelAttrs];
+	[timeStr drawAtPoint:NSMakePoint(rPos+45, 0) withAttributes:valueAttrs];
 	
 }
 @end

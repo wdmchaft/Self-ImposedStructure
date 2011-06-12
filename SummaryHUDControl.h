@@ -24,11 +24,13 @@
 	NSString *titleStr;
 	NSString *timeStr;
 	NSRect saveFrame;
+	CGFloat ratio;
 }
 @property (nonatomic, retain) NSFont *font;
 @property (nonatomic, retain) NSString *titleStr;
 @property (nonatomic, retain) NSString *timeStr;
 @property (nonatomic, assign) NSRect saveFrame;
+@property (nonatomic, assign) CGFloat ratio;
 @end
 
 @interface SummaryHUDControl :  NSWindowController <SummaryHUDCallback, NSWindowDelegate> {

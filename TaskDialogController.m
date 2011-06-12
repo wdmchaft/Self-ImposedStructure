@@ -288,7 +288,6 @@
 - (void) sendComplete
 {
 	[context sendComplete: self callback:@selector(simpleDone) params: tdc];
-
 }
 
 - (void) simpleDone
@@ -297,14 +296,14 @@
 	[busyIndicator stopAnimation:self];
 	[NSAlert alertWithMessageText:@"Completed!" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@"yippie!"];
 	NSString *baseQueue = [[context module] baseQueue];
-	NSString *changeQueue = [Queues queueNameFor:baseQueue fromBase:WPA_UPDATEQUEUE];
+	NSString *changeQueue = [Queues queueNameFor:WPA_UPDATEQUEUE fromBase:baseQueue];
 	NSDictionary *msg = [NSDictionary dictionaryWithObjectsAndKeys:
 						  [[context module]name], @"module",
 						  nil];
 	[center postNotificationName:changeQueue object:nil userInfo: msg];
 	// if a task was completed then mark it as such
 	if (currentJob == taskActionComplete){
-		NSString *completeQueue = [Queues queueNameFor:baseQueue fromBase:WPA_UPDATEQUEUE];
+		NSString *completeQueue = [Queues queueNameFor:WPA_COMPLETEQUEUE fromBase:baseQueue];
 		msg = [NSDictionary dictionaryWithObjectsAndKeys:
 							 [tdc objectForKey:@"name"], @"task",
 							 [[context module]name], @"source",

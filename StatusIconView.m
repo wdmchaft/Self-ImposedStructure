@@ -131,7 +131,7 @@
 	//NSLog(@"h: %f s: %f v: %f a: %f", h, s, v, alpha);
 }
 
-- (CGFloat) calcHueForRatio: (CGFloat) ratio
++ (CGFloat) calcHueForRatio: (CGFloat) ratio
 {
 	/** at zero we should be red (90) and at 100 we should be at orange (60) **/
 	CGFloat start = 0.0;
@@ -143,7 +143,7 @@
 
 - (void) drawDoneness:(CGFloat) ratio
 {
-	CGFloat hue = [self calcHueForRatio: ratio];
+	CGFloat hue = [StatusIconView calcHueForRatio: ratio];
 	NSColor *fore = [NSColor colorWithDeviceHue:hue saturation:0.66 brightness:0.80 alpha:1];
 
 	[self drawSweepWithRadius: outerRadius
