@@ -206,7 +206,9 @@
 		NSBox *control = [controls objectForKey:rptName];
 		NSMutableArray *data = [datas objectForKey:rptName];
 		if (data) {
-			CGFloat dataTemp = [self preCalc:data forSetting:setting] + 5;
+			CGFloat dataTemp = [self preCalc:data forSetting:setting];
+			// only add vertical spacer if there is data
+			dataTemp += (dataTemp > 0) ? 5 : 0;
 			totalHeight += dataTemp;
 		} 
 		else if ((data == nil && busy == nil) || (busy)) {
@@ -220,9 +222,8 @@
 		}
 	}	
 	Context *ctx = [Context sharedContext];
-//	if (ctx.currentTask && [ctx.currentTask objectForKey:@"name"]){
-		totalHeight += 19.0; // for currentTask
-//	}
+	totalHeight += 19.0; // for currentTask
+
 	currRect.size.height = totalHeight;
 	if (!NSEqualRects(currRect, saveRect)){
 		//NSLog(@"resizing window bc %@ != %@", NSStringFromRect(currRect),NSStringFromRect(saveRect	));
@@ -244,7 +245,6 @@
 		SummaryViewController *svc = [svcs objectForKey:rptName];
 		TitleView *stv = [titles objectForKey:rptName];
 		NSRect rect = rects[i-1];
-	//	NSLog(@"loop %d %@",i, svc);
 		
 		if (data && control == nil){
 			[[busy view] removeFromSuperview];
@@ -253,6 +253,9 @@
 			NSLog(@"removing busy %@", busy);
 			[busy release];
 			busy = nil;
+		}
+		// don't add a view if there is no data 
+		if ([data count] > 0 && control == nil){
 			// create table view control/box and add it to the view
 			svc = [self getViewForInstance:rpt width:viewWidth rows:setting.height];
 			[svcs setObject: svc forKey:rptName];
@@ -293,21 +296,16 @@
 			
 			NSRect contentFrame = boxFrame;
 			contentFrame.size.height = [svc actualHeight];
-		//	if (NSEqualRects(rect,contentFrame) == NO || needsFrameChange) {
-			//	NSLog(@"resizing SVC");
-				[svc.view setFrame:contentFrame];
+
+			[svc.view setFrame:contentFrame];
+			rects[i-1] = contentFrame;
+			[svc.view setNeedsDisplay:YES];
 				
-			//	[svc.view setFrame:[control.contentView bounds]];
-				rects[i-1] = contentFrame;
-				[svc.view setNeedsDisplay:YES];
-				
-		//	}
+	
 			NSRect stvFrame = boxFrame;
-		//	stvFrame.origin.y = totalHeight + lineHeight;
 			stvFrame.origin.x = 5;
 			stvFrame.size.width = 21;
 			stvFrame.size.height = [svc actualHeight];
-		//	stvFrame.size.height = 60;
 			if (!stv) {
 				stv = [[TitleView alloc]initWithFrame:stvFrame];
 				[stv setAltImage:[ctx iconImageForModule:rpt]];
@@ -321,7 +319,6 @@
 			[stv setFrame:stvFrame];
 
 			totalHeight += boxFrame.size.height;			
-			//	NSLog(@"after totalheight = %f for %@", totalHeight, [rpt name]);
 		}
 		
 		if (data == nil && busy == nil)
@@ -425,10 +422,7 @@
 - (void) viewSized: (NSView*) retView reporter: (id<Reporter>) rpt data: (NSArray*) array
 {
 	NSLog(@"viewSized for %@", rpt.name);
-	//[retView setHidden:YES];
-	//[retView removeFromSuperview];
 	[datas setObject:array forKey:[rpt name]];
-	//[busys removeObjectForKey: [rpt name]];
 	viewChanged = YES;
 	sizedCount++;
 }
