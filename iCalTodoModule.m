@@ -431,24 +431,6 @@
 	return calendarName;
 }
 
-//- (void) didComplete: (NSNotification *) msg
-//{
-//    [[NSDistributedNotificationCenter defaultCenter] removeObserver:self name:[self msgName] object:nil];
-//	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
-//	// What to do about this!!!! -- maybe just use scripting bridge for complete?
-//	NSDictionary *taskInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-//							  [ctx objectForKey:@"name"], @"task",
-//							  [ctx objectForKey:@"project"], @"project",
-//							  [ctx objectForKey:@"project"], @"source",
-//							  nil];
-//	[dnc postNotificationName:[self completeQueue] object:nil userInfo: taskInfo];
-//	NSDictionary *modInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-//							 [ctx objectForKey:@"project"], @"module",
-//							 nil];
-//	[dnc postNotificationName:[self updateQueue] object:nil userInfo: modInfo]
-//	[completeCaller performSelector: completeHandler];
-//}
-
 - (void) markComplete:(NSDictionary *)ctx completeHandler:(NSObject*) target selector: (SEL) handler
 {
 	NSString *eventID = [ctx objectForKey:@"id"];

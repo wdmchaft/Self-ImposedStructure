@@ -229,6 +229,8 @@
 		8C844AAE133AEA5700998D1C /* PercentOfDaysXForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C844AAC133AEA5700998D1C /* PercentOfDaysXForm.m */; };
 		8C8EF5C21389DF0800F2E80F /* GoogleTaskEdit.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C8EF5C11389DF0800F2E80F /* GoogleTaskEdit.xib */; };
 		8C8EF5C51389DFD600F2E80F /* GoogleTaskEditCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8EF5C41389DFD600F2E80F /* GoogleTaskEditCtrl.m */; };
+		8C922FEE13AABE8C008B3C32 /* HUDSplitterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C922FED13AABE8C008B3C32 /* HUDSplitterView.m */; };
+		8C922FEF13AABE8C008B3C32 /* HUDSplitterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C922FED13AABE8C008B3C32 /* HUDSplitterView.m */; };
 		8C9651F313845296007970F2 /* structcommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* structcommon.framework */; };
 		8C96522913847505007970F2 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1988112D5079F00C69AC9 /* ScriptingBridge.framework */; };
 		8C9653971384BFFB007970F2 /* GTMOAuth2Window.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C96533C1384BFFB007970F2 /* GTMOAuth2Window.xib */; };
@@ -936,6 +938,8 @@
 		8C8EF5C11389DF0800F2E80F /* GoogleTaskEdit.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoogleTaskEdit.xib; sourceTree = "<group>"; };
 		8C8EF5C31389DFD600F2E80F /* GoogleTaskEditCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleTaskEditCtrl.h; sourceTree = "<group>"; };
 		8C8EF5C41389DFD600F2E80F /* GoogleTaskEditCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleTaskEditCtrl.m; sourceTree = "<group>"; };
+		8C922FEC13AABE8C008B3C32 /* HUDSplitterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDSplitterView.h; sourceTree = "<group>"; };
+		8C922FED13AABE8C008B3C32 /* HUDSplitterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDSplitterView.m; sourceTree = "<group>"; };
 		8C9653391384BFFB007970F2 /* ReleaseNotes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ReleaseNotes.txt; path = GoogleOAuth/Source/ReleaseNotes.txt; sourceTree = "<group>"; };
 		8C96533C1384BFFB007970F2 /* GTMOAuth2Window.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GTMOAuth2Window.xib; sourceTree = "<group>"; };
 		8C96533D1384BFFB007970F2 /* GTMOAuth2WindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMOAuth2WindowController.h; sourceTree = "<group>"; };
@@ -1502,6 +1506,8 @@
 		8C73F08D12E5E4460056FAFF /* SummaryHUD */ = {
 			isa = PBXGroup;
 			children = (
+				8C922FEC13AABE8C008B3C32 /* HUDSplitterView.h */,
+				8C922FED13AABE8C008B3C32 /* HUDSplitterView.m */,
 				8C5BB9851371E07E0004E88C /* HUDBusyView.xib */,
 				8C5BB9B71371E2920004E88C /* HUDBusy.h */,
 				8C5BB9B81371E2920004E88C /* HUDBusy.m */,
@@ -2739,6 +2745,7 @@
 				8CB7C775137D95DB00CB3193 /* NDHotKeyControl.m in Sources */,
 				8CB7C776137D95DB00CB3193 /* NDKeyboardLayout.m in Sources */,
 				8C630F50138EE81B00E2570F /* TasksDataSource.m in Sources */,
+				8C922FEE13AABE8C008B3C32 /* HUDSplitterView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2990,6 +2997,7 @@
 				8CB7C77B137D95DB00CB3193 /* NDHotKeyControl.m in Sources */,
 				8CB7C77C137D95DB00CB3193 /* NDKeyboardLayout.m in Sources */,
 				8C630F4F138EE81B00E2570F /* TasksDataSource.m in Sources */,
+				8C922FEF13AABE8C008B3C32 /* HUDSplitterView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

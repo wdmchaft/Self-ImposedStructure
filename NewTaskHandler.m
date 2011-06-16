@@ -17,27 +17,6 @@
 
 @dynamic context;
 
-//- (void) timelineRequest
-//{
-//	
-//	[context timelineRequest:self callback:@selector(timelineDone)];
-//}
-
-//-(void) timelineDone
-//{
-//	
-//	if (![context timelineStr]){
-//		
-//		//[BaseInstance sendErrorToHandler:context.handler 
-//		//								   error:@"No time line received" 
-//		//								  module:[context description]]; 
-//		//NSLog(@"oops -- bad");
-//	}
-//	else 
-//	{
-//		[context sendAdd:self callback: @selector(simpleDone) params: dictionary];
-//	}
-//}
 
 
 - (void) simpleDone
@@ -45,7 +24,7 @@
 	id<Instance> inst = [context module];
 	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
 	NSDictionary *modInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-							 [dictionary objectForKey:@"project"], @"module",
+							 [dictionary objectForKey:@"module"], @"module",
 							 nil];
 	[dnc postNotificationName:[inst updateQueue] object:nil userInfo: modInfo];
 	[target performSelector:callback withObject:nil];

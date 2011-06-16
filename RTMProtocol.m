@@ -436,6 +436,7 @@
 		[self deleteTask:info];
 	}
 	if (step2 == @selector(sendAdd2:)){
+		NSLog(@"adding task to cache");
 		[self addTask:info];
 	}
 	if (step2 == @selector(sendName2:) ||

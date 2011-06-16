@@ -50,19 +50,6 @@
 
 - (void) allDone
 {
-//	NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
-//	NSString *updateQueue = [[protocol module] updateQueue];
-//	[center postNotificationName:updateQueue object:nil 
-//						userInfo: [NSDictionary dictionaryWithObject:[[protocol module]name]forKey:@"module"]];
-//	if (okAction == taskActionComplete) {
-//		NSString *completeQueue = [[protocol module] completeQueue];
-//		NSDictionary *msg = [NSDictionary dictionaryWithObjectsAndKeys:[task objectForKey:@"title"], @"name",
-//																	[[protocol module]name],@"source",
-//																	[[protocol module]name],@"project", 
-//																	nil];
-//		[center postNotificationName:completeQueue object:nil 
-//							userInfo: msg];
-//	}
 	[prog stopAnimation:self];
 	[prog setHidden:YES];
 	[self close];

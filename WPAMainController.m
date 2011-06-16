@@ -142,6 +142,24 @@
 												 selector:@selector(updateStatus:) 
 												 userInfo:nil 
 												  repeats:NO];
+	if ([ctx currentTask]){
+		BOOL foundTask = NO;
+		NSString *src = [[ctx currentTask]objectForKey:@"source"];
+		NSString *taskName = [[ctx currentTask]objectForKey:@"task"];
+		id<TaskList> list = [[ctx instancesMap] objectForKey:src];
+		if (list){
+			NSArray *tasks = [list getTasks];
+			for (NSDictionary *task in tasks){
+				NSString *name = [task objectForKey:@"name"];
+				if ([name isEqualToString: taskName]){
+					foundTask = YES;
+				}
+			}
+		}
+		if (!foundTask){
+			[self clickSwitchActivity:self];
+		}
+	}
 	[self setupHotKeyIfNecessary];
 //	if (ctx.running){
 		[self running:ctx.running];
@@ -656,6 +674,12 @@
 {	
 	NSDictionary *dict = [notification userInfo];
 	[WriteHandler completeActivity:dict atTime:[NSDate date]];
+	NSDictionary *curr = [[Context sharedContext] currentTask];
+	if ([[curr objectForKey:@"task"] isEqualToString:[dict objectForKey:@"task"]]){
+		if ([[curr objectForKey:@"source"] isEqualToString:[dict objectForKey:@"source"]]){
+			[self clickSwitchActivity:self];	
+		}
+	}
 }
 
 - (void) doThinkTime: (NSTimeInterval) thinkMin 

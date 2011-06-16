@@ -218,36 +218,42 @@
 	}
 	NSError *err = nil;
 	NSDictionary *dict = [json objectWithString:res error:&err];
+	NSMutableDictionary *cacheDict = [NSMutableDictionary dictionaryWithDictionary:dict];
+	[cacheDict removeObjectForKey:@"etag"];
+	[cacheDict setObject:[dict objectForKey:@"title"] forKey:@"name"];
 	NSLog(@"%@",dict);
-	[target performSelector:callback];
+	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
 	switch ([fetcher operation]) {
 		case opAdd:
-			[self cacheAddTask:dict];
+			[self cacheAddTask:cacheDict];
 			break;
 		case opDelete:
-			[self cacheDeleteTask:dict];
+			[self cacheDeleteTask:cacheDict];
 			break;
 		case opUpdate:
-			[self cacheUpdateTask:dict];
+			[self cacheUpdateTask:cacheDict];
 			break;
 		case opComplete:
-			[self cacheDeleteTask:dict];
+			[self cacheDeleteTask:cacheDict];
+			NSDictionary *taskInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+									  [dict objectForKey:@"title"], @"task",
+									  [[self module]name], @"project",
+									  [[self module]name], @"source",
+									  nil];
+			NSLog(@"sending complete from GTProtocol %@", taskInfo);
+			[dnc postNotificationName:[[self module ]completeQueue] object:nil userInfo: taskInfo];
 			break;
 			
 		default:
 			break;
 	}
-	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
-	NSDictionary *taskInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-							  [dict objectForKey:@"name"], @"task",
-							  [[self module]name], @"project",
-							  [[self module]name], @"source",
-							  nil];
-	[dnc postNotificationName:[[self module ]completeQueue] object:nil userInfo: taskInfo];
 	NSDictionary *updateInfo = [NSDictionary dictionaryWithObjectsAndKeys:
 								[[self module]name], @"module",
 								nil];
+	NSLog(@"sending update from GTProtocol %@", updateInfo);
 	[dnc postNotificationName:[[self module ]updateQueue] object:nil userInfo: updateInfo];
+	
+	[target performSelector:callback];
 	
 }
 

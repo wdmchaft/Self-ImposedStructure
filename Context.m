@@ -31,6 +31,7 @@
 @synthesize thinkTime;
 @synthesize currentActivity;
 @synthesize currentTask;
+@synthesize currentProject;
 @synthesize tasksList;
 @synthesize previousState;
 @synthesize growlManager;
@@ -329,7 +330,7 @@ static Context* sharedContext = nil;
 		id<Stateful> inst = (id<Stateful>) thing;
 		if ( ((id<Instance>)inst).enabled && [thing conformsToProtocol:@protocol(Stateful)]){
 #ifdef DEBUG
-			NSLog(@"making %@ vacate", inst);
+		//	NSLog(@"making %@ vacate", inst);
 #endif
 			[inst changeState: WPASTATE_VACATION];
 		}
@@ -343,7 +344,7 @@ static Context* sharedContext = nil;
 		id<Stateful> inst = (id<Stateful>) thing;
 		if ( ((id<Instance>)inst).enabled && [thing conformsToProtocol:@protocol(Stateful)]){
 #ifdef DEBUG
-			NSLog(@"making %@ work", inst);
+		//	NSLog(@"making %@ work", inst);
 #endif
 			[inst changeState: WPASTATE_THINKING];
 		}
@@ -357,7 +358,7 @@ static Context* sharedContext = nil;
 		id<Stateful> inst = (id<Stateful>) thing;
 		if ( ((id<Instance>)inst).enabled && [thing conformsToProtocol:@protocol(Stateful)]){
 #ifdef DEBUG
-			NSLog(@"making %@ free", inst);
+	//		NSLog(@"making %@ free", inst);
 #endif
 			[inst changeState: WPASTATE_FREE];
 		}
@@ -371,7 +372,7 @@ static Context* sharedContext = nil;
 		id<Stateful> inst = (id<Stateful>) thing;
 		if ( ((id<Instance>)inst).enabled && [thing conformsToProtocol:@protocol(Stateful)]){
 #ifdef DEBUG
-			NSLog(@"making %@ away", inst);
+		//	NSLog(@"making %@ away", inst);
 #endif			
 			[inst changeState: WPASTATE_AWAY];
 		}		
@@ -385,7 +386,7 @@ static Context* sharedContext = nil;
 		id<Stateful> inst = (id<Stateful>) thing;
 		if ( ((id<Instance>)inst).enabled && [thing conformsToProtocol:@protocol(Stateful)]){
 #ifdef DEBUG
-			NSLog(@"making %@ off", inst);
+		//	NSLog(@"making %@ off", inst);
 #endif			
 			[inst changeState: WPASTATE_OFF];
 		}		

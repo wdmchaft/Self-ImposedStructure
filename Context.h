@@ -22,6 +22,7 @@
 	WPAStateType currentState;
 	int thinkTime;
 	NSDictionary *currentTask;
+	NSString *currentProject;
 	NSManagedObject *currentActivity;
 	BOOL running;
 	NSArray *tasksList;
@@ -46,6 +47,7 @@
 @property (nonatomic, retain) NSDictionary *currentTask;
 //@property (nonatomic, retain) NSString *currentSource;
 @property (nonatomic, retain) NSManagedObject *currentActivity;
+@property (nonatomic, retain) NSString *currentProject;
 @property (nonatomic, retain) NSArray *tasksList;
 @property (nonatomic) WPAStateType currentState;
 @property (nonatomic, readonly) WPAStateType previousState;

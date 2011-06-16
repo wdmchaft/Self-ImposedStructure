@@ -59,8 +59,14 @@
 	return self;
 }
 
+- (void) taskChanged: (NSNotification*) notification
+{	
+	[self buildDisplay];
+}
+
 - (void) dataChanged: (NSNotification*) msg
 {
+	NSLog(@"dataChanged: %@", msg);
 	NSString *modName = [[msg userInfo]objectForKey:@"module"];
 	NSMutableArray *data = [datas objectForKey:modName];
 	[data removeAllObjects];
@@ -184,7 +190,7 @@
 	//
 	// also we try to minimize frame set actions because it makes the view flash in annoying manner.
 	//
-	
+	[[self view] setAutoresizesSubviews:YES];
 	BOOL needsFrameChange = NO;
 	NSRect currRect = [[super window] frame];
 	NSArray *settings = [[Context sharedContext].hudSettings allEnabled];
@@ -260,7 +266,7 @@
 			svc = [self getViewForInstance:rpt width:viewWidth rows:setting.height];
 			[svcs setObject: svc forKey:rptName];
 			[svc setData: data];
-			
+			[[svc view] setAutoresizingMask:NSViewHeightSizable | NSViewWidthSizable];
 			NSBox *box = [[BGHUDBox alloc] initWithFrame:winRect];
 			[controls setObject:box forKey:rptName];
 			NSSize margins; margins.height = 0; margins.width = 0;
@@ -308,6 +314,8 @@
 			stvFrame.size.height = [svc actualHeight];
 			if (!stv) {
 				stv = [[TitleView alloc]initWithFrame:stvFrame];
+				[stv setAutoresizingMask:NSViewHeightSizable];
+
 				[stv setAltImage:[ctx iconImageForModule:rpt]];
 				[titles setObject:stv forKey: rptName];
 				NSFont *font = [NSFont systemFontOfSize:[NSFont smallSystemFontSize]];
@@ -356,6 +364,7 @@
 	if (!currentTaskView)
 	{
 		currentTaskView = [[TaskView alloc]initWithFrame:tvFrame];
+		[currentTaskView setAutoresizingMask:NSViewNotSizable];
 		[currentTaskView setFont:[NSFont systemFontOfSize:[NSFont smallSystemFontSize]]];
 		[currentTaskView setTitleStr:@"No active task set"];
 		NSTimeInterval goal = [totalsManager calcGoal];

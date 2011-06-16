@@ -9,6 +9,7 @@
 #import "SwitchActivityDialog.h"
 #import "Context.h"
 #import "TaskList.h"
+#import "Queues.h"
 
 @implementation SwitchActivityDialog
 @synthesize listsButton, okButton, cancelButton, availableActCombo, list, currentText, completeButton;
@@ -45,9 +46,6 @@
 	[currentText setStringValue: currentStr];
 	NSArray *lists = [ctx getTrackedLists];
 	
-//	NSMenuItem *item = [listsButton itemAtIndex:0];
-//	[item setTarget:self];	
-//	[item setAction:@selector(clickItem:)];
 	for (id<TaskList> tl in lists){
 		[listsButton addItemWithTitle:[tl name]];
 		NSMenuItem *item = [listsButton itemWithTitle:[tl name]];
@@ -55,18 +53,6 @@
 		[item setAction:@selector(clickItem:)];
 	}
 	NSDictionary *task = [ctx currentTask];
-//	if (task) {
-//		NSString *src = [task objectForKey: @"source"];
-//		if (src) {
-//			[listsButton selectItemWithTitle:src];
-//			list = [self listForName:src];
-//			[availableActCombo setStringValue:[task objectForKey:@"name"]];
-//			[availableActCombo reloadData];
-//		}
-//	}
-//	else {
-//		[availableActCombo setEnabled:NO];
-//	}
 }
 
 - (void) windowDidLoad
@@ -96,9 +82,14 @@
 	NSString *tName = [availableActCombo stringValue];
 	NSString *srcName = [[listsButton selectedItem] title];
 	ctx.currentTask = [NSDictionary dictionaryWithObjectsAndKeys:tName, @"name",
-																	srcName, @"source", nil];
+																	srcName, @"source"
+																	@"default", @"project", nil];
 	[[ctx growlManager] growlFYI:[NSString stringWithFormat: @"New activity: %@",tName]];
-	
+	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
+	[dnc postNotificationName:[Queues queueNameFor:WPA_ACTIVEQUEUE fromBase:[ctx queueName]]
+					   object:nil 
+					 userInfo: [NSDictionary dictionaryWithObjectsAndKeys:tName, @"name",
+								srcName,@"source",nil]];
 	[super.window close];
 }
 

@@ -579,7 +579,7 @@
 	NewTaskHandler *nth = [[NewTaskHandler alloc]initWithContext: protocol
 														delegate:target
 														selector:callback];
-	nth.dictionary = [NSDictionary dictionaryWithObject:tName forKey: @"name"];
+	nth.dictionary = [NSDictionary dictionaryWithObjectsAndKeys:tName, @"name", name, @"module", nil];
 	[nth start];
 }
 

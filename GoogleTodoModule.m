@@ -482,19 +482,6 @@
 - (void) markComplete:(NSDictionary *)ctx completeHandler: (NSObject*) target selector: (SEL) callback
 {
 	[protocol sendComplete:target returnTo:callback params:ctx];
-
-//	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
-//	NSDictionary *taskInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-//							  [ctx objectForKey:@"name"], @"task",
-//							  [ctx objectForKey:@"project"], @"project",
-//							  [ctx objectForKey:@"project"], @"source",
-//							  nil];
-//	[dnc postNotificationName:[self completeQueue] object:nil userInfo: taskInfo];
-//	NSDictionary *modInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-//							  [ctx objectForKey:@"project"], @"module",
-//							  nil];
-//	[dnc postNotificationName:[self updateQueue] object:nil userInfo: modInfo];
-	
 }
 
 //

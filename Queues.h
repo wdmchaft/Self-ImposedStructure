@@ -10,6 +10,7 @@
 
 #define WPA_STATEQUEUE @"changestate"
 #define WPA_COMPLETEQUEUE @"completetask"
+#define WPA_ACTIVEQUEUE @"activetask"
 #define WPA_UPDATEQUEUE @"updatetask"
 
 @interface Queues : NSObject {

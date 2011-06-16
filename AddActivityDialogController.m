@@ -56,7 +56,8 @@
 	NSString *tName = [taskField stringValue];
 	if ([switchNowButton integerValue]){
 		ctx.currentTask = [NSDictionary dictionaryWithObjectsAndKeys:tName, @"name",
-						   taskList.name, @"source", nil];
+						   taskList.name, @"source",
+						   @"default", @"project", nil];
 		[[ctx growlManager] growlFYI:[NSString stringWithFormat: @"New activity: %@",tName]];
 	} else {
 		[[ctx growlManager] growlFYI:[NSString stringWithFormat: @"Added activity: %@", tName]];
