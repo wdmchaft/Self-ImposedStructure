@@ -19,69 +19,48 @@
 #import "HUDBusy.h"
 #import "TotalsManager.h"
 
-@interface TaskView : NSView {
-	NSFont *font;
-	NSString *titleStr;
-	NSString *timeStr;
-	NSRect saveFrame;
-	CGFloat ratio;
-}
-@property (nonatomic, retain) NSFont *font;
-@property (nonatomic, retain) NSString *titleStr;
-@property (nonatomic, retain) NSString *timeStr;
-@property (nonatomic, assign) NSRect saveFrame;
-@property (nonatomic, assign) CGFloat ratio;
-@end
 
-@interface SummaryHUDControl :  NSWindowController <SummaryHUDCallback, NSWindowDelegate> {
-	NSMutableDictionary *svcs;
-	NSMutableDictionary *controls;
-	NSMutableDictionary *datas;
-	NSMutableDictionary *busys;
-	NSMutableDictionary *titles;
-	
-	NSView *view;
-
+@interface SummaryHUDControl :  NSWindowController <NSWindowDelegate, SummaryHUDCallback, NSSplitViewDelegate> 
+{
 	WPAMainController *mainControl;
  
-    NSMutableData *frameData;
-    CGFloat lineHeight;
-	NSUInteger sizedCount;
 	NSString *framePos;
-	BOOL viewChanged;
 	NSTimer *buildTimer;
 	NSRect saveRect;
-	BOOL oneLastTime;
-	TaskView *currentTaskView;
+	NSView *header;
 	NSTextView *goalText;
 	TotalsManager *totalsManager;
+	NSSplitView *splitter;
+	NSMutableDictionary *datas;
+	NSMutableDictionary *busys;
+	NSMutableDictionary *cells;
+	BOOL doingBuild;
+	NSUInteger renderedViews;
+	CGFloat viewsHeight;
 	BOOL useCache;
+	NSTextField	 *taskField;
+	NSTextField *timeField;
 }
-@property (nonatomic, retain) NSMutableData *frameData;
-@property (nonatomic, retain)  NSMutableDictionary *svcs;
-@property (nonatomic, retain)  NSMutableDictionary *controls;
-@property (nonatomic, retain)  NSMutableDictionary *datas;
-@property (nonatomic, retain)  NSMutableDictionary *busys;
-@property (nonatomic, retain)  NSMutableDictionary *titles;
-@property (nonatomic, retain) IBOutlet NSView *view;
 
 @property (nonatomic, retain) WPAMainController *mainControl;
 @property (nonatomic, retain) NSString *framePos; // hack since auto frame save is buggy for mysterious reasons
 @property (nonatomic, retain) NSView *currentTaskView; 
 @property (nonatomic, retain) TotalsManager *totalsManager; 
-@property (nonatomic) CGFloat lineHeight;
-@property (nonatomic) NSUInteger sizedCount;
-@property (nonatomic) BOOL viewChanged;
-@property (nonatomic, retain) NSTimer *buildTimer;
+@property (nonatomic, retain) IBOutlet NSSplitView *splitter; 
+@property (nonatomic, retain) IBOutlet NSView *header; 
 @property (nonatomic) NSRect saveRect;
-@property (nonatomic) BOOL oneLastTime;
+@property (nonatomic, retain) NSMutableDictionary *datas;
+@property (nonatomic, retain) NSMutableDictionary *busys;
+@property (nonatomic, retain) NSMutableDictionary *cells;
+@property (nonatomic) BOOL doingBuild;
+@property (nonatomic) NSUInteger renderedViews;
+@property (nonatomic) CGFloat viewsHeight;
 @property (nonatomic) BOOL useCache;
-
-- (SummaryViewController*) getViewForInstance: (id<Reporter>) inst width: (CGFloat) vWidth rows: (int) nRows;
-
+@property (nonatomic, retain) IBOutlet NSTextField *taskField;
+@property (nonatomic, retain) IBOutlet NSTextField *timeField;
 - (void) buildDisplay;
 
-- (CGFloat) calcHeight;
+
 @end
 
 @interface TitleView : NSView {

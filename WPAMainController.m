@@ -598,7 +598,8 @@
 												 name:NSWindowWillCloseNotification 
 											   object:shc.window];
 
-	[self buildStatusMenu];	
+	//[self buildStatusMenu];	
+	
 }
 
 - (void) summaryClosed:(NSNotification*) notification{
@@ -686,7 +687,7 @@
 	if (newState == WPASTATE_FREE)
 	{
 		if ([self needsSummary]){
-			[self showSummaryScreen: self];
+	//		[self showSummaryScreen: self];
 			return;
 		}
 		if ([self shouldGoBackToWork]) {

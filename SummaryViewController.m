@@ -284,7 +284,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 	[cell setTitle:@""];
 	[cell setAction:@selector(checkTask:)];
 	[cell setTarget:self];
-	[cell setControlSize:NSSmallControlSize];
+	[cell setControlSize:NSMiniControlSize];
 
 	[col1 setDataCell:cell];
 	[cell release];
