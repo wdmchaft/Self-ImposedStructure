@@ -87,6 +87,8 @@
 		8C11513D1344EFAA00273D0A /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C11513B1344EFA000273D0A /* ActivityViewController.m */; };
 		8C11513E1344EFAA00273D0A /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C11513B1344EFA000273D0A /* ActivityViewController.m */; };
 		8C1151441345170900273D0A /* GoalHoursToAverageXForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CEF4E191339B2D8000F5E3A /* GoalHoursToAverageXForm.m */; };
+		8C171D7B13B57291007ED1E8 /* HUDCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C171D7A13B57291007ED1E8 /* HUDCell.xib */; };
+		8C171D7C13B57291007ED1E8 /* HUDCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C171D7A13B57291007ED1E8 /* HUDCell.xib */; };
 		8C1800FA12F4B7990061FDE6 /* marketing.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 8C1800F912F4B7990061FDE6 /* marketing.rtf */; };
 		8C18041712F770DB0061FDE6 /* AddActivityDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C18041612F770DB0061FDE6 /* AddActivityDialogController.m */; };
 		8C18041812F770DB0061FDE6 /* AddActivityDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C18041612F770DB0061FDE6 /* AddActivityDialogController.m */; };
@@ -164,8 +166,6 @@
 		8C73F00312E578160056FAFF /* AdiumState.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F00112E578160056FAFF /* AdiumState.m */; };
 		8C73F08F12E5E49E0056FAFF /* SummaryHUD.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C73F08E12E5E49E0056FAFF /* SummaryHUD.xib */; };
 		8C73F09012E5E49E0056FAFF /* SummaryHUD.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C73F08E12E5E49E0056FAFF /* SummaryHUD.xib */; };
-		8C73F09B12E5F6590056FAFF /* SummaryHUDControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F09A12E5F6590056FAFF /* SummaryHUDControl.m */; };
-		8C73F09C12E5F6590056FAFF /* SummaryHUDControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F09A12E5F6590056FAFF /* SummaryHUDControl.m */; };
 		8C73F3CA12E78F310056FAFF /* SummaryTaskData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F3C912E78F310056FAFF /* SummaryTaskData.m */; };
 		8C73F3D712E790B60056FAFF /* SummaryData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F3D612E790B60056FAFF /* SummaryData.m */; };
 		8C73F3DC12E793190056FAFF /* SummaryEventData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F3DB12E793190056FAFF /* SummaryEventData.m */; };
@@ -174,6 +174,10 @@
 		8C73F89812E891D80056FAFF /* structcommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* structcommon.framework */; };
 		8C73F8B512E893CC0056FAFF /* TestMailModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C73F8B412E893CC0056FAFF /* TestMailModule.m */; };
 		8C73F8B812E893EC0056FAFF /* TestMailModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C73F8B712E893EC0056FAFF /* TestMailModule.xib */; };
+		8C74F13113B59D0500A7BF20 /* HUDCellController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C74F13013B59D0500A7BF20 /* HUDCellController.m */; };
+		8C74F13213B59D0500A7BF20 /* HUDCellController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C74F13013B59D0500A7BF20 /* HUDCellController.m */; };
+		8C74F36313B5D1E200A7BF20 /* SummaryHUDControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */; };
+		8C74F36413B5D1E200A7BF20 /* SummaryHUDControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */; };
 		8C77298B12D46AC600F71FE7 /* AddMod.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77291812D46AC600F71FE7 /* AddMod.xib */; };
 		8C77298D12D46AC600F71FE7 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C77291B12D46AC600F71FE7 /* PreferencesWindow.xib */; };
 		8C77298E12D46AC600F71FE7 /* AddModWinController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77291C12D46AC600F71FE7 /* AddModWinController.m */; };
@@ -229,8 +233,6 @@
 		8C844AAE133AEA5700998D1C /* PercentOfDaysXForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C844AAC133AEA5700998D1C /* PercentOfDaysXForm.m */; };
 		8C8EF5C21389DF0800F2E80F /* GoogleTaskEdit.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C8EF5C11389DF0800F2E80F /* GoogleTaskEdit.xib */; };
 		8C8EF5C51389DFD600F2E80F /* GoogleTaskEditCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8EF5C41389DFD600F2E80F /* GoogleTaskEditCtrl.m */; };
-		8C922FEE13AABE8C008B3C32 /* HUDSplitterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C922FED13AABE8C008B3C32 /* HUDSplitterView.m */; };
-		8C922FEF13AABE8C008B3C32 /* HUDSplitterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C922FED13AABE8C008B3C32 /* HUDSplitterView.m */; };
 		8C9651F313845296007970F2 /* structcommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* structcommon.framework */; };
 		8C96522913847505007970F2 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1988112D5079F00C69AC9 /* ScriptingBridge.framework */; };
 		8C9653971384BFFB007970F2 /* GTMOAuth2Window.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C96533C1384BFFB007970F2 /* GTMOAuth2Window.xib */; };
@@ -695,6 +697,7 @@
 		8C1151281343EAAD00273D0A /* SVRefHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SVRefHandler.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8C11513A1344EF9D00273D0A /* ActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ActivityViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8C11513B1344EFA000273D0A /* ActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ActivityViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		8C171D7A13B57291007ED1E8 /* HUDCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HUDCell.xib; sourceTree = "<group>"; };
 		8C1800F812F4A5D00061FDE6 /* marketing.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = marketing.txt; sourceTree = "<group>"; };
 		8C1800F912F4B7990061FDE6 /* marketing.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = marketing.rtf; sourceTree = "<group>"; };
 		8C18041512F770DB0061FDE6 /* AddActivityDialogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AddActivityDialogController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -782,7 +785,6 @@
 		8C73F00112E578160056FAFF /* AdiumState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AdiumState.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8C73F08E12E5E49E0056FAFF /* SummaryHUD.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SummaryHUD.xib; sourceTree = "<group>"; };
 		8C73F09912E5F6590056FAFF /* SummaryHUDControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SummaryHUDControl.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		8C73F09A12E5F6590056FAFF /* SummaryHUDControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SummaryHUDControl.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8C73F10512E624080056FAFF /* Design.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Design.rtf; sourceTree = "<group>"; };
 		8C73F3C812E78F310056FAFF /* SummaryTaskData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SummaryTaskData.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8C73F3C912E78F310056FAFF /* SummaryTaskData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SummaryTaskData.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -797,6 +799,9 @@
 		8C73F8B412E893CC0056FAFF /* TestMailModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TestMailModule.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8C73F8B612E893EC0056FAFF /* TestMailModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TestMailModule.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8C73F8B712E893EC0056FAFF /* TestMailModule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestMailModule.xib; sourceTree = "<group>"; };
+		8C74F12F13B59D0500A7BF20 /* HUDCellController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDCellController.h; sourceTree = "<group>"; };
+		8C74F13013B59D0500A7BF20 /* HUDCellController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDCellController.m; sourceTree = "<group>"; };
+		8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummaryHUDControl.m; sourceTree = "<group>"; };
 		8C77290712D46AC600F71FE7 /* iChatModule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = iChatModule.xib; sourceTree = "<group>"; };
 		8C77290812D46AC600F71FE7 /* iChatModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = iChatModule.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8C77290912D46AC600F71FE7 /* iChatModule-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iChatModule-Info.plist"; sourceTree = "<group>"; };
@@ -938,8 +943,6 @@
 		8C8EF5C11389DF0800F2E80F /* GoogleTaskEdit.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoogleTaskEdit.xib; sourceTree = "<group>"; };
 		8C8EF5C31389DFD600F2E80F /* GoogleTaskEditCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleTaskEditCtrl.h; sourceTree = "<group>"; };
 		8C8EF5C41389DFD600F2E80F /* GoogleTaskEditCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleTaskEditCtrl.m; sourceTree = "<group>"; };
-		8C922FEC13AABE8C008B3C32 /* HUDSplitterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDSplitterView.h; sourceTree = "<group>"; };
-		8C922FED13AABE8C008B3C32 /* HUDSplitterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDSplitterView.m; sourceTree = "<group>"; };
 		8C9653391384BFFB007970F2 /* ReleaseNotes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ReleaseNotes.txt; path = GoogleOAuth/Source/ReleaseNotes.txt; sourceTree = "<group>"; };
 		8C96533C1384BFFB007970F2 /* GTMOAuth2Window.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GTMOAuth2Window.xib; sourceTree = "<group>"; };
 		8C96533D1384BFFB007970F2 /* GTMOAuth2WindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMOAuth2WindowController.h; sourceTree = "<group>"; };
@@ -1363,6 +1366,7 @@
 				8C37984D1384D018008EADC7 /* Security.framework */,
 				8C3798AD1384D702008EADC7 /* WebKit.framework */,
 				8C8EF5C11389DF0800F2E80F /* GoogleTaskEdit.xib */,
+				8C171D7A13B57291007ED1E8 /* HUDCell.xib */,
 			);
 			name = WorkPlayAway;
 			sourceTree = "<group>";
@@ -1506,8 +1510,9 @@
 		8C73F08D12E5E4460056FAFF /* SummaryHUD */ = {
 			isa = PBXGroup;
 			children = (
-				8C922FEC13AABE8C008B3C32 /* HUDSplitterView.h */,
-				8C922FED13AABE8C008B3C32 /* HUDSplitterView.m */,
+				8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */,
+				8C74F12F13B59D0500A7BF20 /* HUDCellController.h */,
+				8C74F13013B59D0500A7BF20 /* HUDCellController.m */,
 				8C5BB9851371E07E0004E88C /* HUDBusyView.xib */,
 				8C5BB9B71371E2920004E88C /* HUDBusy.h */,
 				8C5BB9B81371E2920004E88C /* HUDBusy.m */,
@@ -1529,7 +1534,6 @@
 				8C73F3C912E78F310056FAFF /* SummaryTaskData.m */,
 				8C73F08E12E5E49E0056FAFF /* SummaryHUD.xib */,
 				8C73F09912E5F6590056FAFF /* SummaryHUDControl.h */,
-				8C73F09A12E5F6590056FAFF /* SummaryHUDControl.m */,
 			);
 			name = SummaryHUD;
 			sourceTree = "<group>";
@@ -2460,6 +2464,7 @@
 				8C5BB840136F448D0004E88C /* SwitchActivityDialog.xib in Resources */,
 				8C5BB9861371E07F0004E88C /* HUDBusyView.xib in Resources */,
 				8C285846137319E400CAAF2A /* HUDBusyView.xib in Resources */,
+				8C171D7B13B57291007ED1E8 /* HUDCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2639,6 +2644,7 @@
 				8C5BB83F136F448D0004E88C /* SwitchActivityDialog.xib in Resources */,
 				8C5BB9871371E07F0004E88C /* HUDBusyView.xib in Resources */,
 				8C285845137319E400CAAF2A /* HUDBusyView.xib in Resources */,
+				8C171D7C13B57291007ED1E8 /* HUDCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2691,6 +2697,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C74F13213B59D0500A7BF20 /* HUDCellController.m in Sources */,
 				8C63131D13916C7F00E2570F /* WriteHandler.m in Sources */,
 				8C78507113294FA20008CF2B /* HeatMap.m in Sources */,
 				8C01DD8F131D67EB00398AD8 /* HUDSettings.m in Sources */,
@@ -2713,7 +2720,6 @@
 				8CF8B60A12D821B5009C7E3D /* StatsReport.m in Sources */,
 				8CF8C13E12DC2B59009C7E3D /* WorkTable.m in Sources */,
 				8CF8C14412DC2CB7009C7E3D /* SummaryTable.m in Sources */,
-				8C73F09B12E5F6590056FAFF /* SummaryHUDControl.m in Sources */,
 				8C73F3CA12E78F310056FAFF /* SummaryTaskData.m in Sources */,
 				8C73F3D712E790B60056FAFF /* SummaryData.m in Sources */,
 				8C73F3DC12E793190056FAFF /* SummaryEventData.m in Sources */,
@@ -2745,7 +2751,7 @@
 				8CB7C775137D95DB00CB3193 /* NDHotKeyControl.m in Sources */,
 				8CB7C776137D95DB00CB3193 /* NDKeyboardLayout.m in Sources */,
 				8C630F50138EE81B00E2570F /* TasksDataSource.m in Sources */,
-				8C922FEE13AABE8C008B3C32 /* HUDSplitterView.m in Sources */,
+				8C74F36413B5D1E200A7BF20 /* SummaryHUDControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2943,6 +2949,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C74F13113B59D0500A7BF20 /* HUDCellController.m in Sources */,
 				8C63131C13916C7500E2570F /* WriteHandler.m in Sources */,
 				8C78508113294FF10008CF2B /* HeatMap.m in Sources */,
 				8C01DD91131D680100398AD8 /* HUDSettings.m in Sources */,
@@ -2968,7 +2975,6 @@
 				8CF8B60612D821B5009C7E3D /* StatsReport.m in Sources */,
 				8CF8C13D12DC2B59009C7E3D /* WorkTable.m in Sources */,
 				8CF8C14312DC2CB7009C7E3D /* SummaryTable.m in Sources */,
-				8C73F09C12E5F6590056FAFF /* SummaryHUDControl.m in Sources */,
 				8C5DEF3B12E9F3A900EE93F1 /* SummaryDeadlineData.m in Sources */,
 				8CDC13971310C7C200BA478C /* SummaryViewController.m in Sources */,
 				8C1C92E512EB593C0077D343 /* GrowlManager.m in Sources */,
@@ -2997,7 +3003,7 @@
 				8CB7C77B137D95DB00CB3193 /* NDHotKeyControl.m in Sources */,
 				8CB7C77C137D95DB00CB3193 /* NDKeyboardLayout.m in Sources */,
 				8C630F4F138EE81B00E2570F /* TasksDataSource.m in Sources */,
-				8C922FEF13AABE8C008B3C32 /* HUDSplitterView.m in Sources */,
+				8C74F36313B5D1E200A7BF20 /* SummaryHUDControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

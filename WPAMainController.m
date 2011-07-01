@@ -156,9 +156,9 @@
 				}
 			}
 		}
-		if (!foundTask){
-			[self clickSwitchActivity:self];
-		}
+//		if (!foundTask){
+//			[self clickSwitchActivity:self];
+//		}
 	}
 	[self setupHotKeyIfNecessary];
 //	if (ctx.running){
@@ -399,24 +399,25 @@
 	[self buildStatusMenu];
 }
 
-- (void)loadModalWindow: (NSWindowController*) win class: (Class) clazz nibName: (NSString*) name callback: (SEL) cb
+- (void)loadModalWindow: (NSWindowController**) win class: (Class) clazz nibName: (NSString*) name callback: (SEL) cb
 {
-	win = [[clazz alloc] initWithWindowNibName:name];
+	*win = [[clazz alloc] initWithWindowNibName:name];
+	NSWindowController *ctrl = *win;
 	[[NSNotificationCenter defaultCenter] addObserver:self 
 											 selector:cb
 												 name:NSWindowWillCloseNotification 
-											   object:[win window]];
-	[win.window makeKeyAndOrderFront:self];
-	[win.window setOrderedIndex:0];
+											   object:[ctrl window]];
+	[ctrl.window makeKeyAndOrderFront:self];
+	[ctrl.window setOrderedIndex:0];
 	[[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
-	[win showWindow:self];
-	modalSession = [NSApp beginModalSessionForWindow:win.window];
+	[ctrl showWindow:self];
+	modalSession = [NSApp beginModalSessionForWindow:ctrl.window];
 	[NSApp runModalSession:modalSession];
 }
 
 - (IBAction) clickSwitchActivity: (id) sender
 {
-	[self loadModalWindow: switchActivityDialog 
+	[self loadModalWindow: &switchActivityDialog 
 					class:[SwitchActivityDialog class] 
 				  nibName: @"SwitchActivityDialog"
 				 callback: @selector(switchActClosed:)];
@@ -424,7 +425,7 @@
 
 - (IBAction) clickAddActivity: (id) sender
 {
-	[self loadModalWindow: addActivityWindow 
+	[self loadModalWindow: &addActivityWindow 
 					class: [AddActivityDialogController class]
 				  nibName: @"AddActivityDialog"
 				 callback: @selector(addActClosed:)];
@@ -616,7 +617,8 @@
 												 name:NSWindowWillCloseNotification 
 											   object:shc.window];
 
-	[self buildStatusMenu];	
+	//[self buildStatusMenu];	
+	
 }
 
 - (void) summaryClosed:(NSNotification*) notification{
@@ -710,7 +712,7 @@
 	if (newState == WPASTATE_FREE)
 	{
 		if ([self needsSummary]){
-			[self showSummaryScreen: self];
+	//		[self showSummaryScreen: self];
 			return;
 		}
 		if ([self shouldGoBackToWork]) {

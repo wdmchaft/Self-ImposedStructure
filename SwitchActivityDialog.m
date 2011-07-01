@@ -82,7 +82,7 @@
 	NSString *tName = [availableActCombo stringValue];
 	NSString *srcName = [[listsButton selectedItem] title];
 	ctx.currentTask = [NSDictionary dictionaryWithObjectsAndKeys:tName, @"name",
-																	srcName, @"source"
+																	srcName, @"source",
 																	@"default", @"project", nil];
 	[[ctx growlManager] growlFYI:[NSString stringWithFormat: @"New activity: %@",tName]];
 	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];

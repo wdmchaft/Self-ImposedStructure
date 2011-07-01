@@ -1,9 +1,9 @@
 //
 //  WorkHoursToAverageXForm.m
-//  Self-Imposed Structure
+//  WorkPlayAway
 //
 //  Created by Charles on 3/23/11.
-//  Copyright 2011 zer0gravitas. All rights reserved.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import "WorkHoursToAverageXForm.h"
@@ -35,7 +35,7 @@
 }
 
 - (id)transformedValue:(id)value {
-    //NSLog(@"value = %@", value);
+    NSLog(@"value = %@", value);
     NSNumber *workTime = value;
     Context *ctx = [Context sharedContext];
     
