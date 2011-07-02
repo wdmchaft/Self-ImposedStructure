@@ -42,17 +42,29 @@
 {
 	Context *ctx = [Context sharedContext];
 	NSString *currentStr =  [[ctx currentTask] objectForKey: @"name"];
+	NSString *currentSrc =  [[ctx currentTask] objectForKey: @"source"];
 	currentStr = (currentStr) ? currentStr : @"No Current Activity";
 	[currentText setStringValue: currentStr];
 	NSArray *lists = [ctx getTrackedLists];
+	list = nil;
 	
 	for (id<TaskList> tl in lists){
 		[listsButton addItemWithTitle:[tl name]];
+
 		NSMenuItem *item = [listsButton itemWithTitle:[tl name]];
 		[item setTarget:self];	
 		[item setAction:@selector(clickItem:)];
+		if ([currentSrc isEqualToString:[tl name]]){
+			[listsButton selectItem:item];
+			list = tl;
+		}
 	}
-	NSDictionary *task = [ctx currentTask];
+	if (!list){
+		list = [lists objectAtIndex:0];
+	}
+
+	[availableActCombo reloadData];
+//	NSDictionary *task = [ctx currentTask];
 }
 
 - (void) windowDidLoad

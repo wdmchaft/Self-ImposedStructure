@@ -41,8 +41,8 @@
 
 - (void) awakeFromNib
 {
-	NSWindow *win = [self window];
 }
+
 + (void) initialize
 {
     NSRect mRect = [NSScreen mainScreen].frame;
@@ -283,6 +283,11 @@ constrainMinCoordinate:(CGFloat)		proposedMin
 	}
 }
 
+- (void) showSwitchActivity: (id) sender
+{
+	[mainControl clickSwitchActivity:mainControl];
+}
+
 - (void) setupHeader
 {
 	Context *ctx = [Context sharedContext];
@@ -298,7 +303,7 @@ constrainMinCoordinate:(CGFloat)		proposedMin
 	if (ctx.currentTask && [ctx.currentTask objectForKey:@"name"]){
 		task =[ctx.currentTask objectForKey:@"name"];
 	}
-	[taskField setStringValue:task];
+	[taskField setTitle:task];
 }
 
 - (void) showWindow:(id)sender
@@ -397,5 +402,13 @@ constrainMinCoordinate:(CGFloat)		proposedMin
 	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+@end
+
+@implementation MyField
+
+- (BOOL)acceptsFirstMouse:(NSEvent *)theEvent
+{
+	return YES;
+}
 
 @end

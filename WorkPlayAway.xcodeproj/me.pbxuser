@@ -17,14 +17,9 @@
 			8C0D93EF12D63D3D009F3280 /* devstruct */,
 		);
 		breakpoints = (
-			8C64BDF713BC55A1004FD2A3 /* SummaryHUDControl.m:79 */,
-			8C64BFB313BE54E9004FD2A3 /* WPAMainController.m:428 */,
-			8C64BFD713BE5933004FD2A3 /* WPAMainController.m:447 */,
-			8C64BFE613BE59D6004FD2A3 /* SwitchActivityDialog.m:81 */,
-			8C64C00D13BE5C1B004FD2A3 /* WPADelegate.m:491 */,
-			8C64C02413BE5D36004FD2A3 /* -[NSApplication terminate:] */,
-			8C64C03613BE5DD5004FD2A3 /* WPAMainController.m:420 */,
-			8C64C06E13BE6132004FD2A3 /* WPAMainController.m:487 */,
+			8C64C12713BE9441004FD2A3 /* SummaryHUDControl.m:411 */,
+			8C64C1AC13BE9F95004FD2A3 /* WPAMainController.m:449 */,
+			8C64C1AE13BE9F9C004FD2A3 /* WPAMainController.m:422 */,
 		);
 		codeSenseManager = 8C77290512D46A1800F71FE7 /* Code sense */;
 		executables = (
@@ -521,6 +516,238 @@
 			8C64C09013BE62C9004FD2A3 /* PBXTextBookmark */ = 8C64C09013BE62C9004FD2A3 /* PBXTextBookmark */;
 			8C64C09113BE62C9004FD2A3 /* PBXTextBookmark */ = 8C64C09113BE62C9004FD2A3 /* PBXTextBookmark */;
 			8C64C09213BE62C9004FD2A3 /* PBXTextBookmark */ = 8C64C09213BE62C9004FD2A3 /* PBXTextBookmark */;
+			8C64C09613BE85D4004FD2A3 /* PBXTextBookmark */ = 8C64C09613BE85D4004FD2A3 /* PBXTextBookmark */;
+			8C64C09713BE85D4004FD2A3 /* PBXTextBookmark */ = 8C64C09713BE85D4004FD2A3 /* PBXTextBookmark */;
+			8C64C09813BE85D4004FD2A3 /* PBXTextBookmark */ = 8C64C09813BE85D4004FD2A3 /* PBXTextBookmark */;
+			8C64C09913BE85D4004FD2A3 /* PBXTextBookmark */ = 8C64C09913BE85D4004FD2A3 /* PBXTextBookmark */;
+			8C64C09A13BE85D4004FD2A3 /* PBXTextBookmark */ = 8C64C09A13BE85D4004FD2A3 /* PBXTextBookmark */;
+			8C64C09B13BE85D4004FD2A3 /* PBXTextBookmark */ = 8C64C09B13BE85D4004FD2A3 /* PBXTextBookmark */;
+			8C64C09E13BE8815004FD2A3 /* PBXTextBookmark */ = 8C64C09E13BE8815004FD2A3 /* PBXTextBookmark */;
+			8C64C09F13BE8815004FD2A3 /* PBXTextBookmark */ = 8C64C09F13BE8815004FD2A3 /* PBXTextBookmark */;
+			8C64C0A013BE8815004FD2A3 /* PBXTextBookmark */ = 8C64C0A013BE8815004FD2A3 /* PBXTextBookmark */;
+			8C64C0A113BE8815004FD2A3 /* PBXTextBookmark */ = 8C64C0A113BE8815004FD2A3 /* PBXTextBookmark */;
+			8C64C0A413BE8815004FD2A3 /* PBXBookmark */ = 8C64C0A413BE8815004FD2A3 /* PBXBookmark */;
+			8C64C0A513BE8815004FD2A3 /* PBXTextBookmark */ = 8C64C0A513BE8815004FD2A3 /* PBXTextBookmark */;
+			8C64C0A613BE8815004FD2A3 /* PBXTextBookmark */ = 8C64C0A613BE8815004FD2A3 /* PBXTextBookmark */;
+			8C64C0A713BE8815004FD2A3 /* PBXTextBookmark */ = 8C64C0A713BE8815004FD2A3 /* PBXTextBookmark */;
+			8C64C0A813BE8815004FD2A3 /* PBXTextBookmark */ = 8C64C0A813BE8815004FD2A3 /* PBXTextBookmark */;
+			8C64C0A913BE8815004FD2A3 /* PBXTextBookmark */ = 8C64C0A913BE8815004FD2A3 /* PBXTextBookmark */;
+			8C64C0B113BE8AC5004FD2A3 /* PBXTextBookmark */ = 8C64C0B113BE8AC5004FD2A3 /* PBXTextBookmark */;
+			8C64C0B213BE8AC5004FD2A3 /* PBXTextBookmark */ = 8C64C0B213BE8AC5004FD2A3 /* PBXTextBookmark */;
+			8C64C0B313BE8AC5004FD2A3 /* PBXTextBookmark */ = 8C64C0B313BE8AC5004FD2A3 /* PBXTextBookmark */;
+			8C64C0B413BE8AC5004FD2A3 /* PBXTextBookmark */ = 8C64C0B413BE8AC5004FD2A3 /* PBXTextBookmark */;
+			8C64C0B513BE8AC5004FD2A3 /* PBXTextBookmark */ = 8C64C0B513BE8AC5004FD2A3 /* PBXTextBookmark */;
+			8C64C0B613BE8AC5004FD2A3 /* PBXTextBookmark */ = 8C64C0B613BE8AC5004FD2A3 /* PBXTextBookmark */;
+			8C64C0B713BE8AC5004FD2A3 /* PBXTextBookmark */ = 8C64C0B713BE8AC5004FD2A3 /* PBXTextBookmark */;
+			8C64C0B813BE8AC5004FD2A3 /* PBXTextBookmark */ = 8C64C0B813BE8AC5004FD2A3 /* PBXTextBookmark */;
+			8C64C0B913BE8AC5004FD2A3 /* PBXTextBookmark */ = 8C64C0B913BE8AC5004FD2A3 /* PBXTextBookmark */;
+			8C64C0BA13BE8AC5004FD2A3 /* PBXTextBookmark */ = 8C64C0BA13BE8AC5004FD2A3 /* PBXTextBookmark */;
+			8C64C0BC13BE8ADA004FD2A3 /* PBXTextBookmark */ = 8C64C0BC13BE8ADA004FD2A3 /* PBXTextBookmark */;
+			8C64C0BD13BE8ADA004FD2A3 /* PBXTextBookmark */ = 8C64C0BD13BE8ADA004FD2A3 /* PBXTextBookmark */;
+			8C64C0BE13BE8ADA004FD2A3 /* PBXTextBookmark */ = 8C64C0BE13BE8ADA004FD2A3 /* PBXTextBookmark */;
+			8C64C0BF13BE8ADA004FD2A3 /* PBXTextBookmark */ = 8C64C0BF13BE8ADA004FD2A3 /* PBXTextBookmark */;
+			8C64C0C013BE8ADA004FD2A3 /* PBXTextBookmark */ = 8C64C0C013BE8ADA004FD2A3 /* PBXTextBookmark */;
+			8C64C0C113BE8ADA004FD2A3 /* PBXTextBookmark */ = 8C64C0C113BE8ADA004FD2A3 /* PBXTextBookmark */;
+			8C64C0C213BE8ADA004FD2A3 /* PBXTextBookmark */ = 8C64C0C213BE8ADA004FD2A3 /* PBXTextBookmark */;
+			8C64C0C313BE8B0A004FD2A3 /* PBXTextBookmark */ = 8C64C0C313BE8B0A004FD2A3 /* PBXTextBookmark */;
+			8C64C0C413BE8B0A004FD2A3 /* PBXTextBookmark */ = 8C64C0C413BE8B0A004FD2A3 /* PBXTextBookmark */;
+			8C64C0C513BE8B0A004FD2A3 /* PBXTextBookmark */ = 8C64C0C513BE8B0A004FD2A3 /* PBXTextBookmark */;
+			8C64C0C613BE8B0A004FD2A3 /* PBXTextBookmark */ = 8C64C0C613BE8B0A004FD2A3 /* PBXTextBookmark */;
+			8C64C0C713BE8B0A004FD2A3 /* PBXTextBookmark */ = 8C64C0C713BE8B0A004FD2A3 /* PBXTextBookmark */;
+			8C64C0C813BE8B0A004FD2A3 /* PBXTextBookmark */ = 8C64C0C813BE8B0A004FD2A3 /* PBXTextBookmark */;
+			8C64C0C913BE8B0A004FD2A3 /* PBXTextBookmark */ = 8C64C0C913BE8B0A004FD2A3 /* PBXTextBookmark */;
+			8C64C0CE13BE90D2004FD2A3 /* PBXTextBookmark */ = 8C64C0CE13BE90D2004FD2A3 /* PBXTextBookmark */;
+			8C64C0CF13BE90D2004FD2A3 /* PBXTextBookmark */ = 8C64C0CF13BE90D2004FD2A3 /* PBXTextBookmark */;
+			8C64C0D113BE90D2004FD2A3 /* PBXTextBookmark */ = 8C64C0D113BE90D2004FD2A3 /* PBXTextBookmark */;
+			8C64C0D213BE90D2004FD2A3 /* PBXTextBookmark */ = 8C64C0D213BE90D2004FD2A3 /* PBXTextBookmark */;
+			8C64C0D313BE90D2004FD2A3 /* PBXTextBookmark */ = 8C64C0D313BE90D2004FD2A3 /* PBXTextBookmark */;
+			8C64C0D513BE90D2004FD2A3 /* PBXBookmark */ = 8C64C0D513BE90D2004FD2A3 /* PBXBookmark */;
+			8C64C0D613BE90D2004FD2A3 /* PBXTextBookmark */ = 8C64C0D613BE90D2004FD2A3 /* PBXTextBookmark */;
+			8C64C0D713BE90D2004FD2A3 /* PBXTextBookmark */ = 8C64C0D713BE90D2004FD2A3 /* PBXTextBookmark */;
+			8C64C0D813BE90D2004FD2A3 /* PBXTextBookmark */ = 8C64C0D813BE90D2004FD2A3 /* PBXTextBookmark */;
+			8C64C0D913BE90D2004FD2A3 /* PBXTextBookmark */ = 8C64C0D913BE90D2004FD2A3 /* PBXTextBookmark */;
+			8C64C0DA13BE90D2004FD2A3 /* PBXTextBookmark */ = 8C64C0DA13BE90D2004FD2A3 /* PBXTextBookmark */;
+			8C64C0DB13BE90D2004FD2A3 /* PBXTextBookmark */ = 8C64C0DB13BE90D2004FD2A3 /* PBXTextBookmark */;
+			8C64C0DE13BE912A004FD2A3 /* PBXTextBookmark */ = 8C64C0DE13BE912A004FD2A3 /* PBXTextBookmark */;
+			8C64C0DF13BE912A004FD2A3 /* PBXTextBookmark */ = 8C64C0DF13BE912A004FD2A3 /* PBXTextBookmark */;
+			8C64C0E013BE912A004FD2A3 /* PBXTextBookmark */ = 8C64C0E013BE912A004FD2A3 /* PBXTextBookmark */;
+			8C64C0E113BE912A004FD2A3 /* PBXTextBookmark */ = 8C64C0E113BE912A004FD2A3 /* PBXTextBookmark */;
+			8C64C0E213BE912A004FD2A3 /* PBXTextBookmark */ = 8C64C0E213BE912A004FD2A3 /* PBXTextBookmark */;
+			8C64C0E313BE912A004FD2A3 /* PBXTextBookmark */ = 8C64C0E313BE912A004FD2A3 /* PBXTextBookmark */;
+			8C64C0E413BE912A004FD2A3 /* PBXTextBookmark */ = 8C64C0E413BE912A004FD2A3 /* PBXTextBookmark */;
+			8C64C0E513BE912A004FD2A3 /* PBXTextBookmark */ = 8C64C0E513BE912A004FD2A3 /* PBXTextBookmark */;
+			8C64C0E613BE912A004FD2A3 /* PBXTextBookmark */ = 8C64C0E613BE912A004FD2A3 /* PBXTextBookmark */;
+			8C64C0EC13BE9151004FD2A3 /* PBXTextBookmark */ = 8C64C0EC13BE9151004FD2A3 /* PBXTextBookmark */;
+			8C64C0ED13BE9151004FD2A3 /* PBXTextBookmark */ = 8C64C0ED13BE9151004FD2A3 /* PBXTextBookmark */;
+			8C64C0EE13BE9151004FD2A3 /* PBXTextBookmark */ = 8C64C0EE13BE9151004FD2A3 /* PBXTextBookmark */;
+			8C64C0EF13BE9151004FD2A3 /* PBXTextBookmark */ = 8C64C0EF13BE9151004FD2A3 /* PBXTextBookmark */;
+			8C64C0F013BE9151004FD2A3 /* PBXTextBookmark */ = 8C64C0F013BE9151004FD2A3 /* PBXTextBookmark */;
+			8C64C0F113BE9151004FD2A3 /* PBXTextBookmark */ = 8C64C0F113BE9151004FD2A3 /* PBXTextBookmark */;
+			8C64C0F213BE9151004FD2A3 /* PBXTextBookmark */ = 8C64C0F213BE9151004FD2A3 /* PBXTextBookmark */;
+			8C64C0F313BE9151004FD2A3 /* PBXTextBookmark */ = 8C64C0F313BE9151004FD2A3 /* PBXTextBookmark */;
+			8C64C0F413BE9151004FD2A3 /* PBXTextBookmark */ = 8C64C0F413BE9151004FD2A3 /* PBXTextBookmark */;
+			8C64C0F513BE9151004FD2A3 /* PBXTextBookmark */ = 8C64C0F513BE9151004FD2A3 /* PBXTextBookmark */;
+			8C64C0F813BE91BB004FD2A3 /* PBXTextBookmark */ = 8C64C0F813BE91BB004FD2A3 /* PBXTextBookmark */;
+			8C64C0F913BE91BB004FD2A3 /* PBXTextBookmark */ = 8C64C0F913BE91BB004FD2A3 /* PBXTextBookmark */;
+			8C64C0FA13BE91BB004FD2A3 /* PBXTextBookmark */ = 8C64C0FA13BE91BB004FD2A3 /* PBXTextBookmark */;
+			8C64C0FB13BE91BB004FD2A3 /* PBXTextBookmark */ = 8C64C0FB13BE91BB004FD2A3 /* PBXTextBookmark */;
+			8C64C0FC13BE91BB004FD2A3 /* PBXTextBookmark */ = 8C64C0FC13BE91BB004FD2A3 /* PBXTextBookmark */;
+			8C64C0FD13BE91BB004FD2A3 /* PBXTextBookmark */ = 8C64C0FD13BE91BB004FD2A3 /* PBXTextBookmark */;
+			8C64C0FE13BE91BB004FD2A3 /* PBXTextBookmark */ = 8C64C0FE13BE91BB004FD2A3 /* PBXTextBookmark */;
+			8C64C0FF13BE91BB004FD2A3 /* PBXTextBookmark */ = 8C64C0FF13BE91BB004FD2A3 /* PBXTextBookmark */;
+			8C64C10013BE91BB004FD2A3 /* PBXTextBookmark */ = 8C64C10013BE91BB004FD2A3 /* PBXTextBookmark */;
+			8C64C10213BE91C7004FD2A3 /* PBXTextBookmark */ = 8C64C10213BE91C7004FD2A3 /* PBXTextBookmark */;
+			8C64C10313BE91C7004FD2A3 /* PBXTextBookmark */ = 8C64C10313BE91C7004FD2A3 /* PBXTextBookmark */;
+			8C64C10413BE91C7004FD2A3 /* PBXTextBookmark */ = 8C64C10413BE91C7004FD2A3 /* PBXTextBookmark */;
+			8C64C10513BE91C7004FD2A3 /* PBXTextBookmark */ = 8C64C10513BE91C7004FD2A3 /* PBXTextBookmark */;
+			8C64C10613BE91C7004FD2A3 /* PBXTextBookmark */ = 8C64C10613BE91C7004FD2A3 /* PBXTextBookmark */;
+			8C64C10713BE91C7004FD2A3 /* PBXTextBookmark */ = 8C64C10713BE91C7004FD2A3 /* PBXTextBookmark */;
+			8C64C10813BE91C7004FD2A3 /* PBXTextBookmark */ = 8C64C10813BE91C7004FD2A3 /* PBXTextBookmark */;
+			8C64C10913BE91C7004FD2A3 /* PBXTextBookmark */ = 8C64C10913BE91C7004FD2A3 /* PBXTextBookmark */;
+			8C64C10A13BE91C7004FD2A3 /* PBXTextBookmark */ = 8C64C10A13BE91C7004FD2A3 /* PBXTextBookmark */;
+			8C64C10D13BE920C004FD2A3 /* PBXTextBookmark */ = 8C64C10D13BE920C004FD2A3 /* PBXTextBookmark */;
+			8C64C10E13BE920C004FD2A3 /* PBXTextBookmark */ = 8C64C10E13BE920C004FD2A3 /* PBXTextBookmark */;
+			8C64C10F13BE920C004FD2A3 /* PBXTextBookmark */ = 8C64C10F13BE920C004FD2A3 /* PBXTextBookmark */;
+			8C64C11013BE920C004FD2A3 /* PBXTextBookmark */ = 8C64C11013BE920C004FD2A3 /* PBXTextBookmark */;
+			8C64C11113BE920C004FD2A3 /* PBXTextBookmark */ = 8C64C11113BE920C004FD2A3 /* PBXTextBookmark */;
+			8C64C11213BE920C004FD2A3 /* PBXTextBookmark */ = 8C64C11213BE920C004FD2A3 /* PBXTextBookmark */;
+			8C64C11313BE920C004FD2A3 /* PBXTextBookmark */ = 8C64C11313BE920C004FD2A3 /* PBXTextBookmark */;
+			8C64C11413BE920C004FD2A3 /* PBXTextBookmark */ = 8C64C11413BE920C004FD2A3 /* PBXTextBookmark */;
+			8C64C11513BE920C004FD2A3 /* PBXTextBookmark */ = 8C64C11513BE920C004FD2A3 /* PBXTextBookmark */;
+			8C64C11B13BE9434004FD2A3 /* PBXTextBookmark */ = 8C64C11B13BE9434004FD2A3 /* PBXTextBookmark */;
+			8C64C11C13BE9434004FD2A3 /* PBXTextBookmark */ = 8C64C11C13BE9434004FD2A3 /* PBXTextBookmark */;
+			8C64C11D13BE9434004FD2A3 /* PBXTextBookmark */ = 8C64C11D13BE9434004FD2A3 /* PBXTextBookmark */;
+			8C64C11E13BE9434004FD2A3 /* PBXTextBookmark */ = 8C64C11E13BE9434004FD2A3 /* PBXTextBookmark */;
+			8C64C11F13BE9434004FD2A3 /* PBXTextBookmark */ = 8C64C11F13BE9434004FD2A3 /* PBXTextBookmark */;
+			8C64C12013BE9434004FD2A3 /* PBXTextBookmark */ = 8C64C12013BE9434004FD2A3 /* PBXTextBookmark */;
+			8C64C12113BE9434004FD2A3 /* PBXTextBookmark */ = 8C64C12113BE9434004FD2A3 /* PBXTextBookmark */;
+			8C64C12213BE9434004FD2A3 /* PBXTextBookmark */ = 8C64C12213BE9434004FD2A3 /* PBXTextBookmark */;
+			8C64C12313BE9434004FD2A3 /* PBXTextBookmark */ = 8C64C12313BE9434004FD2A3 /* PBXTextBookmark */;
+			8C64C12413BE9434004FD2A3 /* PBXTextBookmark */ = 8C64C12413BE9434004FD2A3 /* PBXTextBookmark */;
+			8C64C12513BE9434004FD2A3 /* PBXTextBookmark */ = 8C64C12513BE9434004FD2A3 /* PBXTextBookmark */;
+			8C64C12913BE9444004FD2A3 /* PBXTextBookmark */ = 8C64C12913BE9444004FD2A3 /* PBXTextBookmark */;
+			8C64C12A13BE9444004FD2A3 /* PBXTextBookmark */ = 8C64C12A13BE9444004FD2A3 /* PBXTextBookmark */;
+			8C64C12B13BE9444004FD2A3 /* PBXTextBookmark */ = 8C64C12B13BE9444004FD2A3 /* PBXTextBookmark */;
+			8C64C12C13BE9444004FD2A3 /* PBXTextBookmark */ = 8C64C12C13BE9444004FD2A3 /* PBXTextBookmark */;
+			8C64C12D13BE9444004FD2A3 /* PBXTextBookmark */ = 8C64C12D13BE9444004FD2A3 /* PBXTextBookmark */;
+			8C64C12E13BE9444004FD2A3 /* PBXTextBookmark */ = 8C64C12E13BE9444004FD2A3 /* PBXTextBookmark */;
+			8C64C12F13BE9444004FD2A3 /* PBXTextBookmark */ = 8C64C12F13BE9444004FD2A3 /* PBXTextBookmark */;
+			8C64C13013BE9444004FD2A3 /* PBXTextBookmark */ = 8C64C13013BE9444004FD2A3 /* PBXTextBookmark */;
+			8C64C13113BE9444004FD2A3 /* PBXTextBookmark */ = 8C64C13113BE9444004FD2A3 /* PBXTextBookmark */;
+			8C64C13213BE9444004FD2A3 /* PBXTextBookmark */ = 8C64C13213BE9444004FD2A3 /* PBXTextBookmark */;
+			8C64C13513BE946F004FD2A3 /* PBXTextBookmark */ = 8C64C13513BE946F004FD2A3 /* PBXTextBookmark */;
+			8C64C13613BE946F004FD2A3 /* PBXTextBookmark */ = 8C64C13613BE946F004FD2A3 /* PBXTextBookmark */;
+			8C64C13713BE946F004FD2A3 /* PBXTextBookmark */ = 8C64C13713BE946F004FD2A3 /* PBXTextBookmark */;
+			8C64C13813BE946F004FD2A3 /* PBXTextBookmark */ = 8C64C13813BE946F004FD2A3 /* PBXTextBookmark */;
+			8C64C13913BE946F004FD2A3 /* PBXTextBookmark */ = 8C64C13913BE946F004FD2A3 /* PBXTextBookmark */;
+			8C64C13A13BE946F004FD2A3 /* PBXTextBookmark */ = 8C64C13A13BE946F004FD2A3 /* PBXTextBookmark */;
+			8C64C13B13BE946F004FD2A3 /* PBXTextBookmark */ = 8C64C13B13BE946F004FD2A3 /* PBXTextBookmark */;
+			8C64C13C13BE946F004FD2A3 /* PBXTextBookmark */ = 8C64C13C13BE946F004FD2A3 /* PBXTextBookmark */;
+			8C64C13D13BE946F004FD2A3 /* PBXTextBookmark */ = 8C64C13D13BE946F004FD2A3 /* PBXTextBookmark */;
+			8C64C13E13BE946F004FD2A3 /* PBXTextBookmark */ = 8C64C13E13BE946F004FD2A3 /* PBXTextBookmark */;
+			8C64C13F13BE946F004FD2A3 /* PBXTextBookmark */ = 8C64C13F13BE946F004FD2A3 /* PBXTextBookmark */;
+			8C64C14513BE9530004FD2A3 /* PBXTextBookmark */ = 8C64C14513BE9530004FD2A3 /* PBXTextBookmark */;
+			8C64C14613BE9530004FD2A3 /* PBXTextBookmark */ = 8C64C14613BE9530004FD2A3 /* PBXTextBookmark */;
+			8C64C14713BE9530004FD2A3 /* PBXTextBookmark */ = 8C64C14713BE9530004FD2A3 /* PBXTextBookmark */;
+			8C64C14813BE9530004FD2A3 /* PBXTextBookmark */ = 8C64C14813BE9530004FD2A3 /* PBXTextBookmark */;
+			8C64C14913BE9530004FD2A3 /* PBXTextBookmark */ = 8C64C14913BE9530004FD2A3 /* PBXTextBookmark */;
+			8C64C14A13BE9530004FD2A3 /* PBXTextBookmark */ = 8C64C14A13BE9530004FD2A3 /* PBXTextBookmark */;
+			8C64C14B13BE9530004FD2A3 /* PBXTextBookmark */ = 8C64C14B13BE9530004FD2A3 /* PBXTextBookmark */;
+			8C64C14C13BE9530004FD2A3 /* PBXTextBookmark */ = 8C64C14C13BE9530004FD2A3 /* PBXTextBookmark */;
+			8C64C14D13BE9530004FD2A3 /* PBXTextBookmark */ = 8C64C14D13BE9530004FD2A3 /* PBXTextBookmark */;
+			8C64C14F13BE9816004FD2A3 /* PBXTextBookmark */ = 8C64C14F13BE9816004FD2A3 /* PBXTextBookmark */;
+			8C64C15013BE9816004FD2A3 /* PBXTextBookmark */ = 8C64C15013BE9816004FD2A3 /* PBXTextBookmark */;
+			8C64C15113BE9816004FD2A3 /* PBXTextBookmark */ = 8C64C15113BE9816004FD2A3 /* PBXTextBookmark */;
+			8C64C15213BE9816004FD2A3 /* PBXTextBookmark */ = 8C64C15213BE9816004FD2A3 /* PBXTextBookmark */;
+			8C64C15313BE9816004FD2A3 /* PBXTextBookmark */ = 8C64C15313BE9816004FD2A3 /* PBXTextBookmark */;
+			8C64C15413BE9816004FD2A3 /* PBXTextBookmark */ = 8C64C15413BE9816004FD2A3 /* PBXTextBookmark */;
+			8C64C15513BE9816004FD2A3 /* PBXTextBookmark */ = 8C64C15513BE9816004FD2A3 /* PBXTextBookmark */;
+			8C64C15613BE9816004FD2A3 /* PBXTextBookmark */ = 8C64C15613BE9816004FD2A3 /* PBXTextBookmark */;
+			8C64C15713BE9816004FD2A3 /* PBXTextBookmark */ = 8C64C15713BE9816004FD2A3 /* PBXTextBookmark */;
+			8C64C15A13BE983A004FD2A3 /* PBXTextBookmark */ = 8C64C15A13BE983A004FD2A3 /* PBXTextBookmark */;
+			8C64C15B13BE983A004FD2A3 /* PBXTextBookmark */ = 8C64C15B13BE983A004FD2A3 /* PBXTextBookmark */;
+			8C64C15C13BE983A004FD2A3 /* PBXTextBookmark */ = 8C64C15C13BE983A004FD2A3 /* PBXTextBookmark */;
+			8C64C15D13BE983A004FD2A3 /* PBXTextBookmark */ = 8C64C15D13BE983A004FD2A3 /* PBXTextBookmark */;
+			8C64C15E13BE983A004FD2A3 /* PBXTextBookmark */ = 8C64C15E13BE983A004FD2A3 /* PBXTextBookmark */;
+			8C64C15F13BE983A004FD2A3 /* PBXTextBookmark */ = 8C64C15F13BE983A004FD2A3 /* PBXTextBookmark */;
+			8C64C16013BE983A004FD2A3 /* PBXTextBookmark */ = 8C64C16013BE983A004FD2A3 /* PBXTextBookmark */;
+			8C64C16113BE983A004FD2A3 /* PBXTextBookmark */ = 8C64C16113BE983A004FD2A3 /* PBXTextBookmark */;
+			8C64C16213BE983A004FD2A3 /* PBXTextBookmark */ = 8C64C16213BE983A004FD2A3 /* PBXTextBookmark */;
+			8C64C16613BE9858004FD2A3 /* PBXTextBookmark */ = 8C64C16613BE9858004FD2A3 /* PBXTextBookmark */;
+			8C64C16713BE9858004FD2A3 /* PBXTextBookmark */ = 8C64C16713BE9858004FD2A3 /* PBXTextBookmark */;
+			8C64C16813BE9858004FD2A3 /* PBXTextBookmark */ = 8C64C16813BE9858004FD2A3 /* PBXTextBookmark */;
+			8C64C16913BE9858004FD2A3 /* PBXTextBookmark */ = 8C64C16913BE9858004FD2A3 /* PBXTextBookmark */;
+			8C64C16A13BE9858004FD2A3 /* PBXTextBookmark */ = 8C64C16A13BE9858004FD2A3 /* PBXTextBookmark */;
+			8C64C16B13BE9858004FD2A3 /* PBXTextBookmark */ = 8C64C16B13BE9858004FD2A3 /* PBXTextBookmark */;
+			8C64C16C13BE9858004FD2A3 /* PBXTextBookmark */ = 8C64C16C13BE9858004FD2A3 /* PBXTextBookmark */;
+			8C64C16D13BE9858004FD2A3 /* PBXTextBookmark */ = 8C64C16D13BE9858004FD2A3 /* PBXTextBookmark */;
+			8C64C16E13BE9858004FD2A3 /* PBXTextBookmark */ = 8C64C16E13BE9858004FD2A3 /* PBXTextBookmark */;
+			8C64C17213BE991B004FD2A3 /* PBXTextBookmark */ = 8C64C17213BE991B004FD2A3 /* PBXTextBookmark */;
+			8C64C17313BE991B004FD2A3 /* PBXTextBookmark */ = 8C64C17313BE991B004FD2A3 /* PBXTextBookmark */;
+			8C64C17413BE991B004FD2A3 /* PBXTextBookmark */ = 8C64C17413BE991B004FD2A3 /* PBXTextBookmark */;
+			8C64C17513BE991B004FD2A3 /* PBXTextBookmark */ = 8C64C17513BE991B004FD2A3 /* PBXTextBookmark */;
+			8C64C17613BE991B004FD2A3 /* PBXTextBookmark */ = 8C64C17613BE991B004FD2A3 /* PBXTextBookmark */;
+			8C64C17713BE991B004FD2A3 /* PBXTextBookmark */ = 8C64C17713BE991B004FD2A3 /* PBXTextBookmark */;
+			8C64C17813BE991B004FD2A3 /* PBXTextBookmark */ = 8C64C17813BE991B004FD2A3 /* PBXTextBookmark */;
+			8C64C17913BE991B004FD2A3 /* PBXTextBookmark */ = 8C64C17913BE991B004FD2A3 /* PBXTextBookmark */;
+			8C64C17A13BE991B004FD2A3 /* PBXTextBookmark */ = 8C64C17A13BE991B004FD2A3 /* PBXTextBookmark */;
+			8C64C17C13BE9A43004FD2A3 /* PBXTextBookmark */ = 8C64C17C13BE9A43004FD2A3 /* PBXTextBookmark */;
+			8C64C17D13BE9A43004FD2A3 /* PBXTextBookmark */ = 8C64C17D13BE9A43004FD2A3 /* PBXTextBookmark */;
+			8C64C17E13BE9A43004FD2A3 /* PBXTextBookmark */ = 8C64C17E13BE9A43004FD2A3 /* PBXTextBookmark */;
+			8C64C17F13BE9A43004FD2A3 /* PBXTextBookmark */ = 8C64C17F13BE9A43004FD2A3 /* PBXTextBookmark */;
+			8C64C18013BE9A43004FD2A3 /* PBXTextBookmark */ = 8C64C18013BE9A43004FD2A3 /* PBXTextBookmark */;
+			8C64C18113BE9A43004FD2A3 /* PBXTextBookmark */ = 8C64C18113BE9A43004FD2A3 /* PBXTextBookmark */;
+			8C64C18213BE9A43004FD2A3 /* PBXTextBookmark */ = 8C64C18213BE9A43004FD2A3 /* PBXTextBookmark */;
+			8C64C18313BE9A43004FD2A3 /* PBXTextBookmark */ = 8C64C18313BE9A43004FD2A3 /* PBXTextBookmark */;
+			8C64C18413BE9A43004FD2A3 /* PBXTextBookmark */ = 8C64C18413BE9A43004FD2A3 /* PBXTextBookmark */;
+			8C64C18713BE9B15004FD2A3 /* PBXTextBookmark */ = 8C64C18713BE9B15004FD2A3 /* PBXTextBookmark */;
+			8C64C18813BE9B15004FD2A3 /* PBXTextBookmark */ = 8C64C18813BE9B15004FD2A3 /* PBXTextBookmark */;
+			8C64C18913BE9B15004FD2A3 /* PBXTextBookmark */ = 8C64C18913BE9B15004FD2A3 /* PBXTextBookmark */;
+			8C64C18A13BE9B15004FD2A3 /* PBXTextBookmark */ = 8C64C18A13BE9B15004FD2A3 /* PBXTextBookmark */;
+			8C64C18B13BE9B15004FD2A3 /* PBXTextBookmark */ = 8C64C18B13BE9B15004FD2A3 /* PBXTextBookmark */;
+			8C64C18C13BE9B15004FD2A3 /* PBXTextBookmark */ = 8C64C18C13BE9B15004FD2A3 /* PBXTextBookmark */;
+			8C64C18D13BE9B15004FD2A3 /* PBXTextBookmark */ = 8C64C18D13BE9B15004FD2A3 /* PBXTextBookmark */;
+			8C64C18E13BE9B15004FD2A3 /* PBXTextBookmark */ = 8C64C18E13BE9B15004FD2A3 /* PBXTextBookmark */;
+			8C64C18F13BE9B15004FD2A3 /* PBXTextBookmark */ = 8C64C18F13BE9B15004FD2A3 /* PBXTextBookmark */;
+			8C64C19513BE9ED7004FD2A3 /* PBXTextBookmark */ = 8C64C19513BE9ED7004FD2A3 /* PBXTextBookmark */;
+			8C64C19613BE9ED7004FD2A3 /* PBXTextBookmark */ = 8C64C19613BE9ED7004FD2A3 /* PBXTextBookmark */;
+			8C64C19713BE9ED7004FD2A3 /* PBXTextBookmark */ = 8C64C19713BE9ED7004FD2A3 /* PBXTextBookmark */;
+			8C64C19813BE9ED7004FD2A3 /* PBXTextBookmark */ = 8C64C19813BE9ED7004FD2A3 /* PBXTextBookmark */;
+			8C64C19913BE9ED7004FD2A3 /* PBXTextBookmark */ = 8C64C19913BE9ED7004FD2A3 /* PBXTextBookmark */;
+			8C64C19A13BE9ED7004FD2A3 /* PBXTextBookmark */ = 8C64C19A13BE9ED7004FD2A3 /* PBXTextBookmark */;
+			8C64C19B13BE9ED7004FD2A3 /* PBXTextBookmark */ = 8C64C19B13BE9ED7004FD2A3 /* PBXTextBookmark */;
+			8C64C19C13BE9ED7004FD2A3 /* PBXTextBookmark */ = 8C64C19C13BE9ED7004FD2A3 /* PBXTextBookmark */;
+			8C64C19D13BE9ED7004FD2A3 /* PBXTextBookmark */ = 8C64C19D13BE9ED7004FD2A3 /* PBXTextBookmark */;
+			8C64C19E13BE9ED7004FD2A3 /* PBXTextBookmark */ = 8C64C19E13BE9ED7004FD2A3 /* PBXTextBookmark */;
+			8C64C19F13BE9ED7004FD2A3 /* PBXTextBookmark */ = 8C64C19F13BE9ED7004FD2A3 /* PBXTextBookmark */;
+			8C64C1A213BE9EF0004FD2A3 /* PBXTextBookmark */ = 8C64C1A213BE9EF0004FD2A3 /* PBXTextBookmark */;
+			8C64C1A313BE9EF0004FD2A3 /* PBXTextBookmark */ = 8C64C1A313BE9EF0004FD2A3 /* PBXTextBookmark */;
+			8C64C1A413BE9EF0004FD2A3 /* PBXTextBookmark */ = 8C64C1A413BE9EF0004FD2A3 /* PBXTextBookmark */;
+			8C64C1A513BE9EF0004FD2A3 /* PBXTextBookmark */ = 8C64C1A513BE9EF0004FD2A3 /* PBXTextBookmark */;
+			8C64C1A613BE9EF0004FD2A3 /* PBXTextBookmark */ = 8C64C1A613BE9EF0004FD2A3 /* PBXTextBookmark */;
+			8C64C1A713BE9EF0004FD2A3 /* PBXTextBookmark */ = 8C64C1A713BE9EF0004FD2A3 /* PBXTextBookmark */;
+			8C64C1A813BE9EF0004FD2A3 /* PBXTextBookmark */ = 8C64C1A813BE9EF0004FD2A3 /* PBXTextBookmark */;
+			8C64C1A913BE9EF0004FD2A3 /* PBXTextBookmark */ = 8C64C1A913BE9EF0004FD2A3 /* PBXTextBookmark */;
+			8C64C1AA13BE9EF0004FD2A3 /* PBXTextBookmark */ = 8C64C1AA13BE9EF0004FD2A3 /* PBXTextBookmark */;
+			8C64C1B013BE9FB0004FD2A3 /* PBXTextBookmark */ = 8C64C1B013BE9FB0004FD2A3 /* PBXTextBookmark */;
+			8C64C1B113BE9FB0004FD2A3 /* PBXTextBookmark */ = 8C64C1B113BE9FB0004FD2A3 /* PBXTextBookmark */;
+			8C64C1B213BE9FB0004FD2A3 /* PBXTextBookmark */ = 8C64C1B213BE9FB0004FD2A3 /* PBXTextBookmark */;
+			8C64C1B313BE9FB0004FD2A3 /* PBXTextBookmark */ = 8C64C1B313BE9FB0004FD2A3 /* PBXTextBookmark */;
+			8C64C1B413BE9FB0004FD2A3 /* PBXTextBookmark */ = 8C64C1B413BE9FB0004FD2A3 /* PBXTextBookmark */;
+			8C64C1B513BE9FB0004FD2A3 /* PBXTextBookmark */ = 8C64C1B513BE9FB0004FD2A3 /* PBXTextBookmark */;
+			8C64C1B613BE9FB0004FD2A3 /* PBXTextBookmark */ = 8C64C1B613BE9FB0004FD2A3 /* PBXTextBookmark */;
+			8C64C1B713BE9FB0004FD2A3 /* PBXTextBookmark */ = 8C64C1B713BE9FB0004FD2A3 /* PBXTextBookmark */;
+			8C64C1B813BE9FB0004FD2A3 /* PBXTextBookmark */ = 8C64C1B813BE9FB0004FD2A3 /* PBXTextBookmark */;
+			8C64C1B913BE9FB0004FD2A3 /* PBXTextBookmark */ = 8C64C1B913BE9FB0004FD2A3 /* PBXTextBookmark */;
+			8C64C1BC13BE9FD4004FD2A3 /* PBXTextBookmark */ = 8C64C1BC13BE9FD4004FD2A3 /* PBXTextBookmark */;
+			8C64C1BD13BE9FD4004FD2A3 /* PBXTextBookmark */ = 8C64C1BD13BE9FD4004FD2A3 /* PBXTextBookmark */;
+			8C64C1BE13BE9FD4004FD2A3 /* PBXTextBookmark */ = 8C64C1BE13BE9FD4004FD2A3 /* PBXTextBookmark */;
+			8C64C1BF13BE9FD4004FD2A3 /* PBXTextBookmark */ = 8C64C1BF13BE9FD4004FD2A3 /* PBXTextBookmark */;
+			8C64C1C013BE9FD4004FD2A3 /* PBXTextBookmark */ = 8C64C1C013BE9FD4004FD2A3 /* PBXTextBookmark */;
+			8C64C1C113BE9FD4004FD2A3 /* PBXTextBookmark */ = 8C64C1C113BE9FD4004FD2A3 /* PBXTextBookmark */;
+			8C64C1C213BE9FD4004FD2A3 /* PBXTextBookmark */ = 8C64C1C213BE9FD4004FD2A3 /* PBXTextBookmark */;
+			8C64C1C313BE9FD4004FD2A3 /* PBXTextBookmark */ = 8C64C1C313BE9FD4004FD2A3 /* PBXTextBookmark */;
+			8C64C1C413BE9FD4004FD2A3 /* PBXTextBookmark */ = 8C64C1C413BE9FD4004FD2A3 /* PBXTextBookmark */;
 			8C66A63512DE529D000644ED = 8C66A63512DE529D000644ED /* PBXTextBookmark */;
 			8C66A74E12DFCB7D000644ED = 8C66A74E12DFCB7D000644ED /* PBXTextBookmark */;
 			8C66A7AD12DFEB5D000644ED = 8C66A7AD12DFEB5D000644ED /* PBXTextBookmark */;
@@ -826,7 +1053,7 @@
 		fRef = 8C73F09912E5F6590056FAFF /* SummaryHUDControl.h */;
 		name = "SummaryHUDControl.h: 37";
 		rLen = 0;
-		rLoc = 542;
+		rLoc = 585;
 		rType = 0;
 		vrLen = 989;
 		vrLoc = 730;
@@ -1154,7 +1381,7 @@
 		fRef = 8C74F13013B59D0500A7BF20 /* HUDCellController.m */;
 		name = "HUDCellController.m: 38";
 		rLen = 0;
-		rLoc = 879;
+		rLoc = 888;
 		rType = 0;
 		vrLen = 998;
 		vrLoc = 589;
@@ -1174,7 +1401,7 @@
 		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
 		name = "SummaryHUDControl.m: 253";
 		rLen = 0;
-		rLoc = 2053;
+		rLoc = 2022;
 		rType = 0;
 		vrLen = 935;
 		vrLoc = 4088;
@@ -1184,7 +1411,7 @@
 		fRef = 8C74F13013B59D0500A7BF20 /* HUDCellController.m */;
 		name = "HUDCellController.m: 38";
 		rLen = 0;
-		rLoc = 879;
+		rLoc = 888;
 		rType = 0;
 		vrLen = 1443;
 		vrLoc = 140;
@@ -1193,7 +1420,7 @@
 		isa = PBXTextBookmark;
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		rLen = 0;
-		rLoc = 780;
+		rLoc = 789;
 		rType = 0;
 	};
 	8C1F0FC913BB84C3007C9A1D /* PBXTextBookmark */ = {
@@ -1218,7 +1445,7 @@
 		fRef = 8C74F13013B59D0500A7BF20 /* HUDCellController.m */;
 		name = "HUDCellController.m: 38";
 		rLen = 0;
-		rLoc = 879;
+		rLoc = 888;
 		rType = 0;
 		vrLen = 1076;
 		vrLoc = 511;
@@ -1238,7 +1465,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -1800,7 +2027,7 @@
 	};
 	8C5BB633136F33230004E88C /* SwitchActivityDialog.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {884, 439}}";
+			sepNavIntBoundsRect = "{{0, 0}, {846, 692}}";
 			sepNavSelRange = "{389, 0}";
 			sepNavVisRange = "{0, 1008}";
 			sepNavWindowFrame = "{{15, 42}, {907, 831}}";
@@ -1808,9 +2035,9 @@
 	};
 	8C5BB634136F33230004E88C /* SwitchActivityDialog.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {846, 1372}}";
-			sepNavSelRange = "{264, 0}";
-			sepNavVisRange = "{937, 1523}";
+			sepNavIntBoundsRect = "{{0, 0}, {846, 1582}}";
+			sepNavSelRange = "{1904, 0}";
+			sepNavVisRange = "{1609, 1320}";
 			sepNavWindowFrame = "{{399, 47}, {907, 831}}";
 		};
 	};
@@ -1823,9 +2050,9 @@
 	};
 	8C5BB838136F40AA0004E88C /* ActivityComboData.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1144, 390}}";
+			sepNavIntBoundsRect = "{{0, 0}, {846, 694}}";
 			sepNavSelRange = "{362, 21}";
-			sepNavVisRange = "{149, 497}";
+			sepNavVisRange = "{0, 646}";
 			sepNavWindowFrame = "{{506, 0}, {907, 831}}";
 		};
 	};
@@ -2214,7 +2441,7 @@
 		fRef = 8C74F13013B59D0500A7BF20 /* HUDCellController.m */;
 		name = "HUDCellController.m: 38";
 		rLen = 0;
-		rLoc = 879;
+		rLoc = 888;
 		rType = 0;
 		vrLen = 832;
 		vrLoc = 44;
@@ -2224,7 +2451,7 @@
 		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
 		name = "SummaryHUDControl.m: 376";
 		rLen = 0;
-		rLoc = 2053;
+		rLoc = 2022;
 		rType = 0;
 		vrLen = 1155;
 		vrLoc = 11178;
@@ -2234,7 +2461,7 @@
 		comments = "Property declaration not in @interface or @implementation context";
 		fRef = 8C73F09912E5F6590056FAFF /* SummaryHUDControl.h */;
 		rLen = 0;
-		rLoc = 20;
+		rLoc = 26;
 		rType = 1;
 	};
 	8C64BDC513BC4F96004FD2A3 /* PBXTextBookmark */ = {
@@ -2242,7 +2469,7 @@
 		fRef = 8C73F09912E5F6590056FAFF /* SummaryHUDControl.h */;
 		name = "SummaryHUDControl.h: 23";
 		rLen = 0;
-		rLoc = 478;
+		rLoc = 522;
 		rType = 0;
 		vrLen = 804;
 		vrLoc = 174;
@@ -2262,7 +2489,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -2272,7 +2499,7 @@
 		fRef = 8C73F09912E5F6590056FAFF /* SummaryHUDControl.h */;
 		name = "SummaryHUDControl.h: 23";
 		rLen = 0;
-		rLoc = 478;
+		rLoc = 522;
 		rType = 0;
 		vrLen = 752;
 		vrLoc = 199;
@@ -2282,7 +2509,7 @@
 		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
 		name = "SummaryHUDControl.m: 342";
 		rLen = 0;
-		rLoc = 2053;
+		rLoc = 2022;
 		rType = 0;
 		vrLen = 547;
 		vrLoc = 11940;
@@ -2292,7 +2519,7 @@
 		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
 		name = "SummaryHUDControl.m: 342";
 		rLen = 0;
-		rLoc = 2053;
+		rLoc = 2022;
 		rType = 0;
 		vrLen = 547;
 		vrLoc = 11940;
@@ -2312,7 +2539,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -2322,7 +2549,7 @@
 		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
 		name = "SummaryHUDControl.m: 342";
 		rLen = 0;
-		rLoc = 2053;
+		rLoc = 2022;
 		rType = 0;
 		vrLen = 458;
 		vrLoc = 12029;
@@ -2342,7 +2569,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -2352,7 +2579,7 @@
 		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
 		name = "SummaryHUDControl.m: 342";
 		rLen = 0;
-		rLoc = 2053;
+		rLoc = 2022;
 		rType = 0;
 		vrLen = 458;
 		vrLoc = 12029;
@@ -2372,7 +2599,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -2382,7 +2609,7 @@
 		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
 		name = "SummaryHUDControl.m: 342";
 		rLen = 0;
-		rLoc = 2053;
+		rLoc = 2022;
 		rType = 0;
 		vrLen = 458;
 		vrLoc = 12028;
@@ -2402,7 +2629,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -2412,7 +2639,7 @@
 		fRef = 8C74F13013B59D0500A7BF20 /* HUDCellController.m */;
 		name = "HUDCellController.m: 38";
 		rLen = 0;
-		rLoc = 879;
+		rLoc = 888;
 		rType = 0;
 		vrLen = 737;
 		vrLoc = 139;
@@ -2422,7 +2649,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 614";
 		rLen = 6;
-		rLoc = 21684;
+		rLoc = 21715;
 		rType = 0;
 		vrLen = 962;
 		vrLoc = 21166;
@@ -2439,7 +2666,7 @@
 		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
 		name = "SummaryHUDControl.m: 397";
 		rLen = 0;
-		rLoc = 2053;
+		rLoc = 2022;
 		rType = 0;
 		vrLen = 458;
 		vrLoc = 12028;
@@ -2459,35 +2686,17 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
-	};
-	8C64BDF713BC55A1004FD2A3 /* SummaryHUDControl.m:79 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
-		functionName = "-buildDisplay";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 79;
-		location = "Self-Imposed Structure";
-		modificationTime = 331243918.362917;
-		originalNumberOfMultipleMatches = 1;
-		state = 2;
 	};
 	8C64BDF913BC55A4004FD2A3 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
 		name = "SummaryHUDControl.m: 397";
 		rLen = 0;
-		rLoc = 2053;
+		rLoc = 2022;
 		rType = 0;
 		vrLen = 458;
 		vrLoc = 12028;
@@ -2507,7 +2716,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -2517,7 +2726,7 @@
 		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
 		name = "SummaryHUDControl.m: 274";
 		rLen = 0;
-		rLoc = 2053;
+		rLoc = 2022;
 		rType = 0;
 		vrLen = 1575;
 		vrLoc = 7595;
@@ -2537,7 +2746,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -2547,7 +2756,7 @@
 		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
 		name = "SummaryHUDControl.m: 274";
 		rLen = 0;
-		rLoc = 2053;
+		rLoc = 2022;
 		rType = 0;
 		vrLen = 1735;
 		vrLoc = 5053;
@@ -2567,7 +2776,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -2577,7 +2786,7 @@
 		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
 		name = "SummaryHUDControl.m: 364";
 		rLen = 0;
-		rLoc = 2053;
+		rLoc = 2022;
 		rType = 0;
 		vrLen = 1743;
 		vrLoc = 10431;
@@ -2597,7 +2806,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -2607,7 +2816,7 @@
 		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
 		name = "SummaryHUDControl.m: 364";
 		rLen = 0;
-		rLoc = 2053;
+		rLoc = 2022;
 		rType = 0;
 		vrLen = 1745;
 		vrLoc = 10431;
@@ -2627,7 +2836,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -2637,7 +2846,7 @@
 		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
 		name = "SummaryHUDControl.m: 364";
 		rLen = 0;
-		rLoc = 2053;
+		rLoc = 2022;
 		rType = 0;
 		vrLen = 1796;
 		vrLoc = 10384;
@@ -2657,7 +2866,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -2667,7 +2876,7 @@
 		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
 		name = "SummaryHUDControl.m: 364";
 		rLen = 0;
-		rLoc = 2053;
+		rLoc = 2022;
 		rType = 0;
 		vrLen = 1699;
 		vrLoc = 10551;
@@ -2681,7 +2890,7 @@
 		fRef = 8C74F13013B59D0500A7BF20 /* HUDCellController.m */;
 		name = "HUDCellController.m: 41";
 		rLen = 0;
-		rLoc = 968;
+		rLoc = 977;
 		rType = 0;
 		vrLen = 1447;
 		vrLoc = 140;
@@ -2701,7 +2910,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -2711,7 +2920,7 @@
 		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
 		name = "SummaryHUDControl.m: 364";
 		rLen = 0;
-		rLoc = 2053;
+		rLoc = 2022;
 		rType = 0;
 		vrLen = 1580;
 		vrLoc = 10672;
@@ -2721,7 +2930,7 @@
 		fRef = 8C74F13013B59D0500A7BF20 /* HUDCellController.m */;
 		name = "HUDCellController.m: 49";
 		rLen = 0;
-		rLoc = 1291;
+		rLoc = 1300;
 		rType = 0;
 		vrLen = 1417;
 		vrLoc = 170;
@@ -2741,7 +2950,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -2751,7 +2960,7 @@
 		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
 		name = "SummaryHUDControl.m: 364";
 		rLen = 0;
-		rLoc = 2053;
+		rLoc = 2022;
 		rType = 0;
 		vrLen = 1635;
 		vrLoc = 10672;
@@ -2761,7 +2970,7 @@
 		fRef = 8C74F13013B59D0500A7BF20 /* HUDCellController.m */;
 		name = "HUDCellController.m: 49";
 		rLen = 0;
-		rLoc = 1291;
+		rLoc = 1300;
 		rType = 0;
 		vrLen = 1508;
 		vrLoc = 3;
@@ -2781,7 +2990,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -2791,7 +3000,7 @@
 		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
 		name = "SummaryHUDControl.m: 364";
 		rLen = 0;
-		rLoc = 2053;
+		rLoc = 2022;
 		rType = 0;
 		vrLen = 1580;
 		vrLoc = 10741;
@@ -2801,7 +3010,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -2811,7 +3020,7 @@
 		fRef = 8C74F13013B59D0500A7BF20 /* HUDCellController.m */;
 		name = "HUDCellController.m: 49";
 		rLen = 0;
-		rLoc = 1291;
+		rLoc = 1300;
 		rType = 0;
 		vrLen = 1416;
 		vrLoc = 171;
@@ -2821,7 +3030,7 @@
 		fRef = 8C74F13013B59D0500A7BF20 /* HUDCellController.m */;
 		name = "HUDCellController.m: 49";
 		rLen = 0;
-		rLoc = 1291;
+		rLoc = 1300;
 		rType = 0;
 		vrLen = 1415;
 		vrLoc = 172;
@@ -2841,7 +3050,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -2851,7 +3060,7 @@
 		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
 		name = "SummaryHUDControl.m: 364";
 		rLen = 0;
-		rLoc = 2053;
+		rLoc = 2022;
 		rType = 0;
 		vrLen = 1607;
 		vrLoc = 10780;
@@ -2861,7 +3070,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -2871,7 +3080,7 @@
 		fRef = 8C74F13013B59D0500A7BF20 /* HUDCellController.m */;
 		name = "HUDCellController.m: 49";
 		rLen = 0;
-		rLoc = 1291;
+		rLoc = 1300;
 		rType = 0;
 		vrLen = 1415;
 		vrLoc = 172;
@@ -2881,7 +3090,7 @@
 		fRef = 8C74F13013B59D0500A7BF20 /* HUDCellController.m */;
 		name = "HUDCellController.m: 49";
 		rLen = 0;
-		rLoc = 1291;
+		rLoc = 1300;
 		rType = 0;
 		vrLen = 1415;
 		vrLoc = 172;
@@ -2901,7 +3110,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -2911,7 +3120,7 @@
 		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
 		name = "SummaryHUDControl.m: 364";
 		rLen = 0;
-		rLoc = 2053;
+		rLoc = 2022;
 		rType = 0;
 		vrLen = 1552;
 		vrLoc = 10825;
@@ -2931,7 +3140,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -2941,7 +3150,7 @@
 		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
 		name = "SummaryHUDControl.m: 364";
 		rLen = 0;
-		rLoc = 2053;
+		rLoc = 2022;
 		rType = 0;
 		vrLen = 1518;
 		vrLoc = 10917;
@@ -2961,7 +3170,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -2971,7 +3180,7 @@
 		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
 		name = "SummaryHUDControl.m: 364";
 		rLen = 0;
-		rLoc = 2053;
+		rLoc = 2022;
 		rType = 0;
 		vrLen = 1522;
 		vrLoc = 10964;
@@ -2991,7 +3200,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -3001,7 +3210,7 @@
 		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
 		name = "SummaryHUDControl.m: 364";
 		rLen = 0;
-		rLoc = 2053;
+		rLoc = 2022;
 		rType = 0;
 		vrLen = 1578;
 		vrLoc = 10964;
@@ -3021,7 +3230,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -3030,7 +3239,7 @@
 		isa = PBXTextBookmark;
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		rLen = 1;
-		rLoc = 614;
+		rLoc = 616;
 		rType = 1;
 	};
 	8C64BF7213BE25FF004FD2A3 /* XCBuildMessageTextBookmark */ = {
@@ -3047,7 +3256,7 @@
 		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
 		name = "SummaryHUDControl.m: 401";
 		rLen = 0;
-		rLoc = 12645;
+		rLoc = 12796;
 		rType = 0;
 		vrLen = 1666;
 		vrLoc = 1669;
@@ -3067,7 +3276,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -3077,7 +3286,7 @@
 		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
 		name = "SummaryHUDControl.m: 401";
 		rLen = 0;
-		rLoc = 12645;
+		rLoc = 12796;
 		rType = 0;
 		vrLen = 1615;
 		vrLoc = 1669;
@@ -3097,7 +3306,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -3107,7 +3316,7 @@
 		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
 		name = "SummaryHUDControl.m: 401";
 		rLen = 0;
-		rLoc = 12645;
+		rLoc = 12796;
 		rType = 0;
 		vrLen = 1615;
 		vrLoc = 1669;
@@ -3117,7 +3326,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 614";
 		rLen = 57;
-		rLoc = 21541;
+		rLoc = 21572;
 		rType = 0;
 		vrLen = 1849;
 		vrLoc = 20783;
@@ -3137,7 +3346,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -3156,7 +3365,7 @@
 		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
 		name = "SummaryHUDControl.m: 401";
 		rLen = 0;
-		rLoc = 12645;
+		rLoc = 12796;
 		rType = 0;
 		vrLen = 1452;
 		vrLoc = 9606;
@@ -3166,7 +3375,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 614";
 		rLen = 57;
-		rLoc = 21541;
+		rLoc = 21572;
 		rType = 0;
 		vrLen = 1849;
 		vrLoc = 20783;
@@ -3186,7 +3395,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -3196,7 +3405,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 614";
 		rLen = 57;
-		rLoc = 21541;
+		rLoc = 21572;
 		rType = 0;
 		vrLen = 1849;
 		vrLoc = 20783;
@@ -3216,7 +3425,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -3226,7 +3435,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 614";
 		rLen = 57;
-		rLoc = 21541;
+		rLoc = 21572;
 		rType = 0;
 		vrLen = 1849;
 		vrLoc = 20783;
@@ -3246,7 +3455,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -3256,7 +3465,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 614";
 		rLen = 57;
-		rLoc = 21541;
+		rLoc = 21572;
 		rType = 0;
 		vrLen = 1849;
 		vrLoc = 20783;
@@ -3276,35 +3485,17 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
-	};
-	8C64BFB313BE54E9004FD2A3 /* WPAMainController.m:428 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
-		functionName = "-clickAddActivity:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 428;
-		location = "Self-Imposed Structure";
-		modificationTime = 331243919.649263;
-		originalNumberOfMultipleMatches = 1;
-		state = 1;
 	};
 	8C64BFB713BE5510004FD2A3 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 614";
 		rLen = 57;
-		rLoc = 21541;
+		rLoc = 21572;
 		rType = 0;
 		vrLen = 1849;
 		vrLoc = 20783;
@@ -3341,7 +3532,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -3371,7 +3562,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -3401,7 +3592,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -3420,7 +3611,7 @@
 		isa = PBXTextBookmark;
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		rLen = 0;
-		rLoc = 419;
+		rLoc = 421;
 		rType = 1;
 	};
 	8C64BFD313BE58D0004FD2A3 /* PBXTextBookmark */ = {
@@ -3428,7 +3619,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 419";
 		rLen = 0;
-		rLoc = 15236;
+		rLoc = 15267;
 		rType = 0;
 		vrLen = 1549;
 		vrLoc = 14461;
@@ -3448,35 +3639,17 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
-	};
-	8C64BFD713BE5933004FD2A3 /* WPAMainController.m:447 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
-		functionName = "-switchActClosed:";
-		hitCount = 1;
-		ignoreCount = 0;
-		lineNumber = 447;
-		location = "Self-Imposed Structure";
-		modificationTime = 331244007.827459;
-		originalNumberOfMultipleMatches = 1;
-		state = 1;
 	};
 	8C64BFDB13BE593B004FD2A3 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 419";
 		rLen = 0;
-		rLoc = 15236;
+		rLoc = 15267;
 		rType = 0;
 		vrLen = 1549;
 		vrLoc = 14461;
@@ -3496,7 +3669,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -3506,7 +3679,7 @@
 		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
 		name = "SummaryHUDControl.m: 279";
 		rLen = 0;
-		rLoc = 8895;
+		rLoc = 8864;
 		rType = 0;
 		vrLen = 1188;
 		vrLoc = 8153;
@@ -3516,7 +3689,7 @@
 		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
 		name = "SummaryHUDControl.m: 279";
 		rLen = 0;
-		rLoc = 8895;
+		rLoc = 8864;
 		rType = 0;
 		vrLen = 1054;
 		vrLoc = 8728;
@@ -3546,7 +3719,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 444";
 		rLen = 11;
-		rLoc = 15976;
+		rLoc = 16007;
 		rType = 0;
 		vrLen = 756;
 		vrLoc = 15577;
@@ -3556,35 +3729,17 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 444";
 		rLen = 11;
-		rLoc = 15976;
+		rLoc = 16007;
 		rType = 0;
 		vrLen = 756;
 		vrLoc = 15577;
-	};
-	8C64BFE613BE59D6004FD2A3 /* SwitchActivityDialog.m:81 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 8C5BB634136F33230004E88C /* SwitchActivityDialog.m */;
-		functionName = "-clickOk:";
-		hitCount = 1;
-		ignoreCount = 0;
-		lineNumber = 81;
-		location = "Self-Imposed Structure";
-		modificationTime = 331244000.670776;
-		originalNumberOfMultipleMatches = 1;
-		state = 1;
 	};
 	8C64BFEA13BE59DD004FD2A3 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 419";
 		rLen = 0;
-		rLoc = 15236;
+		rLoc = 15267;
 		rType = 0;
 		vrLen = 1549;
 		vrLoc = 14461;
@@ -3624,7 +3779,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -3634,7 +3789,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 419";
 		rLen = 0;
-		rLoc = 15236;
+		rLoc = 15267;
 		rType = 0;
 		vrLen = 1549;
 		vrLoc = 14461;
@@ -3664,7 +3819,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -3674,7 +3829,7 @@
 		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
 		name = "SummaryHUDControl.m: 279";
 		rLen = 0;
-		rLoc = 8895;
+		rLoc = 8864;
 		rType = 0;
 		vrLen = 1062;
 		vrLoc = 8793;
@@ -3684,7 +3839,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 444";
 		rLen = 11;
-		rLoc = 15976;
+		rLoc = 16007;
 		rType = 0;
 		vrLen = 753;
 		vrLoc = 15577;
@@ -3694,7 +3849,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 419";
 		rLen = 0;
-		rLoc = 15236;
+		rLoc = 15267;
 		rType = 0;
 		vrLen = 1619;
 		vrLoc = 14461;
@@ -3738,7 +3893,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -3748,7 +3903,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 419";
 		rLen = 0;
-		rLoc = 15236;
+		rLoc = 15267;
 		rType = 0;
 		vrLen = 1549;
 		vrLoc = 14461;
@@ -3788,35 +3943,17 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
-	};
-	8C64C00D13BE5C1B004FD2A3 /* WPADelegate.m:491 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 8C77292212D46AC600F71FE7 /* WPADelegate.m */;
-		functionName = "-applicationShouldTerminate:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 491;
-		location = "Self-Imposed Structure";
-		modificationTime = 331243920.120345;
-		originalNumberOfMultipleMatches = 1;
-		state = 1;
 	};
 	8C64C01113BE5C2A004FD2A3 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 419";
 		rLen = 0;
-		rLoc = 15236;
+		rLoc = 15267;
 		rType = 0;
 		vrLen = 1549;
 		vrLoc = 14461;
@@ -3876,7 +4013,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -3886,7 +4023,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 419";
 		rLen = 0;
-		rLoc = 15236;
+		rLoc = 15267;
 		rType = 0;
 		vrLen = 1549;
 		vrLoc = 14461;
@@ -3936,33 +4073,17 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
-	};
-	8C64C02413BE5D36004FD2A3 /* -[NSApplication terminate:] */ = {
-		isa = PBXSymbolicBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 1;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		hitCount = 0;
-		ignoreCount = 0;
-		location = AppKit;
-		modificationTime = 331243920.601479;
-		originalNumberOfMultipleMatches = 1;
-		state = 1;
-		symbolName = "-[NSApplication terminate:]";
 	};
 	8C64C02513BE5D46004FD2A3 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 419";
 		rLen = 0;
-		rLoc = 15236;
+		rLoc = 15267;
 		rType = 0;
 		vrLen = 1549;
 		vrLoc = 14461;
@@ -4029,7 +4150,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -4089,28 +4210,10 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
-	};
-	8C64C03613BE5DD5004FD2A3 /* WPAMainController.m:420 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
-		functionName = "-clickSwitchActivity:";
-		hitCount = 1;
-		ignoreCount = 0;
-		lineNumber = 420;
-		location = "Self-Imposed Structure";
-		modificationTime = 331243985.439701;
-		originalNumberOfMultipleMatches = 1;
-		state = 1;
 	};
 	8C64C03A13BE5DE5004FD2A3 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -4167,7 +4270,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -4227,7 +4330,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -4287,7 +4390,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -4347,28 +4450,10 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
-	};
-	8C64C06E13BE6132004FD2A3 /* WPAMainController.m:487 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
-		functionName = "-running:";
-		hitCount = 2;
-		ignoreCount = 0;
-		lineNumber = 487;
-		location = "Self-Imposed Structure";
-		modificationTime = 331243933.461138;
-		originalNumberOfMultipleMatches = 1;
-		state = 1;
 	};
 	8C64C07013BE6138004FD2A3 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -4425,7 +4510,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -4485,7 +4570,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -4545,7 +4630,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
 		rLen = 6;
-		rLoc = 315;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -4555,7 +4640,7 @@
 		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
 		name = "SummaryHUDControl.m: 279";
 		rLen = 0;
-		rLoc = 8895;
+		rLoc = 8864;
 		rType = 0;
 		vrLen = 1180;
 		vrLoc = 9089;
@@ -4565,7 +4650,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 444";
 		rLen = 11;
-		rLoc = 15976;
+		rLoc = 16007;
 		rType = 0;
 		vrLen = 753;
 		vrLoc = 15577;
@@ -4658,6 +4743,2368 @@
 		vrLoc = 291;
 	};
 	8C64C09213BE62C9004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
+		name = "HUDCellController.h: 17";
+		rLen = 6;
+		rLoc = 324;
+		rType = 0;
+		vrLen = 789;
+		vrLoc = 0;
+	};
+	8C64C09613BE85D4004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C66A76212DFCD23000644ED /* BlockerModule.m */;
+		name = "BlockerModule.m: 105";
+		rLen = 4;
+		rLoc = 3416;
+		rType = 0;
+		vrLen = 1272;
+		vrLoc = 2662;
+	};
+	8C64C09713BE85D4004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292212D46AC600F71FE7 /* WPADelegate.m */;
+		name = "WPADelegate.m: 50";
+		rLen = 0;
+		rLoc = 1374;
+		rType = 0;
+		vrLen = 2020;
+		vrLoc = 9669;
+	};
+	8C64C09813BE85D4004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB634136F33230004E88C /* SwitchActivityDialog.m */;
+		name = "SwitchActivityDialog.m: 14";
+		rLen = 0;
+		rLoc = 264;
+		rType = 0;
+		vrLen = 1631;
+		vrLoc = 937;
+	};
+	8C64C09913BE85D4004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292A12D46AC600F71FE7 /* Context.h */;
+		name = "Context.h: 57";
+		rLen = 7;
+		rLoc = 1904;
+		rType = 0;
+		vrLen = 1934;
+		vrLoc = 282;
+	};
+	8C64C09A13BE85D4004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CDC13461310897F00BA478C /* SummaryViewController.h */;
+		name = "SummaryViewController.h: 60";
+		rLen = 63;
+		rLoc = 1570;
+		rType = 0;
+		vrLen = 1407;
+		vrLoc = 291;
+	};
+	8C64C09B13BE85D4004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
+		name = "HUDCellController.h: 17";
+		rLen = 6;
+		rLoc = 324;
+		rType = 0;
+		vrLen = 789;
+		vrLoc = 0;
+	};
+	8C64C09E13BE8815004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C66A76212DFCD23000644ED /* BlockerModule.m */;
+		name = "BlockerModule.m: 105";
+		rLen = 4;
+		rLoc = 3416;
+		rType = 0;
+		vrLen = 1221;
+		vrLoc = 2662;
+	};
+	8C64C09F13BE8815004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB633136F33230004E88C /* SwitchActivityDialog.h */;
+		name = "SwitchActivityDialog.h: 17";
+		rLen = 0;
+		rLoc = 389;
+		rType = 0;
+		vrLen = 1008;
+		vrLoc = 0;
+	};
+	8C64C0A013BE8815004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB634136F33230004E88C /* SwitchActivityDialog.m */;
+		name = "SwitchActivityDialog.m: 14";
+		rLen = 0;
+		rLoc = 264;
+		rType = 0;
+		vrLen = 1218;
+		vrLoc = 0;
+	};
+	8C64C0A113BE8815004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB634136F33230004E88C /* SwitchActivityDialog.m */;
+		name = "SwitchActivityDialog.m: 56";
+		rLen = 0;
+		rLoc = 1695;
+		rType = 0;
+		vrLen = 1304;
+		vrLoc = 246;
+	};
+	8C64C0A413BE8815004FD2A3 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 8C5BB838136F40AA0004E88C /* ActivityComboData.m */;
+	};
+	8C64C0A513BE8815004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB838136F40AA0004E88C /* ActivityComboData.m */;
+		name = "ActivityComboData.m: 18";
+		rLen = 21;
+		rLoc = 362;
+		rType = 0;
+		vrLen = 646;
+		vrLoc = 0;
+	};
+	8C64C0A613BE8815004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292212D46AC600F71FE7 /* WPADelegate.m */;
+		name = "WPADelegate.m: 50";
+		rLen = 0;
+		rLoc = 1374;
+		rType = 0;
+		vrLen = 2009;
+		vrLoc = 9669;
+	};
+	8C64C0A713BE8815004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292A12D46AC600F71FE7 /* Context.h */;
+		name = "Context.h: 57";
+		rLen = 7;
+		rLoc = 1904;
+		rType = 0;
+		vrLen = 1819;
+		vrLoc = 419;
+	};
+	8C64C0A813BE8815004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CDC13461310897F00BA478C /* SummaryViewController.h */;
+		name = "SummaryViewController.h: 60";
+		rLen = 63;
+		rLoc = 1570;
+		rType = 0;
+		vrLen = 1402;
+		vrLoc = 291;
+	};
+	8C64C0A913BE8815004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
+		name = "HUDCellController.h: 17";
+		rLen = 6;
+		rLoc = 324;
+		rType = 0;
+		vrLen = 789;
+		vrLoc = 0;
+	};
+	8C64C0B113BE8AC5004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C66A76212DFCD23000644ED /* BlockerModule.m */;
+		name = "BlockerModule.m: 105";
+		rLen = 4;
+		rLoc = 3416;
+		rType = 0;
+		vrLen = 1221;
+		vrLoc = 2662;
+	};
+	8C64C0B213BE8AC5004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB633136F33230004E88C /* SwitchActivityDialog.h */;
+		name = "SwitchActivityDialog.h: 17";
+		rLen = 0;
+		rLoc = 389;
+		rType = 0;
+		vrLen = 1008;
+		vrLoc = 0;
+	};
+	8C64C0B313BE8AC5004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB634136F33230004E88C /* SwitchActivityDialog.m */;
+		name = "SwitchActivityDialog.m: 57";
+		rLen = 0;
+		rLoc = 1601;
+		rType = 0;
+		vrLen = 1210;
+		vrLoc = 517;
+	};
+	8C64C0B413BE8AC5004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB634136F33230004E88C /* SwitchActivityDialog.m */;
+		name = "SwitchActivityDialog.m: 62";
+		rLen = 0;
+		rLoc = 1619;
+		rType = 0;
+		vrLen = 1114;
+		vrLoc = 756;
+	};
+	8C64C0B513BE8AC5004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB838136F40AA0004E88C /* ActivityComboData.m */;
+		name = "ActivityComboData.m: 18";
+		rLen = 21;
+		rLoc = 362;
+		rType = 0;
+		vrLen = 646;
+		vrLoc = 0;
+	};
+	8C64C0B613BE8AC5004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB838136F40AA0004E88C /* ActivityComboData.m */;
+		name = "ActivityComboData.m: 18";
+		rLen = 21;
+		rLoc = 362;
+		rType = 0;
+		vrLen = 646;
+		vrLoc = 0;
+	};
+	8C64C0B713BE8AC5004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292212D46AC600F71FE7 /* WPADelegate.m */;
+		name = "WPADelegate.m: 50";
+		rLen = 0;
+		rLoc = 1374;
+		rType = 0;
+		vrLen = 2009;
+		vrLoc = 9669;
+	};
+	8C64C0B813BE8AC5004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292A12D46AC600F71FE7 /* Context.h */;
+		name = "Context.h: 57";
+		rLen = 7;
+		rLoc = 1904;
+		rType = 0;
+		vrLen = 1793;
+		vrLoc = 487;
+	};
+	8C64C0B913BE8AC5004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CDC13461310897F00BA478C /* SummaryViewController.h */;
+		name = "SummaryViewController.h: 60";
+		rLen = 63;
+		rLoc = 1570;
+		rType = 0;
+		vrLen = 1402;
+		vrLoc = 291;
+	};
+	8C64C0BA13BE8AC5004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
+		name = "HUDCellController.h: 17";
+		rLen = 6;
+		rLoc = 324;
+		rType = 0;
+		vrLen = 789;
+		vrLoc = 0;
+	};
+	8C64C0BC13BE8ADA004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C66A76212DFCD23000644ED /* BlockerModule.m */;
+		name = "BlockerModule.m: 105";
+		rLen = 4;
+		rLoc = 3416;
+		rType = 0;
+		vrLen = 1221;
+		vrLoc = 2662;
+	};
+	8C64C0BD13BE8ADA004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB634136F33230004E88C /* SwitchActivityDialog.m */;
+		name = "SwitchActivityDialog.m: 62";
+		rLen = 0;
+		rLoc = 1619;
+		rType = 0;
+		vrLen = 1114;
+		vrLoc = 756;
+	};
+	8C64C0BE13BE8ADA004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB838136F40AA0004E88C /* ActivityComboData.m */;
+		name = "ActivityComboData.m: 18";
+		rLen = 21;
+		rLoc = 362;
+		rType = 0;
+		vrLen = 646;
+		vrLoc = 0;
+	};
+	8C64C0BF13BE8ADA004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292212D46AC600F71FE7 /* WPADelegate.m */;
+		name = "WPADelegate.m: 50";
+		rLen = 0;
+		rLoc = 1374;
+		rType = 0;
+		vrLen = 2009;
+		vrLoc = 9669;
+	};
+	8C64C0C013BE8ADA004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292A12D46AC600F71FE7 /* Context.h */;
+		name = "Context.h: 57";
+		rLen = 7;
+		rLoc = 1904;
+		rType = 0;
+		vrLen = 1793;
+		vrLoc = 487;
+	};
+	8C64C0C113BE8ADA004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CDC13461310897F00BA478C /* SummaryViewController.h */;
+		name = "SummaryViewController.h: 60";
+		rLen = 63;
+		rLoc = 1570;
+		rType = 0;
+		vrLen = 1402;
+		vrLoc = 291;
+	};
+	8C64C0C213BE8ADA004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
+		name = "HUDCellController.h: 17";
+		rLen = 6;
+		rLoc = 324;
+		rType = 0;
+		vrLen = 789;
+		vrLoc = 0;
+	};
+	8C64C0C313BE8B0A004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C66A76212DFCD23000644ED /* BlockerModule.m */;
+		name = "BlockerModule.m: 105";
+		rLen = 4;
+		rLoc = 3416;
+		rType = 0;
+		vrLen = 1221;
+		vrLoc = 2662;
+	};
+	8C64C0C413BE8B0A004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB634136F33230004E88C /* SwitchActivityDialog.m */;
+		name = "SwitchActivityDialog.m: 62";
+		rLen = 0;
+		rLoc = 1619;
+		rType = 0;
+		vrLen = 1114;
+		vrLoc = 756;
+	};
+	8C64C0C513BE8B0A004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB838136F40AA0004E88C /* ActivityComboData.m */;
+		name = "ActivityComboData.m: 18";
+		rLen = 21;
+		rLoc = 362;
+		rType = 0;
+		vrLen = 646;
+		vrLoc = 0;
+	};
+	8C64C0C613BE8B0A004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292212D46AC600F71FE7 /* WPADelegate.m */;
+		name = "WPADelegate.m: 50";
+		rLen = 0;
+		rLoc = 1374;
+		rType = 0;
+		vrLen = 2009;
+		vrLoc = 9669;
+	};
+	8C64C0C713BE8B0A004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292A12D46AC600F71FE7 /* Context.h */;
+		name = "Context.h: 57";
+		rLen = 7;
+		rLoc = 1904;
+		rType = 0;
+		vrLen = 1793;
+		vrLoc = 487;
+	};
+	8C64C0C813BE8B0A004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CDC13461310897F00BA478C /* SummaryViewController.h */;
+		name = "SummaryViewController.h: 60";
+		rLen = 63;
+		rLoc = 1570;
+		rType = 0;
+		vrLen = 1402;
+		vrLoc = 291;
+	};
+	8C64C0C913BE8B0A004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
+		name = "HUDCellController.h: 17";
+		rLen = 6;
+		rLoc = 324;
+		rType = 0;
+		vrLen = 789;
+		vrLoc = 0;
+	};
+	8C64C0CE13BE90D2004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C66A76212DFCD23000644ED /* BlockerModule.m */;
+		name = "BlockerModule.m: 105";
+		rLen = 4;
+		rLoc = 3416;
+		rType = 0;
+		vrLen = 1272;
+		vrLoc = 2662;
+	};
+	8C64C0CF13BE90D2004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292212D46AC600F71FE7 /* WPADelegate.m */;
+		name = "WPADelegate.m: 50";
+		rLen = 0;
+		rLoc = 1374;
+		rType = 0;
+		vrLen = 2020;
+		vrLoc = 9669;
+	};
+	8C64C0D113BE90D2004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C73F09912E5F6590056FAFF /* SummaryHUDControl.h */;
+		name = "SummaryHUDControl.h: 21";
+		rLen = 0;
+		rLoc = 522;
+		rType = 0;
+		vrLen = 1418;
+		vrLoc = 0;
+	};
+	8C64C0D213BE90D2004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
+		name = "SummaryHUDControl.m: 287";
+		rLen = 0;
+		rLoc = 9046;
+		rType = 0;
+		vrLen = 1280;
+		vrLoc = 8793;
+	};
+	8C64C0D313BE90D2004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
+		name = "SummaryHUDControl.m: 286";
+		rLen = 0;
+		rLoc = 8953;
+		rType = 0;
+		vrLen = 1296;
+		vrLoc = 8793;
+	};
+	8C64C0D513BE90D2004FD2A3 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
+	};
+	8C64C0D613BE90D2004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
+		name = "WPAMainController.m: 161";
+		rLen = 0;
+		rLoc = 6109;
+		rType = 0;
+		vrLen = 1695;
+		vrLoc = 4588;
+	};
+	8C64C0D713BE90D2004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB634136F33230004E88C /* SwitchActivityDialog.m */;
+		name = "SwitchActivityDialog.m: 62";
+		rLen = 0;
+		rLoc = 1619;
+		rType = 0;
+		vrLen = 1378;
+		vrLoc = 0;
+	};
+	8C64C0D813BE90D2004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB838136F40AA0004E88C /* ActivityComboData.m */;
+		name = "ActivityComboData.m: 18";
+		rLen = 21;
+		rLoc = 362;
+		rType = 0;
+		vrLen = 646;
+		vrLoc = 0;
+	};
+	8C64C0D913BE90D2004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292A12D46AC600F71FE7 /* Context.h */;
+		name = "Context.h: 57";
+		rLen = 7;
+		rLoc = 1904;
+		rType = 0;
+		vrLen = 1901;
+		vrLoc = 487;
+	};
+	8C64C0DA13BE90D2004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CDC13461310897F00BA478C /* SummaryViewController.h */;
+		name = "SummaryViewController.h: 60";
+		rLen = 63;
+		rLoc = 1570;
+		rType = 0;
+		vrLen = 1407;
+		vrLoc = 291;
+	};
+	8C64C0DB13BE90D2004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
+		name = "HUDCellController.h: 17";
+		rLen = 6;
+		rLoc = 324;
+		rType = 0;
+		vrLen = 789;
+		vrLoc = 0;
+	};
+	8C64C0DE13BE912A004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C66A76212DFCD23000644ED /* BlockerModule.m */;
+		name = "BlockerModule.m: 105";
+		rLen = 4;
+		rLoc = 3416;
+		rType = 0;
+		vrLen = 1221;
+		vrLoc = 2662;
+	};
+	8C64C0DF13BE912A004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
+		name = "SummaryHUDControl.m: 309";
+		rLen = 0;
+		rLoc = 9552;
+		rType = 0;
+		vrLen = 1340;
+		vrLoc = 8802;
+	};
+	8C64C0E013BE912A004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292212D46AC600F71FE7 /* WPADelegate.m */;
+		name = "WPADelegate.m: 50";
+		rLen = 0;
+		rLoc = 1374;
+		rType = 0;
+		vrLen = 2009;
+		vrLoc = 9669;
+	};
+	8C64C0E113BE912A004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
+		name = "WPAMainController.m: 161";
+		rLen = 0;
+		rLoc = 6109;
+		rType = 0;
+		vrLen = 1661;
+		vrLoc = 4662;
+	};
+	8C64C0E213BE912A004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB634136F33230004E88C /* SwitchActivityDialog.m */;
+		name = "SwitchActivityDialog.m: 62";
+		rLen = 0;
+		rLoc = 1619;
+		rType = 0;
+		vrLen = 1301;
+		vrLoc = 0;
+	};
+	8C64C0E313BE912A004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB838136F40AA0004E88C /* ActivityComboData.m */;
+		name = "ActivityComboData.m: 18";
+		rLen = 21;
+		rLoc = 362;
+		rType = 0;
+		vrLen = 646;
+		vrLoc = 0;
+	};
+	8C64C0E413BE912A004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292A12D46AC600F71FE7 /* Context.h */;
+		name = "Context.h: 57";
+		rLen = 7;
+		rLoc = 1904;
+		rType = 0;
+		vrLen = 1820;
+		vrLoc = 615;
+	};
+	8C64C0E513BE912A004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CDC13461310897F00BA478C /* SummaryViewController.h */;
+		name = "SummaryViewController.h: 60";
+		rLen = 63;
+		rLoc = 1570;
+		rType = 0;
+		vrLen = 1402;
+		vrLoc = 291;
+	};
+	8C64C0E613BE912A004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
+		name = "HUDCellController.h: 17";
+		rLen = 6;
+		rLoc = 324;
+		rType = 0;
+		vrLen = 789;
+		vrLoc = 0;
+	};
+	8C64C0EC13BE9151004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C66A76212DFCD23000644ED /* BlockerModule.m */;
+		name = "BlockerModule.m: 105";
+		rLen = 4;
+		rLoc = 3416;
+		rType = 0;
+		vrLen = 1221;
+		vrLoc = 2662;
+	};
+	8C64C0ED13BE9151004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
+		name = "SummaryHUDControl.m: 309";
+		rLen = 0;
+		rLoc = 9552;
+		rType = 0;
+		vrLen = 1340;
+		vrLoc = 8802;
+	};
+	8C64C0EE13BE9151004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
+		name = "SummaryHUDControl.m: 309";
+		rLen = 0;
+		rLoc = 9552;
+		rType = 0;
+		vrLen = 1340;
+		vrLoc = 8802;
+	};
+	8C64C0EF13BE9151004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292212D46AC600F71FE7 /* WPADelegate.m */;
+		name = "WPADelegate.m: 50";
+		rLen = 0;
+		rLoc = 1374;
+		rType = 0;
+		vrLen = 2009;
+		vrLoc = 9669;
+	};
+	8C64C0F013BE9151004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
+		name = "WPAMainController.m: 161";
+		rLen = 0;
+		rLoc = 6109;
+		rType = 0;
+		vrLen = 1661;
+		vrLoc = 4662;
+	};
+	8C64C0F113BE9151004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB634136F33230004E88C /* SwitchActivityDialog.m */;
+		name = "SwitchActivityDialog.m: 62";
+		rLen = 0;
+		rLoc = 1619;
+		rType = 0;
+		vrLen = 1301;
+		vrLoc = 0;
+	};
+	8C64C0F213BE9151004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB838136F40AA0004E88C /* ActivityComboData.m */;
+		name = "ActivityComboData.m: 18";
+		rLen = 21;
+		rLoc = 362;
+		rType = 0;
+		vrLen = 646;
+		vrLoc = 0;
+	};
+	8C64C0F313BE9151004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292A12D46AC600F71FE7 /* Context.h */;
+		name = "Context.h: 57";
+		rLen = 7;
+		rLoc = 1904;
+		rType = 0;
+		vrLen = 1820;
+		vrLoc = 615;
+	};
+	8C64C0F413BE9151004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CDC13461310897F00BA478C /* SummaryViewController.h */;
+		name = "SummaryViewController.h: 60";
+		rLen = 63;
+		rLoc = 1570;
+		rType = 0;
+		vrLen = 1402;
+		vrLoc = 291;
+	};
+	8C64C0F513BE9151004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
+		name = "HUDCellController.h: 17";
+		rLen = 6;
+		rLoc = 324;
+		rType = 0;
+		vrLen = 789;
+		vrLoc = 0;
+	};
+	8C64C0F813BE91BB004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C66A76212DFCD23000644ED /* BlockerModule.m */;
+		name = "BlockerModule.m: 105";
+		rLen = 4;
+		rLoc = 3416;
+		rType = 0;
+		vrLen = 1221;
+		vrLoc = 2662;
+	};
+	8C64C0F913BE91BB004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
+		name = "SummaryHUDControl.m: 310";
+		rLen = 0;
+		rLoc = 9552;
+		rType = 0;
+		vrLen = 1316;
+		vrLoc = 8872;
+	};
+	8C64C0FA13BE91BB004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292212D46AC600F71FE7 /* WPADelegate.m */;
+		name = "WPADelegate.m: 50";
+		rLen = 0;
+		rLoc = 1374;
+		rType = 0;
+		vrLen = 2009;
+		vrLoc = 9669;
+	};
+	8C64C0FB13BE91BB004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
+		name = "WPAMainController.m: 161";
+		rLen = 0;
+		rLoc = 6109;
+		rType = 0;
+		vrLen = 1579;
+		vrLoc = 4787;
+	};
+	8C64C0FC13BE91BB004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB634136F33230004E88C /* SwitchActivityDialog.m */;
+		name = "SwitchActivityDialog.m: 62";
+		rLen = 0;
+		rLoc = 1619;
+		rType = 0;
+		vrLen = 1301;
+		vrLoc = 0;
+	};
+	8C64C0FD13BE91BB004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB838136F40AA0004E88C /* ActivityComboData.m */;
+		name = "ActivityComboData.m: 18";
+		rLen = 21;
+		rLoc = 362;
+		rType = 0;
+		vrLen = 646;
+		vrLoc = 0;
+	};
+	8C64C0FE13BE91BB004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292A12D46AC600F71FE7 /* Context.h */;
+		name = "Context.h: 57";
+		rLen = 7;
+		rLoc = 1904;
+		rType = 0;
+		vrLen = 1899;
+		vrLoc = 643;
+	};
+	8C64C0FF13BE91BB004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CDC13461310897F00BA478C /* SummaryViewController.h */;
+		name = "SummaryViewController.h: 60";
+		rLen = 63;
+		rLoc = 1570;
+		rType = 0;
+		vrLen = 1402;
+		vrLoc = 291;
+	};
+	8C64C10013BE91BB004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
+		name = "HUDCellController.h: 17";
+		rLen = 6;
+		rLoc = 324;
+		rType = 0;
+		vrLen = 789;
+		vrLoc = 0;
+	};
+	8C64C10213BE91C7004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C66A76212DFCD23000644ED /* BlockerModule.m */;
+		name = "BlockerModule.m: 105";
+		rLen = 4;
+		rLoc = 3416;
+		rType = 0;
+		vrLen = 1221;
+		vrLoc = 2662;
+	};
+	8C64C10313BE91C7004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
+		name = "SummaryHUDControl.m: 310";
+		rLen = 0;
+		rLoc = 9552;
+		rType = 0;
+		vrLen = 1316;
+		vrLoc = 8872;
+	};
+	8C64C10413BE91C7004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292212D46AC600F71FE7 /* WPADelegate.m */;
+		name = "WPADelegate.m: 50";
+		rLen = 0;
+		rLoc = 1374;
+		rType = 0;
+		vrLen = 2009;
+		vrLoc = 9669;
+	};
+	8C64C10513BE91C7004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
+		name = "WPAMainController.m: 161";
+		rLen = 0;
+		rLoc = 6109;
+		rType = 0;
+		vrLen = 1579;
+		vrLoc = 4787;
+	};
+	8C64C10613BE91C7004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB634136F33230004E88C /* SwitchActivityDialog.m */;
+		name = "SwitchActivityDialog.m: 62";
+		rLen = 0;
+		rLoc = 1619;
+		rType = 0;
+		vrLen = 1301;
+		vrLoc = 0;
+	};
+	8C64C10713BE91C7004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB838136F40AA0004E88C /* ActivityComboData.m */;
+		name = "ActivityComboData.m: 18";
+		rLen = 21;
+		rLoc = 362;
+		rType = 0;
+		vrLen = 646;
+		vrLoc = 0;
+	};
+	8C64C10813BE91C7004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292A12D46AC600F71FE7 /* Context.h */;
+		name = "Context.h: 57";
+		rLen = 7;
+		rLoc = 1904;
+		rType = 0;
+		vrLen = 1899;
+		vrLoc = 643;
+	};
+	8C64C10913BE91C7004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CDC13461310897F00BA478C /* SummaryViewController.h */;
+		name = "SummaryViewController.h: 60";
+		rLen = 63;
+		rLoc = 1570;
+		rType = 0;
+		vrLen = 1402;
+		vrLoc = 291;
+	};
+	8C64C10A13BE91C7004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
+		name = "HUDCellController.h: 17";
+		rLen = 6;
+		rLoc = 324;
+		rType = 0;
+		vrLen = 789;
+		vrLoc = 0;
+	};
+	8C64C10D13BE920C004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C66A76212DFCD23000644ED /* BlockerModule.m */;
+		name = "BlockerModule.m: 105";
+		rLen = 4;
+		rLoc = 3416;
+		rType = 0;
+		vrLen = 1221;
+		vrLoc = 2662;
+	};
+	8C64C10E13BE920C004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
+		name = "SummaryHUDControl.m: 310";
+		rLen = 0;
+		rLoc = 9523;
+		rType = 0;
+		vrLen = 1330;
+		vrLoc = 8939;
+	};
+	8C64C10F13BE920C004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292212D46AC600F71FE7 /* WPADelegate.m */;
+		name = "WPADelegate.m: 50";
+		rLen = 0;
+		rLoc = 1374;
+		rType = 0;
+		vrLen = 2009;
+		vrLoc = 9669;
+	};
+	8C64C11013BE920C004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
+		name = "WPAMainController.m: 161";
+		rLen = 0;
+		rLoc = 6109;
+		rType = 0;
+		vrLen = 1561;
+		vrLoc = 4830;
+	};
+	8C64C11113BE920C004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB634136F33230004E88C /* SwitchActivityDialog.m */;
+		name = "SwitchActivityDialog.m: 62";
+		rLen = 0;
+		rLoc = 1619;
+		rType = 0;
+		vrLen = 1301;
+		vrLoc = 0;
+	};
+	8C64C11213BE920C004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB838136F40AA0004E88C /* ActivityComboData.m */;
+		name = "ActivityComboData.m: 18";
+		rLen = 21;
+		rLoc = 362;
+		rType = 0;
+		vrLen = 646;
+		vrLoc = 0;
+	};
+	8C64C11313BE920C004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292A12D46AC600F71FE7 /* Context.h */;
+		name = "Context.h: 57";
+		rLen = 7;
+		rLoc = 1904;
+		rType = 0;
+		vrLen = 1918;
+		vrLoc = 705;
+	};
+	8C64C11413BE920C004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CDC13461310897F00BA478C /* SummaryViewController.h */;
+		name = "SummaryViewController.h: 60";
+		rLen = 63;
+		rLoc = 1570;
+		rType = 0;
+		vrLen = 1402;
+		vrLoc = 291;
+	};
+	8C64C11513BE920C004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
+		name = "HUDCellController.h: 17";
+		rLen = 6;
+		rLoc = 324;
+		rType = 0;
+		vrLen = 789;
+		vrLoc = 0;
+	};
+	8C64C11B13BE9434004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C66A76212DFCD23000644ED /* BlockerModule.m */;
+		name = "BlockerModule.m: 105";
+		rLen = 4;
+		rLoc = 3416;
+		rType = 0;
+		vrLen = 1221;
+		vrLoc = 2662;
+	};
+	8C64C11C13BE9434004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C73F09912E5F6590056FAFF /* SummaryHUDControl.h */;
+		name = "SummaryHUDControl.h: 64";
+		rLen = 0;
+		rLoc = 1886;
+		rType = 0;
+		vrLen = 1512;
+		vrLoc = 478;
+	};
+	8C64C11D13BE9434004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
+		name = "SummaryHUDControl.m: 46";
+		rLen = 0;
+		rLoc = 919;
+		rType = 0;
+		vrLen = 1035;
+		vrLoc = 0;
+	};
+	8C64C11E13BE9434004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
+		name = "SummaryHUDControl.m: 410";
+		rLen = 0;
+		rLoc = 12701;
+		rType = 0;
+		vrLen = 1348;
+		vrLoc = 11605;
+	};
+	8C64C11F13BE9434004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292212D46AC600F71FE7 /* WPADelegate.m */;
+		name = "WPADelegate.m: 50";
+		rLen = 0;
+		rLoc = 1374;
+		rType = 0;
+		vrLen = 2009;
+		vrLoc = 9669;
+	};
+	8C64C12013BE9434004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
+		name = "WPAMainController.m: 161";
+		rLen = 0;
+		rLoc = 6109;
+		rType = 0;
+		vrLen = 1536;
+		vrLoc = 5041;
+	};
+	8C64C12113BE9434004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB634136F33230004E88C /* SwitchActivityDialog.m */;
+		name = "SwitchActivityDialog.m: 62";
+		rLen = 0;
+		rLoc = 1619;
+		rType = 0;
+		vrLen = 1301;
+		vrLoc = 0;
+	};
+	8C64C12213BE9434004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB838136F40AA0004E88C /* ActivityComboData.m */;
+		name = "ActivityComboData.m: 18";
+		rLen = 21;
+		rLoc = 362;
+		rType = 0;
+		vrLen = 646;
+		vrLoc = 0;
+	};
+	8C64C12313BE9434004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292A12D46AC600F71FE7 /* Context.h */;
+		name = "Context.h: 57";
+		rLen = 7;
+		rLoc = 1904;
+		rType = 0;
+		vrLen = 1980;
+		vrLoc = 770;
+	};
+	8C64C12413BE9434004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CDC13461310897F00BA478C /* SummaryViewController.h */;
+		name = "SummaryViewController.h: 60";
+		rLen = 63;
+		rLoc = 1570;
+		rType = 0;
+		vrLen = 1402;
+		vrLoc = 291;
+	};
+	8C64C12513BE9434004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
+		name = "HUDCellController.h: 17";
+		rLen = 6;
+		rLoc = 324;
+		rType = 0;
+		vrLen = 789;
+		vrLoc = 0;
+	};
+	8C64C12713BE9441004FD2A3 /* SummaryHUDControl.m:411 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
+		functionName = "-acceptsFirstMouse:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 411;
+		location = "Self-Imposed Structure";
+		modificationTime = 331259858.500172;
+		originalNumberOfMultipleMatches = 1;
+		state = 1;
+	};
+	8C64C12913BE9444004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C66A76212DFCD23000644ED /* BlockerModule.m */;
+		name = "BlockerModule.m: 105";
+		rLen = 4;
+		rLoc = 3416;
+		rType = 0;
+		vrLen = 1221;
+		vrLoc = 2662;
+	};
+	8C64C12A13BE9444004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
+		name = "SummaryHUDControl.m: 410";
+		rLen = 0;
+		rLoc = 12701;
+		rType = 0;
+		vrLen = 1348;
+		vrLoc = 11605;
+	};
+	8C64C12B13BE9444004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
+		name = "SummaryHUDControl.m: 410";
+		rLen = 0;
+		rLoc = 12701;
+		rType = 0;
+		vrLen = 1348;
+		vrLoc = 11605;
+	};
+	8C64C12C13BE9444004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292212D46AC600F71FE7 /* WPADelegate.m */;
+		name = "WPADelegate.m: 50";
+		rLen = 0;
+		rLoc = 1374;
+		rType = 0;
+		vrLen = 2009;
+		vrLoc = 9669;
+	};
+	8C64C12D13BE9444004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
+		name = "WPAMainController.m: 161";
+		rLen = 0;
+		rLoc = 6109;
+		rType = 0;
+		vrLen = 1536;
+		vrLoc = 5041;
+	};
+	8C64C12E13BE9444004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB634136F33230004E88C /* SwitchActivityDialog.m */;
+		name = "SwitchActivityDialog.m: 62";
+		rLen = 0;
+		rLoc = 1619;
+		rType = 0;
+		vrLen = 1301;
+		vrLoc = 0;
+	};
+	8C64C12F13BE9444004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB838136F40AA0004E88C /* ActivityComboData.m */;
+		name = "ActivityComboData.m: 18";
+		rLen = 21;
+		rLoc = 362;
+		rType = 0;
+		vrLen = 646;
+		vrLoc = 0;
+	};
+	8C64C13013BE9444004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292A12D46AC600F71FE7 /* Context.h */;
+		name = "Context.h: 57";
+		rLen = 7;
+		rLoc = 1904;
+		rType = 0;
+		vrLen = 1980;
+		vrLoc = 770;
+	};
+	8C64C13113BE9444004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CDC13461310897F00BA478C /* SummaryViewController.h */;
+		name = "SummaryViewController.h: 60";
+		rLen = 63;
+		rLoc = 1570;
+		rType = 0;
+		vrLen = 1402;
+		vrLoc = 291;
+	};
+	8C64C13213BE9444004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
+		name = "HUDCellController.h: 17";
+		rLen = 6;
+		rLoc = 324;
+		rType = 0;
+		vrLen = 789;
+		vrLoc = 0;
+	};
+	8C64C13513BE946F004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C66A76212DFCD23000644ED /* BlockerModule.m */;
+		name = "BlockerModule.m: 105";
+		rLen = 4;
+		rLoc = 3416;
+		rType = 0;
+		vrLen = 1221;
+		vrLoc = 2662;
+	};
+	8C64C13613BE946F004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C73F09912E5F6590056FAFF /* SummaryHUDControl.h */;
+		name = "SummaryHUDControl.h: 64";
+		rLen = 0;
+		rLoc = 1886;
+		rType = 0;
+		vrLen = 1539;
+		vrLoc = 452;
+	};
+	8C64C13713BE946F004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
+		name = "SummaryHUDControl.m: 398";
+		rLen = 0;
+		rLoc = 12481;
+		rType = 0;
+		vrLen = 1348;
+		vrLoc = 11605;
+	};
+	8C64C13813BE946F004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
+		name = "SummaryHUDControl.m: 398";
+		rLen = 0;
+		rLoc = 12481;
+		rType = 0;
+		vrLen = 1312;
+		vrLoc = 11641;
+	};
+	8C64C13913BE946F004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292212D46AC600F71FE7 /* WPADelegate.m */;
+		name = "WPADelegate.m: 50";
+		rLen = 0;
+		rLoc = 1374;
+		rType = 0;
+		vrLen = 2009;
+		vrLoc = 9669;
+	};
+	8C64C13A13BE946F004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
+		name = "WPAMainController.m: 161";
+		rLen = 0;
+		rLoc = 6109;
+		rType = 0;
+		vrLen = 1511;
+		vrLoc = 5093;
+	};
+	8C64C13B13BE946F004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB634136F33230004E88C /* SwitchActivityDialog.m */;
+		name = "SwitchActivityDialog.m: 62";
+		rLen = 0;
+		rLoc = 1619;
+		rType = 0;
+		vrLen = 1301;
+		vrLoc = 0;
+	};
+	8C64C13C13BE946F004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB838136F40AA0004E88C /* ActivityComboData.m */;
+		name = "ActivityComboData.m: 18";
+		rLen = 21;
+		rLoc = 362;
+		rType = 0;
+		vrLen = 646;
+		vrLoc = 0;
+	};
+	8C64C13D13BE946F004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292A12D46AC600F71FE7 /* Context.h */;
+		name = "Context.h: 57";
+		rLen = 7;
+		rLoc = 1904;
+		rType = 0;
+		vrLen = 1947;
+		vrLoc = 826;
+	};
+	8C64C13E13BE946F004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CDC13461310897F00BA478C /* SummaryViewController.h */;
+		name = "SummaryViewController.h: 60";
+		rLen = 63;
+		rLoc = 1570;
+		rType = 0;
+		vrLen = 1402;
+		vrLoc = 291;
+	};
+	8C64C13F13BE946F004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
+		name = "HUDCellController.h: 17";
+		rLen = 6;
+		rLoc = 324;
+		rType = 0;
+		vrLen = 789;
+		vrLoc = 0;
+	};
+	8C64C14513BE9530004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C66A76212DFCD23000644ED /* BlockerModule.m */;
+		name = "BlockerModule.m: 105";
+		rLen = 4;
+		rLoc = 3416;
+		rType = 0;
+		vrLen = 1221;
+		vrLoc = 2662;
+	};
+	8C64C14613BE9530004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
+		name = "SummaryHUDControl.m: 311";
+		rLen = 0;
+		rLoc = 9552;
+		rType = 0;
+		vrLen = 1570;
+		vrLoc = 9091;
+	};
+	8C64C14713BE9530004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292212D46AC600F71FE7 /* WPADelegate.m */;
+		name = "WPADelegate.m: 50";
+		rLen = 0;
+		rLoc = 1374;
+		rType = 0;
+		vrLen = 2009;
+		vrLoc = 9669;
+	};
+	8C64C14813BE9530004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
+		name = "WPAMainController.m: 161";
+		rLen = 0;
+		rLoc = 6109;
+		rType = 0;
+		vrLen = 1546;
+		vrLoc = 5132;
+	};
+	8C64C14913BE9530004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB634136F33230004E88C /* SwitchActivityDialog.m */;
+		name = "SwitchActivityDialog.m: 62";
+		rLen = 0;
+		rLoc = 1619;
+		rType = 0;
+		vrLen = 1301;
+		vrLoc = 0;
+	};
+	8C64C14A13BE9530004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB838136F40AA0004E88C /* ActivityComboData.m */;
+		name = "ActivityComboData.m: 18";
+		rLen = 21;
+		rLoc = 362;
+		rType = 0;
+		vrLen = 646;
+		vrLoc = 0;
+	};
+	8C64C14B13BE9530004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292A12D46AC600F71FE7 /* Context.h */;
+		name = "Context.h: 57";
+		rLen = 7;
+		rLoc = 1904;
+		rType = 0;
+		vrLen = 1970;
+		vrLoc = 853;
+	};
+	8C64C14C13BE9530004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CDC13461310897F00BA478C /* SummaryViewController.h */;
+		name = "SummaryViewController.h: 60";
+		rLen = 63;
+		rLoc = 1570;
+		rType = 0;
+		vrLen = 1402;
+		vrLoc = 291;
+	};
+	8C64C14D13BE9530004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
+		name = "HUDCellController.h: 17";
+		rLen = 6;
+		rLoc = 324;
+		rType = 0;
+		vrLen = 789;
+		vrLoc = 0;
+	};
+	8C64C14F13BE9816004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C66A76212DFCD23000644ED /* BlockerModule.m */;
+		name = "BlockerModule.m: 105";
+		rLen = 4;
+		rLoc = 3416;
+		rType = 0;
+		vrLen = 1221;
+		vrLoc = 2662;
+	};
+	8C64C15013BE9816004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
+		name = "SummaryHUDControl.m: 311";
+		rLen = 0;
+		rLoc = 9552;
+		rType = 0;
+		vrLen = 1488;
+		vrLoc = 8255;
+	};
+	8C64C15113BE9816004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292212D46AC600F71FE7 /* WPADelegate.m */;
+		name = "WPADelegate.m: 50";
+		rLen = 0;
+		rLoc = 1374;
+		rType = 0;
+		vrLen = 2009;
+		vrLoc = 9669;
+	};
+	8C64C15213BE9816004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
+		name = "WPAMainController.m: 161";
+		rLen = 0;
+		rLoc = 6109;
+		rType = 0;
+		vrLen = 1546;
+		vrLoc = 5132;
+	};
+	8C64C15313BE9816004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB634136F33230004E88C /* SwitchActivityDialog.m */;
+		name = "SwitchActivityDialog.m: 62";
+		rLen = 0;
+		rLoc = 1619;
+		rType = 0;
+		vrLen = 1301;
+		vrLoc = 0;
+	};
+	8C64C15413BE9816004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB838136F40AA0004E88C /* ActivityComboData.m */;
+		name = "ActivityComboData.m: 18";
+		rLen = 21;
+		rLoc = 362;
+		rType = 0;
+		vrLen = 646;
+		vrLoc = 0;
+	};
+	8C64C15513BE9816004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292A12D46AC600F71FE7 /* Context.h */;
+		name = "Context.h: 57";
+		rLen = 7;
+		rLoc = 1904;
+		rType = 0;
+		vrLen = 1970;
+		vrLoc = 853;
+	};
+	8C64C15613BE9816004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CDC13461310897F00BA478C /* SummaryViewController.h */;
+		name = "SummaryViewController.h: 60";
+		rLen = 63;
+		rLoc = 1570;
+		rType = 0;
+		vrLen = 1402;
+		vrLoc = 291;
+	};
+	8C64C15713BE9816004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
+		name = "HUDCellController.h: 17";
+		rLen = 6;
+		rLoc = 324;
+		rType = 0;
+		vrLen = 789;
+		vrLoc = 0;
+	};
+	8C64C15A13BE983A004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C66A76212DFCD23000644ED /* BlockerModule.m */;
+		name = "BlockerModule.m: 105";
+		rLen = 4;
+		rLoc = 3416;
+		rType = 0;
+		vrLen = 1221;
+		vrLoc = 2662;
+	};
+	8C64C15B13BE983A004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
+		name = "SummaryHUDControl.m: 311";
+		rLen = 0;
+		rLoc = 9552;
+		rType = 0;
+		vrLen = 1442;
+		vrLoc = 8333;
+	};
+	8C64C15C13BE983A004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292212D46AC600F71FE7 /* WPADelegate.m */;
+		name = "WPADelegate.m: 50";
+		rLen = 0;
+		rLoc = 1374;
+		rType = 0;
+		vrLen = 2009;
+		vrLoc = 9669;
+	};
+	8C64C15D13BE983A004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
+		name = "WPAMainController.m: 161";
+		rLen = 0;
+		rLoc = 6109;
+		rType = 0;
+		vrLen = 1414;
+		vrLoc = 5267;
+	};
+	8C64C15E13BE983A004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB634136F33230004E88C /* SwitchActivityDialog.m */;
+		name = "SwitchActivityDialog.m: 62";
+		rLen = 0;
+		rLoc = 1619;
+		rType = 0;
+		vrLen = 1301;
+		vrLoc = 0;
+	};
+	8C64C15F13BE983A004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB838136F40AA0004E88C /* ActivityComboData.m */;
+		name = "ActivityComboData.m: 18";
+		rLen = 21;
+		rLoc = 362;
+		rType = 0;
+		vrLen = 646;
+		vrLoc = 0;
+	};
+	8C64C16013BE983A004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292A12D46AC600F71FE7 /* Context.h */;
+		name = "Context.h: 57";
+		rLen = 7;
+		rLoc = 1904;
+		rType = 0;
+		vrLen = 1959;
+		vrLoc = 912;
+	};
+	8C64C16113BE983A004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CDC13461310897F00BA478C /* SummaryViewController.h */;
+		name = "SummaryViewController.h: 60";
+		rLen = 63;
+		rLoc = 1570;
+		rType = 0;
+		vrLen = 1402;
+		vrLoc = 291;
+	};
+	8C64C16213BE983A004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
+		name = "HUDCellController.h: 17";
+		rLen = 6;
+		rLoc = 324;
+		rType = 0;
+		vrLen = 789;
+		vrLoc = 0;
+	};
+	8C64C16613BE9858004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C66A76212DFCD23000644ED /* BlockerModule.m */;
+		name = "BlockerModule.m: 105";
+		rLen = 4;
+		rLoc = 3416;
+		rType = 0;
+		vrLen = 1221;
+		vrLoc = 2662;
+	};
+	8C64C16713BE9858004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
+		name = "SummaryHUDControl.m: 311";
+		rLen = 0;
+		rLoc = 9552;
+		rType = 0;
+		vrLen = 1352;
+		vrLoc = 8425;
+	};
+	8C64C16813BE9858004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292212D46AC600F71FE7 /* WPADelegate.m */;
+		name = "WPADelegate.m: 50";
+		rLen = 0;
+		rLoc = 1374;
+		rType = 0;
+		vrLen = 2009;
+		vrLoc = 9669;
+	};
+	8C64C16913BE9858004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
+		name = "WPAMainController.m: 161";
+		rLen = 0;
+		rLoc = 6109;
+		rType = 0;
+		vrLen = 1397;
+		vrLoc = 5323;
+	};
+	8C64C16A13BE9858004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB634136F33230004E88C /* SwitchActivityDialog.m */;
+		name = "SwitchActivityDialog.m: 62";
+		rLen = 0;
+		rLoc = 1619;
+		rType = 0;
+		vrLen = 1301;
+		vrLoc = 0;
+	};
+	8C64C16B13BE9858004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB838136F40AA0004E88C /* ActivityComboData.m */;
+		name = "ActivityComboData.m: 18";
+		rLen = 21;
+		rLoc = 362;
+		rType = 0;
+		vrLen = 646;
+		vrLoc = 0;
+	};
+	8C64C16C13BE9858004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292A12D46AC600F71FE7 /* Context.h */;
+		name = "Context.h: 57";
+		rLen = 7;
+		rLoc = 1904;
+		rType = 0;
+		vrLen = 1941;
+		vrLoc = 963;
+	};
+	8C64C16D13BE9858004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CDC13461310897F00BA478C /* SummaryViewController.h */;
+		name = "SummaryViewController.h: 60";
+		rLen = 63;
+		rLoc = 1570;
+		rType = 0;
+		vrLen = 1402;
+		vrLoc = 291;
+	};
+	8C64C16E13BE9858004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
+		name = "HUDCellController.h: 17";
+		rLen = 6;
+		rLoc = 324;
+		rType = 0;
+		vrLen = 789;
+		vrLoc = 0;
+	};
+	8C64C17213BE991B004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C66A76212DFCD23000644ED /* BlockerModule.m */;
+		name = "BlockerModule.m: 105";
+		rLen = 4;
+		rLoc = 3416;
+		rType = 0;
+		vrLen = 1221;
+		vrLoc = 2662;
+	};
+	8C64C17313BE991B004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
+		name = "SummaryHUDControl.m: 311";
+		rLen = 0;
+		rLoc = 9551;
+		rType = 0;
+		vrLen = 1304;
+		vrLoc = 8511;
+	};
+	8C64C17413BE991B004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB634136F33230004E88C /* SwitchActivityDialog.m */;
+		name = "SwitchActivityDialog.m: 62";
+		rLen = 0;
+		rLoc = 1619;
+		rType = 0;
+		vrLen = 1301;
+		vrLoc = 0;
+	};
+	8C64C17513BE991B004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292212D46AC600F71FE7 /* WPADelegate.m */;
+		name = "WPADelegate.m: 50";
+		rLen = 0;
+		rLoc = 1374;
+		rType = 0;
+		vrLen = 2009;
+		vrLoc = 9669;
+	};
+	8C64C17613BE991B004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
+		name = "WPAMainController.m: 161";
+		rLen = 0;
+		rLoc = 6109;
+		rType = 0;
+		vrLen = 1405;
+		vrLoc = 5359;
+	};
+	8C64C17713BE991B004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB838136F40AA0004E88C /* ActivityComboData.m */;
+		name = "ActivityComboData.m: 18";
+		rLen = 21;
+		rLoc = 362;
+		rType = 0;
+		vrLen = 646;
+		vrLoc = 0;
+	};
+	8C64C17813BE991B004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292A12D46AC600F71FE7 /* Context.h */;
+		name = "Context.h: 57";
+		rLen = 7;
+		rLoc = 1904;
+		rType = 0;
+		vrLen = 1984;
+		vrLoc = 976;
+	};
+	8C64C17913BE991B004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CDC13461310897F00BA478C /* SummaryViewController.h */;
+		name = "SummaryViewController.h: 60";
+		rLen = 63;
+		rLoc = 1570;
+		rType = 0;
+		vrLen = 1402;
+		vrLoc = 291;
+	};
+	8C64C17A13BE991B004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
+		name = "HUDCellController.h: 17";
+		rLen = 6;
+		rLoc = 324;
+		rType = 0;
+		vrLen = 789;
+		vrLoc = 0;
+	};
+	8C64C17C13BE9A43004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C66A76212DFCD23000644ED /* BlockerModule.m */;
+		name = "BlockerModule.m: 105";
+		rLen = 4;
+		rLoc = 3416;
+		rType = 0;
+		vrLen = 1221;
+		vrLoc = 2662;
+	};
+	8C64C17D13BE9A43004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
+		name = "SummaryHUDControl.m: 311";
+		rLen = 0;
+		rLoc = 9551;
+		rType = 0;
+		vrLen = 1304;
+		vrLoc = 8511;
+	};
+	8C64C17E13BE9A43004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB634136F33230004E88C /* SwitchActivityDialog.m */;
+		name = "SwitchActivityDialog.m: 62";
+		rLen = 0;
+		rLoc = 1619;
+		rType = 0;
+		vrLen = 1301;
+		vrLoc = 0;
+	};
+	8C64C17F13BE9A43004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292212D46AC600F71FE7 /* WPADelegate.m */;
+		name = "WPADelegate.m: 50";
+		rLen = 0;
+		rLoc = 1374;
+		rType = 0;
+		vrLen = 2009;
+		vrLoc = 9669;
+	};
+	8C64C18013BE9A43004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
+		name = "WPAMainController.m: 161";
+		rLen = 0;
+		rLoc = 6109;
+		rType = 0;
+		vrLen = 1405;
+		vrLoc = 5359;
+	};
+	8C64C18113BE9A43004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB838136F40AA0004E88C /* ActivityComboData.m */;
+		name = "ActivityComboData.m: 18";
+		rLen = 21;
+		rLoc = 362;
+		rType = 0;
+		vrLen = 646;
+		vrLoc = 0;
+	};
+	8C64C18213BE9A43004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292A12D46AC600F71FE7 /* Context.h */;
+		name = "Context.h: 57";
+		rLen = 7;
+		rLoc = 1904;
+		rType = 0;
+		vrLen = 1984;
+		vrLoc = 976;
+	};
+	8C64C18313BE9A43004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CDC13461310897F00BA478C /* SummaryViewController.h */;
+		name = "SummaryViewController.h: 60";
+		rLen = 63;
+		rLoc = 1570;
+		rType = 0;
+		vrLen = 1402;
+		vrLoc = 291;
+	};
+	8C64C18413BE9A43004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
+		name = "HUDCellController.h: 17";
+		rLen = 6;
+		rLoc = 324;
+		rType = 0;
+		vrLen = 789;
+		vrLoc = 0;
+	};
+	8C64C18713BE9B15004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C66A76212DFCD23000644ED /* BlockerModule.m */;
+		name = "BlockerModule.m: 105";
+		rLen = 4;
+		rLoc = 3416;
+		rType = 0;
+		vrLen = 1221;
+		vrLoc = 2662;
+	};
+	8C64C18813BE9B15004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
+		name = "SummaryHUDControl.m: 311";
+		rLen = 0;
+		rLoc = 9551;
+		rType = 0;
+		vrLen = 1227;
+		vrLoc = 8649;
+	};
+	8C64C18913BE9B15004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB634136F33230004E88C /* SwitchActivityDialog.m */;
+		name = "SwitchActivityDialog.m: 62";
+		rLen = 0;
+		rLoc = 1619;
+		rType = 0;
+		vrLen = 1301;
+		vrLoc = 0;
+	};
+	8C64C18A13BE9B15004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292212D46AC600F71FE7 /* WPADelegate.m */;
+		name = "WPADelegate.m: 50";
+		rLen = 0;
+		rLoc = 1374;
+		rType = 0;
+		vrLen = 2009;
+		vrLoc = 9669;
+	};
+	8C64C18B13BE9B15004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
+		name = "WPAMainController.m: 161";
+		rLen = 0;
+		rLoc = 6109;
+		rType = 0;
+		vrLen = 1428;
+		vrLoc = 5476;
+	};
+	8C64C18C13BE9B15004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB838136F40AA0004E88C /* ActivityComboData.m */;
+		name = "ActivityComboData.m: 18";
+		rLen = 21;
+		rLoc = 362;
+		rType = 0;
+		vrLen = 646;
+		vrLoc = 0;
+	};
+	8C64C18D13BE9B15004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292A12D46AC600F71FE7 /* Context.h */;
+		name = "Context.h: 57";
+		rLen = 7;
+		rLoc = 1904;
+		rType = 0;
+		vrLen = 2023;
+		vrLoc = 1001;
+	};
+	8C64C18E13BE9B15004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CDC13461310897F00BA478C /* SummaryViewController.h */;
+		name = "SummaryViewController.h: 60";
+		rLen = 63;
+		rLoc = 1570;
+		rType = 0;
+		vrLen = 1402;
+		vrLoc = 291;
+	};
+	8C64C18F13BE9B15004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
+		name = "HUDCellController.h: 17";
+		rLen = 6;
+		rLoc = 324;
+		rType = 0;
+		vrLen = 789;
+		vrLoc = 0;
+	};
+	8C64C19513BE9ED7004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C66A76212DFCD23000644ED /* BlockerModule.m */;
+		name = "BlockerModule.m: 105";
+		rLen = 4;
+		rLoc = 3416;
+		rType = 0;
+		vrLen = 1272;
+		vrLoc = 2662;
+	};
+	8C64C19613BE9ED7004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C73F09912E5F6590056FAFF /* SummaryHUDControl.h */;
+		name = "SummaryHUDControl.h: 67";
+		rLen = 0;
+		rLoc = 1996;
+		rType = 0;
+		vrLen = 1555;
+		vrLoc = 478;
+	};
+	8C64C19713BE9ED7004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
+		name = "SummaryHUDControl.m: 286";
+		rLen = 41;
+		rLoc = 8953;
+		rType = 0;
+		vrLen = 1240;
+		vrLoc = 8649;
+	};
+	8C64C19813BE9ED7004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
+		name = "SummaryHUDControl.m: 305";
+		rLen = 0;
+		rLoc = 9523;
+		rType = 0;
+		vrLen = 1285;
+		vrLoc = 8649;
+	};
+	8C64C19913BE9ED7004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB634136F33230004E88C /* SwitchActivityDialog.m */;
+		name = "SwitchActivityDialog.m: 62";
+		rLen = 0;
+		rLoc = 1619;
+		rType = 0;
+		vrLen = 1378;
+		vrLoc = 0;
+	};
+	8C64C19A13BE9ED7004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292212D46AC600F71FE7 /* WPADelegate.m */;
+		name = "WPADelegate.m: 50";
+		rLen = 0;
+		rLoc = 1374;
+		rType = 0;
+		vrLen = 2020;
+		vrLoc = 9669;
+	};
+	8C64C19B13BE9ED7004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
+		name = "WPAMainController.m: 161";
+		rLen = 0;
+		rLoc = 6109;
+		rType = 0;
+		vrLen = 1456;
+		vrLoc = 5476;
+	};
+	8C64C19C13BE9ED7004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB838136F40AA0004E88C /* ActivityComboData.m */;
+		name = "ActivityComboData.m: 18";
+		rLen = 21;
+		rLoc = 362;
+		rType = 0;
+		vrLen = 646;
+		vrLoc = 0;
+	};
+	8C64C19D13BE9ED7004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292A12D46AC600F71FE7 /* Context.h */;
+		name = "Context.h: 57";
+		rLen = 7;
+		rLoc = 1904;
+		rType = 0;
+		vrLen = 2050;
+		vrLoc = 1001;
+	};
+	8C64C19E13BE9ED7004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CDC13461310897F00BA478C /* SummaryViewController.h */;
+		name = "SummaryViewController.h: 60";
+		rLen = 63;
+		rLoc = 1570;
+		rType = 0;
+		vrLen = 1407;
+		vrLoc = 291;
+	};
+	8C64C19F13BE9ED7004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
+		name = "HUDCellController.h: 17";
+		rLen = 6;
+		rLoc = 324;
+		rType = 0;
+		vrLen = 789;
+		vrLoc = 0;
+	};
+	8C64C1A213BE9EF0004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C66A76212DFCD23000644ED /* BlockerModule.m */;
+		name = "BlockerModule.m: 105";
+		rLen = 4;
+		rLoc = 3416;
+		rType = 0;
+		vrLen = 1221;
+		vrLoc = 2662;
+	};
+	8C64C1A313BE9EF0004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
+		name = "SummaryHUDControl.m: 305";
+		rLen = 0;
+		rLoc = 9523;
+		rType = 0;
+		vrLen = 1237;
+		vrLoc = 8697;
+	};
+	8C64C1A413BE9EF0004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB634136F33230004E88C /* SwitchActivityDialog.m */;
+		name = "SwitchActivityDialog.m: 62";
+		rLen = 0;
+		rLoc = 1619;
+		rType = 0;
+		vrLen = 1301;
+		vrLoc = 0;
+	};
+	8C64C1A513BE9EF0004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292212D46AC600F71FE7 /* WPADelegate.m */;
+		name = "WPADelegate.m: 50";
+		rLen = 0;
+		rLoc = 1374;
+		rType = 0;
+		vrLen = 2009;
+		vrLoc = 9669;
+	};
+	8C64C1A613BE9EF0004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
+		name = "WPAMainController.m: 161";
+		rLen = 0;
+		rLoc = 6109;
+		rType = 0;
+		vrLen = 1427;
+		vrLoc = 5505;
+	};
+	8C64C1A713BE9EF0004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB838136F40AA0004E88C /* ActivityComboData.m */;
+		name = "ActivityComboData.m: 18";
+		rLen = 21;
+		rLoc = 362;
+		rType = 0;
+		vrLen = 646;
+		vrLoc = 0;
+	};
+	8C64C1A813BE9EF0004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292A12D46AC600F71FE7 /* Context.h */;
+		name = "Context.h: 57";
+		rLen = 7;
+		rLoc = 1904;
+		rType = 0;
+		vrLen = 1984;
+		vrLoc = 1067;
+	};
+	8C64C1A913BE9EF0004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CDC13461310897F00BA478C /* SummaryViewController.h */;
+		name = "SummaryViewController.h: 60";
+		rLen = 63;
+		rLoc = 1570;
+		rType = 0;
+		vrLen = 1402;
+		vrLoc = 291;
+	};
+	8C64C1AA13BE9EF0004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
+		name = "HUDCellController.h: 17";
+		rLen = 6;
+		rLoc = 324;
+		rType = 0;
+		vrLen = 789;
+		vrLoc = 0;
+	};
+	8C64C1AC13BE9F95004FD2A3 /* WPAMainController.m:449 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
+		functionName = "-switchActClosed:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 449;
+		location = "Self-Imposed Structure";
+		modificationTime = 331259858.725694;
+		originalNumberOfMultipleMatches = 1;
+		state = 1;
+	};
+	8C64C1AE13BE9F9C004FD2A3 /* WPAMainController.m:422 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
+		functionName = "-clickSwitchActivity:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 422;
+		location = "Self-Imposed Structure";
+		modificationTime = 331259858.93749;
+		originalNumberOfMultipleMatches = 1;
+		state = 1;
+	};
+	8C64C1B013BE9FB0004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C66A76212DFCD23000644ED /* BlockerModule.m */;
+		name = "BlockerModule.m: 105";
+		rLen = 4;
+		rLoc = 3416;
+		rType = 0;
+		vrLen = 1221;
+		vrLoc = 2662;
+	};
+	8C64C1B113BE9FB0004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB634136F33230004E88C /* SwitchActivityDialog.m */;
+		name = "SwitchActivityDialog.m: 82";
+		rLen = 0;
+		rLoc = 1904;
+		rType = 0;
+		vrLen = 1273;
+		vrLoc = 1656;
+	};
+	8C64C1B213BE9FB0004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
+		name = "WPAMainController.m: 161";
+		rLen = 0;
+		rLoc = 6109;
+		rType = 0;
+		vrLen = 1528;
+		vrLoc = 14470;
+	};
+	8C64C1B313BE9FB0004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
+		name = "WPAMainController.m: 161";
+		rLen = 0;
+		rLoc = 6109;
+		rType = 0;
+		vrLen = 1527;
+		vrLoc = 14470;
+	};
+	8C64C1B413BE9FB0004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
+		name = "SummaryHUDControl.m: 305";
+		rLen = 0;
+		rLoc = 9523;
+		rType = 0;
+		vrLen = 1237;
+		vrLoc = 8697;
+	};
+	8C64C1B513BE9FB0004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292212D46AC600F71FE7 /* WPADelegate.m */;
+		name = "WPADelegate.m: 50";
+		rLen = 0;
+		rLoc = 1374;
+		rType = 0;
+		vrLen = 2009;
+		vrLoc = 9669;
+	};
+	8C64C1B613BE9FB0004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB838136F40AA0004E88C /* ActivityComboData.m */;
+		name = "ActivityComboData.m: 18";
+		rLen = 21;
+		rLoc = 362;
+		rType = 0;
+		vrLen = 646;
+		vrLoc = 0;
+	};
+	8C64C1B713BE9FB0004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292A12D46AC600F71FE7 /* Context.h */;
+		name = "Context.h: 57";
+		rLen = 7;
+		rLoc = 1904;
+		rType = 0;
+		vrLen = 1984;
+		vrLoc = 1067;
+	};
+	8C64C1B813BE9FB0004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CDC13461310897F00BA478C /* SummaryViewController.h */;
+		name = "SummaryViewController.h: 60";
+		rLen = 63;
+		rLoc = 1570;
+		rType = 0;
+		vrLen = 1402;
+		vrLoc = 291;
+	};
+	8C64C1B913BE9FB0004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
+		name = "HUDCellController.h: 17";
+		rLen = 6;
+		rLoc = 324;
+		rType = 0;
+		vrLen = 789;
+		vrLoc = 0;
+	};
+	8C64C1BC13BE9FD4004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C66A76212DFCD23000644ED /* BlockerModule.m */;
+		name = "BlockerModule.m: 105";
+		rLen = 4;
+		rLoc = 3416;
+		rType = 0;
+		vrLen = 1221;
+		vrLoc = 2662;
+	};
+	8C64C1BD13BE9FD4004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */;
+		name = "SummaryHUDControl.m: 288";
+		rLen = 0;
+		rLoc = 9041;
+		rType = 0;
+		vrLen = 1453;
+		vrLoc = 8020;
+	};
+	8C64C1BE13BE9FD4004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
+		name = "WPAMainController.m: 161";
+		rLen = 0;
+		rLoc = 6109;
+		rType = 0;
+		vrLen = 1553;
+		vrLoc = 14496;
+	};
+	8C64C1BF13BE9FD4004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB634136F33230004E88C /* SwitchActivityDialog.m */;
+		name = "SwitchActivityDialog.m: 82";
+		rLen = 0;
+		rLoc = 1904;
+		rType = 0;
+		vrLen = 1320;
+		vrLoc = 1609;
+	};
+	8C64C1C013BE9FD4004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292212D46AC600F71FE7 /* WPADelegate.m */;
+		name = "WPADelegate.m: 50";
+		rLen = 0;
+		rLoc = 1374;
+		rType = 0;
+		vrLen = 2009;
+		vrLoc = 9669;
+	};
+	8C64C1C113BE9FD4004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C5BB838136F40AA0004E88C /* ActivityComboData.m */;
+		name = "ActivityComboData.m: 18";
+		rLen = 21;
+		rLoc = 362;
+		rType = 0;
+		vrLen = 646;
+		vrLoc = 0;
+	};
+	8C64C1C213BE9FD4004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8C77292A12D46AC600F71FE7 /* Context.h */;
+		name = "Context.h: 57";
+		rLen = 7;
+		rLoc = 1904;
+		rType = 0;
+		vrLen = 1952;
+		vrLoc = 1130;
+	};
+	8C64C1C313BE9FD4004FD2A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8CDC13461310897F00BA478C /* SummaryViewController.h */;
+		name = "SummaryViewController.h: 60";
+		rLen = 63;
+		rLoc = 1570;
+		rType = 0;
+		vrLen = 1402;
+		vrLoc = 291;
+	};
+	8C64C1C413BE9FD4004FD2A3 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 17";
@@ -4971,9 +7418,9 @@
 	};
 	8C73F09912E5F6590056FAFF /* SummaryHUDControl.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {919, 1134}}";
-			sepNavSelRange = "{1974, 0}";
-			sepNavVisRange = "{1300, 785}";
+			sepNavIntBoundsRect = "{{0, 0}, {789, 1162}}";
+			sepNavSelRange = "{1996, 0}";
+			sepNavVisRange = "{478, 1555}";
 			sepNavWindowFrame = "{{50, 0}, {907, 831}}";
 		};
 	};
@@ -5091,9 +7538,9 @@
 	};
 	8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1108, 5404}}";
-			sepNavSelRange = "{8895, 0}";
-			sepNavVisRange = "{9089, 1180}";
+			sepNavIntBoundsRect = "{{0, 0}, {1265, 5600}}";
+			sepNavSelRange = "{9041, 0}";
+			sepNavVisRange = "{8020, 1453}";
 			sepNavWindowFrame = "{{364, 41}, {780, 837}}";
 		};
 	};
@@ -5102,7 +7549,7 @@
 		fRef = 8C74F12F13B59D0500A7BF20 /* HUDCellController.h */;
 		name = "HUDCellController.h: 25";
 		rLen = 0;
-		rLoc = 576;
+		rLoc = 585;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 0;
@@ -5359,9 +7806,9 @@
 	};
 	8C77291E12D46AC600F71FE7 /* WPAMainController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {919, 12474}}";
-			sepNavSelRange = "{15965, 0}";
-			sepNavVisRange = "{15718, 661}";
+			sepNavIntBoundsRect = "{{0, 0}, {894, 12194}}";
+			sepNavSelRange = "{6109, 0}";
+			sepNavVisRange = "{14496, 1553}";
 			sepNavWindowFrame = "{{356, 47}, {907, 831}}";
 		};
 	};
@@ -5393,7 +7840,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1174, 7602}}";
 			sepNavSelRange = "{1374, 0}";
-			sepNavVisRange = "{13612, 1959}";
+			sepNavVisRange = "{9669, 2009}";
 			sepNavWindowFrame = "{{463, 29}, {907, 831}}";
 		};
 	};
@@ -5417,7 +7864,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {846, 1302}}";
 			sepNavSelRange = "{1904, 7}";
-			sepNavVisRange = "{282, 1885}";
+			sepNavVisRange = "{1130, 1952}";
 			sepNavWindowFrame = "{{261, 38}, {907, 831}}";
 		};
 	};
@@ -8182,7 +10629,7 @@
 		fRef = 8C77291E12D46AC600F71FE7 /* WPAMainController.m */;
 		name = "WPAMainController.m: 459";
 		rLen = 0;
-		rLoc = 16859;
+		rLoc = 16890;
 		rType = 0;
 		vrLen = 1506;
 		vrLoc = 15607;

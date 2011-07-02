@@ -19,6 +19,11 @@
 #import "HUDBusy.h"
 #import "TotalsManager.h"
 
+@interface MyField : NSTextField
+{
+}
+
+@end
 
 @interface SummaryHUDControl :  NSWindowController <NSWindowDelegate, SummaryHUDCallback, NSSplitViewDelegate> 
 {
@@ -38,7 +43,7 @@
 	NSUInteger renderedViews;
 	CGFloat viewsHeight;
 	BOOL useCache;
-	NSTextField	 *taskField;
+	NSButton	 *taskField;
 	NSTextField *timeField;
 }
 
@@ -56,9 +61,10 @@
 @property (nonatomic) NSUInteger renderedViews;
 @property (nonatomic) CGFloat viewsHeight;
 @property (nonatomic) BOOL useCache;
-@property (nonatomic, retain) IBOutlet NSTextField *taskField;
+@property (nonatomic, retain) IBOutlet NSButton *taskField;
 @property (nonatomic, retain) IBOutlet NSTextField *timeField;
 - (void) buildDisplay;
+- (IBAction) showSwitchActivity: (id) sender;
 
 
 @end

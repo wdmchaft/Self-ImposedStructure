@@ -156,7 +156,9 @@
 				}
 			}
 		}
-//		if (!foundTask){
+		if (!foundTask){
+			[ctx setCurrentTask:nil];
+		}
 //			[self clickSwitchActivity:self];
 //		}
 	}

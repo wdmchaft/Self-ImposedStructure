@@ -1,9 +1,9 @@
 //
 //  HUDCellController.h
-//  WorkPlayAway
+//  Self-Imposed Structur
 //
 //  Created by Charles on 6/24/11.
-//  Copyright 2011 WorkPlayAway. All rights reserved.
+//  Copyright 2011 zer0gravitas. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
