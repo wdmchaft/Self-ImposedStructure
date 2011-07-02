@@ -183,7 +183,8 @@ constrainMinCoordinate:(CGFloat)		proposedMin
 
 - (void) buildDisplay 
 {
-	NSLog(@"buildDisplay %d subviews", [[splitter subviews] count]);
+	[buildTimer invalidate];
+	buildTimer = nil;
 	NSRect rect = [[self window] frame];
 	Context *ctx =[Context sharedContext];
 	NSArray *settings = [[ctx hudSettings] allEnabled];
@@ -223,16 +224,52 @@ constrainMinCoordinate:(CGFloat)		proposedMin
 	NSSize sz = [splitter frame].size;
 	sz.height +=48;
 	
-	NSLog(@"buildDisplay size = %@", NSStringFromSize(sz));
 	[[self window] setContentSize: sz];
-	
+	NSMutableArray *orderedViews = [NSMutableArray arrayWithCapacity:[settings count]];
 	for (HUDSetting *setting in settings)
 	{
 		NSMutableArray *rptData = [datas objectForKey:[[setting reporter]name]];
 		HUDCellController *hcc  = [cells objectForKey:[[setting reporter]name]];
 		HUDBusy *busy			= [busys objectForKey:[[setting reporter]name]];
 		
-		if (rptData == nil && busy == nil){
+		if (hcc){
+			[[hcc view] setFrameOrigin: NSMakePoint(0, 0)];
+			NSSize scrollSz, hccSz;
+			scrollSz = hccSz = NSMakeSize([splitter frame].size.width, ([setting height] * 16) - 1);
+			[[hcc view] setFrameSize:hccSz ];
+			NSScrollView *scroll  = (NSScrollView*) [[hcc dataController] view];
+			[scroll setFrameOrigin: NSMakePoint(20, 0)];
+			scrollSz.width -= 20;
+			[scroll setFrameSize:scrollSz ];
+			[orderedViews addObject:[hcc view]];
+		}
+		else if (rptData && [rptData count] && hcc == nil){
+			HUDCellController *hcc = [self getCellForInstance:[setting reporter] 
+													   parent:splitter 
+														 rows:[setting height]
+													  oldView:[busy view]
+														 data:rptData];
+			
+			[[[hcc dataController] table] reloadData];
+			[cells setObject:hcc forKey:[[setting reporter]name]];
+			[orderedViews addObject :[hcc view]];
+			if (busy) {
+				[[busy view] removeFromSuperview];
+				[busys removeObjectForKey:[[setting reporter]name]];
+			}
+		}
+		else if (rptData && [rptData count] == 0){
+			if (busy){
+				[[busy view] removeFromSuperview];
+				[busys removeObjectForKey:[[setting reporter] name]];
+				busy = nil;
+			}
+		}		
+		else if (busy){
+			[orderedViews addObject:[busy view]];
+		}
+		
+		else if (rptData == nil && busy == nil){
 			HUDBusy *busy = [[HUDBusy alloc] initWithNibName:@"HUDBusyView" bundle:nil];
 			[busys setObject:busy forKey:[[setting reporter] name]];
 			NSView *bv = [busy view];
@@ -244,42 +281,17 @@ constrainMinCoordinate:(CGFloat)		proposedMin
 			[busys setObject:busy forKey:[[setting reporter] name]];
 			
 			[busy refresh:NO];	
-			buildTimer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(buildDisplay) userInfo:nil repeats:YES];
-		}
-		if (rptData && [rptData count] == 0){
-			[[busy view] removeFromSuperview];
-		}
-		if (rptData && [rptData count] && hcc == nil){
-			HUDCellController *hcc = [self getCellForInstance:[setting reporter] 
-													   parent:splitter 
-														 rows:[setting height]
-													  oldView:[busy view]
-														 data:rptData];
-			
-			
-			[[[hcc dataController] table] reloadData];
-			[cells setObject:hcc forKey:[[setting reporter]name]];
-		}
-		else if (hcc){
-			[[hcc view] setFrameOrigin: NSMakePoint(0, 0)];
-			NSSize scrollSz, hccSz;
-			scrollSz = hccSz = NSMakeSize([splitter frame].size.width, ([setting height] * 16) - 1);
-			[[hcc view] setFrameSize:hccSz ];
-			NSView *canary = [[hcc dataController] view];
-			NSAssert([canary isKindOfClass:[NSScrollView class]],@"oops");
-			NSScrollView *scroll  = (NSScrollView*) [[hcc dataController] view];
-			[scroll setFrameOrigin: NSMakePoint(20, 0)];
-			scrollSz.width -= 20;
-			[scroll setFrameSize:scrollSz ];
-			
-		}
-	}
+			[orderedViews addObject:[busy view]];
+			buildTimer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(buildDisplay) userInfo:nil repeats:NO];
+		} 
+	}			
+	
+	[splitter setSubviews:orderedViews];
 	
 	if (hccCount == renderedViews && [datas count] == [settings count]){
-		NSLog(@"buildDisplay done building");
-		[buildTimer invalidate];
-		buildTimer = nil;
 		doingBuild = NO;
+	} else {
+		buildTimer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(buildDisplay) userInfo:nil repeats:NO];
 	}
 }
 
@@ -303,6 +315,28 @@ constrainMinCoordinate:(CGFloat)		proposedMin
 	if (ctx.currentTask && [ctx.currentTask objectForKey:@"name"]){
 		task =[ctx.currentTask objectForKey:@"name"];
 	}
+	[taskField setTitle:task];
+}
+
+- (void) dataChanged: (NSNotification*) msg
+{
+	NSString *modName = [[msg userInfo]objectForKey:@"module"];
+	NSMutableArray *data = [datas objectForKey:modName];
+	[data removeAllObjects];
+	[datas removeObjectForKey:modName];
+	data = nil;
+	
+	[busys removeObjectForKey:modName];
+	HUDCellController *hcc = [cells objectForKey:modName];
+	[[hcc view] removeFromSuperview];
+	[cells removeObjectForKey:modName];
+
+	buildTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(buildDisplay) userInfo:nil repeats:NO];
+}
+
+- (void) taskChanged: (NSNotification*) msg
+{
+	NSString *task = [[msg userInfo] objectForKey:@"name"];
 	[taskField setTitle:task];
 }
 
@@ -354,7 +388,6 @@ constrainMinCoordinate:(CGFloat)		proposedMin
 		[busy setReporter:[setting reporter]];
 		[busy setCaller:self];
 		[busys setObject:busy forKey:[[setting reporter] name]];
-		
 		[busy refresh:NO];
 	}
 	
@@ -367,15 +400,15 @@ constrainMinCoordinate:(CGFloat)		proposedMin
 	sz.height +=48;
 	NSLog(@"showWindow size = %@", NSStringFromSize(sz));
 	[[self window] setContentSize: sz];
-	//	NSRect content = [[[self window] contentView] bounds]; 
-	//	NSRect winRect = [[self window] frameRectForContentRect: content];
-	//	[[self window] setFrame: winRect display:YES];
+
 	renderedViews = [settings count];
 	viewsHeight = 28 * renderedViews;
 	buildTimer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(buildDisplay) userInfo:nil repeats:YES];
-	NSString *updateQueue =  [Queues queueNameFor:WPA_UPDATEQUEUE fromBase:ctx.queueName];
+	NSString *activeQueue =  [Queues queueNameFor:WPA_ACTIVEQUEUE fromBase:ctx.queueName];
+	NSString *completeQueue =  [Queues queueNameFor:WPA_COMPLETEQUEUE fromBase:ctx.queueName];
 	NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
-	[center addObserver:self selector:@selector(dataChanged:) name:updateQueue object:nil];
+	[center addObserver:self selector:@selector(dataChanged:) name:completeQueue object:nil];
+	[center addObserver:self selector:@selector(taskChanged:) name:activeQueue object:nil];
 	useCache = YES;
 	
 	[self setupHeader];
@@ -404,11 +437,4 @@ constrainMinCoordinate:(CGFloat)		proposedMin
 
 @end
 
-@implementation MyField
 
-- (BOOL)acceptsFirstMouse:(NSEvent *)theEvent
-{
-	return YES;
-}
-
-@end

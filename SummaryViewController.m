@@ -137,7 +137,8 @@
 	Context *ctx = [Context sharedContext];
 	NSString *changeQueue =  [Queues queueNameFor:WPA_COMPLETEQUEUE fromBase:ctx.queueName];
 	NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
-	[center postNotificationName:changeQueue object:nil userInfo:nil];
+	
+	[center postNotificationName:changeQueue object:nil userInfo:[NSDictionary dictionaryWithObject:[reporter name] forKey:@"module"]];
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
