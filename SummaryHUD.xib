@@ -21,7 +21,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="369"/>
+			<integer value="403"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -74,35 +74,28 @@
 							<int key="NSvFlags">4362</int>
 							<object class="NSMutableArray" key="NSSubviews">
 								<bool key="EncodedWithXMLCoder">YES</bool>
-								<object class="NSButton" id="518784169">
+								<object class="NSButton" id="893150317">
 									<reference key="NSNextResponder" ref="256085151"/>
 									<int key="NSvFlags">266</int>
-									<string key="NSFrame">{{60, 2}, {300, 19}}</string>
+									<string key="NSFrame">{{62, 3}, {298, 21}}</string>
 									<reference key="NSSuperview" ref="256085151"/>
 									<bool key="NSEnabled">YES</bool>
-									<object class="BGHUDButtonCell" key="NSCell" id="919898838">
-										<int key="NSCellFlags">67239424</int>
+									<object class="NSButtonCell" key="NSCell" id="732478237">
+										<int key="NSCellFlags">-2080244224</int>
 										<int key="NSCellFlags2">131072</int>
-										<string key="NSContents">Button</string>
+										<string key="NSContents">Gradient Button</string>
 										<object class="NSFont" key="NSSupport" id="26">
 											<string key="NSName">LucidaGrande</string>
 											<double key="NSSize">11</double>
 											<int key="NSfFlags">3100</int>
 										</object>
-										<reference key="NSControlView" ref="518784169"/>
-										<int key="NSButtonFlags">-2046639873</int>
-										<int key="NSButtonFlags2">34</int>
-										<object class="NSFont" key="NSAlternateImage">
-											<string key="NSName">LucidaGrande</string>
-											<double key="NSSize">11</double>
-											<int key="NSfFlags">16</int>
-										</object>
+										<reference key="NSControlView" ref="893150317"/>
+										<int key="NSButtonFlags">-2033434369</int>
+										<int key="NSButtonFlags2">162</int>
 										<string key="NSAlternateContents"/>
 										<string key="NSKeyEquivalent"/>
-										<int key="NSPeriodicDelay">200</int>
-										<int key="NSPeriodicInterval">25</int>
-										<string key="themeKey">gradientTheme</string>
-										<int key="BGButtonType">0</int>
+										<int key="NSPeriodicDelay">400</int>
+										<int key="NSPeriodicInterval">75</int>
 									</object>
 								</object>
 								<object class="NSTextField" id="584450748">
@@ -127,7 +120,7 @@
 											</object>
 										</object>
 										<reference key="NSTextColor" ref="70562749"/>
-										<string key="themeKey">gradientTheme</string>
+										<string key="themeKey">myTheme</string>
 									</object>
 								</object>
 								<object class="NSTextField" id="328897511">
@@ -161,7 +154,7 @@
 										<reference key="NSControlView" ref="873725773"/>
 										<reference key="NSBackgroundColor" ref="320148541"/>
 										<reference key="NSTextColor" ref="70562749"/>
-										<string key="themeKey">gradientTheme</string>
+										<string key="themeKey">myTheme</string>
 									</object>
 								</object>
 							</object>
@@ -218,17 +211,25 @@
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">taskField</string>
 						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="518784169"/>
+						<reference key="destination" ref="893150317"/>
 					</object>
-					<int key="connectionID">488</int>
+					<int key="connectionID">503</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">showSwitchActivity:</string>
 						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="518784169"/>
+						<reference key="destination" ref="893150317"/>
 					</object>
-					<int key="connectionID">489</int>
+					<int key="connectionID">504</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">header</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="256085151"/>
+					</object>
+					<int key="connectionID">507</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -285,7 +286,7 @@
 							<reference ref="584450748"/>
 							<reference ref="328897511"/>
 							<reference ref="873725773"/>
-							<reference ref="518784169"/>
+							<reference ref="893150317"/>
 						</object>
 						<reference key="parent" ref="236343716"/>
 					</object>
@@ -341,18 +342,18 @@
 						<reference key="parent" ref="236343716"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">486</int>
-						<reference key="object" ref="518784169"/>
+						<int key="objectID">501</int>
+						<reference key="object" ref="893150317"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="919898838"/>
+							<reference ref="732478237"/>
 						</object>
 						<reference key="parent" ref="256085151"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">487</int>
-						<reference key="object" ref="919898838"/>
-						<reference key="parent" ref="518784169"/>
+						<int key="objectID">502</int>
+						<reference key="object" ref="732478237"/>
+						<reference key="parent" ref="893150317"/>
 					</object>
 				</object>
 			</object>
@@ -379,14 +380,15 @@
 					<string>474.IBPluginDependency</string>
 					<string>475.IBPluginDependency</string>
 					<string>475.IBViewBoundsToFrameTransform</string>
-					<string>486.IBPluginDependency</string>
-					<string>487.IBPluginDependency</string>
+					<string>501.IBPluginDependency</string>
+					<string>502.CustomClassName</string>
+					<string>502.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>{{310, 209}, {454, 75}}</string>
+					<string>{{318, 219}, {454, 75}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{310, 209}, {454, 75}}</string>
+					<string>{{318, 219}, {454, 75}}</string>
 					<boolean value="YES"/>
 					<boolean value="YES"/>
 					<string>{300, 49}</string>
@@ -411,8 +413,9 @@
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAAAAAAAAwjgAAA</bytes>
 					</object>
-					<string>com.binarymethod.BGHUDAppKitPlugin</string>
-					<string>com.binarymethod.BGHUDAppKitPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>MyButtonCell</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -431,11 +434,26 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">489</int>
+			<int key="maxID">507</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
+				<object class="IBPartialClassDescription">
+					<string key="className">MyButtonCell</string>
+					<string key="superclassName">NSButtonCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="1066723441">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">SummaryHUDControl.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSButton</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">NSButton+TextColor.h</string>
+					</object>
+				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">NSObject</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -510,22 +528,11 @@
 							</object>
 						</object>
 					</object>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">SummaryHUDControl.h</string>
-					</object>
+					<reference key="sourceIdentifier" ref="1066723441"/>
 				</object>
 			</object>
 			<object class="NSMutableArray" key="referencedPartialClassDescriptionsV3.2+">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<object class="IBPartialClassDescription">
-					<string key="className">BGHUDButtonCell</string>
-					<string key="superclassName">NSButtonCell</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBFrameworkSource</string>
-						<string key="minorKey">BGHUDAppKit.framework/Headers/BGHUDButtonCell.h</string>
-					</object>
-				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">BGHUDTextFieldCell</string>
 					<string key="superclassName">NSTextFieldCell</string>

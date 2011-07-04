@@ -19,6 +19,8 @@
 #import "StatusIconView.h"
 #import "SummaryViewController.h"
 #import "HUDCellController.h"
+#import "NSButton+TextColor.h"
+#import "MyTheme.h"
 
 @implementation SummaryHUDControl
 @synthesize mainControl;
@@ -55,6 +57,8 @@
 								 nil];
 	
     [defaults registerDefaults:appDefaults];
+	BGThemeManager *mgr = [BGThemeManager keyedManager];
+	[mgr setTheme:[MyTheme new] forKey:@"myTheme"];
 }
 
 - (id) initWithWindow:(NSWindow *)window
@@ -303,6 +307,7 @@ constrainMinCoordinate:(CGFloat)		proposedMin
 - (void) setupHeader
 {
 	Context *ctx = [Context sharedContext];
+
 	NSString *task = @"No active task set";
 	NSTimeInterval goal = [totalsManager calcGoal];
 	NSTimeInterval work = [totalsManager workToday];
@@ -312,10 +317,14 @@ constrainMinCoordinate:(CGFloat)		proposedMin
 		ratio = work / goal;
 	}
 	[timeField setStringValue: workStr];
-	if (ctx.currentTask && [ctx.currentTask objectForKey:@"name"]){
+	NSString *currTask = [ctx.currentTask objectForKey:@"name"];
+	NSColor *clr = [NSColor yellowColor];
+	if (currTask){
 		task =[ctx.currentTask objectForKey:@"name"];
+		clr = [NSColor whiteColor];
 	}
 	[taskField setTitle:task];
+	[taskField setTextColor:clr];
 }
 
 - (void) dataChanged: (NSNotification*) msg
@@ -337,7 +346,13 @@ constrainMinCoordinate:(CGFloat)		proposedMin
 - (void) taskChanged: (NSNotification*) msg
 {
 	NSString *task = [[msg userInfo] objectForKey:@"name"];
+	NSColor *clr = [NSColor whiteColor];
+	if (!task){
+		task = @"No active task set";
+		clr = [NSColor yellowColor];
+	}
 	[taskField setTitle:task];
+	[taskField setTextColor:clr];
 }
 
 - (void) showWindow:(id)sender
@@ -437,4 +452,70 @@ constrainMinCoordinate:(CGFloat)		proposedMin
 
 @end
 
+@implementation MyButtonCell
+- (void)drawBezelWithFrame:(NSRect)frame inView:(NSView *)controlView
+{
+	NSRect innerFrame = frame;
+	innerFrame.size.height -= 2.0;
+	innerFrame.size.width -= 3.0;
+	innerFrame.origin.x += 1.5;
+	innerFrame.origin.y	+= 1.0;
+	NSBezierPath *path = [NSBezierPath bezierPathWithRect:frame];
+	[NSGraphicsContext saveGraphicsState];
+	//	[path setLineJoinStyle:NSBevelLineJoinStyle];
+	NSShadow *shadow = [[NSShadow alloc] init];
+	[shadow setShadowColor: [NSColor blackColor]];
+	[shadow setShadowBlurRadius: 2];
+	[shadow setShadowOffset: NSMakeSize( 0, -1)];
+	[shadow set];
+	NSColor *darkClr = [NSColor colorWithDeviceRed: 0.141f green: 0.141f blue: 0.141f alpha: 0.5f];
+	[darkClr set];
+	[path setLineWidth:1.0];
+	[path stroke];
+	
+	[NSGraphicsContext restoreGraphicsState];
+	
+	//NSColor *borderClr = [NSColor colorWithDeviceRed: 0.749f green: 0.761f blue: 0.788f alpha: 1.0f];
+	
+	NSBezierPath *newPath = [NSBezierPath bezierPathWithRect:innerFrame];
+	NSColor *borderClr = [NSColor whiteColor];
+	[borderClr set];
+	[newPath setLineWidth:1.0];
+	[newPath stroke];
+	
+	NSGradient *grad= [[[NSGradient alloc] initWithColorsAndLocations: [NSColor colorWithDeviceRed: 0.324f green: 0.331f blue: 0.347f alpha: [controlView alphaValue]],
+						(CGFloat)0, [NSColor colorWithDeviceRed: 0.245f green: 0.253f blue: 0.269f alpha: [controlView alphaValue]], .5f,
+						[NSColor colorWithDeviceRed: 0.206f green: 0.214f blue: 0.233f alpha: [controlView alphaValue]], .5f,
+						[NSColor colorWithDeviceRed: 0.139f green: 0.147f blue: 0.167f alpha: [controlView alphaValue]], 1.0f, nil] autorelease];
+	
+	[grad drawInBezierPath:newPath angle:90.0f];
+	
+}
+- (NSRect) drawTitle:(NSAttributedString *)title withFrame:(NSRect)frame inView:(NSView *)controlView
+{
+	//NSDictionary *attrs = [NSDictionary dictionaryWithObjectsAndKeys:
+	//					   [NSColor whiteColor],NSForegroundColorAttributeName,
+	//					   [NSFont systemFontOfSize:10],NSFontAttributeName,
+	//					   nil ];
+	//NSAttributedString *task = [[NSAttributedString alloc] initWithString:title.string attributes: attrs];
+	
+	[title drawInRect:frame];
+	return frame;
+}
+
+@end
+
+@implementation TitleFieldCell
+- (NSRect) drawTitle:(NSAttributedString *)title withFrame:(NSRect)frame inView:(NSView *)controlView
+{
+	//NSDictionary *attrs = [NSDictionary dictionaryWithObjectsAndKeys:
+	//					   [NSColor whiteColor],NSForegroundColorAttributeName,
+	//					   [NSFont systemFontOfSize:10],NSFontAttributeName,
+	//					   nil ];
+	//NSAttributedString *task = [[NSAttributedString alloc] initWithString:title.string attributes: attrs];
+	
+	[title drawInRect:frame];
+	return frame;
+}	 
+@end
 

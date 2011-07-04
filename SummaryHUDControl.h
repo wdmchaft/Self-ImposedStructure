@@ -19,10 +19,9 @@
 #import "HUDBusy.h"
 #import "TotalsManager.h"
 
-@interface MyField : NSTextField
+@interface MyButtonCell	: NSButtonCell
 {
 }
-
 @end
 
 @interface SummaryHUDControl :  NSWindowController <NSWindowDelegate, SummaryHUDCallback, NSSplitViewDelegate> 

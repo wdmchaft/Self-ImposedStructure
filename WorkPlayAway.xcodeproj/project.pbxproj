@@ -138,6 +138,8 @@
 		8C5BB9871371E07F0004E88C /* HUDBusyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C5BB9851371E07E0004E88C /* HUDBusyView.xib */; };
 		8C5BB9B91371E2920004E88C /* HUDBusy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5BB9B81371E2920004E88C /* HUDBusy.m */; };
 		8C5BB9BA1371E2920004E88C /* HUDBusy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5BB9B81371E2920004E88C /* HUDBusy.m */; };
+		8C5C060913C0E099003C170F /* NSButton+TextColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5C060813C0E099003C170F /* NSButton+TextColor.m */; };
+		8C5C060A13C0E099003C170F /* NSButton+TextColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5C060813C0E099003C170F /* NSButton+TextColor.m */; };
 		8C5DEC2812E8C05E00EE93F1 /* gmail.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8C77295212D46AC600F71FE7 /* gmail.ico */; };
 		8C5DEC5012E8C4B800EE93F1 /* structcommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* structcommon.framework */; };
 		8C5DEC5C12E8C4DF00EE93F1 /* structcommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* structcommon.framework */; };
@@ -253,6 +255,8 @@
 		8C9FB5C213356DD20034FE85 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9FB5BD13356DB70034FE85 /* CoreData.framework */; };
 		8CA668A412FF86C5004FD7EE /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA668A312FF86C5004FD7EE /* LaunchAtLoginController.m */; };
 		8CA668A512FF86C5004FD7EE /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA668A312FF86C5004FD7EE /* LaunchAtLoginController.m */; };
+		8CA9C34D13C211DF00E3D457 /* MyTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA9C34C13C211DF00E3D457 /* MyTheme.m */; };
+		8CA9C34E13C211DF00E3D457 /* MyTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA9C34C13C211DF00E3D457 /* MyTheme.m */; };
 		8CB05117135E6FF8008FCE40 /* WorkHoursToAverageXForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB05116135E6FF8008FCE40 /* WorkHoursToAverageXForm.m */; };
 		8CB05118135E6FF8008FCE40 /* WorkHoursToAverageXForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB05116135E6FF8008FCE40 /* WorkHoursToAverageXForm.m */; };
 		8CB7C774137D95DB00CB3193 /* NDHotKeyEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB7C765137D95DA00CB3193 /* NDHotKeyEvent.m */; };
@@ -752,6 +756,8 @@
 		8C5BB9851371E07E0004E88C /* HUDBusyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HUDBusyView.xib; sourceTree = "<group>"; };
 		8C5BB9B71371E2920004E88C /* HUDBusy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDBusy.h; sourceTree = "<group>"; };
 		8C5BB9B81371E2920004E88C /* HUDBusy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDBusy.m; sourceTree = "<group>"; };
+		8C5C060713C0E099003C170F /* NSButton+TextColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSButton+TextColor.h"; sourceTree = "<group>"; };
+		8C5C060813C0E099003C170F /* NSButton+TextColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSButton+TextColor.m"; sourceTree = "<group>"; };
 		8C5DEC4912E8C4A600EE93F1 /* TestTaskModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestTaskModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C5DEC4A12E8C4A600EE93F1 /* TestTaskModule-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TestTaskModule-Info.plist"; sourceTree = "<group>"; };
 		8C5DEC5512E8C4D000EE93F1 /* TestEventModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestEventModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -985,6 +991,8 @@
 		8C9FB5BD13356DB70034FE85 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		8CA668A212FF86C5004FD7EE /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchAtLoginController.h; sourceTree = "<group>"; };
 		8CA668A312FF86C5004FD7EE /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchAtLoginController.m; sourceTree = "<group>"; };
+		8CA9C34B13C211DF00E3D457 /* MyTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTheme.h; sourceTree = "<group>"; };
+		8CA9C34C13C211DF00E3D457 /* MyTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTheme.m; sourceTree = "<group>"; };
 		8CB05115135E6FF8008FCE40 /* WorkHoursToAverageXForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WorkHoursToAverageXForm.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8CB05116135E6FF8008FCE40 /* WorkHoursToAverageXForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WorkHoursToAverageXForm.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8CB7C765137D95DA00CB3193 /* NDHotKeyEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NDHotKeyEvent.m; path = NDHotKeyEvent/NDHotKeyEvent.m; sourceTree = "<group>"; };
@@ -1510,6 +1518,10 @@
 		8C73F08D12E5E4460056FAFF /* SummaryHUD */ = {
 			isa = PBXGroup;
 			children = (
+				8CA9C34B13C211DF00E3D457 /* MyTheme.h */,
+				8CA9C34C13C211DF00E3D457 /* MyTheme.m */,
+				8C5C060713C0E099003C170F /* NSButton+TextColor.h */,
+				8C5C060813C0E099003C170F /* NSButton+TextColor.m */,
 				8C74F36213B5D1E200A7BF20 /* SummaryHUDControl.m */,
 				8C74F12F13B59D0500A7BF20 /* HUDCellController.h */,
 				8C74F13013B59D0500A7BF20 /* HUDCellController.m */,
@@ -2752,6 +2764,8 @@
 				8CB7C776137D95DB00CB3193 /* NDKeyboardLayout.m in Sources */,
 				8C630F50138EE81B00E2570F /* TasksDataSource.m in Sources */,
 				8C74F36413B5D1E200A7BF20 /* SummaryHUDControl.m in Sources */,
+				8C5C060A13C0E099003C170F /* NSButton+TextColor.m in Sources */,
+				8CA9C34D13C211DF00E3D457 /* MyTheme.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3004,6 +3018,8 @@
 				8CB7C77C137D95DB00CB3193 /* NDKeyboardLayout.m in Sources */,
 				8C630F4F138EE81B00E2570F /* TasksDataSource.m in Sources */,
 				8C74F36313B5D1E200A7BF20 /* SummaryHUDControl.m in Sources */,
+				8C5C060913C0E099003C170F /* NSButton+TextColor.m in Sources */,
+				8CA9C34E13C211DF00E3D457 /* MyTheme.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

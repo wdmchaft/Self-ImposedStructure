@@ -158,8 +158,8 @@
 		}
 		if (!foundTask){
 			[ctx setCurrentTask:nil];
+			//[self clickSwitchActivity:self];
 		}
-//			[self clickSwitchActivity:self];
 //		}
 	}
 	[self setupHotKeyIfNecessary];
@@ -314,7 +314,8 @@
 												   action:@selector(newActivity:)
 											keyEquivalent:@""];
 		[mi setTarget:self];
-        NSDictionary *attrs = [NSDictionary dictionaryWithObject:[NSFont messageFontOfSize:12.0] forKey:NSFontAttributeName];
+        NSDictionary *attrs = [NSDictionary dictionaryWithObject:
+							   [NSFont messageFontOfSize:12.0] forKey:NSFontAttributeName];
         NSString *desc = [NSString stringWithFormat:@"   %@", description];
         NSAttributedString *attrTitle = [[NSAttributedString alloc]initWithString:desc attributes:attrs];
         [mi setAttributedTitle:attrTitle];
