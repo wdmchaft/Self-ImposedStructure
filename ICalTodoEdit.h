@@ -31,7 +31,7 @@ typedef enum {
 	NSView *saveView;
 	NSView *baseView;
 	NSString *newListId;
-	NSString *baseQueuName;
+	NSString *baseQueueName;
 	NSString *modName;
 	NSString *calendarName;
 	iCalTodo *todoItem;

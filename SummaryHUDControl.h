@@ -48,7 +48,6 @@
 
 @property (nonatomic, retain) WPAMainController *mainControl;
 @property (nonatomic, retain) NSString *framePos; // hack since auto frame save is buggy for mysterious reasons
-@property (nonatomic, retain) NSView *currentTaskView; 
 @property (nonatomic, retain) TotalsManager *totalsManager; 
 @property (nonatomic, retain) IBOutlet NSSplitView *splitter; 
 @property (nonatomic, retain) IBOutlet NSView *header; 

@@ -27,7 +27,6 @@
 
 @synthesize framePos;
 @synthesize saveRect;
-@synthesize currentTaskView;
 @synthesize totalsManager;
 @synthesize splitter;
 @synthesize header;
