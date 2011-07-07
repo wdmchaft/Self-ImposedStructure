@@ -370,6 +370,8 @@
 		8CF8C13E12DC2B59009C7E3D /* WorkTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8C13C12DC2B59009C7E3D /* WorkTable.m */; };
 		8CF8C14312DC2CB7009C7E3D /* SummaryTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8C14212DC2CB7009C7E3D /* SummaryTable.m */; };
 		8CF8C14412DC2CB7009C7E3D /* SummaryTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8C14212DC2CB7009C7E3D /* SummaryTable.m */; };
+		8CFA332613C659340007532F /* License.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 8CFA332513C659340007532F /* License.rtf */; };
+		8CFA332713C659340007532F /* License.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 8CFA332513C659340007532F /* License.rtf */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -1087,6 +1089,7 @@
 		8CF8C13C12DC2B59009C7E3D /* WorkTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WorkTable.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8CF8C14112DC2CB7009C7E3D /* SummaryTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SummaryTable.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8CF8C14212DC2CB7009C7E3D /* SummaryTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SummaryTable.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		8CFA332513C659340007532F /* License.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = License.rtf; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* WorkPlayAway-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "WorkPlayAway-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Self-Imposed Structure.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Self-Imposed Structure.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -1343,6 +1346,7 @@
 		29B97314FDCFA39411CA2CEA /* WorkPlayAway */ = {
 			isa = PBXGroup;
 			children = (
+				8CFA332513C659340007532F /* License.rtf */,
 				8C73F10512E624080056FAFF /* Design.rtf */,
 				8CEF0D8413951FD3008D9F1D /* iCalModule.ico */,
 				8C82CFDF12F3D0BE00830486 /* Design.txt */,
@@ -2477,6 +2481,7 @@
 				8C5BB9861371E07F0004E88C /* HUDBusyView.xib in Resources */,
 				8C285846137319E400CAAF2A /* HUDBusyView.xib in Resources */,
 				8C171D7B13B57291007ED1E8 /* HUDCell.xib in Resources */,
+				8CFA332713C659340007532F /* License.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2657,6 +2662,7 @@
 				8C5BB9871371E07F0004E88C /* HUDBusyView.xib in Resources */,
 				8C285845137319E400CAAF2A /* HUDBusyView.xib in Resources */,
 				8C171D7C13B57291007ED1E8 /* HUDCell.xib in Resources */,
+				8CFA332613C659340007532F /* License.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
