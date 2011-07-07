@@ -17,7 +17,7 @@
 @synthesize modulesTable, amwControl,addButton, removeButton, newModuleView, tableData, 
 launchOnBootButton, editButton, hudTable, heatTable, 
 summaryField, summaryStepper, summaryLabel, summaryLabel2, summaryButton, editModuleSession, hkControl, 
-preHKButton, useHKButton, hkTarget, hkSelector;
+preHKButton, useHKButton, hkTarget, hkSelector, gotKey;
 
 - (void)awakeFromNib
 {
@@ -105,10 +105,9 @@ preHKButton, useHKButton, hkTarget, hkSelector;
 	[hkControl setEnabled:useKey];
 	[preHKButton setEnabled:useKey];
 	if (useKey){
-		[hkControl setReadyForHotKeyEvent:YES];
-		NSString *str = [self stringForKeyEvent:hkEvent];
-		[hkControl setStringValue:str];
+		[hkControl setStringValue:[hkEvent stringValue]];
 	}
+	gotKey = NO;
 	[hkControl setDelegate:self];
 	[[super window]orderFront:self];
 }
@@ -199,7 +198,7 @@ preHKButton, useHKButton, hkTarget, hkSelector;
 			[sc changeState:ctx.currentState];
 		}
 		else {
-		
+			
 			[sc changeState:WPASTATE_OFF];
 		}
 	}
@@ -231,7 +230,7 @@ preHKButton, useHKButton, hkTarget, hkSelector;
 	if (isOK)
 	{
 		[ctx saveDefaults];
-
+		
 	} else {
 		// back out the change to the checkbox on failure
 		LaunchAtLoginController *lALCtrl = [LaunchAtLoginController new];
@@ -260,10 +259,17 @@ preHKButton, useHKButton, hkTarget, hkSelector;
 		[hkControl setReadyForHotKeyEvent:YES];
 	}
 }
+- (void) hotKeyPicked: (id) sender
+{
+	[preHKButton setEnabled:YES];
+	gotKey = YES;
+}
 
 - (void )clickPreHK:(id) sender
 {
 	[hkControl setReadyForHotKeyEvent:YES];
+	[preHKButton setEnabled:NO];
+	gotKey = NO;
 }
 
 - (IBAction) clickSummary: (id) sender {
@@ -278,9 +284,14 @@ preHKButton, useHKButton, hkTarget, hkSelector;
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self name: NSWindowWillCloseNotification object:[self window]];
 	NDHotKeyEvent *event = [hkControl hotKeyEvent];
+	NDHotKeyEvent *oldEvent = [[Context sharedContext] hotkeyEvent];
 	BOOL useHK = [useHKButton intValue];
 	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-	if (event && useHK){
+	if (event && useHK && gotKey){
+		if (oldEvent) {
+			[oldEvent setEnabled:NO];
+			[oldEvent removeHotKey];
+		}
 		[ud setInteger:[hkControl character] forKey:@"keyChar"];
 		[ud setInteger:[hkControl modifierFlags] forKey:@"keyModifiers"];
 		[ud setInteger:[hkControl keyCode] forKey:@"keyCode"];
@@ -294,7 +305,7 @@ preHKButton, useHKButton, hkTarget, hkSelector;
 		[ud setBool:NO forKey:@"useHotKey"];
 		
 	}
-
+	
 	
 	[[Context sharedContext]saveDefaults];
 }

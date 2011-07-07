@@ -35,6 +35,7 @@
 	NSButton *preHKButton;
 	NSObject *hkTarget;
 	SEL hkSelector;
+	BOOL gotKey;
 }
 
 @property (retain, nonatomic) IBOutlet NDHotKeyControl *hkControl;
@@ -49,6 +50,7 @@
 @property (retain, nonatomic) AddModWinController *amwControl;
 @property (retain, nonatomic)  ModulesTableData *tableData;
 @property ( nonatomic) NSModalSession editModuleSession;
+@property ( nonatomic) BOOL gotKey;
 @property (retain, nonatomic) IBOutlet NSStepper *summaryStepper;
 @property (retain, nonatomic) IBOutlet NSTextField *summaryField;
 @property (retain, nonatomic) IBOutlet NSTextField *summaryLabel;
@@ -71,6 +73,6 @@
 
 - (IBAction) clickSummary: (id) sender;
 - (IBAction) clickUseHotKey: (id) sender;
-- (IBAction) mouseDownInHotKey: (id) sender;
 - (IBAction) clickPreHK: (id) sender;
+- (IBAction) hotKeyPicked: (id) sender;
 @end
