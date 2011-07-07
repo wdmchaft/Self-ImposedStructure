@@ -85,12 +85,14 @@
 	[splitter setFrame:NSMakeRect(0, 20, frame.size.width, frame.size.height - 48)];
 }
 
-- (HUDCellController*) getCellForInstance:  (id<Reporter>) inst 
+- (HUDCellController*) getCellForSetting: (HUDSetting*) setting
 								   parent: (NSSplitView*) pView 
-									 rows: (int) nRows
 								  oldView: (NSView*) view
 									 data: (NSMutableArray*) dataArray
 {
+	id<Reporter> inst = [setting reporter];
+	int nRows = [setting height];
+	
 	NSString *rptNib;
 	HUDCellController *hcc = [[HUDCellController alloc]initWithNibName:@"HUDCell" bundle:nil];
 	if (hcc){
@@ -141,7 +143,7 @@
 		[[svc view] setFrameSize: NSMakeSize([hView frame].size.width - 20, (nRows * lineHeight))];
 		[[svc view] setHidden:NO];
 		HUDCellTitleView *tView = [hcc titleView];
-		[tView setTitle:[inst name]];
+		[tView setTitle:[setting label]];
 		[tView setFrameOrigin:NSMakePoint(3, 0)]; 
 		[[hcc view] setHidden:NO];
 		
@@ -247,9 +249,8 @@ constrainMinCoordinate:(CGFloat)		proposedMin
 			[orderedViews addObject:[hcc view]];
 		}
 		else if (rptData && [rptData count] && hcc == nil){
-			HUDCellController *hcc = [self getCellForInstance:[setting reporter] 
+			HUDCellController *hcc = [self getCellForSetting:setting 
 													   parent:splitter 
-														 rows:[setting height]
 													  oldView:[busy view]
 														 data:rptData];
 			
