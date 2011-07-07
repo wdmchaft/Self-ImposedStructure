@@ -44,15 +44,14 @@
 	id<Instance> inst = [context module];
 	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
 	NSDictionary *taskInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-							  [dictionary objectForKey:@"name"], @"task",
+							  [dictionary objectForKey:@"name"], @"name",
 							  [dictionary objectForKey:@"project"], @"project",
 							  [dictionary objectForKey:@"project"], @"source",
+							  [dictionary objectForKey:@"project"], @"module",
 							  nil];
 	[dnc postNotificationName:[inst completeQueue] object:nil userInfo: taskInfo];
-	NSDictionary *modInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-							 [dictionary objectForKey:@"project"], @"module",
-							 nil];
-	[dnc postNotificationName:[inst updateQueue] object:nil userInfo: modInfo];
+
+	[dnc postNotificationName:[inst updateQueue] object:nil userInfo: taskInfo];
 	[target performSelector:callback withObject:nil];
 	
 }

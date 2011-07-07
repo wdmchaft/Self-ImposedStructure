@@ -326,9 +326,26 @@ constrainMinCoordinate:(CGFloat)		proposedMin
 	[taskField setTextColor:clr];
 }
 
+- (void) taskNameChanged: (NSString*) task 
+{
+	NSColor *clr = [NSColor whiteColor];
+	if (!task){
+		task = @"No active task set";
+		clr = [NSColor yellowColor];
+	}
+	[taskField setTitle:task];
+	[taskField setTextColor:clr];
+}
+
+- (void) taskChanged: (NSNotification*) msg
+{
+	[self taskNameChanged:[[msg userInfo] objectForKey:@"name"]];
+}
+
 - (void) dataChanged: (NSNotification*) msg
 {
 	NSString *modName = [[msg userInfo]objectForKey:@"module"];
+	NSString *taskName = [[msg userInfo]objectForKey:@"name"];
 	NSMutableArray *data = [datas objectForKey:modName];
 	[data removeAllObjects];
 	[datas removeObjectForKey:modName];
@@ -338,20 +355,12 @@ constrainMinCoordinate:(CGFloat)		proposedMin
 	HUDCellController *hcc = [cells objectForKey:modName];
 	[[hcc view] removeFromSuperview];
 	[cells removeObjectForKey:modName];
+	NSString *currTask =  [[Context sharedContext].currentTask objectForKey:@"name"];
+	if (currTask && taskName && [currTask isEqualToString:taskName]){
+		[self taskNameChanged:nil];
+	}
 
 	buildTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(buildDisplay) userInfo:nil repeats:NO];
-}
-
-- (void) taskChanged: (NSNotification*) msg
-{
-	NSString *task = [[msg userInfo] objectForKey:@"name"];
-	NSColor *clr = [NSColor whiteColor];
-	if (!task){
-		task = @"No active task set";
-		clr = [NSColor yellowColor];
-	}
-	[taskField setTitle:task];
-	[taskField setTextColor:clr];
 }
 
 - (void) showWindow:(id)sender
@@ -420,8 +429,10 @@ constrainMinCoordinate:(CGFloat)		proposedMin
 	buildTimer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(buildDisplay) userInfo:nil repeats:YES];
 	NSString *activeQueue =  [Queues queueNameFor:WPA_ACTIVEQUEUE fromBase:ctx.queueName];
 	NSString *completeQueue =  [Queues queueNameFor:WPA_COMPLETEQUEUE fromBase:ctx.queueName];
+	NSString *updateQueue =  [Queues queueNameFor:WPA_UPDATEQUEUE fromBase:ctx.queueName];
 	NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
 	[center addObserver:self selector:@selector(dataChanged:) name:completeQueue object:nil];
+	[center addObserver:self selector:@selector(dataChanged:) name:updateQueue object:nil];
 	[center addObserver:self selector:@selector(taskChanged:) name:activeQueue object:nil];
 	useCache = YES;
 	

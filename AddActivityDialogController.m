@@ -11,6 +11,7 @@
 #import "WPADelegate.h"
 #import "WriteHandler.h"
 #import "TaskList.h"
+#import "Queues.h"
 
 
 @implementation AddActivityDialogController
@@ -58,6 +59,12 @@
 		ctx.currentTask = [NSDictionary dictionaryWithObjectsAndKeys:tName, @"name",
 						   taskList.name, @"source",
 						   @"default", @"project", nil];
+		NSDistributedNotificationCenter *ndc = [NSDistributedNotificationCenter defaultCenter];
+		NSString *aqName = [Queues queueNameFor:WPA_ACTIVEQUEUE fromBase:[ctx queueName]];
+		NSString *uqName = [Queues queueNameFor:WPA_UPDATEQUEUE fromBase:[ctx queueName]];
+		[ndc postNotificationName: aqName object:nil userInfo: ctx.currentTask];
+		[ndc postNotificationName: uqName object:nil userInfo: ctx.currentTask];
+		
 		[[ctx growlManager] growlFYI:[NSString stringWithFormat: @"New activity: %@",tName]];
 	} else {
 		[[ctx growlManager] growlFYI:[NSString stringWithFormat: @"Added activity: %@", tName]];
