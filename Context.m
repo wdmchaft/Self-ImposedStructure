@@ -30,7 +30,6 @@
 @synthesize currentState;
 @synthesize thinkTime;
 @synthesize currentActivity;
-@synthesize currentTask;
 @synthesize currentProject;
 @synthesize tasksList;
 @synthesize previousState;
@@ -139,8 +138,8 @@ static Context* sharedContext = nil;
 		[ud removeObjectForKey:@"currentTask"];
 	}
 
-	if (currentTask){
-		[ud setObject:currentTask forKey:@"currentTask"];
+	if (_currentTask){
+		[ud setObject:_currentTask forKey:@"currentTask"];
 	}
 }
 
@@ -203,7 +202,7 @@ static Context* sharedContext = nil;
 		[mod loadDefaults];
 	}
 	// this depends on having the instances map set
-	currentTask = [self readTask:ud];
+	_currentTask = [self readTask:ud];
 	
 	int keyCode = [ud integerForKey:@"keyCode"];
 	if (keyCode != 0){
@@ -457,7 +456,7 @@ static Context* sharedContext = nil;
 		}
 	}
 	return gather;
-}
+}	
 
 - (NSArray*) getTrackedLists {
 	NSMutableArray *gather = [NSMutableArray new];
@@ -503,6 +502,41 @@ static Context* sharedContext = nil;
 													   selector:@selector(endNagDelay:) 
 													   userInfo:nil 
 														repeats:NO];
+}
+
++ (NSString*) defaultTaskName
+{
+	NSDateFormatter *stampFmt = [NSDateFormatter new];
+	[stampFmt setDateStyle:NSDateFormatterShortStyle];
+	[stampFmt setTimeStyle:NSDateFormatterShortStyle];
+	NSString *stamp = [stampFmt stringFromDate:[NSDate date]];
+	return [NSString stringWithFormat:@"Miscellaneous starting at %@",stamp];
+}
+
++ (NSDictionary*) defaultTask
+{
+	return [NSDictionary dictionaryWithObjectsAndKeys:
+	 [Context defaultTaskName], @"name",
+	 @"Uncategorized", @"project",
+	 nil];
+}
+
+- (void) setCurrentTask:(NSDictionary *) dict
+{
+	if (!dict) {
+		_currentTask = [Context defaultTask];
+	}
+	else {
+		_currentTask = [dict copy];
+	}
+}
+
+- (NSDictionary*) currentTask
+{
+	if (!_currentTask){
+		_currentTask = [Context defaultTask];	
+	}
+	return _currentTask;
 }
 @end
 

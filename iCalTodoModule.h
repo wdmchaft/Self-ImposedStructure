@@ -17,6 +17,7 @@
 	NSTextField *lookAheadField;
 	NSTextField *calURLField;
 	NSTextField *warningField;
+	NSPopUpButton *projectPopup;
 
     NSString *calendarName;
 	NSMutableData *respBuffer;
@@ -50,6 +51,7 @@
 @property (nonatomic, retain) IBOutlet NSTextField *refreshField;
 @property (nonatomic, retain) IBOutlet NSTextField *warningField;
 @property (nonatomic, retain) IBOutlet NSTextField *lookAheadField;
+@property (nonatomic, retain) IBOutlet NSPopUpButton *projectPopup;
 @property (nonatomic, retain) IBOutlet NSStepper *stepperRefresh;
 @property (nonatomic, retain) IBOutlet NSStepper *stepperLookAhead;
 @property (nonatomic, retain) IBOutlet NSStepper *stepperWarning;

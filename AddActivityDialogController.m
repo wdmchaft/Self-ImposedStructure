@@ -56,14 +56,14 @@
 	[busy stopAnimation:self];
 	NSString *tName = [taskField stringValue];
 	if ([switchNowButton integerValue]){
-		ctx.currentTask = [NSDictionary dictionaryWithObjectsAndKeys:tName, @"name",
+		[ctx setCurrentTask: [NSDictionary dictionaryWithObjectsAndKeys:tName, @"name",
 						   taskList.name, @"source",
-						   @"default", @"project", nil];
+						   @"default", @"project", nil]];
 		NSDistributedNotificationCenter *ndc = [NSDistributedNotificationCenter defaultCenter];
 		NSString *aqName = [Queues queueNameFor:WPA_ACTIVEQUEUE fromBase:[ctx queueName]];
 		NSString *uqName = [Queues queueNameFor:WPA_UPDATEQUEUE fromBase:[ctx queueName]];
-		[ndc postNotificationName: aqName object:nil userInfo: ctx.currentTask];
-		[ndc postNotificationName: uqName object:nil userInfo: ctx.currentTask];
+		[ndc postNotificationName: aqName object:nil userInfo: [ctx currentTask]];
+		[ndc postNotificationName: uqName object:nil userInfo: [ctx currentTask]];
 		
 		[[ctx growlManager] growlFYI:[NSString stringWithFormat: @"New activity: %@",tName]];
 	} else {
@@ -82,7 +82,7 @@
 	Context *ctx = [Context sharedContext];
 	NSPopUpButton *lb = listsCombo;
 	
-	ctx.currentTask = nil;
+	[ctx setCurrentTask: nil ];
 	NSString *str = [lb titleOfSelectedItem];
 	
 	for (id<TaskList> tl  in allLists){
@@ -98,8 +98,8 @@
 	//[addList newTask: [taskField stringValue] completeHandler:self selector:@selector(addDone)];
 
 //	[ctx saveTask];
-//	if (ctx.currentTask != nil){
-//		[[ctx growlManager] growlFYI:[NSString stringWithFormat: @"Current activity: %@",[ctx.currentTask objectForKey:@"name"]]];
+//	if ([ctx currentTask] != nil){
+//		[[ctx growlManager] growlFYI:[NSString stringWithFormat: @"Current activity: %@",[[ctx currentTask] objectForKey:@"name"]]];
 //	} else {
 //		[[ctx growlManager] growlFYI:[NSString stringWithFormat: @"Current activity not set"]];
 //	}

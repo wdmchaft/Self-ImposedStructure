@@ -21,7 +21,7 @@
 	BOOL startOnLoad;
 	WPAStateType currentState;
 	int thinkTime;
-	NSDictionary *currentTask;
+	NSDictionary *_currentTask;
 	NSString *currentProject;
 	NSManagedObject *currentActivity;
 	BOOL running;
@@ -44,17 +44,16 @@
 @property (nonatomic) BOOL running;
 @property (nonatomic) int thinkTime;
 @property (nonatomic,retain) NSTimer *nagDelayTimer;
-@property (nonatomic, retain) NSDictionary *currentTask;
 //@property (nonatomic, retain) NSString *currentSource;
 @property (nonatomic, retain) NSManagedObject *currentActivity;
 @property (nonatomic, retain) NSString *currentProject;
 @property (nonatomic, retain) NSArray *tasksList;
 @property (nonatomic) WPAStateType currentState;
 @property (nonatomic, readonly) WPAStateType previousState;
-@property (nonatomic,retain) GrowlManager *growlManager;
-@property (nonatomic,retain) HUDSettings *hudSettings;
-@property (nonatomic,retain) HeatMap *heatMapSettings;
-@property (nonatomic,retain) TotalsManager *totalsManager;
+@property (nonatomic, retain) GrowlManager *growlManager;
+@property (nonatomic, retain) HUDSettings *hudSettings;
+@property (nonatomic, retain) HeatMap *heatMapSettings;
+@property (nonatomic, retain) TotalsManager *totalsManager;
 @property (nonatomic, retain) NDHotKeyEvent *hotkeyEvent;
 @property (nonatomic, retain) NSString *queueName;
 @property (nonatomic, assign) BOOL	debug;
@@ -72,8 +71,6 @@
 - (NSImage*) iconImageForModule: (id<Instance>) mod;
 - (void) removeDefaultsForKey: (NSString*) keyPrefix;
 
-- (void) refreshModules: (id<AlertHandler>) handler withLoop: (BOOL) loopingOn;
-- (void) scheduleModules: (id<AlertHandler>) handler withLoop: (BOOL) loopingOn;
 - (void) busyModules ;
 - (void) freeModules ;
 - (void) awayModules ;
@@ -88,5 +85,8 @@
 - (void) startNagDelay;
 - (NSArray*) getTaskLists;
 - (NSArray*) getTrackedLists;
-
+- (NSDictionary*) currentTask;
+- (void) setCurrentTask:(NSDictionary *) dict;
++ (NSString*) defaultTaskName;
++ (NSDictionary*) defaultTask;
 @end

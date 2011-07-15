@@ -29,6 +29,7 @@
 #import "NewTaskHandler.h"
 #import "RepeatRule.h"
 #import "Queues.h"
+#import "SiSData.h"
 
 
 @implementation RTMModule 
@@ -51,6 +52,8 @@
 @synthesize isTrackedButton;
 @synthesize lookAheadWindow;
 @synthesize lookAheadText;
+@synthesize projectPopup;
+@synthesize projectLabel;
 @dynamic enabled;
 @dynamic category;
 @dynamic name;
@@ -58,6 +61,7 @@
 @dynamic tracked;
 @dynamic isWorkRelated;
 @dynamic baseQueue;
+@dynamic defaultProject;
 
 @synthesize protocol;
 
@@ -335,6 +339,15 @@
 	return self;
 }
 
+- (void) setupProjects
+{
+	NSArray *projects = [SiSData getAllActiveProjects];
+	for (NSString *projName in projects){
+		[projectPopup addItemWithTitle:projName];
+	}
+	[projectPopup selectItemWithTitle:defaultProject];
+}
+
 -(void) loadView
 {
 	[super loadView];
@@ -346,6 +359,8 @@
 	[stepperLabel setHidden:YES];	
 	[lookAheadLabel setHidden:YES];
 	[lookAheadNote setHidden:YES];
+	[projectPopup setHidden:YES];
+	[projectLabel setHidden:YES];
 	[progInd setHidden:YES];
 	[userText setStringValue:protocol.userStr == nil ? @"" : protocol.userStr];
 	[lookAheadText setIntValue: (lookAheadWindow / 24 / 60 / 60)];
@@ -356,6 +371,7 @@
 	[isTrackedButton setIntValue:tracked];
 	[passwordText setStringValue:protocol.passwordStr == nil ? @"" : protocol.passwordStr];
 	[refreshText setIntValue: refreshInterval / 60];
+	[self setupProjects];
 	if (protocol.tokenStr == nil) {
 		NSAlert *alert = [NSAlert alertWithMessageText:@"Not Authorized" 
 										 defaultButton:nil alternateButton:nil 
@@ -422,7 +438,7 @@
 	lookAheadWindow = (lookAheadText.intValue * 60 * 60 * 24);
 	isWorkRelated = [isWorkButton intValue];
 	tracked = [isTrackedButton intValue];
-
+	defaultProject = [projectPopup stringValue];
 	protocol.listNameStr = [listsCombo titleOfSelectedItem];
 	protocol.listIdStr = [[self idMapping] objectForKey:protocol.listNameStr];
 	[validationHandler performSelector:@selector(validationComplete:) 
@@ -548,6 +564,8 @@
 		[lookAheadNote setHidden:NO];
 		[isWorkButton setHidden:NO];
 		[isTrackedButton setHidden:NO];
+		[projectPopup setHidden:NO];
+		[projectLabel setHidden:NO];
 	}
 }
 

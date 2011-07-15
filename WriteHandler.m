@@ -214,6 +214,7 @@
 	}
 	return nil;
 }
+
 - (NSManagedObject*) findActivityForDate: (NSDate*) dateIn project: (NSString*) proj task: (NSString*) taskName source: (NSString*) src 
 {
     if (activities == nil || ![activityDate isEqualToDate:dateIn]){
@@ -267,7 +268,6 @@
 }
 
 - (void) saveTotalsForDate: (NSNotification*) msg
-//(NSDate*) date goal: (int) goalTime work: (int) workTime free: (int) freeTime
 {
 #if DEBUG
 	NSLog(@"saveTotalsForDate");
@@ -384,6 +384,29 @@
     return nil;
 }
 
+- (void) createNewProject: (NSNotification*) msg
+{
+	NSString *projectName = [[msg userInfo]objectForKey:@"project"];
+	NSString *notes = [[msg userInfo]objectForKey:@"notes"];
+	NSManagedObject *projObj = [self findProjectForName: projectName];
+	if (!projObj){
+		projObj = [NSEntityDescription
+				   insertNewObjectForEntityForName:@"Project"
+				   inManagedObjectContext:managedObjectContext]; 
+		
+		[projObj setValue:projectName forKey:@"name"];
+		[projObj setValue:notes forKey:@"notes"];
+		[projObj setValue:[NSDate date] forKey:@"createTime"];
+		[projObj validateForInsert:&error];
+		if (error){
+			//NSLog(@"error: %@",err);
+		} else {
+			[[self managedObjectContext] save: &error];
+		}
+	}
+}
+
+
 - (void) completeActivityForDate:(NSDate*) inDate 
 							desc: (NSString*) taskName 
 						  source: (NSString*) sourceName 
@@ -488,6 +511,103 @@
     [self completeActivityForDate:inDate desc:name source:source project:project];
 }
 
+- (void) createTaskGuts:(NSString*)taskName 
+				 source: (NSString*) sourceName 
+				project: (NSString*) projectName
+			  projectMO:(NSManagedObject**) projAddr 
+			   sourceMO: (NSManagedObject**) sourceAddr
+				 taskMO: (NSManagedObject**) taskAddr
+				  error: (NSError**) err
+{
+	NSManagedObject *projObj = *projAddr;
+    NSManagedObject *srcObj = *sourceAddr;
+    NSManagedObject *taskObj = *taskAddr;
+	taskObj = [self findTask:taskName project:projectName source:sourceName];
+	if (!taskObj) {
+		
+		if (projectName){
+			projObj = [self findProjectForName: projectName];
+			if (!projObj){
+				projObj = [NSEntityDescription
+						   insertNewObjectForEntityForName:@"Project"
+						   inManagedObjectContext:managedObjectContext]; 
+				
+				[projObj setValue:projectName forKey:@"name"];
+				[projObj setValue:[NSDate date] forKey:@"createTime"];
+				[projObj validateForInsert:err];
+				if (err){
+					//NSLog(@"error: %@",err);
+				}
+				[managedObjectContext insertObject:projObj];
+				//NSLog(@"created project: %@", projectName);
+			}
+		}
+		if (sourceName){
+			srcObj = [self findSource:sourceName inContext: managedObjectContext];
+			if (!srcObj){
+				srcObj = [NSEntityDescription
+						  insertNewObjectForEntityForName:@"Source"
+						  inManagedObjectContext:managedObjectContext];   
+				[srcObj setValue:sourceName forKey:@"name"];
+				[srcObj setValue:[NSDate date] forKey:@"createTime"];
+				[srcObj setValue:@"Test" forKey:@"type"];
+				[srcObj validateForInsert:err];
+				if (err){
+					//NSLog(@"error: %@",err);
+				}
+				[managedObjectContext insertObject:srcObj];
+				
+				//NSLog(@"created source: %@", sourceName);
+			}
+		}
+		taskObj = [NSEntityDescription
+				   insertNewObjectForEntityForName:@"ActiveTask"
+				   inManagedObjectContext:managedObjectContext];   
+		[taskObj setValue:taskName forKey:@"name"];
+		[taskObj setValue:[NSDate date] forKey:@"createTime"];  
+		if (srcObj){
+			[taskObj setValue:srcObj forKey:@"source"];
+		}
+		if (projObj){
+			[taskObj setValue:projObj forKey:@"project"];
+		}
+		[taskObj validateForInsert:err];
+		if (err){
+			//NSLog(@"error: %@",err);
+		} 
+		//NSLog(@"created task: %@", taskName);
+		[managedObjectContext insertObject:taskObj];
+		
+	}	
+}
+
+- (void) createNewTask:(NSString*)taskName source: (NSString*) sourceName project: (NSString*) projectName 
+{
+#if DEBUG
+	NSLog(@"createNewTask");
+#endif
+	NSError *err = nil;
+    NSManagedObject *projObj = nil;
+    NSManagedObject *srcObj = nil;
+    NSManagedObject *taskObj = nil;
+
+	[self createTaskGuts: taskName 
+				  source: sourceName 
+				 project: projectName
+			   projectMO: &projObj
+				sourceMO: &srcObj
+				  taskMO: &taskObj
+				   error:&err];
+	}
+
+- (void) createNewTask: (NSNotification*) msg
+{
+		NSDictionary *info = [msg userInfo];
+	NSString *task = [info objectForKey:@"task"];
+	NSString *project = [info objectForKey:@"project"];
+	NSString *source = [info objectForKey:@"source"];
+	[self createNewTask:task source: source project:project];
+}
 - (void) saveActivityForDate:(NSDate*) inDate desc: (NSString*) taskName source: (NSString*) sourceName project: (NSString*) projectName addVal: (int) increment
 {
 #if DEBUG
@@ -506,61 +626,15 @@
     if (actObj == nil){
         taskObj = [self findTask:taskName project:projectName source:sourceName];
         if (!taskObj) {
-            
-            if (projectName){
-                projObj = [self findProjectForName: projectName];
-                if (!projObj){
-                    projObj = [NSEntityDescription
-                               insertNewObjectForEntityForName:@"Project"
-                               inManagedObjectContext:managedObjectContext]; 
-                    
-                    [projObj setValue:projectName forKey:@"name"];
-                    [projObj setValue:[NSDate date] forKey:@"createTime"];
-                    [projObj validateForInsert:&err];
-                    if (err){
-                        //NSLog(@"error: %@",err);
-                    }
-                    [managedObjectContext insertObject:projObj];
-                    //NSLog(@"created project: %@", projectName);
-                }
-            }
-            if (sourceName){
-                srcObj = [self findSource:sourceName inContext: managedObjectContext];
-                if (!srcObj){
-                    srcObj = [NSEntityDescription
-                              insertNewObjectForEntityForName:@"Source"
-                              inManagedObjectContext:managedObjectContext];   
-                    [srcObj setValue:sourceName forKey:@"name"];
-                    [srcObj setValue:[NSDate date] forKey:@"createTime"];
-                    [srcObj setValue:@"Test" forKey:@"type"];
-                    [srcObj validateForInsert:&err];
-                    if (err){
-                        //NSLog(@"error: %@",err);
-                    }
-                    [managedObjectContext insertObject:srcObj];
-
-                    //NSLog(@"created source: %@", sourceName);
-                }
-            }
-            taskObj = [NSEntityDescription
-                       insertNewObjectForEntityForName:@"ActiveTask"
-                       inManagedObjectContext:managedObjectContext];   
-            [taskObj setValue:taskName forKey:@"name"];
-            [taskObj setValue:inDate forKey:@"createTime"];  
-            if (srcObj){
-                [taskObj setValue:srcObj forKey:@"source"];
-            }
-            if (projObj){
-                [taskObj setValue:projObj forKey:@"project"];
-            }
-            [taskObj validateForInsert:&err];
-            if (err){
-                //NSLog(@"error: %@",err);
-            } 
-            //NSLog(@"created task: %@", taskName);
-            [managedObjectContext insertObject:taskObj];
-       
+			[self createTaskGuts: taskName 
+						  source: sourceName 
+						 project: projectName
+					   projectMO: &projObj
+						sourceMO: &srcObj
+						  taskMO: &taskObj
+						   error:&err];
         }
+		
 		actObj = [NSEntityDescription
                   insertNewObjectForEntityForName:@"DailyActivity"
                   inManagedObjectContext:managedObjectContext]; 
@@ -614,6 +688,72 @@
 	NSString *project = [info objectForKey:@"project"];
 	NSString *source = [info objectForKey:@"source"];
     [self saveActivityForDate:inDate desc: name source:source project:project addVal:increment];
+}
+
+- (NSArray*) getAllActivityForTask: (NSString*) taskName 
+						   project: (NSString*) projName 
+							source: (NSString*) sourceName
+						 startDate: (NSDate*) start
+{
+	NSArray *activityList = [NSArray new];
+	NSManagedObject *oldTaskObj = [self findTask: taskName project:projName source: sourceName];
+	if (!oldTaskObj) {
+		NSLog(@"old task for %@:%@ does not exist", taskName, projName);
+		return activityList;
+	}
+
+    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+    NSEntityDescription *entity =
+    [NSEntityDescription entityForName:@"DailyActivity"
+                inManagedObjectContext:[self managedObjectContext]];
+    if (entity) {
+        [request setEntity:entity];
+        
+        NSPredicate *predicate = 
+		(start) ?
+        [NSPredicate predicateWithFormat:@"date >= %@ && task == %@ ", start, oldTaskObj] : 
+        [NSPredicate predicateWithFormat:@"task == %@ ", oldTaskObj];
+		NSLog(@"predicate = %@", predicate);
+        [request setPredicate:predicate];
+        
+        error = nil;
+        activityList = [managedObjectContext executeFetchRequest:request error:&error];
+    }
+	
+	return activityList;
+}
+
+- (void) swapTasks:(NSString*) newTsk 
+		newProject: (NSString*) newProj 
+		 newSource: (NSString*) newSrc
+		 startDate: (NSDate*) start
+		   oldTask: (NSString*) oldTsk
+		oldProject: (NSString*) oldProj
+		 oldSource: (NSString*) oldSrc
+{
+	NSArray *taskActs = [self getAllActivityForTask: oldTsk
+											  project: oldProj
+											   source: oldSrc
+											startDate:start];
+	NSManagedObject *newTask = [self findTask: newTsk 
+									  project:newProj 
+									   source: (NSString*) newSrc];
+	NSAssert(newTask, @"new task not found");
+	for (NSManagedObject *actObj in taskActs){
+		[actObj setValue:newTask forKey:@"task"];
+	}
+}
+
+- (void) swapTasks: (NSNotification*) msg
+{
+	NSDictionary *info = [msg userInfo];
+	[self swapTasks:[info objectForKey:@"newTask"]
+		 newProject:[info objectForKey:@"newProject"]
+		  newSource:[info objectForKey:@"newSource"]
+		  startDate:[info objectForKey:@"startDate"]
+			oldTask:[info objectForKey:@"oldTask"]
+		 oldProject:[info objectForKey:@"oldProject"]
+		  oldSource:[info objectForKey:@"oldSource"]];
 }
 
 
@@ -731,6 +871,17 @@
 	[self doFlush];
 }
 
++ (void) sendNewTask: (NSString*) name  source: (NSString*) srcName project: (NSString*) prjName 
+{
+	NSMutableDictionary *info = [NSMutableDictionary dictionaryWithObjectsAndKeys:name,@"task",prjName, @"project",nil];
+	if (srcName)
+		[info setValue:srcName forKey:@"source"];
+    WPADelegate *del = (WPADelegate*)[[NSApplication sharedApplication] delegate];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"newTask" 
+														object: del.ioHandler
+													  userInfo:info]; 
+}
+
 
 + (void) sendTotalsForDate: (NSDate*) date goal: (int) goalTime work: (int) workTime free: (int) freeTime
 {
@@ -744,6 +895,7 @@
 																[NSNumber numberWithInt:goalTime], @"goal",
 																nil]]; 
 }
+
 + (void) completeActivity:(NSDictionary*)taskInfo
 				   atTime:(NSDate*)date
 {
@@ -765,8 +917,18 @@
 													  userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
 																date,@"date",
 																taskInfo, @"taskInfo",
-                                
 																[NSNumber numberWithInt:incr], @"increment",
+																nil]]; 
+}
+
++ (void) sendCreateNewProject:(NSString*) projectName notes: (NSString*) notesStr
+{
+    WPADelegate *del = (WPADelegate*)[[NSApplication sharedApplication] delegate];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"newProject" 
+														object: del.ioHandler
+													  userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
+																projectName, @"project",
+																notesStr, @"notes",
 																nil]]; 
 }
 
@@ -854,6 +1016,21 @@
 												 name:@"activityComplete" 
 											   object:nil];
 	
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+											 selector:@selector(createNewTask:) 
+												 name:@"newTask" 
+											   object:nil];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+											 selector:@selector(swapTasks:) 
+												 name:@"swapTasks" 
+											   object:nil];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+											 selector:@selector(createNewProject:) 
+												 name:@"newProject" 
+											   object:nil];	
+	
     //	while (!stopMe && [runLoop runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]]);
 	double resolution = 300.0;
 	BOOL isRunning;
@@ -894,7 +1071,80 @@
     return rec;
 }
 
++ (void) sendSwapTasks:(NSString*) newTsk 
+				newProject: (NSString*) newProj 
+				 newSource: (NSString*) newSrc
+				 startDate: (NSDate*)   start
+				   oldTask: (NSString*) oldTsk
+				oldProject: (NSString*) oldProj
+				 oldSource: (NSString*) oldSrc
+{
+	NSMutableDictionary *msgInfo = [NSMutableDictionary dictionaryWithCapacity:7];
+	if (newTsk)
+		[msgInfo setValue:newTsk forKey:@"newTask"];
+	if (newProj)
+		[msgInfo setValue:newProj forKey:@"newProject"];
+	if (newSrc)
+		[msgInfo setValue:newSrc forKey:@"newSource"];
+	if (start)
+		[msgInfo setValue:start forKey:@"startDate"];
+	if (oldProj)
+		[msgInfo setValue:oldProj forKey:@"oldProject"];
+	if (oldSrc)
+		[msgInfo setValue:oldSrc forKey:@"oldSource"];
+	if (oldTsk)
+		[msgInfo setValue:oldTsk forKey: @"oldTask"];
+	
+    WPADelegate *del = (WPADelegate*)[[NSApplication sharedApplication] delegate];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"swapTasks" 
+														object: del.ioHandler
+													  userInfo:msgInfo];
+}
 
++ (void) sendCompleteTask:(NSString*) taskName 
+				  project: (NSString*) projectName 
+				   source: (NSString*) sourceName
+				 doneDate: (NSDate*)   doneTime
+{
+	NSMutableDictionary *msgInfo = [NSMutableDictionary dictionaryWithCapacity:7];
+	if (taskName)
+		[msgInfo setValue:taskName forKey:@"task"];
+	if (projectName)
+		[msgInfo setValue:projectName forKey:@"project"];
+	if (sourceName)
+		[msgInfo setValue:sourceName forKey:@"source"];
+	if (doneTime)
+		[msgInfo setValue:doneTime forKey:@"date"];
+	
+    WPADelegate *del = (WPADelegate*)[[NSApplication sharedApplication] delegate];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"completeActivityForDate" 
+														object: del.ioHandler
+													  userInfo:msgInfo];
+}
 
++ (void) createNewProject: (NSString*) projectName notes: (NSString*) notesStr
+{
+	WPADelegate *del = (WPADelegate*)[[NSApplication sharedApplication] delegate];
+	NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:projectName, @"project", notesStr, @"notes", nil];
+	NSNotification *msg = [NSNotification notificationWithName: @"foo" 
+														object: nil 
+													  userInfo: info];
+	[[del ioHandler] performSelector: @selector(createNewProject:) 
+							onThread: [del ioThread] 
+						  withObject: msg 
+					   waitUntilDone: YES 
+							   modes: [NSArray arrayWithObject:NSRunLoopCommonModes]];
+}
+
+//+ (void) completeActivity:(NSDictionary*)taskInfo
+//				   atTime:(NSDate*)date;
+//{
+//	NSMutableDictionary *msgInfo = [NSMutableDictionary dictionaryWithDictionary:taskInfo];
+//	[msgInfo setValue:date forKey:@"date"];
+//	WPADelegate *del = (WPADelegate*)[[NSApplication sharedApplication] delegate];
+//	[[NSNotificationCenter defaultCenter] postNotificationName:@"completeActivityForDate" 
+//														object: del.ioHandler
+//													  userInfo:msgInfo];
+//}
 @end
 

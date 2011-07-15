@@ -11,10 +11,13 @@
 #import "TaskList.h"
 
 #define TRACKED @"Tracked"
+#define DEFAULTPROJECT @"DefaultProject"
 @interface BaseTaskList : BaseReporter <TaskList> {
 	BOOL tracked;
+	NSString *defaultProject;
 }
 @property (nonatomic, assign) BOOL tracked;
+@property (nonatomic, retain) NSString *defaultProject;
 
 - (NSString *) completeQueue;
 @end

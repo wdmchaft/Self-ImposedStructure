@@ -27,6 +27,7 @@
 #import "CompleteProcessHandler.h"
 #import "NewTaskHandler.h"
 #import "GoogleTaskEditCtrl.h"
+#import "SiSData.h"
 
 @implementation GoogleTodoModule 
 
@@ -49,6 +50,8 @@
 @synthesize lookAheadText;
 @synthesize protocol;
 @synthesize isTrackedButton;
+@synthesize projectPopup;
+@synthesize projectLabel;
 
 @dynamic refreshInterval;
 @dynamic notificationName;
@@ -60,6 +63,7 @@
 @dynamic isWorkRelated;
 @dynamic summaryMode;
 @dynamic baseQueue;
+@dynamic defaultProject;
 
 
 /**
@@ -310,6 +314,15 @@
 	return self;
 }
 
+- (void) setupProjects
+{
+	NSArray *projects = [SiSData getAllActiveProjects];
+	for (NSString *projName in projects){
+		[projectPopup addItemWithTitle:projName];
+	}
+	[projectPopup selectItemWithTitle:defaultProject];
+}
+
 -(void) loadView
 {
 	[super loadView];
@@ -335,6 +348,9 @@
 		[progInd setHidden:NO];
 		[protocol getLists:self returnTo:@selector(listsDone)];
 	}
+	[self setupProjects];
+	[projectPopup setHidden:YES];
+	[projectLabel setHidden:YES];
 }
 
 -(void) loadDefaults
@@ -387,6 +403,7 @@
 	protocol.listNameStr = [listsCombo titleOfSelectedItem];
 	NSDictionary *listInfo =  [[self idMapping] objectForKey:protocol.listNameStr];
 	protocol.listIdStr = [listInfo objectForKey:@"id"];
+	defaultProject = [projectPopup stringValue];
 	[validationHandler performSelector:@selector(validationComplete:) 
 								  withObject:nil];	
 }
@@ -397,6 +414,7 @@
 		[protocol getLists:self returnTo:@selector(listsDone)];
 	}
 }
+
 - (void) clickAuthButton: (id) sender
 {
 
@@ -444,6 +462,8 @@
 		[isWorkButton setHidden:NO];
 		[isTrackedButton setHidden:NO];
 		[authButton setHidden:YES];
+		[projectPopup setHidden:NO];
+		[projectLabel setHidden:NO];
 	}
 }
 

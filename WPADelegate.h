@@ -62,5 +62,7 @@
 - (BOOL) findSummaryForDate: (NSDate*) date work: (NSTimeInterval*) workInt free: (NSTimeInterval*) freeInt;
 - (void) saveData: (NSTimer*) timer;
 - (void) doSaveThread: (NSObject*) param;
+- (NSArray*) allActiveProjects;
+
 //- (SummaryRecord*) getSummaryRecord;
 @end

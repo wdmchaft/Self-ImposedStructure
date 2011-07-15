@@ -21,6 +21,7 @@
 #import "VacationDialog.h"
 #import "SwitchActivityDialog.h"
 #import "Queues.h"
+#import "ManageProjectsController.h"
 
 #if DEBUG
 #warning DEBUG enabled
@@ -145,7 +146,7 @@
 	if ([ctx currentTask]){
 		BOOL foundTask = NO;
 		NSString *src = [[ctx currentTask]objectForKey:@"source"];
-		NSString *taskName = [[ctx currentTask]objectForKey:@"task"];
+		NSString *taskName = [[ctx currentTask]objectForKey:@"name"];
 		id<TaskList> list = [[ctx instancesMap] objectForKey:src];
 		if (list){
 			NSArray *tasks = [list getTasks];
@@ -324,7 +325,7 @@
 		mi.state = NSOffState;
 		[mi setEnabled:YES];
 		[mi setRepresentedObject:info];
-		if (ctx.currentTask && [self matchTask:ctx.currentTask toTask:info]){
+		if ([ctx currentTask] && [self matchTask:[ctx currentTask] toTask:info]){
 			mi.state = NSOnState;
         }
 		[fillMenu insertItem:mi atIndex:idx+1]; 
@@ -375,18 +376,18 @@
 	Context *ctx = [Context sharedContext];
 	NSMenuItem *mi = (NSMenuItem *) sender;
 	
-	ctx.currentTask = [mi representedObject];
+	[ctx setCurrentTask: [mi representedObject]];
 	
 	// if we get don't get the default or empty then it is "adhoc" task  (with no source)
 	
-	if (ctx.currentTask == nil){
+	if ([ctx currentTask] == nil){
 		if (![mi.title isEqualToString:@"No Current Task"] && [mi.title length] > 0) {
-			ctx.currentTask = [[NSDictionary dictionaryWithObject:mi.title forKey:@"name"] copy];
+			[ctx setCurrentTask: [[NSDictionary dictionaryWithObject:mi.title forKey:@"name"] copy]];
 		}
 	}
 	[ctx saveTask];
 	
-	NSDictionary *task = ctx.currentTask;
+	NSDictionary *task = [ctx currentTask];
 	//[[ctx growlManager] growlFYI:[NSString stringWithFormat: @"New Activity: %@",[task objectForKey:@"name"]]];
 	WPAAlert *newTaskMsg = [WPAAlert new];
 	NSString *src = [task objectForKey:@"source"];
@@ -414,8 +415,7 @@
 	[ctrl.window setOrderedIndex:0];
 	[[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
 	[ctrl showWindow:self];
-	modalSession = [NSApp beginModalSessionForWindow:ctrl.window];
-	[NSApp runModalSession:modalSession];
+	[NSApp runModalForWindow:[ctrl window]];
 }
 
 - (IBAction) clickSwitchActivity: (id) sender
@@ -425,7 +425,7 @@
 				  nibName: @"SwitchActivityDialog"
 				 callback: @selector(switchActClosed:)];
 }
-
+ 
 - (IBAction) clickAddActivity: (id) sender
 {
 	[self loadModalWindow: &addActivityWindow 
@@ -434,9 +434,18 @@
 				 callback: @selector(addActClosed:)];
 }
 
+- (IBAction) clickManageProjects: (id) sender
+{
+	ManageProjectsController *ctrl = [[ManageProjectsController alloc]initWithWindowNibName:@"ManageProjects"];
+
+	[ctrl.window makeKeyAndOrderFront:self];
+	[ctrl.window setOrderedIndex:0];
+	[[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
+	[ctrl showWindow:self];
+}
 - (void) addActClosed: (NSNotification*) notify
 {
-	[NSApp endModalSession:modalSession];
+	[NSApp stopModal];
 	[[Context sharedContext]refreshTasks];
 	[self enableStatusMenu:YES];
 	[self buildStatusMenu];
@@ -447,7 +456,8 @@
 
 - (void) switchActClosed: (NSNotification*) notify
 {
-	[NSApp endModalSession:modalSession];
+	//[NSApp endModalSession:modalSession];
+	[NSApp stopModal];
 	[[Context sharedContext]refreshTasks];
 	[self enableStatusMenu:YES];
 	[self buildStatusMenu];
@@ -680,7 +690,7 @@
 	NSDictionary *dict = [notification userInfo];
 	[WriteHandler completeActivity:dict atTime:[NSDate date]];
 	NSDictionary *curr = [[Context sharedContext] currentTask];
-	if ([[curr objectForKey:@"task"] isEqualToString:[dict objectForKey:@"task"]]){
+	if ([[curr objectForKey:@"name"] isEqualToString:[dict objectForKey:@"name"]]){
 		if ([[curr objectForKey:@"source"] isEqualToString:[dict objectForKey:@"source"]]){
 			[self clickSwitchActivity:self];	
 		}

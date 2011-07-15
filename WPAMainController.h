@@ -65,6 +65,7 @@
 @property (retain, nonatomic) NSString *completeQueue ;
 @property (nonatomic) NSModalSession modalSession;
 
+- (IBAction) clickManageProjects: (id) sender;
 - (IBAction) clickStart: (id) sender;
 - (IBAction) clickRefresh: (id) sender;
 - (IBAction) clickAway: (id) sender;

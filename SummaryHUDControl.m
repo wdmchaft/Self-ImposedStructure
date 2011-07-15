@@ -317,10 +317,10 @@ constrainMinCoordinate:(CGFloat)		proposedMin
 		ratio = work / goal;
 	}
 	[timeField setStringValue: workStr];
-	NSString *currTask = [ctx.currentTask objectForKey:@"name"];
+	NSString *currTask = [[ctx currentTask] objectForKey:@"name"];
 	NSColor *clr = [NSColor yellowColor];
 	if (currTask){
-		task =[ctx.currentTask objectForKey:@"name"];
+		task =[[ctx currentTask] objectForKey:@"name"];
 		clr = [NSColor whiteColor];
 	}
 	[taskField setTitle:task];
@@ -516,17 +516,5 @@ constrainMinCoordinate:(CGFloat)		proposedMin
 
 @end
 
-@implementation TitleFieldCell
-- (NSRect) drawTitle:(NSAttributedString *)title withFrame:(NSRect)frame inView:(NSView *)controlView
-{
-	//NSDictionary *attrs = [NSDictionary dictionaryWithObjectsAndKeys:
-	//					   [NSColor whiteColor],NSForegroundColorAttributeName,
-	//					   [NSFont systemFontOfSize:10],NSFontAttributeName,
-	//					   nil ];
-	//NSAttributedString *task = [[NSAttributedString alloc] initWithString:title.string attributes: attrs];
-	
-	[title drawInRect:frame];
-	return frame;
-}	 
-@end
+
 

@@ -7,11 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "SwitchActivityDialog.h"
+#import "TaskList.h"
 
 @interface ActivityComboData : NSObject <NSComboBoxDataSource> {
-	SwitchActivityDialog *dialog;
+	id<TaskList> list;
 }
 
-@property (nonatomic,retain) IBOutlet SwitchActivityDialog *dialog;
+@property (nonatomic, retain) IBOutlet id<TaskList> list;
 @end

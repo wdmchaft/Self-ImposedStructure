@@ -46,6 +46,7 @@
 + (void) completeActivity:(NSDictionary*)taskInfo
 				   atTime:(NSDate*)date;
 
+- (void) createNewTask:(NSNotification*) msg;
 - (void) saveActivityForDate:(NSNotification*) msg;
 - (void) saveActivityForDate:(NSDate*) inDate desc: (NSString*) activityName source: (NSString*) sourceName project: (NSString*) projectName addVal: (int) increment;
 //+ (void) sendActivity: (NSDate*)date
@@ -56,4 +57,26 @@
 - (SummaryRecord*) getSummaryRecord;
 - (void) doFlush;
 - (IBAction) saveAction:(id)sender;
+
++ (void) sendSwapTasks:(NSString*) newTsk 
+			newProject: (NSString*) newProj 
+			 newSource: (NSString*) newSrc
+			 startDate: (NSDate*)   start
+			   oldTask: (NSString*) oldTsk
+			oldProject: (NSString*) oldProj
+			 oldSource: (NSString*) oldSrc;
+
++ (void) sendNewTask: (NSString*) name  
+			  source: (NSString*) srcName 
+			project: (NSString*) prjName;
+
++ (void) sendCompleteTask:(NSString*) taskName 
+				  project: (NSString*) projectName 
+				   source: (NSString*) sourceName
+				 doneDate: (NSDate*)   doneTime;
+
++ (void) completeActivity:(NSDictionary*)taskInfo
+				   atTime:(NSDate*)date;
+
++ (void) sendCreateNewProject:(NSString*) projectName notes: (NSString*) notesStr;	
 @end

@@ -10,18 +10,20 @@
 #import "TaskList.h"
 
 @implementation ActivityComboData
-@synthesize dialog ;
+@synthesize  list;
+- (void) awakeFromNib
+{
+	NSLog(@"here");
+}
 
 - (NSInteger)numberOfItemsInComboBox:(NSComboBox *)aComboBox
 {
-	id<TaskList> tl = [dialog list];
-	return [[tl getTasks] count];
+	return [[list getTasks] count];
 }
 
 - (id)comboBox:(NSComboBox *)aComboBox objectValueForItemAtIndex:(NSInteger)index
 {
-	id<TaskList> tl = [dialog list];
-	NSArray *items = [tl getTasks];	
+	NSArray *items = [list getTasks];	
 
 	NSDictionary *itemAttrs = [items objectAtIndex:index];
 	return [itemAttrs objectForKey:@"name"];

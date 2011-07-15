@@ -237,6 +237,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 	[prog startAnimation:self];
     [table setEnabled:NO];
 	NSDictionary* params = timer.userInfo;
+	[WriteHandler completeActivity:params atTime:[NSDate date]];
 	[((id<TaskList>)reporter) markComplete:params completeHandler:self selector:@selector(handleComplete:)];
 	[WriteHandler completeActivity:params atTime:[timer fireDate]];
 }

@@ -33,6 +33,8 @@
 	NSTextField *lookAheadText;
 	RTMProtocol *protocol;
 	BOOL summaryMode;
+	NSPopUpButton *projectPopup;
+	NSTextField *projectLabel;
 }
 
 //@property (nonatomic, retain) NSMutableArray *tasksList;
@@ -44,8 +46,10 @@
 @property (nonatomic, retain) IBOutlet NSTextField *comboLabel;
 @property (nonatomic, retain) IBOutlet NSTextField *stepperLabel;
 @property (nonatomic, retain) IBOutlet NSTextField *refreshLabel;
+@property (nonatomic, retain) IBOutlet NSTextField *projectLabel;
 @property (nonatomic, retain) IBOutlet NSTextField *lookAheadLabel;
 @property (nonatomic, retain) IBOutlet NSTextField *lookAheadNote;
+@property (nonatomic, retain) IBOutlet NSPopUpButton *projectPopup;
 @property (nonatomic, retain) IBOutlet NSButton *authButton;
 @property (nonatomic, retain) IBOutlet NSProgressIndicator *progInd;
 @property (nonatomic, retain) NSMutableDictionary *alarmSet;

@@ -416,6 +416,35 @@
     return managedObjectContext;
 }
 
+- (NSArray*) allActiveProjects
+{
+    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+    NSEntityDescription *entity =
+    [NSEntityDescription entityForName:@"Project"
+                inManagedObjectContext:[self managedObjectContext]];
+	NSArray *projs = nil;
+    if (entity) {
+        [request setEntity:entity];
+        
+        NSPredicate *predicate =
+        [NSPredicate predicateWithFormat:@"retired == NO", pName];
+        [request setPredicate:predicate];
+        
+        NSError *error = nil;
+        projs = [managedObjectContext executeFetchRequest:request error:&error];
+		if (error){
+			[[NSApplication sharedApplication] presentError:error];
+		}
+    }
+	if (!projs || [projs count] == 0){
+		return [NSArray arrayWithObject:@"Uncategorized"];
+	}
+	NSMutableArray *ret = [NSMutableArray arrayWithCapacity:[projs count]];
+	for (NSManagedObject *obj in projs){
+		[ret addObject: [obj valueForKey:@"name"]];
+	}
+    return ret;
+}
 /**
  Returns the NSUndoManager for the application.  In this case, the manager
  returned is that of the managed object context for the application.

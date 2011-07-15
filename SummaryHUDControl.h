@@ -8,10 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 #import "AlertHandler.h"
-#import "SummaryEventData.h"
-#import "SummaryTaskData.h"
-#import "SummaryMailData.h"
-#import "SummaryDeadlineData.h"
 #import "WPAMainController.h"
 #import "Reporter.h"
 #import "SummaryViewController.h"

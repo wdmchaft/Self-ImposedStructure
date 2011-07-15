@@ -384,8 +384,6 @@
 	[self performSelector:step2Handler withObject:origTask];
 }
 
-
-
 - (void) authDone:(GTMOAuth2Authentication *)retAuth
 		  request:(NSMutableURLRequest *)request
 finishedWithError:(NSError *)error
@@ -447,10 +445,15 @@ finishedWithError:(NSError *)error
 	[fetcher setOperation:operation];
 	[fetcher beginFetchWithDelegate:self didFinishSelector:@selector(gotEtag:finishedWithData:error:)];	
 }
+- (NSDictionary*) taskForName: (NSString*) name
+{
+	NSMutableDictionary *task = [tasksDict objectForKey:name];
+}
 
 - (void) sendComplete: (NSObject*) caller returnTo: (SEL) cb params:(NSDictionary*) task
 {
-	[self sendEtag:caller returnTo:cb params: task opType: opComplete];	
+	NSDictionary *realTask = [self taskForName:[task objectForKey:@"name"]];
+	[self sendEtag:caller returnTo:cb params: realTask opType: opComplete];	
 }
 
 - (void) finishDelete:(NSDictionary*) task 

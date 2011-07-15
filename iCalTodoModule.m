@@ -11,6 +11,7 @@
 #import "Utility.h"
 #import "iCal.h"
 #import "ICalTodoEdit.h"
+#import "SiSData.h"
 
 #define MAILBOX @"MailBox"
 #define REFRESH @"Refresh"
@@ -44,6 +45,7 @@
 @synthesize completeCaller;
 @synthesize isWorkButton;
 @synthesize isTrackedButton;
+@synthesize projectPopup;
 
 @dynamic refreshInterval;
 @dynamic notificationName;
@@ -53,6 +55,7 @@
 @dynamic name;
 @dynamic summaryTitle;
 @dynamic isWorkRelated;
+@dynamic defaultProject;
 
 -(void) setId
 {
@@ -341,7 +344,8 @@
 	lookAhead = lookAheadField.intValue;
 	tracked = [isTrackedButton intValue];
 	isWorkRelated = [isWorkButton intValue];
-
+	defaultProject = [projectPopup stringValue];
+	
     [validationHandler performSelector:@selector(validationComplete:) 
                             withObject:nil];}
 
@@ -368,6 +372,15 @@
     }
 }
 
+- (void) setupProjects
+{
+	NSArray *projects = [SiSData getAllActiveProjects];
+	for (NSString *projName in projects){
+		[projectPopup addItemWithTitle:projName];
+	}
+	[projectPopup selectItemWithTitle:defaultProject];
+}
+
 -(void) loadView
 {
 	[super loadView];
@@ -378,6 +391,7 @@
 	[warningField setIntValue:warningWindow];
 	[isWorkButton setIntValue:isWorkRelated];
 	[isTrackedButton setIntValue:tracked];
+	[self setupProjects];
 }
 
 -(void) loadDefaults
@@ -427,6 +441,7 @@
 	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
 	[dnc postNotificationName: @"com.zer0gravitas.icaldaemon.quit" object:@"iCalTodoModule"];
 }
+
 - (NSString*) projectForTask: (NSString*) task{
 	return calendarName;
 }
@@ -442,7 +457,7 @@
 	}
 		NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
 	NSDictionary *taskInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-							  [ctx objectForKey:@"name"], @"task",
+							  [ctx objectForKey:@"name"], @"name",
 							  name, @"project",
 							  name, @"source",
 							  nil];
