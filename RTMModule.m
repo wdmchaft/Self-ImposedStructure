@@ -438,7 +438,7 @@
 	lookAheadWindow = (lookAheadText.intValue * 60 * 60 * 24);
 	isWorkRelated = [isWorkButton intValue];
 	tracked = [isTrackedButton intValue];
-	defaultProject = [projectPopup stringValue];
+	defaultProject = [projectPopup titleOfSelectedItem];
 	protocol.listNameStr = [listsCombo titleOfSelectedItem];
 	protocol.listIdStr = [[self idMapping] objectForKey:protocol.listNameStr];
 	[validationHandler performSelector:@selector(validationComplete:) 

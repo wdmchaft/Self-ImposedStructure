@@ -17,6 +17,7 @@
 	WPADelegate *del = (WPADelegate*)[[NSApplication sharedApplication]delegate];
 	WriteHandler *wh = [del ioHandler];
 	[projList setManagedObjectContext: [wh managedObjectContext]];
+	[projList setFetchPredicate:[NSPredicate predicateWithFormat:@"retireTime == nil"]];
 	[projList fetch: self];
 }
 
@@ -33,11 +34,13 @@
 {
 	NSError *error = nil;
 	NSManagedObject *proj = [[projList selectedObjects] objectAtIndex:0];
-//	NSNumber *retiredVal = [proj valueForKey:@"retired"];
-//	NSNumber *newVal = [NSNumber numberWithInt:![retiredVal intValue]];
-//	[proj setValue: newVal forKey:@"retired"];
-	[proj setValue:[NSDate date] forKey:@"endDate"];
+	NSString *name = [proj valueForKey:@"name"];
+	if ([name isEqualToString:@"Uncategorized"])
+		return;
+	[proj setValue:[NSDate date] forKey:@"retireTime"];
+	[[projList managedObjectContext]processPendingChanges];
 	[[projList managedObjectContext] save:&error];
+	[projList fetch:self];
 }
 
 @end

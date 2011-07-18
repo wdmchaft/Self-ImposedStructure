@@ -36,6 +36,8 @@
 	NSObject *hkTarget;
 	SEL hkSelector;
 	BOOL gotKey;
+	NSObjectController *projList;
+	NSPopUpButton *defaultSourcePopup;
 }
 
 @property (retain, nonatomic) IBOutlet NDHotKeyControl *hkControl;
@@ -47,6 +49,7 @@
 @property (retain, nonatomic) IBOutlet NSButton *editButton;
 @property (retain, nonatomic) IBOutlet NSButton *launchOnBootButton;
 @property (retain, nonatomic) IBOutlet NSView *newModuleView;
+@property (retain, nonatomic) IBOutlet NSObjectController *projList;
 @property (retain, nonatomic) AddModWinController *amwControl;
 @property (retain, nonatomic)  ModulesTableData *tableData;
 @property ( nonatomic) NSModalSession editModuleSession;
@@ -58,6 +61,7 @@
 @property (retain, nonatomic) IBOutlet NSButton *summaryButton;
 @property (retain, nonatomic) IBOutlet NSButton *useHKButton;
 @property (retain, nonatomic) IBOutlet NSButton *preHKButton;
+@property (retain, nonatomic) IBOutlet NSPopUpButton *defaultSourcePopup;
 @property (retain, nonatomic) NSObject *hkTarget;
 @property (nonatomic) SEL hkSelector;
 
@@ -75,4 +79,6 @@
 - (IBAction) clickUseHotKey: (id) sender;
 - (IBAction) clickPreHK: (id) sender;
 - (IBAction) hotKeyPicked: (id) sender;
+- (IBAction) clickAddProject: (id) sender;
+- (IBAction) clickRetireProject: (id) sender; 
 @end

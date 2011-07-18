@@ -22,28 +22,42 @@
 @synthesize listsCombo;
 @synthesize allLists;
 @synthesize switchNowButton;
+@synthesize trackedButton;
 @synthesize taskList;
+@synthesize projectsPopup;
 
-- (void) initCombo
+- (void) initCombos
 {
 	Context *ctx = [Context sharedContext];
-	allLists = [ctx getTrackedLists];
+	allLists = [ctx getTaskLists];
 	for(<TaskList> list in allLists){
 		NSString *name = [list name];
 		[listsCombo addItemWithTitle:name];
 	}
+	[listsCombo selectItemWithTitle:[ctx defaultSource]];
+	WPADelegate *del = (WPADelegate*)[[NSApplication sharedApplication]delegate];
+	NSArray *projNames = [del allActiveProjects];
+	for (NSString *name in projNames) {
+		[projectsPopup  addItemWithTitle:name];	 
+	}
+	[projectsPopup  selectItemWithTitle:@"Uncategorized"];
+	id<TaskList> list = [[ctx instancesMap]objectForKey:[ctx defaultSource]];
+	[switchNowButton setHidden: ![list tracked]];
+	[switchNowButton setIntValue:0];
+	[trackedButton setIntValue:[list tracked]];
+	
 }
 
 - (void) windowDidLoad
 {
 	[busy setHidden:YES];
-	[self initCombo];
+	[self initCombos];
 	[switchNowButton setIntegerValue:1];
 }
 
 - (void) showWindow:(id)sender
 {
-	[self initCombo];
+	[self initCombos];
 	[[super window] setLevel:NSFloatingWindowLevel];
     [[super window] setFrameAutosaveName:@"AddActivity"];
 	[super showWindow:sender];
@@ -70,6 +84,16 @@
 		[[ctx growlManager] growlFYI:[NSString stringWithFormat: @"Added activity: %@", tName]];
 	}
 	[super.window close];
+}
+
+- (void) clickList: (id) sender
+{
+	Context *ctx = [Context sharedContext];
+	NSString *listName = [listsCombo titleOfSelectedItem];
+	id<TaskList> list = [[ctx instancesMap]objectForKey:listName];
+	[switchNowButton setHidden: ![list tracked]];
+	[switchNowButton setIntValue:0];
+	[trackedButton setIntValue:[list tracked]];	
 }
 
 - (void)doAdd: (NSTimer*) timer 

@@ -36,6 +36,7 @@
 	NSString *queueName;
 	BOOL debug;
 	NSDictionary *params;
+	NSString  *defaultSource;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *instancesMap;
@@ -58,6 +59,7 @@
 @property (nonatomic, retain) NSString *queueName;
 @property (nonatomic, assign) BOOL	debug;
 @property (nonatomic, retain) NSDictionary *params;
+@property (nonatomic, retain) NSString *defaultSource;
 
 + (Context*)sharedContext;
 - (void) loadBundles;
@@ -89,4 +91,7 @@
 - (void) setCurrentTask:(NSDictionary *) dict;
 + (NSString*) defaultTaskName;
 + (NSDictionary*) defaultTask;
+- (BOOL) addActivitiesEnabled;
+- (BOOL) switchActivitiesEnabled;
+- (void) modulesChanged;
 @end

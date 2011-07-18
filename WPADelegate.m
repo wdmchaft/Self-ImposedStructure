@@ -89,14 +89,20 @@
 	//WPAMainController *wpam = (WPAMainController*)[window delegate];
 	//NSLog(@"app launched");
 	[self startDaemons];
-	if ([[NSUserDefaults standardUserDefaults]boolForKey:@"startOnLoad"]){
-		[wpam clickStart:self];
-	}
+
 	[window setTitle: APPNAMESTR];
 	ioHandler = [WriteHandler new];
 	
 	ioThread = [[NSThread alloc] initWithTarget:ioHandler selector:@selector(ioLoop:) object:nil];
 	[ioThread start];
+	Context *ctx = [Context sharedContext];
+	if ([ctx.instancesMap count] == 0){
+		[WriteHandler createNewProject:@"Uncategorized" notes:@"Default project"];
+		[wpam clickPreferences:self];
+	}	
+	else if ([[NSUserDefaults standardUserDefaults]boolForKey:@"startOnLoad"]){
+		[wpam clickStart:self];
+	}
 }
 
 //- (WPAMainController*) mainCtrl
@@ -427,7 +433,7 @@
         [request setEntity:entity];
         
         NSPredicate *predicate =
-        [NSPredicate predicateWithFormat:@"retired == NO", pName];
+        [NSPredicate predicateWithFormat:@"retireTime = nil", pName];
         [request setPredicate:predicate];
         
         NSError *error = nil;

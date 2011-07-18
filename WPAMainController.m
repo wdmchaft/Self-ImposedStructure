@@ -93,11 +93,7 @@
 	WPADelegate *del = (WPADelegate*)[NSApplication sharedApplication].delegate;
 	[del.window setReleasedWhenClosed:FALSE];
 	
-	// if nothing is configured lets run preferences
 	Context *ctx = [Context sharedContext];
-	if ([ctx.instancesMap count] == 0){
-		[self clickPreferences:self];
-	}
 	
 	NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
 	[center addObserver: self selector:@selector(endTimed:)
@@ -134,24 +130,23 @@
     ctx.totalsManager = totalsManager;
 	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
 	statusItem.menu = statusMenu;
-	//[statusItem setTitle:@"X"];
 	[self buildStatusMenu];
-	[statusItem setHighlightMode:YES];
-	[statusMenu  setAutoenablesItems:NO];
-	statusTimer = [NSTimer scheduledTimerWithTimeInterval:totalsManager.interval
+	[statusItem setHighlightMode: YES];
+	[statusMenu  setAutoenablesItems: NO];
+	statusTimer = [NSTimer scheduledTimerWithTimeInterval: totalsManager.interval
 												   target: self 
-												 selector:@selector(updateStatus:) 
-												 userInfo:nil 
-												  repeats:NO];
+												 selector: @selector(updateStatus:) 
+												 userInfo: nil 
+												  repeats: NO];
 	if ([ctx currentTask]){
 		BOOL foundTask = NO;
-		NSString *src = [[ctx currentTask]objectForKey:@"source"];
-		NSString *taskName = [[ctx currentTask]objectForKey:@"name"];
-		id<TaskList> list = [[ctx instancesMap] objectForKey:src];
+		NSString *src = [[ctx currentTask]objectForKey: @"source"];
+		NSString *taskName = [[ctx currentTask]objectForKey: @"name"];
+		id<TaskList> list = [[ctx instancesMap] objectForKey: src];
 		if (list){
 			NSArray *tasks = [list getTasks];
 			for (NSDictionary *task in tasks){
-				NSString *name = [task objectForKey:@"name"];
+				NSString *name = [task objectForKey: @"name"];
 				if ([name isEqualToString: taskName]){
 					foundTask = YES;
 				}
@@ -164,10 +159,8 @@
 //		}
 	}
 	[self setupHotKeyIfNecessary];
-//	if (ctx.running){
-		[self running:ctx.running];
-	//}
-//		 [self enableUI: ctx.running];
+	[self running: ctx.running];
+
 }
 
 -(void) updateStatus: (NSTimer*) timer
@@ -215,6 +208,7 @@
 		[self clickPlay:self];
 	}
 }
+
 -(void) buildStatusMenu
 {
 	Context *ctx = [Context sharedContext];
@@ -293,6 +287,13 @@
 	if (![name1 isEqualToString:name2]){
 		return NO;
 	}
+	
+	NSString *proj1 = [info1 objectForKey:@"project"];
+	NSString *proj2 = [info2 objectForKey:@"project"];	
+	if (![proj1 isEqualToString:proj2]){
+		return NO;
+	}
+	
 	NSString *src1 = [info1 objectForKey:@"source"];
 	NSString *src2 = [info2 objectForKey:@"source"];	
 	if (src1 == nil && src2 == nil){
@@ -309,11 +310,14 @@
 	Context *ctx = [Context sharedContext];	
 	NSMenuItem *aMenuItem = [statusMenu itemWithTag:MENU_ACTIVITIES];
 	NSMenu *fillMenu = aMenuItem.submenu;
-	for(NSDictionary *info in [list getTasks]){
+	for(NSMutableDictionary *info in [list getTasks]){
         NSString *description = [info objectForKey:@"name"];
-		NSMenuItem *mi = [[NSMenuItem alloc]initWithTitle:description 
-												   action:@selector(newActivity:)
-											keyEquivalent:@""];
+		[info setObject:[list name] forKey:@"source"];
+		[info setObject:[list defaultProject] forKey:@"project"];
+		SEL menuAction = ([list tracked]) ? @selector(newActivity:) : @selector(clickActivity:);
+		NSMenuItem *mi = [[NSMenuItem alloc]initWithTitle: description 
+												   action: menuAction
+											keyEquivalent: @""];
 		[mi setTarget:self];
         NSDictionary *attrs = [NSDictionary dictionaryWithObject:
 							   [NSFont messageFontOfSize:12.0] forKey:NSFontAttributeName];
@@ -332,6 +336,7 @@
 	}
 }
 
+
 - (void) fillActivities: (NSMenu*) menu
 {
 	[menu setAutoenablesItems:NO];
@@ -344,7 +349,7 @@
 		NSMenuItem *mi = [menu itemAtIndex:3];
 		[menu removeItem:mi];
 	}
-    NSArray *lists = [ctx getTrackedLists];
+    NSArray *lists = [ctx getTaskLists];
 	menuForTaskList= [NSMutableDictionary dictionaryWithCapacity:[lists count]];
     for (id<Instance> tasklist in lists){
         
@@ -354,8 +359,7 @@
         [mi setRepresentedObject:tasklist];
         [menu addItem:mi];
         [menuForTaskList setObject:mi forKey:tasklist.name];
-  //      NSMenuItem *sep = [NSMenuItem separatorItem];
-   //     [menu addItem:sep];
+
     }
 	for(id<TaskList> tasklist in lists){
         [self fillListActivities:tasklist];
@@ -403,6 +407,16 @@
 	[self buildStatusMenu];
 }
 
+- (void) clickActivity: (id) sender
+{
+	//NSLog(@"newActivity");
+	Context *ctx = [Context sharedContext];
+	NSMenuItem *mi = (NSMenuItem *) sender;
+	NSDictionary *item = (NSDictionary*) [mi representedObject];
+	NSString *src = [item objectForKey:@"source"];
+	id<TaskList> list = [[ctx instancesMap] objectForKey:src];
+	[list handleClick:item];
+}
 - (void)loadModalWindow: (NSWindowController**) win class: (Class) clazz nibName: (NSString*) name callback: (SEL) cb
 {
 	*win = [[clazz alloc] initWithWindowNibName:name];
@@ -471,6 +485,27 @@
 }
 
 -(IBAction) clickStart: (NSButton*) sender {
+	Context *ctx = [Context sharedContext];
+	//BOOL ok = YES;
+//	NSArray *taskLists = [ctx getTaskLists];
+//	if (taskLists == nil || [taskLists count] == 0) {
+//		ok = NO;
+//	}
+//	if ([ctx defaultSource] == nil ||  [[ctx instancesMap] objectForKey: [ctx defaultSource]] == nil){
+//		ok = NO;
+//	}
+//	
+//	if (!ok){
+//		NSAlert *alert = [NSAlert alertWithMessageText:@"Just FYI." 
+//										 defaultButton:@"OK" 
+//									   alternateButton:nil 
+//										   otherButton:nil 
+//							 informativeTextWithFormat:@"You need to have at least one task list configured and set as the default to run."];	
+//	
+//		NSUInteger ans = [alert runModal];
+//		[self clickPreferences:self];
+//	}
+		
 	[self running:YES];
 }
 
@@ -725,8 +760,7 @@
 	if (newState == WPASTATE_FREE)
 	{
 		if ([self needsSummary]){
-	//		[self showSummaryScreen: self];
-			return;
+			[self showSummaryScreen: self];
 		}
 		if ([self shouldGoBackToWork]) {
 			newState = WPASTATE_THINKING;

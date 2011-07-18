@@ -42,6 +42,7 @@
 @synthesize params;
 @synthesize debug;
 @synthesize queueName;
+@synthesize defaultSource;
 
 static Context* sharedContext = nil;
 
@@ -156,7 +157,7 @@ static Context* sharedContext = nil;
 	previousState = [ud integerForKey:@"previousState"];
 			 
 	thinkTime =[ud doubleForKey:@"thinkTime"];
-		
+	defaultSource = [ud objectForKey:@"defaultSource"];	
 	
 	// ModulesList : <modName1>, <pluginNameY>, <modName2>, <pluginNameX>, <modName3>, <pluginNameZ>, etc...
 	
@@ -218,6 +219,7 @@ static Context* sharedContext = nil;
 	[ud setObject: [NSNumber numberWithInt:currentState] forKey: @"currentState"];
 	[ud setObject: [NSNumber numberWithInt:thinkTime] forKey: @"thinkTime"];
 	[ud setObject: [NSNumber numberWithInt:previousState] forKey: @"previousState"];
+	[ud setObject: defaultSource forKey: @"defaultSource"];
 	[self saveModules];
 	[self saveTask];
 	[hudSettings saveToDefaults];
@@ -537,6 +539,42 @@ static Context* sharedContext = nil;
 		_currentTask = [Context defaultTask];	
 	}
 	return _currentTask;
+}
+	
+- (BOOL) switchActivitiesEnabled
+{
+	NSArray *tracked = [self getTrackedLists];
+	return (tracked && [tracked count] > 0);
+}
+
+- (BOOL) addActivitiesEnabled
+{
+	NSArray *lists = [self getTaskLists];
+	return (lists && [lists count] > 0);
+}
+
+- (void) modulesChanged
+{
+	[self willChangeValueForKey:@"switchActivitiesEnabled"];
+	[self didChangeValueForKey:@"switchActivitiesEnabled"];
+	[self willChangeValueForKey:@"addActivitiesEnabled"];
+	[self didChangeValueForKey:@"addActivitiesEnabled"];
+}
+
++ (BOOL) automaticallyNotifiesObserversForKey:(NSString *)theKey {
+	
+    BOOL automatic = NO;
+    if ([theKey isEqualToString:@"switchActivitiesEnabled"]) {
+        automatic = NO;
+    } 
+	else if ([theKey isEqualToString:@"addActivitiesEnabled"]) {
+        automatic = NO;
+	} 
+	else 
+	{
+        automatic=[super automaticallyNotifiesObserversForKey:theKey];
+    }
+    return automatic;
 }
 @end
 

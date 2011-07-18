@@ -79,4 +79,5 @@
 				   atTime:(NSDate*)date;
 
 + (void) sendCreateNewProject:(NSString*) projectName notes: (NSString*) notesStr;	
++ (void) createNewProject: (NSString*) projectName notes: (NSString*) notesStr;
 @end

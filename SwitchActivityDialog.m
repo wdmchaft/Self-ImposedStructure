@@ -78,15 +78,8 @@ oldList, currentText, completeButton, newData, oldData, newProjPopUp, oldProjPop
 	newList = nil;
 	oldList = nil;
 	
-	[newListsButton addItemWithTitle: @"<Unlisted>"];
-	[oldListsButton addItemWithTitle: @"<Unlisted>"];
-	NSMenuItem *oldItem = [oldListsButton itemAtIndex:0];
-	NSMenuItem *newItem = [newListsButton itemAtIndex:0];
-	[oldItem setTarget:self];	
-	[oldItem setAction:@selector(clickOldListItem:)];	
-	[newItem setTarget:self];	
-	[newItem setAction:@selector(clickNewListItem:)];
-	
+	NSMenuItem *oldItem = nil;
+	NSMenuItem *newItem = nil;
 	for (id<TaskList> tl in lists){
 		[newListsButton addItemWithTitle:[tl name]];
 		[oldListsButton addItemWithTitle:[tl name]];
@@ -105,10 +98,10 @@ oldList, currentText, completeButton, newData, oldData, newProjPopUp, oldProjPop
 		}
 	}
 	if (!oldList){
-		oldList = [lists objectAtIndex:0];
+		oldList = [[ctx instancesMap] objectForKey:[ctx defaultSource]];
 	}
 	if (!newList){
-		newList = [lists objectAtIndex:0];
+		newList = [[ctx instancesMap] objectForKey:[ctx defaultSource]];	
 	}
 	newData = [[ActivityComboData alloc]init];
 	oldData = [[ActivityComboData alloc]init];

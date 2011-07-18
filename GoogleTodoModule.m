@@ -314,6 +314,11 @@
 	return self;
 }
 
+- (void) refreshView
+{
+	[self loadView];
+}
+
 - (void) setupProjects
 {
 	NSArray *projects = [SiSData getAllActiveProjects];
@@ -403,7 +408,7 @@
 	protocol.listNameStr = [listsCombo titleOfSelectedItem];
 	NSDictionary *listInfo =  [[self idMapping] objectForKey:protocol.listNameStr];
 	protocol.listIdStr = [listInfo objectForKey:@"id"];
-	defaultProject = [projectPopup stringValue];
+	defaultProject = [projectPopup titleOfSelectedItem];
 	[validationHandler performSelector:@selector(validationComplete:) 
 								  withObject:nil];	
 }

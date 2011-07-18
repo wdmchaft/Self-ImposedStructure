@@ -12,12 +12,13 @@
 #import "Instance.h"
 #import "LaunchAtLoginController.h"
 #import "ColorWellCell.h"
+#import "ManageProjectsController.h"
 
 @implementation PreferencesWindow
 @synthesize modulesTable, amwControl,addButton, removeButton, newModuleView, tableData, 
 launchOnBootButton, editButton, hudTable, heatTable, 
 summaryField, summaryStepper, summaryLabel, summaryLabel2, summaryButton, editModuleSession, hkControl, 
-preHKButton, useHKButton, hkTarget, hkSelector, gotKey;
+preHKButton, useHKButton, hkTarget, hkSelector, gotKey, projList, defaultSourcePopup;
 
 - (void)awakeFromNib
 {
@@ -88,6 +89,20 @@ preHKButton, useHKButton, hkTarget, hkSelector, gotKey;
 	return [NSString stringWithCharacters:buf length:bufIdx];
 }
 
+- (void) setDefaultPopup
+{
+	Context *ctx = [Context sharedContext] ;
+	NSArray *lists = [ctx getTaskLists];
+	[defaultSourcePopup removeAllItems];
+	for (id<Instance> list in lists){
+		[defaultSourcePopup addItemWithTitle:[list name]];
+		if ([ctx defaultSource] && [[ctx defaultSource] isEqualToString: [list name]])
+		{
+			[defaultSourcePopup selectItemWithTitle:[list name]];
+		}
+	}
+}
+
 - (void) showWindow:(id)sender
 {
 	[super showWindow:sender];
@@ -109,6 +124,13 @@ preHKButton, useHKButton, hkTarget, hkSelector, gotKey;
 	}
 	gotKey = NO;
 	[hkControl setDelegate:self];
+	
+	WPADelegate *del = (WPADelegate*)[[NSApplication sharedApplication]delegate];
+	WriteHandler *wh = [del ioHandler];
+	[projList setManagedObjectContext: [wh managedObjectContext]];
+	[projList setFetchPredicate:[NSPredicate predicateWithFormat:@"retireTime == nil"]];
+	[projList fetch: self];
+	[self setDefaultPopup];
 	[[super window]orderFront:self];
 }
 
@@ -118,7 +140,9 @@ preHKButton, useHKButton, hkTarget, hkSelector, gotKey;
 	[[NSNotificationCenter defaultCenter] removeObserver:self 
 													name: NSWindowWillCloseNotification 
 												  object:amwControl.window];
+	[self setDefaultPopup];
 }
+
 - (void) runModal
 {
 	[[NSNotificationCenter defaultCenter] addObserver:self 
@@ -138,6 +162,7 @@ preHKButton, useHKButton, hkTarget, hkSelector, gotKey;
 	[amwControl setCurrCtrl: nil];
 	
 	[self runModal];
+
 }
 
 - (IBAction) clickEdit: (NSButton*) sender
@@ -174,6 +199,8 @@ preHKButton, useHKButton, hkTarget, hkSelector, gotKey;
 			[hudTable noteNumberOfRowsChanged];
 		}
 		[modulesTable noteNumberOfRowsChanged];
+		[ctx modulesChanged];
+		[self setDefaultPopup];
 	}
 }
 
@@ -202,6 +229,7 @@ preHKButton, useHKButton, hkTarget, hkSelector, gotKey;
 			[sc changeState:WPASTATE_OFF];
 		}
 	}
+	[ctx modulesChanged];
 	[mod saveDefaults];	
 }
 
@@ -282,6 +310,7 @@ preHKButton, useHKButton, hkTarget, hkSelector, gotKey;
 
 - (void) close: (NSNotification*) msg
 {
+	Context *ctx = [Context sharedContext];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name: NSWindowWillCloseNotification object:[self window]];
 	NDHotKeyEvent *event = [hkControl hotKeyEvent];
 	NDHotKeyEvent *oldEvent = [[Context sharedContext] hotkeyEvent];
@@ -299,14 +328,33 @@ preHKButton, useHKButton, hkTarget, hkSelector, gotKey;
 		NDHotKeyEvent *event = [hkControl hotKeyEvent];
 		[event setTarget:hkTarget selector:hkSelector];
 		[event setEnabled:YES];
-		[[Context sharedContext] setHotkeyEvent:event] ;
+		[ctx setHotkeyEvent:event] ;
 	} 
 	else {
 		[ud setBool:NO forKey:@"useHotKey"];
 		
 	}
-	
+	[ctx setDefaultSource:[defaultSourcePopup titleOfSelectedItem]];
 	
 	[[Context sharedContext]saveDefaults];
+}
+
+- (IBAction) clickAddProject: (id) sender
+{
+	AddProjectController *apC = [[AddProjectController alloc] initWithWindowNibName:@"AddProject"];
+	[apC showWindow:self];
+	[[apC window] orderFrontRegardless];
+	[NSApp runModalForWindow: [apC window]];
+	[projList fetch:self];
+}
+
+- (IBAction) clickRetireProject: (id) sender 
+{
+	NSError *error = nil;
+	NSManagedObject *proj = [[projList selectedObjects] objectAtIndex:0];
+	[proj setValue:[NSDate date] forKey:@"retireTime"];
+	[[projList managedObjectContext]processPendingChanges];
+	[[projList managedObjectContext] save:&error];
+	[projList fetch:self];
 }
 @end

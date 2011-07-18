@@ -106,4 +106,5 @@
 
 - (NSString *) completeQueue;
 - (NSString *) stateQueue;
+
 @end

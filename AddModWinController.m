@@ -83,6 +83,7 @@ tableView, modNames, originalName, hudView;
 		[ctx.hudSettings saveToDefaults];
 	}
 	[tableView noteNumberOfRowsChanged];
+	[ctx modulesChanged];
 	[super.window close];
 }
 
@@ -107,12 +108,15 @@ tableView, modNames, originalName, hudView;
 		[typeButton selectItemWithTitle: modDesc];
 		[typeButton setEnabled: NO];
 		configBox.title = @"No Module Specific Settings";
+		[mod loadDefaults];
+		[currCtrl loadView];
 		configBox.contentView = currCtrl.view;
+
 		configBox.title = [NSString stringWithFormat:@"%@ Specific Settings:",modDesc];
 		[nameText setEnabled:YES];
 		[nameText setStringValue:mod.name];
 		[okButton setEnabled:YES];
-}
+	}
 }
 -(void) showWindow:(id)sender{
 	[super showWindow:sender];

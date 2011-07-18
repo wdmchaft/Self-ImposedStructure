@@ -344,7 +344,7 @@
 	lookAhead = lookAheadField.intValue;
 	tracked = [isTrackedButton intValue];
 	isWorkRelated = [isWorkButton intValue];
-	defaultProject = [projectPopup stringValue];
+	defaultProject = [projectPopup titleOfSelectedItem];
 	
     [validationHandler performSelector:@selector(validationComplete:) 
                             withObject:nil];}
