@@ -70,7 +70,7 @@
 	[busy stopAnimation:self];
 	NSString *tName = [taskField stringValue];
 	if ([switchNowButton integerValue]){
-		[ctx setCurrentTask: [NSDictionary dictionaryWithObjectsAndKeys:tName, @"name",
+		[ctx setCurrentTask: [NSMutableDictionary dictionaryWithObjectsAndKeys:tName, @"name",
 						   taskList.name, @"source",
 						   @"default", @"project", nil]];
 		NSDistributedNotificationCenter *ndc = [NSDistributedNotificationCenter defaultCenter];

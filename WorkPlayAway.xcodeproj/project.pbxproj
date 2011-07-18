@@ -362,8 +362,6 @@
 		8CF8C14412DC2CB7009C7E3D /* SummaryTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8C14212DC2CB7009C7E3D /* SummaryTable.m */; };
 		8CFA332613C659340007532F /* License.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 8CFA332513C659340007532F /* License.rtf */; };
 		8CFA332713C659340007532F /* License.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 8CFA332513C659340007532F /* License.rtf */; };
-		8CFA375213CBF9A30007532F /* ProjectsEdit.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CFA375113CBF9A30007532F /* ProjectsEdit.xib */; };
-		8CFA375313CBF9A30007532F /* ProjectsEdit.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CFA375113CBF9A30007532F /* ProjectsEdit.xib */; };
 		8CFA376F13CBFEFF0007532F /* ManageProjectsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CFA376E13CBFEFF0007532F /* ManageProjectsController.m */; };
 		8CFA377013CBFEFF0007532F /* ManageProjectsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CFA376E13CBFEFF0007532F /* ManageProjectsController.m */; };
 		8CFA37EC13CDBB9D0007532F /* ManageProjects.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CFA37EB13CDBB9C0007532F /* ManageProjects.xib */; };
@@ -2477,7 +2475,6 @@
 				8C285846137319E400CAAF2A /* HUDBusyView.xib in Resources */,
 				8C171D7B13B57291007ED1E8 /* HUDCell.xib in Resources */,
 				8CFA332713C659340007532F /* License.rtf in Resources */,
-				8CFA375213CBF9A30007532F /* ProjectsEdit.xib in Resources */,
 				8CFA37EC13CDBB9D0007532F /* ManageProjects.xib in Resources */,
 				8CFA380313CDC28E0007532F /* AddProject.xib in Resources */,
 			);
@@ -2661,7 +2658,6 @@
 				8C285845137319E400CAAF2A /* HUDBusyView.xib in Resources */,
 				8C171D7C13B57291007ED1E8 /* HUDCell.xib in Resources */,
 				8CFA332613C659340007532F /* License.rtf in Resources */,
-				8CFA375313CBF9A30007532F /* ProjectsEdit.xib in Resources */,
 				8CFA37ED13CDBB9D0007532F /* ManageProjects.xib in Resources */,
 				8CFA380213CDC28E0007532F /* AddProject.xib in Resources */,
 			);

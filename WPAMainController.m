@@ -417,6 +417,7 @@
 	id<TaskList> list = [[ctx instancesMap] objectForKey:src];
 	[list handleClick:item];
 }
+
 - (void)loadModalWindow: (NSWindowController**) win class: (Class) clazz nibName: (NSString*) name callback: (SEL) cb
 {
 	*win = [[clazz alloc] initWithWindowNibName:name];
@@ -429,7 +430,8 @@
 	[ctrl.window setOrderedIndex:0];
 	[[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
 	[ctrl showWindow:self];
-	[NSApp runModalForWindow:[ctrl window]];
+	modalSession = [NSApp beginModalSessionForWindow:ctrl.window];
+	[NSApp runModalSession:modalSession];
 }
 
 - (IBAction) clickSwitchActivity: (id) sender
@@ -457,9 +459,10 @@
 	[[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
 	[ctrl showWindow:self];
 }
+
 - (void) addActClosed: (NSNotification*) notify
 {
-	[NSApp stopModal];
+	[NSApp endModalSession:modalSession];
 	[[Context sharedContext]refreshTasks];
 	[self enableStatusMenu:YES];
 	[self buildStatusMenu];
@@ -470,8 +473,7 @@
 
 - (void) switchActClosed: (NSNotification*) notify
 {
-	//[NSApp endModalSession:modalSession];
-	[NSApp stopModal];
+	[NSApp endModalSession:modalSession];
 	[[Context sharedContext]refreshTasks];
 	[self enableStatusMenu:YES];
 	[self buildStatusMenu];
