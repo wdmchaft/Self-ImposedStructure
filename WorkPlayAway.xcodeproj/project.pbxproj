@@ -380,8 +380,6 @@
 		8CFA37ED13CDBB9D0007532F /* ManageProjects.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CFA37EB13CDBB9C0007532F /* ManageProjects.xib */; };
 		8CFA380213CDC28E0007532F /* AddProject.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CFA380113CDC28E0007532F /* AddProject.xib */; };
 		8CFA380313CDC28E0007532F /* AddProject.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CFA380113CDC28E0007532F /* AddProject.xib */; };
-		8CFA390613CFA07C0007532F /* SiSData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CFA390513CFA07C0007532F /* SiSData.m */; };
-		8CFA390713CFA07C0007532F /* SiSData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CFA390513CFA07C0007532F /* SiSData.m */; };
 		8CFA392A13CFCB600007532F /* SiSData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CFA390513CFA07C0007532F /* SiSData.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -2798,7 +2796,6 @@
 				8C5C060A13C0E099003C170F /* NSButton+TextColor.m in Sources */,
 				8CA9C34D13C211DF00E3D457 /* MyTheme.m in Sources */,
 				8CFA376F13CBFEFF0007532F /* ManageProjectsController.m in Sources */,
-				8CFA390613CFA07C0007532F /* SiSData.m in Sources */,
 				8CBBEB7F13D5C00C00E23005 /* RefreshableViewController.m in Sources */,
 				8CBBEBA613D5D10000E23005 /* TodosViewController.m in Sources */,
 				8CBBEBAA13D5D12F00E23005 /* GoalsViewController.m in Sources */,
@@ -3053,7 +3050,6 @@
 				8C5C060913C0E099003C170F /* NSButton+TextColor.m in Sources */,
 				8CA9C34E13C211DF00E3D457 /* MyTheme.m in Sources */,
 				8CFA377013CBFEFF0007532F /* ManageProjectsController.m in Sources */,
-				8CFA390713CFA07C0007532F /* SiSData.m in Sources */,
 				8CBBEB8013D5C00C00E23005 /* RefreshableViewController.m in Sources */,
 				8CBBEBA713D5D10000E23005 /* TodosViewController.m in Sources */,
 				8CBBEBAB13D5D12F00E23005 /* GoalsViewController.m in Sources */,

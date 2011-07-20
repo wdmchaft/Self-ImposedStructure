@@ -110,7 +110,7 @@
 
 - (void) fetchDone
 {
-	NSLog(@"fetchDone");
+	//NSLog(@"fetchDone");
     [[NSDistributedNotificationCenter defaultCenter] removeObserver:self name:[self msgName] object:nil];
 	for (NSDictionary *event in eventsList){
 		WPAAlert *note = [[WPAAlert alloc]init];
@@ -143,13 +143,13 @@
 {
 	NSDictionary *params = nil;
 	if (script) {
-		NSLog(@"sending fetch with script");
+		//NSLog(@"sending fetch with script");
 		params = [NSDictionary dictionaryWithObjectsAndKeys:script, @"script",
 				  [self msgName], @"callback", 
                   @"event", @"handler",
 				  nil];
 	} else {
-		NSLog(@"sending fetch without script");
+		//NSLog(@"sending fetch without script");
 		params = [NSDictionary dictionaryWithObjectsAndKeys: [self msgName], @"callback", nil];
 	}
 	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
@@ -167,7 +167,7 @@
 		
 	//	NSString *monitorPath = [NSString stringWithFormat:@"%@/%@.app/Contents/MacOS/%@",@"/Applications/", 
 	//							 ICALDAEMON,ICALDAEMON];
-		NSLog(@"monitorPath = %@", monitorPath);
+		//NSLog(@"monitorPath = %@", monitorPath);
 		[[NSDistributedNotificationCenter defaultCenter] addObserver:self 
 															selector:@selector(getEvents)
 																name:@"com.zer0gravitas.icaldaemon.started" 
@@ -239,12 +239,12 @@
 	}
 	else {
 		if ([msg count] == 0){
-			NSLog(@"end of file");
+			//NSLog(@"end of file");
 			NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
 			[dnc removeObserver:self name:[self msgName] object:nil];
 			[self fetchDone];
 		} else {
-			NSLog(@"got message");
+			//NSLog(@"got message");
 			[eventsList addObject:[NSMutableDictionary dictionaryWithDictionary:msg]];
 			[self sendFetchWithScript:NO];
 		}

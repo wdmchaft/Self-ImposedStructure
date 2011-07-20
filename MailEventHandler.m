@@ -83,7 +83,7 @@
 	OSType osType = [aDescriptor enumCodeValue];
 	AEEventClass evClass = [aDescriptor eventClass];
 	c = (char*)&type;
-	NSLog(@"code = %d class = %d event descriptor: %c%c%c%c (%@)", osType, evClass, c[3],c[2],c[1],c[0], [aDescriptor description]);
+	//NSLog(@"code = %d class = %d event descriptor: %c%c%c%c (%@)", osType, evClass, c[3],c[2],c[1],c[0], [aDescriptor description]);
 	
 	if (osType == 0){
         //NSLog(@"Script return enumCodeValue indicates error");

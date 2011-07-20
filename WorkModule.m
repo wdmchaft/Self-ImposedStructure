@@ -113,7 +113,7 @@
 //	NSRunningApplication *newApp = [dict objectForKey:@"NSWorkspaceApplicationKey"];
     NSDictionary *appInfo = [[NSWorkspace sharedWorkspace] activeApplication];
     NSString *appBundle = [appInfo objectForKey:@"NSApplicationBundleIdentifier"];
-	NSLog(@"WorkModule new app [%@]", appBundle);	
+	//NSLog(@"WorkModule new app [%@]", appBundle);	
 	NSDictionary *dict = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:WPASTATE_FREE] forKey:@"state"];
 	NSString *stateStr =  @"free";
 	for (WatchApp *wa in appsToWatch){
@@ -129,13 +129,13 @@
 				break;
 			}
 			else if (wa.state == WPASTATE_OFF){
-				NSLog(@"WorkModule ignoring %@", appBundle);
+			//	NSLog(@"WorkModule ignoring %@", appBundle);
 				return;
 			}
 
 		}
 	}
-	NSLog(@"WorkModule going to %@ state = %@ sent on %@", appBundle, stateStr, [self queueName]);
+	//NSLog(@"WorkModule going to %@ state = %@ sent on %@", appBundle, stateStr, [self queueName]);
 	[notificationCenter postNotificationName:[self queueName] 
 									  object: nil 
 									userInfo:dict];
@@ -151,7 +151,7 @@
 - (void) initNotificationCenter
 {
 #ifdef DEBUG
-	NSLog(@"WorkModule listening for activation now...");
+	//NSLog(@"WorkModule listening for activation now...");
 #warning WorkModule in DEBUG mode
 #endif
 	notificationCenter = [NSDistributedNotificationCenter defaultCenter];
@@ -168,11 +168,11 @@
 {
 #ifdef DEBUG
 #warning WorkModule in debug mode 
-	NSLog(@"WorkModule changing to %d", newState);
+	//NSLog(@"WorkModule changing to %d", newState);
 #endif
 	if (notificationCenter == nil) {
 #ifdef DEBUG
-		NSLog(@"WorkModule listening for activation now...");
+		//NSLog(@"WorkModule listening for activation now...");
 #endif		
 		[self initNotificationCenter];
 	}
@@ -241,7 +241,7 @@
  
 -(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil params: appParams{
 #if DEBUG
-	NSLog(@"WorkModule initWithNibName");
+	//NSLog(@"WorkModule initWithNibName");
 #endif
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil params:appParams];
 	if (self){

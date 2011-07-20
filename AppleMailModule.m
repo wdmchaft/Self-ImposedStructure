@@ -137,7 +137,7 @@
         NSTimeInterval ti = [[NSDate date] timeIntervalSince1970];
         msgName = [@"com.zer0gravitas.mailFetch" stringByAppendingString:[[NSNumber numberWithDouble:ti] stringValue]];
     }
-	NSLog(@"callbackName = %@", msgName);
+	//NSLog(@"callbackName = %@", msgName);
     return msgName;
 }
 
@@ -162,7 +162,7 @@
     script = [script stringByReplacingOccurrencesOfString:@"<actName>" withString:accountName];
     script = [script stringByReplacingOccurrencesOfString:@"<boxName>" withString:mailMailboxName];
     script = [script stringByReplacingOccurrencesOfString:@"<sDate>" withString:thenStr];
-	NSLog(@"%@", script);
+	//NSLog(@"%@", script);
     return script;
 }
 
@@ -171,13 +171,13 @@
 	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
 	NSDictionary *params = nil;
 	if (script) {
-		NSLog(@"sending fetch with script");
+		//NSLog(@"sending fetch with script");
 		params = [NSDictionary dictionaryWithObjectsAndKeys:script, @"script",
 							[self callbackName], @"callback", 
 							@"mail", @"handler",
 							nil];
 	} else {
-		NSLog(@"sending fetch without script");
+		//NSLog(@"sending fetch without script");
 		params = [NSDictionary dictionaryWithObjectsAndKeys: [self callbackName], @"callback", nil];
 	}
 
@@ -196,12 +196,12 @@
 	}
 	else {
 		if ([msg count] == 0){
-			NSLog(@"end of file");
+			//NSLog(@"end of file");
 			NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
 			[dnc removeObserver:self name:[self callbackName] object:nil];
 			[self performSelector:fetchCallback];
 		} else {
-			NSLog(@"got message");
+			//NSLog(@"got message");
 			[newestMail addObject:[NSMutableDictionary dictionaryWithDictionary:msg]];
 			[self sendFetchWithScript:NO];
 		}
@@ -219,7 +219,7 @@
 		
 		//	NSString *monitorPath = [NSString stringWithFormat:@"%@/%@.app/Contents/MacOS/%@",@"/Applications/", 
 		//							 ICALDAEMON,ICALDAEMON];
-		NSLog(@"monitorPath = %@", monitorPath);
+		//NSLog(@"monitorPath = %@", monitorPath);
 		[[NSDistributedNotificationCenter defaultCenter] addObserver:self 
 															selector:@selector(getNewest)
 																name:@"com.zer0gravitas.applemaildaemon.started" 
@@ -489,7 +489,7 @@
             [alertHandler handleAlert:alert];
         }
     }
-	NSLog(@"apple mail: sending refresh done");
+	//NSLog(@"apple mail: sending refresh done");
 	[BaseInstance sendDone:alertHandler module: name];	
     [[NSNotificationCenter defaultCenter] removeObserver:self name:[self msgName] object:nil];
 }
@@ -579,7 +579,7 @@
         [aryCompares addObject:[NSNumber numberWithInt:rule.compareType]];
         [aryTypes addObject:[NSNumber numberWithInt:rule.ruleType]];
         [aryPredicates addObject:rule.predicate];
-        //NSLog(@"predicate = %@", rule.predicate);
+        ////NSLog(@"predicate = %@", rule.predicate);
         [aryColors addObject:[NSArchiver archivedDataWithRootObject:rule.color]];
     }
     //NSLog(@"saving %u rules", [rules count]);

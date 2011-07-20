@@ -29,11 +29,11 @@
 
 - (NSDictionary*) msgFromList: (NSMutableArray*) list forCallback: (NSString*) callback
 {
-	NSLog(@"msgFromList");
+//	NSLog(@"msgFromList");
 	NSDictionary *mailItem = [list objectAtIndex:0]; 
 	[list removeObjectAtIndex:0];
 	if ([list count] == 0) {
-		NSLog(@"at EOF");
+		//NSLog(@"at EOF");
 		[sessionMap removeObjectForKey:callback];
 		[list release];
 	}
@@ -42,7 +42,7 @@
 
 -(void)handleNotification:(NSNotification*) notification
 {
-	NSLog(@"got notification");
+//	NSLog(@"got notification");
 	
 	NSString *script = [[notification userInfo] objectForKey: @"script"];
 	NSString *callback = [[notification userInfo] objectForKey: @"callback"];
@@ -55,16 +55,16 @@
 	NSMutableArray *mailArray = [sessionMap objectForKey:callback];
 	NSDictionary *msg;
 	if (mailArray){
-		NSLog(@"found session");
+		//NSLog(@"found session");
 		msg = [self msgFromList:mailArray forCallback:callback];
 	}
 	else {
-		NSLog(@"Starting new session with callback:\n%@",callback);
+		//NSLog(@"Starting new session with callback:\n%@",callback);
 		NSAppleScript *aScript = [[NSAppleScript alloc] initWithSource:script];
 		@try {
-			NSLog(@"running script now");
+			//NSLog(@"running script now");
 			eventRes = [aScript executeAndReturnError:&errorRes];
-			NSLog(@"done running script now");
+			//NSLog(@"done running script now");
 		}
 		@catch (NSException *exception) {
 			errorRes = [NSDictionary dictionaryWithObject:exception.reason forKey:@"error"];
@@ -76,7 +76,7 @@
 			id<AppleScriptEventHandler> handler = [handlerMap objectForKey:hName];
 			[handler handleEventDescriptor: eventRes list: mailArray];
 			[sessionMap setObject:mailArray forKey:callback];
-			NSLog(@"ok script result - %d messages", [mailArray count]);
+			//NSLog(@"ok script result - %d messages", [mailArray count]);
 			[mailArray addObject:[NSDictionary new]]; // add an empty dictionary -- EOF
 			msg = [self msgFromList:mailArray forCallback:callback];
 		}
@@ -85,7 +85,7 @@
 			msg = [NSDictionary dictionaryWithObject:@"scripting error see log for details" forKey: @"error"];
 		}
 	}
-	NSLog(@"returning response");
+	//NSLog(@"returning response");
     [[NSDistributedNotificationCenter defaultCenter] 
 	 postNotificationName:callback object:nil userInfo:msg deliverImmediately:YES];
 }
@@ -97,7 +97,7 @@
 
 - (void) putter: (NSTimer*) timer
 {
-	NSLog(@"%@ puttering", queueName);
+	//NSLog(@"%@ puttering", queueName);
 }
 
 - (void) loop: (NSAutoreleasePool*) pool
@@ -116,7 +116,7 @@
 												 repeats:YES];
 	[runLoop addTimer:myTimer forMode:NSDefaultRunLoopMode];
 	
-	NSLog(@"%@ listening", queueName);
+	//NSLog(@"%@ listening", queueName);
 	NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
 	[center addObserver:self 
 			   selector:@selector(handleNotification:) 
@@ -124,13 +124,13 @@
 				 object:nil];
 	
 	NSString *quitQueue = [NSString stringWithFormat:@"%@.quit", queueName];
-   	NSLog(@"%@ listening", quitQueue);
+   	//NSLog(@"%@ listening", quitQueue);
 	[center addObserver:self 
 			   selector:@selector(doQuit:) 
 				   name:quitQueue 
 				 object:nil]; 
 	NSString *startedQueue = [NSString stringWithFormat:@"%@.started", queueName];
-   	NSLog(@"%@ listening", startedQueue);
+   	//NSLog(@"%@ listening", startedQueue);
 
 	[center postNotificationName:startedQueue object:nil]; // handshake to let the world know I am running
     //	while (!stopMe && [runLoop runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]]);

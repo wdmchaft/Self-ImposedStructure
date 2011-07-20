@@ -105,9 +105,9 @@
 
 - (void) fetchDone
 {
-	NSLog(@"fetchDone");
+	//NSLog(@"fetchDone");
     [[NSDistributedNotificationCenter defaultCenter] removeObserver:self name:[self msgName] object:nil];
-	NSLog(@"tasksList count = %d", [tasksList count]);
+	//NSLog(@"tasksList count = %d", [tasksList count]);
 	NSDate *nowDate = [NSDate date];
 	if (alertHandler == nil) {
 		NSNotification *notice = [NSNotification notificationWithName:@"com.zer0gravitas.tasks" object:self];
@@ -189,13 +189,13 @@
 {
 	NSDictionary *params = nil;
 	if (script) {
-		NSLog(@"sending fetch with script");
+		//NSLog(@"sending fetch with script");
 		params = [NSDictionary dictionaryWithObjectsAndKeys:script, @"script",
 				  [self msgName], @"callback", 
                   @"task", @"handler",
 				  nil];
 	} else {
-		NSLog(@"sending fetch without script");
+		//NSLog(@"sending fetch without script");
 		params = [NSDictionary dictionaryWithObjectsAndKeys: [self msgName], @"callback", nil];
 	}
 	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
@@ -222,7 +222,7 @@
     NSString *script = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     script = [script stringByReplacingOccurrencesOfString:@"<calName>" withString:calendarName];
 	script = [script stringByReplacingOccurrencesOfString:@"<eDate>" withString:thenStr];
-    NSLog(@"script = %@",script);
+   // NSLog(@"script = %@",script);
 	NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
 	[dnc addObserver:self 
 			selector:@selector(taskFetched:)
@@ -262,12 +262,12 @@
 	}
 	else {
 		if ([msg count] == 0){
-			NSLog(@"end of file");
+		//	NSLog(@"end of file");
 			NSDistributedNotificationCenter *dnc = [NSDistributedNotificationCenter defaultCenter];
 			[dnc removeObserver:self name:[self msgName] object:nil];
 			[self fetchDone];
 		} else {
-			NSLog(@"got message");
+		//	NSLog(@"got message");
 			[tasksList addObject:[NSMutableDictionary dictionaryWithDictionary:msg]];
 			[self sendFetchWithScript:NO];
 		}

@@ -78,7 +78,6 @@
 
 - (void) saveActivity 
 {
-	NSLog(@"sendActivity");
     [WriteHandler sendActivity: timeStampDate
                       activity:[Context sharedContext].currentTask
                      increment:interval];
