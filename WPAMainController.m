@@ -414,7 +414,7 @@
 	NSMenuItem *mi = (NSMenuItem *) sender;
 	NSDictionary *item = (NSDictionary*) [mi representedObject];
 	NSString *src = [item objectForKey:@"source"];
-	id<TaskList> list = [[ctx instancesMap] objectForKey:src];
+	id<Reporter> list = [[ctx instancesMap] objectForKey:src];
 	[list handleClick:item];
 }
 
