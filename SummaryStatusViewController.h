@@ -1,5 +1,5 @@
 //
-//  SummaryStatsViewController.h
+//  SummaryStatusViewController.h
 //  Self-Imposed Structure
 //
 //  Created by Charles on 3/22/11.
@@ -7,9 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "RefreshableViewController.h"
 
 
-@interface SummaryStatusViewController : NSViewController {
+@interface SummaryStatusViewController : RefreshableViewController {
 @private
     NSTextField *startDate; 
     NSTextField *totalDays; 

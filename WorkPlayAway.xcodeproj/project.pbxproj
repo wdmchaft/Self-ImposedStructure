@@ -148,8 +148,6 @@
 		8C5EAC58133C075800E5F404 /* RulesTableData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77291912D46AC600F71FE7 /* RulesTableData.m */; };
 		8C630CBE138D548200E2570F /* BaseTaskList.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C630CBC138D548200E2570F /* BaseTaskList.h */; };
 		8C630CBF138D548200E2570F /* BaseTaskList.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C630CBD138D548200E2570F /* BaseTaskList.m */; };
-		8C630F4F138EE81B00E2570F /* TasksDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C630F4E138EE81B00E2570F /* TasksDataSource.m */; };
-		8C630F50138EE81B00E2570F /* TasksDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C630F4E138EE81B00E2570F /* TasksDataSource.m */; };
 		8C63131C13916C7500E2570F /* WriteHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E3D5113206F8E007632E5 /* WriteHandler.m */; };
 		8C63131D13916C7F00E2570F /* WriteHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E3D5113206F8E007632E5 /* WriteHandler.m */; };
 		8C66A74612DFCB58000644ED /* HostsFileSwitcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C66A72A12DFC598000644ED /* HostsFileSwitcher.m */; };
@@ -261,6 +259,28 @@
 		8CB8CCE3137C543B007F7647 /* MailEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB8CCE2137C543B007F7647 /* MailEventHandler.m */; };
 		8CB8CCE8137C548D007F7647 /* ScriptDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB8CCE7137C548D007F7647 /* ScriptDaemon.m */; };
 		8CB8CCE9137C548D007F7647 /* ScriptDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB8CCE7137C548D007F7647 /* ScriptDaemon.m */; };
+		8CBBEB5713D5BCBE00E23005 /* ReportWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CBBEB5613D5BCBE00E23005 /* ReportWindow.xib */; };
+		8CBBEB5813D5BCBE00E23005 /* ReportWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CBBEB5613D5BCBE00E23005 /* ReportWindow.xib */; };
+		8CBBEB5A13D5BD0A00E23005 /* SummaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CBBEB5913D5BD0A00E23005 /* SummaryView.xib */; };
+		8CBBEB5B13D5BD0A00E23005 /* SummaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CBBEB5913D5BD0A00E23005 /* SummaryView.xib */; };
+		8CBBEB5F13D5BD6000E23005 /* GoalsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CBBEB5E13D5BD6000E23005 /* GoalsView.xib */; };
+		8CBBEB6013D5BD6000E23005 /* GoalsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CBBEB5E13D5BD6000E23005 /* GoalsView.xib */; };
+		8CBBEB6313D5BDB300E23005 /* ActivityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CBBEB6213D5BDB300E23005 /* ActivityView.xib */; };
+		8CBBEB6413D5BDB300E23005 /* ActivityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CBBEB6213D5BDB300E23005 /* ActivityView.xib */; };
+		8CBBEB6913D5BE0200E23005 /* TodosView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CBBEB6813D5BE0200E23005 /* TodosView.xib */; };
+		8CBBEB6A13D5BE0200E23005 /* TodosView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CBBEB6813D5BE0200E23005 /* TodosView.xib */; };
+		8CBBEB7F13D5C00C00E23005 /* RefreshableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBBEB7E13D5C00C00E23005 /* RefreshableViewController.m */; };
+		8CBBEB8013D5C00C00E23005 /* RefreshableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBBEB7E13D5C00C00E23005 /* RefreshableViewController.m */; };
+		8CBBEBA613D5D10000E23005 /* TodosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBBEBA513D5D10000E23005 /* TodosViewController.m */; };
+		8CBBEBA713D5D10000E23005 /* TodosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBBEBA513D5D10000E23005 /* TodosViewController.m */; };
+		8CBBEBAA13D5D12F00E23005 /* GoalsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBBEBA913D5D12F00E23005 /* GoalsViewController.m */; };
+		8CBBEBAB13D5D12F00E23005 /* GoalsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBBEBA913D5D12F00E23005 /* GoalsViewController.m */; };
+		8CBBEBB013D5D1B600E23005 /* ActivitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBBEBAF13D5D1B600E23005 /* ActivitiesViewController.m */; };
+		8CBBEBB113D5D1B600E23005 /* ActivitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBBEBAF13D5D1B600E23005 /* ActivitiesViewController.m */; };
+		8CBBEBB413D5D21A00E23005 /* SummarizedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBBEBB313D5D21A00E23005 /* SummarizedViewController.m */; };
+		8CBBEBB513D5D21A00E23005 /* SummarizedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBBEBB313D5D21A00E23005 /* SummarizedViewController.m */; };
+		8CBBEC4E13D5EFD100E23005 /* SummarizedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CBBEC4D13D5EFD100E23005 /* SummarizedView.xib */; };
+		8CBBEC4F13D5EFD100E23005 /* SummarizedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CBBEC4D13D5EFD100E23005 /* SummarizedView.xib */; };
 		8CBEAB47133AAA3E00277FEA /* SummaryRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBEAB46133AAA3D00277FEA /* SummaryRecord.m */; };
 		8CBEAB48133AAA3E00277FEA /* SummaryRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBEAB46133AAA3D00277FEA /* SummaryRecord.m */; };
 		8CC7543F1335524E007FE425 /* ActivityChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC7543E1335524C007FE425 /* ActivityChart.m */; };
@@ -775,8 +795,6 @@
 		8C62C70E136A1E5500E9CABE /* RTMProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMProtocol.m; sourceTree = "<group>"; };
 		8C630CBC138D548200E2570F /* BaseTaskList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTaskList.h; sourceTree = "<group>"; };
 		8C630CBD138D548200E2570F /* BaseTaskList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTaskList.m; sourceTree = "<group>"; };
-		8C630F4D138EE81B00E2570F /* TasksDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TasksDataSource.h; sourceTree = "<group>"; };
-		8C630F4E138EE81B00E2570F /* TasksDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TasksDataSource.m; sourceTree = "<group>"; };
 		8C66A72912DFC598000644ED /* HostsFileSwitcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = HostsFileSwitcher.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8C66A72A12DFC598000644ED /* HostsFileSwitcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = HostsFileSwitcher.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8C66A74112DFCB11000644ED /* Switcher */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Switcher; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1002,6 +1020,22 @@
 		8CB8CCE2137C543B007F7647 /* MailEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailEventHandler.m; sourceTree = "<group>"; };
 		8CB8CCE6137C548D007F7647 /* ScriptDaemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptDaemon.h; sourceTree = "<group>"; };
 		8CB8CCE7137C548D007F7647 /* ScriptDaemon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptDaemon.m; sourceTree = "<group>"; };
+		8CBBEB5613D5BCBE00E23005 /* ReportWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportWindow.xib; sourceTree = "<group>"; };
+		8CBBEB5913D5BD0A00E23005 /* SummaryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SummaryView.xib; sourceTree = "<group>"; };
+		8CBBEB5E13D5BD6000E23005 /* GoalsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoalsView.xib; sourceTree = "<group>"; };
+		8CBBEB6213D5BDB300E23005 /* ActivityView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityView.xib; sourceTree = "<group>"; };
+		8CBBEB6813D5BE0200E23005 /* TodosView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodosView.xib; sourceTree = "<group>"; };
+		8CBBEB7D13D5C00C00E23005 /* RefreshableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshableViewController.h; sourceTree = "<group>"; };
+		8CBBEB7E13D5C00C00E23005 /* RefreshableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshableViewController.m; sourceTree = "<group>"; };
+		8CBBEBA413D5D10000E23005 /* TodosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodosViewController.h; sourceTree = "<group>"; };
+		8CBBEBA513D5D10000E23005 /* TodosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodosViewController.m; sourceTree = "<group>"; };
+		8CBBEBA813D5D12F00E23005 /* GoalsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoalsViewController.h; sourceTree = "<group>"; };
+		8CBBEBA913D5D12F00E23005 /* GoalsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoalsViewController.m; sourceTree = "<group>"; };
+		8CBBEBAE13D5D1B600E23005 /* ActivitiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivitiesViewController.h; sourceTree = "<group>"; };
+		8CBBEBAF13D5D1B600E23005 /* ActivitiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivitiesViewController.m; sourceTree = "<group>"; };
+		8CBBEBB213D5D21A00E23005 /* SummarizedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummarizedViewController.h; sourceTree = "<group>"; };
+		8CBBEBB313D5D21A00E23005 /* SummarizedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummarizedViewController.m; sourceTree = "<group>"; };
+		8CBBEC4D13D5EFD100E23005 /* SummarizedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SummarizedView.xib; sourceTree = "<group>"; };
 		8CBEAB43133AA13400277FEA /* GoalHoursToAverageXForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GoalHoursToAverageXForm.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8CBEAB45133AAA3C00277FEA /* SummaryRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SummaryRecord.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8CBEAB46133AAA3D00277FEA /* SummaryRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SummaryRecord.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -1079,7 +1113,6 @@
 		8CF8C14112DC2CB7009C7E3D /* SummaryTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SummaryTable.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8CF8C14212DC2CB7009C7E3D /* SummaryTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SummaryTable.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8CFA332513C659340007532F /* License.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = License.rtf; sourceTree = "<group>"; };
-		8CFA375113CBF9A30007532F /* ProjectsEdit.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectsEdit.xib; sourceTree = "<group>"; };
 		8CFA376D13CBFEFF0007532F /* ManageProjectsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManageProjectsController.h; sourceTree = "<group>"; };
 		8CFA376E13CBFEFF0007532F /* ManageProjectsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManageProjectsController.m; sourceTree = "<group>"; };
 		8CFA37EB13CDBB9C0007532F /* ManageProjects.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ManageProjects.xib; sourceTree = "<group>"; };
@@ -1342,6 +1375,7 @@
 		29B97314FDCFA39411CA2CEA /* WorkPlayAway */ = {
 			isa = PBXGroup;
 			children = (
+				8CBBEC4D13D5EFD100E23005 /* SummarizedView.xib */,
 				8CFA332513C659340007532F /* License.rtf */,
 				8C73F10512E624080056FAFF /* Design.rtf */,
 				8CEF0D8413951FD3008D9F1D /* iCalModule.ico */,
@@ -1937,7 +1971,6 @@
 				8CDC038A1300809600BA478C /* Menu.h */,
 				8C5BB837136F40AA0004E88C /* ActivityComboData.h */,
 				8C5BB838136F40AA0004E88C /* ActivityComboData.m */,
-				8CFA375113CBF9A30007532F /* ProjectsEdit.xib */,
 			);
 			name = WPAMain;
 			sourceTree = "<group>";
@@ -1978,8 +2011,17 @@
 		8CF8C14012DC2B71009C7E3D /* Reporting */ = {
 			isa = PBXGroup;
 			children = (
-				8C630F4D138EE81B00E2570F /* TasksDataSource.h */,
-				8C630F4E138EE81B00E2570F /* TasksDataSource.m */,
+				8CBBEBB213D5D21A00E23005 /* SummarizedViewController.h */,
+				8CBBEBB313D5D21A00E23005 /* SummarizedViewController.m */,
+				8CBBEBAE13D5D1B600E23005 /* ActivitiesViewController.h */,
+				8CBBEBAF13D5D1B600E23005 /* ActivitiesViewController.m */,
+				8CBBEBA813D5D12F00E23005 /* GoalsViewController.h */,
+				8CBBEBA913D5D12F00E23005 /* GoalsViewController.m */,
+				8CBBEB6813D5BE0200E23005 /* TodosView.xib */,
+				8CBBEB5913D5BD0A00E23005 /* SummaryView.xib */,
+				8CBBEB5E13D5BD6000E23005 /* GoalsView.xib */,
+				8CBBEB6213D5BDB300E23005 /* ActivityView.xib */,
+				8CBBEB5613D5BCBE00E23005 /* ReportWindow.xib */,
 				8CB05115135E6FF8008FCE40 /* WorkHoursToAverageXForm.h */,
 				8CB05116135E6FF8008FCE40 /* WorkHoursToAverageXForm.m */,
 				8C11513A1344EF9D00273D0A /* ActivityViewController.h */,
@@ -2010,6 +2052,10 @@
 				8CF8C13C12DC2B59009C7E3D /* WorkTable.m */,
 				8CDC046B13010DCB00BA478C /* GoalChart.h */,
 				8CDC046C13010DCB00BA478C /* GoalChart.m */,
+				8CBBEB7D13D5C00C00E23005 /* RefreshableViewController.h */,
+				8CBBEB7E13D5C00C00E23005 /* RefreshableViewController.m */,
+				8CBBEBA413D5D10000E23005 /* TodosViewController.h */,
+				8CBBEBA513D5D10000E23005 /* TodosViewController.m */,
 			);
 			name = Reporting;
 			sourceTree = "<group>";
@@ -2477,6 +2523,12 @@
 				8CFA332713C659340007532F /* License.rtf in Resources */,
 				8CFA37EC13CDBB9D0007532F /* ManageProjects.xib in Resources */,
 				8CFA380313CDC28E0007532F /* AddProject.xib in Resources */,
+				8CBBEB5713D5BCBE00E23005 /* ReportWindow.xib in Resources */,
+				8CBBEB5A13D5BD0A00E23005 /* SummaryView.xib in Resources */,
+				8CBBEB5F13D5BD6000E23005 /* GoalsView.xib in Resources */,
+				8CBBEB6313D5BDB300E23005 /* ActivityView.xib in Resources */,
+				8CBBEB6913D5BE0200E23005 /* TodosView.xib in Resources */,
+				8CBBEC4E13D5EFD100E23005 /* SummarizedView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2660,6 +2712,12 @@
 				8CFA332613C659340007532F /* License.rtf in Resources */,
 				8CFA37ED13CDBB9D0007532F /* ManageProjects.xib in Resources */,
 				8CFA380213CDC28E0007532F /* AddProject.xib in Resources */,
+				8CBBEB5813D5BCBE00E23005 /* ReportWindow.xib in Resources */,
+				8CBBEB5B13D5BD0A00E23005 /* SummaryView.xib in Resources */,
+				8CBBEB6013D5BD6000E23005 /* GoalsView.xib in Resources */,
+				8CBBEB6413D5BDB300E23005 /* ActivityView.xib in Resources */,
+				8CBBEB6A13D5BE0200E23005 /* TodosView.xib in Resources */,
+				8CBBEC4F13D5EFD100E23005 /* SummarizedView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2760,12 +2818,16 @@
 				8CB7C774137D95DB00CB3193 /* NDHotKeyEvent.m in Sources */,
 				8CB7C775137D95DB00CB3193 /* NDHotKeyControl.m in Sources */,
 				8CB7C776137D95DB00CB3193 /* NDKeyboardLayout.m in Sources */,
-				8C630F50138EE81B00E2570F /* TasksDataSource.m in Sources */,
 				8C74F36413B5D1E200A7BF20 /* SummaryHUDControl.m in Sources */,
 				8C5C060A13C0E099003C170F /* NSButton+TextColor.m in Sources */,
 				8CA9C34D13C211DF00E3D457 /* MyTheme.m in Sources */,
 				8CFA376F13CBFEFF0007532F /* ManageProjectsController.m in Sources */,
 				8CFA390613CFA07C0007532F /* SiSData.m in Sources */,
+				8CBBEB7F13D5C00C00E23005 /* RefreshableViewController.m in Sources */,
+				8CBBEBA613D5D10000E23005 /* TodosViewController.m in Sources */,
+				8CBBEBAA13D5D12F00E23005 /* GoalsViewController.m in Sources */,
+				8CBBEBB013D5D1B600E23005 /* ActivitiesViewController.m in Sources */,
+				8CBBEBB413D5D21A00E23005 /* SummarizedViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3012,12 +3074,16 @@
 				8CB7C77A137D95DB00CB3193 /* NDHotKeyEvent.m in Sources */,
 				8CB7C77B137D95DB00CB3193 /* NDHotKeyControl.m in Sources */,
 				8CB7C77C137D95DB00CB3193 /* NDKeyboardLayout.m in Sources */,
-				8C630F4F138EE81B00E2570F /* TasksDataSource.m in Sources */,
 				8C74F36313B5D1E200A7BF20 /* SummaryHUDControl.m in Sources */,
 				8C5C060913C0E099003C170F /* NSButton+TextColor.m in Sources */,
 				8CA9C34E13C211DF00E3D457 /* MyTheme.m in Sources */,
 				8CFA377013CBFEFF0007532F /* ManageProjectsController.m in Sources */,
 				8CFA390713CFA07C0007532F /* SiSData.m in Sources */,
+				8CBBEB8013D5C00C00E23005 /* RefreshableViewController.m in Sources */,
+				8CBBEBA713D5D10000E23005 /* TodosViewController.m in Sources */,
+				8CBBEBAB13D5D12F00E23005 /* GoalsViewController.m in Sources */,
+				8CBBEBB113D5D1B600E23005 /* ActivitiesViewController.m in Sources */,
+				8CBBEBB513D5D21A00E23005 /* SummarizedViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
