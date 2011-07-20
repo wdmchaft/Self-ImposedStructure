@@ -82,6 +82,7 @@
 - (void) handleScreenSaverStop:(NSNotification*) notification;
 
 - (void) enableUI: (BOOL) onOff;
+- (void) buildStatusIcon;
 - (void) buildStatusMenu;
 - (void) enableStatusMenu: (BOOL) onOff;
 - (void) updateStatus: (NSTimer*) timer;

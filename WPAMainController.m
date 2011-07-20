@@ -166,7 +166,7 @@
 -(void) updateStatus: (NSTimer*) timer
 {
 	Context *ctx = [Context sharedContext];
-	[self buildStatusMenu];
+	[self buildStatusIcon];
     [statusTimer invalidate];
 	statusTimer = [NSTimer scheduledTimerWithTimeInterval:totalsManager.interval 
 												   target: self 
@@ -209,10 +209,9 @@
 	}
 }
 
--(void) buildStatusMenu
+-(void) buildStatusIcon
 {
 	Context *ctx = [Context sharedContext];
-	WPAStateType currState = ctx.currentState;
 	NSRect rect = {{0,0},{22.0,22.0}};
 	if (siView == nil) {
 		siView = [[StatusIconView alloc]initWithFrame:rect];
@@ -226,6 +225,13 @@
 	siView.free = totalsManager.freeToday;
 	siView.state = ctx.currentState;
 	[statusItem setView:siView];
+}
+
+-(void) buildStatusMenu
+{
+	Context *ctx = [Context sharedContext];
+	WPAStateType currState = ctx.currentState;
+	[self buildStatusIcon];
 	
 	[[statusMenu itemWithTag:MENU_WORK] setState:NSOffState];
 	[[statusMenu itemWithTag:MENU_AWAY] setState:NSOffState];
@@ -315,6 +321,7 @@
 		[info setObject:[list name] forKey:@"source"];
 		[info setObject:[list defaultProject] forKey:@"project"];
 		SEL menuAction = ([list tracked]) ? @selector(newActivity:) : @selector(clickActivity:);
+
 		NSMenuItem *mi = [[NSMenuItem alloc]initWithTitle: description 
 												   action: menuAction
 											keyEquivalent: @""];
@@ -323,16 +330,20 @@
 							   [NSFont messageFontOfSize:12.0] forKey:NSFontAttributeName];
         NSString *desc = [NSString stringWithFormat:@"   %@", description];
         NSAttributedString *attrTitle = [[NSAttributedString alloc]initWithString:desc attributes:attrs];
-        [mi setAttributedTitle:attrTitle];
-        NSMenuItem *myItem = [menuForTaskList objectForKey:list.name];
-        int idx = [fillMenu indexOfItem:myItem];
-		mi.state = NSOffState;
-		[mi setEnabled:YES];
-		[mi setRepresentedObject:info];
-		if ([ctx currentTask] && [self matchTask:[ctx currentTask] toTask:info]){
-			mi.state = NSOnState;
-        }
-		[fillMenu insertItem:mi atIndex:idx+1]; 
+       	NSMenuItem *test = [fillMenu itemWithTitle:description];
+		if (!test){
+			[mi setAttributedTitle:attrTitle];
+			[mi setTitle:description];
+			NSMenuItem *myItem = [menuForTaskList objectForKey:list.name];
+			int idx = [fillMenu indexOfItem:myItem];
+			mi.state = NSOffState;
+			[mi setEnabled:YES];
+			[mi setRepresentedObject:info];
+			if ([ctx currentTask] && [self matchTask:[ctx currentTask] toTask:info]){
+				mi.state = NSOnState;
+			}
+			[fillMenu insertItem:mi atIndex:idx+1];		}
+ 
 	}
 }
 

@@ -259,10 +259,6 @@
 		8CB8CCE3137C543B007F7647 /* MailEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB8CCE2137C543B007F7647 /* MailEventHandler.m */; };
 		8CB8CCE8137C548D007F7647 /* ScriptDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB8CCE7137C548D007F7647 /* ScriptDaemon.m */; };
 		8CB8CCE9137C548D007F7647 /* ScriptDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB8CCE7137C548D007F7647 /* ScriptDaemon.m */; };
-		8CBBEB5713D5BCBE00E23005 /* ReportWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CBBEB5613D5BCBE00E23005 /* ReportWindow.xib */; };
-		8CBBEB5813D5BCBE00E23005 /* ReportWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CBBEB5613D5BCBE00E23005 /* ReportWindow.xib */; };
-		8CBBEB5A13D5BD0A00E23005 /* SummaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CBBEB5913D5BD0A00E23005 /* SummaryView.xib */; };
-		8CBBEB5B13D5BD0A00E23005 /* SummaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CBBEB5913D5BD0A00E23005 /* SummaryView.xib */; };
 		8CBBEB5F13D5BD6000E23005 /* GoalsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CBBEB5E13D5BD6000E23005 /* GoalsView.xib */; };
 		8CBBEB6013D5BD6000E23005 /* GoalsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CBBEB5E13D5BD6000E23005 /* GoalsView.xib */; };
 		8CBBEB6313D5BDB300E23005 /* ActivityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CBBEB6213D5BDB300E23005 /* ActivityView.xib */; };
@@ -277,10 +273,6 @@
 		8CBBEBAB13D5D12F00E23005 /* GoalsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBBEBA913D5D12F00E23005 /* GoalsViewController.m */; };
 		8CBBEBB013D5D1B600E23005 /* ActivitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBBEBAF13D5D1B600E23005 /* ActivitiesViewController.m */; };
 		8CBBEBB113D5D1B600E23005 /* ActivitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBBEBAF13D5D1B600E23005 /* ActivitiesViewController.m */; };
-		8CBBEBB413D5D21A00E23005 /* SummarizedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBBEBB313D5D21A00E23005 /* SummarizedViewController.m */; };
-		8CBBEBB513D5D21A00E23005 /* SummarizedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBBEBB313D5D21A00E23005 /* SummarizedViewController.m */; };
-		8CBBEC4E13D5EFD100E23005 /* SummarizedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CBBEC4D13D5EFD100E23005 /* SummarizedView.xib */; };
-		8CBBEC4F13D5EFD100E23005 /* SummarizedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CBBEC4D13D5EFD100E23005 /* SummarizedView.xib */; };
 		8CBEAB47133AAA3E00277FEA /* SummaryRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBEAB46133AAA3D00277FEA /* SummaryRecord.m */; };
 		8CBEAB48133AAA3E00277FEA /* SummaryRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBEAB46133AAA3D00277FEA /* SummaryRecord.m */; };
 		8CC7543F1335524E007FE425 /* ActivityChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC7543E1335524C007FE425 /* ActivityChart.m */; };
@@ -1020,8 +1012,6 @@
 		8CB8CCE2137C543B007F7647 /* MailEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailEventHandler.m; sourceTree = "<group>"; };
 		8CB8CCE6137C548D007F7647 /* ScriptDaemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptDaemon.h; sourceTree = "<group>"; };
 		8CB8CCE7137C548D007F7647 /* ScriptDaemon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptDaemon.m; sourceTree = "<group>"; };
-		8CBBEB5613D5BCBE00E23005 /* ReportWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportWindow.xib; sourceTree = "<group>"; };
-		8CBBEB5913D5BD0A00E23005 /* SummaryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SummaryView.xib; sourceTree = "<group>"; };
 		8CBBEB5E13D5BD6000E23005 /* GoalsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoalsView.xib; sourceTree = "<group>"; };
 		8CBBEB6213D5BDB300E23005 /* ActivityView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityView.xib; sourceTree = "<group>"; };
 		8CBBEB6813D5BE0200E23005 /* TodosView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodosView.xib; sourceTree = "<group>"; };
@@ -1033,9 +1023,6 @@
 		8CBBEBA913D5D12F00E23005 /* GoalsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoalsViewController.m; sourceTree = "<group>"; };
 		8CBBEBAE13D5D1B600E23005 /* ActivitiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivitiesViewController.h; sourceTree = "<group>"; };
 		8CBBEBAF13D5D1B600E23005 /* ActivitiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivitiesViewController.m; sourceTree = "<group>"; };
-		8CBBEBB213D5D21A00E23005 /* SummarizedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummarizedViewController.h; sourceTree = "<group>"; };
-		8CBBEBB313D5D21A00E23005 /* SummarizedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummarizedViewController.m; sourceTree = "<group>"; };
-		8CBBEC4D13D5EFD100E23005 /* SummarizedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SummarizedView.xib; sourceTree = "<group>"; };
 		8CBEAB43133AA13400277FEA /* GoalHoursToAverageXForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GoalHoursToAverageXForm.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8CBEAB45133AAA3C00277FEA /* SummaryRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SummaryRecord.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8CBEAB46133AAA3D00277FEA /* SummaryRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SummaryRecord.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -1375,7 +1362,6 @@
 		29B97314FDCFA39411CA2CEA /* WorkPlayAway */ = {
 			isa = PBXGroup;
 			children = (
-				8CBBEC4D13D5EFD100E23005 /* SummarizedView.xib */,
 				8CFA332513C659340007532F /* License.rtf */,
 				8C73F10512E624080056FAFF /* Design.rtf */,
 				8CEF0D8413951FD3008D9F1D /* iCalModule.ico */,
@@ -2011,17 +1997,13 @@
 		8CF8C14012DC2B71009C7E3D /* Reporting */ = {
 			isa = PBXGroup;
 			children = (
-				8CBBEBB213D5D21A00E23005 /* SummarizedViewController.h */,
-				8CBBEBB313D5D21A00E23005 /* SummarizedViewController.m */,
 				8CBBEBAE13D5D1B600E23005 /* ActivitiesViewController.h */,
 				8CBBEBAF13D5D1B600E23005 /* ActivitiesViewController.m */,
 				8CBBEBA813D5D12F00E23005 /* GoalsViewController.h */,
 				8CBBEBA913D5D12F00E23005 /* GoalsViewController.m */,
 				8CBBEB6813D5BE0200E23005 /* TodosView.xib */,
-				8CBBEB5913D5BD0A00E23005 /* SummaryView.xib */,
 				8CBBEB5E13D5BD6000E23005 /* GoalsView.xib */,
 				8CBBEB6213D5BDB300E23005 /* ActivityView.xib */,
-				8CBBEB5613D5BCBE00E23005 /* ReportWindow.xib */,
 				8CB05115135E6FF8008FCE40 /* WorkHoursToAverageXForm.h */,
 				8CB05116135E6FF8008FCE40 /* WorkHoursToAverageXForm.m */,
 				8C11513A1344EF9D00273D0A /* ActivityViewController.h */,
@@ -2523,12 +2505,9 @@
 				8CFA332713C659340007532F /* License.rtf in Resources */,
 				8CFA37EC13CDBB9D0007532F /* ManageProjects.xib in Resources */,
 				8CFA380313CDC28E0007532F /* AddProject.xib in Resources */,
-				8CBBEB5713D5BCBE00E23005 /* ReportWindow.xib in Resources */,
-				8CBBEB5A13D5BD0A00E23005 /* SummaryView.xib in Resources */,
 				8CBBEB5F13D5BD6000E23005 /* GoalsView.xib in Resources */,
 				8CBBEB6313D5BDB300E23005 /* ActivityView.xib in Resources */,
 				8CBBEB6913D5BE0200E23005 /* TodosView.xib in Resources */,
-				8CBBEC4E13D5EFD100E23005 /* SummarizedView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2712,12 +2691,9 @@
 				8CFA332613C659340007532F /* License.rtf in Resources */,
 				8CFA37ED13CDBB9D0007532F /* ManageProjects.xib in Resources */,
 				8CFA380213CDC28E0007532F /* AddProject.xib in Resources */,
-				8CBBEB5813D5BCBE00E23005 /* ReportWindow.xib in Resources */,
-				8CBBEB5B13D5BD0A00E23005 /* SummaryView.xib in Resources */,
 				8CBBEB6013D5BD6000E23005 /* GoalsView.xib in Resources */,
 				8CBBEB6413D5BDB300E23005 /* ActivityView.xib in Resources */,
 				8CBBEB6A13D5BE0200E23005 /* TodosView.xib in Resources */,
-				8CBBEC4F13D5EFD100E23005 /* SummarizedView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2827,7 +2803,6 @@
 				8CBBEBA613D5D10000E23005 /* TodosViewController.m in Sources */,
 				8CBBEBAA13D5D12F00E23005 /* GoalsViewController.m in Sources */,
 				8CBBEBB013D5D1B600E23005 /* ActivitiesViewController.m in Sources */,
-				8CBBEBB413D5D21A00E23005 /* SummarizedViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3083,7 +3058,6 @@
 				8CBBEBA713D5D10000E23005 /* TodosViewController.m in Sources */,
 				8CBBEBAB13D5D12F00E23005 /* GoalsViewController.m in Sources */,
 				8CBBEBB113D5D1B600E23005 /* ActivitiesViewController.m in Sources */,
-				8CBBEBB513D5D21A00E23005 /* SummarizedViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
