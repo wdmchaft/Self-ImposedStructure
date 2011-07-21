@@ -1,3 +1,4 @@
+
 //
 //  AdiumModule.m
 //  AdiumModule
@@ -27,29 +28,31 @@
 
 -(void) changeState: (WPAStateType) newState
 {
-	
-	AdiumStatusTypes newStatus;
-	switch (newState) {
-		case WPASTATE_THINKING:
-			newStatus = adiumWorkState;
-			break;
-		case WPASTATE_AWAY:
-			newStatus = adiumAwayState;
-			break;
-		case WPASTATE_FREE:
-			newStatus = adiumPlayState;
-			break;
-		default:
-			break;
-	}
-	AdiumApplication *addiumApp = [SBApplication applicationWithBundleIdentifier:@"com.adiumX.adiumX"];
-	
-	NSArray *array = [addiumApp statuses];
-	for (AdiumStatus *stat in array){
-		if (stat.statusType == newStatus){
-			[addiumApp setGlobalStatus:stat];
-		}
-	}
+	NSArray *apps = [NSRunningApplication runningApplicationsWithBundleIdentifier:@"com.adiumX.adiumX"];
+    if (apps && [apps count] > 0) {
+        AdiumStatusTypes newStatus;
+        switch (newState) {
+            case WPASTATE_THINKING:
+                newStatus = adiumWorkState;
+                break;
+            case WPASTATE_AWAY:
+                newStatus = adiumAwayState;
+                break;
+            case WPASTATE_FREE:
+                newStatus = adiumPlayState;
+                break;
+            default:
+                break;
+        }
+        AdiumApplication *addiumApp = [SBApplication applicationWithBundleIdentifier:@"com.adiumX.adiumX"];
+        
+        NSArray *array = [addiumApp statuses];
+        for (AdiumStatus *stat in array){
+            if (stat.statusType == newStatus){
+                [addiumApp setGlobalStatus:stat];
+            }
+        }
+    }
 }
 
 -(void) startValidation: (NSObject*) callback  
