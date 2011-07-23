@@ -270,7 +270,7 @@
 - (void) saveTotalsForDate: (NSNotification*) msg
 {
 #if DEBUG
-	NSLog(@"saveTotalsForDate");
+	//NSLog(@"saveTotalsForDate");
 #endif	
 	NSDictionary *d = msg.userInfo;
 	NSDate *inDate = (NSDate*)[d objectForKey:@"date"];
@@ -610,10 +610,11 @@
 	NSString *source = [info objectForKey:@"source"];
 	[self createNewTask:task source: source project:project];
 }
+
 - (void) saveActivityForDate:(NSDate*) inDate desc: (NSString*) taskName source: (NSString*) sourceName project: (NSString*) projectName addVal: (int) increment
 {
 #if DEBUG
-	NSLog(@"saveActivityForDate");
+	//NSLog(@"saveActivityForDate");
 #endif
     if (!taskName){
         //NSLog(@"not saving task data");
