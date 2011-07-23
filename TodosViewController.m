@@ -20,7 +20,7 @@
 	WPADelegate *nad = (WPADelegate*) [NSApplication sharedApplication].delegate;
 	[data setManagedObjectContext:[nad managedObjectContext]];
 	NSPredicate *predicate =
-	[NSPredicate predicateWithFormat:@"completeTime >= %@", starting];
+	[NSPredicate predicateWithFormat:@"endTime >= %@", starting];
 	[data setFilterPredicate:predicate];
 	//[data reload];
 	[data performSelectorInBackground:@selector(fetch:) withObject:self];
