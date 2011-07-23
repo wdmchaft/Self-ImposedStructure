@@ -237,6 +237,13 @@
 		8C9CE88812E2700900017A02 /* Skype.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C9CE77812E2465B00017A02 /* Skype.framework */; };
 		8C9E3BCA1347778000D8BDCC /* RepeatRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E3BC81347775400D8BDCC /* RepeatRule.m */; };
 		8C9E3D5213206F8E007632E5 /* WriteHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C9E3D5013206F8E007632E5 /* WriteHandler.h */; };
+		8C9E473E13DA848100333773 /* ModelEdit.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C9E473D13DA848100333773 /* ModelEdit.xib */; };
+		8C9E474313DA933500333773 /* modeledit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E474013DA933500333773 /* modeledit.m */; };
+		8C9E474413DA933500333773 /* ModelEditor_AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E474213DA933500333773 /* ModelEditor_AppDelegate.m */; };
+		8C9E476213DA936B00333773 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9FB5BD13356DB70034FE85 /* CoreData.framework */; };
+		8C9E476313DA936B00333773 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0D943A12D64018009F3280 /* Cocoa.framework */; };
+		8C9E476513DA93A900333773 /* WPA_DataModel.xcdatamodel in Resources */ = {isa = PBXBuildFile; fileRef = 8C77293912D46AC600F71FE7 /* WPA_DataModel.xcdatamodel */; };
+		8C9E476613DA93B500333773 /* WPA_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 8C77293912D46AC600F71FE7 /* WPA_DataModel.xcdatamodel */; };
 		8C9E9ABA137E65FA00529EC2 /* iCalTodoModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E9AB9137E65FA00529EC2 /* iCalTodoModule.m */; };
 		8C9E9ABD137E680D00529EC2 /* structcommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD1974412D4C59600C69AC9 /* structcommon.framework */; };
 		8C9FB5BE13356DB70034FE85 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9FB5BD13356DB70034FE85 /* CoreData.framework */; };
@@ -983,6 +990,13 @@
 		8C9E3BC81347775400D8BDCC /* RepeatRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = RepeatRule.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8C9E3D5013206F8E007632E5 /* WriteHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WriteHandler.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8C9E3D5113206F8E007632E5 /* WriteHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WriteHandler.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		8C9E460213D9E4ED00333773 /* ModelEditor-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ModelEditor-Info.plist"; sourceTree = "<group>"; };
+		8C9E472513DA81F800333773 /* ModelEdit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ModelEdit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C9E472713DA81F800333773 /* ModelEdit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ModelEdit-Info.plist"; sourceTree = "<group>"; };
+		8C9E473D13DA848100333773 /* ModelEdit.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModelEdit.xib; sourceTree = "<group>"; };
+		8C9E474013DA933500333773 /* modeledit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = modeledit.m; sourceTree = "<group>"; };
+		8C9E474113DA933500333773 /* ModelEditor_AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelEditor_AppDelegate.h; sourceTree = "<group>"; };
+		8C9E474213DA933500333773 /* ModelEditor_AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelEditor_AppDelegate.m; sourceTree = "<group>"; };
 		8C9E9AB2137E65B900529EC2 /* iCalTodoModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iCalTodoModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C9E9AB3137E65B900529EC2 /* iCalTodoModule-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iCalTodoModule-Info.plist"; sourceTree = "<group>"; };
 		8C9E9AB8137E65FA00529EC2 /* iCalTodoModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCalTodoModule.h; sourceTree = "<group>"; };
@@ -1185,6 +1199,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8C9E472313DA81F800333773 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C9E476213DA936B00333773 /* CoreData.framework in Frameworks */,
+				8C9E476313DA936B00333773 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8C9E9AB0137E65B900529EC2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1295,6 +1318,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8C9E473C13DA845000333773 /* ModelEdit */,
 				8CB7C75D137D958A00CB3193 /* NDHotKeyEvent */,
 				8C73F8B212E8933B0056FAFF /* Modules */,
 				8C73F8B112E8932C0056FAFF /* Test */,
@@ -1353,6 +1377,7 @@
 				8CB8CCCE137C530F007F7647 /* ICalDaemon */,
 				8C9E9AB2137E65B900529EC2 /* iCalTodoModule.bundle */,
 				8C58217F1383978900E33F53 /* GoogleTodoModule.bundle */,
+				8C9E472513DA81F800333773 /* ModelEdit.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1395,6 +1420,8 @@
 				8C171D7A13B57291007ED1E8 /* HUDCell.xib */,
 				8CFA37EB13CDBB9C0007532F /* ManageProjects.xib */,
 				8CFA380113CDC28E0007532F /* AddProject.xib */,
+				8C9E460213D9E4ED00333773 /* ModelEditor-Info.plist */,
+				8C9E472713DA81F800333773 /* ModelEdit-Info.plist */,
 			);
 			name = WorkPlayAway;
 			sourceTree = "<group>";
@@ -1662,6 +1689,17 @@
 				8CDCC10612E2B7BA00CEAAD3 /* SkypeManagerDelegate.m */,
 			);
 			name = SkypeManager;
+			sourceTree = "<group>";
+		};
+		8C9E473C13DA845000333773 /* ModelEdit */ = {
+			isa = PBXGroup;
+			children = (
+				8C9E474013DA933500333773 /* modeledit.m */,
+				8C9E474113DA933500333773 /* ModelEditor_AppDelegate.h */,
+				8C9E474213DA933500333773 /* ModelEditor_AppDelegate.m */,
+				8C9E473D13DA848100333773 /* ModelEdit.xib */,
+			);
+			name = ModelEdit;
 			sourceTree = "<group>";
 		};
 		8C9E9A79137E645D00529EC2 /* iCalTodoModule */ = {
@@ -2204,6 +2242,23 @@
 			productReference = 8C73F89312E891D00056FAFF /* TestMailModule.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
+		8C9E472413DA81F800333773 /* ModelEdit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C9E472A13DA81FB00333773 /* Build configuration list for PBXNativeTarget "ModelEdit" */;
+			buildPhases = (
+				8C9E472113DA81F800333773 /* Resources */,
+				8C9E472213DA81F800333773 /* Sources */,
+				8C9E472313DA81F800333773 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ModelEdit;
+			productName = ModelEdit;
+			productReference = 8C9E472513DA81F800333773 /* ModelEdit.app */;
+			productType = "com.apple.product-type.application";
+		};
 		8C9E9AB1137E65B900529EC2 /* iCalTodoModule */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8C9E9AB7137E65BA00529EC2 /* Build configuration list for PBXNativeTarget "iCalTodoModule" */;
@@ -2465,6 +2520,7 @@
 				8CB8CCCD137C530F007F7647 /* ICalDaemon */,
 				8C9E9AB1137E65B900529EC2 /* iCalTodoModule */,
 				8C58217E1383978900E33F53 /* GoogleTodoModule */,
+				8C9E472413DA81F800333773 /* ModelEdit */,
 			);
 		};
 /* End PBXProject section */
@@ -2567,6 +2623,15 @@
 			files = (
 				8C5DEC2812E8C05E00EE93F1 /* gmail.ico in Resources */,
 				8C73F8B812E893EC0056FAFF /* TestMailModule.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C9E472113DA81F800333773 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C9E476513DA93A900333773 /* WPA_DataModel.xcdatamodel in Resources */,
+				8C9E473E13DA848100333773 /* ModelEdit.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2865,6 +2930,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C73F8B512E893CC0056FAFF /* TestMailModule.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C9E472213DA81F800333773 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C9E476613DA93B500333773 /* WPA_DataModel.xcdatamodel in Sources */,
+				8C9E474313DA933500333773 /* modeledit.m in Sources */,
+				8C9E474413DA933500333773 /* ModelEditor_AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3718,6 +3793,54 @@
 			};
 			name = Release;
 		};
+		8C9E472813DA81FA00333773 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "ModelEdit-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = ModelEdit;
+			};
+			name = Debug;
+		};
+		8C9E472913DA81FA00333773 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "ModelEdit-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = ModelEdit;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		8C9E9AB5137E65BA00529EC2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -4481,6 +4604,15 @@
 			buildConfigurations = (
 				8C73F89512E891D00056FAFF /* Debug */,
 				8C73F89612E891D00056FAFF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C9E472A13DA81FB00333773 /* Build configuration list for PBXNativeTarget "ModelEdit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C9E472813DA81FA00333773 /* Debug */,
+				8C9E472913DA81FA00333773 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

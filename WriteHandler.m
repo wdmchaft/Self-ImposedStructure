@@ -432,6 +432,8 @@
 		srcObj = [taskObj valueForKey:@"source"];
 		total = [taskObj valueForKey:@"total"];
 		createTime = [taskObj valueForKey:@"createTime"];
+		[taskObj setValue:inDate forKey: @"endTime"];
+		[taskObj setValue:[NSNumber numberWithInt:YES] forKey: @"completed"];
 	}
 	else {
 		if (projectName){
@@ -469,29 +471,29 @@
                 }
             }
 		}
-	}	
-	
-	NSManagedObject *completedObj = [NSEntityDescription
-									insertNewObjectForEntityForName:@"CompleteTask"
-									inManagedObjectContext:managedObjectContext];   
-	[completedObj setValue:taskName forKey:@"name"];
-	[completedObj setValue:total forKey:@"total"];
-	[completedObj setValue:createTime forKey:@"createTime"]; 
-	[completedObj setValue:inDate forKey:@"completeTime"];
-	if (srcObj){
-		[completedObj setValue:srcObj forKey:@"source"];
-	}
-	if (projObj){
-		[completedObj setValue:projObj forKey:@"project"];
-	}
-	[taskObj validateForInsert:&err];
-	if (err){
-		//NSLog(@"error: %@",err);
-	} 
-	//NSLog(@"created task: %@", taskName);
-	[managedObjectContext insertObject:completedObj];   
-	if (taskObj) {
-		[managedObjectContext deleteObject:taskObj];
+		
+		
+		NSManagedObject *completedObj = [NSEntityDescription
+										 insertNewObjectForEntityForName:@"task"
+										 inManagedObjectContext:managedObjectContext];   
+		[completedObj setValue:taskName forKey:@"name"];
+		[completedObj setValue:total forKey:@"total"];
+		[completedObj setValue:createTime forKey:@"createTime"]; 
+		[completedObj setValue:inDate forKey:@"endTime"];
+		[completedObj setValue:[NSNumber numberWithInt:YES] forKey: @"completed"];
+		if (srcObj){
+			[completedObj setValue:srcObj forKey:@"source"];
+		}
+		if (projObj){
+			[completedObj setValue:projObj forKey:@"project"];
+		}
+		[taskObj validateForInsert:&err];
+		if (err){
+			//NSLog(@"error: %@",err);
+		} 
+		//NSLog(@"created task: %@", taskName);
+		[managedObjectContext insertObject:completedObj];   
+		
 	}
 }
 
