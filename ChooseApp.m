@@ -10,16 +10,18 @@
 
 
 @implementation ChooseApp
-@synthesize popUpRunningApps;
+@synthesize cbRunningApps;
 @synthesize buttonOk;
 @synthesize buttonCancel;
 @synthesize allApps;
 @synthesize chosenApp;
+@synthesize appsDict, appNames;
 
 - (IBAction) clickOk: (id) sender{
 	//NSLog(@"index = %d allApps size = %d",popUpRunningApps.indexOfSelectedItem, [allApps count]);
-	NSMenuItem *item = (NSMenuItem*) popUpRunningApps.selectedItem;
-	chosenApp = [allApps objectAtIndex:item.tag];
+	chosenApp = [appsDict objectForKey:[cbRunningApps stringValue]];
+    if (!chosenApp)
+        return;
 	[super.window close];
 	[NSApp stopModal];
 }
@@ -33,11 +35,26 @@
 	[super showWindow:sender];
 	//[NSApp runModalForWindow:[super window]];
 	chosenApp = nil;
-	int x = 0;
-	allApps = [[NSWorkspace sharedWorkspace]  runningApplications];
-	for (NSRunningApplication *app in allApps){
-		[popUpRunningApps addItemWithTitle:app.localizedName];
-		[((NSMenuItem*)[popUpRunningApps lastItem]) setTag:x++];
-	}
+    NSArray *running = [[NSWorkspace sharedWorkspace]  runningApplications];
+    appsDict = [NSMutableDictionary dictionaryWithCapacity:[running count]];
+    for (NSRunningApplication *app in running){
+        if ([app bundleIdentifier] != nil){
+            [appsDict setValue:app forKey:[NSString stringWithFormat:@"%@ [%@]", [app localizedName], [app bundleIdentifier]]];
+        }
+        else {
+            [appsDict setValue:app forKey:[app localizedName]];
+        }
+    }
+    appNames = [appsDict allKeys];
+}
+
+- (NSInteger)numberOfItemsInComboBox:(NSComboBox *)aComboBox
+{
+	return [appNames count];
+}
+
+- (id)comboBox:(NSComboBox *)aComboBox objectValueForItemAtIndex:(NSInteger)index
+{
+	return [appNames objectAtIndex:index];
 }
 @end

@@ -15,21 +15,27 @@
 @interface WorkModule : BaseInstance <Stateful, NSTableViewDataSource, NSTableViewDelegate> {
 	NSDistributedNotificationCenter *notificationCenter;
 	NSDistributedNotificationCenter *wsCenter;
-	NSMutableArray *appsToWatch;
+	NSMutableDictionary *appsToWatch;
 	NSTableView *tableApps;
 	NSButton *buttonAdd;
 	NSButton *buttonRemove;
 	ChooseApp *chooseApp;
 	NSString *queueName;
+    NSTimeInterval fidgetFactor;
+    NSTimer *fidgetTimer;
+    NSTextField *fidgetField;
 }
 @property (nonatomic, retain) NSDistributedNotificationCenter *notificationCenter;
 @property (nonatomic, retain) NSDistributedNotificationCenter *wsCenter;
-@property (nonatomic, retain) NSMutableArray *appsToWatch;
+@property (nonatomic, retain) NSMutableDictionary *appsToWatch;
 @property (nonatomic, retain) ChooseApp *chooseApp;
 @property (nonatomic, retain) NSString *queueName;
 @property (nonatomic, retain) IBOutlet NSTableView *tableApps;
 @property (nonatomic, retain) IBOutlet NSButton *buttonAdd;
 @property (nonatomic, retain) IBOutlet NSButton *buttonRemove;
+@property (nonatomic, assign) NSTimeInterval fidgetFactor;
+@property (nonatomic, retain) NSTimer *fidgetTimer;
+@property (nonatomic, retain) IBOutlet NSTextField *fidgetField;
 
 - (IBAction) clickState: (id) sender;
 - (IBAction) clickAdd: (id) sender;

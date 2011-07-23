@@ -193,7 +193,7 @@
 {
 	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
 	NSEntityDescription *entity =
-    [NSEntityDescription entityForName:@"ActiveTask"
+    [NSEntityDescription entityForName:@"Task"
 				inManagedObjectContext:moc];
 	[request setEntity:entity];
 	

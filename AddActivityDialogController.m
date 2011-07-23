@@ -30,7 +30,7 @@
 {
 	Context *ctx = [Context sharedContext];
 	allLists = [ctx getTaskLists];
-	for(<TaskList> list in allLists){
+	for(id<TaskList> list in allLists){
 		NSString *name = [list name];
 		[listsCombo addItemWithTitle:name];
 	}

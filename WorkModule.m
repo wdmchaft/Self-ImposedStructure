@@ -45,12 +45,13 @@
 @synthesize buttonRemove;
 @synthesize chooseApp;
 @synthesize queueName;
+@synthesize fidgetFactor, fidgetTimer, fidgetField;
 
 
 - (IBAction) clickState: (id) sender{
 	NSTableView* tView = (NSTableView*)sender;
 	int row = [tView selectedRow];
-	WatchApp *wa = [appsToWatch objectAtIndex:row];
+	WatchApp *wa = [[appsToWatch allValues] objectAtIndex:row];
 	wa.state = wa.state == WPASTATE_THINKING ? WPASTATE_OFF : WPASTATE_THINKING;
 }
 
@@ -59,9 +60,13 @@
 	NSRunningApplication *running = [chooseApp chosenApp];
 	if (running){
 		if (appsToWatch == nil){
-			appsToWatch = [NSMutableArray new];
+			appsToWatch = [NSMutableDictionary new];
 		}
-		[appsToWatch addObject:running];
+        WatchApp *wa = [WatchApp new];
+        [wa setState:WPASTATE_OFF];
+        [wa setIdString:[running bundleIdentifier]];
+        [wa setNameString: [running localizedName]];
+		[appsToWatch setObject:wa forKey: [wa idString]];
 		[tableApps noteNumberOfRowsChanged];
 	}
 }
@@ -70,20 +75,17 @@
 	chooseApp = [[ChooseApp alloc] initWithWindowNibName:@"ChooseApp"];
 	[chooseApp showWindow:self];
 	[NSApp runModalForWindow:chooseApp.window];
-//	[[NSNotificationCenter defaultCenter] addObserver:self 
-//											 selector:@selector(addClosed:) 
-//												 name:NSWindowWillCloseNotification 
-//											   object:chooseApp.window];
+
 	NSRunningApplication *running = [chooseApp chosenApp];
 	if (running){
 		if (appsToWatch == nil){
-			appsToWatch = [NSMutableArray new];
+			appsToWatch = [NSMutableDictionary new];
 		}
 		WatchApp *app = [WatchApp new];
 		app.nameString = running.localizedName;
 		app.idString = running.bundleIdentifier;
 		app.state = WPASTATE_THINKING;
-		[appsToWatch addObject:app];
+		[appsToWatch setObject:app forKey:[app idString]];
 		[tableApps noteNumberOfRowsChanged];
 	}
 }
@@ -92,7 +94,8 @@
 	NSInteger rowNum = tableApps.selectedRow;
 	if (rowNum > -1) {
 		//objectValueForTableColumn:row:
-		[appsToWatch removeObjectAtIndex:rowNum];
+		WatchApp *app = [[appsToWatch allValues] objectAtIndex:rowNum];
+        [appsToWatch removeObjectForKey:[app idString]];
 		[tableApps noteNumberOfRowsChanged];
 	}
 }
@@ -107,43 +110,50 @@
 	return queueName;
 }
 
-- (void) handleNewActiveApp: (NSNotification*) notification
+- (void) handleReallyActiveApp: (NSTimer*) timer
 {
-//	NSDictionary *dict = [notification userInfo];
-//	NSRunningApplication *newApp = [dict objectForKey:@"NSWorkspaceApplicationKey"];
     NSDictionary *appInfo = [[NSWorkspace sharedWorkspace] activeApplication];
     NSString *appBundle = [appInfo objectForKey:@"NSApplicationBundleIdentifier"];
-	//NSLog(@"WorkModule new app [%@]", appBundle);	
 	NSDictionary *dict = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:WPASTATE_FREE] forKey:@"state"];
 	NSString *stateStr =  @"free";
-	for (WatchApp *wa in appsToWatch){
-	//	NSLog(@"checking %@ [%@]",[wa idString], [wa nameString]);
-		if ([wa.idString isEqualToString:appBundle]){
-			//com.zer0gravitas.wpa
-            if(wa.state == WPASTATE_THINKING){
-				[notificationCenter postNotificationName:[self queueName]
-												  object: nil 
-												userInfo:dict];
-				dict = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:WPASTATE_THINKING] forKey:@"state"];
-				stateStr = @"work";
-				break;
-			}
-			else if (wa.state == WPASTATE_OFF){
-			//	NSLog(@"WorkModule ignoring %@", appBundle);
-				return;
-			}
+    WatchApp *foundApp = [appsToWatch objectForKey:appBundle];
+    if (foundApp){
 
-		}
-	}
+        if(foundApp.state == WPASTATE_THINKING){
+            [notificationCenter postNotificationName:[self queueName]
+                                              object: nil 
+                                            userInfo:dict];
+            dict = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:WPASTATE_THINKING] forKey:@"state"];
+            stateStr = @"work";
+        }
+        else if (foundApp.state == WPASTATE_OFF){
+            //	NSLog(@"WorkModule ignoring %@", appBundle);
+            return;
+        }
+        
+    }
 	//NSLog(@"WorkModule going to %@ state = %@ sent on %@", appBundle, stateStr, [self queueName]);
 	[notificationCenter postNotificationName:[self queueName] 
 									  object: nil 
 									userInfo:dict];
 }
 
+- (void) handleNewActiveApp: (NSNotification*) notification
+{
+    if (fidgetTimer != nil){
+        [fidgetTimer invalidate];
+    }
+    fidgetTimer = [NSTimer scheduledTimerWithTimeInterval:fidgetFactor 
+                                                   target:self 
+                                                 selector:@selector(handleReallyActiveApp:) 
+                                                 userInfo:nil 
+                                                  repeats:NO];
+}
+
 -(void) startValidation: (NSObject*) callback  
 {
 	[super startValidation:callback];
+    fidgetFactor = [fidgetField doubleValue];
 	[validationHandler performSelector:@selector(validationComplete:) 
 							withObject:nil];	
 }
@@ -183,7 +193,7 @@
 {
 	[super loadView];
 	[tableApps setDataSource:self];
-	
+    [fidgetField setStringValue:[NSString stringWithFormat:@"%f",fidgetFactor]];
 }
 
 -(void) loadDefaults
@@ -193,14 +203,17 @@
 	NSArray *names = [super loadDefaultForKey: @"Names"];
 	NSArray *ids = [super loadDefaultForKey: @"Ids"];
 	NSArray *states = [super loadDefaultForKey: @"States"];
-	appsToWatch = [[NSMutableArray alloc]initWithCapacity: [names count]];
+	appsToWatch = [NSMutableDictionary dictionaryWithCapacity: [names count]];
 	for (int i = 0; i < [names count]; i++){
 		WatchApp *app = [WatchApp new];
 		app.nameString = [names objectAtIndex:i];
 		app.idString = [ids objectAtIndex: i];
 		app.state = [((NSNumber*)[states objectAtIndex: i]) intValue];
-		[appsToWatch addObject: app];
+		[appsToWatch setObject: app forKey:[app idString]];
 	}
+    fidgetFactor = [super loadDoubleDefaultForKey:@"FidgetFactor"];
+    if (fidgetFactor == 0.0f)
+        fidgetFactor = 0.2f;
 }
 
 
@@ -210,16 +223,17 @@
 	[super clearDefaultValue:nil forKey:@"States"];
 	[super clearDefaultValue:nil forKey:@"Ids"];
 	[super clearDefaultValue:nil forKey:@"Names"];
+	[super clearDefaultValue:nil forKey:@"FidgetFactor"];
 	[[NSUserDefaults standardUserDefaults] synchronize];	
 }
 
 -(void) saveDefaults
 {
 	[super saveDefaults];
-	NSMutableArray *names = [NSMutableArray new];;
-	NSMutableArray *ids = [NSMutableArray new];;
-	NSMutableArray *states = [NSMutableArray new];;
-	for (WatchApp *app in appsToWatch){
+	NSMutableArray *names = [NSMutableArray new];
+	NSMutableArray *ids = [NSMutableArray new];
+	NSMutableArray *states = [NSMutableArray new];
+	for (WatchApp *app in [appsToWatch allValues]){
 		[names addObject: app.nameString];
 		[ids addObject: app.idString];
 		[states addObject: [NSNumber numberWithInt:app.state]];
@@ -227,7 +241,18 @@
 	[super saveDefaultValue: states forKey: @"States"];
 	[super saveDefaultValue: names forKey: @"Names"];
 	[super saveDefaultValue: ids forKey: @"Ids"];
+	[super saveDefaultValue: [NSNumber numberWithDouble:fidgetFactor] forKey: @"FidgetFactor"];
 	[[NSUserDefaults standardUserDefaults] synchronize];		
+}
+
+- (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        notificationCenter = nil;
+        fidgetFactor = 0.2;
+    }
+    return self;
 }
 
 - (id) init 
@@ -235,6 +260,7 @@
 	self = [super init];
 	if (self){
 		notificationCenter = nil;
+        fidgetFactor = 0.2;
 	}
 	return self;
 }
@@ -251,11 +277,13 @@
 		app.idString = @"com.apple.calculator";
 		app.nameString = @"calculator";
 		app.state = WPASTATE_THINKING;
-		appsToWatch = [NSMutableArray new];
-		[appsToWatch addObject:app];
+		appsToWatch = [NSMutableDictionary new];
+		[appsToWatch setObject:app forKey:[app idString]];
+        fidgetFactor = 0.2;
 	}
 	return self;
 }
+
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
 {
@@ -266,8 +294,9 @@
 objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
 	id theValue;
-    NSParameterAssert(row >= 0 && row < [appsToWatch count]);
-    WatchApp *app  = [appsToWatch objectAtIndex:row];
+    NSArray *appsArray = [appsToWatch allValues];
+    NSParameterAssert(row >= 0 && row < [appsArray count]);
+    WatchApp *app  = [appsArray objectAtIndex:row];
 	NSString *colId = (NSString*) [tableColumn identifier];
 	if ([colId isEqualToString:@"COL1"]){
 		theValue = app.nameString;

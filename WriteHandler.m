@@ -111,7 +111,7 @@
 {
 	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
 	NSEntityDescription *entity =
-    [NSEntityDescription entityForName:@"ActiveTask"
+    [NSEntityDescription entityForName:@"Task"
 				inManagedObjectContext:moc];
 	[request setEntity:entity];
 	
@@ -320,7 +320,7 @@
     NSArray *taskList = [NSArray new];
     NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
     NSEntityDescription *entity =
-    [NSEntityDescription entityForName:@"ActiveTask"
+    [NSEntityDescription entityForName:@"Task"
                 inManagedObjectContext:[self managedObjectContext]];
     if (entity) {
         [request setEntity:entity];
@@ -563,7 +563,7 @@
 			}
 		}
 		taskObj = [NSEntityDescription
-				   insertNewObjectForEntityForName:@"ActiveTask"
+				   insertNewObjectForEntityForName:@"Task"
 				   inManagedObjectContext:managedObjectContext];   
 		[taskObj setValue:taskName forKey:@"name"];
 		[taskObj setValue:[NSDate date] forKey:@"createTime"];  
