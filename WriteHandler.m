@@ -433,7 +433,7 @@
 		total = [taskObj valueForKey:@"total"];
 		createTime = [taskObj valueForKey:@"createTime"];
 		[taskObj setValue:inDate forKey: @"endTime"];
-		[taskObj setValue:[NSNumber numberWithInt:YES] forKey: @"completed"];
+		[taskObj setValue:[NSNumber numberWithInt:YES] forKey: @"complete"];
 	}
 	else {
 		if (projectName){
@@ -474,13 +474,13 @@
 		
 		
 		NSManagedObject *completedObj = [NSEntityDescription
-										 insertNewObjectForEntityForName:@"task"
+										 insertNewObjectForEntityForName:@"Task"
 										 inManagedObjectContext:managedObjectContext];   
 		[completedObj setValue:taskName forKey:@"name"];
 		[completedObj setValue:total forKey:@"total"];
 		[completedObj setValue:createTime forKey:@"createTime"]; 
 		[completedObj setValue:inDate forKey:@"endTime"];
-		[completedObj setValue:[NSNumber numberWithInt:YES] forKey: @"completed"];
+		[completedObj setValue:[NSNumber numberWithInt:YES] forKey: @"complete"];
 		if (srcObj){
 			[completedObj setValue:srcObj forKey:@"source"];
 		}
