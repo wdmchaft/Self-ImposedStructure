@@ -120,6 +120,9 @@
 		8C4019E9133FFE1D00EB414F /* VariableTableColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C4019E8133FFE1B00EB414F /* VariableTableColumn.m */; };
 		8C550A7213A2AFA000ACE29E /* ICalTodoEdit.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C550A6F13A2AFA000ACE29E /* ICalTodoEdit.xib */; };
 		8C550A7313A2AFA000ACE29E /* ICalTodoEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C550A7113A2AFA000ACE29E /* ICalTodoEdit.m */; };
+		8C56603013E061F3005DC161 /* WPABridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C56602E13E061F3005DC161 /* WPABridge.h */; };
+		8C56603113E061F3005DC161 /* WPABridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C56602F13E061F3005DC161 /* WPABridge.m */; };
+		8C56603213E061F3005DC161 /* WPABridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C56602F13E061F3005DC161 /* WPABridge.m */; };
 		8C58219A1383981B00E33F53 /* GoogleTodoModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5821981383981B00E33F53 /* GoogleTodoModule.m */; };
 		8C58219B1383981B00E33F53 /* GoogleTodoModule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C5821991383981B00E33F53 /* GoogleTodoModule.xib */; };
 		8C5821E51383A69700E33F53 /* GTProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5821E41383A69700E33F53 /* GTProtocol.m */; };
@@ -356,6 +359,9 @@
 		8CDCC11012E2BAE200CEAAD3 /* Skype.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C9CE77812E2465B00017A02 /* Skype.framework */; };
 		8CDCC11B12E2BD2000CEAAD3 /* SkypeState.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9CE76312E2449900017A02 /* SkypeState.m */; };
 		8CDCC12C12E2BD6D00CEAAD3 /* skmain.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDCC12B12E2BD6D00CEAAD3 /* skmain.m */; };
+		8CE15E5B13E20C1600375AF5 /* SelfStruct.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 8CE15E5A13E20C1600375AF5 /* SelfStruct.sdef */; };
+		8CE15E5C13E263B300375AF5 /* SelfStruct.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 8CE15E5A13E20C1600375AF5 /* SelfStruct.sdef */; };
+		8CE15E5D13E263C100375AF5 /* SelfStruct.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 8CE15E5A13E20C1600375AF5 /* SelfStruct.sdef */; };
 		8CEE6A8613268A7C00E45829 /* AppleMailModule.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8CEE6A8513268A7C00E45829 /* AppleMailModule.ico */; };
 		8CEF0D8513951FD3008D9F1D /* iCalModule.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8CEF0D8413951FD3008D9F1D /* iCalModule.ico */; };
 		8CEF0ECC13968B09008D9F1D /* Queues.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CEF0ECA13968B09008D9F1D /* Queues.h */; };
@@ -756,6 +762,8 @@
 		8C550A6F13A2AFA000ACE29E /* ICalTodoEdit.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ICalTodoEdit.xib; sourceTree = "<group>"; };
 		8C550A7013A2AFA000ACE29E /* ICalTodoEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICalTodoEdit.h; sourceTree = "<group>"; };
 		8C550A7113A2AFA000ACE29E /* ICalTodoEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICalTodoEdit.m; sourceTree = "<group>"; };
+		8C56602E13E061F3005DC161 /* WPABridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPABridge.h; sourceTree = "<group>"; };
+		8C56602F13E061F3005DC161 /* WPABridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPABridge.m; sourceTree = "<group>"; };
 		8C58217F1383978900E33F53 /* GoogleTodoModule.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoogleTodoModule.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C5821801383978900E33F53 /* GoogleTodoModule-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleTodoModule-Info.plist"; sourceTree = "<group>"; };
 		8C5821971383981B00E33F53 /* GoogleTodoModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleTodoModule.h; sourceTree = "<group>"; };
@@ -1088,6 +1096,7 @@
 		8CDCC10612E2B7BA00CEAAD3 /* SkypeManagerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SkypeManagerDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8CDCC10A12E2B86E00CEAAD3 /* SkypeManager.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SkypeManager.xib; sourceTree = "<group>"; };
 		8CDCC12B12E2BD6D00CEAAD3 /* skmain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = skmain.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		8CE15E5A13E20C1600375AF5 /* SelfStruct.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SelfStruct.sdef; sourceTree = "<group>"; };
 		8CEE6A8513268A7C00E45829 /* AppleMailModule.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = AppleMailModule.ico; sourceTree = "<group>"; };
 		8CEF0D8413951FD3008D9F1D /* iCalModule.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = iCalModule.ico; sourceTree = "<group>"; };
 		8CEF0ECA13968B09008D9F1D /* Queues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queues.h; sourceTree = "<group>"; };
@@ -1395,7 +1404,6 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				8CD1988112D5079F00C69AC9 /* ScriptingBridge.framework */,
-				8C0D93F212D63D3D009F3280 /* WPADev-Info.plist */,
 				8C0D943A12D64018009F3280 /* Cocoa.framework */,
 				8C73F89412E891D00056FAFF /* TestMailModule-Info.plist */,
 				8C5DEC4A12E8C4A600EE93F1 /* TestTaskModule-Info.plist */,
@@ -1438,7 +1446,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8CE15E5A13E20C1600375AF5 /* SelfStruct.sdef */,
 				8CEE6A8513268A7C00E45829 /* AppleMailModule.ico */,
+				8C0D93F212D63D3D009F3280 /* WPADev-Info.plist */,
 				8C82C85112F1E82500830486 /* wpa.icns */,
 				8C82C79312F17BB200830486 /* wpa.ico */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
@@ -1901,6 +1911,8 @@
 				8C82C1AC12F0630000830486 /* Stateful.h */,
 				8CFA390413CFA07C0007532F /* SiSData.h */,
 				8CFA390513CFA07C0007532F /* SiSData.m */,
+				8C56602E13E061F3005DC161 /* WPABridge.h */,
+				8C56602F13E061F3005DC161 /* WPABridge.m */,
 			);
 			name = WPAFramework;
 			sourceTree = "<group>";
@@ -2090,6 +2102,7 @@
 				8C9E3D5213206F8E007632E5 /* WriteHandler.h in Headers */,
 				8C630CBE138D548200E2570F /* BaseTaskList.h in Headers */,
 				8CEF0ECC13968B09008D9F1D /* Queues.h in Headers */,
+				8C56603013E061F3005DC161 /* WPABridge.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2103,8 +2116,9 @@
 				8C0D93EC12D63D3D009F3280 /* Resources */,
 				8C0D93ED12D63D3D009F3280 /* Sources */,
 				8C0D93EE12D63D3D009F3280 /* Frameworks */,
-				8C0D941712D63EB8009F3280 /* ShellScript */,
+				8C0D941712D63EB8009F3280 /* Run Script */,
 				8C0D945512D640F0009F3280 /* CopyFiles */,
+				8CE15E5F13E265BD00375AF5 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2465,6 +2479,7 @@
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				8CD198C512D511D800C69AC9 /* CopyFiles */,
 				8CD197B912D4FD6200C69AC9 /* ShellScript */,
+				8CE15E5E13E2648A00375AF5 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2530,6 +2545,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CE15E5D13E263C100375AF5 /* SelfStruct.sdef in Resources */,
 				8C0D944412D6408D009F3280 /* InfoPlist.strings in Resources */,
 				8C0D944512D6408D009F3280 /* AddMod.xib in Resources */,
 				8C0D944612D6408D009F3280 /* PreferencesWindow.xib in Resources */,
@@ -2632,6 +2648,7 @@
 			files = (
 				8C9E476513DA93A900333773 /* WPA_DataModel.xcdatamodel in Resources */,
 				8C9E473E13DA848100333773 /* ModelEdit.xib in Resources */,
+				8CE15E5B13E20C1600375AF5 /* SelfStruct.sdef in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2724,6 +2741,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CE15E5C13E263B300375AF5 /* SelfStruct.sdef in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				8C77298B12D46AC600F71FE7 /* AddMod.xib in Resources */,
 				8C77298D12D46AC600F71FE7 /* PreferencesWindow.xib in Resources */,
@@ -2763,13 +2781,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		8C0D941712D63EB8009F3280 /* ShellScript */ = {
+		8C0D941712D63EB8009F3280 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2801,6 +2820,32 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "echo 'doing devstruct module copy'\nif [ -d \"${HOME}/Library/Application Support/${PRODUCT_NAME}\" ]\nthen \n\techo \"directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME} exists\"\nelse \n\tmkdir \"${HOME}/Library/Application Support/${PRODUCT_NAME}\"\nfi\n\nif [ -d \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\" ]\nthen \n\techo \"directory ${HOME}/Library/Application\\ Support/${PRODUCT_NAME}/Plugins exists\"\nelse\n\tmkdir \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"\nfi\n\nrm -rf \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins/*\"\nls  ${TARGET_BUILD_DIR}/*.bundle\ncp -r ${TARGET_BUILD_DIR}/*.bundle \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"\ncp -r ${TARGET_BUILD_DIR}/*Daemon \"${HOME}/Library/Application Support/${PRODUCT_NAME}/Plugins\"";
+		};
+		8CE15E5E13E2648A00375AF5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo /Developer/usr/bin/sdp -f st -o \"${TARGET_BUILD_DIR}/$FULL_PRODUCT_NAME/Contents/Resources\" $SOURCE_ROOT/SelfStruct.sdef\n\n/Developer/usr/bin/sdp -f st -o \"${TARGET_BUILD_DIR}/$FULL_PRODUCT_NAME/Contents/Resources\" $SOURCE_ROOT/SelfStruct.sdef";
+		};
+		8CE15E5F13E265BD00375AF5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo /Developer/usr/bin/sdp -f st -o \"${TARGET_BUILD_DIR}/$FULL_PRODUCT_NAME/Contents/Resources\" $SOURCE_ROOT/SelfStruct.sdef\n\n/Developer/usr/bin/sdp -f st -o \"${TARGET_BUILD_DIR}/$FULL_PRODUCT_NAME/Contents/Resources\" $SOURCE_ROOT/SelfStruct.sdef";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2940,6 +2985,7 @@
 				8C9E476613DA93B500333773 /* WPA_DataModel.xcdatamodel in Sources */,
 				8C9E474313DA933500333773 /* modeledit.m in Sources */,
 				8C9E474413DA933500333773 /* ModelEditor_AppDelegate.m in Sources */,
+				8C56603213E061F3005DC161 /* WPABridge.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2988,6 +3034,7 @@
 				8CDC14521311B26B00BA478C /* BaseReporter.m in Sources */,
 				8C630CBF138D548200E2570F /* BaseTaskList.m in Sources */,
 				8CEF0ECD13968B09008D9F1D /* Queues.m in Sources */,
+				8C56603113E061F3005DC161 /* WPABridge.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
